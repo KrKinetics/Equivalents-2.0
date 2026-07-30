@@ -1,0 +1,602 @@
+{
+  "reportType": "nutrition-pilot-6-foods",
+  "generatedAt": "2026-07-30T13:46:16.415Z",
+  "dataset": {
+    "foodCount": 208,
+    "dataHash": "a0763bfec13120ecb472d469d91ba77cec342974ff4146aeb30037a60cc56695"
+  },
+  "stats": {
+    "totalOpenErrors": 0,
+    "foodsWithOpenErrors": 0,
+    "foodsWithoutOpenErrors": 6,
+    "totalWarnings": 3
+  },
+  "scopeGuardBaseline": {
+    "allowedFoodIds": [
+      "fruits-blueberries",
+      "noix-graines-almonds",
+      "feculents-cooked-quinoa",
+      "viandes-volaille-chicken-breast",
+      "autres-sources-proteinees-core-power-fairlife",
+      "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
+    ],
+    "protectedFoodCount": 202,
+    "protectedFoodsDataHash": "49499f61945842748210d2c3f7756fbf1be91e4c96a1121ce4999dbb4307c482",
+    "protectedFoodsNutritionHash": "5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6"
+  },
+  "foods": [
+    {
+      "id": "fruits-blueberries",
+      "names": {
+        "fr": "Bleuets frais, crus, cultivés",
+        "en": "Blueberries, fresh, raw, cultivated"
+      },
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "portion": {
+        "labelFr": "175 ml de bleuets frais (110 g)",
+        "labelEn": "175 ml fresh blueberries (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15.9,
+        "fiberG": 2.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 63
+      },
+      "atwaterControl": {
+        "calculatedKcal": 70.4,
+        "absoluteDifference": 7.4,
+        "percentDifference": 10.5,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 63 vs Atwater 70.4 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "fruits[3]"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1705",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Blueberry, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Bleuet, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1705"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 1,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "frais",
+          "crus",
+          "cultivés/génériques",
+          "175 ml / 110 g"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    },
+    {
+      "id": "noix-graines-almonds",
+      "names": {
+        "fr": "Amandes entières, crues, non salées",
+        "en": "Almonds, whole, raw, unsalted"
+      },
+      "displayCategory": "noix_graines",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed",
+      "portion": {
+        "labelFr": "7 amandes entières crues (8,5 g)",
+        "labelEn": "7 whole raw almonds (8.5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 8.5,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 1.8,
+        "fiberG": 1.1,
+        "fatG": 4.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 49
+      },
+      "atwaterControl": {
+        "calculatedKcal": 52.2,
+        "absoluteDifference": 3.2,
+        "percentDifference": 6.1,
+        "reason": null
+      },
+      "alerts": [],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "noix[0]"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2534",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, almonds, dried, unblanched, unroasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, amandes, séchées, non blanchies, non rôties",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2534"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 0,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "entières",
+          "crues",
+          "non salées",
+          "7 unités / 8,5 g"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    },
+    {
+      "id": "feculents-cooked-quinoa",
+      "names": {
+        "fr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
+        "en": "White quinoa, cooked in water, no added oil"
+      },
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain",
+      "portion": {
+        "labelFr": "100 ml de quinoa cuit (75 g)",
+        "labelEn": "100 ml cooked quinoa (75 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 3.3,
+        "carbsG": 16,
+        "fiberG": 2.1,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "atwaterControl": {
+        "calculatedKcal": 89.8,
+        "absoluteDifference": 0.2,
+        "percentDifference": 0.2,
+        "reason": null
+      },
+      "alerts": [],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "feculents[11]"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5917",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, quinoa, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, quinoa, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5917"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 0,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "quinoa cuit dans l’eau",
+          "sans huile",
+          "100 ml / 75 g"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    },
+    {
+      "id": "viandes-volaille-chicken-breast",
+      "names": {
+        "fr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+        "en": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil"
+      },
+      "displayCategory": "viandes_volaille",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-animal",
+      "portion": {
+        "labelFr": "30 g de poitrine de poulet cuite, sans peau",
+        "labelEn": "30 g cooked skinless chicken breast",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 50
+      },
+      "atwaterControl": {
+        "calculatedKcal": 47.1,
+        "absoluteDifference": 2.9,
+        "percentDifference": 6.2,
+        "reason": null
+      },
+      "alerts": [],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "viandes[16]"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "842",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Chicken, broiler, breast, meat, roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Poulet à griller, poitrine, viande, rôti",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:842"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 0,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "viande seulement",
+          "sans peau",
+          "cuite/rôtie",
+          "30 g"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "names": {
+        "fr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle"
+      },
+      "displayCategory": "autres_sources_proteinees",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "portion": {
+        "labelFr": "100 ml de fairlife Core Power Elite chocolat (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Chocolate (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.2,
+        "fiberG": 0.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "atwaterControl": {
+        "calculatedKcal": 56.4,
+        "absoluteDifference": 0.4,
+        "percentDifference": 0.7,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "autresProteines[5]"
+      },
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+        "url": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "414 ml bottle",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Étiquette officielle fairlife; conserver le marché et la date de consultation.",
+        "brand": "fairlife",
+        "productName": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+        "labelServingSize": "414 ml",
+        "evidenceRef": "https://fairlife.com/core-power/chocolate-protein-shake-42g/"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 1,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "Core Power Elite chocolat",
+          "414 ml → 100 ml KR"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "names": {
+        "fr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle"
+      },
+      "displayCategory": "autres_sources_proteinees",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "portion": {
+        "labelFr": "100 ml de fairlife Core Power Elite vanille (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Vanilla (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "atwaterControl": {
+        "calculatedKcal": 55.2,
+        "absoluteDifference": 0.8,
+        "percentDifference": 1.4,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "legacySource": {
+        "reference": "Approved nutrition batch add",
+        "referenceId": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
+      },
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+        "url": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "414 ml bottle",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Étiquette officielle fairlife; conserver le marché et la date de consultation.",
+        "brand": "fairlife",
+        "productName": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+        "labelServingSize": "414 ml",
+        "evidenceRef": "https://fairlife.com/core-power/vanilla-protein-shake-42g/"
+      },
+      "classification": {
+        "current": "approved",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "verified",
+        "openErrorCount": 0,
+        "warningCount": 1,
+        "canMarkVerified": true
+      },
+      "comparison": {
+        "before": null,
+        "after": null
+      },
+      "finalStatus": "verified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "Core Power Elite vanille",
+          "414 ml → 100 ml KR",
+          "nouvel aliment"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": true
+      }
+    }
+  ]
+}

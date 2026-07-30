@@ -1,0 +1,1343 @@
+{
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "generatedAt": "2026-07-30T13:48:48.178Z",
+  "foods": [
+    {
+      "id": "fruits-blueberries",
+      "operation": "update",
+      "identity": {
+        "fr": "Bleuets frais, crus, cultivés",
+        "en": "Blueberries, fresh, raw, cultivated",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "wild",
+          "sweetened",
+          "canned"
+        ]
+      },
+      "recordId": "1705",
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1705",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Blueberry, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Bleuet, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1705"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 110 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 57,
+          "protein_g": 0.74,
+          "carbohydrate_g": 14.49,
+          "fibre_g": 2.59,
+          "total_fat_g": 0.33,
+          "saturated_fat_g": 0.028,
+          "polyunsaturated_fat_g": 0.146,
+          "monounsaturated_fat_g": 0.047
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 62.7,
+          "proteinG": 0.8140000000000001,
+          "carbsG": 15.939000000000002,
+          "fiberG": 2.849,
+          "fatG": 0.36300000000000004,
+          "saturatedFatG": 0.030800000000000004,
+          "polyunsaturatedFatG": 0.1606,
+          "monounsaturatedFatG": 0.0517
+        },
+        "storedRounded": {
+          "declaredKcal": 63,
+          "proteinG": 0.8,
+          "carbsG": 15.9,
+          "fiberG": 2.8,
+          "fatG": 0.4,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "selected": {
+          "recordId": "1705",
+          "descriptionEn": "Blueberry, raw",
+          "descriptionFr": "Bleuet, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 158,
+          "per100g": {
+            "energy_kcal": 57,
+            "protein_g": 0.74,
+            "carbohydrate_g": 14.49,
+            "fibre_g": 2.59,
+            "total_fat_g": 0.33,
+            "saturated_fat_g": 0.028,
+            "polyunsaturated_fat_g": 0.146,
+            "monounsaturated_fat_g": 0.047
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1705",
+            "descriptionEn": "Blueberry, raw",
+            "descriptionFr": "Bleuet, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 158,
+            "per100g": {
+              "energy_kcal": 57,
+              "protein_g": 0.74,
+              "carbohydrate_g": 14.49,
+              "fibre_g": 2.59,
+              "total_fat_g": 0.33,
+              "saturated_fat_g": 0.028,
+              "polyunsaturated_fat_g": 0.146,
+              "monounsaturated_fat_g": 0.047
+            }
+          },
+          {
+            "recordId": "3996",
+            "descriptionEn": "Toaster pastry, fruit (apple, blueberry, cherry, strawberry)",
+            "descriptionFr": "Tartelette grille-pain, fruits (pommes, bleuets, cerises, fraises)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 103,
+            "per100g": {
+              "energy_kcal": 388,
+              "protein_g": 4.2,
+              "carbohydrate_g": 70.32,
+              "fibre_g": 1,
+              "total_fat_g": 9.95,
+              "saturated_fat_g": 3.615,
+              "polyunsaturated_fat_g": 3.235,
+              "monounsaturated_fat_g": 2.723
+            }
+          },
+          {
+            "recordId": "6221",
+            "descriptionEn": "Toaster pastry, fruit, frosted (apple, blueberry, cherry, strawberry)",
+            "descriptionFr": "Tartelette grille-pain, fruits, glacée (pommes, bleuets, cerises, fraises)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 102,
+            "per100g": {
+              "energy_kcal": 385,
+              "protein_g": 4.01,
+              "carbohydrate_g": 71.83,
+              "fibre_g": 1.8,
+              "total_fat_g": 9.02,
+              "saturated_fat_g": 3.091,
+              "polyunsaturated_fat_g": 3.36,
+              "monounsaturated_fat_g": 2.186
+            }
+          },
+          {
+            "recordId": "6222",
+            "descriptionEn": "Toaster pastry, fruit, toasted (apple, blueberry, cherry, strawberry)",
+            "descriptionFr": "Tartelette grille-pain, fruits, grillée (pommes, bleuets, cerises, fraises)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 102,
+            "per100g": {
+              "energy_kcal": 409,
+              "protein_g": 4.7,
+              "carbohydrate_g": 72.7,
+              "fibre_g": 1,
+              "total_fat_g": 11.03,
+              "saturated_fat_g": 2.637,
+              "polyunsaturated_fat_g": 1.281,
+              "monounsaturated_fat_g": 6.55
+            }
+          },
+          {
+            "recordId": "3957",
+            "descriptionEn": "Pie, fried, fruit (apple, blueberry, peach, strawberry)",
+            "descriptionFr": "Tarte, chausson, fruits (pommes, bleuets, pêches, fraises)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 63,
+            "per100g": {
+              "energy_kcal": 316,
+              "protein_g": 3,
+              "carbohydrate_g": 42.6,
+              "fibre_g": 2.6,
+              "total_fat_g": 16.1,
+              "saturated_fat_g": 2.457,
+              "polyunsaturated_fat_g": 5.376,
+              "monounsaturated_fat_g": 7.449
+            }
+          }
+        ],
+        "message": "Choisir l'enregistrement cultivé/générique cru. Si plusieurs enregistrements demeurent équivalents, produire la liste et utiliser celui décrit comme générique/cultivé."
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 15.4,
+        "fiberG": 2,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15.9,
+        "fiberG": 2.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 63
+      },
+      "beforePortion": {
+        "labelFr": "175 ml de bleuets (110 g)",
+        "labelEn": "175 ml blueberries (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "175 ml de bleuets frais (110 g)",
+        "labelEn": "175 ml fresh blueberries (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 63 vs Atwater 70.4 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true
+    },
+    {
+      "id": "noix-graines-almonds",
+      "operation": "update",
+      "identity": {
+        "fr": "Amandes entières, crues, non salées",
+        "en": "Almonds, whole, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "roasted",
+          "salted",
+          "blanched",
+          "oil-roasted"
+        ]
+      },
+      "recordId": "2534",
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2534",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, almonds, dried, unblanched, unroasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, amandes, séchées, non blanchies, non rôties",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2534"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 8.5 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 579,
+          "protein_g": 21.15,
+          "carbohydrate_g": 21.55,
+          "fibre_g": 12.5,
+          "total_fat_g": 49.93,
+          "saturated_fat_g": 3.802,
+          "polyunsaturated_fat_g": 12.329,
+          "monounsaturated_fat_g": 31.551
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 49.215,
+          "proteinG": 1.79775,
+          "carbsG": 1.8317500000000002,
+          "fiberG": 1.0625,
+          "fatG": 4.2440500000000005,
+          "saturatedFatG": 0.32317,
+          "polyunsaturatedFatG": 1.047965,
+          "monounsaturatedFatG": 2.681835
+        },
+        "storedRounded": {
+          "declaredKcal": 49,
+          "proteinG": 1.8,
+          "carbsG": 1.8,
+          "fiberG": 1.1,
+          "fatG": 4.2,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 1,
+          "monounsaturatedFatG": 2.7
+        }
+      },
+      "selection": {
+        "selected": {
+          "recordId": "2534",
+          "descriptionEn": "Nuts, almonds, dried, unblanched, unroasted",
+          "descriptionFr": "Noix, amandes, séchées, non blanchies, non rôties",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 130,
+          "per100g": {
+            "energy_kcal": 579,
+            "protein_g": 21.15,
+            "carbohydrate_g": 21.55,
+            "fibre_g": 12.5,
+            "total_fat_g": 49.93,
+            "saturated_fat_g": 3.802,
+            "polyunsaturated_fat_g": 12.329,
+            "monounsaturated_fat_g": 31.551
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2534",
+            "descriptionEn": "Nuts, almonds, dried, unblanched, unroasted",
+            "descriptionFr": "Noix, amandes, séchées, non blanchies, non rôties",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 130,
+            "per100g": {
+              "energy_kcal": 579,
+              "protein_g": 21.15,
+              "carbohydrate_g": 21.55,
+              "fibre_g": 12.5,
+              "total_fat_g": 49.93,
+              "saturated_fat_g": 3.802,
+              "polyunsaturated_fat_g": 12.329,
+              "monounsaturated_fat_g": 31.551
+            }
+          },
+          {
+            "recordId": "440",
+            "descriptionEn": "Vegetable oil, almond",
+            "descriptionFr": "Huile végétale, amande",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 885,
+              "protein_g": 0,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 100,
+              "saturated_fat_g": 8.2,
+              "polyunsaturated_fat_g": 17.4,
+              "monounsaturated_fat_g": 69.9
+            }
+          },
+          {
+            "recordId": "4354",
+            "descriptionEn": "Snacks, crisped rice bar, almond",
+            "descriptionFr": "Grignotises, barre de riz croustillant, amandes",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 458,
+              "protein_g": 7,
+              "carbohydrate_g": 64.6,
+              "fibre_g": 3.6,
+              "total_fat_g": 20.4,
+              "saturated_fat_g": 3.77,
+              "polyunsaturated_fat_g": 7.73,
+              "monounsaturated_fat_g": 7.5
+            }
+          },
+          {
+            "recordId": "6776",
+            "descriptionEn": "Chicken, sautéed with almonds (almond guy ding)",
+            "descriptionFr": "Poulet, sauté aux amandes",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 116,
+              "protein_g": 8.726,
+              "carbohydrate_g": 6.874,
+              "fibre_g": 1.015,
+              "total_fat_g": 6.034,
+              "saturated_fat_g": 0.641,
+              "polyunsaturated_fat_g": 1.524,
+              "monounsaturated_fat_g": 3.553
+            }
+          },
+          {
+            "recordId": "3890",
+            "descriptionEn": "Danish pastry, nut (almond, raisin nut, cinnamon nut)",
+            "descriptionFr": "Pâtisserie, Danoise, noix (amandes, raisins secs et noix, cannelle et noix)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 67,
+            "per100g": {
+              "energy_kcal": 430,
+              "protein_g": 7.1,
+              "carbohydrate_g": 45.7,
+              "fibre_g": 2,
+              "total_fat_g": 25.2,
+              "saturated_fat_g": 5.821,
+              "polyunsaturated_fat_g": 4.281,
+              "monounsaturated_fat_g": 13.685
+            }
+          },
+          {
+            "recordId": "7789",
+            "descriptionEn": "Plant-based beverage, almond and coconut beverage, plain, fortified, refrigerated",
+            "descriptionFr": "Boisson à base de plantes, amande et noix de coco, nature, enrichie, réfrigérée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 32,
+              "protein_g": 0.39,
+              "carbohydrate_g": 4.58,
+              "fibre_g": 0,
+              "total_fat_g": 1.31,
+              "saturated_fat_g": 0.749,
+              "polyunsaturated_fat_g": 0.153,
+              "monounsaturated_fat_g": 0.34
+            }
+          },
+          {
+            "recordId": "7226",
+            "descriptionEn": "Plant-based beverage, almond beverage, chocolate flavoured, sweetened, fortified, refrigerated",
+            "descriptionFr": "Boisson à base de plantes, amande, saveur de chocolat, sucrée, enrichie, réfrigérée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 48,
+              "protein_g": 0.63,
+              "carbohydrate_g": 9.2,
+              "fibre_g": 0.4,
+              "total_fat_g": 1,
+              "saturated_fat_g": 0.133,
+              "polyunsaturated_fat_g": 0.226,
+              "monounsaturated_fat_g": 0.588
+            }
+          },
+          {
+            "recordId": "7225",
+            "descriptionEn": "Plant-based beverage, almond beverage, vanilla flavoured, sweetened, fortified, refrigerated",
+            "descriptionFr": "Boisson à base de plantes, amande, saveur de vanille, sucrée, enrichie, réfrigérée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 37,
+              "protein_g": 0.46,
+              "carbohydrate_g": 6.47,
+              "fibre_g": 0.4,
+              "total_fat_g": 0.98,
+              "saturated_fat_g": 0.066,
+              "polyunsaturated_fat_g": 0.239,
+              "monounsaturated_fat_g": 0.634
+            }
+          },
+          {
+            "recordId": "7797",
+            "descriptionEn": "Plant-Based Beverage, Almond and Coconut Beverage, Plain, Unsweetened, Fortified, refrigerated",
+            "descriptionFr": "Boisson à base de plantes, amande et noix de coco, nature, non sucrée, enrichie, réfrigérée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 64,
+            "per100g": {
+              "energy_kcal": 21,
+              "protein_g": 0.43,
+              "carbohydrate_g": 1.97,
+              "fibre_g": 0,
+              "total_fat_g": 1.23,
+              "saturated_fat_g": 0.464,
+              "polyunsaturated_fat_g": 0.187,
+              "monounsaturated_fat_g": 0.512
+            }
+          },
+          {
+            "recordId": "7801",
+            "descriptionEn": "Plant-based beverage, almond beverage, plain, unsweetened, calcium-fortified, shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, amande, nature, non sucrée, enrichie en calcium, longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 64,
+            "per100g": {
+              "energy_kcal": 28,
+              "protein_g": 0.51,
+              "carbohydrate_g": 3.85,
+              "fibre_g": 0.4,
+              "total_fat_g": 1.2,
+              "saturated_fat_g": 0.084,
+              "polyunsaturated_fat_g": 0.323,
+              "monounsaturated_fat_g": 0.736
+            }
+          }
+        ],
+        "message": "Privilégier l'entrée entière, crue/non rôtie et non blanchie. Le calcul nutritionnel doit être fondé sur 8,5 g."
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 1.8,
+        "fiberG": 1.1,
+        "fatG": 4.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 49
+      },
+      "beforePortion": {
+        "labelFr": "7 Amandes (5 g)",
+        "labelEn": "7 Almonds (5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 5,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7 amandes entières crues (8,5 g)",
+        "labelEn": "7 whole raw almonds (8.5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 8.5,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true
+    },
+    {
+      "id": "feculents-cooked-quinoa",
+      "operation": "update",
+      "identity": {
+        "fr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
+        "en": "White quinoa, cooked in water, no added oil",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "uncooked",
+          "fried",
+          "with oil",
+          "mixed dish"
+        ]
+      },
+      "recordId": "5917",
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5917",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, quinoa, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, quinoa, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5917"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 120,
+          "protein_g": 4.4,
+          "carbohydrate_g": 21.3,
+          "fibre_g": 2.8,
+          "total_fat_g": 1.92,
+          "saturated_fat_g": 0.231,
+          "polyunsaturated_fat_g": 1.078,
+          "monounsaturated_fat_g": 0.528
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 90,
+          "proteinG": 3.3000000000000003,
+          "carbsG": 15.975000000000001,
+          "fiberG": 2.0999999999999996,
+          "fatG": 1.44,
+          "saturatedFatG": 0.17325000000000002,
+          "polyunsaturatedFatG": 0.8085,
+          "monounsaturatedFatG": 0.396
+        },
+        "storedRounded": {
+          "declaredKcal": 90,
+          "proteinG": 3.3,
+          "carbsG": 16,
+          "fiberG": 2.1,
+          "fatG": 1.4,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.8,
+          "monounsaturatedFatG": 0.4
+        }
+      },
+      "selection": {
+        "selected": {
+          "recordId": "5917",
+          "descriptionEn": "Grains, quinoa, cooked",
+          "descriptionFr": "Grains céréaliers, quinoa, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 157,
+          "per100g": {
+            "energy_kcal": 120,
+            "protein_g": 4.4,
+            "carbohydrate_g": 21.3,
+            "fibre_g": 2.8,
+            "total_fat_g": 1.92,
+            "saturated_fat_g": 0.231,
+            "polyunsaturated_fat_g": 1.078,
+            "monounsaturated_fat_g": 0.528
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5917",
+            "descriptionEn": "Grains, quinoa, cooked",
+            "descriptionFr": "Grains céréaliers, quinoa, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 157,
+            "per100g": {
+              "energy_kcal": 120,
+              "protein_g": 4.4,
+              "carbohydrate_g": 21.3,
+              "fibre_g": 2.8,
+              "total_fat_g": 1.92,
+              "saturated_fat_g": 0.231,
+              "polyunsaturated_fat_g": 1.078,
+              "monounsaturated_fat_g": 0.528
+            }
+          }
+        ],
+        "message": "Choisir le quinoa cuit simple. Si le sel est le seul facteur distinctif et n'affecte pas les macros principales, consigner le choix dans le rapport."
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 116
+      },
+      "afterNutrients": {
+        "proteinG": 3.3,
+        "carbsG": 16,
+        "fiberG": 2.1,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Quinoa cuit (75 g)",
+        "labelEn": "125 ml Cooked quinoa (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 ml de quinoa cuit (75 g)",
+        "labelEn": "100 ml cooked quinoa (75 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 116 vs Atwater 36.0 (Δ 80.0 / 222.2%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~116 kcal / 8 g protein / 1 g carbs",
+          "suspectId": "quinoa"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true
+    },
+    {
+      "id": "viandes-volaille-chicken-breast",
+      "operation": "update",
+      "identity": {
+        "fr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+        "en": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "with skin",
+          "breaded",
+          "fried",
+          "with added oil"
+        ]
+      },
+      "recordId": "842",
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "842",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Chicken, broiler, breast, meat, roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Poulet à griller, poitrine, viande, rôti",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:842"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 165,
+          "protein_g": 31.02,
+          "carbohydrate_g": 0,
+          "fibre_g": 0,
+          "total_fat_g": 3.57,
+          "saturated_fat_g": 1.01,
+          "polyunsaturated_fat_g": 0.77,
+          "monounsaturated_fat_g": 1.24
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 49.5,
+          "proteinG": 9.306,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 1.071,
+          "saturatedFatG": 0.303,
+          "polyunsaturatedFatG": 0.23099999999999998,
+          "monounsaturatedFatG": 0.372
+        },
+        "storedRounded": {
+          "declaredKcal": 50,
+          "proteinG": 9.3,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 1.1,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.4
+        }
+      },
+      "selection": {
+        "selected": {
+          "recordId": "842",
+          "descriptionEn": "Chicken, broiler, breast, meat, roasted",
+          "descriptionFr": "Poulet à griller, poitrine, viande, rôti",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 235,
+          "per100g": {
+            "energy_kcal": 165,
+            "protein_g": 31.02,
+            "carbohydrate_g": 0,
+            "fibre_g": 0,
+            "total_fat_g": 3.57,
+            "saturated_fat_g": 1.01,
+            "polyunsaturated_fat_g": 0.77,
+            "monounsaturated_fat_g": 1.24
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "842",
+            "descriptionEn": "Chicken, broiler, breast, meat, roasted",
+            "descriptionFr": "Poulet à griller, poitrine, viande, rôti",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 235,
+            "per100g": {
+              "energy_kcal": 165,
+              "protein_g": 31.02,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 3.57,
+              "saturated_fat_g": 1.01,
+              "polyunsaturated_fat_g": 0.77,
+              "monounsaturated_fat_g": 1.24
+            }
+          },
+          {
+            "recordId": "843",
+            "descriptionEn": "Chicken, broiler, breast, meat, stewed",
+            "descriptionFr": "Poulet à griller, poitrine, viande, à l'étuvée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 175,
+            "per100g": {
+              "energy_kcal": 151,
+              "protein_g": 28.98,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 3.03,
+              "saturated_fat_g": 0.85,
+              "polyunsaturated_fat_g": 0.66,
+              "monounsaturated_fat_g": 1.03
+            }
+          },
+          {
+            "recordId": "7321",
+            "descriptionEn": "Chicken, broiler, breast, skinless, boneless, meat, braised",
+            "descriptionFr": "Poulet à griller, poitrine, sans la peau, désossée, viande, braisé",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 173,
+            "per100g": {
+              "energy_kcal": 157,
+              "protein_g": 32.06,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 3.24,
+              "saturated_fat_g": 1.01,
+              "polyunsaturated_fat_g": 0.791,
+              "monounsaturated_fat_g": 1.275
+            }
+          },
+          {
+            "recordId": "7322",
+            "descriptionEn": "Chicken, broiler, breast, skinless, boneless, meat, grilled",
+            "descriptionFr": "Poulet à griller, poitrine, sans la peau, désossée, viande, grillé",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 173,
+            "per100g": {
+              "energy_kcal": 151,
+              "protein_g": 30.54,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 3.17,
+              "saturated_fat_g": 0.992,
+              "polyunsaturated_fat_g": 0.764,
+              "monounsaturated_fat_g": 1.212
+            }
+          },
+          {
+            "recordId": "6646",
+            "descriptionEn": "Chicken, broiler, breast, meat, cooked, rotisserie, with seasoning",
+            "descriptionFr": "Poulet à griller, poitrine, viande, cuite, rôtisserie, avec assaisonnement",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 172,
+            "per100g": {
+              "energy_kcal": 137,
+              "protein_g": 28,
+              "carbohydrate_g": 0,
+              "fibre_g": 0,
+              "total_fat_g": 2.79,
+              "saturated_fat_g": 0.775,
+              "polyunsaturated_fat_g": 0.545,
+              "monounsaturated_fat_g": 0.967
+            }
+          },
+          {
+            "recordId": "5693",
+            "descriptionEn": "Deli-meat, chicken breast, oven-roasted, sliced",
+            "descriptionFr": "Charcuterie, poitrine de poulet, rôtie au four, tranchée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 143,
+            "per100g": {
+              "energy_kcal": 115,
+              "protein_g": 19.79,
+              "carbohydrate_g": 2.61,
+              "fibre_g": 0,
+              "total_fat_g": 2.25,
+              "saturated_fat_g": 0.791,
+              "polyunsaturated_fat_g": 0.429,
+              "monounsaturated_fat_g": 0.932
+            }
+          },
+          {
+            "recordId": "7930",
+            "descriptionEn": "Deli-Meat, chicken breast, roasted, strips, seasoned",
+            "descriptionFr": "Charcuterie, poitrine de poulet, rôtie, lanières, assaisonnées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 143,
+            "per100g": {
+              "energy_kcal": 119.656842944,
+              "protein_g": 23.456075389,
+              "carbohydrate_g": 2.045545341,
+              "fibre_g": 0.044568896,
+              "total_fat_g": 2.159402108,
+              "saturated_fat_g": 0.5468623,
+              "polyunsaturated_fat_g": 0.502044462,
+              "monounsaturated_fat_g": 1.024752482
+            }
+          },
+          {
+            "recordId": "7929",
+            "descriptionEn": "Deli-Meat, chicken breast, roasted, strips, flavoured (italian)",
+            "descriptionFr": "Charcuterie, poitrine de poulet, rôtie, lanières, aromatisées (italienne)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 142,
+            "per100g": {
+              "energy_kcal": 118.0942,
+              "protein_g": 23.11,
+              "carbohydrate_g": 4.5,
+              "fibre_g": 0.4,
+              "total_fat_g": 2.15,
+              "saturated_fat_g": 0.578150257,
+              "polyunsaturated_fat_g": 0.666914813,
+              "monounsaturated_fat_g": 0.822465427
+            }
+          },
+          {
+            "recordId": "5691",
+            "descriptionEn": "Deli-meat, chicken breast, oven-roasted, fat free, sliced",
+            "descriptionFr": "Charcuterie, poitrine de poulet, rôtie au four, sans gras, tranchée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 141,
+            "per100g": {
+              "energy_kcal": 110,
+              "protein_g": 19.64,
+              "carbohydrate_g": 4.64,
+              "fibre_g": 0,
+              "total_fat_g": 0.92,
+              "saturated_fat_g": 0.381,
+              "polyunsaturated_fat_g": 0.138,
+              "monounsaturated_fat_g": 0.359
+            }
+          },
+          {
+            "recordId": "7931",
+            "descriptionEn": "Deli-Meat, chicken breast, roasted, strips, flavoured (BBQ, Honey Garlic, Buffalo)",
+            "descriptionFr": "Charcuterie, poitrine de poulet, rôtie, lanières, aromatisées (BBQ, Miel et ail, Buffalo)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 139,
+            "per100g": {
+              "energy_kcal": 107.88764,
+              "protein_g": 21.02,
+              "carbohydrate_g": 7.932,
+              "fibre_g": 0.1,
+              "total_fat_g": 2.008,
+              "saturated_fat_g": 0.467275272,
+              "polyunsaturated_fat_g": 0.644000732,
+              "monounsaturated_fat_g": 0.827932663
+            }
+          }
+        ],
+        "message": "Choisir l'enregistrement viande seulement, cuite/rôtie. Ne pas utiliser une entrée avec peau ni une préparation composée."
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 48
+      },
+      "afterNutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 50
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Poitrine de poulet",
+        "labelEn": "30 g Chicken breast",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de poitrine de poulet cuite, sans peau",
+        "labelEn": "30 g cooked skinless chicken breast",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 48 vs Atwater 95.0 (Δ 47.0 / 49.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~48 kcal / 8 g protein / 7 g fat",
+          "suspectId": "chicken_breast"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "operation": "update",
+      "identity": {
+        "fr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife",
+        "marketNote": "Étiquette officielle fairlife; conserver le marché et la date de consultation."
+      },
+      "recordId": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+        "url": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "414 ml bottle",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Étiquette officielle fairlife; conserver le marché et la date de consultation.",
+        "brand": "fairlife",
+        "productName": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+        "labelServingSize": "414 ml",
+        "evidenceRef": "https://fairlife.com/core-power/chocolate-protein-shake-42g/"
+      },
+      "conversion": {
+        "formula": "valuePer100ml = valueBottle × 100 / 414",
+        "bottleMl": 414,
+        "labelNutrients": {
+          "declaredKcal": 230,
+          "proteinG": 42,
+          "carbsG": 9,
+          "fiberG": 2,
+          "fatG": 3.5,
+          "saturatedFatG": 2
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.55555555555555,
+          "proteinG": 10.144927536231883,
+          "carbsG": 2.1739130434782608,
+          "fiberG": 0.4830917874396135,
+          "fatG": 0.8454106280193237,
+          "saturatedFatG": 0.4830917874396135,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 2.2,
+          "fiberG": 0.5,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "approvedStored": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 2.2,
+          "fiberG": 0.5,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 12,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.2,
+        "fiberG": 0.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "beforePortion": {
+        "labelFr": "100 ml de Core Power, Fairlife (42 g prot./bouteille)",
+        "labelEn": "100 ml Core Power, Fairlife (42 g prot./bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Core Power / Fairlife"
+      },
+      "afterPortion": {
+        "labelFr": "100 ml de fairlife Core Power Elite chocolat (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Chocolate (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 63 vs Atwater 74.0 (14.9%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "projectedCanVerify": true
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "operation": "add",
+      "identity": {
+        "fr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife",
+        "marketNote": "Étiquette officielle fairlife; conserver le marché et la date de consultation."
+      },
+      "recordId": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+        "url": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "414 ml bottle",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Étiquette officielle fairlife; conserver le marché et la date de consultation.",
+        "brand": "fairlife",
+        "productName": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+        "labelServingSize": "414 ml",
+        "evidenceRef": "https://fairlife.com/core-power/vanilla-protein-shake-42g/"
+      },
+      "conversion": {
+        "formula": "valuePer100ml = valueBottle × 100 / 414",
+        "bottleMl": 414,
+        "labelNutrients": {
+          "declaredKcal": 230,
+          "proteinG": 42,
+          "carbsG": 8,
+          "fiberG": 0,
+          "fatG": 3.5,
+          "saturatedFatG": 2
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.55555555555555,
+          "proteinG": 10.144927536231883,
+          "carbsG": 1.932367149758454,
+          "fiberG": 0,
+          "fatG": 0.8454106280193237,
+          "saturatedFatG": 0.4830917874396135,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 1.9,
+          "fiberG": 0,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "approvedStored": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 1.9,
+          "fiberG": 0,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 ml de fairlife Core Power Elite vanille (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Vanilla (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "projectedCanVerify": true
+    }
+  ]
+}

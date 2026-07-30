@@ -13,6 +13,10 @@ import { auditDataset } from '../src/lib/food-audit-core.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
 import { resolvePaths } from '../src/lib/paths.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
+import {
+  checkPilotCandidateScope,
+  isPilotGuardActive,
+} from '../src/lib/nutrition-pilot-scope.mjs';
 
 const STRUCTURAL_AUDIT_CODES = new Set([
   'MISSING_ID',
@@ -97,6 +101,19 @@ function main() {
     const missingIds = [...curIds].filter((id) => !newIds.has(id));
     if (missingIds.length) {
       throw new Error(`Apply refused: missing existing id(s): ${missingIds.join(', ')}`);
+    }
+
+    const pilotConfigPath = paths.nutritionPilotConfigPath;
+    if (fs.existsSync(pilotConfigPath)) {
+      const pilotConfig = JSON.parse(fs.readFileSync(pilotConfigPath, 'utf8'));
+      if (isPilotGuardActive(pilotConfig)) {
+        const scope = checkPilotCandidateScope(current, incoming, pilotConfig);
+        if (!scope.ok) {
+          console.error('Apply refused (pilot scope guard):');
+          for (const err of scope.errors) console.error(` - ${err}`);
+          throw new Error(`Apply refused: ${scope.errors.length} pilot scope error(s).`);
+        }
+      }
     }
 
     const governance = assertApplyGovernance(current, incoming, {

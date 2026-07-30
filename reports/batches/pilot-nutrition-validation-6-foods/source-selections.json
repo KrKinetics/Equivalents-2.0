@@ -1,0 +1,107 @@
+{
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "selected": [
+    {
+      "id": "fruits-blueberries",
+      "operation": "update",
+      "recordId": "1705",
+      "transactionId": "f41f1c0e-acee-4580-ad0b-45de6d7671d1",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15.9,
+        "fiberG": 2.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 63
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-almonds",
+      "operation": "update",
+      "recordId": "2534",
+      "transactionId": "5d8006f1-ae94-4b22-b5dc-76f92950849d",
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 1.8,
+        "fiberG": 1.1,
+        "fatG": 4.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 49
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-quinoa",
+      "operation": "update",
+      "recordId": "5917",
+      "transactionId": "1f609397-d5c4-4fc2-85b1-dafd95c1681f",
+      "nutrients": {
+        "proteinG": 3.3,
+        "carbsG": 16,
+        "fiberG": 2.1,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-chicken-breast",
+      "operation": "update",
+      "recordId": "842",
+      "transactionId": "e2454d1b-3b2c-4bf8-b2b6-e0e7d14455d7",
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "operation": "update",
+      "recordId": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+      "transactionId": "c43318c6-38cb-47f4-a9dd-d25b815d9642",
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.2,
+        "fiberG": 0.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "operation": "add",
+      "recordId": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+      "transactionId": "8197b0f1-157b-4da9-8180-8abbb034f1e5",
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "version": 3
+    }
+  ]
+}

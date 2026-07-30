@@ -1,0 +1,7 @@
+id,operation,recordId,beforeKcal,afterKcal,beforeProtein,afterProtein,projectedCanVerify
+fruits-blueberries,update,1705,69,63,1,0.8,true
+noix-graines-almonds,update,2534,53,49,1,1.8,true
+feculents-cooked-quinoa,update,5917,116,90,8,3.3,true
+viandes-volaille-chicken-breast,update,842,48,50,8,9.3,true
+autres-sources-proteinees-core-power-fairlife,update,https://fairlife.com/core-power/chocolate-protein-shake-42g/,63,56,12,10.1,true
+autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g,add,https://fairlife.com/core-power/vanilla-protein-shake-42g/,,56,,10.1,true

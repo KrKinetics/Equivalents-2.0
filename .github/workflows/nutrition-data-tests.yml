@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - refactor/nutrition-source-of-truth
+      - pilot/nutrition-validation-5-foods
+      - pilot/nutrition-validation-6-foods-and-batch-engine
       - main
       - master
   pull_request:
@@ -11,7 +13,7 @@ on:
 jobs:
   nutrition-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,8 +27,67 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check generated schema validator
+      - name: Check generated schema validators
         run: npm run schema:check
+
+      - name: Sync / validate CNF normalized sources
+        run: |
+          if [ ! -f src/sources/normalized/cnf-2026-foods.json ]; then
+            npm run sources:cnf:sync
+          fi
+          node --input-type=module -e "
+            import fs from 'fs';
+            const meta = JSON.parse(fs.readFileSync('src/sources/normalized/cnf-2026-metadata.json','utf8'));
+            const foods = JSON.parse(fs.readFileSync('src/sources/normalized/cnf-2026-foods.json','utf8'));
+            if (!meta.foodCount || foods.foods.length !== meta.foodCount) {
+              console.error('CNF normalized count mismatch');
+              process.exit(1);
+            }
+            console.log('CNF foods:', foods.foods.length);
+          "
+
+      - name: Validate approved six-food batch
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-batch-validate"
+          mkdir -p "$SANDBOX"
+          if [ -f reports/batches/pilot-nutrition-validation-6-foods/pre-apply-payload.json ]; then
+            cp reports/batches/pilot-nutrition-validation-6-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          npm run nutrition:batch:validate -- src/data/approved-batches/pilot-nutrition-validation-6-foods.json
+
+      - name: Preview approved batch
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-batch-validate"
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          npm run nutrition:batch:preview -- src/data/approved-batches/pilot-nutrition-validation-6-foods.json
+
+      - name: Dry-run apply in sandbox
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-batch-sandbox"
+          rm -rf "$SANDBOX"
+          mkdir -p "$SANDBOX/reports" "$SANDBOX/backups"
+          if [ -f reports/batches/pilot-nutrition-validation-6-foods/pre-apply-payload.json ]; then
+            cp reports/batches/pilot-nutrition-validation-6-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          cp src/data/nutrition-data-version.json "$SANDBOX/nutrition-data-version.json"
+          cp src/data/nutrition-pilot-config.json "$SANDBOX/nutrition-pilot-config.json"
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          VERSION_DATA_PATH="$SANDBOX/nutrition-data-version.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          BACKUPS_DIR="$SANDBOX/backups" \
+          NUTRITION_PILOT_CONFIG_PATH="$SANDBOX/nutrition-pilot-config.json" \
+          npm run nutrition:batch:apply -- --dry-run src/data/approved-batches/pilot-nutrition-validation-6-foods.json
+          # Never mutate production paths from CI apply
+          git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json
+
+      - name: Check nutrition pilot scope
+        run: npm run pilot:check
 
       - name: Run Node tests
         run: npm run test:nutrition
@@ -56,17 +117,20 @@ jobs:
             console.log('food count:', payload.foods.length);
             console.log('food dataHash:', computeFoodsDataHash(payload.foods));
           "
-          # Never commit or overwrite production paths from CI
           git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json || {
             echo "CI must not modify production nutrition data"
             exit 1
           }
 
-      - name: Upload fresh audit reports
+      - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: nutrition-audit-reports
           path: |
             ci-artifacts/reports/
+            ci-batch-sandbox/reports/
+            reports/batches/
+            reports/nutrition-pilot-*.json
+            reports/nutrition-pilot-*.html
           if-no-files-found: ignore

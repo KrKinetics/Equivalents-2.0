@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T03:13:29.325Z",
+  "generatedAt": "2026-07-30T13:45:03.517Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -8,52 +8,53 @@
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 207,
-    "verifiedFoods": 0,
-    "unverifiedFoods": 207,
-    "blockingErrors": 103,
-    "blockingErrorCount": 103,
-    "foodsWithBlockingErrors": 96,
-    "warningCount": 518,
-    "foodsWithWarnings": 207,
-    "auditCleanFoods": 0,
-    "dataHash": "a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f",
-    "shortHash": "a4c4b7faa592",
-    "lastAuditedAt": "2026-07-30T03:13:29.318Z",
+    "totalFoods": 208,
+    "verifiedFoods": 6,
+    "unverifiedFoods": 202,
+    "blockingErrors": 98,
+    "blockingErrorCount": 98,
+    "foodsWithBlockingErrors": 93,
+    "warningCount": 510,
+    "foodsWithWarnings": 205,
+    "auditCleanFoods": 3,
+    "dataHash": "a0763bfec13120ecb472d469d91ba77cec342974ff4146aeb30037a60cc56695",
+    "shortHash": "a0763bfec131",
+    "lastAuditedAt": "2026-07-30T13:45:03.506Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "unverified": 207
+      "verified": 6,
+      "unverified": 202
     },
-    "foodsWithWarningsOnly": 111,
+    "foodsWithWarningsOnly": 112,
     "rejectedFoods": 0,
-    "activeFoods": 207,
-    "approvalBlockingErrorCount": 103,
-    "activeBlockingErrorCount": 103,
+    "activeFoods": 208,
+    "approvalBlockingErrorCount": 98,
+    "activeBlockingErrorCount": 98,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "activeFoodsWithBlockingErrors": 96,
+    "activeFoodsWithBlockingErrors": 93,
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 207,
-    "activeFoods": 207,
+    "totalFoods": 208,
+    "activeFoods": 208,
     "rejectedFoods": 0,
-    "verifiedFoods": 0,
-    "unverifiedFoods": 207,
-    "blockingErrorCount": 103,
-    "activeBlockingErrorCount": 103,
+    "verifiedFoods": 6,
+    "unverifiedFoods": 202,
+    "blockingErrorCount": 98,
+    "activeBlockingErrorCount": 98,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "foodsWithBlockingErrors": 96,
-    "activeFoodsWithBlockingErrors": 96,
+    "foodsWithBlockingErrors": 93,
+    "activeFoodsWithBlockingErrors": 93,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 518,
-    "foodsWithWarnings": 207,
-    "foodsWithWarningsOnly": 111,
-    "auditCleanFoods": 0,
-    "blockingErrors": 103,
-    "foodsWithErrors": 96,
-    "foodsOk": 0
+    "warningCount": 510,
+    "foodsWithWarnings": 205,
+    "foodsWithWarningsOnly": 112,
+    "auditCleanFoods": 3,
+    "blockingErrors": 98,
+    "foodsWithErrors": 93,
+    "foodsOk": 3
   },
   "groupStatistics": {
     "protein": {
@@ -75,51 +76,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 65,
-      "activeFoodCount": 65,
-      "verifiedCount": 0,
+      "totalFoodsInGroup": 66,
+      "activeFoodCount": 66,
+      "verifiedCount": 3,
       "rejectedCount": 0,
-      "pendingCount": 65,
-      "coveragePercent": 0,
+      "pendingCount": 63,
+      "coveragePercent": 4.545454545454546,
       "proteinG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 9.833333333333334,
+        "median": 10.1,
+        "min": 9.3,
+        "max": 10.1,
+        "stddev": 0.46188021535170004,
+        "count": 3
       },
       "carbsG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 1.3666666666666665,
+        "median": 1.9,
+        "min": 0,
+        "max": 2.2,
+        "stddev": 1.1930353445448854,
+        "count": 3
       },
       "fiberG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 0.16666666666666666,
+        "median": 0,
+        "min": 0,
+        "max": 0.5,
+        "stddev": 0.2886751345948129,
+        "count": 3
       },
       "fatG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 0.9,
+        "median": 0.8,
+        "min": 0.8,
+        "max": 1.1,
+        "stddev": 0.17320508075688776,
+        "count": 3
       },
       "kcal": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 54,
+        "median": 56,
+        "min": 50,
+        "max": 56,
+        "stddev": 3.4641016151377544,
+        "count": 3
       },
       "referenceProfile": {
         "proteinG": null,
@@ -130,7 +131,32 @@
       },
       "referenceProfileApproved": false,
       "foodsOutsideTolerance": [],
-      "furthestFoods": []
+      "furthestFoods": [
+        {
+          "id": "viandes-volaille-chicken-breast",
+          "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+          "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+          "distanceScore": 0.1473289391086001,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "autres-sources-proteinees-core-power-fairlife",
+          "nameFr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+          "nameEn": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+          "distanceScore": 0.13116446955430008,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+          "nameFr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
+          "nameEn": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+          "distanceScore": 0.08283113622096672,
+          "breaches": [],
+          "status": "verified"
+        }
+      ]
     },
     "starch": {
       "calculationGroup": "starch",
@@ -153,49 +179,49 @@
       },
       "totalFoodsInGroup": 23,
       "activeFoodCount": 23,
-      "verifiedCount": 0,
+      "verifiedCount": 1,
       "rejectedCount": 0,
-      "pendingCount": 23,
-      "coveragePercent": 0,
+      "pendingCount": 22,
+      "coveragePercent": 4.3478260869565215,
       "proteinG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 3.3,
+        "median": 3.3,
+        "min": 3.3,
+        "max": 3.3,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "carbsG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 16,
+        "median": 16,
+        "min": 16,
+        "max": 16,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fiberG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 2.1,
+        "median": 2.1,
+        "min": 2.1,
+        "max": 2.1,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fatG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 1.4,
+        "median": 1.4,
+        "min": 1.4,
+        "max": 1.4,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "kcal": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 90,
+        "median": 90,
+        "min": 90,
+        "max": 90,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "referenceProfile": {
         "proteinG": null,
@@ -206,7 +232,16 @@
       },
       "referenceProfileApproved": false,
       "foodsOutsideTolerance": [],
-      "furthestFoods": []
+      "furthestFoods": [
+        {
+          "id": "feculents-cooked-quinoa",
+          "nameFr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
+          "nameEn": "White quinoa, cooked in water, no added oil",
+          "distanceScore": 0,
+          "breaches": [],
+          "status": "verified"
+        }
+      ]
     },
     "vegetable": {
       "calculationGroup": "vegetable",
@@ -304,49 +339,49 @@
       },
       "totalFoodsInGroup": 30,
       "activeFoodCount": 30,
-      "verifiedCount": 0,
+      "verifiedCount": 1,
       "rejectedCount": 0,
-      "pendingCount": 30,
-      "coveragePercent": 0,
+      "pendingCount": 29,
+      "coveragePercent": 3.3333333333333335,
       "proteinG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 0.8,
+        "median": 0.8,
+        "min": 0.8,
+        "max": 0.8,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "carbsG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 15.9,
+        "median": 15.9,
+        "min": 15.9,
+        "max": 15.9,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fiberG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 2.8,
+        "median": 2.8,
+        "min": 2.8,
+        "max": 2.8,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fatG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 0.4,
+        "median": 0.4,
+        "min": 0.4,
+        "max": 0.4,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "kcal": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 63,
+        "median": 63,
+        "min": 63,
+        "max": 63,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "referenceProfile": {
         "proteinG": null,
@@ -357,7 +392,16 @@
       },
       "referenceProfileApproved": false,
       "foodsOutsideTolerance": [],
-      "furthestFoods": []
+      "furthestFoods": [
+        {
+          "id": "fruits-blueberries",
+          "nameFr": "Bleuets frais, crus, cultivés",
+          "nameEn": "Blueberries, fresh, raw, cultivated",
+          "distanceScore": 0,
+          "breaches": [],
+          "status": "verified"
+        }
+      ]
     },
     "dairy": {
       "calculationGroup": "dairy",
@@ -456,49 +500,49 @@
       },
       "totalFoodsInGroup": 35,
       "activeFoodCount": 35,
-      "verifiedCount": 0,
+      "verifiedCount": 1,
       "rejectedCount": 0,
-      "pendingCount": 35,
-      "coveragePercent": 0,
+      "pendingCount": 34,
+      "coveragePercent": 2.857142857142857,
       "proteinG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 1.8,
+        "median": 1.8,
+        "min": 1.8,
+        "max": 1.8,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "carbsG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 1.8,
+        "median": 1.8,
+        "min": 1.8,
+        "max": 1.8,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fiberG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 1.1,
+        "median": 1.1,
+        "min": 1.1,
+        "max": 1.1,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "fatG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 4.2,
+        "median": 4.2,
+        "min": 4.2,
+        "max": 4.2,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "kcal": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
+        "mean": 49,
+        "median": 49,
+        "min": 49,
+        "max": 49,
         "stddev": null,
-        "count": 0
+        "count": 1
       },
       "referenceProfile": {
         "proteinG": null,
@@ -509,7 +553,16 @@
       },
       "referenceProfileApproved": false,
       "foodsOutsideTolerance": [],
-      "furthestFoods": []
+      "furthestFoods": [
+        {
+          "id": "noix-graines-almonds",
+          "nameFr": "Amandes entières, crues, non salées",
+          "nameEn": "Almonds, whole, raw, unsalted",
+          "distanceScore": 0,
+          "breaches": [],
+          "status": "verified"
+        }
+      ]
     },
     "whey": {
       "calculationGroup": "whey",
@@ -589,15 +642,15 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 183,
+    "MISSING_PREP_STATE": 179,
     "SCOOP_WITHOUT_GRAMS": 5,
-    "KCAL_DIFF_HIGH": 58,
-    "MISSING_GRAMS": 88,
+    "KCAL_DIFF_HIGH": 56,
+    "MISSING_GRAMS": 89,
     "AMBIGUOUS_GROUP": 5,
     "GUIDE_VS_CALCULATOR": 2,
-    "LEGACY_SOURCE_ONLY": 207,
-    "SUSPECT_CASE": 5,
-    "MISSING_TOTAL_FAT": 35,
+    "LEGACY_SOURCE_ONLY": 202,
+    "SUSPECT_CASE": 3,
+    "MISSING_TOTAL_FAT": 34,
     "FIBER_GT_CARBS": 4,
     "KCAL_DIFF_MODERATE": 29
   },
@@ -651,36 +704,6 @@
           "code": "SUSPECT_CASE",
           "message": "Suspect legacy signature: ~36 kcal / 2.5 g protein / 1 g carbs",
           "suspectId": "egg_whites"
-        }
-      ]
-    },
-    {
-      "id": "viandes-volaille-chicken-breast",
-      "nameFr": "Poitrine de poulet",
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 7,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 48
-      },
-      "declaredKcal": 48,
-      "calculatedKcal": 95,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 48 vs Atwater 95.0 (Δ 47.0 / 49.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~48 kcal / 8 g protein / 7 g fat",
-          "suspectId": "chicken_breast"
         }
       ]
     },
@@ -741,36 +764,6 @@
           "code": "SUSPECT_CASE",
           "message": "Suspect legacy signature: ~67 kcal / 1 g protein / 3 g carbs / 0 g fat",
           "suspectId": "greek_yogurt"
-        }
-      ]
-    },
-    {
-      "id": "feculents-cooked-quinoa",
-      "nameFr": "Quinoa cuit",
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 1,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 116
-      },
-      "declaredKcal": 116,
-      "calculatedKcal": 36,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 116 vs Atwater 36.0 (Δ 80.0 / 222.2%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~116 kcal / 8 g protein / 1 g carbs",
-          "suspectId": "quinoa"
         }
       ]
     }
@@ -1020,76 +1013,6 @@
       "canVerify": false
     },
     {
-      "id": "viandes-volaille-chicken-breast",
-      "displayCategory": "viandes_volaille",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Poitrine de poulet",
-      "nameEn": "Chicken breast",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Poitrine de poulet",
-      "portionLabelEn": "30 g Chicken breast",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Poitrine de poulet"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Chicken breast"
-      },
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 7,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 48
-      },
-      "declaredKcal": 48,
-      "calculatedKcal": 95,
-      "absDiff": 47,
-      "pctDiff": 49.473684210526315,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 48 vs Atwater 95.0 (Δ 47.0 / 49.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~48 kcal / 8 g protein / 7 g fat",
-          "suspectId": "chicken_breast"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 2,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "feculents-medium-sweet-potato",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -1225,71 +1148,6 @@
       ],
       "errorCount": 2,
       "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-quinoa",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Quinoa cuit",
-      "nameEn": "Cooked quinoa",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Quinoa cuit (75 g)",
-      "portionLabelEn": "125 ml Cooked quinoa (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml de Quinoa cuit (75 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Cooked quinoa (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 1,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 116
-      },
-      "declaredKcal": 116,
-      "calculatedKcal": 36,
-      "absDiff": 80,
-      "pctDiff": 222.22222222222223,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 116 vs Atwater 36.0 (Δ 80.0 / 222.2%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~116 kcal / 8 g protein / 1 g carbs",
-          "suspectId": "quinoa"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 2,
-      "warningCount": 1,
       "resolvedCount": 0,
       "maxSeverity": "ERROR",
       "canVerify": false
@@ -4393,69 +4251,6 @@
       "canVerify": false
     },
     {
-      "id": "noix-graines-almonds",
-      "displayCategory": "noix_graines",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Amandes",
-      "nameEn": "Almonds",
-      "status": "unverified",
-      "portionLabelFr": "7 Amandes (5 g)",
-      "portionLabelEn": "7 Almonds (5 g)",
-      "amount": 7,
-      "unit": "count",
-      "grams": 5,
-      "parsedFr": {
-        "amount": 7,
-        "unit": "count",
-        "grams": 5,
-        "label": "7 Amandes (5 g)"
-      },
-      "parsedEn": {
-        "amount": 7,
-        "unit": "count",
-        "grams": 5,
-        "label": "7 Almonds (5 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 2,
-        "fiberG": 1,
-        "fatG": null,
-        "saturatedFatG": 0,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 3,
-        "declaredKcal": 53
-      },
-      "declaredKcal": 53,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "noix-graines-natural-cashew-butter",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -7197,75 +6992,6 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 26 vs Atwater 29.4 (11.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "autres-sources-proteinees-core-power-fairlife",
-      "displayCategory": "autres_sources_proteinees",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Core Power, Fairlife",
-      "nameEn": "Core Power, Fairlife",
-      "status": "unverified",
-      "portionLabelFr": "100 ml de Core Power, Fairlife (42 g prot./bouteille)",
-      "portionLabelEn": "100 ml Core Power, Fairlife (42 g prot./bottle)",
-      "amount": 100,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 100,
-        "unit": "ml",
-        "grams": null,
-        "label": "100 ml de Core Power, Fairlife (42 g prot./bouteille)"
-      },
-      "parsedEn": {
-        "amount": 100,
-        "unit": "ml",
-        "grams": null,
-        "label": "100 ml Core Power, Fairlife (42 g prot./bottle)"
-      },
-      "nutrients": {
-        "proteinG": 12,
-        "carbsG": 2,
-        "fiberG": null,
-        "fatG": 2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 63
-      },
-      "declaredKcal": 63,
-      "calculatedKcal": 74,
-      "absDiff": 11,
-      "pctDiff": 14.864864864864865,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 63 vs Atwater 74.0 (14.9%)",
           "resolutionStatus": "open"
         },
         {
@@ -10969,64 +10695,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-blueberries",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "bleuets",
-      "nameEn": "blueberries",
-      "status": "unverified",
-      "portionLabelFr": "175 ml de bleuets (110 g)",
-      "portionLabelEn": "175 ml blueberries (110 g)",
-      "amount": 175,
-      "unit": "ml",
-      "grams": 110,
-      "parsedFr": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml de bleuets (110 g)"
-      },
-      "parsedEn": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml blueberries (110 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 15.4,
-        "fiberG": 2,
-        "fatG": 0.4,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 69
-      },
-      "declaredKcal": 69,
-      "calculatedKcal": 69.19999999999999,
-      "absDiff": 0.19999999999998863,
-      "pctDiff": 0.2890173410404461,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-extra-lean-sirloin-steak",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -13751,6 +13419,166 @@
       "canVerify": false
     },
     {
+      "id": "fruits-blueberries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Bleuets frais, crus, cultivés",
+      "nameEn": "Blueberries, fresh, raw, cultivated",
+      "status": "verified",
+      "portionLabelFr": "175 ml de bleuets frais (110 g)",
+      "portionLabelEn": "175 ml fresh blueberries (110 g)",
+      "amount": 175,
+      "unit": "ml",
+      "grams": 110,
+      "parsedFr": {
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "label": "175 ml de bleuets frais (110 g)"
+      },
+      "parsedEn": {
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "label": "175 ml fresh blueberries (110 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15.9,
+        "fiberG": 2.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 63
+      },
+      "declaredKcal": 63,
+      "calculatedKcal": 70.39999999999999,
+      "absDiff": 7.3999999999999915,
+      "pctDiff": 10.511363636363626,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 63 vs Atwater 70.4 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "displayCategory": "autres_sources_proteinees",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "classificationStatus": "approved",
+      "nameFr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+      "nameEn": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+      "status": "verified",
+      "portionLabelFr": "100 ml de fairlife Core Power Elite chocolat (42 g prot./bouteille de 414 ml)",
+      "portionLabelEn": "100 ml fairlife Core Power Elite Chocolate (42 g protein/414 ml bottle)",
+      "amount": 100,
+      "unit": "ml",
+      "grams": null,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "label": "100 ml de fairlife Core Power Elite chocolat (42 g prot./bouteille de 414 ml)"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "label": "100 ml fairlife Core Power Elite Chocolate (42 g protein/414 ml bottle)"
+      },
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.2,
+        "fiberG": 0.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "declaredKcal": 56,
+      "calculatedKcal": 56.400000000000006,
+      "absDiff": 0.4000000000000057,
+      "pctDiff": 0.7092198581560384,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "displayCategory": "autres_sources_proteinees",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "classificationStatus": "approved",
+      "nameFr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
+      "nameEn": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+      "status": "verified",
+      "portionLabelFr": "100 ml de fairlife Core Power Elite vanille (42 g prot./bouteille de 414 ml)",
+      "portionLabelEn": "100 ml fairlife Core Power Elite Vanilla (42 g protein/414 ml bottle)",
+      "amount": 100,
+      "unit": "ml",
+      "grams": null,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "label": "100 ml de fairlife Core Power Elite vanille (42 g prot./bouteille de 414 ml)"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "label": "100 ml fairlife Core Power Elite Vanilla (42 g protein/414 ml bottle)"
+      },
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "declaredKcal": 56,
+      "calculatedKcal": 55.2,
+      "absDiff": 0.7999999999999972,
+      "pctDiff": 1.4492753623188355,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "feculents-plain-oatmeal-uncooked",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -13908,6 +13736,147 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": false
+    },
+    {
+      "id": "noix-graines-almonds",
+      "displayCategory": "noix_graines",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed",
+      "classificationStatus": "approved",
+      "nameFr": "Amandes entières, crues, non salées",
+      "nameEn": "Almonds, whole, raw, unsalted",
+      "status": "verified",
+      "portionLabelFr": "7 amandes entières crues (8,5 g)",
+      "portionLabelEn": "7 whole raw almonds (8.5 g)",
+      "amount": 7,
+      "unit": "count",
+      "grams": 8.5,
+      "parsedFr": {
+        "amount": 7,
+        "unit": "count",
+        "grams": 8.5,
+        "label": "7 amandes entières crues (8,5 g)"
+      },
+      "parsedEn": {
+        "amount": 7,
+        "unit": "count",
+        "grams": 8.5,
+        "label": "7 whole raw almonds (8.5 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 1.8,
+        "fiberG": 1.1,
+        "fatG": 4.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 49
+      },
+      "declaredKcal": 49,
+      "calculatedKcal": 52.2,
+      "absDiff": 3.200000000000003,
+      "pctDiff": 6.130268199233722,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "viandes-volaille-chicken-breast",
+      "displayCategory": "viandes_volaille",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-animal",
+      "classificationStatus": "approved",
+      "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+      "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+      "status": "verified",
+      "portionLabelFr": "30 g de poitrine de poulet cuite, sans peau",
+      "portionLabelEn": "30 g cooked skinless chicken breast",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de poitrine de poulet cuite, sans peau"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked skinless chicken breast"
+      },
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 47.1,
+      "absDiff": 2.8999999999999986,
+      "pctDiff": 6.157112526539275,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-quinoa",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain",
+      "classificationStatus": "approved",
+      "nameFr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
+      "nameEn": "White quinoa, cooked in water, no added oil",
+      "status": "verified",
+      "portionLabelFr": "100 ml de quinoa cuit (75 g)",
+      "portionLabelEn": "100 ml cooked quinoa (75 g)",
+      "amount": 100,
+      "unit": "ml",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": 75,
+        "label": "100 ml de quinoa cuit (75 g)"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "ml",
+        "grams": 75,
+        "label": "100 ml cooked quinoa (75 g)"
+      },
+      "nutrients": {
+        "proteinG": 3.3,
+        "carbsG": 16,
+        "fiberG": 2.1,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "declaredKcal": 90,
+      "calculatedKcal": 89.8,
+      "absDiff": 0.20000000000000284,
+      "pctDiff": 0.22271714922049313,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
     }
   ]
 }

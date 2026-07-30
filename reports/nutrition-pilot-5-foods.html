@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lot pilote nutritionnel — 5 aliments</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#f5f5f2; --panel:#fff; --ink:#20201d; --muted:#66665f; --line:#d8d8d0; --accent:#215d4f; --warn:#835d12; --error:#9d2d27; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#181916; --panel:#22231f; --ink:#eeeeea; --muted:#aaa9a0; --line:#3c3d37; --accent:#80c9b5; --warn:#e6bc62; --error:#ff8e86; } }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; }
+    main { max-width:1120px; margin:auto; padding:36px 22px 64px; }
+    h1 { font-size:26px; margin:0 0 6px; }
+    h2 { font-size:19px; margin:0; }
+    h3 { font-size:15px; margin:18px 0 6px; }
+    p { margin:6px 0; }
+    code { overflow-wrap:anywhere; }
+    .muted { color:var(--muted); }
+    .summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin:24px 0; }
+    .metric,.food { background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+    .metric { padding:14px; }
+    .metric strong { display:block; font-size:20px; color:var(--accent); }
+    .notice { border-left:4px solid var(--warn); padding:10px 14px; margin:20px 0 28px; background:var(--panel); }
+    .food { margin:18px 0; padding:20px; }
+    .food-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; border-bottom:1px solid var(--line); padding-bottom:12px; }
+    .status { font-weight:700; color:var(--warn); white-space:nowrap; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px 24px; }
+    dl { display:grid; grid-template-columns:minmax(110px,auto) 1fr; gap:4px 12px; margin:8px 0; }
+    dt { color:var(--muted); }
+    dd { margin:0; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-weight:600; }
+    ul { margin:6px 0; padding-left:20px; }
+    .error { color:var(--error); font-weight:700; }
+    .warning { color:var(--warn); font-weight:700; }
+    .pending { background:var(--bg); border:1px dashed var(--line); padding:10px; border-radius:6px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Lot pilote nutritionnel — état initial</h1>
+  <p class="muted">Rapport préparatoire pour cinq aliments existants. Aucune donnée nutritionnelle n’a été modifiée et aucune source n’a été recherchée.</p>
+
+  <section class="summary">
+    <div class="metric"><strong>5</strong>aliments dans le pilote</div>
+    <div class="metric"><strong>202</strong>aliments protégés</div>
+    <div class="metric"><strong>5</strong>ERROR ouvertes au total</div>
+    <div class="metric"><strong>3</strong>aliments avec ERROR ouverte</div>
+    <div class="metric"><strong>2</strong>aliments sans ERROR ouverte</div>
+    <div class="metric"><strong>11</strong>avertissements</div>
+    <div class="metric"><strong>0</strong>aliment prêt à être marqué verified</div>
+  </section>
+
+  <div class="notice">
+    <strong>Baseline du garde-fou</strong>
+    <p>Hash alimentaire global : <code>a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f</code></p>
+    <p>Hash complet des 202 aliments protégés : <code>49499f61945842748210d2c3f7756fbf1be91e4c96a1121ce4999dbb4307c482</code></p>
+    <p>Hash nutritionnel des 202 aliments protégés : <code>5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6</code></p>
+  </div>
+
+
+  <article class="food">
+    <div class="food-head"><div><h2>bleuets / blueberries</h2><code>fruits-blueberries</code></div><span class="status">UNVERIFIED</span></div>
+    <div class="grid">
+      <section><h3>Identification</h3><dl><dt>Catégorie</dt><dd>fruits</dd><dt>Groupe</dt><dd>fruit</dd><dt>Profil</dt><dd>Non défini</dd><dt>Classification</dt><dd>pending</dd><dt>Préparation</dt><dd>Non définie</dd></dl></section>
+      <section><h3>Portion actuelle</h3><p>175 ml de bleuets (110 g)</p><p class="muted">EN : 175 ml blueberries (110 g)</p><h3>Contrôle 4-4-9</h3><p>69,2 kcal calculées; 69 kcal déclarées; écart 0,2 kcal (0,3 %).</p></section>
+    </div>
+    <h3>Nutriments actuels</h3>
+    <table><tr><th>Protéines</th><th>Glucides</th><th>Fibres</th><th>Lipides</th><th>Saturés</th><th>Poly</th><th>Mono</th></tr>
+    <tr><td>1 g</td><td>15,4 g</td><td>2 g</td><td>0,4 g</td><td>— g</td><td>— g</td><td>— g</td></tr></table>
+    <h3>Alertes actuelles</h3><ul><li><span class="warning">WARNING</span> MISSING_PREP_STATE</li><li><span class="warning">WARNING</span> LEGACY_SOURCE_ONLY</li></ul>
+    <h3>Source</h3><p>Legacy : <code>fruits[3]</code>. Source authoritative proposée : <strong>non fournie</strong>.</p>
+    <div class="pending"><strong>À approuver :</strong> identité précise, état de préparation, portion canonique, poids en grammes, source authoritative complète, nutriments, classification. Comparaison après : non disponible.</div>
+    <h3>Recherche à remplir</h3>
+    <ul><li>frais ou congelés</li><li>crus</li><li>cultivés ou sauvages</li><li>portion conservée ou à revoir</li></ul>
+    <p class="muted">Champs source/valeur/arrondi encore vides — aucune recherche effectuée.</p>
+  </article>
+
+  <article class="food">
+    <div class="food-head"><div><h2>Amandes / Almonds</h2><code>noix-graines-almonds</code></div><span class="status">UNVERIFIED</span></div>
+    <div class="grid">
+      <section><h3>Identification</h3><dl><dt>Catégorie</dt><dd>noix_graines</dd><dt>Groupe</dt><dd>fat</dd><dt>Profil</dt><dd>Non défini</dd><dt>Classification</dt><dd>pending</dd><dt>Préparation</dt><dd>Non définie</dd></dl></section>
+      <section><h3>Portion actuelle</h3><p>7 Amandes (5 g)</p><p class="muted">EN : 7 Almonds (5 g)</p><h3>Contrôle 4-4-9</h3><p>Impossible : fatG est absent. 53 kcal déclarées.</p></section>
+    </div>
+    <h3>Nutriments actuels</h3>
+    <table><tr><th>Protéines</th><th>Glucides</th><th>Fibres</th><th>Lipides</th><th>Saturés</th><th>Poly</th><th>Mono</th></tr>
+    <tr><td>1 g</td><td>2 g</td><td>1 g</td><td>— g</td><td>0 g</td><td>1 g</td><td>3 g</td></tr></table>
+    <h3>Alertes actuelles</h3><ul><li><span class="warning">WARNING</span> MISSING_PREP_STATE</li><li><span class="error">ERROR</span> MISSING_TOTAL_FAT</li><li><span class="warning">WARNING</span> LEGACY_SOURCE_ONLY</li></ul>
+    <h3>Source</h3><p>Legacy : <code>noix[0]</code>. Source authoritative proposée : <strong>non fournie</strong>.</p>
+    <div class="pending"><strong>À approuver :</strong> identité précise, état de préparation, portion canonique, poids en grammes, source authoritative complète, nutriments, classification. Comparaison après : non disponible.</div>
+    <h3>Recherche à remplir</h3>
+    <ul><li>crues ou rôties</li><li>salées ou non salées</li><li>entières</li><li>confirmation du poids réel de 7 amandes</li></ul>
+    <p class="muted">Champs source/valeur/arrondi encore vides — aucune recherche effectuée.</p>
+  </article>
+
+  <article class="food">
+    <div class="food-head"><div><h2>Quinoa cuit / Cooked quinoa</h2><code>feculents-cooked-quinoa</code></div><span class="status">UNVERIFIED</span></div>
+    <div class="grid">
+      <section><h3>Identification</h3><dl><dt>Catégorie</dt><dd>feculents</dd><dt>Groupe</dt><dd>starch</dd><dt>Profil</dt><dd>Non défini</dd><dt>Classification</dt><dd>pending</dd><dt>Préparation</dt><dd>cooked</dd></dl></section>
+      <section><h3>Portion actuelle</h3><p>125 ml de Quinoa cuit (75 g)</p><p class="muted">EN : 125 ml Cooked quinoa (75 g)</p><h3>Contrôle 4-4-9</h3><p>36 kcal calculées; 116 kcal déclarées; écart 80 kcal (222,2 %).</p></section>
+    </div>
+    <h3>Nutriments actuels</h3>
+    <table><tr><th>Protéines</th><th>Glucides</th><th>Fibres</th><th>Lipides</th><th>Saturés</th><th>Poly</th><th>Mono</th></tr>
+    <tr><td>8 g</td><td>1 g</td><td>0 g</td><td>0 g</td><td>— g</td><td>— g</td><td>— g</td></tr></table>
+    <h3>Alertes actuelles</h3><ul><li><span class="error">ERROR</span> KCAL_DIFF_HIGH — ouverte</li><li><span class="error">ERROR</span> SUSPECT_CASE</li><li><span class="warning">WARNING</span> LEGACY_SOURCE_ONLY</li></ul>
+    <h3>Source</h3><p>Legacy : <code>feculents[11]</code>. Source authoritative proposée : <strong>non fournie</strong>.</p>
+    <div class="pending"><strong>À approuver :</strong> identité précise, état de préparation, portion canonique, poids en grammes, source authoritative complète, nutriments, classification. Comparaison après : non disponible.</div>
+    <h3>Recherche à remplir</h3>
+    <ul><li>variété</li><li>cuit dans l’eau</li><li>avec ou sans sel</li><li>portion égouttée/cuite de 75 g</li></ul>
+    <p class="muted">Champs source/valeur/arrondi encore vides — aucune recherche effectuée.</p>
+  </article>
+
+  <article class="food">
+    <div class="food-head"><div><h2>Poitrine de poulet / Chicken breast</h2><code>viandes-volaille-chicken-breast</code></div><span class="status">UNVERIFIED</span></div>
+    <div class="grid">
+      <section><h3>Identification</h3><dl><dt>Catégorie</dt><dd>viandes_volaille</dd><dt>Groupe</dt><dd>protein</dd><dt>Profil</dt><dd>Non défini</dd><dt>Classification</dt><dd>pending</dd><dt>Préparation</dt><dd>Non définie</dd></dl></section>
+      <section><h3>Portion actuelle</h3><p>30 g de Poitrine de poulet</p><p class="muted">EN : 30 g Chicken breast</p><h3>Contrôle 4-4-9</h3><p>95 kcal calculées; 48 kcal déclarées; écart 47 kcal (49,5 %).</p></section>
+    </div>
+    <h3>Nutriments actuels</h3>
+    <table><tr><th>Protéines</th><th>Glucides</th><th>Fibres</th><th>Lipides</th><th>Saturés</th><th>Poly</th><th>Mono</th></tr>
+    <tr><td>8 g</td><td>0 g</td><td>— g</td><td>7 g</td><td>— g</td><td>— g</td><td>— g</td></tr></table>
+    <h3>Alertes actuelles</h3><ul><li><span class="warning">WARNING</span> MISSING_PREP_STATE</li><li><span class="error">ERROR</span> KCAL_DIFF_HIGH — ouverte</li><li><span class="error">ERROR</span> SUSPECT_CASE</li><li><span class="warning">WARNING</span> LEGACY_SOURCE_ONLY</li></ul>
+    <h3>Source</h3><p>Legacy : <code>viandes[16]</code>. Source authoritative proposée : <strong>non fournie</strong>.</p>
+    <div class="pending"><strong>À approuver :</strong> identité précise, état de préparation, portion canonique, poids en grammes, source authoritative complète, nutriments, classification. Comparaison après : non disponible.</div>
+    <h3>Recherche à remplir</h3>
+    <ul><li>sans peau</li><li>désossée</li><li>poids cru ou cuit</li><li>méthode de cuisson</li><li>sans huile ajoutée</li></ul>
+    <p class="muted">Champs source/valeur/arrondi encore vides — aucune recherche effectuée.</p>
+  </article>
+
+  <article class="food">
+    <div class="food-head"><div><h2>Core Power, Fairlife / Core Power, Fairlife</h2><code>autres-sources-proteinees-core-power-fairlife</code></div><span class="status">UNVERIFIED</span></div>
+    <div class="grid">
+      <section><h3>Identification</h3><dl><dt>Catégorie</dt><dd>autres_sources_proteinees</dd><dt>Groupe</dt><dd>protein</dd><dt>Profil</dt><dd>Non défini</dd><dt>Classification</dt><dd>pending</dd><dt>Préparation</dt><dd>Non définie</dd></dl></section>
+      <section><h3>Portion actuelle</h3><p>100 ml de Core Power, Fairlife (42 g prot./bouteille)</p><p class="muted">EN : 100 ml Core Power, Fairlife (42 g prot./bottle)</p><h3>Contrôle 4-4-9</h3><p>74 kcal calculées; 63 kcal déclarées; écart 11 kcal (14,9 %).</p></section>
+    </div>
+    <h3>Nutriments actuels</h3>
+    <table><tr><th>Protéines</th><th>Glucides</th><th>Fibres</th><th>Lipides</th><th>Saturés</th><th>Poly</th><th>Mono</th></tr>
+    <tr><td>12 g</td><td>2 g</td><td>— g</td><td>2 g</td><td>— g</td><td>— g</td><td>— g</td></tr></table>
+    <h3>Alertes actuelles</h3><ul><li><span class="warning">WARNING</span> MISSING_PREP_STATE</li><li><span class="warning">WARNING</span> KCAL_DIFF_MODERATE</li><li><span class="warning">WARNING</span> MISSING_GRAMS</li><li><span class="warning">WARNING</span> LEGACY_SOURCE_ONLY</li></ul>
+    <h3>Source</h3><p>Legacy : <code>autresProteines[5]</code>. Source authoritative proposée : <strong>non fournie</strong>.</p>
+    <div class="pending"><strong>À approuver :</strong> identité précise, état de préparation, portion canonique, poids en grammes, source authoritative complète, nutriments, classification. Comparaison après : non disponible.</div>
+    <h3>Recherche à remplir</h3>
+    <ul><li>nom complet du produit</li><li>format exact de bouteille</li><li>pays de l’étiquette</li><li>quantité exacte de protéines par bouteille</li><li>photo ou référence précise de l’étiquette</li></ul>
+    <p class="muted">Champs source/valeur/arrondi encore vides — aucune recherche effectuée.</p>
+  </article>
+
+  <p class="muted">Statut final des cinq fiches : unverified. Les champs de recherche sont préparés mais vides. Aucune transaction verify n’a été créée.</p>
+</main>
+</body>
+</html>

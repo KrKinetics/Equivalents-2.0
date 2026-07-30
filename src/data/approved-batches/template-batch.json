@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "template-batch-replace-me",
+  "title": "Template — prochain lot nutritionnel approuvé",
+  "status": "draft",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "YYYY-MM-DD",
+  "purpose": "Copier ce fichier, renseigner les aliments, puis valider / prévisualiser / appliquer via le moteur générique.",
+  "scope": {
+    "existingFoodCount": 208,
+    "newFoodCount": 0,
+    "expectedFinalFoodCount": 208,
+    "pilotFoodCount": 1,
+    "protectedFoodCount": 207,
+    "allowedFoodIds": [
+      "example-food-id"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109"
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page"
+    }
+  },
+  "roundingPolicy": {
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l'entier le plus proche.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s'affiche 0 g; une valeur inconnue reste null."
+  },
+  "foods": [
+    {
+      "operation": "update",
+      "id": "example-food-id",
+      "lockedIdentity": {
+        "fr": "Exemple FR",
+        "en": "Example EN",
+        "preparationState": "raw",
+        "exclusions": ["frozen"]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g",
+        "labelEn": "100 g",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "matchKeywordsEn": ["example"],
+        "mustContainConcepts": ["example"],
+        "mustNotContainConcepts": ["frozen"],
+        "ambiguityRule": "Choisir l'enregistrement générique correspondant à l'identité verrouillée."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les aliments hors lot restent inchangés.",
+    "Aucune ERROR ouverte ne demeure sur les aliments du lot avant verified.",
+    "Chaque source est authoritative et traçable."
+  ]
+}

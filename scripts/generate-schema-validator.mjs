@@ -1,5 +1,5 @@
 /**
- * Generate a browser-safe standalone Ajv validator from food-equivalents.schema.json.
+ * Generate browser/Node standalone Ajv validators from JSON Schemas.
  *
  * Usage: node scripts/generate-schema-validator.mjs
  * Also: npm run schema:generate
@@ -16,41 +16,82 @@ const addFormats = require('ajv-formats');
 const standaloneCode = require('ajv/dist/standalone').default;
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const schemaPath = path.join(root, 'src', 'data', 'food-equivalents.schema.json');
 const outDir = path.join(root, 'src', 'generated');
-const outPath = path.join(outDir, 'food-equivalents-validator.mjs');
 
-const schemaRaw = fs.readFileSync(schemaPath, 'utf8');
-const schemaHash = crypto.createHash('sha256').update(schemaRaw).digest('hex');
-const schema = JSON.parse(schemaRaw);
-const ajv = new Ajv2020({
-  allErrors: true,
-  strict: false,
-  allowUnionTypes: true,
-  code: { source: true, esm: true },
-});
-addFormats(ajv);
-const validate = ajv.compile(schema);
-let code = standaloneCode(ajv, validate);
+const TARGETS = [
+  {
+    schemaRel: path.join('src', 'data', 'food-equivalents.schema.json'),
+    outRel: path.join('src', 'generated', 'food-equivalents-validator.mjs'),
+    hashExport: 'GENERATED_SCHEMA_HASH',
+    cjs: false,
+  },
+  {
+    schemaRel: path.join('src', 'data', 'approved-nutrition-batch.schema.json'),
+    outRel: path.join('src', 'generated', 'approved-nutrition-batch-validator.mjs'),
+    hashExport: 'GENERATED_BATCH_SCHEMA_HASH',
+    cjs: true,
+    cjsOutRel: path.join('src', 'generated', 'approved-nutrition-batch-validator.cjs'),
+  },
+];
 
-// Inline ucs2length so the module is browser-safe (no require / Node runtime).
 const ucs2Inline = `function ucs2length(str){const len=str.length;let length=0;let i=0;let c;while(i<len){c=str.charCodeAt(i++);if(c>=0xd800&&c<=0xdbff&&i<len){c=str.charCodeAt(i);if((c&0xfc00)===0xdc00)i++;}length++;}return length;}`;
-code = code.replace(
-  /const func2 = require\(["']ajv\/dist\/runtime\/ucs2length["']\)\.default;/,
-  `${ucs2Inline}\nconst func2 = ucs2length;`
-);
-if (code.includes('require(')) {
-  throw new Error('Generated validator still contains require() — not browser-safe');
+
+function makeBrowserSafe(code) {
+  let next = code.replace(
+    /const func2 = require\(["']ajv\/dist\/runtime\/ucs2length["']\)\.default;/,
+    `${ucs2Inline}\nconst func2 = ucs2length;`
+  );
+  if (next.includes('require(')) {
+    throw new Error('Generated validator still contains require() — not browser-safe');
+  }
+  return next;
 }
 
 fs.mkdirSync(outDir, { recursive: true });
-const banner = `/**
+
+for (const target of TARGETS) {
+  const schemaPath = path.join(root, target.schemaRel);
+  const outPath = path.join(root, target.outRel);
+  const schemaRaw = fs.readFileSync(schemaPath, 'utf8');
+  const schemaHash = crypto.createHash('sha256').update(schemaRaw).digest('hex');
+  const schema = JSON.parse(schemaRaw);
+  const ajv = new Ajv2020({
+    allErrors: true,
+    strict: false,
+    allowUnionTypes: true,
+    code: { source: true, esm: true },
+  });
+  addFormats(ajv);
+  const validate = ajv.compile(schema);
+  let code = standaloneCode(ajv, validate);
+  code = makeBrowserSafe(code);
+  const banner = `/**
  * AUTO-GENERATED — do not edit by hand.
  * Regenerate with: npm run schema:generate
- * Source: src/data/food-equivalents.schema.json
+ * Source: ${target.schemaRel.replaceAll('\\\\', '/')}
  */
-export const GENERATED_SCHEMA_HASH = ${JSON.stringify(schemaHash)};
+export const ${target.hashExport} = ${JSON.stringify(schemaHash)};
 `;
-fs.writeFileSync(outPath, `${banner}${code}\n`, 'utf8');
-console.log('Wrote', outPath);
-console.log('GENERATED_SCHEMA_HASH', schemaHash);
+  fs.writeFileSync(outPath, `${banner}${code}\n`, 'utf8');
+  console.log('Wrote', outPath);
+  console.log(target.hashExport, schemaHash);
+
+  if (target.cjs) {
+    const ajvCjs = new Ajv2020({
+      allErrors: true,
+      strict: false,
+      allowUnionTypes: true,
+      code: { source: true },
+    });
+    addFormats(ajvCjs);
+    const validateCjs = ajvCjs.compile(schema);
+    let cjsCode = standaloneCode(ajvCjs, validateCjs);
+    const cjsOut = path.join(root, target.cjsOutRel);
+    fs.writeFileSync(
+      cjsOut,
+      `/** AUTO-GENERATED — npm run schema:generate */\nmodule.exports = ${cjsCode};\nmodule.exports.${target.hashExport} = ${JSON.stringify(schemaHash)};\n`,
+      'utf8'
+    );
+    console.log('Wrote', cjsOut);
+  }
+}

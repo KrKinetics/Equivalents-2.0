@@ -1,0 +1,183 @@
+{
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "generatedAt": "2026-07-30T13:20:00.180Z",
+  "dataset": "Canadian Nutrient File 2026",
+  "selections": [
+    {
+      "foodId": "fruits-blueberries",
+      "adapter": "cnf_2026",
+      "recordId": "1705",
+      "descriptionEn": "Blueberry, raw",
+      "descriptionFr": "Bleuet, cru",
+      "score": 158,
+      "per100g": {
+        "energy_kcal": 57,
+        "protein_g": 0.74,
+        "carbohydrate_g": 14.49,
+        "fibre_g": 2.59,
+        "total_fat_g": 0.33,
+        "saturated_fat_g": 0.028,
+        "polyunsaturated_fat_g": 0.146,
+        "monounsaturated_fat_g": 0.047
+      },
+      "justification": "Choisir l'enregistrement cultivé/générique cru. Si plusieurs enregistrements demeurent équivalents, produire la liste et utiliser celui décrit comme générique/cultivé.",
+      "topCandidates": [
+        {
+          "recordId": "1705",
+          "descriptionEn": "Blueberry, raw",
+          "score": 158
+        },
+        {
+          "recordId": "3996",
+          "descriptionEn": "Toaster pastry, fruit (apple, blueberry, cherry, strawberry)",
+          "score": 103
+        },
+        {
+          "recordId": "6221",
+          "descriptionEn": "Toaster pastry, fruit, frosted (apple, blueberry, cherry, strawberry)",
+          "score": 102
+        },
+        {
+          "recordId": "6222",
+          "descriptionEn": "Toaster pastry, fruit, toasted (apple, blueberry, cherry, strawberry)",
+          "score": 102
+        },
+        {
+          "recordId": "3957",
+          "descriptionEn": "Pie, fried, fruit (apple, blueberry, peach, strawberry)",
+          "score": 63
+        }
+      ]
+    },
+    {
+      "foodId": "noix-graines-almonds",
+      "adapter": "cnf_2026",
+      "recordId": "2534",
+      "descriptionEn": "Nuts, almonds, dried, unblanched, unroasted",
+      "descriptionFr": "Noix, amandes, séchées, non blanchies, non rôties",
+      "score": 130,
+      "per100g": {
+        "energy_kcal": 579,
+        "protein_g": 21.15,
+        "carbohydrate_g": 21.55,
+        "fibre_g": 12.5,
+        "total_fat_g": 49.93,
+        "saturated_fat_g": 3.802,
+        "polyunsaturated_fat_g": 12.329,
+        "monounsaturated_fat_g": 31.551
+      },
+      "justification": "Privilégier l'entrée entière, crue/non rôtie et non blanchie. Le calcul nutritionnel doit être fondé sur 8,5 g.",
+      "topCandidates": [
+        {
+          "recordId": "2534",
+          "descriptionEn": "Nuts, almonds, dried, unblanched, unroasted",
+          "score": 130
+        },
+        {
+          "recordId": "440",
+          "descriptionEn": "Vegetable oil, almond",
+          "score": 72
+        },
+        {
+          "recordId": "4354",
+          "descriptionEn": "Snacks, crisped rice bar, almond",
+          "score": 70
+        },
+        {
+          "recordId": "6776",
+          "descriptionEn": "Chicken, sautéed with almonds (almond guy ding)",
+          "score": 68
+        },
+        {
+          "recordId": "3890",
+          "descriptionEn": "Danish pastry, nut (almond, raisin nut, cinnamon nut)",
+          "score": 67
+        }
+      ]
+    },
+    {
+      "foodId": "feculents-cooked-quinoa",
+      "adapter": "cnf_2026",
+      "recordId": "5917",
+      "descriptionEn": "Grains, quinoa, cooked",
+      "descriptionFr": "Grains céréaliers, quinoa, cuit",
+      "score": 157,
+      "per100g": {
+        "energy_kcal": 120,
+        "protein_g": 4.4,
+        "carbohydrate_g": 21.3,
+        "fibre_g": 2.8,
+        "total_fat_g": 1.92,
+        "saturated_fat_g": 0.231,
+        "polyunsaturated_fat_g": 1.078,
+        "monounsaturated_fat_g": 0.528
+      },
+      "justification": "Choisir le quinoa cuit simple. Si le sel est le seul facteur distinctif et n'affecte pas les macros principales, consigner le choix dans le rapport.",
+      "topCandidates": [
+        {
+          "recordId": "5917",
+          "descriptionEn": "Grains, quinoa, cooked",
+          "score": 157
+        }
+      ]
+    },
+    {
+      "foodId": "viandes-volaille-chicken-breast",
+      "adapter": "cnf_2026",
+      "recordId": "842",
+      "descriptionEn": "Chicken, broiler, breast, meat, roasted",
+      "descriptionFr": "Poulet à griller, poitrine, viande, rôti",
+      "score": 235,
+      "per100g": {
+        "energy_kcal": 165,
+        "protein_g": 31.02,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 3.57,
+        "saturated_fat_g": 1.01,
+        "polyunsaturated_fat_g": 0.77,
+        "monounsaturated_fat_g": 1.24
+      },
+      "justification": "Choisir l'enregistrement viande seulement, cuite/rôtie. Ne pas utiliser une entrée avec peau ni une préparation composée.",
+      "topCandidates": [
+        {
+          "recordId": "842",
+          "descriptionEn": "Chicken, broiler, breast, meat, roasted",
+          "score": 235
+        },
+        {
+          "recordId": "843",
+          "descriptionEn": "Chicken, broiler, breast, meat, stewed",
+          "score": 175
+        },
+        {
+          "recordId": "7321",
+          "descriptionEn": "Chicken, broiler, breast, skinless, boneless, meat, braised",
+          "score": 173
+        },
+        {
+          "recordId": "7322",
+          "descriptionEn": "Chicken, broiler, breast, skinless, boneless, meat, grilled",
+          "score": 173
+        },
+        {
+          "recordId": "6646",
+          "descriptionEn": "Chicken, broiler, breast, meat, cooked, rotisserie, with seasoning",
+          "score": 172
+        }
+      ]
+    },
+    {
+      "foodId": "autres-sources-proteinees-core-power-fairlife",
+      "adapter": "manufacturer",
+      "recordId": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+      "justification": "Official manufacturer label values from approved batch specification"
+    },
+    {
+      "foodId": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "adapter": "manufacturer",
+      "recordId": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+      "justification": "Official manufacturer label values from approved batch specification"
+    }
+  ]
+}

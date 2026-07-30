@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "title": "KR Kinetics — Lot pilote nutritionnel de 6 aliments",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Valider le workflow complet de correction, ajout, sourcing, audit, historique, vérification et application, tout en construisant un moteur générique réutilisable pour les prochains lots.",
+  "scope": {
+    "existingFoodCount": 207,
+    "newFoodCount": 1,
+    "expectedFinalFoodCount": 208,
+    "pilotFoodCount": 6,
+    "protectedFoodCount": 202,
+    "allowedFoodIds": [
+      "fruits-blueberries",
+      "noix-graines-almonds",
+      "feculents-cooked-quinoa",
+      "viandes-volaille-chicken-breast",
+      "autres-sources-proteinees-core-power-fairlife",
+      "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Télécharger les fichiers relationnels officiels, conserver une copie source avec SHA-256, sélectionner un seul enregistrement correspondant exactement à l'identité verrouillée et ne jamais utiliser le guide legacy comme preuve."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "fairlife",
+      "rule": "Conserver les valeurs de l'étiquette originale par bouteille, la page officielle, la date de consultation et le calcul déterministe vers 100 ml."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète dans le snapshot de source.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l'entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s'affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement. Une différence légitime avec une source authoritative doit être documentée par résolution."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "fruits-blueberries",
+      "lockedIdentity": {
+        "fr": "Bleuets frais, crus, cultivés",
+        "en": "Blueberries, fresh, raw, cultivated",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "wild",
+          "sweetened",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "175 ml de bleuets frais (110 g)",
+        "labelEn": "175 ml fresh blueberries (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110
+      },
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "matchKeywordsEn": [
+          "blueberries",
+          "raw"
+        ],
+        "mustContainConcepts": [
+          "blueberry",
+          "raw"
+        ],
+        "mustNotContainConcepts": [
+          "frozen",
+          "wild",
+          "canned",
+          "sweetened"
+        ],
+        "ambiguityRule": "Choisir l'enregistrement cultivé/générique cru. Si plusieurs enregistrements demeurent équivalents, produire la liste et utiliser celui décrit comme générique/cultivé."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-almonds",
+      "lockedIdentity": {
+        "fr": "Amandes entières, crues, non salées",
+        "en": "Almonds, whole, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "roasted",
+          "salted",
+          "blanched",
+          "oil-roasted"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7 amandes entières crues (8,5 g)",
+        "labelEn": "7 whole raw almonds (8.5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 8.5
+      },
+      "portionDecision": "Remplacer l'ancien poids de 5 g. La portion verrouillée est 7 amandes = 8,5 g pour ce pilote.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "matchKeywordsEn": [
+          "almonds",
+          "raw"
+        ],
+        "mustContainConcepts": [
+          "almond"
+        ],
+        "mustNotContainConcepts": [
+          "roasted",
+          "salted",
+          "blanched",
+          "oil"
+        ],
+        "ambiguityRule": "Privilégier l'entrée entière, crue/non rôtie et non blanchie. Le calcul nutritionnel doit être fondé sur 8,5 g."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-quinoa",
+      "lockedIdentity": {
+        "fr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
+        "en": "White quinoa, cooked in water, no added oil",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "uncooked",
+          "fried",
+          "with oil",
+          "mixed dish"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 ml de quinoa cuit (75 g)",
+        "labelEn": "100 ml cooked quinoa (75 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 75
+      },
+      "portionDecision": "Conserver le poids canonique de 75 g et corriger le volume de 125 ml à 100 ml. Les nutriments proviennent de 75 g du record CNF.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "matchKeywordsEn": [
+          "quinoa",
+          "cooked"
+        ],
+        "mustContainConcepts": [
+          "quinoa",
+          "cooked"
+        ],
+        "mustNotContainConcepts": [
+          "uncooked",
+          "dry",
+          "flour",
+          "mixed"
+        ],
+        "ambiguityRule": "Choisir le quinoa cuit simple. Si le sel est le seul facteur distinctif et n'affecte pas les macros principales, consigner le choix dans le rapport."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-chicken-breast",
+      "lockedIdentity": {
+        "fr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+        "en": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "with skin",
+          "breaded",
+          "fried",
+          "with added oil"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de poitrine de poulet cuite, sans peau",
+        "labelEn": "30 g cooked skinless chicken breast",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "matchKeywordsEn": [
+          "chicken",
+          "breast",
+          "meat only",
+          "cooked",
+          "roasted"
+        ],
+        "mustContainConcepts": [
+          "chicken",
+          "breast",
+          "meat only",
+          "cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "skin",
+          "breaded",
+          "fried"
+        ],
+        "ambiguityRule": "Choisir l'enregistrement viande seulement, cuite/rôtie. Ne pas utiliser une entrée avec peau ni une préparation composée."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-animal",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "lockedIdentity": {
+        "fr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife",
+        "marketNote": "Étiquette officielle fairlife; conserver le marché et la date de consultation."
+      },
+      "canonicalPortion": {
+        "labelFr": "100 ml de fairlife Core Power Elite chocolat (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Chocolate (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null
+      },
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+        "accessedAt": "2026-07-30",
+        "labelServing": {
+          "amount": 414,
+          "unit": "ml"
+        },
+        "labelNutrients": {
+          "declaredKcal": 230,
+          "proteinG": 42,
+          "carbsG": 9,
+          "fiberG": 2,
+          "fatG": 3.5,
+          "saturatedFatG": 2
+        },
+        "derivedUnroundedPer100Ml": {
+          "declaredKcal": 55.55555555555556,
+          "proteinG": 10.144927536231885,
+          "carbsG": 2.173913043478261,
+          "fiberG": 0.48309178743961356,
+          "fatG": 0.8454106280193238,
+          "saturatedFatG": 0.48309178743961356
+        },
+        "storedPer100Ml": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 2.2,
+          "fiberG": 0.5,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ready-to-drink",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "lockedIdentity": {
+        "fr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
+        "en": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife",
+        "marketNote": "Étiquette officielle fairlife; conserver le marché et la date de consultation."
+      },
+      "canonicalPortion": {
+        "labelFr": "100 ml de fairlife Core Power Elite vanille (42 g prot./bouteille de 414 ml)",
+        "labelEn": "100 ml fairlife Core Power Elite Vanilla (42 g protein/414 ml bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null
+      },
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+        "accessedAt": "2026-07-30",
+        "labelServing": {
+          "amount": 414,
+          "unit": "ml"
+        },
+        "labelNutrients": {
+          "declaredKcal": 230,
+          "proteinG": 42,
+          "carbsG": 8,
+          "fiberG": 0,
+          "fatG": 3.5,
+          "saturatedFatG": 2
+        },
+        "derivedUnroundedPer100Ml": {
+          "declaredKcal": 55.55555555555556,
+          "proteinG": 10.144927536231885,
+          "carbsG": 1.9323671497584543,
+          "fiberG": 0,
+          "fatG": 0.8454106280193238,
+          "saturatedFatG": 0.48309178743961356
+        },
+        "storedPer100Ml": {
+          "declaredKcal": 56,
+          "proteinG": 10.1,
+          "carbsG": 1.9,
+          "fiberG": 0,
+          "fatG": 0.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ready-to-drink",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 202 aliments hors lot sont strictement inchangés.",
+    "La banque finale contient exactement 208 aliments.",
+    "Les six aliments du lot n'ont aucune ERROR ouverte avant verified.",
+    "Chaque source est authoritative et traçable.",
+    "Chaque correction possède un historique exact.",
+    "Chaque vérification utilise une transaction verify complète.",
+    "Le nouvel aliment vanille est créé d'abord unverified puis vérifié par le moteur.",
+    "Le dry-run, l'application, l'audit, les tests Node, les tests navigateur et GitHub Actions réussissent.",
+    "Le moteur de lots permet les prochains lots sans nouvelle modification de code."
+  ]
+}

@@ -1,0 +1,567 @@
+{
+  "reportType": "nutrition-pilot-initial",
+  "generatedAt": "2026-07-30T12:05:58.244Z",
+  "dataModified": false,
+  "dataset": {
+    "foodCount": 207,
+    "dataHash": "a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f"
+  },
+  "stats": {
+    "totalOpenErrors": 5,
+    "foodsWithOpenErrors": 3,
+    "foodsWithoutOpenErrors": 2,
+    "totalWarnings": 11
+  },
+  "scopeGuardBaseline": {
+    "allowedFoodIds": [
+      "fruits-blueberries",
+      "noix-graines-almonds",
+      "feculents-cooked-quinoa",
+      "viandes-volaille-chicken-breast",
+      "autres-sources-proteinees-core-power-fairlife"
+    ],
+    "protectedFoodCount": 202,
+    "protectedFoodsDataHash": "49499f61945842748210d2c3f7756fbf1be91e4c96a1121ce4999dbb4307c482",
+    "protectedFoodsNutritionHash": "5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6"
+  },
+  "approvalPolicy": {
+    "authoritativeValuesResearched": false,
+    "authoritativeValuesProposed": false,
+    "verificationAllowed": false,
+    "nextAction": "Obtenir l’approbation explicite de l’identité, de l’état de préparation, de la portion, du poids, de la source, des nutriments et de la classification."
+  },
+  "foods": [
+    {
+      "id": "fruits-blueberries",
+      "names": {
+        "fr": "bleuets",
+        "en": "blueberries"
+      },
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": null,
+      "portion": {
+        "labelFr": "175 ml de bleuets (110 g)",
+        "labelEn": "175 ml blueberries (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 15.4,
+        "fiberG": 2,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 69
+      },
+      "atwaterControl": {
+        "calculatedKcal": 69.2,
+        "absoluteDifference": 0.2,
+        "percentDifference": 0.3,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "fruits[3]"
+      },
+      "proposedAuthoritativeSource": null,
+      "missingApprovalsOrFields": [
+        "identité précise",
+        "état de préparation",
+        "portion canonique",
+        "poids en grammes",
+        "source authoritative complète",
+        "nutriments",
+        "classification"
+      ],
+      "classification": {
+        "current": "pending",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "awaiting_explicit_approval",
+        "openErrorCount": 0,
+        "warningCount": 2,
+        "canMarkVerified": false
+      },
+      "comparison": {
+        "before": "current_database_values",
+        "after": null
+      },
+      "finalStatus": "unverified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "frais ou congelés",
+          "crus",
+          "cultivés ou sauvages",
+          "portion conservée ou à revoir"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": false
+      }
+    },
+    {
+      "id": "noix-graines-almonds",
+      "names": {
+        "fr": "Amandes",
+        "en": "Almonds"
+      },
+      "displayCategory": "noix_graines",
+      "calculationGroup": "fat",
+      "exchangeProfileId": null,
+      "portion": {
+        "labelFr": "7 Amandes (5 g)",
+        "labelEn": "7 Almonds (5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 5,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 53
+      },
+      "atwaterControl": {
+        "calculatedKcal": null,
+        "absoluteDifference": null,
+        "percentDifference": null,
+        "reason": "fatG est absent"
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "noix[0]"
+      },
+      "proposedAuthoritativeSource": null,
+      "missingApprovalsOrFields": [
+        "identité précise",
+        "état de préparation",
+        "portion canonique",
+        "poids en grammes",
+        "source authoritative complète",
+        "nutriments",
+        "classification"
+      ],
+      "classification": {
+        "current": "pending",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "blocked",
+        "openErrorCount": 1,
+        "warningCount": 2,
+        "canMarkVerified": false
+      },
+      "comparison": {
+        "before": "current_database_values",
+        "after": null
+      },
+      "finalStatus": "unverified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "crues ou rôties",
+          "salées ou non salées",
+          "entières",
+          "confirmation du poids réel de 7 amandes"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": false
+      }
+    },
+    {
+      "id": "feculents-cooked-quinoa",
+      "names": {
+        "fr": "Quinoa cuit",
+        "en": "Cooked quinoa"
+      },
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": null,
+      "portion": {
+        "labelFr": "125 ml de Quinoa cuit (75 g)",
+        "labelEn": "125 ml Cooked quinoa (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 8,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 116
+      },
+      "atwaterControl": {
+        "calculatedKcal": 36,
+        "absoluteDifference": 80,
+        "percentDifference": 222.2,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 116 vs Atwater 36.0 (Δ 80.0 / 222.2%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~116 kcal / 8 g protein / 1 g carbs",
+          "suspectId": "quinoa"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "feculents[11]"
+      },
+      "proposedAuthoritativeSource": null,
+      "missingApprovalsOrFields": [
+        "identité précise",
+        "état de préparation",
+        "portion canonique",
+        "poids en grammes",
+        "source authoritative complète",
+        "nutriments",
+        "classification"
+      ],
+      "classification": {
+        "current": "pending",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "blocked",
+        "openErrorCount": 2,
+        "warningCount": 1,
+        "canMarkVerified": false
+      },
+      "comparison": {
+        "before": "current_database_values",
+        "after": null
+      },
+      "finalStatus": "unverified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "variété",
+          "cuit dans l’eau",
+          "avec ou sans sel",
+          "portion égouttée/cuite de 75 g"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": false
+      }
+    },
+    {
+      "id": "viandes-volaille-chicken-breast",
+      "names": {
+        "fr": "Poitrine de poulet",
+        "en": "Chicken breast"
+      },
+      "displayCategory": "viandes_volaille",
+      "calculationGroup": "protein",
+      "exchangeProfileId": null,
+      "portion": {
+        "labelFr": "30 g de Poitrine de poulet",
+        "labelEn": "30 g Chicken breast",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "nutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 48
+      },
+      "atwaterControl": {
+        "calculatedKcal": 95,
+        "absoluteDifference": 47,
+        "percentDifference": 49.5,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 48 vs Atwater 95.0 (Δ 47.0 / 49.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~48 kcal / 8 g protein / 7 g fat",
+          "suspectId": "chicken_breast"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "viandes[16]"
+      },
+      "proposedAuthoritativeSource": null,
+      "missingApprovalsOrFields": [
+        "identité précise",
+        "état de préparation",
+        "portion canonique",
+        "poids en grammes",
+        "source authoritative complète",
+        "nutriments",
+        "classification"
+      ],
+      "classification": {
+        "current": "pending",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "blocked",
+        "openErrorCount": 2,
+        "warningCount": 2,
+        "canMarkVerified": false
+      },
+      "comparison": {
+        "before": "current_database_values",
+        "after": null
+      },
+      "finalStatus": "unverified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "sans peau",
+          "désossée",
+          "poids cru ou cuit",
+          "méthode de cuisson",
+          "sans huile ajoutée"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": false
+      }
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "names": {
+        "fr": "Core Power, Fairlife",
+        "en": "Core Power, Fairlife"
+      },
+      "displayCategory": "autres_sources_proteinees",
+      "calculationGroup": "protein",
+      "exchangeProfileId": null,
+      "portion": {
+        "labelFr": "100 ml de Core Power, Fairlife (42 g prot./bouteille)",
+        "labelEn": "100 ml Core Power, Fairlife (42 g prot./bottle)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Core Power / Fairlife"
+      },
+      "nutrients": {
+        "proteinG": 12,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "atwaterControl": {
+        "calculatedKcal": 74,
+        "absoluteDifference": 11,
+        "percentDifference": 14.9,
+        "reason": null
+      },
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 63 vs Atwater 74.0 (14.9%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "legacySource": {
+        "reference": "Imported from generate.js DATA / i18n.js FOODS (legacy guide)",
+        "referenceId": "autresProteines[5]"
+      },
+      "proposedAuthoritativeSource": null,
+      "missingApprovalsOrFields": [
+        "identité précise",
+        "état de préparation",
+        "portion canonique",
+        "poids en grammes",
+        "source authoritative complète",
+        "nutriments",
+        "classification"
+      ],
+      "classification": {
+        "current": "pending",
+        "proposed": null
+      },
+      "readiness": {
+        "state": "awaiting_explicit_approval",
+        "openErrorCount": 0,
+        "warningCount": 4,
+        "canMarkVerified": false
+      },
+      "comparison": {
+        "before": "current_database_values",
+        "after": null
+      },
+      "finalStatus": "unverified",
+      "researchChecklist": {
+        "identityDecisions": [
+          "nom complet du produit",
+          "format exact de bouteille",
+          "pays de l’étiquette",
+          "quantité exacte de protéines par bouteille",
+          "photo ou référence précise de l’étiquette"
+        ],
+        "fields": {
+          "sourceType": null,
+          "sourceName": null,
+          "sourceRecordId": null,
+          "sourceUrl": null,
+          "sourceAccessedAt": null,
+          "sourceServingDescription": null,
+          "sourceNutrientsBasis": null,
+          "valuePer100gOr100ml": null,
+          "calculationToKrPortion": null,
+          "roundingRules": null,
+          "beforeAfterComparison": null
+        },
+        "valuesResearched": false
+      }
+    }
+  ]
+}
