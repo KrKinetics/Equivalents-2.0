@@ -1,0 +1,253 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "transactions": [
+    {
+      "id": "noix-graines-peanuts",
+      "operation": "update",
+      "transactionId": "5fad3c8e-75c7-434c-922b-271026d78dcb",
+      "expectedRecordId": "3396",
+      "selectedRecordId": "3396",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-peanut-almond-butter",
+      "operation": "update",
+      "transactionId": "9170c715-36c7-4620-9972-d49038a7e82d",
+      "expectedRecordId": "6289",
+      "selectedRecordId": "6289",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-tahini",
+      "operation": "update",
+      "transactionId": "9eb4514a-842d-4592-9d46-f1b11d7d77a9",
+      "expectedRecordId": "2593",
+      "selectedRecordId": "2593",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-hemp-seeds",
+      "operation": "update",
+      "transactionId": "901db606-c224-46bd-8ee4-e21d55674d74",
+      "expectedRecordId": "7568",
+      "selectedRecordId": "7568",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-ground-chia-seeds",
+      "operation": "update",
+      "transactionId": "a9c56873-086f-4e07-8a2e-b4c01b5b7493",
+      "expectedRecordId": "2511",
+      "selectedRecordId": "2511",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-ground-flax-seeds",
+      "operation": "update",
+      "transactionId": "b324f55b-0ca1-41e2-8a9d-cc3a10c67aeb",
+      "expectedRecordId": "4528",
+      "selectedRecordId": "4528",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "operation": "update",
+      "transactionId": "2328626d-40d4-4f18-8b22-8ed6a73052db",
+      "expectedRecordId": "2517",
+      "selectedRecordId": "2517",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "operation": "update",
+      "transactionId": "6b634524-674a-49a9-adc3-089c511d1cf0",
+      "expectedRecordId": "2586",
+      "selectedRecordId": "2586",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-sesame-seeds",
+      "operation": "update",
+      "transactionId": "b696f272-e3bf-4e9b-8663-acdf4e43c6de",
+      "expectedRecordId": "2611",
+      "selectedRecordId": "2611",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "operation": "update",
+      "transactionId": "6f83b917-fb0b-4587-ba12-aa8baf8a41f4",
+      "expectedRecordId": "2642",
+      "selectedRecordId": "2642",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-hummus",
+      "operation": "update",
+      "transactionId": "f6d92991-439a-4504-be76-811527fb8d5a",
+      "expectedRecordId": "4870",
+      "selectedRecordId": "4870",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-cashews",
+      "operation": "update",
+      "transactionId": "f141758f-c060-49f7-8851-8fb715594d11",
+      "expectedRecordId": "5709",
+      "selectedRecordId": "5709",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-shredded-coconut",
+      "operation": "update",
+      "transactionId": "1a7026da-8787-430c-868e-89c359311792",
+      "expectedRecordId": "2559",
+      "selectedRecordId": "2559",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-walnuts",
+      "operation": "update",
+      "transactionId": "7870299a-deb5-4f4a-8341-00c3cb97c844",
+      "expectedRecordId": "2590",
+      "selectedRecordId": "2590",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-brazil-nuts",
+      "operation": "update",
+      "transactionId": "dc78dd46-8137-4535-95fa-219722ae65d0",
+      "expectedRecordId": "2544",
+      "selectedRecordId": "2544",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-macadamia-nuts",
+      "operation": "update",
+      "transactionId": "65d7703d-893a-46fd-8f34-4955123f15b6",
+      "expectedRecordId": "2575",
+      "selectedRecordId": "2575",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-oil-roasted-pecans",
+      "operation": "update",
+      "transactionId": "634c65e0-4ad0-4bb0-b311-593a2e4f5333",
+      "expectedRecordId": "2584",
+      "selectedRecordId": "2584",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-raw-pistachios",
+      "operation": "update",
+      "transactionId": "a5d856ea-3fc5-4e8a-9958-c4b00cbcb21e",
+      "expectedRecordId": "2644",
+      "selectedRecordId": "2644",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "operation": "update",
+      "transactionId": "9e403f45-4b91-4117-94d0-d19d236dcd34",
+      "expectedRecordId": "2209",
+      "selectedRecordId": "2209",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-homemade-protein-granola",
+      "operation": "update",
+      "transactionId": "1911e2c1-3c78-44fe-819b-65a837426b06",
+      "expectedRecordId": "1222",
+      "selectedRecordId": "1222",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-natural-cashew-butter",
+      "operation": "update",
+      "transactionId": "a6bca76c-c3ac-4640-bb10-955e27fef40d",
+      "expectedRecordId": "2548",
+      "selectedRecordId": "2548",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-almond-butter-plain",
+      "operation": "add",
+      "transactionId": "be5e2b47-9223-474b-9f34-93f8e90ca3de",
+      "expectedRecordId": "2605",
+      "selectedRecordId": "2605",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-hazelnuts-dried",
+      "operation": "add",
+      "transactionId": "f841c932-bbbc-4435-9c54-b90e0d43d223",
+      "expectedRecordId": "2567",
+      "selectedRecordId": "2567",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "operation": "add",
+      "transactionId": "11d35436-8f41-4e8c-98f3-0259c2036e0e",
+      "expectedRecordId": "2577",
+      "selectedRecordId": "2577",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-sunflower-seed-butter",
+      "operation": "add",
+      "transactionId": "d5230f93-7816-4d20-89bc-18abb992ed84",
+      "expectedRecordId": "2529",
+      "selectedRecordId": "2529",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-pecans-dried",
+      "operation": "add",
+      "transactionId": "e4ff6a0f-33ae-489f-92d8-bd4fccbfe685",
+      "expectedRecordId": "2582",
+      "selectedRecordId": "2582",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-pistachios-dry-roasted",
+      "operation": "add",
+      "transactionId": "d5911a61-d354-4d6d-bf57-001449728c21",
+      "expectedRecordId": "2588",
+      "selectedRecordId": "2588",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "operation": "add",
+      "transactionId": "af86f7f3-9176-4c5d-860c-9d783f0e4e02",
+      "expectedRecordId": "2580",
+      "selectedRecordId": "2580",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-roasted-chestnuts",
+      "operation": "add",
+      "transactionId": "7d29215d-f2ae-46e6-929b-a352c6518e91",
+      "expectedRecordId": "2594",
+      "selectedRecordId": "2594",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "operation": "add",
+      "transactionId": "f2103ac5-f9ce-4702-b27d-fa24273565f6",
+      "expectedRecordId": "3362",
+      "selectedRecordId": "3362",
+      "version": 3
+    },
+    {
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "operation": "add",
+      "transactionId": "2b224670-9387-46b7-a43f-ccfcbe04e825",
+      "expectedRecordId": "2516",
+      "selectedRecordId": "2516",
+      "version": 3
+    }
+  ]
+}

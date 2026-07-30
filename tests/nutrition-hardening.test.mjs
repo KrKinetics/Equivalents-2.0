@@ -345,9 +345,9 @@ after(() => {
   }
 });
 
-test('real dataset has exactly 217 foods', () => {
+test('real dataset has exactly 227 foods', () => {
   assert.equal(realPayload.foods.length, TOTAL_FOODS_EXPECTED);
-  assert.equal(TOTAL_FOODS_EXPECTED, 217);
+  assert.equal(TOTAL_FOODS_EXPECTED, 227);
 });
 
 test('real dataset has exact category counts', () => {
@@ -657,7 +657,7 @@ test('foodsWithWarnings counts all warning foods and warning-only remains disjoi
     (item) => item.errorCount === 0 && item.warningCount > 0
   ).length;
   assert.equal(result.summary.foodsWithWarnings, warningFoods);
-  assert.ok(result.summary.foodsWithWarnings >= 180);
+  assert.ok(result.summary.foodsWithWarnings >= 150);
   assert.equal(result.summary.foodsWithWarningsOnly, warningOnlyFoods);
 });
 

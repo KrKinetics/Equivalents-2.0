@@ -1,0 +1,254 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "generatedAt": "2026-07-30T17:59:12.720Z",
+  "selections": [
+    {
+      "foodId": "noix-graines-peanuts",
+      "operation": "update",
+      "expectedRecordId": "3396",
+      "selectedRecordId": "3396",
+      "descriptionEn": "Peanuts, all types, raw",
+      "descriptionFr": "Arachides, tous les types, crues"
+    },
+    {
+      "foodId": "noix-graines-peanut-almond-butter",
+      "operation": "update",
+      "expectedRecordId": "6289",
+      "selectedRecordId": "6289",
+      "descriptionEn": "Peanut butter, natural",
+      "descriptionFr": "Beurre d'arachides, naturel"
+    },
+    {
+      "foodId": "noix-graines-tahini",
+      "operation": "update",
+      "expectedRecordId": "2593",
+      "selectedRecordId": "2593",
+      "descriptionEn": "Seeds, sesame butter, tahini, roasted and toasted kernels",
+      "descriptionFr": "Graines, beurre de sésame, tahini, graines rôties et grillées"
+    },
+    {
+      "foodId": "noix-graines-hemp-seeds",
+      "operation": "update",
+      "expectedRecordId": "7568",
+      "selectedRecordId": "7568",
+      "descriptionEn": "Seeds, hemp seeds, hulled",
+      "descriptionFr": "Graines de chanvre, décortiquées"
+    },
+    {
+      "foodId": "noix-graines-ground-chia-seeds",
+      "operation": "update",
+      "expectedRecordId": "2511",
+      "selectedRecordId": "2511",
+      "descriptionEn": "Seeds, chia seeds, dried",
+      "descriptionFr": "Graines de chia, déshydratées"
+    },
+    {
+      "foodId": "noix-graines-ground-flax-seeds",
+      "operation": "update",
+      "expectedRecordId": "4528",
+      "selectedRecordId": "4528",
+      "descriptionEn": "Seeds, flaxseed (linseed), whole and ground",
+      "descriptionFr": "Graines, lin, entières et moulues"
+    },
+    {
+      "foodId": "noix-graines-roasted-pumpkin-seeds",
+      "operation": "update",
+      "expectedRecordId": "2517",
+      "selectedRecordId": "2517",
+      "descriptionEn": "Seeds, pumpkin and squash seed kernels, roasted",
+      "descriptionFr": "Graines, citrouille et courge, graines, rôties"
+    },
+    {
+      "foodId": "noix-graines-dehydrated-pine-nuts",
+      "operation": "update",
+      "expectedRecordId": "2586",
+      "selectedRecordId": "2586",
+      "descriptionEn": "Nuts, pine nuts, pignolia, dried",
+      "descriptionFr": "Noix, noix de pins, pignons (pignes), séchées"
+    },
+    {
+      "foodId": "noix-graines-sesame-seeds",
+      "operation": "update",
+      "expectedRecordId": "2611",
+      "selectedRecordId": "2611",
+      "descriptionEn": "Seeds, sesame seed kernels, dried, shelled",
+      "descriptionFr": "Graines, sésame, graines, déshydratées, décortiquées"
+    },
+    {
+      "foodId": "noix-graines-oil-roasted-sunflower-seeds",
+      "operation": "update",
+      "expectedRecordId": "2642",
+      "selectedRecordId": "2642",
+      "descriptionEn": "Seeds, sunflower seed kernels, oil roasted",
+      "descriptionFr": "Graines, tournesol, graines, rôties dans l'huile"
+    },
+    {
+      "foodId": "noix-graines-hummus",
+      "operation": "update",
+      "expectedRecordId": "4870",
+      "selectedRecordId": "4870",
+      "descriptionEn": "Hummus, commercial",
+      "descriptionFr": "Hoummos (hommos, hummus), commercial"
+    },
+    {
+      "foodId": "noix-graines-cashews",
+      "operation": "update",
+      "expectedRecordId": "5709",
+      "selectedRecordId": "5709",
+      "descriptionEn": "Nuts, cashew nuts, raw",
+      "descriptionFr": "Noix, noix de cajou (acajous, anacardes), crues"
+    },
+    {
+      "foodId": "noix-graines-shredded-coconut",
+      "operation": "update",
+      "expectedRecordId": "2559",
+      "selectedRecordId": "2559",
+      "descriptionEn": "Coconut meat, desiccated, unsweetened",
+      "descriptionFr": "Noix de coco, désséchée, non sucrée"
+    },
+    {
+      "foodId": "noix-graines-walnuts",
+      "operation": "update",
+      "expectedRecordId": "2590",
+      "selectedRecordId": "2590",
+      "descriptionEn": "Nuts, walnuts, English or Persian",
+      "descriptionFr": "Noix de Grenoble"
+    },
+    {
+      "foodId": "noix-graines-brazil-nuts",
+      "operation": "update",
+      "expectedRecordId": "2544",
+      "selectedRecordId": "2544",
+      "descriptionEn": "Nuts, brazilnuts, dried, unblanched",
+      "descriptionFr": "Noix, noix de Brésil, séchées, non blanchies"
+    },
+    {
+      "foodId": "noix-graines-macadamia-nuts",
+      "operation": "update",
+      "expectedRecordId": "2575",
+      "selectedRecordId": "2575",
+      "descriptionEn": "Nuts, macadamia (bushnuts, queensland), raw",
+      "descriptionFr": "Noix, macadamia (queensland), crues"
+    },
+    {
+      "foodId": "noix-graines-oil-roasted-pecans",
+      "operation": "update",
+      "expectedRecordId": "2584",
+      "selectedRecordId": "2584",
+      "descriptionEn": "Nuts, pecans, oil roasted",
+      "descriptionFr": "Noix, pacanes, rôties dans l'huile"
+    },
+    {
+      "foodId": "noix-graines-raw-pistachios",
+      "operation": "update",
+      "expectedRecordId": "2644",
+      "selectedRecordId": "2644",
+      "descriptionEn": "Nuts, pistachio nuts, raw",
+      "descriptionFr": "Noix, pistaches, crues"
+    },
+    {
+      "foodId": "noix-graines-cup-soybeans-or-edamame",
+      "operation": "update",
+      "expectedRecordId": "2209",
+      "selectedRecordId": "2209",
+      "descriptionEn": "Soybeans, green (edamame), boiled, drained",
+      "descriptionFr": "Fèves, soya frais (edamame), bouillies, égouttées"
+    },
+    {
+      "foodId": "noix-graines-homemade-protein-granola",
+      "operation": "update",
+      "expectedRecordId": "1222",
+      "selectedRecordId": "1222",
+      "descriptionEn": "Cereal, ready to eat, granola, homemade",
+      "descriptionFr": "Céreale, prête-à-manger, granola, fait maison"
+    },
+    {
+      "foodId": "noix-graines-natural-cashew-butter",
+      "operation": "update",
+      "expectedRecordId": "2548",
+      "selectedRecordId": "2548",
+      "descriptionEn": "Nuts, cashew butter, plain",
+      "descriptionFr": "Noix, beurre de noix de cajou (acajous, anacardes), nature"
+    },
+    {
+      "foodId": "noix-graines-almond-butter-plain",
+      "operation": "add",
+      "expectedRecordId": "2605",
+      "selectedRecordId": "2605",
+      "descriptionEn": "Nuts, almond butter, plain",
+      "descriptionFr": "Noix, beurre d'amandes, nature"
+    },
+    {
+      "foodId": "noix-graines-hazelnuts-dried",
+      "operation": "add",
+      "expectedRecordId": "2567",
+      "selectedRecordId": "2567",
+      "descriptionEn": "Nuts, filberts or hazelnuts, dried",
+      "descriptionFr": "Noix, noisettes, avelines ou coudres, séchées"
+    },
+    {
+      "foodId": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "operation": "add",
+      "expectedRecordId": "2577",
+      "selectedRecordId": "2577",
+      "descriptionEn": "Nuts, mixed nuts, dry roasted with peanuts",
+      "descriptionFr": "Noix, noix mélangées, rôties à sec avec arachides"
+    },
+    {
+      "foodId": "noix-graines-sunflower-seed-butter",
+      "operation": "add",
+      "expectedRecordId": "2529",
+      "selectedRecordId": "2529",
+      "descriptionEn": "Seeds, sunflower seed butter",
+      "descriptionFr": "Graines, beurre de tournesol"
+    },
+    {
+      "foodId": "noix-graines-pecans-dried",
+      "operation": "add",
+      "expectedRecordId": "2582",
+      "selectedRecordId": "2582",
+      "descriptionEn": "Nuts, pecans, dried",
+      "descriptionFr": "Noix, pacanes, séchées"
+    },
+    {
+      "foodId": "noix-graines-pistachios-dry-roasted",
+      "operation": "add",
+      "expectedRecordId": "2588",
+      "selectedRecordId": "2588",
+      "descriptionEn": "Nuts, pistachio nuts, dry roasted",
+      "descriptionFr": "Noix, pistaches, rôties à sec"
+    },
+    {
+      "foodId": "noix-graines-roasted-soy-nuts-unsalted",
+      "operation": "add",
+      "expectedRecordId": "2580",
+      "selectedRecordId": "2580",
+      "descriptionEn": "Soybean kernels, roasted, unsalted",
+      "descriptionFr": "Soya, graines, rôties, sans sel"
+    },
+    {
+      "foodId": "noix-graines-roasted-chestnuts",
+      "operation": "add",
+      "expectedRecordId": "2594",
+      "selectedRecordId": "2594",
+      "descriptionEn": "Nuts, European chestnuts (sweet), roasted",
+      "descriptionFr": "Noix, châtaignes d'Europe (marrons), rôties"
+    },
+    {
+      "foodId": "noix-graines-peanuts-dry-roasted-unsalted",
+      "operation": "add",
+      "expectedRecordId": "3362",
+      "selectedRecordId": "3362",
+      "descriptionEn": "Peanuts, all types, dry roasted",
+      "descriptionFr": "Arachides, tous les types, rôties à sec"
+    },
+    {
+      "foodId": "noix-graines-pumpkin-seeds-dried",
+      "operation": "add",
+      "expectedRecordId": "2516",
+      "selectedRecordId": "2516",
+      "descriptionEn": "Seeds, pumpkin and squash seed kernels, dried",
+      "descriptionFr": "Graines, citrouille et courge, graines, déshydratées"
+    }
+  ]
+}

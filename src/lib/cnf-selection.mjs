@@ -94,8 +94,11 @@ function scoreCandidate(food, sourcePlan) {
 function evaluateCompatibility(food, sourcePlan) {
   const hay = `${food.descriptionEn || ''} ${food.descriptionFr || ''}`;
   const requiredConcepts = [...(sourcePlan.mustContainConcepts || [])];
-  const excludedConcepts = [
-    ...(sourcePlan.mustNotContainConcepts || []),
+  const requiredContext = [
+    ...(sourcePlan.mustContainConcepts || []),
+    ...(sourcePlan.matchKeywordsEn || []),
+  ].join(' ');
+  const defaultExclusions = [
     'candies',
     'candy',
     'cereal',
@@ -103,6 +106,12 @@ function evaluateCompatibility(food, sourcePlan) {
     'babyfood',
     'butter',
     'paste',
+  ];
+  // Skip defaults that the locked identity / keywords intentionally require
+  // (e.g. peanut butter, tahini sesame butter, homemade granola cereal).
+  const excludedConcepts = [
+    ...(sourcePlan.mustNotContainConcepts || []),
+    ...defaultExclusions.filter((concept) => !containsConcept(requiredContext, concept)),
   ];
   const missing = requiredConcepts.filter((concept) => !containsConcept(hay, concept));
   const excludedBy = excludedConcepts.filter((concept) => excludesConcept(hay, concept));

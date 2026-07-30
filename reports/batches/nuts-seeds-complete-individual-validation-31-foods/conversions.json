@@ -1,0 +1,1059 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "foods": [
+    {
+      "id": "noix-graines-peanuts",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 568,
+        "protein_g": 25.8,
+        "carbohydrate_g": 16.13,
+        "fibre_g": 7.8,
+        "total_fat_g": 49.24,
+        "saturated_fat_g": 6.279,
+        "polyunsaturated_fat_g": 15.558,
+        "monounsaturated_fat_g": 24.426
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 56.800000000000004,
+        "proteinG": 2.58,
+        "carbsG": 1.613,
+        "fiberG": 0.78,
+        "fatG": 4.924,
+        "saturatedFatG": 0.6279,
+        "polyunsaturatedFatG": 1.5558,
+        "monounsaturatedFatG": 2.4426
+      },
+      "storedRounded": {
+        "declaredKcal": 57,
+        "proteinG": 2.6,
+        "carbsG": 1.6,
+        "fiberG": 0.8,
+        "fatG": 4.9,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.4
+      }
+    },
+    {
+      "id": "noix-graines-peanut-almond-butter",
+      "formula": "valuePortion = valuePer100g × 10.5 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 585,
+        "protein_g": 23.68,
+        "carbohydrate_g": 21.51,
+        "fibre_g": 8,
+        "total_fat_g": 49.66,
+        "saturated_fat_g": 6.893,
+        "polyunsaturated_fat_g": 15.694,
+        "monounsaturated_fat_g": 24.64
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 61.425,
+        "proteinG": 2.4863999999999997,
+        "carbsG": 2.25855,
+        "fiberG": 0.84,
+        "fatG": 5.2143,
+        "saturatedFatG": 0.723765,
+        "polyunsaturatedFatG": 1.64787,
+        "monounsaturatedFatG": 2.5872
+      },
+      "storedRounded": {
+        "declaredKcal": 61,
+        "proteinG": 2.5,
+        "carbsG": 2.3,
+        "fiberG": 0.8,
+        "fatG": 5.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.6
+      }
+    },
+    {
+      "id": "noix-graines-tahini",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 595,
+        "protein_g": 17,
+        "carbohydrate_g": 21.19,
+        "fibre_g": 9.3,
+        "total_fat_g": 53.76,
+        "saturated_fat_g": 7.529,
+        "polyunsaturated_fat_g": 23.564,
+        "monounsaturated_fat_g": 20.302
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 59.5,
+        "proteinG": 1.7000000000000002,
+        "carbsG": 2.119,
+        "fiberG": 0.9300000000000002,
+        "fatG": 5.376,
+        "saturatedFatG": 0.7529,
+        "polyunsaturatedFatG": 2.3564000000000003,
+        "monounsaturatedFatG": 2.0302000000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 60,
+        "proteinG": 1.7,
+        "carbsG": 2.1,
+        "fiberG": 0.9,
+        "fatG": 5.4,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2
+      }
+    },
+    {
+      "id": "noix-graines-hemp-seeds",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 553,
+        "protein_g": 31.56,
+        "carbohydrate_g": 8.67,
+        "fibre_g": 4,
+        "total_fat_g": 48.75,
+        "saturated_fat_g": 4.6,
+        "polyunsaturated_fat_g": 38.1,
+        "monounsaturated_fat_g": 5.4
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 55.300000000000004,
+        "proteinG": 3.156,
+        "carbsG": 0.867,
+        "fiberG": 0.4,
+        "fatG": 4.875,
+        "saturatedFatG": 0.45999999999999996,
+        "polyunsaturatedFatG": 3.8100000000000005,
+        "monounsaturatedFatG": 0.54
+      },
+      "storedRounded": {
+        "declaredKcal": 55,
+        "proteinG": 3.2,
+        "carbsG": 0.9,
+        "fiberG": 0.4,
+        "fatG": 4.9,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.5
+      }
+    },
+    {
+      "id": "noix-graines-ground-chia-seeds",
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 486,
+        "protein_g": 16.54,
+        "carbohydrate_g": 42.12,
+        "fibre_g": 34.4,
+        "total_fat_g": 30.74,
+        "saturated_fat_g": 3.33,
+        "polyunsaturated_fat_g": 23.665,
+        "monounsaturated_fat_g": 2.309
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 53.46,
+        "proteinG": 1.8194,
+        "carbsG": 4.6331999999999995,
+        "fiberG": 3.784,
+        "fatG": 3.3813999999999997,
+        "saturatedFatG": 0.3663,
+        "polyunsaturatedFatG": 2.60315,
+        "monounsaturatedFatG": 0.25399
+      },
+      "storedRounded": {
+        "declaredKcal": 53,
+        "proteinG": 1.8,
+        "carbsG": 4.6,
+        "fiberG": 3.8,
+        "fatG": 3.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 0.3
+      }
+    },
+    {
+      "id": "noix-graines-ground-flax-seeds",
+      "formula": "valuePortion = valuePer100g × 7 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 534,
+        "protein_g": 18.29,
+        "carbohydrate_g": 28.88,
+        "fibre_g": 27.3,
+        "total_fat_g": 42.16,
+        "saturated_fat_g": 3.663,
+        "polyunsaturated_fat_g": 28.73,
+        "monounsaturated_fat_g": 7.527
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 37.38,
+        "proteinG": 1.2803,
+        "carbsG": 2.0216000000000003,
+        "fiberG": 1.9110000000000003,
+        "fatG": 2.9512,
+        "saturatedFatG": 0.25641,
+        "polyunsaturatedFatG": 2.0111000000000003,
+        "monounsaturatedFatG": 0.5268900000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 37,
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 1.9,
+        "fatG": 3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 0.5
+      }
+    },
+    {
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 574,
+        "protein_g": 29.84,
+        "carbohydrate_g": 14.71,
+        "fibre_g": 6.5,
+        "total_fat_g": 49.05,
+        "saturated_fat_g": 8.544,
+        "polyunsaturated_fat_g": 19.856,
+        "monounsaturated_fat_g": 15.734
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 57.400000000000006,
+        "proteinG": 2.984,
+        "carbsG": 1.471,
+        "fiberG": 0.65,
+        "fatG": 4.905,
+        "saturatedFatG": 0.8544,
+        "polyunsaturatedFatG": 1.9856000000000003,
+        "monounsaturatedFatG": 1.5734000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 57,
+        "proteinG": 3,
+        "carbsG": 1.5,
+        "fiberG": 0.7,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.6
+      }
+    },
+    {
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 673,
+        "protein_g": 13.69,
+        "carbohydrate_g": 13.08,
+        "fibre_g": 3.7,
+        "total_fat_g": 68.37,
+        "saturated_fat_g": 4.899,
+        "polyunsaturated_fat_g": 34.071,
+        "monounsaturated_fat_g": 18.764
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 60.57,
+        "proteinG": 1.2321,
+        "carbsG": 1.1772,
+        "fiberG": 0.333,
+        "fatG": 6.1533,
+        "saturatedFatG": 0.44090999999999997,
+        "polyunsaturatedFatG": 3.0663899999999997,
+        "monounsaturatedFatG": 1.6887599999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 61,
+        "proteinG": 1.2,
+        "carbsG": 1.2,
+        "fiberG": 0.3,
+        "fatG": 6.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.7
+      }
+    },
+    {
+      "id": "noix-graines-sesame-seeds",
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 631,
+        "protein_g": 20.45,
+        "carbohydrate_g": 11.73,
+        "fibre_g": 11.6,
+        "total_fat_g": 61.21,
+        "saturated_fat_g": 9.055,
+        "polyunsaturated_fat_g": 25.491,
+        "monounsaturated_fat_g": 23.924
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 50.480000000000004,
+        "proteinG": 1.636,
+        "carbsG": 0.9384,
+        "fiberG": 0.9279999999999999,
+        "fatG": 4.8968,
+        "saturatedFatG": 0.7244,
+        "polyunsaturatedFatG": 2.03928,
+        "monounsaturatedFatG": 1.91392
+      },
+      "storedRounded": {
+        "declaredKcal": 50,
+        "proteinG": 1.6,
+        "carbsG": 0.9,
+        "fiberG": 0.9,
+        "fatG": 4.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.9
+      }
+    },
+    {
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 592,
+        "protein_g": 20.06,
+        "carbohydrate_g": 22.89,
+        "fibre_g": 8.89,
+        "total_fat_g": 51.3,
+        "saturated_fat_g": 7.068,
+        "polyunsaturated_fat_g": 34.294,
+        "monounsaturated_fat_g": 8.063
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 53.28,
+        "proteinG": 1.8054,
+        "carbsG": 2.0601,
+        "fiberG": 0.8001,
+        "fatG": 4.617,
+        "saturatedFatG": 0.6361199999999999,
+        "polyunsaturatedFatG": 3.0864599999999998,
+        "monounsaturatedFatG": 0.72567
+      },
+      "storedRounded": {
+        "declaredKcal": 53,
+        "proteinG": 1.8,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 4.6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 0.7
+      }
+    },
+    {
+      "id": "noix-graines-hummus",
+      "formula": "valuePortion = valuePer100g × 31 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 237,
+        "protein_g": 7.78,
+        "carbohydrate_g": 15,
+        "fibre_g": 5.5,
+        "total_fat_g": 17.82,
+        "saturated_fat_g": 2.562,
+        "polyunsaturated_fat_g": 8.812,
+        "monounsaturated_fat_g": 5.34
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 73.47,
+        "proteinG": 2.4118,
+        "carbsG": 4.65,
+        "fiberG": 1.705,
+        "fatG": 5.5242,
+        "saturatedFatG": 0.7942199999999999,
+        "polyunsaturatedFatG": 2.7317199999999997,
+        "monounsaturatedFatG": 1.6554
+      },
+      "storedRounded": {
+        "declaredKcal": 73,
+        "proteinG": 2.4,
+        "carbsG": 4.7,
+        "fiberG": 1.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.7
+      }
+    },
+    {
+      "id": "noix-graines-cashews",
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 553,
+        "protein_g": 18.22,
+        "carbohydrate_g": 30.19,
+        "fibre_g": 3.3,
+        "total_fat_g": 43.85,
+        "saturated_fat_g": 7.783,
+        "polyunsaturated_fat_g": 7.845,
+        "monounsaturated_fat_g": 23.797
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 66.36,
+        "proteinG": 2.1864,
+        "carbsG": 3.6228,
+        "fiberG": 0.39599999999999996,
+        "fatG": 5.262,
+        "saturatedFatG": 0.93396,
+        "polyunsaturatedFatG": 0.9413999999999999,
+        "monounsaturatedFatG": 2.85564
+      },
+      "storedRounded": {
+        "declaredKcal": 66,
+        "proteinG": 2.2,
+        "carbsG": 3.6,
+        "fiberG": 0.4,
+        "fatG": 5.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.9
+      }
+    },
+    {
+      "id": "noix-graines-shredded-coconut",
+      "formula": "valuePortion = valuePer100g × 5 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 660,
+        "protein_g": 6.88,
+        "carbohydrate_g": 23.65,
+        "fibre_g": 16.3,
+        "total_fat_g": 64.53,
+        "saturated_fat_g": 57.218,
+        "polyunsaturated_fat_g": 0.706,
+        "monounsaturated_fat_g": 2.745
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 33,
+        "proteinG": 0.34400000000000003,
+        "carbsG": 1.1824999999999999,
+        "fiberG": 0.8150000000000001,
+        "fatG": 3.2265,
+        "saturatedFatG": 2.8609000000000004,
+        "polyunsaturatedFatG": 0.0353,
+        "monounsaturatedFatG": 0.13725
+      },
+      "storedRounded": {
+        "declaredKcal": 33,
+        "proteinG": 0.3,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 3.2,
+        "saturatedFatG": 2.9,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "noix-graines-walnuts",
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 655,
+        "protein_g": 15.23,
+        "carbohydrate_g": 13.71,
+        "fibre_g": 6.7,
+        "total_fat_g": 65.21,
+        "saturated_fat_g": 6.126,
+        "polyunsaturated_fat_g": 47.174,
+        "monounsaturated_fat_g": 8.933
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 52.4,
+        "proteinG": 1.2184000000000001,
+        "carbsG": 1.0968,
+        "fiberG": 0.536,
+        "fatG": 5.216799999999999,
+        "saturatedFatG": 0.49008,
+        "polyunsaturatedFatG": 3.77392,
+        "monounsaturatedFatG": 0.71464
+      },
+      "storedRounded": {
+        "declaredKcal": 52,
+        "proteinG": 1.2,
+        "carbsG": 1.1,
+        "fiberG": 0.5,
+        "fatG": 5.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.7
+      }
+    },
+    {
+      "id": "noix-graines-brazil-nuts",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 659,
+        "protein_g": 14.32,
+        "carbohydrate_g": 11.74,
+        "fibre_g": 7.5,
+        "total_fat_g": 67.1,
+        "saturated_fat_g": 16.134,
+        "polyunsaturated_fat_g": 24.399,
+        "monounsaturated_fat_g": 23.879
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 65.9,
+        "proteinG": 1.4320000000000002,
+        "carbsG": 1.1740000000000002,
+        "fiberG": 0.75,
+        "fatG": 6.71,
+        "saturatedFatG": 1.6134000000000002,
+        "polyunsaturatedFatG": 2.4399,
+        "monounsaturatedFatG": 2.3879
+      },
+      "storedRounded": {
+        "declaredKcal": 66,
+        "proteinG": 1.4,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 6.7,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2.4
+      }
+    },
+    {
+      "id": "noix-graines-macadamia-nuts",
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 718,
+        "protein_g": 7.91,
+        "carbohydrate_g": 13.82,
+        "fibre_g": 8.6,
+        "total_fat_g": 75.77,
+        "saturated_fat_g": 12.061,
+        "polyunsaturated_fat_g": 1.502,
+        "monounsaturated_fat_g": 58.877
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 86.16,
+        "proteinG": 0.9491999999999999,
+        "carbsG": 1.6583999999999999,
+        "fiberG": 1.032,
+        "fatG": 9.0924,
+        "saturatedFatG": 1.44732,
+        "polyunsaturatedFatG": 0.18023999999999998,
+        "monounsaturatedFatG": 7.06524
+      },
+      "storedRounded": {
+        "declaredKcal": 86,
+        "proteinG": 0.9,
+        "carbsG": 1.7,
+        "fiberG": 1,
+        "fatG": 9.1,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 7.1
+      }
+    },
+    {
+      "id": "noix-graines-oil-roasted-pecans",
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 715,
+        "protein_g": 9.2,
+        "carbohydrate_g": 13.01,
+        "fibre_g": 9.5,
+        "total_fat_g": 75.23,
+        "saturated_fat_g": 7.238,
+        "polyunsaturated_fat_g": 23.584,
+        "monounsaturated_fat_g": 40.97
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 57.2,
+        "proteinG": 0.736,
+        "carbsG": 1.0408,
+        "fiberG": 0.76,
+        "fatG": 6.018400000000001,
+        "saturatedFatG": 0.57904,
+        "polyunsaturatedFatG": 1.88672,
+        "monounsaturatedFatG": 3.2776
+      },
+      "storedRounded": {
+        "declaredKcal": 57,
+        "proteinG": 0.7,
+        "carbsG": 1,
+        "fiberG": 0.8,
+        "fatG": 6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.9,
+        "monounsaturatedFatG": 3.3
+      }
+    },
+    {
+      "id": "noix-graines-raw-pistachios",
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 560,
+        "protein_g": 20.16,
+        "carbohydrate_g": 27.17,
+        "fibre_g": 8.81,
+        "total_fat_g": 45.32,
+        "saturated_fat_g": 5.907,
+        "polyunsaturated_fat_g": 14.38,
+        "monounsaturated_fat_g": 23.257
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 50.4,
+        "proteinG": 1.8144,
+        "carbsG": 2.4453,
+        "fiberG": 0.7929,
+        "fatG": 4.0788,
+        "saturatedFatG": 0.5316299999999999,
+        "polyunsaturatedFatG": 1.2942,
+        "monounsaturatedFatG": 2.09313
+      },
+      "storedRounded": {
+        "declaredKcal": 50,
+        "proteinG": 1.8,
+        "carbsG": 2.4,
+        "fiberG": 0.8,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1
+      }
+    },
+    {
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "formula": "valuePortion = valuePer100g × 95 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 141,
+        "protein_g": 12.35,
+        "carbohydrate_g": 11.05,
+        "fibre_g": 4.2,
+        "total_fat_g": 6.4,
+        "saturated_fat_g": 0.74,
+        "polyunsaturated_fat_g": 3.011,
+        "monounsaturated_fat_g": 1.209
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 133.95,
+        "proteinG": 11.7325,
+        "carbsG": 10.4975,
+        "fiberG": 3.9899999999999998,
+        "fatG": 6.08,
+        "saturatedFatG": 0.703,
+        "polyunsaturatedFatG": 2.86045,
+        "monounsaturatedFatG": 1.14855
+      },
+      "storedRounded": {
+        "declaredKcal": 134,
+        "proteinG": 11.7,
+        "carbsG": 10.5,
+        "fiberG": 4,
+        "fatG": 6.1,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.9,
+        "monounsaturatedFatG": 1.1
+      }
+    },
+    {
+      "id": "noix-graines-homemade-protein-granola",
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 490,
+        "protein_g": 14.87,
+        "carbohydrate_g": 52.95,
+        "fibre_g": 8.6,
+        "total_fat_g": 24.36,
+        "saturated_fat_g": 4.537,
+        "polyunsaturated_fat_g": 10.71,
+        "monounsaturated_fat_g": 7.643
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 147,
+        "proteinG": 4.460999999999999,
+        "carbsG": 15.885,
+        "fiberG": 2.5799999999999996,
+        "fatG": 7.308,
+        "saturatedFatG": 1.3611,
+        "polyunsaturatedFatG": 3.213,
+        "monounsaturatedFatG": 2.2929
+      },
+      "storedRounded": {
+        "declaredKcal": 147,
+        "proteinG": 4.5,
+        "carbsG": 15.9,
+        "fiberG": 2.6,
+        "fatG": 7.3,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 3.2,
+        "monounsaturatedFatG": 2.3
+      }
+    },
+    {
+      "id": "noix-graines-natural-cashew-butter",
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 587,
+        "protein_g": 17.56,
+        "carbohydrate_g": 27.57,
+        "fibre_g": 2,
+        "total_fat_g": 49.41,
+        "saturated_fat_g": 9.763,
+        "polyunsaturated_fat_g": 8.354,
+        "monounsaturated_fat_g": 29.122
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 64.57000000000001,
+        "proteinG": 1.9315999999999998,
+        "carbsG": 3.0327,
+        "fiberG": 0.22,
+        "fatG": 5.435099999999999,
+        "saturatedFatG": 1.07393,
+        "polyunsaturatedFatG": 0.9189399999999999,
+        "monounsaturatedFatG": 3.20342
+      },
+      "storedRounded": {
+        "declaredKcal": 65,
+        "proteinG": 1.9,
+        "carbsG": 3,
+        "fiberG": 0.2,
+        "fatG": 5.4,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 3.2
+      }
+    },
+    {
+      "id": "noix-graines-almond-butter-plain",
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 614,
+        "protein_g": 20.96,
+        "carbohydrate_g": 18.82,
+        "fibre_g": 10.3,
+        "total_fat_g": 55.5,
+        "saturated_fat_g": 4.152,
+        "polyunsaturated_fat_g": 13.613,
+        "monounsaturated_fat_g": 32.445
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 67.54,
+        "proteinG": 2.3056,
+        "carbsG": 2.0702000000000003,
+        "fiberG": 1.133,
+        "fatG": 6.105,
+        "saturatedFatG": 0.45672,
+        "polyunsaturatedFatG": 1.49743,
+        "monounsaturatedFatG": 3.56895
+      },
+      "storedRounded": {
+        "declaredKcal": 68,
+        "proteinG": 2.3,
+        "carbsG": 2.1,
+        "fiberG": 1.1,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 3.6
+      }
+    },
+    {
+      "id": "noix-graines-hazelnuts-dried",
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 629,
+        "protein_g": 14.95,
+        "carbohydrate_g": 16.7,
+        "fibre_g": 9.7,
+        "total_fat_g": 60.75,
+        "saturated_fat_g": 4.464,
+        "polyunsaturated_fat_g": 7.92,
+        "monounsaturated_fat_g": 45.652
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 75.48,
+        "proteinG": 1.7939999999999998,
+        "carbsG": 2.004,
+        "fiberG": 1.164,
+        "fatG": 7.29,
+        "saturatedFatG": 0.53568,
+        "polyunsaturatedFatG": 0.9503999999999999,
+        "monounsaturatedFatG": 5.4782399999999996
+      },
+      "storedRounded": {
+        "declaredKcal": 75,
+        "proteinG": 1.8,
+        "carbsG": 2,
+        "fiberG": 1.2,
+        "fatG": 7.3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5.5
+      }
+    },
+    {
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 607,
+        "protein_g": 19.5,
+        "carbohydrate_g": 22.42,
+        "fibre_g": 6.4,
+        "total_fat_g": 53.5,
+        "saturated_fat_g": 8.01,
+        "polyunsaturated_fat_g": 9.858,
+        "monounsaturated_fat_g": 34.532
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 91.05,
+        "proteinG": 2.925,
+        "carbsG": 3.363,
+        "fiberG": 0.96,
+        "fatG": 8.025,
+        "saturatedFatG": 1.2015,
+        "polyunsaturatedFatG": 1.4787000000000001,
+        "monounsaturatedFatG": 5.179799999999999
+      },
+      "storedRounded": {
+        "declaredKcal": 91,
+        "proteinG": 2.9,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 8,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 5.2
+      }
+    },
+    {
+      "id": "noix-graines-sunflower-seed-butter",
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 617,
+        "protein_g": 17.28,
+        "carbohydrate_g": 23.32,
+        "fibre_g": 5.7,
+        "total_fat_g": 55.2,
+        "saturated_fat_g": 4.678,
+        "polyunsaturated_fat_g": 9.805,
+        "monounsaturated_fat_g": 39.025
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 67.87,
+        "proteinG": 1.9008,
+        "carbsG": 2.5652,
+        "fiberG": 0.627,
+        "fatG": 6.072,
+        "saturatedFatG": 0.51458,
+        "polyunsaturatedFatG": 1.07855,
+        "monounsaturatedFatG": 4.29275
+      },
+      "storedRounded": {
+        "declaredKcal": 68,
+        "proteinG": 1.9,
+        "carbsG": 2.6,
+        "fiberG": 0.6,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.1,
+        "monounsaturatedFatG": 4.3
+      }
+    },
+    {
+      "id": "noix-graines-pecans-dried",
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 691,
+        "protein_g": 9.17,
+        "carbohydrate_g": 13.86,
+        "fibre_g": 9.6,
+        "total_fat_g": 71.97,
+        "saturated_fat_g": 6.18,
+        "polyunsaturated_fat_g": 21.614,
+        "monounsaturated_fat_g": 40.801
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 55.28,
+        "proteinG": 0.7336,
+        "carbsG": 1.1088,
+        "fiberG": 0.768,
+        "fatG": 5.7576,
+        "saturatedFatG": 0.4944,
+        "polyunsaturatedFatG": 1.72912,
+        "monounsaturatedFatG": 3.2640800000000003
+      },
+      "storedRounded": {
+        "declaredKcal": 55,
+        "proteinG": 0.7,
+        "carbsG": 1.1,
+        "fiberG": 0.8,
+        "fatG": 5.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.7,
+        "monounsaturatedFatG": 3.3
+      }
+    },
+    {
+      "id": "noix-graines-pistachios-dry-roasted",
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 572,
+        "protein_g": 21.05,
+        "carbohydrate_g": 28.28,
+        "fibre_g": 10.3,
+        "total_fat_g": 45.82,
+        "saturated_fat_g": 5.645,
+        "polyunsaturated_fat_g": 13.346,
+        "monounsaturated_fat_g": 24.534
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 51.48,
+        "proteinG": 1.8945,
+        "carbsG": 2.5452,
+        "fiberG": 0.927,
+        "fatG": 4.1238,
+        "saturatedFatG": 0.5080499999999999,
+        "polyunsaturatedFatG": 1.2011399999999999,
+        "monounsaturatedFatG": 2.2080599999999997
+      },
+      "storedRounded": {
+        "declaredKcal": 51,
+        "proteinG": 1.9,
+        "carbsG": 2.5,
+        "fiberG": 0.9,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 2.2
+      }
+    },
+    {
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 469,
+        "protein_g": 38.55,
+        "carbohydrate_g": 30.22,
+        "fibre_g": 17.7,
+        "total_fat_g": 25.4,
+        "saturated_fat_g": 3.674,
+        "polyunsaturated_fat_g": 14.339,
+        "monounsaturated_fat_g": 5.61
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 70.35,
+        "proteinG": 5.7825,
+        "carbsG": 4.5329999999999995,
+        "fiberG": 2.655,
+        "fatG": 3.8099999999999996,
+        "saturatedFatG": 0.5510999999999999,
+        "polyunsaturatedFatG": 2.15085,
+        "monounsaturatedFatG": 0.8415
+      },
+      "storedRounded": {
+        "declaredKcal": 70,
+        "proteinG": 5.8,
+        "carbsG": 4.5,
+        "fiberG": 2.7,
+        "fatG": 3.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8
+      }
+    },
+    {
+      "id": "noix-graines-roasted-chestnuts",
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 245,
+        "protein_g": 3.17,
+        "carbohydrate_g": 52.96,
+        "fibre_g": 5.1,
+        "total_fat_g": 2.2,
+        "saturated_fat_g": 0.414,
+        "polyunsaturated_fat_g": 0.869,
+        "monounsaturated_fat_g": 0.759
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 73.5,
+        "proteinG": 0.951,
+        "carbsG": 15.888,
+        "fiberG": 1.5299999999999998,
+        "fatG": 0.66,
+        "saturatedFatG": 0.12419999999999999,
+        "polyunsaturatedFatG": 0.2607,
+        "monounsaturatedFatG": 0.22769999999999999
+      },
+      "storedRounded": {
+        "declaredKcal": 74,
+        "proteinG": 1,
+        "carbsG": 15.9,
+        "fiberG": 1.5,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2
+      }
+    },
+    {
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 587,
+        "protein_g": 24.35,
+        "carbohydrate_g": 21.26,
+        "fibre_g": 8.4,
+        "total_fat_g": 49.66,
+        "saturated_fat_g": 7.723,
+        "polyunsaturated_fat_g": 9.773,
+        "monounsaturated_fat_g": 26.181
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 58.7,
+        "proteinG": 2.4350000000000005,
+        "carbsG": 2.1260000000000003,
+        "fiberG": 0.8400000000000001,
+        "fatG": 4.966,
+        "saturatedFatG": 0.7723,
+        "polyunsaturatedFatG": 0.9773000000000001,
+        "monounsaturatedFatG": 2.6181
+      },
+      "storedRounded": {
+        "declaredKcal": 59,
+        "proteinG": 2.4,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.6
+      }
+    },
+    {
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 559,
+        "protein_g": 30.23,
+        "carbohydrate_g": 10.71,
+        "fibre_g": 6,
+        "total_fat_g": 49.05,
+        "saturated_fat_g": 8.659,
+        "polyunsaturated_fat_g": 20.976,
+        "monounsaturated_fat_g": 16.242
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 55.900000000000006,
+        "proteinG": 3.023,
+        "carbsG": 1.0710000000000002,
+        "fiberG": 0.6000000000000001,
+        "fatG": 4.905,
+        "saturatedFatG": 0.8659000000000001,
+        "polyunsaturatedFatG": 2.0976,
+        "monounsaturatedFatG": 1.6242
+      },
+      "storedRounded": {
+        "declaredKcal": 56,
+        "proteinG": 3,
+        "carbsG": 1.1,
+        "fiberG": 0.6,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.6
+      }
+    }
+  ]
+}

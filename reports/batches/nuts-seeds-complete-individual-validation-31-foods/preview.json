@@ -1,0 +1,5143 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "generatedAt": "2026-07-30T17:59:12.717Z",
+  "foods": [
+    {
+      "id": "noix-graines-peanuts",
+      "operation": "update",
+      "identity": {
+        "fr": "Arachides crues, non salées",
+        "en": "Peanuts, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ]
+      },
+      "expectedRecordId": "3396",
+      "selectedRecordId": "3396",
+      "recordId": "3396",
+      "cnfDescription": {
+        "en": "Peanuts, all types, raw",
+        "fr": "Arachides, tous les types, crues"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3396",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Peanuts, all types, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Arachides, tous les types, crues",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3396"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 568,
+          "protein_g": 25.8,
+          "carbohydrate_g": 16.13,
+          "fibre_g": 7.8,
+          "total_fat_g": 49.24,
+          "saturated_fat_g": 6.279,
+          "polyunsaturated_fat_g": 15.558,
+          "monounsaturated_fat_g": 24.426
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 56.800000000000004,
+          "proteinG": 2.58,
+          "carbsG": 1.613,
+          "fiberG": 0.78,
+          "fatG": 4.924,
+          "saturatedFatG": 0.6279,
+          "polyunsaturatedFatG": 1.5558,
+          "monounsaturatedFatG": 2.4426
+        },
+        "storedRounded": {
+          "declaredKcal": 57,
+          "proteinG": 2.6,
+          "carbsG": 1.6,
+          "fiberG": 0.8,
+          "fatG": 4.9,
+          "saturatedFatG": 0.6,
+          "polyunsaturatedFatG": 1.6,
+          "monounsaturatedFatG": 2.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3396",
+        "selectedRecordId": "3396",
+        "selected": {
+          "recordId": "3396",
+          "descriptionEn": "Peanuts, all types, raw",
+          "descriptionFr": "Arachides, tous les types, crues",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 568,
+            "protein_g": 25.8,
+            "carbohydrate_g": 16.13,
+            "fibre_g": 7.8,
+            "total_fat_g": 49.24,
+            "saturated_fat_g": 6.279,
+            "polyunsaturated_fat_g": 15.558,
+            "monounsaturated_fat_g": 24.426
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3396",
+            "descriptionEn": "Peanuts, all types, raw",
+            "descriptionFr": "Arachides, tous les types, crues",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 568,
+              "protein_g": 25.8,
+              "carbohydrate_g": 16.13,
+              "fibre_g": 7.8,
+              "total_fat_g": 49.24,
+              "saturated_fat_g": 6.279,
+              "polyunsaturated_fat_g": 15.558,
+              "monounsaturated_fat_g": 24.426
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3396: Peanuts, all types, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 1.6,
+        "fiberG": 0.8,
+        "fatG": 4.9,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 57
+      },
+      "beforePortion": {
+        "labelFr": "10 Arachides",
+        "labelEn": "10 Peanuts",
+        "amount": 10,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 arachides crues (10 g)",
+        "labelEn": "10 raw peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-peanut-almond-butter",
+      "operation": "update",
+      "identity": {
+        "fr": "Beurre d’arachide naturel",
+        "en": "Natural peanut butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sugar added",
+          "salt added",
+          "almond butter",
+          "chunk type"
+        ]
+      },
+      "expectedRecordId": "6289",
+      "selectedRecordId": "6289",
+      "recordId": "6289",
+      "cnfDescription": {
+        "en": "Peanut butter, natural",
+        "fr": "Beurre d'arachides, naturel"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6289",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Peanut butter, natural)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Beurre d'arachides, naturel",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6289"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10.5 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 585,
+          "protein_g": 23.68,
+          "carbohydrate_g": 21.51,
+          "fibre_g": 8,
+          "total_fat_g": 49.66,
+          "saturated_fat_g": 6.893,
+          "polyunsaturated_fat_g": 15.694,
+          "monounsaturated_fat_g": 24.64
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 61.425,
+          "proteinG": 2.4863999999999997,
+          "carbsG": 2.25855,
+          "fiberG": 0.84,
+          "fatG": 5.2143,
+          "saturatedFatG": 0.723765,
+          "polyunsaturatedFatG": 1.64787,
+          "monounsaturatedFatG": 2.5872
+        },
+        "storedRounded": {
+          "declaredKcal": 61,
+          "proteinG": 2.5,
+          "carbsG": 2.3,
+          "fiberG": 0.8,
+          "fatG": 5.2,
+          "saturatedFatG": 0.7,
+          "polyunsaturatedFatG": 1.6,
+          "monounsaturatedFatG": 2.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6289",
+        "selectedRecordId": "6289",
+        "selected": {
+          "recordId": "6289",
+          "descriptionEn": "Peanut butter, natural",
+          "descriptionFr": "Beurre d'arachides, naturel",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 32,
+          "per100g": {
+            "energy_kcal": 585,
+            "protein_g": 23.68,
+            "carbohydrate_g": 21.51,
+            "fibre_g": 8,
+            "total_fat_g": 49.66,
+            "saturated_fat_g": 6.893,
+            "polyunsaturated_fat_g": 15.694,
+            "monounsaturated_fat_g": 24.64
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6289",
+            "descriptionEn": "Peanut butter, natural",
+            "descriptionFr": "Beurre d'arachides, naturel",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 32,
+            "per100g": {
+              "energy_kcal": 585,
+              "protein_g": 23.68,
+              "carbohydrate_g": 21.51,
+              "fibre_g": 8,
+              "total_fat_g": 49.66,
+              "saturated_fat_g": 6.893,
+              "polyunsaturated_fat_g": 15.694,
+              "monounsaturated_fat_g": 24.64
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6289: Peanut butter, natural.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 2.3,
+        "fiberG": 0.8,
+        "fatG": 5.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 61
+      },
+      "beforePortion": {
+        "labelFr": "10 ml de Beurre d'arachide / amandes",
+        "labelEn": "10 ml Peanut / almond butter",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de beurre d’arachide naturel (10,5 g)",
+        "labelEn": "10 ml natural peanut butter (10.5 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-tahini",
+      "operation": "update",
+      "identity": {
+        "fr": "Tahini de graines de sésame rôties",
+        "en": "Tahini from roasted sesame kernels",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "unroasted",
+          "raw stone ground",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2593",
+      "selectedRecordId": "2593",
+      "recordId": "2593",
+      "cnfDescription": {
+        "en": "Seeds, sesame butter, tahini, roasted and toasted kernels",
+        "fr": "Graines, beurre de sésame, tahini, graines rôties et grillées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2593",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, sesame butter, tahini, roasted and toasted kernels)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, beurre de sésame, tahini, graines rôties et grillées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2593"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 595,
+          "protein_g": 17,
+          "carbohydrate_g": 21.19,
+          "fibre_g": 9.3,
+          "total_fat_g": 53.76,
+          "saturated_fat_g": 7.529,
+          "polyunsaturated_fat_g": 23.564,
+          "monounsaturated_fat_g": 20.302
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.5,
+          "proteinG": 1.7000000000000002,
+          "carbsG": 2.119,
+          "fiberG": 0.9300000000000002,
+          "fatG": 5.376,
+          "saturatedFatG": 0.7529,
+          "polyunsaturatedFatG": 2.3564000000000003,
+          "monounsaturatedFatG": 2.0302000000000002
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 1.7,
+          "carbsG": 2.1,
+          "fiberG": 0.9,
+          "fatG": 5.4,
+          "saturatedFatG": 0.8,
+          "polyunsaturatedFatG": 2.4,
+          "monounsaturatedFatG": 2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2593",
+        "selectedRecordId": "2593",
+        "selected": {
+          "recordId": "2593",
+          "descriptionEn": "Seeds, sesame butter, tahini, roasted and toasted kernels",
+          "descriptionFr": "Graines, beurre de sésame, tahini, graines rôties et grillées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 27,
+          "per100g": {
+            "energy_kcal": 595,
+            "protein_g": 17,
+            "carbohydrate_g": 21.19,
+            "fibre_g": 9.3,
+            "total_fat_g": 53.76,
+            "saturated_fat_g": 7.529,
+            "polyunsaturated_fat_g": 23.564,
+            "monounsaturated_fat_g": 20.302
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2593",
+            "descriptionEn": "Seeds, sesame butter, tahini, roasted and toasted kernels",
+            "descriptionFr": "Graines, beurre de sésame, tahini, graines rôties et grillées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 27,
+            "per100g": {
+              "energy_kcal": 595,
+              "protein_g": 17,
+              "carbohydrate_g": 21.19,
+              "fibre_g": 9.3,
+              "total_fat_g": 53.76,
+              "saturated_fat_g": 7.529,
+              "polyunsaturated_fat_g": 23.564,
+              "monounsaturated_fat_g": 20.302
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2593: Seeds, sesame butter, tahini, roasted and toasted kernels.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 2.1,
+        "fiberG": 0.9,
+        "fatG": 5.4,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "10 ml de Tahini (beurre de sésame)",
+        "labelEn": "10 ml Tahini (sesame butter)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de tahini (10 g)",
+        "labelEn": "10 ml tahini (10 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-hemp-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de chanvre décortiquées",
+        "en": "Hulled hemp seeds",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "beverage",
+          "granola"
+        ]
+      },
+      "expectedRecordId": "7568",
+      "selectedRecordId": "7568",
+      "recordId": "7568",
+      "cnfDescription": {
+        "en": "Seeds, hemp seeds, hulled",
+        "fr": "Graines de chanvre, décortiquées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7568",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, hemp seeds, hulled)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines de chanvre, décortiquées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7568"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 553,
+          "protein_g": 31.56,
+          "carbohydrate_g": 8.67,
+          "fibre_g": 4,
+          "total_fat_g": 48.75,
+          "saturated_fat_g": 4.6,
+          "polyunsaturated_fat_g": 38.1,
+          "monounsaturated_fat_g": 5.4
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.300000000000004,
+          "proteinG": 3.156,
+          "carbsG": 0.867,
+          "fiberG": 0.4,
+          "fatG": 4.875,
+          "saturatedFatG": 0.45999999999999996,
+          "polyunsaturatedFatG": 3.8100000000000005,
+          "monounsaturatedFatG": 0.54
+        },
+        "storedRounded": {
+          "declaredKcal": 55,
+          "proteinG": 3.2,
+          "carbsG": 0.9,
+          "fiberG": 0.4,
+          "fatG": 4.9,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 3.8,
+          "monounsaturatedFatG": 0.5
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7568",
+        "selectedRecordId": "7568",
+        "selected": {
+          "recordId": "7568",
+          "descriptionEn": "Seeds, hemp seeds, hulled",
+          "descriptionFr": "Graines de chanvre, décortiquées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 553,
+            "protein_g": 31.56,
+            "carbohydrate_g": 8.67,
+            "fibre_g": 4,
+            "total_fat_g": 48.75,
+            "saturated_fat_g": 4.6,
+            "polyunsaturated_fat_g": 38.1,
+            "monounsaturated_fat_g": 5.4
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7568",
+            "descriptionEn": "Seeds, hemp seeds, hulled",
+            "descriptionFr": "Graines de chanvre, décortiquées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 553,
+              "protein_g": 31.56,
+              "carbohydrate_g": 8.67,
+              "fibre_g": 4,
+              "total_fat_g": 48.75,
+              "saturated_fat_g": 4.6,
+              "polyunsaturated_fat_g": 38.1,
+              "monounsaturated_fat_g": 5.4
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7568: Seeds, hemp seeds, hulled.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 5,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 3.2,
+        "carbsG": 0.9,
+        "fiberG": 0.4,
+        "fatG": 4.9,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 55
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de chanvre",
+        "labelEn": "15 ml Hemp seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de chanvre décortiquées (10 g)",
+        "labelEn": "15 ml hulled hemp seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-ground-chia-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de chia séchées, moulues ou entières",
+        "en": "Dried chia seeds, ground or whole",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "beverage",
+          "prepared pudding"
+        ]
+      },
+      "expectedRecordId": "2511",
+      "selectedRecordId": "2511",
+      "recordId": "2511",
+      "cnfDescription": {
+        "en": "Seeds, chia seeds, dried",
+        "fr": "Graines de chia, déshydratées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2511",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, chia seeds, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines de chia, déshydratées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2511"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 11 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 486,
+          "protein_g": 16.54,
+          "carbohydrate_g": 42.12,
+          "fibre_g": 34.4,
+          "total_fat_g": 30.74,
+          "saturated_fat_g": 3.33,
+          "polyunsaturated_fat_g": 23.665,
+          "monounsaturated_fat_g": 2.309
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 53.46,
+          "proteinG": 1.8194,
+          "carbsG": 4.6331999999999995,
+          "fiberG": 3.784,
+          "fatG": 3.3813999999999997,
+          "saturatedFatG": 0.3663,
+          "polyunsaturatedFatG": 2.60315,
+          "monounsaturatedFatG": 0.25399
+        },
+        "storedRounded": {
+          "declaredKcal": 53,
+          "proteinG": 1.8,
+          "carbsG": 4.6,
+          "fiberG": 3.8,
+          "fatG": 3.4,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 2.6,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2511",
+        "selectedRecordId": "2511",
+        "selected": {
+          "recordId": "2511",
+          "descriptionEn": "Seeds, chia seeds, dried",
+          "descriptionFr": "Graines de chia, déshydratées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 486,
+            "protein_g": 16.54,
+            "carbohydrate_g": 42.12,
+            "fibre_g": 34.4,
+            "total_fat_g": 30.74,
+            "saturated_fat_g": 3.33,
+            "polyunsaturated_fat_g": 23.665,
+            "monounsaturated_fat_g": 2.309
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2511",
+            "descriptionEn": "Seeds, chia seeds, dried",
+            "descriptionFr": "Graines de chia, déshydratées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 486,
+              "protein_g": 16.54,
+              "carbohydrate_g": 42.12,
+              "fibre_g": 34.4,
+              "total_fat_g": 30.74,
+              "saturated_fat_g": 3.33,
+              "polyunsaturated_fat_g": 23.665,
+              "monounsaturated_fat_g": 2.309
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2511: Seeds, chia seeds, dried.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 6,
+        "fiberG": 5,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 4,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 4.6,
+        "fiberG": 3.8,
+        "fatG": 3.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 53
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de chia moulues",
+        "labelEn": "15 ml Ground chia seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de chia (11 g)",
+        "labelEn": "15 ml chia seeds (11 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-ground-flax-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de lin moulues",
+        "en": "Ground flaxseed",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "oil",
+          "cereal",
+          "bread"
+        ]
+      },
+      "expectedRecordId": "4528",
+      "selectedRecordId": "4528",
+      "recordId": "4528",
+      "cnfDescription": {
+        "en": "Seeds, flaxseed (linseed), whole and ground",
+        "fr": "Graines, lin, entières et moulues"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4528",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, flaxseed (linseed), whole and ground)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, lin, entières et moulues",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4528"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 7 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 534,
+          "protein_g": 18.29,
+          "carbohydrate_g": 28.88,
+          "fibre_g": 27.3,
+          "total_fat_g": 42.16,
+          "saturated_fat_g": 3.663,
+          "polyunsaturated_fat_g": 28.73,
+          "monounsaturated_fat_g": 7.527
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 37.38,
+          "proteinG": 1.2803,
+          "carbsG": 2.0216000000000003,
+          "fiberG": 1.9110000000000003,
+          "fatG": 2.9512,
+          "saturatedFatG": 0.25641,
+          "polyunsaturatedFatG": 2.0111000000000003,
+          "monounsaturatedFatG": 0.5268900000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 37,
+          "proteinG": 1.3,
+          "carbsG": 2,
+          "fiberG": 1.9,
+          "fatG": 3,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 2,
+          "monounsaturatedFatG": 0.5
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4528",
+        "selectedRecordId": "4528",
+        "selected": {
+          "recordId": "4528",
+          "descriptionEn": "Seeds, flaxseed (linseed), whole and ground",
+          "descriptionFr": "Graines, lin, entières et moulues",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 534,
+            "protein_g": 18.29,
+            "carbohydrate_g": 28.88,
+            "fibre_g": 27.3,
+            "total_fat_g": 42.16,
+            "saturated_fat_g": 3.663,
+            "polyunsaturated_fat_g": 28.73,
+            "monounsaturated_fat_g": 7.527
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4528",
+            "descriptionEn": "Seeds, flaxseed (linseed), whole and ground",
+            "descriptionFr": "Graines, lin, entières et moulues",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 534,
+              "protein_g": 18.29,
+              "carbohydrate_g": 28.88,
+              "fibre_g": 27.3,
+              "total_fat_g": 42.16,
+              "saturated_fat_g": 3.663,
+              "polyunsaturated_fat_g": 28.73,
+              "monounsaturated_fat_g": 7.527
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4528: Seeds, flaxseed (linseed), whole and ground.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 1.9,
+        "fatG": 3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 37
+      },
+      "beforePortion": {
+        "labelFr": "20 ml de Graines de lin moulues",
+        "labelEn": "20 ml Ground flax seeds",
+        "amount": 20,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de lin moulues (7 g)",
+        "labelEn": "15 ml ground flaxseed (7 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 7,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de citrouille et de courge décortiquées, rôties",
+        "en": "Pumpkin and squash seed kernels, roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "whole in shell",
+          "dried"
+        ]
+      },
+      "expectedRecordId": "2517",
+      "selectedRecordId": "2517",
+      "recordId": "2517",
+      "cnfDescription": {
+        "en": "Seeds, pumpkin and squash seed kernels, roasted",
+        "fr": "Graines, citrouille et courge, graines, rôties"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2517",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, pumpkin and squash seed kernels, roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, citrouille et courge, graines, rôties",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2517"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 574,
+          "protein_g": 29.84,
+          "carbohydrate_g": 14.71,
+          "fibre_g": 6.5,
+          "total_fat_g": 49.05,
+          "saturated_fat_g": 8.544,
+          "polyunsaturated_fat_g": 19.856,
+          "monounsaturated_fat_g": 15.734
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 57.400000000000006,
+          "proteinG": 2.984,
+          "carbsG": 1.471,
+          "fiberG": 0.65,
+          "fatG": 4.905,
+          "saturatedFatG": 0.8544,
+          "polyunsaturatedFatG": 1.9856000000000003,
+          "monounsaturatedFatG": 1.5734000000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 57,
+          "proteinG": 3,
+          "carbsG": 1.5,
+          "fiberG": 0.7,
+          "fatG": 4.9,
+          "saturatedFatG": 0.9,
+          "polyunsaturatedFatG": 2,
+          "monounsaturatedFatG": 1.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2517",
+        "selectedRecordId": "2517",
+        "selected": {
+          "recordId": "2517",
+          "descriptionEn": "Seeds, pumpkin and squash seed kernels, roasted",
+          "descriptionFr": "Graines, citrouille et courge, graines, rôties",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 574,
+            "protein_g": 29.84,
+            "carbohydrate_g": 14.71,
+            "fibre_g": 6.5,
+            "total_fat_g": 49.05,
+            "saturated_fat_g": 8.544,
+            "polyunsaturated_fat_g": 19.856,
+            "monounsaturated_fat_g": 15.734
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2517",
+            "descriptionEn": "Seeds, pumpkin and squash seed kernels, roasted",
+            "descriptionFr": "Graines, citrouille et courge, graines, rôties",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 574,
+              "protein_g": 29.84,
+              "carbohydrate_g": 14.71,
+              "fibre_g": 6.5,
+              "total_fat_g": 49.05,
+              "saturated_fat_g": 8.544,
+              "polyunsaturated_fat_g": 19.856,
+              "monounsaturated_fat_g": 15.734
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2517: Seeds, pumpkin and squash seed kernels, roasted.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 6,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "afterNutrients": {
+        "proteinG": 3,
+        "carbsG": 1.5,
+        "fiberG": 0.7,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 57
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de citrouille rôties",
+        "labelEn": "15 ml Roasted pumpkin seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de citrouille rôties (10 g)",
+        "labelEn": "15 ml roasted pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "operation": "update",
+      "identity": {
+        "fr": "Pignons de pin séchés",
+        "en": "Pine nuts, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "pinyon",
+          "oil"
+        ]
+      },
+      "expectedRecordId": "2586",
+      "selectedRecordId": "2586",
+      "recordId": "2586",
+      "cnfDescription": {
+        "en": "Nuts, pine nuts, pignolia, dried",
+        "fr": "Noix, noix de pins, pignons (pignes), séchées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2586",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, pine nuts, pignolia, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, noix de pins, pignons (pignes), séchées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2586"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 673,
+          "protein_g": 13.69,
+          "carbohydrate_g": 13.08,
+          "fibre_g": 3.7,
+          "total_fat_g": 68.37,
+          "saturated_fat_g": 4.899,
+          "polyunsaturated_fat_g": 34.071,
+          "monounsaturated_fat_g": 18.764
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60.57,
+          "proteinG": 1.2321,
+          "carbsG": 1.1772,
+          "fiberG": 0.333,
+          "fatG": 6.1533,
+          "saturatedFatG": 0.44090999999999997,
+          "polyunsaturatedFatG": 3.0663899999999997,
+          "monounsaturatedFatG": 1.6887599999999998
+        },
+        "storedRounded": {
+          "declaredKcal": 61,
+          "proteinG": 1.2,
+          "carbsG": 1.2,
+          "fiberG": 0.3,
+          "fatG": 6.2,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 3.1,
+          "monounsaturatedFatG": 1.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2586",
+        "selectedRecordId": "2586",
+        "selected": {
+          "recordId": "2586",
+          "descriptionEn": "Nuts, pine nuts, pignolia, dried",
+          "descriptionFr": "Noix, noix de pins, pignons (pignes), séchées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 673,
+            "protein_g": 13.69,
+            "carbohydrate_g": 13.08,
+            "fibre_g": 3.7,
+            "total_fat_g": 68.37,
+            "saturated_fat_g": 4.899,
+            "polyunsaturated_fat_g": 34.071,
+            "monounsaturated_fat_g": 18.764
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2586",
+            "descriptionEn": "Nuts, pine nuts, pignolia, dried",
+            "descriptionFr": "Noix, noix de pins, pignons (pignes), séchées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 673,
+              "protein_g": 13.69,
+              "carbohydrate_g": 13.08,
+              "fibre_g": 3.7,
+              "total_fat_g": 68.37,
+              "saturated_fat_g": 4.899,
+              "polyunsaturated_fat_g": 34.071,
+              "monounsaturated_fat_g": 18.764
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2586: Nuts, pine nuts, pignolia, dried.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 60
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.2,
+        "fiberG": 0.3,
+        "fatG": 6.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 61
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de pin déshydratées",
+        "labelEn": "15 ml Dehydrated pine nuts",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de pignons de pin (9 g)",
+        "labelEn": "15 ml pine nuts (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-sesame-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de sésame décortiquées, séchées",
+        "en": "Sesame seed kernels, dried and shelled",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "toasted",
+          "salt added",
+          "flour",
+          "meal"
+        ]
+      },
+      "expectedRecordId": "2611",
+      "selectedRecordId": "2611",
+      "recordId": "2611",
+      "cnfDescription": {
+        "en": "Seeds, sesame seed kernels, dried, shelled",
+        "fr": "Graines, sésame, graines, déshydratées, décortiquées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2611",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, sesame seed kernels, dried, shelled)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, sésame, graines, déshydratées, décortiquées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2611"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 8 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 631,
+          "protein_g": 20.45,
+          "carbohydrate_g": 11.73,
+          "fibre_g": 11.6,
+          "total_fat_g": 61.21,
+          "saturated_fat_g": 9.055,
+          "polyunsaturated_fat_g": 25.491,
+          "monounsaturated_fat_g": 23.924
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 50.480000000000004,
+          "proteinG": 1.636,
+          "carbsG": 0.9384,
+          "fiberG": 0.9279999999999999,
+          "fatG": 4.8968,
+          "saturatedFatG": 0.7244,
+          "polyunsaturatedFatG": 2.03928,
+          "monounsaturatedFatG": 1.91392
+        },
+        "storedRounded": {
+          "declaredKcal": 50,
+          "proteinG": 1.6,
+          "carbsG": 0.9,
+          "fiberG": 0.9,
+          "fatG": 4.9,
+          "saturatedFatG": 0.7,
+          "polyunsaturatedFatG": 2,
+          "monounsaturatedFatG": 1.9
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2611",
+        "selectedRecordId": "2611",
+        "selected": {
+          "recordId": "2611",
+          "descriptionEn": "Seeds, sesame seed kernels, dried, shelled",
+          "descriptionFr": "Graines, sésame, graines, déshydratées, décortiquées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 631,
+            "protein_g": 20.45,
+            "carbohydrate_g": 11.73,
+            "fibre_g": 11.6,
+            "total_fat_g": 61.21,
+            "saturated_fat_g": 9.055,
+            "polyunsaturated_fat_g": 25.491,
+            "monounsaturated_fat_g": 23.924
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2611",
+            "descriptionEn": "Seeds, sesame seed kernels, dried, shelled",
+            "descriptionFr": "Graines, sésame, graines, déshydratées, décortiquées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 631,
+              "protein_g": 20.45,
+              "carbohydrate_g": 11.73,
+              "fibre_g": 11.6,
+              "total_fat_g": 61.21,
+              "saturated_fat_g": 9.055,
+              "polyunsaturated_fat_g": 25.491,
+              "monounsaturated_fat_g": 23.924
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2611: Seeds, sesame seed kernels, dried, shelled.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 1.6,
+        "carbsG": 0.9,
+        "fiberG": 0.9,
+        "fatG": 4.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 50
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de sésame",
+        "labelEn": "15 ml Sesame seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de sésame (8 g)",
+        "labelEn": "15 ml sesame seeds (8 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "operation": "update",
+      "identity": {
+        "fr": "Graines de tournesol décortiquées, rôties à l’huile",
+        "en": "Sunflower seed kernels, oil roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "dry roasted",
+          "dried",
+          "toasted"
+        ]
+      },
+      "expectedRecordId": "2642",
+      "selectedRecordId": "2642",
+      "recordId": "2642",
+      "cnfDescription": {
+        "en": "Seeds, sunflower seed kernels, oil roasted",
+        "fr": "Graines, tournesol, graines, rôties dans l'huile"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2642",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, sunflower seed kernels, oil roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, tournesol, graines, rôties dans l'huile",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2642"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 592,
+          "protein_g": 20.06,
+          "carbohydrate_g": 22.89,
+          "fibre_g": 8.89,
+          "total_fat_g": 51.3,
+          "saturated_fat_g": 7.068,
+          "polyunsaturated_fat_g": 34.294,
+          "monounsaturated_fat_g": 8.063
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 53.28,
+          "proteinG": 1.8054,
+          "carbsG": 2.0601,
+          "fiberG": 0.8001,
+          "fatG": 4.617,
+          "saturatedFatG": 0.6361199999999999,
+          "polyunsaturatedFatG": 3.0864599999999998,
+          "monounsaturatedFatG": 0.72567
+        },
+        "storedRounded": {
+          "declaredKcal": 53,
+          "proteinG": 1.8,
+          "carbsG": 2.1,
+          "fiberG": 0.8,
+          "fatG": 4.6,
+          "saturatedFatG": 0.6,
+          "polyunsaturatedFatG": 3.1,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2642",
+        "selectedRecordId": "2642",
+        "selected": {
+          "recordId": "2642",
+          "descriptionEn": "Seeds, sunflower seed kernels, oil roasted",
+          "descriptionFr": "Graines, tournesol, graines, rôties dans l'huile",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 592,
+            "protein_g": 20.06,
+            "carbohydrate_g": 22.89,
+            "fibre_g": 8.89,
+            "total_fat_g": 51.3,
+            "saturated_fat_g": 7.068,
+            "polyunsaturated_fat_g": 34.294,
+            "monounsaturated_fat_g": 8.063
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2642",
+            "descriptionEn": "Seeds, sunflower seed kernels, oil roasted",
+            "descriptionFr": "Graines, tournesol, graines, rôties dans l'huile",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 592,
+              "protein_g": 20.06,
+              "carbohydrate_g": 22.89,
+              "fibre_g": 8.89,
+              "total_fat_g": 51.3,
+              "saturated_fat_g": 7.068,
+              "polyunsaturated_fat_g": 34.294,
+              "monounsaturated_fat_g": 8.063
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2642: Seeds, sunflower seed kernels, oil roasted.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 48
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 4.6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 53
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de tournesol rôtie à l'huile",
+        "labelEn": "15 ml Oil-roasted sunflower seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de tournesol rôties à l’huile (9 g)",
+        "labelEn": "15 ml oil-roasted sunflower seeds (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-hummus",
+      "operation": "update",
+      "identity": {
+        "fr": "Houmous commercial",
+        "en": "Commercial hummus",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "homemade",
+          "flavoured"
+        ]
+      },
+      "expectedRecordId": "4870",
+      "selectedRecordId": "4870",
+      "recordId": "4870",
+      "cnfDescription": {
+        "en": "Hummus, commercial",
+        "fr": "Hoummos (hommos, hummus), commercial"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4870",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Hummus, commercial)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Hoummos (hommos, hummus), commercial",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4870"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 31 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 237,
+          "protein_g": 7.78,
+          "carbohydrate_g": 15,
+          "fibre_g": 5.5,
+          "total_fat_g": 17.82,
+          "saturated_fat_g": 2.562,
+          "polyunsaturated_fat_g": 8.812,
+          "monounsaturated_fat_g": 5.34
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 73.47,
+          "proteinG": 2.4118,
+          "carbsG": 4.65,
+          "fiberG": 1.705,
+          "fatG": 5.5242,
+          "saturatedFatG": 0.7942199999999999,
+          "polyunsaturatedFatG": 2.7317199999999997,
+          "monounsaturatedFatG": 1.6554
+        },
+        "storedRounded": {
+          "declaredKcal": 73,
+          "proteinG": 2.4,
+          "carbsG": 4.7,
+          "fiberG": 1.7,
+          "fatG": 5.5,
+          "saturatedFatG": 0.8,
+          "polyunsaturatedFatG": 2.7,
+          "monounsaturatedFatG": 1.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4870",
+        "selectedRecordId": "4870",
+        "selected": {
+          "recordId": "4870",
+          "descriptionEn": "Hummus, commercial",
+          "descriptionFr": "Hoummos (hommos, hummus), commercial",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 33,
+          "per100g": {
+            "energy_kcal": 237,
+            "protein_g": 7.78,
+            "carbohydrate_g": 15,
+            "fibre_g": 5.5,
+            "total_fat_g": 17.82,
+            "saturated_fat_g": 2.562,
+            "polyunsaturated_fat_g": 8.812,
+            "monounsaturated_fat_g": 5.34
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4870",
+            "descriptionEn": "Hummus, commercial",
+            "descriptionFr": "Hoummos (hommos, hummus), commercial",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 33,
+            "per100g": {
+              "energy_kcal": 237,
+              "protein_g": 7.78,
+              "carbohydrate_g": 15,
+              "fibre_g": 5.5,
+              "total_fat_g": 17.82,
+              "saturated_fat_g": 2.562,
+              "polyunsaturated_fat_g": 8.812,
+              "monounsaturated_fat_g": 5.34
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4870: Hummus, commercial.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 5,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 4.7,
+        "fiberG": 1.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 73
+      },
+      "beforePortion": {
+        "labelFr": "30 ml d'Hummus",
+        "labelEn": "30 ml Hummus",
+        "amount": 30,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 ml de houmous commercial (31 g)",
+        "labelEn": "30 ml commercial hummus (31 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 31,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-cashews",
+      "operation": "update",
+      "identity": {
+        "fr": "Noix de cajou crues, non salées",
+        "en": "Cashews, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "oil roasted",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "5709",
+      "selectedRecordId": "5709",
+      "recordId": "5709",
+      "cnfDescription": {
+        "en": "Nuts, cashew nuts, raw",
+        "fr": "Noix, noix de cajou (acajous, anacardes), crues"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5709",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, cashew nuts, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, noix de cajou (acajous, anacardes), crues",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5709"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 12 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 553,
+          "protein_g": 18.22,
+          "carbohydrate_g": 30.19,
+          "fibre_g": 3.3,
+          "total_fat_g": 43.85,
+          "saturated_fat_g": 7.783,
+          "polyunsaturated_fat_g": 7.845,
+          "monounsaturated_fat_g": 23.797
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 66.36,
+          "proteinG": 2.1864,
+          "carbsG": 3.6228,
+          "fiberG": 0.39599999999999996,
+          "fatG": 5.262,
+          "saturatedFatG": 0.93396,
+          "polyunsaturatedFatG": 0.9413999999999999,
+          "monounsaturatedFatG": 2.85564
+        },
+        "storedRounded": {
+          "declaredKcal": 66,
+          "proteinG": 2.2,
+          "carbsG": 3.6,
+          "fiberG": 0.4,
+          "fatG": 5.3,
+          "saturatedFatG": 0.9,
+          "polyunsaturatedFatG": 0.9,
+          "monounsaturatedFatG": 2.9
+        }
+      },
+      "selection": {
+        "expectedRecordId": "5709",
+        "selectedRecordId": "5709",
+        "selected": {
+          "recordId": "5709",
+          "descriptionEn": "Nuts, cashew nuts, raw",
+          "descriptionFr": "Noix, noix de cajou (acajous, anacardes), crues",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 553,
+            "protein_g": 18.22,
+            "carbohydrate_g": 30.19,
+            "fibre_g": 3.3,
+            "total_fat_g": 43.85,
+            "saturated_fat_g": 7.783,
+            "polyunsaturated_fat_g": 7.845,
+            "monounsaturated_fat_g": 23.797
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5709",
+            "descriptionEn": "Nuts, cashew nuts, raw",
+            "descriptionFr": "Noix, noix de cajou (acajous, anacardes), crues",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 553,
+              "protein_g": 18.22,
+              "carbohydrate_g": 30.19,
+              "fibre_g": 3.3,
+              "total_fat_g": 43.85,
+              "saturated_fat_g": 7.783,
+              "polyunsaturated_fat_g": 7.845,
+              "monounsaturated_fat_g": 23.797
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 5709: Nuts, cashew nuts, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 2.2,
+        "carbsG": 3.6,
+        "fiberG": 0.4,
+        "fatG": 5.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 66
+      },
+      "beforePortion": {
+        "labelFr": "7 Noix d'acajou ou cajous (5 g)",
+        "labelEn": "7 Cashews (5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 5,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "8 noix de cajou crues (12 g)",
+        "labelEn": "8 raw cashews (12 g)",
+        "amount": 8,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-shredded-coconut",
+      "operation": "update",
+      "identity": {
+        "fr": "Noix de coco desséchée, non sucrée",
+        "en": "Desiccated coconut, unsweetened",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "sweetened",
+          "toasted",
+          "creamed"
+        ]
+      },
+      "expectedRecordId": "2559",
+      "selectedRecordId": "2559",
+      "recordId": "2559",
+      "cnfDescription": {
+        "en": "Coconut meat, desiccated, unsweetened",
+        "fr": "Noix de coco, désséchée, non sucrée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2559",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Coconut meat, desiccated, unsweetened)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix de coco, désséchée, non sucrée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2559"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 5 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 660,
+          "protein_g": 6.88,
+          "carbohydrate_g": 23.65,
+          "fibre_g": 16.3,
+          "total_fat_g": 64.53,
+          "saturated_fat_g": 57.218,
+          "polyunsaturated_fat_g": 0.706,
+          "monounsaturated_fat_g": 2.745
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 33,
+          "proteinG": 0.34400000000000003,
+          "carbsG": 1.1824999999999999,
+          "fiberG": 0.8150000000000001,
+          "fatG": 3.2265,
+          "saturatedFatG": 2.8609000000000004,
+          "polyunsaturatedFatG": 0.0353,
+          "monounsaturatedFatG": 0.13725
+        },
+        "storedRounded": {
+          "declaredKcal": 33,
+          "proteinG": 0.3,
+          "carbsG": 1.2,
+          "fiberG": 0.8,
+          "fatG": 3.2,
+          "saturatedFatG": 2.9,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2559",
+        "selectedRecordId": "2559",
+        "selected": {
+          "recordId": "2559",
+          "descriptionEn": "Coconut meat, desiccated, unsweetened",
+          "descriptionFr": "Noix de coco, désséchée, non sucrée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 660,
+            "protein_g": 6.88,
+            "carbohydrate_g": 23.65,
+            "fibre_g": 16.3,
+            "total_fat_g": 64.53,
+            "saturated_fat_g": 57.218,
+            "polyunsaturated_fat_g": 0.706,
+            "monounsaturated_fat_g": 2.745
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2559",
+            "descriptionEn": "Coconut meat, desiccated, unsweetened",
+            "descriptionFr": "Noix de coco, désséchée, non sucrée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 660,
+              "protein_g": 6.88,
+              "carbohydrate_g": 23.65,
+              "fibre_g": 16.3,
+              "total_fat_g": 64.53,
+              "saturated_fat_g": 57.218,
+              "polyunsaturated_fat_g": 0.706,
+              "monounsaturated_fat_g": 2.745
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2559: Coconut meat, desiccated, unsweetened.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 31
+      },
+      "afterNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 3.2,
+        "saturatedFatG": 2.9,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 33
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Noix de coco filamenté",
+        "labelEn": "15 ml Shredded coconut",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de noix de coco non sucrée (5 g)",
+        "labelEn": "15 ml unsweetened desiccated coconut (5 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 5,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-walnuts",
+      "operation": "update",
+      "identity": {
+        "fr": "Noix de Grenoble",
+        "en": "English or Persian walnuts",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "black walnut",
+          "glazed",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2590",
+      "selectedRecordId": "2590",
+      "recordId": "2590",
+      "cnfDescription": {
+        "en": "Nuts, walnuts, English or Persian",
+        "fr": "Noix de Grenoble"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2590",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, walnuts, English or Persian)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix de Grenoble",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2590"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 8 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 655,
+          "protein_g": 15.23,
+          "carbohydrate_g": 13.71,
+          "fibre_g": 6.7,
+          "total_fat_g": 65.21,
+          "saturated_fat_g": 6.126,
+          "polyunsaturated_fat_g": 47.174,
+          "monounsaturated_fat_g": 8.933
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 52.4,
+          "proteinG": 1.2184000000000001,
+          "carbsG": 1.0968,
+          "fiberG": 0.536,
+          "fatG": 5.216799999999999,
+          "saturatedFatG": 0.49008,
+          "polyunsaturatedFatG": 3.77392,
+          "monounsaturatedFatG": 0.71464
+        },
+        "storedRounded": {
+          "declaredKcal": 52,
+          "proteinG": 1.2,
+          "carbsG": 1.1,
+          "fiberG": 0.5,
+          "fatG": 5.2,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 3.8,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2590",
+        "selectedRecordId": "2590",
+        "selected": {
+          "recordId": "2590",
+          "descriptionEn": "Nuts, walnuts, English or Persian",
+          "descriptionFr": "Noix de Grenoble",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 655,
+            "protein_g": 15.23,
+            "carbohydrate_g": 13.71,
+            "fibre_g": 6.7,
+            "total_fat_g": 65.21,
+            "saturated_fat_g": 6.126,
+            "polyunsaturated_fat_g": 47.174,
+            "monounsaturated_fat_g": 8.933
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2590",
+            "descriptionEn": "Nuts, walnuts, English or Persian",
+            "descriptionFr": "Noix de Grenoble",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 655,
+              "protein_g": 15.23,
+              "carbohydrate_g": 13.71,
+              "fibre_g": 6.7,
+              "total_fat_g": 65.21,
+              "saturated_fat_g": 6.126,
+              "polyunsaturated_fat_g": 47.174,
+              "monounsaturated_fat_g": 8.933
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2590: Nuts, walnuts, English or Persian.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 4,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.1,
+        "fiberG": 0.5,
+        "fatG": 5.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 52
+      },
+      "beforePortion": {
+        "labelFr": "5 Noix de Grenoble (9 g)",
+        "labelEn": "5 Walnuts (9 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "4 demi-noix de Grenoble (8 g)",
+        "labelEn": "4 walnut halves (8 g)",
+        "amount": 4,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-brazil-nuts",
+      "operation": "update",
+      "identity": {
+        "fr": "Noix du Brésil séchées, non blanchies",
+        "en": "Brazil nuts, dried, unblanched",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "blanched",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2544",
+      "selectedRecordId": "2544",
+      "recordId": "2544",
+      "cnfDescription": {
+        "en": "Nuts, brazilnuts, dried, unblanched",
+        "fr": "Noix, noix de Brésil, séchées, non blanchies"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2544",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, brazilnuts, dried, unblanched)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, noix de Brésil, séchées, non blanchies",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2544"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 659,
+          "protein_g": 14.32,
+          "carbohydrate_g": 11.74,
+          "fibre_g": 7.5,
+          "total_fat_g": 67.1,
+          "saturated_fat_g": 16.134,
+          "polyunsaturated_fat_g": 24.399,
+          "monounsaturated_fat_g": 23.879
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 65.9,
+          "proteinG": 1.4320000000000002,
+          "carbsG": 1.1740000000000002,
+          "fiberG": 0.75,
+          "fatG": 6.71,
+          "saturatedFatG": 1.6134000000000002,
+          "polyunsaturatedFatG": 2.4399,
+          "monounsaturatedFatG": 2.3879
+        },
+        "storedRounded": {
+          "declaredKcal": 66,
+          "proteinG": 1.4,
+          "carbsG": 1.2,
+          "fiberG": 0.8,
+          "fatG": 6.7,
+          "saturatedFatG": 1.6,
+          "polyunsaturatedFatG": 2.4,
+          "monounsaturatedFatG": 2.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2544",
+        "selectedRecordId": "2544",
+        "selected": {
+          "recordId": "2544",
+          "descriptionEn": "Nuts, brazilnuts, dried, unblanched",
+          "descriptionFr": "Noix, noix de Brésil, séchées, non blanchies",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 659,
+            "protein_g": 14.32,
+            "carbohydrate_g": 11.74,
+            "fibre_g": 7.5,
+            "total_fat_g": 67.1,
+            "saturated_fat_g": 16.134,
+            "polyunsaturated_fat_g": 24.399,
+            "monounsaturated_fat_g": 23.879
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2544",
+            "descriptionEn": "Nuts, brazilnuts, dried, unblanched",
+            "descriptionFr": "Noix, noix de Brésil, séchées, non blanchies",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 659,
+              "protein_g": 14.32,
+              "carbohydrate_g": 11.74,
+              "fibre_g": 7.5,
+              "total_fat_g": 67.1,
+              "saturated_fat_g": 16.134,
+              "polyunsaturated_fat_g": 24.399,
+              "monounsaturated_fat_g": 23.879
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2544: Nuts, brazilnuts, dried, unblanched.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 6.7,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 66
+      },
+      "beforePortion": {
+        "labelFr": "2 Noix du Brésil (7 g)",
+        "labelEn": "2 Brazil nuts (7 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 7,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 noix du Brésil (10 g)",
+        "labelEn": "2 Brazil nuts (10 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-macadamia-nuts",
+      "operation": "update",
+      "identity": {
+        "fr": "Noix de macadamia crues",
+        "en": "Macadamia nuts, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2575",
+      "selectedRecordId": "2575",
+      "recordId": "2575",
+      "cnfDescription": {
+        "en": "Nuts, macadamia (bushnuts, queensland), raw",
+        "fr": "Noix, macadamia (queensland), crues"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2575",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, macadamia (bushnuts, queensland), raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, macadamia (queensland), crues",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2575"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 12 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 718,
+          "protein_g": 7.91,
+          "carbohydrate_g": 13.82,
+          "fibre_g": 8.6,
+          "total_fat_g": 75.77,
+          "saturated_fat_g": 12.061,
+          "polyunsaturated_fat_g": 1.502,
+          "monounsaturated_fat_g": 58.877
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 86.16,
+          "proteinG": 0.9491999999999999,
+          "carbsG": 1.6583999999999999,
+          "fiberG": 1.032,
+          "fatG": 9.0924,
+          "saturatedFatG": 1.44732,
+          "polyunsaturatedFatG": 0.18023999999999998,
+          "monounsaturatedFatG": 7.06524
+        },
+        "storedRounded": {
+          "declaredKcal": 86,
+          "proteinG": 0.9,
+          "carbsG": 1.7,
+          "fiberG": 1,
+          "fatG": 9.1,
+          "saturatedFatG": 1.4,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 7.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2575",
+        "selectedRecordId": "2575",
+        "selected": {
+          "recordId": "2575",
+          "descriptionEn": "Nuts, macadamia (bushnuts, queensland), raw",
+          "descriptionFr": "Noix, macadamia (queensland), crues",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 718,
+            "protein_g": 7.91,
+            "carbohydrate_g": 13.82,
+            "fibre_g": 8.6,
+            "total_fat_g": 75.77,
+            "saturated_fat_g": 12.061,
+            "polyunsaturated_fat_g": 1.502,
+            "monounsaturated_fat_g": 58.877
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2575",
+            "descriptionEn": "Nuts, macadamia (bushnuts, queensland), raw",
+            "descriptionFr": "Noix, macadamia (queensland), crues",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 718,
+              "protein_g": 7.91,
+              "carbohydrate_g": 13.82,
+              "fibre_g": 8.6,
+              "total_fat_g": 75.77,
+              "saturated_fat_g": 12.061,
+              "polyunsaturated_fat_g": 1.502,
+              "monounsaturated_fat_g": 58.877
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2575: Nuts, macadamia (bushnuts, queensland), raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 0,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 4,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 1.7,
+        "fiberG": 1,
+        "fatG": 9.1,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 7.1,
+        "declaredKcal": 86
+      },
+      "beforePortion": {
+        "labelFr": "7 Noix de macadamia",
+        "labelEn": "7 Macadamia nuts",
+        "amount": 7,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "5 noix de macadamia (12 g)",
+        "labelEn": "5 macadamia nuts (12 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "FIBER_GT_CARBS",
+          "message": "Fibres supérieures aux glucides"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-oil-roasted-pecans",
+      "operation": "update",
+      "identity": {
+        "fr": "Pacanes rôties à l’huile",
+        "en": "Pecans, oil roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "dry roasted",
+          "dried"
+        ]
+      },
+      "expectedRecordId": "2584",
+      "selectedRecordId": "2584",
+      "recordId": "2584",
+      "cnfDescription": {
+        "en": "Nuts, pecans, oil roasted",
+        "fr": "Noix, pacanes, rôties dans l'huile"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2584",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, pecans, oil roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, pacanes, rôties dans l'huile",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2584"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 8 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 715,
+          "protein_g": 9.2,
+          "carbohydrate_g": 13.01,
+          "fibre_g": 9.5,
+          "total_fat_g": 75.23,
+          "saturated_fat_g": 7.238,
+          "polyunsaturated_fat_g": 23.584,
+          "monounsaturated_fat_g": 40.97
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 57.2,
+          "proteinG": 0.736,
+          "carbsG": 1.0408,
+          "fiberG": 0.76,
+          "fatG": 6.018400000000001,
+          "saturatedFatG": 0.57904,
+          "polyunsaturatedFatG": 1.88672,
+          "monounsaturatedFatG": 3.2776
+        },
+        "storedRounded": {
+          "declaredKcal": 57,
+          "proteinG": 0.7,
+          "carbsG": 1,
+          "fiberG": 0.8,
+          "fatG": 6,
+          "saturatedFatG": 0.6,
+          "polyunsaturatedFatG": 1.9,
+          "monounsaturatedFatG": 3.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2584",
+        "selectedRecordId": "2584",
+        "selected": {
+          "recordId": "2584",
+          "descriptionEn": "Nuts, pecans, oil roasted",
+          "descriptionFr": "Noix, pacanes, rôties dans l'huile",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 715,
+            "protein_g": 9.2,
+            "carbohydrate_g": 13.01,
+            "fibre_g": 9.5,
+            "total_fat_g": 75.23,
+            "saturated_fat_g": 7.238,
+            "polyunsaturated_fat_g": 23.584,
+            "monounsaturated_fat_g": 40.97
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2584",
+            "descriptionEn": "Nuts, pecans, oil roasted",
+            "descriptionFr": "Noix, pacanes, rôties dans l'huile",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 715,
+              "protein_g": 9.2,
+              "carbohydrate_g": 13.01,
+              "fibre_g": 9.5,
+              "total_fat_g": 75.23,
+              "saturated_fat_g": 7.238,
+              "polyunsaturated_fat_g": 23.584,
+              "monounsaturated_fat_g": 40.97
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2584: Nuts, pecans, oil roasted.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1,
+        "fiberG": 0.8,
+        "fatG": 6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.9,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 57
+      },
+      "beforePortion": {
+        "labelFr": "5 Pacanes rôties à l'huile (9 g)",
+        "labelEn": "5 Oil-roasted pecans (9 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "5 demi-pacanes rôties à l’huile (8 g)",
+        "labelEn": "5 oil-roasted pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-raw-pistachios",
+      "operation": "update",
+      "identity": {
+        "fr": "Pistaches crues, décortiquées",
+        "en": "Pistachios, raw, shelled",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2644",
+      "selectedRecordId": "2644",
+      "recordId": "2644",
+      "cnfDescription": {
+        "en": "Nuts, pistachio nuts, raw",
+        "fr": "Noix, pistaches, crues"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2644",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, pistachio nuts, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, pistaches, crues",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2644"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 560,
+          "protein_g": 20.16,
+          "carbohydrate_g": 27.17,
+          "fibre_g": 8.81,
+          "total_fat_g": 45.32,
+          "saturated_fat_g": 5.907,
+          "polyunsaturated_fat_g": 14.38,
+          "monounsaturated_fat_g": 23.257
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 50.4,
+          "proteinG": 1.8144,
+          "carbsG": 2.4453,
+          "fiberG": 0.7929,
+          "fatG": 4.0788,
+          "saturatedFatG": 0.5316299999999999,
+          "polyunsaturatedFatG": 1.2942,
+          "monounsaturatedFatG": 2.09313
+        },
+        "storedRounded": {
+          "declaredKcal": 50,
+          "proteinG": 1.8,
+          "carbsG": 2.4,
+          "fiberG": 0.8,
+          "fatG": 4.1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.3,
+          "monounsaturatedFatG": 2.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2644",
+        "selectedRecordId": "2644",
+        "selected": {
+          "recordId": "2644",
+          "descriptionEn": "Nuts, pistachio nuts, raw",
+          "descriptionFr": "Noix, pistaches, crues",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 560,
+            "protein_g": 20.16,
+            "carbohydrate_g": 27.17,
+            "fibre_g": 8.81,
+            "total_fat_g": 45.32,
+            "saturated_fat_g": 5.907,
+            "polyunsaturated_fat_g": 14.38,
+            "monounsaturated_fat_g": 23.257
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2644",
+            "descriptionEn": "Nuts, pistachio nuts, raw",
+            "descriptionFr": "Noix, pistaches, crues",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 560,
+              "protein_g": 20.16,
+              "carbohydrate_g": 27.17,
+              "fibre_g": 8.81,
+              "total_fat_g": 45.32,
+              "saturated_fat_g": 5.907,
+              "polyunsaturated_fat_g": 14.38,
+              "monounsaturated_fat_g": 23.257
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2644: Nuts, pistachio nuts, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 31
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.4,
+        "fiberG": 0.8,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 50
+      },
+      "beforePortion": {
+        "labelFr": "10 Pistaches crues (6 g)",
+        "labelEn": "10 Raw pistachios (6 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 6,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 pistaches décortiquées (9 g)",
+        "labelEn": "15 shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "operation": "update",
+      "identity": {
+        "fr": "Edamames bouillis et égouttés",
+        "en": "Edamame, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen unprepared",
+          "salt added",
+          "mature soybean"
+        ]
+      },
+      "expectedRecordId": "2209",
+      "selectedRecordId": "2209",
+      "recordId": "2209",
+      "cnfDescription": {
+        "en": "Soybeans, green (edamame), boiled, drained",
+        "fr": "Fèves, soya frais (edamame), bouillies, égouttées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2209",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Soybeans, green (edamame), boiled, drained)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fèves, soya frais (edamame), bouillies, égouttées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2209"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 95 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 141,
+          "protein_g": 12.35,
+          "carbohydrate_g": 11.05,
+          "fibre_g": 4.2,
+          "total_fat_g": 6.4,
+          "saturated_fat_g": 0.74,
+          "polyunsaturated_fat_g": 3.011,
+          "monounsaturated_fat_g": 1.209
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 133.95,
+          "proteinG": 11.7325,
+          "carbsG": 10.4975,
+          "fiberG": 3.9899999999999998,
+          "fatG": 6.08,
+          "saturatedFatG": 0.703,
+          "polyunsaturatedFatG": 2.86045,
+          "monounsaturatedFatG": 1.14855
+        },
+        "storedRounded": {
+          "declaredKcal": 134,
+          "proteinG": 11.7,
+          "carbsG": 10.5,
+          "fiberG": 4,
+          "fatG": 6.1,
+          "saturatedFatG": 0.7,
+          "polyunsaturatedFatG": 2.9,
+          "monounsaturatedFatG": 1.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2209",
+        "selectedRecordId": "2209",
+        "selected": {
+          "recordId": "2209",
+          "descriptionEn": "Soybeans, green (edamame), boiled, drained",
+          "descriptionFr": "Fèves, soya frais (edamame), bouillies, égouttées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 141,
+            "protein_g": 12.35,
+            "carbohydrate_g": 11.05,
+            "fibre_g": 4.2,
+            "total_fat_g": 6.4,
+            "saturated_fat_g": 0.74,
+            "polyunsaturated_fat_g": 3.011,
+            "monounsaturated_fat_g": 1.209
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2209",
+            "descriptionEn": "Soybeans, green (edamame), boiled, drained",
+            "descriptionFr": "Fèves, soya frais (edamame), bouillies, égouttées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 141,
+              "protein_g": 12.35,
+              "carbohydrate_g": 11.05,
+              "fibre_g": 4.2,
+              "total_fat_g": 6.4,
+              "saturated_fat_g": 0.74,
+              "polyunsaturated_fat_g": 3.011,
+              "monounsaturated_fat_g": 1.209
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2209: Soybeans, green (edamame), boiled, drained.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 11.7,
+        "carbsG": 10.5,
+        "fiberG": 4,
+        "fatG": 6.1,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.9,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 134
+      },
+      "beforePortion": {
+        "labelFr": "⅓ tasse de Soja ou edamames",
+        "labelEn": "⅓ cup Soybeans or edamame",
+        "amount": 0.3333333333333333,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml d’edamames cuits (95 g)",
+        "labelEn": "125 ml cooked edamame (95 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 95,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-homemade-protein-granola",
+      "operation": "update",
+      "identity": {
+        "fr": "Granola maison",
+        "en": "Homemade granola",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "commercial brand",
+          "protein claim",
+          "granola bar"
+        ]
+      },
+      "expectedRecordId": "1222",
+      "selectedRecordId": "1222",
+      "recordId": "1222",
+      "cnfDescription": {
+        "en": "Cereal, ready to eat, granola, homemade",
+        "fr": "Céreale, prête-à-manger, granola, fait maison"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1222",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cereal, ready to eat, granola, homemade)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Céreale, prête-à-manger, granola, fait maison",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1222"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 490,
+          "protein_g": 14.87,
+          "carbohydrate_g": 52.95,
+          "fibre_g": 8.6,
+          "total_fat_g": 24.36,
+          "saturated_fat_g": 4.537,
+          "polyunsaturated_fat_g": 10.71,
+          "monounsaturated_fat_g": 7.643
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 147,
+          "proteinG": 4.460999999999999,
+          "carbsG": 15.885,
+          "fiberG": 2.5799999999999996,
+          "fatG": 7.308,
+          "saturatedFatG": 1.3611,
+          "polyunsaturatedFatG": 3.213,
+          "monounsaturatedFatG": 2.2929
+        },
+        "storedRounded": {
+          "declaredKcal": 147,
+          "proteinG": 4.5,
+          "carbsG": 15.9,
+          "fiberG": 2.6,
+          "fatG": 7.3,
+          "saturatedFatG": 1.4,
+          "polyunsaturatedFatG": 3.2,
+          "monounsaturatedFatG": 2.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1222",
+        "selectedRecordId": "1222",
+        "selected": {
+          "recordId": "1222",
+          "descriptionEn": "Cereal, ready to eat, granola, homemade",
+          "descriptionFr": "Céreale, prête-à-manger, granola, fait maison",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 29,
+          "per100g": {
+            "energy_kcal": 490,
+            "protein_g": 14.87,
+            "carbohydrate_g": 52.95,
+            "fibre_g": 8.6,
+            "total_fat_g": 24.36,
+            "saturated_fat_g": 4.537,
+            "polyunsaturated_fat_g": 10.71,
+            "monounsaturated_fat_g": 7.643
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1222",
+            "descriptionEn": "Cereal, ready to eat, granola, homemade",
+            "descriptionFr": "Céreale, prête-à-manger, granola, fait maison",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 29,
+            "per100g": {
+              "energy_kcal": 490,
+              "protein_g": 14.87,
+              "carbohydrate_g": 52.95,
+              "fibre_g": 8.6,
+              "total_fat_g": 24.36,
+              "saturated_fat_g": 4.537,
+              "polyunsaturated_fat_g": 10.71,
+              "monounsaturated_fat_g": 7.643
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1222: Cereal, ready to eat, granola, homemade.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 56
+      },
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 15.9,
+        "fiberG": 2.6,
+        "fatG": 7.3,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 3.2,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 147
+      },
+      "beforePortion": {
+        "labelFr": "30 g Granola protéiné maison (noix / graines)",
+        "labelEn": "30 g Homemade protein granola (nuts / seeds)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de granola maison",
+        "labelEn": "30 g homemade granola",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-natural-cashew-butter",
+      "operation": "update",
+      "identity": {
+        "fr": "Beurre de cajou nature",
+        "en": "Plain cashew butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2548",
+      "selectedRecordId": "2548",
+      "recordId": "2548",
+      "cnfDescription": {
+        "en": "Nuts, cashew butter, plain",
+        "fr": "Noix, beurre de noix de cajou (acajous, anacardes), nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2548",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, cashew butter, plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, beurre de noix de cajou (acajous, anacardes), nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2548"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 11 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 587,
+          "protein_g": 17.56,
+          "carbohydrate_g": 27.57,
+          "fibre_g": 2,
+          "total_fat_g": 49.41,
+          "saturated_fat_g": 9.763,
+          "polyunsaturated_fat_g": 8.354,
+          "monounsaturated_fat_g": 29.122
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 64.57000000000001,
+          "proteinG": 1.9315999999999998,
+          "carbsG": 3.0327,
+          "fiberG": 0.22,
+          "fatG": 5.435099999999999,
+          "saturatedFatG": 1.07393,
+          "polyunsaturatedFatG": 0.9189399999999999,
+          "monounsaturatedFatG": 3.20342
+        },
+        "storedRounded": {
+          "declaredKcal": 65,
+          "proteinG": 1.9,
+          "carbsG": 3,
+          "fiberG": 0.2,
+          "fatG": 5.4,
+          "saturatedFatG": 1.1,
+          "polyunsaturatedFatG": 0.9,
+          "monounsaturatedFatG": 3.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2548",
+        "selectedRecordId": "2548",
+        "selected": {
+          "recordId": "2548",
+          "descriptionEn": "Nuts, cashew butter, plain",
+          "descriptionFr": "Noix, beurre de noix de cajou (acajous, anacardes), nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 31,
+          "per100g": {
+            "energy_kcal": 587,
+            "protein_g": 17.56,
+            "carbohydrate_g": 27.57,
+            "fibre_g": 2,
+            "total_fat_g": 49.41,
+            "saturated_fat_g": 9.763,
+            "polyunsaturated_fat_g": 8.354,
+            "monounsaturated_fat_g": 29.122
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2548",
+            "descriptionEn": "Nuts, cashew butter, plain",
+            "descriptionFr": "Noix, beurre de noix de cajou (acajous, anacardes), nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 31,
+            "per100g": {
+              "energy_kcal": 587,
+              "protein_g": 17.56,
+              "carbohydrate_g": 27.57,
+              "fibre_g": 2,
+              "total_fat_g": 49.41,
+              "saturated_fat_g": 9.763,
+              "polyunsaturated_fat_g": 8.354,
+              "monounsaturated_fat_g": 29.122
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2548: Nuts, cashew butter, plain.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3,
+        "fiberG": 0.2,
+        "fatG": 5.4,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 65
+      },
+      "beforePortion": {
+        "labelFr": "20 g Beurre de cajou nature",
+        "labelEn": "20 g Natural cashew butter",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de beurre de cajou nature (11 g)",
+        "labelEn": "10 ml plain cashew butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-almond-butter-plain",
+      "operation": "add",
+      "identity": {
+        "fr": "Beurre d’amandes nature",
+        "en": "Plain almond butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "honey",
+          "cinnamon",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "2605",
+      "selectedRecordId": "2605",
+      "recordId": "2605",
+      "cnfDescription": {
+        "en": "Nuts, almond butter, plain",
+        "fr": "Noix, beurre d'amandes, nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2605",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, almond butter, plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, beurre d'amandes, nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2605"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 11 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 614,
+          "protein_g": 20.96,
+          "carbohydrate_g": 18.82,
+          "fibre_g": 10.3,
+          "total_fat_g": 55.5,
+          "saturated_fat_g": 4.152,
+          "polyunsaturated_fat_g": 13.613,
+          "monounsaturated_fat_g": 32.445
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.54,
+          "proteinG": 2.3056,
+          "carbsG": 2.0702000000000003,
+          "fiberG": 1.133,
+          "fatG": 6.105,
+          "saturatedFatG": 0.45672,
+          "polyunsaturatedFatG": 1.49743,
+          "monounsaturatedFatG": 3.56895
+        },
+        "storedRounded": {
+          "declaredKcal": 68,
+          "proteinG": 2.3,
+          "carbsG": 2.1,
+          "fiberG": 1.1,
+          "fatG": 6.1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.5,
+          "monounsaturatedFatG": 3.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2605",
+        "selectedRecordId": "2605",
+        "selected": {
+          "recordId": "2605",
+          "descriptionEn": "Nuts, almond butter, plain",
+          "descriptionFr": "Noix, beurre d'amandes, nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 31,
+          "per100g": {
+            "energy_kcal": 614,
+            "protein_g": 20.96,
+            "carbohydrate_g": 18.82,
+            "fibre_g": 10.3,
+            "total_fat_g": 55.5,
+            "saturated_fat_g": 4.152,
+            "polyunsaturated_fat_g": 13.613,
+            "monounsaturated_fat_g": 32.445
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2605",
+            "descriptionEn": "Nuts, almond butter, plain",
+            "descriptionFr": "Noix, beurre d'amandes, nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 31,
+            "per100g": {
+              "energy_kcal": 614,
+              "protein_g": 20.96,
+              "carbohydrate_g": 18.82,
+              "fibre_g": 10.3,
+              "total_fat_g": 55.5,
+              "saturated_fat_g": 4.152,
+              "polyunsaturated_fat_g": 13.613,
+              "monounsaturated_fat_g": 32.445
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2605: Nuts, almond butter, plain.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.1,
+        "fiberG": 1.1,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 3.6,
+        "declaredKcal": 68
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 ml de beurre d’amandes nature (11 g)",
+        "labelEn": "10 ml plain almond butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-hazelnuts-dried",
+      "operation": "add",
+      "identity": {
+        "fr": "Noisettes séchées, non blanchies",
+        "en": "Hazelnuts, dried, unblanched",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "blanched",
+          "dry roasted",
+          "chocolate spread"
+        ]
+      },
+      "expectedRecordId": "2567",
+      "selectedRecordId": "2567",
+      "recordId": "2567",
+      "cnfDescription": {
+        "en": "Nuts, filberts or hazelnuts, dried",
+        "fr": "Noix, noisettes, avelines ou coudres, séchées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2567",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, filberts or hazelnuts, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, noisettes, avelines ou coudres, séchées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2567"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 12 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 629,
+          "protein_g": 14.95,
+          "carbohydrate_g": 16.7,
+          "fibre_g": 9.7,
+          "total_fat_g": 60.75,
+          "saturated_fat_g": 4.464,
+          "polyunsaturated_fat_g": 7.92,
+          "monounsaturated_fat_g": 45.652
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 75.48,
+          "proteinG": 1.7939999999999998,
+          "carbsG": 2.004,
+          "fiberG": 1.164,
+          "fatG": 7.29,
+          "saturatedFatG": 0.53568,
+          "polyunsaturatedFatG": 0.9503999999999999,
+          "monounsaturatedFatG": 5.4782399999999996
+        },
+        "storedRounded": {
+          "declaredKcal": 75,
+          "proteinG": 1.8,
+          "carbsG": 2,
+          "fiberG": 1.2,
+          "fatG": 7.3,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1,
+          "monounsaturatedFatG": 5.5
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2567",
+        "selectedRecordId": "2567",
+        "selected": {
+          "recordId": "2567",
+          "descriptionEn": "Nuts, filberts or hazelnuts, dried",
+          "descriptionFr": "Noix, noisettes, avelines ou coudres, séchées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 629,
+            "protein_g": 14.95,
+            "carbohydrate_g": 16.7,
+            "fibre_g": 9.7,
+            "total_fat_g": 60.75,
+            "saturated_fat_g": 4.464,
+            "polyunsaturated_fat_g": 7.92,
+            "monounsaturated_fat_g": 45.652
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2567",
+            "descriptionEn": "Nuts, filberts or hazelnuts, dried",
+            "descriptionFr": "Noix, noisettes, avelines ou coudres, séchées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 629,
+              "protein_g": 14.95,
+              "carbohydrate_g": 16.7,
+              "fibre_g": 9.7,
+              "total_fat_g": 60.75,
+              "saturated_fat_g": 4.464,
+              "polyunsaturated_fat_g": 7.92,
+              "monounsaturated_fat_g": 45.652
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2567: Nuts, filberts or hazelnuts, dried.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2,
+        "fiberG": 1.2,
+        "fatG": 7.3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5.5,
+        "declaredKcal": 75
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 noisettes (12 g)",
+        "labelEn": "10 hazelnuts (12 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "operation": "add",
+      "identity": {
+        "fr": "Noix mélangées avec arachides, rôties à sec, sans sel ajouté",
+        "en": "Mixed nuts with peanuts, dry roasted, no added salt",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "oil roasted",
+          "salt added",
+          "without peanuts"
+        ]
+      },
+      "expectedRecordId": "2577",
+      "selectedRecordId": "2577",
+      "recordId": "2577",
+      "cnfDescription": {
+        "en": "Nuts, mixed nuts, dry roasted with peanuts",
+        "fr": "Noix, noix mélangées, rôties à sec avec arachides"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2577",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, mixed nuts, dry roasted with peanuts)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, noix mélangées, rôties à sec avec arachides",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2577"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 15 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 607,
+          "protein_g": 19.5,
+          "carbohydrate_g": 22.42,
+          "fibre_g": 6.4,
+          "total_fat_g": 53.5,
+          "saturated_fat_g": 8.01,
+          "polyunsaturated_fat_g": 9.858,
+          "monounsaturated_fat_g": 34.532
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 91.05,
+          "proteinG": 2.925,
+          "carbsG": 3.363,
+          "fiberG": 0.96,
+          "fatG": 8.025,
+          "saturatedFatG": 1.2015,
+          "polyunsaturatedFatG": 1.4787000000000001,
+          "monounsaturatedFatG": 5.179799999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 91,
+          "proteinG": 2.9,
+          "carbsG": 3.4,
+          "fiberG": 1,
+          "fatG": 8,
+          "saturatedFatG": 1.2,
+          "polyunsaturatedFatG": 1.5,
+          "monounsaturatedFatG": 5.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2577",
+        "selectedRecordId": "2577",
+        "selected": {
+          "recordId": "2577",
+          "descriptionEn": "Nuts, mixed nuts, dry roasted with peanuts",
+          "descriptionFr": "Noix, noix mélangées, rôties à sec avec arachides",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 607,
+            "protein_g": 19.5,
+            "carbohydrate_g": 22.42,
+            "fibre_g": 6.4,
+            "total_fat_g": 53.5,
+            "saturated_fat_g": 8.01,
+            "polyunsaturated_fat_g": 9.858,
+            "monounsaturated_fat_g": 34.532
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2577",
+            "descriptionEn": "Nuts, mixed nuts, dry roasted with peanuts",
+            "descriptionFr": "Noix, noix mélangées, rôties à sec avec arachides",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 607,
+              "protein_g": 19.5,
+              "carbohydrate_g": 22.42,
+              "fibre_g": 6.4,
+              "total_fat_g": 53.5,
+              "saturated_fat_g": 8.01,
+              "polyunsaturated_fat_g": 9.858,
+              "monounsaturated_fat_g": 34.532
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2577: Nuts, mixed nuts, dry roasted with peanuts.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.9,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 8,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 5.2,
+        "declaredKcal": 91
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 g de noix mélangées rôties à sec",
+        "labelEn": "15 g dry-roasted mixed nuts",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-sunflower-seed-butter",
+      "operation": "add",
+      "identity": {
+        "fr": "Beurre de graines de tournesol",
+        "en": "Sunflower seed butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2529",
+      "selectedRecordId": "2529",
+      "recordId": "2529",
+      "cnfDescription": {
+        "en": "Seeds, sunflower seed butter",
+        "fr": "Graines, beurre de tournesol"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2529",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, sunflower seed butter)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, beurre de tournesol",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2529"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 11 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 617,
+          "protein_g": 17.28,
+          "carbohydrate_g": 23.32,
+          "fibre_g": 5.7,
+          "total_fat_g": 55.2,
+          "saturated_fat_g": 4.678,
+          "polyunsaturated_fat_g": 9.805,
+          "monounsaturated_fat_g": 39.025
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.87,
+          "proteinG": 1.9008,
+          "carbsG": 2.5652,
+          "fiberG": 0.627,
+          "fatG": 6.072,
+          "saturatedFatG": 0.51458,
+          "polyunsaturatedFatG": 1.07855,
+          "monounsaturatedFatG": 4.29275
+        },
+        "storedRounded": {
+          "declaredKcal": 68,
+          "proteinG": 1.9,
+          "carbsG": 2.6,
+          "fiberG": 0.6,
+          "fatG": 6.1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.1,
+          "monounsaturatedFatG": 4.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2529",
+        "selectedRecordId": "2529",
+        "selected": {
+          "recordId": "2529",
+          "descriptionEn": "Seeds, sunflower seed butter",
+          "descriptionFr": "Graines, beurre de tournesol",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 31,
+          "per100g": {
+            "energy_kcal": 617,
+            "protein_g": 17.28,
+            "carbohydrate_g": 23.32,
+            "fibre_g": 5.7,
+            "total_fat_g": 55.2,
+            "saturated_fat_g": 4.678,
+            "polyunsaturated_fat_g": 9.805,
+            "monounsaturated_fat_g": 39.025
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2529",
+            "descriptionEn": "Seeds, sunflower seed butter",
+            "descriptionFr": "Graines, beurre de tournesol",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 31,
+            "per100g": {
+              "energy_kcal": 617,
+              "protein_g": 17.28,
+              "carbohydrate_g": 23.32,
+              "fibre_g": 5.7,
+              "total_fat_g": 55.2,
+              "saturated_fat_g": 4.678,
+              "polyunsaturated_fat_g": 9.805,
+              "monounsaturated_fat_g": 39.025
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2529: Seeds, sunflower seed butter.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.6,
+        "fiberG": 0.6,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.1,
+        "monounsaturatedFatG": 4.3,
+        "declaredKcal": 68
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 ml de beurre de tournesol (11 g)",
+        "labelEn": "10 ml sunflower seed butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-pecans-dried",
+      "operation": "add",
+      "identity": {
+        "fr": "Pacanes séchées",
+        "en": "Pecans, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2582",
+      "selectedRecordId": "2582",
+      "recordId": "2582",
+      "cnfDescription": {
+        "en": "Nuts, pecans, dried",
+        "fr": "Noix, pacanes, séchées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2582",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, pecans, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, pacanes, séchées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2582"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 8 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 691,
+          "protein_g": 9.17,
+          "carbohydrate_g": 13.86,
+          "fibre_g": 9.6,
+          "total_fat_g": 71.97,
+          "saturated_fat_g": 6.18,
+          "polyunsaturated_fat_g": 21.614,
+          "monounsaturated_fat_g": 40.801
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.28,
+          "proteinG": 0.7336,
+          "carbsG": 1.1088,
+          "fiberG": 0.768,
+          "fatG": 5.7576,
+          "saturatedFatG": 0.4944,
+          "polyunsaturatedFatG": 1.72912,
+          "monounsaturatedFatG": 3.2640800000000003
+        },
+        "storedRounded": {
+          "declaredKcal": 55,
+          "proteinG": 0.7,
+          "carbsG": 1.1,
+          "fiberG": 0.8,
+          "fatG": 5.8,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.7,
+          "monounsaturatedFatG": 3.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2582",
+        "selectedRecordId": "2582",
+        "selected": {
+          "recordId": "2582",
+          "descriptionEn": "Nuts, pecans, dried",
+          "descriptionFr": "Noix, pacanes, séchées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 691,
+            "protein_g": 9.17,
+            "carbohydrate_g": 13.86,
+            "fibre_g": 9.6,
+            "total_fat_g": 71.97,
+            "saturated_fat_g": 6.18,
+            "polyunsaturated_fat_g": 21.614,
+            "monounsaturated_fat_g": 40.801
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2582",
+            "descriptionEn": "Nuts, pecans, dried",
+            "descriptionFr": "Noix, pacanes, séchées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 691,
+              "protein_g": 9.17,
+              "carbohydrate_g": 13.86,
+              "fibre_g": 9.6,
+              "total_fat_g": 71.97,
+              "saturated_fat_g": 6.18,
+              "polyunsaturated_fat_g": 21.614,
+              "monounsaturated_fat_g": 40.801
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2582: Nuts, pecans, dried.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.1,
+        "fiberG": 0.8,
+        "fatG": 5.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.7,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 55
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "5 demi-pacanes (8 g)",
+        "labelEn": "5 pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-pistachios-dry-roasted",
+      "operation": "add",
+      "identity": {
+        "fr": "Pistaches rôties à sec, sans sel ajouté",
+        "en": "Pistachios, dry roasted, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2588",
+      "selectedRecordId": "2588",
+      "recordId": "2588",
+      "cnfDescription": {
+        "en": "Nuts, pistachio nuts, dry roasted",
+        "fr": "Noix, pistaches, rôties à sec"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2588",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, pistachio nuts, dry roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, pistaches, rôties à sec",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2588"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 572,
+          "protein_g": 21.05,
+          "carbohydrate_g": 28.28,
+          "fibre_g": 10.3,
+          "total_fat_g": 45.82,
+          "saturated_fat_g": 5.645,
+          "polyunsaturated_fat_g": 13.346,
+          "monounsaturated_fat_g": 24.534
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 51.48,
+          "proteinG": 1.8945,
+          "carbsG": 2.5452,
+          "fiberG": 0.927,
+          "fatG": 4.1238,
+          "saturatedFatG": 0.5080499999999999,
+          "polyunsaturatedFatG": 1.2011399999999999,
+          "monounsaturatedFatG": 2.2080599999999997
+        },
+        "storedRounded": {
+          "declaredKcal": 51,
+          "proteinG": 1.9,
+          "carbsG": 2.5,
+          "fiberG": 0.9,
+          "fatG": 4.1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.2,
+          "monounsaturatedFatG": 2.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2588",
+        "selectedRecordId": "2588",
+        "selected": {
+          "recordId": "2588",
+          "descriptionEn": "Nuts, pistachio nuts, dry roasted",
+          "descriptionFr": "Noix, pistaches, rôties à sec",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 572,
+            "protein_g": 21.05,
+            "carbohydrate_g": 28.28,
+            "fibre_g": 10.3,
+            "total_fat_g": 45.82,
+            "saturated_fat_g": 5.645,
+            "polyunsaturated_fat_g": 13.346,
+            "monounsaturated_fat_g": 24.534
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2588",
+            "descriptionEn": "Nuts, pistachio nuts, dry roasted",
+            "descriptionFr": "Noix, pistaches, rôties à sec",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 572,
+              "protein_g": 21.05,
+              "carbohydrate_g": 28.28,
+              "fibre_g": 10.3,
+              "total_fat_g": 45.82,
+              "saturated_fat_g": 5.645,
+              "polyunsaturated_fat_g": 13.346,
+              "monounsaturated_fat_g": 24.534
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2588: Nuts, pistachio nuts, dry roasted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.5,
+        "fiberG": 0.9,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 2.2,
+        "declaredKcal": 51
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 pistaches décortiquées rôties à sec (9 g)",
+        "labelEn": "15 dry-roasted shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "operation": "add",
+      "identity": {
+        "fr": "Noix de soya rôties, non salées",
+        "en": "Roasted soy nuts, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "boiled edamame",
+          "mature dry"
+        ]
+      },
+      "expectedRecordId": "2580",
+      "selectedRecordId": "2580",
+      "recordId": "2580",
+      "cnfDescription": {
+        "en": "Soybean kernels, roasted, unsalted",
+        "fr": "Soya, graines, rôties, sans sel"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2580",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Soybean kernels, roasted, unsalted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Soya, graines, rôties, sans sel",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2580"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 15 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 469,
+          "protein_g": 38.55,
+          "carbohydrate_g": 30.22,
+          "fibre_g": 17.7,
+          "total_fat_g": 25.4,
+          "saturated_fat_g": 3.674,
+          "polyunsaturated_fat_g": 14.339,
+          "monounsaturated_fat_g": 5.61
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 70.35,
+          "proteinG": 5.7825,
+          "carbsG": 4.5329999999999995,
+          "fiberG": 2.655,
+          "fatG": 3.8099999999999996,
+          "saturatedFatG": 0.5510999999999999,
+          "polyunsaturatedFatG": 2.15085,
+          "monounsaturatedFatG": 0.8415
+        },
+        "storedRounded": {
+          "declaredKcal": 70,
+          "proteinG": 5.8,
+          "carbsG": 4.5,
+          "fiberG": 2.7,
+          "fatG": 3.8,
+          "saturatedFatG": 0.6,
+          "polyunsaturatedFatG": 2.2,
+          "monounsaturatedFatG": 0.8
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2580",
+        "selectedRecordId": "2580",
+        "selected": {
+          "recordId": "2580",
+          "descriptionEn": "Soybean kernels, roasted, unsalted",
+          "descriptionFr": "Soya, graines, rôties, sans sel",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 469,
+            "protein_g": 38.55,
+            "carbohydrate_g": 30.22,
+            "fibre_g": 17.7,
+            "total_fat_g": 25.4,
+            "saturated_fat_g": 3.674,
+            "polyunsaturated_fat_g": 14.339,
+            "monounsaturated_fat_g": 5.61
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2580",
+            "descriptionEn": "Soybean kernels, roasted, unsalted",
+            "descriptionFr": "Soya, graines, rôties, sans sel",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 469,
+              "protein_g": 38.55,
+              "carbohydrate_g": 30.22,
+              "fibre_g": 17.7,
+              "total_fat_g": 25.4,
+              "saturated_fat_g": 3.674,
+              "polyunsaturated_fat_g": 14.339,
+              "monounsaturated_fat_g": 5.61
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2580: Soybean kernels, roasted, unsalted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 5.8,
+        "carbsG": 4.5,
+        "fiberG": 2.7,
+        "fatG": 3.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 70
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 ml de noix de soya rôties (15 g)",
+        "labelEn": "30 ml roasted soy nuts (15 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-roasted-chestnuts",
+      "operation": "add",
+      "identity": {
+        "fr": "Châtaignes européennes rôties",
+        "en": "European sweet chestnuts, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "boiled",
+          "dried",
+          "water chestnut"
+        ]
+      },
+      "expectedRecordId": "2594",
+      "selectedRecordId": "2594",
+      "recordId": "2594",
+      "cnfDescription": {
+        "en": "Nuts, European chestnuts (sweet), roasted",
+        "fr": "Noix, châtaignes d'Europe (marrons), rôties"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2594",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nuts, European chestnuts (sweet), roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Noix, châtaignes d'Europe (marrons), rôties",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2594"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 245,
+          "protein_g": 3.17,
+          "carbohydrate_g": 52.96,
+          "fibre_g": 5.1,
+          "total_fat_g": 2.2,
+          "saturated_fat_g": 0.414,
+          "polyunsaturated_fat_g": 0.869,
+          "monounsaturated_fat_g": 0.759
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 73.5,
+          "proteinG": 0.951,
+          "carbsG": 15.888,
+          "fiberG": 1.5299999999999998,
+          "fatG": 0.66,
+          "saturatedFatG": 0.12419999999999999,
+          "polyunsaturatedFatG": 0.2607,
+          "monounsaturatedFatG": 0.22769999999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 74,
+          "proteinG": 1,
+          "carbsG": 15.9,
+          "fiberG": 1.5,
+          "fatG": 0.7,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2594",
+        "selectedRecordId": "2594",
+        "selected": {
+          "recordId": "2594",
+          "descriptionEn": "Nuts, European chestnuts (sweet), roasted",
+          "descriptionFr": "Noix, châtaignes d'Europe (marrons), rôties",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 245,
+            "protein_g": 3.17,
+            "carbohydrate_g": 52.96,
+            "fibre_g": 5.1,
+            "total_fat_g": 2.2,
+            "saturated_fat_g": 0.414,
+            "polyunsaturated_fat_g": 0.869,
+            "monounsaturated_fat_g": 0.759
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2594",
+            "descriptionEn": "Nuts, European chestnuts (sweet), roasted",
+            "descriptionFr": "Noix, châtaignes d'Europe (marrons), rôties",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 245,
+              "protein_g": 3.17,
+              "carbohydrate_g": 52.96,
+              "fibre_g": 5.1,
+              "total_fat_g": 2.2,
+              "saturated_fat_g": 0.414,
+              "polyunsaturated_fat_g": 0.869,
+              "monounsaturated_fat_g": 0.759
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2594: Nuts, European chestnuts (sweet), roasted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 15.9,
+        "fiberG": 1.5,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 74
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "3 châtaignes rôties (30 g)",
+        "labelEn": "3 roasted chestnuts (30 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "operation": "add",
+      "identity": {
+        "fr": "Arachides rôties à sec, non salées",
+        "en": "Peanuts, dry roasted, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ]
+      },
+      "expectedRecordId": "3362",
+      "selectedRecordId": "3362",
+      "recordId": "3362",
+      "cnfDescription": {
+        "en": "Peanuts, all types, dry roasted",
+        "fr": "Arachides, tous les types, rôties à sec"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3362",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Peanuts, all types, dry roasted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Arachides, tous les types, rôties à sec",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3362"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 587,
+          "protein_g": 24.35,
+          "carbohydrate_g": 21.26,
+          "fibre_g": 8.4,
+          "total_fat_g": 49.66,
+          "saturated_fat_g": 7.723,
+          "polyunsaturated_fat_g": 9.773,
+          "monounsaturated_fat_g": 26.181
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 58.7,
+          "proteinG": 2.4350000000000005,
+          "carbsG": 2.1260000000000003,
+          "fiberG": 0.8400000000000001,
+          "fatG": 4.966,
+          "saturatedFatG": 0.7723,
+          "polyunsaturatedFatG": 0.9773000000000001,
+          "monounsaturatedFatG": 2.6181
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 2.4,
+          "carbsG": 2.1,
+          "fiberG": 0.8,
+          "fatG": 5,
+          "saturatedFatG": 0.8,
+          "polyunsaturatedFatG": 1,
+          "monounsaturatedFatG": 2.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3362",
+        "selectedRecordId": "3362",
+        "selected": {
+          "recordId": "3362",
+          "descriptionEn": "Peanuts, all types, dry roasted",
+          "descriptionFr": "Arachides, tous les types, rôties à sec",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 587,
+            "protein_g": 24.35,
+            "carbohydrate_g": 21.26,
+            "fibre_g": 8.4,
+            "total_fat_g": 49.66,
+            "saturated_fat_g": 7.723,
+            "polyunsaturated_fat_g": 9.773,
+            "monounsaturated_fat_g": 26.181
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3362",
+            "descriptionEn": "Peanuts, all types, dry roasted",
+            "descriptionFr": "Arachides, tous les types, rôties à sec",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 587,
+              "protein_g": 24.35,
+              "carbohydrate_g": 21.26,
+              "fibre_g": 8.4,
+              "total_fat_g": 49.66,
+              "saturated_fat_g": 7.723,
+              "polyunsaturated_fat_g": 9.773,
+              "monounsaturated_fat_g": 26.181
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3362: Peanuts, all types, dry roasted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 59
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 arachides rôties à sec (10 g)",
+        "labelEn": "10 dry-roasted peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "operation": "add",
+      "identity": {
+        "fr": "Graines de citrouille et de courge décortiquées, séchées",
+        "en": "Pumpkin and squash seed kernels, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "roasted",
+          "salt added",
+          "whole in shell"
+        ]
+      },
+      "expectedRecordId": "2516",
+      "selectedRecordId": "2516",
+      "recordId": "2516",
+      "cnfDescription": {
+        "en": "Seeds, pumpkin and squash seed kernels, dried",
+        "fr": "Graines, citrouille et courge, graines, déshydratées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2516",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Seeds, pumpkin and squash seed kernels, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Graines, citrouille et courge, graines, déshydratées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2516"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 10 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 559,
+          "protein_g": 30.23,
+          "carbohydrate_g": 10.71,
+          "fibre_g": 6,
+          "total_fat_g": 49.05,
+          "saturated_fat_g": 8.659,
+          "polyunsaturated_fat_g": 20.976,
+          "monounsaturated_fat_g": 16.242
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.900000000000006,
+          "proteinG": 3.023,
+          "carbsG": 1.0710000000000002,
+          "fiberG": 0.6000000000000001,
+          "fatG": 4.905,
+          "saturatedFatG": 0.8659000000000001,
+          "polyunsaturatedFatG": 2.0976,
+          "monounsaturatedFatG": 1.6242
+        },
+        "storedRounded": {
+          "declaredKcal": 56,
+          "proteinG": 3,
+          "carbsG": 1.1,
+          "fiberG": 0.6,
+          "fatG": 4.9,
+          "saturatedFatG": 0.9,
+          "polyunsaturatedFatG": 2.1,
+          "monounsaturatedFatG": 1.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2516",
+        "selectedRecordId": "2516",
+        "selected": {
+          "recordId": "2516",
+          "descriptionEn": "Seeds, pumpkin and squash seed kernels, dried",
+          "descriptionFr": "Graines, citrouille et courge, graines, déshydratées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 559,
+            "protein_g": 30.23,
+            "carbohydrate_g": 10.71,
+            "fibre_g": 6,
+            "total_fat_g": 49.05,
+            "saturated_fat_g": 8.659,
+            "polyunsaturated_fat_g": 20.976,
+            "monounsaturated_fat_g": 16.242
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2516",
+            "descriptionEn": "Seeds, pumpkin and squash seed kernels, dried",
+            "descriptionFr": "Graines, citrouille et courge, graines, déshydratées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 559,
+              "protein_g": 30.23,
+              "carbohydrate_g": 10.71,
+              "fibre_g": 6,
+              "total_fat_g": 49.05,
+              "saturated_fat_g": 8.659,
+              "polyunsaturated_fat_g": 20.976,
+              "monounsaturated_fat_g": 16.242
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2516: Seeds, pumpkin and squash seed kernels, dried.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 3,
+        "carbsG": 1.1,
+        "fiberG": 0.6,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 56
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 ml de graines de citrouille séchées (10 g)",
+        "labelEn": "15 ml dried pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    }
+  ]
+}

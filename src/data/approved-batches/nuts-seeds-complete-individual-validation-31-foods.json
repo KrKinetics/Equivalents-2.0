@@ -1,0 +1,1455 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "title": "KR Kinetics — Validation individuelle complète des noix et graines",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 21 entrées non vérifiées de la catégorie Noix et graines, préciser les identités ambiguës et ajouter dix variantes utiles, tout en conservant l’entrée Amandes déjà vérifiée strictement inchangée.",
+  "scope": {
+    "existingFoodCount": 217,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 227,
+    "batchFoodCount": 31,
+    "protectedFoodCount": 196,
+    "allowedFoodIds": [
+      "noix-graines-peanuts",
+      "noix-graines-peanut-almond-butter",
+      "noix-graines-tahini",
+      "noix-graines-hemp-seeds",
+      "noix-graines-ground-chia-seeds",
+      "noix-graines-ground-flax-seeds",
+      "noix-graines-roasted-pumpkin-seeds",
+      "noix-graines-dehydrated-pine-nuts",
+      "noix-graines-sesame-seeds",
+      "noix-graines-oil-roasted-sunflower-seeds",
+      "noix-graines-hummus",
+      "noix-graines-cashews",
+      "noix-graines-shredded-coconut",
+      "noix-graines-walnuts",
+      "noix-graines-brazil-nuts",
+      "noix-graines-macadamia-nuts",
+      "noix-graines-oil-roasted-pecans",
+      "noix-graines-raw-pistachios",
+      "noix-graines-cup-soybeans-or-edamame",
+      "noix-graines-homemade-protein-granola",
+      "noix-graines-natural-cashew-butter",
+      "noix-graines-almond-butter-plain",
+      "noix-graines-hazelnuts-dried",
+      "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "noix-graines-sunflower-seed-butter",
+      "noix-graines-pecans-dried",
+      "noix-graines-pistachios-dry-roasted",
+      "noix-graines-roasted-soy-nuts-unsalted",
+      "noix-graines-roasted-chestnuts",
+      "noix-graines-peanuts-dry-roasted-unsalted",
+      "noix-graines-pumpkin-seeds-dried"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "N/A",
+      "rule": "Aucun produit de marque dans ce lot."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s’affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec le record CNF concret."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "noix-graines-peanuts",
+      "lockedIdentity": {
+        "fr": "Arachides crues, non salées",
+        "en": "Peanuts, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 arachides crues (10 g)",
+        "labelEn": "10 raw peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3396",
+        "matchKeywordsEn": [
+          "Peanuts, all types, raw"
+        ],
+        "mustContainConcepts": [
+          "Peanuts, all types, raw"
+        ],
+        "mustNotContainConcepts": [
+          "dry roasted",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3396: Peanuts, all types, raw."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-peanut-almond-butter",
+      "lockedIdentity": {
+        "fr": "Beurre d’arachide naturel",
+        "en": "Natural peanut butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sugar added",
+          "salt added",
+          "almond butter",
+          "chunk type"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de beurre d’arachide naturel (10,5 g)",
+        "labelEn": "10 ml natural peanut butter (10.5 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.5
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6289",
+        "matchKeywordsEn": [
+          "Peanut butter, natural"
+        ],
+        "mustContainConcepts": [
+          "Peanut butter, natural"
+        ],
+        "mustNotContainConcepts": [
+          "sugar added",
+          "salt added",
+          "almond butter",
+          "chunk type"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6289: Peanut butter, natural."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-butter",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-tahini",
+      "lockedIdentity": {
+        "fr": "Tahini de graines de sésame rôties",
+        "en": "Tahini from roasted sesame kernels",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "unroasted",
+          "raw stone ground",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de tahini (10 g)",
+        "labelEn": "10 ml tahini (10 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2593",
+        "matchKeywordsEn": [
+          "Seeds, sesame butter, tahini, roasted and toasted kernels"
+        ],
+        "mustContainConcepts": [
+          "Seeds, sesame butter, tahini, roasted and toasted kernels"
+        ],
+        "mustNotContainConcepts": [
+          "unroasted",
+          "raw stone ground",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2593: Seeds, sesame butter, tahini, roasted and toasted kernels."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed-butter",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-hemp-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de chanvre décortiquées",
+        "en": "Hulled hemp seeds",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "beverage",
+          "granola"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de chanvre décortiquées (10 g)",
+        "labelEn": "15 ml hulled hemp seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7568",
+        "matchKeywordsEn": [
+          "Seeds, hemp seeds, hulled"
+        ],
+        "mustContainConcepts": [
+          "Seeds, hemp seeds, hulled"
+        ],
+        "mustNotContainConcepts": [
+          "beverage",
+          "granola"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7568: Seeds, hemp seeds, hulled."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-ground-chia-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de chia séchées, moulues ou entières",
+        "en": "Dried chia seeds, ground or whole",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "beverage",
+          "prepared pudding"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de chia (11 g)",
+        "labelEn": "15 ml chia seeds (11 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 11
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2511",
+        "matchKeywordsEn": [
+          "Seeds, chia seeds, dried"
+        ],
+        "mustContainConcepts": [
+          "Seeds, chia seeds, dried"
+        ],
+        "mustNotContainConcepts": [
+          "beverage",
+          "prepared pudding"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2511: Seeds, chia seeds, dried."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed-high-fibre",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-ground-flax-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de lin moulues",
+        "en": "Ground flaxseed",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "oil",
+          "cereal",
+          "bread"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de lin moulues (7 g)",
+        "labelEn": "15 ml ground flaxseed (7 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 7
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4528",
+        "matchKeywordsEn": [
+          "Seeds, flaxseed (linseed), whole and ground"
+        ],
+        "mustContainConcepts": [
+          "Seeds, flaxseed (linseed), whole and ground"
+        ],
+        "mustNotContainConcepts": [
+          "oil",
+          "cereal",
+          "bread"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4528: Seeds, flaxseed (linseed), whole and ground."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed-high-fibre",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de citrouille et de courge décortiquées, rôties",
+        "en": "Pumpkin and squash seed kernels, roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "whole in shell",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de citrouille rôties (10 g)",
+        "labelEn": "15 ml roasted pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2517",
+        "matchKeywordsEn": [
+          "Seeds, pumpkin and squash seed kernels, roasted"
+        ],
+        "mustContainConcepts": [
+          "Seeds, pumpkin and squash seed kernels, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "salt added",
+          "whole in shell",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2517: Seeds, pumpkin and squash seed kernels, roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "lockedIdentity": {
+        "fr": "Pignons de pin séchés",
+        "en": "Pine nuts, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "pinyon",
+          "oil"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de pignons de pin (9 g)",
+        "labelEn": "15 ml pine nuts (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2586",
+        "matchKeywordsEn": [
+          "Nuts, pine nuts, pignolia, dried"
+        ],
+        "mustContainConcepts": [
+          "Nuts, pine nuts, pignolia, dried"
+        ],
+        "mustNotContainConcepts": [
+          "pinyon",
+          "oil"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2586: Nuts, pine nuts, pignolia, dried."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-sesame-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de sésame décortiquées, séchées",
+        "en": "Sesame seed kernels, dried and shelled",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "toasted",
+          "salt added",
+          "flour",
+          "meal"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de sésame (8 g)",
+        "labelEn": "15 ml sesame seeds (8 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2611",
+        "matchKeywordsEn": [
+          "Seeds, sesame seed kernels, dried, shelled"
+        ],
+        "mustContainConcepts": [
+          "Seeds, sesame seed kernels, dried, shelled"
+        ],
+        "mustNotContainConcepts": [
+          "toasted",
+          "salt added",
+          "flour",
+          "meal"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2611: Seeds, sesame seed kernels, dried, shelled."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "lockedIdentity": {
+        "fr": "Graines de tournesol décortiquées, rôties à l’huile",
+        "en": "Sunflower seed kernels, oil roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "dry roasted",
+          "dried",
+          "toasted"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de tournesol rôties à l’huile (9 g)",
+        "labelEn": "15 ml oil-roasted sunflower seeds (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2642",
+        "matchKeywordsEn": [
+          "Seeds, sunflower seed kernels, oil roasted"
+        ],
+        "mustContainConcepts": [
+          "Seeds, sunflower seed kernels, oil roasted"
+        ],
+        "mustNotContainConcepts": [
+          "salt added",
+          "dry roasted",
+          "dried",
+          "toasted"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2642: Seeds, sunflower seed kernels, oil roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-hummus",
+      "lockedIdentity": {
+        "fr": "Houmous commercial",
+        "en": "Commercial hummus",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "homemade",
+          "flavoured"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 ml de houmous commercial (31 g)",
+        "labelEn": "30 ml commercial hummus (31 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 31
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4870",
+        "matchKeywordsEn": [
+          "Hummus, commercial"
+        ],
+        "mustContainConcepts": [
+          "Hummus, commercial"
+        ],
+        "mustNotContainConcepts": [
+          "homemade",
+          "flavoured"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4870: Hummus, commercial."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-legume-spread",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-cashews",
+      "lockedIdentity": {
+        "fr": "Noix de cajou crues, non salées",
+        "en": "Cashews, raw, unsalted",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "oil roasted",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "8 noix de cajou crues (12 g)",
+        "labelEn": "8 raw cashews (12 g)",
+        "amount": 8,
+        "unit": "count",
+        "grams": 12
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5709",
+        "matchKeywordsEn": [
+          "Nuts, cashew nuts, raw"
+        ],
+        "mustContainConcepts": [
+          "Nuts, cashew nuts, raw"
+        ],
+        "mustNotContainConcepts": [
+          "dry roasted",
+          "oil roasted",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5709: Nuts, cashew nuts, raw."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-shredded-coconut",
+      "lockedIdentity": {
+        "fr": "Noix de coco desséchée, non sucrée",
+        "en": "Desiccated coconut, unsweetened",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "sweetened",
+          "toasted",
+          "creamed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de noix de coco non sucrée (5 g)",
+        "labelEn": "15 ml unsweetened desiccated coconut (5 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 5
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2559",
+        "matchKeywordsEn": [
+          "Coconut meat, desiccated, unsweetened"
+        ],
+        "mustContainConcepts": [
+          "Coconut meat, desiccated, unsweetened"
+        ],
+        "mustNotContainConcepts": [
+          "sweetened",
+          "toasted",
+          "creamed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2559: Coconut meat, desiccated, unsweetened."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-coconut",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-walnuts",
+      "lockedIdentity": {
+        "fr": "Noix de Grenoble",
+        "en": "English or Persian walnuts",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "black walnut",
+          "glazed",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "4 demi-noix de Grenoble (8 g)",
+        "labelEn": "4 walnut halves (8 g)",
+        "amount": 4,
+        "unit": "count",
+        "grams": 8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2590",
+        "matchKeywordsEn": [
+          "Nuts, walnuts, English or Persian"
+        ],
+        "mustContainConcepts": [
+          "Nuts, walnuts, English or Persian"
+        ],
+        "mustNotContainConcepts": [
+          "black walnut",
+          "glazed",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2590: Nuts, walnuts, English or Persian."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-brazil-nuts",
+      "lockedIdentity": {
+        "fr": "Noix du Brésil séchées, non blanchies",
+        "en": "Brazil nuts, dried, unblanched",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "blanched",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 noix du Brésil (10 g)",
+        "labelEn": "2 Brazil nuts (10 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2544",
+        "matchKeywordsEn": [
+          "Nuts, brazilnuts, dried, unblanched"
+        ],
+        "mustContainConcepts": [
+          "Nuts, brazilnuts, dried, unblanched"
+        ],
+        "mustNotContainConcepts": [
+          "blanched",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2544: Nuts, brazilnuts, dried, unblanched."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-macadamia-nuts",
+      "lockedIdentity": {
+        "fr": "Noix de macadamia crues",
+        "en": "Macadamia nuts, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "5 noix de macadamia (12 g)",
+        "labelEn": "5 macadamia nuts (12 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 12
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2575",
+        "matchKeywordsEn": [
+          "Nuts, macadamia (bushnuts, queensland), raw"
+        ],
+        "mustContainConcepts": [
+          "Nuts, macadamia (bushnuts, queensland), raw"
+        ],
+        "mustNotContainConcepts": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2575: Nuts, macadamia (bushnuts, queensland), raw."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-oil-roasted-pecans",
+      "lockedIdentity": {
+        "fr": "Pacanes rôties à l’huile",
+        "en": "Pecans, oil roasted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "dry roasted",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "5 demi-pacanes rôties à l’huile (8 g)",
+        "labelEn": "5 oil-roasted pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2584",
+        "matchKeywordsEn": [
+          "Nuts, pecans, oil roasted"
+        ],
+        "mustContainConcepts": [
+          "Nuts, pecans, oil roasted"
+        ],
+        "mustNotContainConcepts": [
+          "salt added",
+          "dry roasted",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2584: Nuts, pecans, oil roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-raw-pistachios",
+      "lockedIdentity": {
+        "fr": "Pistaches crues, décortiquées",
+        "en": "Pistachios, raw, shelled",
+        "preparationState": "raw",
+        "exclusions": [
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 pistaches décortiquées (9 g)",
+        "labelEn": "15 shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2644",
+        "matchKeywordsEn": [
+          "Nuts, pistachio nuts, raw"
+        ],
+        "mustContainConcepts": [
+          "Nuts, pistachio nuts, raw"
+        ],
+        "mustNotContainConcepts": [
+          "dry roasted",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2644: Nuts, pistachio nuts, raw."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "lockedIdentity": {
+        "fr": "Edamames bouillis et égouttés",
+        "en": "Edamame, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen unprepared",
+          "salt added",
+          "mature soybean"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml d’edamames cuits (95 g)",
+        "labelEn": "125 ml cooked edamame (95 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 95
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2209",
+        "matchKeywordsEn": [
+          "Soybeans, green (edamame), boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Soybeans, green (edamame), boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "frozen unprepared",
+          "salt added",
+          "mature soybean"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2209: Soybeans, green (edamame), boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-plant-edamame",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-homemade-protein-granola",
+      "lockedIdentity": {
+        "fr": "Granola maison",
+        "en": "Homemade granola",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "commercial brand",
+          "protein claim",
+          "granola bar"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de granola maison",
+        "labelEn": "30 g homemade granola",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1222",
+        "matchKeywordsEn": [
+          "Cereal, ready to eat, granola, homemade"
+        ],
+        "mustContainConcepts": [
+          "Cereal, ready to eat, granola, homemade"
+        ],
+        "mustNotContainConcepts": [
+          "commercial brand",
+          "protein claim",
+          "granola bar"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1222: Cereal, ready to eat, granola, homemade."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-fat-granola",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "noix-graines-natural-cashew-butter",
+      "lockedIdentity": {
+        "fr": "Beurre de cajou nature",
+        "en": "Plain cashew butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de beurre de cajou nature (11 g)",
+        "labelEn": "10 ml plain cashew butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2548",
+        "matchKeywordsEn": [
+          "Nuts, cashew butter, plain"
+        ],
+        "mustContainConcepts": [
+          "Nuts, cashew butter, plain"
+        ],
+        "mustNotContainConcepts": [
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2548: Nuts, cashew butter, plain."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-butter",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-almond-butter-plain",
+      "lockedIdentity": {
+        "fr": "Beurre d’amandes nature",
+        "en": "Plain almond butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "honey",
+          "cinnamon",
+          "sweetened"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de beurre d’amandes nature (11 g)",
+        "labelEn": "10 ml plain almond butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2605",
+        "matchKeywordsEn": [
+          "Nuts, almond butter, plain"
+        ],
+        "mustContainConcepts": [
+          "Nuts, almond butter, plain"
+        ],
+        "mustNotContainConcepts": [
+          "salt added",
+          "honey",
+          "cinnamon",
+          "sweetened"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2605: Nuts, almond butter, plain."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-butter",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-hazelnuts-dried",
+      "lockedIdentity": {
+        "fr": "Noisettes séchées, non blanchies",
+        "en": "Hazelnuts, dried, unblanched",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "blanched",
+          "dry roasted",
+          "chocolate spread"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 noisettes (12 g)",
+        "labelEn": "10 hazelnuts (12 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 12
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2567",
+        "matchKeywordsEn": [
+          "Nuts, filberts or hazelnuts, dried"
+        ],
+        "mustContainConcepts": [
+          "Nuts, filberts or hazelnuts, dried"
+        ],
+        "mustNotContainConcepts": [
+          "blanched",
+          "dry roasted",
+          "chocolate spread"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2567: Nuts, filberts or hazelnuts, dried."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "lockedIdentity": {
+        "fr": "Noix mélangées avec arachides, rôties à sec, sans sel ajouté",
+        "en": "Mixed nuts with peanuts, dry roasted, no added salt",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "oil roasted",
+          "salt added",
+          "without peanuts"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de noix mélangées rôties à sec",
+        "labelEn": "15 g dry-roasted mixed nuts",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2577",
+        "matchKeywordsEn": [
+          "Nuts, mixed nuts, dry roasted with peanuts"
+        ],
+        "mustContainConcepts": [
+          "Nuts, mixed nuts, dry roasted with peanuts"
+        ],
+        "mustNotContainConcepts": [
+          "oil roasted",
+          "salt added",
+          "without peanuts"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2577: Nuts, mixed nuts, dry roasted with peanuts."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-mixed-nuts",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-sunflower-seed-butter",
+      "lockedIdentity": {
+        "fr": "Beurre de graines de tournesol",
+        "en": "Sunflower seed butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de beurre de tournesol (11 g)",
+        "labelEn": "10 ml sunflower seed butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2529",
+        "matchKeywordsEn": [
+          "Seeds, sunflower seed butter"
+        ],
+        "mustContainConcepts": [
+          "Seeds, sunflower seed butter"
+        ],
+        "mustNotContainConcepts": [
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2529: Seeds, sunflower seed butter."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed-butter",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-pecans-dried",
+      "lockedIdentity": {
+        "fr": "Pacanes séchées",
+        "en": "Pecans, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "5 demi-pacanes (8 g)",
+        "labelEn": "5 pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2582",
+        "matchKeywordsEn": [
+          "Nuts, pecans, dried"
+        ],
+        "mustContainConcepts": [
+          "Nuts, pecans, dried"
+        ],
+        "mustNotContainConcepts": [
+          "oil roasted",
+          "dry roasted",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2582: Nuts, pecans, dried."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-pistachios-dry-roasted",
+      "lockedIdentity": {
+        "fr": "Pistaches rôties à sec, sans sel ajouté",
+        "en": "Pistachios, dry roasted, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 pistaches décortiquées rôties à sec (9 g)",
+        "labelEn": "15 dry-roasted shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2588",
+        "matchKeywordsEn": [
+          "Nuts, pistachio nuts, dry roasted"
+        ],
+        "mustContainConcepts": [
+          "Nuts, pistachio nuts, dry roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2588: Nuts, pistachio nuts, dry roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "lockedIdentity": {
+        "fr": "Noix de soya rôties, non salées",
+        "en": "Roasted soy nuts, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salt added",
+          "boiled edamame",
+          "mature dry"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 ml de noix de soya rôties (15 g)",
+        "labelEn": "30 ml roasted soy nuts (15 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2580",
+        "matchKeywordsEn": [
+          "Soybean kernels, roasted, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Soybean kernels, roasted, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "salt added",
+          "boiled edamame",
+          "mature dry"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2580: Soybean kernels, roasted, unsalted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fat-soy-nut",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-roasted-chestnuts",
+      "lockedIdentity": {
+        "fr": "Châtaignes européennes rôties",
+        "en": "European sweet chestnuts, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "boiled",
+          "dried",
+          "water chestnut"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "3 châtaignes rôties (30 g)",
+        "labelEn": "3 roasted chestnuts (30 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2594",
+        "matchKeywordsEn": [
+          "Nuts, European chestnuts (sweet), roasted"
+        ],
+        "mustContainConcepts": [
+          "Nuts, European chestnuts (sweet), roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "boiled",
+          "dried",
+          "water chestnut"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2594: Nuts, European chestnuts (sweet), roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-chestnut",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "lockedIdentity": {
+        "fr": "Arachides rôties à sec, non salées",
+        "en": "Peanuts, dry roasted, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 arachides rôties à sec (10 g)",
+        "labelEn": "10 dry-roasted peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3362",
+        "matchKeywordsEn": [
+          "Peanuts, all types, dry roasted"
+        ],
+        "mustContainConcepts": [
+          "Peanuts, all types, dry roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "oil roasted",
+          "salt added",
+          "boiled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3362: Peanuts, all types, dry roasted."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-nut-seed",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "lockedIdentity": {
+        "fr": "Graines de citrouille et de courge décortiquées, séchées",
+        "en": "Pumpkin and squash seed kernels, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "roasted",
+          "salt added",
+          "whole in shell"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml de graines de citrouille séchées (10 g)",
+        "labelEn": "15 ml dried pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2516",
+        "matchKeywordsEn": [
+          "Seeds, pumpkin and squash seed kernels, dried"
+        ],
+        "mustContainConcepts": [
+          "Seeds, pumpkin and squash seed kernels, dried"
+        ],
+        "mustNotContainConcepts": [
+          "roasted",
+          "salt added",
+          "whole in shell"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2516: Seeds, pumpkin and squash seed kernels, dried."
+      },
+      "classification": {
+        "displayCategory": "noix_graines",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-seed",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 21 entrées existantes non vérifiées sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "L’entrée noix-graines-almonds demeure strictement inchangée et verified.",
+    "Les 196 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 227 aliments.",
+    "La catégorie Noix et graines contient exactement 32 aliments.",
+    "Les 32 aliments de la catégorie sont verified après application.",
+    "Le nombre total d’aliments verified passe de 74 à 105.",
+    "Chaque entrée possède son propre recordId CNF, sa conversion, son historique et sa transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 31 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}

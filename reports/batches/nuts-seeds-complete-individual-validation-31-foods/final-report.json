@@ -1,0 +1,1713 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "generatedAt": "2026-07-30T17:58:50.053Z",
+  "summary": {
+    "updates": 21,
+    "adds": 10,
+    "verifiedInBatch": 31,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "totalFoods": 227,
+    "totalVerified": 105,
+    "protectedUnchanged": 196,
+    "protectedFoodsDataHash": "6282bb9f09779d39a52caa60dbb49979650a977ef5ef4182e59f166d28214066",
+    "dataHash": "64ea5cf53ad54bdbd449c56d32ffaf28811bb10dcf8ccfd34869739ddd0c181a"
+  },
+  "foods": [
+    {
+      "id": "noix-graines-peanuts",
+      "operation": "update",
+      "expectedRecordId": "3396",
+      "selectedRecordId": "3396",
+      "cnfDescription": {
+        "en": "Peanuts, all types, raw",
+        "fr": "Arachides, tous les types, crues"
+      },
+      "beforePortion": {
+        "labelFr": "10 Arachides",
+        "labelEn": "10 Peanuts",
+        "amount": 10,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 arachides crues (10 g)",
+        "labelEn": "10 raw peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 1.6,
+        "fiberG": 0.8,
+        "fatG": 4.9,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "5fad3c8e-75c7-434c-922b-271026d78dcb",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-peanut-almond-butter",
+      "operation": "update",
+      "expectedRecordId": "6289",
+      "selectedRecordId": "6289",
+      "cnfDescription": {
+        "en": "Peanut butter, natural",
+        "fr": "Beurre d'arachides, naturel"
+      },
+      "beforePortion": {
+        "labelFr": "10 ml de Beurre d'arachide / amandes",
+        "labelEn": "10 ml Peanut / almond butter",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de beurre d’arachide naturel (10,5 g)",
+        "labelEn": "10 ml natural peanut butter (10.5 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 2.3,
+        "fiberG": 0.8,
+        "fatG": 5.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 61
+      },
+      "formula": "valuePortion = valuePer100g × 10.5 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9170c715-36c7-4620-9972-d49038a7e82d",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-butter"
+    },
+    {
+      "id": "noix-graines-tahini",
+      "operation": "update",
+      "expectedRecordId": "2593",
+      "selectedRecordId": "2593",
+      "cnfDescription": {
+        "en": "Seeds, sesame butter, tahini, roasted and toasted kernels",
+        "fr": "Graines, beurre de sésame, tahini, graines rôties et grillées"
+      },
+      "beforePortion": {
+        "labelFr": "10 ml de Tahini (beurre de sésame)",
+        "labelEn": "10 ml Tahini (sesame butter)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de tahini (10 g)",
+        "labelEn": "10 ml tahini (10 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 2.1,
+        "fiberG": 0.9,
+        "fatG": 5.4,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9eb4514a-842d-4592-9d46-f1b11d7d77a9",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed-butter"
+    },
+    {
+      "id": "noix-graines-hemp-seeds",
+      "operation": "update",
+      "expectedRecordId": "7568",
+      "selectedRecordId": "7568",
+      "cnfDescription": {
+        "en": "Seeds, hemp seeds, hulled",
+        "fr": "Graines de chanvre, décortiquées"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de chanvre",
+        "labelEn": "15 ml Hemp seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de chanvre décortiquées (10 g)",
+        "labelEn": "15 ml hulled hemp seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 5,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 3.2,
+        "carbsG": 0.9,
+        "fiberG": 0.4,
+        "fatG": 4.9,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 55
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "901db606-c224-46bd-8ee4-e21d55674d74",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed"
+    },
+    {
+      "id": "noix-graines-ground-chia-seeds",
+      "operation": "update",
+      "expectedRecordId": "2511",
+      "selectedRecordId": "2511",
+      "cnfDescription": {
+        "en": "Seeds, chia seeds, dried",
+        "fr": "Graines de chia, déshydratées"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de chia moulues",
+        "labelEn": "15 ml Ground chia seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de chia (11 g)",
+        "labelEn": "15 ml chia seeds (11 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 6,
+        "fiberG": 5,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 4,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 4.6,
+        "fiberG": 3.8,
+        "fatG": 3.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a9c56873-086f-4e07-8a2e-b4c01b5b7493",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed-high-fibre"
+    },
+    {
+      "id": "noix-graines-ground-flax-seeds",
+      "operation": "update",
+      "expectedRecordId": "4528",
+      "selectedRecordId": "4528",
+      "cnfDescription": {
+        "en": "Seeds, flaxseed (linseed), whole and ground",
+        "fr": "Graines, lin, entières et moulues"
+      },
+      "beforePortion": {
+        "labelFr": "20 ml de Graines de lin moulues",
+        "labelEn": "20 ml Ground flax seeds",
+        "amount": 20,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de lin moulues (7 g)",
+        "labelEn": "15 ml ground flaxseed (7 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 7,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 1.9,
+        "fatG": 3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 37
+      },
+      "formula": "valuePortion = valuePer100g × 7 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b324f55b-0ca1-41e2-8a9d-cc3a10c67aeb",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed-high-fibre"
+    },
+    {
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "operation": "update",
+      "expectedRecordId": "2517",
+      "selectedRecordId": "2517",
+      "cnfDescription": {
+        "en": "Seeds, pumpkin and squash seed kernels, roasted",
+        "fr": "Graines, citrouille et courge, graines, rôties"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de citrouille rôties",
+        "labelEn": "15 ml Roasted pumpkin seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de citrouille rôties (10 g)",
+        "labelEn": "15 ml roasted pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 6,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "afterNutrients": {
+        "proteinG": 3,
+        "carbsG": 1.5,
+        "fiberG": 0.7,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2328626d-40d4-4f18-8b22-8ed6a73052db",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed"
+    },
+    {
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "operation": "update",
+      "expectedRecordId": "2586",
+      "selectedRecordId": "2586",
+      "cnfDescription": {
+        "en": "Nuts, pine nuts, pignolia, dried",
+        "fr": "Noix, noix de pins, pignons (pignes), séchées"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de pin déshydratées",
+        "labelEn": "15 ml Dehydrated pine nuts",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de pignons de pin (9 g)",
+        "labelEn": "15 ml pine nuts (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 60
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.2,
+        "fiberG": 0.3,
+        "fatG": 6.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 61
+      },
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6b634524-674a-49a9-adc3-089c511d1cf0",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-sesame-seeds",
+      "operation": "update",
+      "expectedRecordId": "2611",
+      "selectedRecordId": "2611",
+      "cnfDescription": {
+        "en": "Seeds, sesame seed kernels, dried, shelled",
+        "fr": "Graines, sésame, graines, déshydratées, décortiquées"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de sésame",
+        "labelEn": "15 ml Sesame seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de sésame (8 g)",
+        "labelEn": "15 ml sesame seeds (8 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 1.6,
+        "carbsG": 0.9,
+        "fiberG": 0.9,
+        "fatG": 4.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b696f272-e3bf-4e9b-8663-acdf4e43c6de",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed"
+    },
+    {
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "operation": "update",
+      "expectedRecordId": "2642",
+      "selectedRecordId": "2642",
+      "cnfDescription": {
+        "en": "Seeds, sunflower seed kernels, oil roasted",
+        "fr": "Graines, tournesol, graines, rôties dans l'huile"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Graines de tournesol rôtie à l'huile",
+        "labelEn": "15 ml Oil-roasted sunflower seeds",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de graines de tournesol rôties à l’huile (9 g)",
+        "labelEn": "15 ml oil-roasted sunflower seeds (9 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 48
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 4.6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6f83b917-fb0b-4587-ba12-aa8baf8a41f4",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed"
+    },
+    {
+      "id": "noix-graines-hummus",
+      "operation": "update",
+      "expectedRecordId": "4870",
+      "selectedRecordId": "4870",
+      "cnfDescription": {
+        "en": "Hummus, commercial",
+        "fr": "Hoummos (hommos, hummus), commercial"
+      },
+      "beforePortion": {
+        "labelFr": "30 ml d'Hummus",
+        "labelEn": "30 ml Hummus",
+        "amount": 30,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 ml de houmous commercial (31 g)",
+        "labelEn": "30 ml commercial hummus (31 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 31,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 5,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 4.7,
+        "fiberG": 1.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 73
+      },
+      "formula": "valuePortion = valuePer100g × 31 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f6d92991-439a-4504-be76-811527fb8d5a",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-legume-spread"
+    },
+    {
+      "id": "noix-graines-cashews",
+      "operation": "update",
+      "expectedRecordId": "5709",
+      "selectedRecordId": "5709",
+      "cnfDescription": {
+        "en": "Nuts, cashew nuts, raw",
+        "fr": "Noix, noix de cajou (acajous, anacardes), crues"
+      },
+      "beforePortion": {
+        "labelFr": "7 Noix d'acajou ou cajous (5 g)",
+        "labelEn": "7 Cashews (5 g)",
+        "amount": 7,
+        "unit": "count",
+        "grams": 5,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "8 noix de cajou crues (12 g)",
+        "labelEn": "8 raw cashews (12 g)",
+        "amount": 8,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 2.2,
+        "carbsG": 3.6,
+        "fiberG": 0.4,
+        "fatG": 5.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 66
+      },
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f141758f-c060-49f7-8851-8fb715594d11",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-shredded-coconut",
+      "operation": "update",
+      "expectedRecordId": "2559",
+      "selectedRecordId": "2559",
+      "cnfDescription": {
+        "en": "Coconut meat, desiccated, unsweetened",
+        "fr": "Noix de coco, désséchée, non sucrée"
+      },
+      "beforePortion": {
+        "labelFr": "15 ml de Noix de coco filamenté",
+        "labelEn": "15 ml Shredded coconut",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml de noix de coco non sucrée (5 g)",
+        "labelEn": "15 ml unsweetened desiccated coconut (5 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 5,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 31
+      },
+      "afterNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 3.2,
+        "saturatedFatG": 2.9,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 33
+      },
+      "formula": "valuePortion = valuePer100g × 5 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1a7026da-8787-430c-868e-89c359311792",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-coconut"
+    },
+    {
+      "id": "noix-graines-walnuts",
+      "operation": "update",
+      "expectedRecordId": "2590",
+      "selectedRecordId": "2590",
+      "cnfDescription": {
+        "en": "Nuts, walnuts, English or Persian",
+        "fr": "Noix de Grenoble"
+      },
+      "beforePortion": {
+        "labelFr": "5 Noix de Grenoble (9 g)",
+        "labelEn": "5 Walnuts (9 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "4 demi-noix de Grenoble (8 g)",
+        "labelEn": "4 walnut halves (8 g)",
+        "amount": 4,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 4,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.1,
+        "fiberG": 0.5,
+        "fatG": 5.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7870299a-deb5-4f4a-8341-00c3cb97c844",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-brazil-nuts",
+      "operation": "update",
+      "expectedRecordId": "2544",
+      "selectedRecordId": "2544",
+      "cnfDescription": {
+        "en": "Nuts, brazilnuts, dried, unblanched",
+        "fr": "Noix, noix de Brésil, séchées, non blanchies"
+      },
+      "beforePortion": {
+        "labelFr": "2 Noix du Brésil (7 g)",
+        "labelEn": "2 Brazil nuts (7 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 7,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 noix du Brésil (10 g)",
+        "labelEn": "2 Brazil nuts (10 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 6.7,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 66
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "dc78dd46-8137-4535-95fa-219722ae65d0",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-macadamia-nuts",
+      "operation": "update",
+      "expectedRecordId": "2575",
+      "selectedRecordId": "2575",
+      "cnfDescription": {
+        "en": "Nuts, macadamia (bushnuts, queensland), raw",
+        "fr": "Noix, macadamia (queensland), crues"
+      },
+      "beforePortion": {
+        "labelFr": "7 Noix de macadamia",
+        "labelEn": "7 Macadamia nuts",
+        "amount": 7,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "5 noix de macadamia (12 g)",
+        "labelEn": "5 macadamia nuts (12 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 0,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 4,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 1.7,
+        "fiberG": 1,
+        "fatG": 9.1,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 7.1,
+        "declaredKcal": 86
+      },
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "65d7703d-893a-46fd-8f34-4955123f15b6",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-oil-roasted-pecans",
+      "operation": "update",
+      "expectedRecordId": "2584",
+      "selectedRecordId": "2584",
+      "cnfDescription": {
+        "en": "Nuts, pecans, oil roasted",
+        "fr": "Noix, pacanes, rôties dans l'huile"
+      },
+      "beforePortion": {
+        "labelFr": "5 Pacanes rôties à l'huile (9 g)",
+        "labelEn": "5 Oil-roasted pecans (9 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "5 demi-pacanes rôties à l’huile (8 g)",
+        "labelEn": "5 oil-roasted pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1,
+        "fiberG": 0.8,
+        "fatG": 6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.9,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "634c65e0-4ad0-4bb0-b311-593a2e4f5333",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-raw-pistachios",
+      "operation": "update",
+      "expectedRecordId": "2644",
+      "selectedRecordId": "2644",
+      "cnfDescription": {
+        "en": "Nuts, pistachio nuts, raw",
+        "fr": "Noix, pistaches, crues"
+      },
+      "beforePortion": {
+        "labelFr": "10 Pistaches crues (6 g)",
+        "labelEn": "10 Raw pistachios (6 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 6,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 pistaches décortiquées (9 g)",
+        "labelEn": "15 shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 31
+      },
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.4,
+        "fiberG": 0.8,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a5d856ea-3fc5-4e8a-9958-c4b00cbcb21e",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "operation": "update",
+      "expectedRecordId": "2209",
+      "selectedRecordId": "2209",
+      "cnfDescription": {
+        "en": "Soybeans, green (edamame), boiled, drained",
+        "fr": "Fèves, soya frais (edamame), bouillies, égouttées"
+      },
+      "beforePortion": {
+        "labelFr": "⅓ tasse de Soja ou edamames",
+        "labelEn": "⅓ cup Soybeans or edamame",
+        "amount": 0.3333333333333333,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml d’edamames cuits (95 g)",
+        "labelEn": "125 ml cooked edamame (95 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 95,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 11.7,
+        "carbsG": 10.5,
+        "fiberG": 4,
+        "fatG": 6.1,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.9,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 134
+      },
+      "formula": "valuePortion = valuePer100g × 95 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9e403f45-4b91-4117-94d0-d19d236dcd34",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-plant-edamame"
+    },
+    {
+      "id": "noix-graines-homemade-protein-granola",
+      "operation": "update",
+      "expectedRecordId": "1222",
+      "selectedRecordId": "1222",
+      "cnfDescription": {
+        "en": "Cereal, ready to eat, granola, homemade",
+        "fr": "Céreale, prête-à-manger, granola, fait maison"
+      },
+      "beforePortion": {
+        "labelFr": "30 g Granola protéiné maison (noix / graines)",
+        "labelEn": "30 g Homemade protein granola (nuts / seeds)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de granola maison",
+        "labelEn": "30 g homemade granola",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 56
+      },
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 15.9,
+        "fiberG": 2.6,
+        "fatG": 7.3,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 3.2,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 147
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1911e2c1-3c78-44fe-819b-65a837426b06",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-fat-granola"
+    },
+    {
+      "id": "noix-graines-natural-cashew-butter",
+      "operation": "update",
+      "expectedRecordId": "2548",
+      "selectedRecordId": "2548",
+      "cnfDescription": {
+        "en": "Nuts, cashew butter, plain",
+        "fr": "Noix, beurre de noix de cajou (acajous, anacardes), nature"
+      },
+      "beforePortion": {
+        "labelFr": "20 g Beurre de cajou nature",
+        "labelEn": "20 g Natural cashew butter",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de beurre de cajou nature (11 g)",
+        "labelEn": "10 ml plain cashew butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3,
+        "fiberG": 0.2,
+        "fatG": 5.4,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 65
+      },
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a6bca76c-c3ac-4640-bb10-955e27fef40d",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-butter"
+    },
+    {
+      "id": "noix-graines-almond-butter-plain",
+      "operation": "add",
+      "expectedRecordId": "2605",
+      "selectedRecordId": "2605",
+      "cnfDescription": {
+        "en": "Nuts, almond butter, plain",
+        "fr": "Noix, beurre d'amandes, nature"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 ml de beurre d’amandes nature (11 g)",
+        "labelEn": "10 ml plain almond butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.1,
+        "fiberG": 1.1,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 3.6,
+        "declaredKcal": 68
+      },
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "be5e2b47-9223-474b-9f34-93f8e90ca3de",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-butter"
+    },
+    {
+      "id": "noix-graines-hazelnuts-dried",
+      "operation": "add",
+      "expectedRecordId": "2567",
+      "selectedRecordId": "2567",
+      "cnfDescription": {
+        "en": "Nuts, filberts or hazelnuts, dried",
+        "fr": "Noix, noisettes, avelines ou coudres, séchées"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 noisettes (12 g)",
+        "labelEn": "10 hazelnuts (12 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 12,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2,
+        "fiberG": 1.2,
+        "fatG": 7.3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5.5,
+        "declaredKcal": 75
+      },
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f841c932-bbbc-4435-9c54-b90e0d43d223",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "operation": "add",
+      "expectedRecordId": "2577",
+      "selectedRecordId": "2577",
+      "cnfDescription": {
+        "en": "Nuts, mixed nuts, dry roasted with peanuts",
+        "fr": "Noix, noix mélangées, rôties à sec avec arachides"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 g de noix mélangées rôties à sec",
+        "labelEn": "15 g dry-roasted mixed nuts",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.9,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 8,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 5.2,
+        "declaredKcal": 91
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "11d35436-8f41-4e8c-98f3-0259c2036e0e",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mixed-nuts"
+    },
+    {
+      "id": "noix-graines-sunflower-seed-butter",
+      "operation": "add",
+      "expectedRecordId": "2529",
+      "selectedRecordId": "2529",
+      "cnfDescription": {
+        "en": "Seeds, sunflower seed butter",
+        "fr": "Graines, beurre de tournesol"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 ml de beurre de tournesol (11 g)",
+        "labelEn": "10 ml sunflower seed butter (11 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 11,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.6,
+        "fiberG": 0.6,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.1,
+        "monounsaturatedFatG": 4.3,
+        "declaredKcal": 68
+      },
+      "formula": "valuePortion = valuePer100g × 11 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d5230f93-7816-4d20-89bc-18abb992ed84",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed-butter"
+    },
+    {
+      "id": "noix-graines-pecans-dried",
+      "operation": "add",
+      "expectedRecordId": "2582",
+      "selectedRecordId": "2582",
+      "cnfDescription": {
+        "en": "Nuts, pecans, dried",
+        "fr": "Noix, pacanes, séchées"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "5 demi-pacanes (8 g)",
+        "labelEn": "5 pecan halves (8 g)",
+        "amount": 5,
+        "unit": "count",
+        "grams": 8,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.1,
+        "fiberG": 0.8,
+        "fatG": 5.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.7,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 55
+      },
+      "formula": "valuePortion = valuePer100g × 8 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e4ff6a0f-33ae-489f-92d8-bd4fccbfe685",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-pistachios-dry-roasted",
+      "operation": "add",
+      "expectedRecordId": "2588",
+      "selectedRecordId": "2588",
+      "cnfDescription": {
+        "en": "Nuts, pistachio nuts, dry roasted",
+        "fr": "Noix, pistaches, rôties à sec"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 pistaches décortiquées rôties à sec (9 g)",
+        "labelEn": "15 dry-roasted shelled pistachios (9 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.5,
+        "fiberG": 0.9,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 2.2,
+        "declaredKcal": 51
+      },
+      "formula": "valuePortion = valuePer100g × 9 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d5911a61-d354-4d6d-bf57-001449728c21",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "operation": "add",
+      "expectedRecordId": "2580",
+      "selectedRecordId": "2580",
+      "cnfDescription": {
+        "en": "Soybean kernels, roasted, unsalted",
+        "fr": "Soya, graines, rôties, sans sel"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 ml de noix de soya rôties (15 g)",
+        "labelEn": "30 ml roasted soy nuts (15 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 5.8,
+        "carbsG": 4.5,
+        "fiberG": 2.7,
+        "fatG": 3.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "af86f7f3-9176-4c5d-860c-9d783f0e4e02",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fat-soy-nut"
+    },
+    {
+      "id": "noix-graines-roasted-chestnuts",
+      "operation": "add",
+      "expectedRecordId": "2594",
+      "selectedRecordId": "2594",
+      "cnfDescription": {
+        "en": "Nuts, European chestnuts (sweet), roasted",
+        "fr": "Noix, châtaignes d'Europe (marrons), rôties"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "3 châtaignes rôties (30 g)",
+        "labelEn": "3 roasted chestnuts (30 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 15.9,
+        "fiberG": 1.5,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 74
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7d29215d-f2ae-46e6-929b-a352c6518e91",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-chestnut"
+    },
+    {
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "operation": "add",
+      "expectedRecordId": "3362",
+      "selectedRecordId": "3362",
+      "cnfDescription": {
+        "en": "Peanuts, all types, dry roasted",
+        "fr": "Arachides, tous les types, rôties à sec"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 arachides rôties à sec (10 g)",
+        "labelEn": "10 dry-roasted peanuts (10 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f2103ac5-f9ce-4702-b27d-fa24273565f6",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-nut-seed"
+    },
+    {
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "operation": "add",
+      "expectedRecordId": "2516",
+      "selectedRecordId": "2516",
+      "cnfDescription": {
+        "en": "Seeds, pumpkin and squash seed kernels, dried",
+        "fr": "Graines, citrouille et courge, graines, déshydratées"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 ml de graines de citrouille séchées (10 g)",
+        "labelEn": "15 ml dried pumpkin seeds (10 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 3,
+        "carbsG": 1.1,
+        "fiberG": 0.6,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 56
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2b224670-9387-46b7-a43f-ccfcbe04e825",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-seed"
+    }
+  ]
+}
