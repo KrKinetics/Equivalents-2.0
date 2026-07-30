@@ -1,0 +1,2124 @@
+{
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "generatedAt": "2026-07-30T22:22:52.268Z",
+  "summary": {
+    "updates": 22,
+    "adds": 10,
+    "verifiedInBatch": 32,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "fatsCount": 23,
+    "fatsVerified": 23,
+    "fishSeafoodCount": 36,
+    "fishSeafoodVerified": 36,
+    "meatPoultryCount": 38,
+    "meatPoultryVerified": 38,
+    "otherProteinCount": 27,
+    "otherProteinVerified": 27,
+    "dairyCount": 29,
+    "dairyVerified": 29,
+    "starchesCount": 33,
+    "starchesVerified": 33,
+    "cnfSources": 31,
+    "manufacturerSources": 1,
+    "totalFoods": 287,
+    "totalVerified": 287,
+    "protectedUnchanged": 255,
+    "protectedFoodsDataHash": "f2347ab671518e64bfa04785ae9e36400f84a9c9b131bcef0de1b7460539c789",
+    "dataHash": "8492cde87e61b1425f27eea11edbd02abd5dd4e3624f98e0a3c860bea42e47c6"
+  },
+  "foods": [
+    {
+      "id": "feculents-bagel",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3671",
+      "selectedRecordId": "3671",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Bagel, plain (with onion, poppy seed and/or sesame seed)",
+        "fr": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)"
+      },
+      "sourceDescription": {
+        "en": "Bagel, plain (with onion, poppy seed and/or sesame seed)",
+        "fr": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "½ Bagel (~135 g)",
+        "labelEn": "½ Bagel (~135 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 135,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ bagel nature moyen (34,5 g)",
+        "labelEn": "½ medium plain bagel (34.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 34.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 18,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 108
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.1,
+        "fiberG": 0.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 91
+      },
+      "formula": "valuePortion = valuePer100g × 34.5 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1fc5abae-0a50-44ed-bbc7-cae58bd65e1c",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-bagel"
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1413",
+      "selectedRecordId": "1413",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, dry",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche"
+      },
+      "sourceDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, dry",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "75 ml de Gruau nature (~25 g), avant cuisson",
+        "labelEn": "75 ml Plain oatmeal (~25 g), uncooked",
+        "amount": 75,
+        "unit": "ml",
+        "grams": 25,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 sachet de gruau instantané nature, sec (28 g)",
+        "labelEn": "1 packet plain instant oatmeal, dry (28 g)",
+        "amount": 28,
+        "unit": "g",
+        "grams": 28,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 11,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.9,
+        "fiberG": 2.8,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 107
+      },
+      "formula": "valuePortion = valuePer100g × 28 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "622902a9-cf1a-449b-b949-93b06d0f4880",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-oatmeal-instant-dry"
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4421",
+      "selectedRecordId": "4421",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, oats, dry",
+        "fr": "Grains céréaliers, avoine, sec"
+      },
+      "sourceDescription": {
+        "en": "Grains, oats, dry",
+        "fr": "Grains céréaliers, avoine, sec"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "35 g de Flocons d'avoine (50 ml), avant cuisson",
+        "labelEn": "35 g Rolled oats (50 ml), uncooked",
+        "amount": 50,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "35 g d’avoine sèche",
+        "labelEn": "35 g dry oats",
+        "amount": 35,
+        "unit": "g",
+        "grams": 35,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 88
+      },
+      "afterNutrients": {
+        "proteinG": 5.9,
+        "carbsG": 23.2,
+        "fiberG": 3.7,
+        "fatG": 2.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 136
+      },
+      "formula": "valuePortion = valuePer100g × 35 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8156f015-3903-4b10-afb6-beac87d14b3c",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-oats-dry"
+    },
+    {
+      "id": "feculents-cooked-legumes",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3390",
+      "selectedRecordId": "3390",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled",
+        "fr": "Pois chiches (garbanzo), grains mûrs, bouillis"
+      },
+      "sourceDescription": {
+        "en": "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled",
+        "fr": "Pois chiches (garbanzo), grains mûrs, bouillis"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Légumineuses cuites (100 g)",
+        "labelEn": "125 ml Cooked legumes (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de pois chiches bouillis",
+        "labelEn": "100 g boiled chickpeas",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 7,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 105
+      },
+      "afterNutrients": {
+        "proteinG": 8.9,
+        "carbsG": 27.4,
+        "fiberG": 4.6,
+        "fatG": 2.6,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 164
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "52c226b5-be35-4b6e-b320-94323c0b66ea",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-chickpea"
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2068",
+      "selectedRecordId": "2068",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Corn, sweet, yellow, on or off the cob, boiled, drained",
+        "fr": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté"
+      },
+      "sourceDescription": {
+        "en": "Corn, sweet, yellow, on or off the cob, boiled, drained",
+        "fr": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Maïs bouilli, égoutté (75 g)",
+        "labelEn": "125 ml Boiled drained corn (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de maïs jaune bouilli et égoutté",
+        "labelEn": "75 g boiled drained yellow corn",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 11,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 15.7,
+        "fiberG": 1.8,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 72
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "13fdbf6b-98f9-4eb5-a452-733d39fcd901",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-corn"
+    },
+    {
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3900",
+      "selectedRecordId": "3900",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "English muffin, plain (also sourdough)",
+        "fr": "Muffin anglais, nature (aussi levain)"
+      },
+      "sourceDescription": {
+        "en": "English muffin, plain (also sourdough)",
+        "fr": "Muffin anglais, nature (aussi levain)"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "½ Muffin anglais, pain hot-dog ou hamburger",
+        "labelEn": "½ English muffin, hot dog or hamburger bun",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ muffin anglais nature (28,5 g)",
+        "labelEn": "½ plain English muffin (28.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 28.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 93
+      },
+      "afterNutrients": {
+        "proteinG": 2.7,
+        "carbsG": 12.8,
+        "fiberG": 0.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 67
+      },
+      "formula": "valuePortion = valuePer100g × 28.5 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f69a276b-28a8-498b-9504-e1b55bc74111",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-english-muffin"
+    },
+    {
+      "id": "feculents-cooked-barley",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4486",
+      "selectedRecordId": "4486",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, barley, pearled, cooked",
+        "fr": "Grains céréaliers, orge, perlé, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, barley, pearled, cooked",
+        "fr": "Grains céréaliers, orge, perlé, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml d'Orge cuit (75 g)",
+        "labelEn": "125 ml Cooked barley (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g d’orge perlé cuit",
+        "labelEn": "75 g cooked pearled barley",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 6,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 109
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 21.2,
+        "fiberG": 1.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 92
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e274403d-9958-4993-89e9-acf870f83f9e",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-barley"
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3709",
+      "selectedRecordId": "3709",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Bread, pita, whole wheat",
+        "fr": "Pain, pita, blé entier"
+      },
+      "sourceDescription": {
+        "en": "Bread, pita, whole wheat",
+        "fr": "Pain, pita, blé entier"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "1 Pain pita de 10,2 cm (blé)",
+        "labelEn": "1 10.2 cm (4 in) wheat pita",
+        "amount": 1,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petit pita de blé entier (32 g)",
+        "labelEn": "1 small whole-wheat pita (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 109
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 17.7,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 85
+      },
+      "formula": "valuePortion = valuePer100g × 32 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "622355a1-5a6d-43e3-8b14-b3ca27c06041",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-pita-whole-wheat"
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4464",
+      "selectedRecordId": "4464",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Pasta (macaroni, spaghetti), enriched, cooked",
+        "fr": "Pâtes (macaroni, spaghetti), enrichi, cuit"
+      },
+      "sourceDescription": {
+        "en": "Pasta (macaroni, spaghetti), enriched, cooked",
+        "fr": "Pâtes (macaroni, spaghetti), enrichi, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Pâtes cuites (blé) (75 g)",
+        "labelEn": "125 ml Cooked pasta (wheat) (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de pâtes enrichies cuites",
+        "labelEn": "75 g cooked enriched pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 20,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 72
+      },
+      "afterNutrients": {
+        "proteinG": 4.4,
+        "carbsG": 23.1,
+        "fiberG": 1.4,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 119
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8c1ef084-e2b1-40e3-9dd8-4167930f9f30",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-pasta-enriched"
+    },
+    {
+      "id": "feculents-mashed-potato-with-milk",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5278",
+      "selectedRecordId": "5278",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Potato, mashed, homemade, prepared with 2% M.F. milk",
+        "fr": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G."
+      },
+      "sourceDescription": {
+        "en": "Potato, mashed, homemade, prepared with 2% M.F. milk",
+        "fr": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G."
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Pomme de terre en purée avec lait",
+        "labelEn": "125 ml Mashed potato with milk",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de purée de pommes de terre avec lait 2 % (111 g)",
+        "labelEn": "125 ml mashed potato with 2% milk (111 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 110.95,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 14,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 102
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 90
+      },
+      "formula": "valuePortion = valuePer100g × 110.95 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "34062317-8539-45b1-a237-67e7352cf165",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-potato-mashed-milk"
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2241",
+      "selectedRecordId": "2241",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Sweet potato, baked, skin removed after baking",
+        "fr": "Patate douce, cuite au four, pelée après la cuisson"
+      },
+      "sourceDescription": {
+        "en": "Sweet potato, baked, skin removed after baking",
+        "fr": "Patate douce, cuite au four, pelée après la cuisson"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "½ Pomme de terre moyenne (Douce) (75 g)",
+        "labelEn": "½ medium sweet potato (75 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 75,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de patate douce cuite au four",
+        "labelEn": "75 g baked sweet potato",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 82
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15.5,
+        "fiberG": 2.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 68
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH",
+        "SUSPECT_CASE"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ce8d45bc-e64b-4613-9c60-9a8e7bcf0004",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-sweet-potato"
+    },
+    {
+      "id": "feculents-cooked-buckwheat",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4413",
+      "selectedRecordId": "4413",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, buckwheat groats, roasted, cooked",
+        "fr": "Grains céréaliers, gruau de sarrasin, rôti, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, buckwheat groats, roasted, cooked",
+        "fr": "Grains céréaliers, gruau de sarrasin, rôti, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Sarrasin cuit (75 g)",
+        "labelEn": "125 ml Cooked buckwheat (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de gruau de sarrasin cuit",
+        "labelEn": "75 g cooked buckwheat groats",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f3fc1f15-c4a7-433f-9a5a-0014a86a1a16",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-buckwheat"
+    },
+    {
+      "id": "feculents-cooked-rice",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4475",
+      "selectedRecordId": "4475",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, rice, white, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz blanc, grain moyen, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, rice, white, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz blanc, grain moyen, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Riz cuit (100 g)",
+        "labelEn": "125 ml Cooked rice (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de riz blanc cuit",
+        "labelEn": "100 g cooked white rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 22,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 91
+      },
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 28.6,
+        "fiberG": null,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 130
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2f06892b-54f6-4c0b-8bfc-958ae251ea86",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-rice-white"
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2100",
+      "selectedRecordId": "2100",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Jerusalem artichoke (sunchoke), raw",
+        "fr": "Topinambour, cru"
+      },
+      "sourceDescription": {
+        "en": "Jerusalem artichoke (sunchoke), raw",
+        "fr": "Topinambour, cru"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Topinambour",
+        "labelEn": "125 ml Jerusalem artichoke",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "85 g de topinambour cru",
+        "labelEn": "85 g raw Jerusalem artichoke",
+        "amount": 85,
+        "unit": "g",
+        "grams": 85,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 22,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 111
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 14.8,
+        "fiberG": 1.4,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 85 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "28069725-26e4-4e8e-b61d-f12fb9cde38f",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-root-jerusalem-artichoke"
+    },
+    {
+      "id": "feculents-slice-bread",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4067",
+      "selectedRecordId": "4067",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Bread, whole wheat, commercial",
+        "fr": "Pain, blé entier, commercial"
+      },
+      "sourceDescription": {
+        "en": "Bread, whole wheat, commercial",
+        "fr": "Pain, blé entier, commercial"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "1 Tranche de pain (blé)",
+        "labelEn": "1 slice Bread (wheat)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de blé entier (36 g)",
+        "labelEn": "1 slice whole-wheat bread (36 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 36,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 19,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 76
+      },
+      "afterNutrients": {
+        "proteinG": 3.9,
+        "carbsG": 16.4,
+        "fiberG": 2.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 93
+      },
+      "formula": "valuePortion = valuePer100g × 36 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c8aed27a-6665-4c4f-8a90-cbf7cedbedf4",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-whole-wheat"
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7282",
+      "selectedRecordId": "7282",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Bread, sprouted wheat, commercial",
+        "fr": "Pain, blé germé, commercial"
+      },
+      "sourceDescription": {
+        "en": "Bread, sprouted wheat, commercial",
+        "fr": "Pain, blé germé, commercial"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "1 tranche de Pain germé (sans farine enrichie)",
+        "labelEn": "1 slice Sprouted bread (no enriched flour)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de blé germé (38 g)",
+        "labelEn": "1 slice sprouted-wheat bread (38 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 38,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 80
+      },
+      "afterNutrients": {
+        "proteinG": 5.1,
+        "carbsG": 16.6,
+        "fiberG": 3.3,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 100
+      },
+      "formula": "valuePortion = valuePer100g × 38 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "70e09e96-ade6-40d7-be6f-86e2297428ca",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-sprouted-generic"
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1475",
+      "selectedRecordId": "1475",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Cereal, ready to eat, Cheerios, General Mills",
+        "fr": "Céréale, prête-à-manger, Cheerios, General Mills"
+      },
+      "sourceDescription": {
+        "en": "Cereal, ready to eat, Cheerios, General Mills",
+        "fr": "Céréale, prête-à-manger, Cheerios, General Mills"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Céréales à déjeuner peu sucrées",
+        "labelEn": "125 ml Lightly sweetened breakfast cereal",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de Cheerios originales",
+        "labelEn": "30 g Original Cheerios",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 25,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 3.9,
+        "carbsG": 21.8,
+        "fiberG": 3.3,
+        "fatG": 1.9,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 119
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1e8d8e46-61bc-4fdf-b0df-be4bb0e7dde3",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-breakfast-cereal-cheerios"
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4490",
+      "selectedRecordId": "4490",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, couscous, cooked",
+        "fr": "Grains céréaliers, couscous, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, couscous, cooked",
+        "fr": "Grains céréaliers, couscous, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Couscous cuit (75 g)",
+        "labelEn": "125 ml Cooked couscous (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de couscous cuit",
+        "labelEn": "75 g cooked couscous",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 23,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 2.8,
+        "carbsG": 17.4,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 84
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "890a58e9-5b32-40e0-a795-fd6df481d621",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-couscous"
+    },
+    {
+      "id": "feculents-rice-cakes",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4387",
+      "selectedRecordId": "4387",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Snacks, rice cakes, brown rice, plain, unsalted",
+        "fr": "Grignotises, galettes de riz brun, nature, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Snacks, rice cakes, brown rice, plain, unsalted",
+        "fr": "Grignotises, galettes de riz brun, nature, sans sel"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "2 Galettes de riz (~20 g)",
+        "labelEn": "2 Rice cakes (~20 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 galettes de riz brun (18 g)",
+        "labelEn": "2 brown-rice cakes (18 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 18,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 74
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 14.7,
+        "fiberG": 0.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "61b641c7-839f-4f3d-ad8a-e2c32ec7899a",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-rice-cake"
+    },
+    {
+      "id": "feculents-rolled-oats",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1414",
+      "selectedRecordId": "1414",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, prepared",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée"
+      },
+      "sourceDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, prepared",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "45 g de Flocons d'avoine (sec, ~60 ml)",
+        "labelEn": "45 g Rolled oats (dry, ~60 ml)",
+        "amount": 60,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "175 ml de gruau nature préparé (173 g)",
+        "labelEn": "175 ml prepared plain oatmeal (173 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 173.076,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 88
+      },
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 23.4,
+        "fiberG": 3.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 133
+      },
+      "formula": "valuePortion = valuePer100g × 173.076 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c5529e43-7f87-4984-8a4e-c0e4379bbaab",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-oatmeal-prepared"
+    },
+    {
+      "id": "feculents-cooked-beluga-lentils",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3393",
+      "selectedRecordId": "3393",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Lentils, mature seeds, boiled",
+        "fr": "Lentilles, grains mûrs, bouillis"
+      },
+      "sourceDescription": {
+        "en": "Lentils, mature seeds, boiled",
+        "fr": "Lentilles, grains mûrs, bouillis"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "125 ml de Lentilles Beluga cuites (100 g)",
+        "labelEn": "125 ml Cooked beluga lentils (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de lentilles bouillies",
+        "labelEn": "100 g boiled lentils",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 14,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 87
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 20.1,
+        "fiberG": 4.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 116
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f4c6175b-3735-4ed5-b34e-022ac106a896",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-lentil"
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "manufacturerReference": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "brand": "Food For Life",
+      "productName": "Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+        "fr": "Pain Food For Life Ezekiel 4:9 Original, grains entiers germés"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34
+      },
+      "beforePortion": {
+        "labelFr": "1 tranche de Pain Ezekiel germé (34 g)",
+        "labelEn": "1 slice Ezekiel sprouted bread (34 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Ezekiel"
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain Ezekiel 4:9 Original (34 g)",
+        "labelEn": "1 slice Ezekiel 4:9 Original bread (34 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Food For Life"
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 84
+      },
+      "afterNutrients": {
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 80
+      },
+      "formula": "valueCanonical = valueLabel × 1 / 1",
+      "declaredZeroNutrients": [
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "5142e787-c022-47b2-a981-bf7d19f637ff",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-ezekiel-original"
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4423",
+      "selectedRecordId": "4423",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, rice, brown, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz brun, grain moyen, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, rice, brown, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz brun, grain moyen, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de riz brun cuit",
+        "labelEn": "100 g cooked brown rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 23.5,
+        "fiberG": 1.9,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 112
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8e0b2340-2a77-4bcf-bb48-720ee53c6cbe",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-rice-brown"
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4517",
+      "selectedRecordId": "4517",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Pasta, (spaghetti, macaroni), whole wheat, cooked",
+        "fr": "Pâtes, (spaghetti macaroni), blé entier, cuit"
+      },
+      "sourceDescription": {
+        "en": "Pasta, (spaghetti, macaroni), whole wheat, cooked",
+        "fr": "Pâtes, (spaghetti macaroni), blé entier, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de pâtes de blé entier cuites",
+        "labelEn": "75 g cooked whole-wheat pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 22.6,
+        "fiberG": 2.4,
+        "fatG": 1.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 112
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8e44f8bd-ec92-4e75-b01f-1932950f7378",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-pasta-whole-wheat"
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2422",
+      "selectedRecordId": "2422",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Potato, boiled without skin, flesh",
+        "fr": "Pomme de terre, bouillie sans pelure, chair"
+      },
+      "sourceDescription": {
+        "en": "Potato, boiled without skin, flesh",
+        "fr": "Pomme de terre, bouillie sans pelure, chair"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de pomme de terre bouillie sans pelure",
+        "labelEn": "100 g boiled skinless potato",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 86
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a297bc36-663c-4603-a9be-2dbbb3dd077b",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-potato-boiled"
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4048",
+      "selectedRecordId": "4048",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Tortilla, ready-to-bake / fry, corn, unsalted",
+        "fr": "Tortilla, prêt-à-cuire /frire, maïs, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Tortilla, ready-to-bake / fry, corn, unsalted",
+        "fr": "Tortilla, prêt-à-cuire /frire, maïs, sans sel"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 tortilla de maïs moyenne (25 g)",
+        "labelEn": "1 medium corn tortilla (25 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 25,
+        "preparationState": "ready_to_cook",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 11.3,
+        "fiberG": 1.1,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 56
+      },
+      "formula": "valuePortion = valuePer100g × 25 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "dc6c6e5e-d35f-481a-ba70-d4c631880a69",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-tortilla-corn"
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4049",
+      "selectedRecordId": "4049",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Tortilla, ready-to-bake / fry, flour, plain",
+        "fr": "Tortilla, prêt-à-cuire /frire, farine, nature"
+      },
+      "sourceDescription": {
+        "en": "Tortilla, ready-to-bake / fry, flour, plain",
+        "fr": "Tortilla, prêt-à-cuire /frire, farine, nature"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 petite tortilla de farine (32 g)",
+        "labelEn": "1 small flour tortilla (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32,
+        "preparationState": "ready_to_cook",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 16.8,
+        "fiberG": 1.3,
+        "fatG": 2.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 104
+      },
+      "formula": "valuePortion = valuePer100g × 32 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "22c378f8-eeb6-4b4d-be7b-a7f68a779d3f",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-tortilla-flour"
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3985",
+      "selectedRecordId": "3985",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Roll, hamburger / hot dog, plain",
+        "fr": "Pain, petit pain, à hamburger / à hot-dog, nature"
+      },
+      "sourceDescription": {
+        "en": "Roll, hamburger / hot dog, plain",
+        "fr": "Pain, petit pain, à hamburger / à hot-dog, nature"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 pain nature à hamburger ou hot-dog (44 g)",
+        "labelEn": "1 plain hamburger or hot-dog bun (44 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 44,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 4.3,
+        "carbsG": 22.1,
+        "fiberG": 0.8,
+        "fatG": 1.7,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 123
+      },
+      "formula": "valuePortion = valuePer100g × 44 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "43225ea4-7b35-4f8c-90be-922bafbd223e",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-bun"
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3377",
+      "selectedRecordId": "3377",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Beans, black, mature seeds, boiled",
+        "fr": "Haricots, noirs, grains mûrs, bouillis"
+      },
+      "sourceDescription": {
+        "en": "Beans, black, mature seeds, boiled",
+        "fr": "Haricots, noirs, grains mûrs, bouillis"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de haricots noirs bouillis",
+        "labelEn": "100 g boiled black beans",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 7,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 132
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a79518fc-b617-449e-a309-d23cdd0fa6ad",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-black-bean"
+    },
+    {
+      "id": "feculents-cooked-bulgur",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4489",
+      "selectedRecordId": "4489",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, bulgur, cooked",
+        "fr": "Grains céréaliers, bulgur, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, bulgur, cooked",
+        "fr": "Grains céréaliers, bulgur, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de bulgur cuit",
+        "labelEn": "75 g cooked bulgur",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 13.9,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1a40ed8b-cc29-4842-b3f5-a17d6eed2be6",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-bulgur"
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4492",
+      "selectedRecordId": "4492",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Grains, millet, cooked",
+        "fr": "Grains céréaliers, millet, cuit"
+      },
+      "sourceDescription": {
+        "en": "Grains, millet, cooked",
+        "fr": "Grains céréaliers, millet, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de millet cuit",
+        "labelEn": "75 g cooked millet",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 17.8,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 89
+      },
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "3abf836d-b0ac-4d26-b8c9-6b75fcfe4c88",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-millet"
+    },
+    {
+      "id": "feculents-rye-bread",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4065",
+      "selectedRecordId": "4065",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Bread, rye",
+        "fr": "Pain, seigle"
+      },
+      "sourceDescription": {
+        "en": "Bread, rye",
+        "fr": "Pain, seigle"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de seigle (27 g)",
+        "labelEn": "1 slice rye bread (27 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 27,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 13.2,
+        "fiberG": 1.1,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 68
+      },
+      "formula": "valuePortion = valuePer100g × 27 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "5434e3bb-ce11-45a4-a1cb-ef7e3ee1e99a",
+      "version": 3,
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-rye"
+    }
+  ]
+}

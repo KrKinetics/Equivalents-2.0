@@ -1,0 +1,272 @@
+{
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "foods": [
+    {
+      "id": "feculents-bagel",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-legumes",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-cooked-barley",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-mashed-potato-with-milk",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-buckwheat",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-rice",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-slice-bread",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-rice-cakes",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-rolled-oats",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-cooked-beluga-lentils",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "INVALID_PREP_STATE",
+          "severity": "ERROR"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "INVALID_PREP_STATE",
+          "severity": "ERROR"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-bulgur",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "feculents-rye-bread",
+      "resolutions": [],
+      "alertsAfter": []
+    }
+  ]
+}

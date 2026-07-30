@@ -1,0 +1,13 @@
+{
+  "count": 1,
+  "items": [
+    {
+      "recordId": "2371",
+      "foodIds": [
+        "legumes-yellow-or-green-beans",
+        "legumes-yellow-snap-beans"
+      ]
+    }
+  ],
+  "note": "1 CNF recordId(s) shared by multiple food cards (documented; not automatically a failure)"
+}

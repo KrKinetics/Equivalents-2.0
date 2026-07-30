@@ -196,6 +196,7 @@ function main() {
     (f) => f.displayCategory === 'autres_sources_proteinees'
   );
   const dairy = live.foods.filter((f) => f.displayCategory === 'produits_laitiers');
+  const starches = live.foods.filter((f) => f.displayCategory === 'feculents');
   const manufacturerApplied = result.applied.filter((a) => a.adapter === 'manufacturer');
   const cnfApplied = result.applied.filter((a) => a.adapter === 'cnf_2026');
   const finalReport = {
@@ -221,6 +222,8 @@ function main() {
       otherProteinVerified: otherProtein.filter((f) => f.status === 'verified').length,
       dairyCount: dairy.length,
       dairyVerified: dairy.filter((f) => f.status === 'verified').length,
+      starchesCount: starches.length,
+      starchesVerified: starches.filter((f) => f.status === 'verified').length,
       cnfSources: cnfApplied.length,
       manufacturerSources: manufacturerApplied.length,
       totalFoods: live.foods.length,

@@ -1,60 +1,59 @@
 {
-  "generatedAt": "2026-07-30T21:08:25.318Z",
+  "generatedAt": "2026-07-30T22:23:26.093Z",
   "version": {
     "version": "1.0.0",
-    "status": "draft",
+    "status": "review",
     "createdAt": "2026-07-30T00:24:40.917Z",
     "approvedAt": null,
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 277,
-    "verifiedFoods": 255,
-    "unverifiedFoods": 22,
-    "blockingErrors": 12,
-    "blockingErrorCount": 12,
-    "foodsWithBlockingErrors": 11,
-    "warningCount": 157,
-    "foodsWithWarnings": 98,
-    "auditCleanFoods": 179,
-    "dataHash": "94188a89b2b27414f460731a1766e6c64ef4f8a59dfce040bae3942dd5dcdf78",
-    "shortHash": "94188a89b2b2",
-    "lastAuditedAt": "2026-07-30T21:08:25.289Z",
+    "totalFoods": 287,
+    "verifiedFoods": 287,
+    "unverifiedFoods": 0,
+    "blockingErrors": 0,
+    "blockingErrorCount": 0,
+    "foodsWithBlockingErrors": 0,
+    "warningCount": 128,
+    "foodsWithWarnings": 86,
+    "auditCleanFoods": 201,
+    "dataHash": "8492cde87e61b1425f27eea11edbd02abd5dd4e3624f98e0a3c860bea42e47c6",
+    "shortHash": "8492cde87e61",
+    "lastAuditedAt": "2026-07-30T22:23:26.064Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "verified": 255,
-      "unverified": 22
+      "verified": 287
     },
-    "foodsWithWarningsOnly": 87,
+    "foodsWithWarningsOnly": 86,
     "rejectedFoods": 0,
-    "activeFoods": 277,
-    "approvalBlockingErrorCount": 12,
-    "activeBlockingErrorCount": 12,
+    "activeFoods": 287,
+    "approvalBlockingErrorCount": 0,
+    "activeBlockingErrorCount": 0,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "activeFoodsWithBlockingErrors": 11,
+    "activeFoodsWithBlockingErrors": 0,
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 277,
-    "activeFoods": 277,
+    "totalFoods": 287,
+    "activeFoods": 287,
     "rejectedFoods": 0,
-    "verifiedFoods": 255,
-    "unverifiedFoods": 22,
-    "blockingErrorCount": 12,
-    "activeBlockingErrorCount": 12,
+    "verifiedFoods": 287,
+    "unverifiedFoods": 0,
+    "blockingErrorCount": 0,
+    "activeBlockingErrorCount": 0,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "foodsWithBlockingErrors": 11,
-    "activeFoodsWithBlockingErrors": 11,
+    "foodsWithBlockingErrors": 0,
+    "activeFoodsWithBlockingErrors": 0,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 157,
-    "foodsWithWarnings": 98,
-    "foodsWithWarningsOnly": 87,
-    "auditCleanFoods": 179,
-    "blockingErrors": 12,
-    "foodsWithErrors": 11,
-    "foodsOk": 179
+    "warningCount": 128,
+    "foodsWithWarnings": 86,
+    "foodsWithWarningsOnly": 86,
+    "auditCleanFoods": 201,
+    "blockingErrors": 0,
+    "foodsWithErrors": 0,
+    "foodsOk": 201
   },
   "groupStatistics": {
     "protein": {
@@ -275,10 +274,7 @@
       "approvalBlockers": [
         "reference_profile_not_approved",
         "dataset_not_approved",
-        "minVerifiedCount_null",
-        "minCoveragePercent_not_met",
-        "active_foods_not_all_verified",
-        "active_foods_have_blocking_errors"
+        "minVerifiedCount_null"
       ],
       "approvalCriteria": {
         "minVerifiedCount": null,
@@ -286,51 +282,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 25,
-      "activeFoodCount": 25,
-      "verifiedCount": 3,
+      "totalFoodsInGroup": 35,
+      "activeFoodCount": 35,
+      "verifiedCount": 35,
       "rejectedCount": 0,
-      "pendingCount": 22,
-      "coveragePercent": 12,
+      "pendingCount": 0,
+      "coveragePercent": 100,
       "proteinG": {
-        "mean": 2.9333333333333336,
-        "median": 3.3,
+        "mean": 3.554285714285714,
+        "median": 2.8,
         "min": 1,
-        "max": 4.5,
-        "stddev": 1.77857620959388,
-        "count": 3
+        "max": 9,
+        "stddev": 2.0681538879400834,
+        "count": 35
       },
       "carbsG": {
-        "mean": 15.933333333333332,
-        "median": 15.9,
-        "min": 15.9,
-        "max": 16,
-        "stddev": 0.05773502691896237,
-        "count": 3
+        "mean": 18.57428571428571,
+        "median": 17.7,
+        "min": 11.3,
+        "max": 28.6,
+        "stddev": 4.171777929424931,
+        "count": 35
       },
       "fiberG": {
-        "mean": 2.066666666666667,
-        "median": 2.1,
-        "min": 1.5,
-        "max": 2.6,
-        "stddev": 0.5507570547286103,
-        "count": 3
+        "mean": 2.220588235294117,
+        "median": 2,
+        "min": 0.6,
+        "max": 7,
+        "stddev": 1.3295657554401796,
+        "count": 34
       },
       "fatG": {
-        "mean": 3.133333333333333,
-        "median": 1.4,
-        "min": 0.7,
+        "mean": 1.0914285714285714,
+        "median": 0.6,
+        "min": 0,
         "max": 7.3,
-        "stddev": 3.6253735439721697,
-        "count": 3
+        "stddev": 1.303247398429249,
+        "count": 35
       },
       "kcal": {
-        "mean": 103.66666666666667,
-        "median": 90,
-        "min": 74,
-        "max": 147,
-        "stddev": 38.37099599089569,
-        "count": 3
+        "mean": 97.2,
+        "median": 91,
+        "min": 56,
+        "max": 164,
+        "stddev": 27.156193097144744,
+        "count": 35
       },
       "referenceProfile": {
         "proteinG": null,
@@ -343,57 +339,139 @@
       "foodsOutsideTolerance": [],
       "furthestFoods": [
         {
+          "id": "feculents-cooked-black-beans",
+          "nameFr": "Haricots noirs mûrs, bouillis",
+          "nameEn": "Mature black beans, boiled",
+          "distanceScore": 0.9172067390929186,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 8.9,
+              "target": 3.554285714285714,
+              "tolerance": 2,
+              "absDiff": 5.345714285714287
+            },
+            {
+              "nutrient": "carbsG",
+              "value": 23.7,
+              "target": 18.57428571428571,
+              "tolerance": 4,
+              "absDiff": 5.125714285714288
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 132,
+              "target": 97.2,
+              "tolerance": 15,
+              "absDiff": 34.8
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "feculents-cooked-legumes",
+          "nameFr": "Pois chiches mûrs, bouillis",
+          "nameEn": "Mature chickpeas, boiled",
+          "distanceScore": 0.8984457304206286,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 8.9,
+              "target": 3.554285714285714,
+              "tolerance": 2,
+              "absDiff": 5.345714285714287
+            },
+            {
+              "nutrient": "carbsG",
+              "value": 27.4,
+              "target": 18.57428571428571,
+              "tolerance": 4,
+              "absDiff": 8.825714285714287
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 164,
+              "target": 97.2,
+              "tolerance": 15,
+              "absDiff": 66.8
+            }
+          ],
+          "status": "verified"
+        },
+        {
           "id": "noix-graines-homemade-protein-granola",
           "nameFr": "Granola maison",
           "nameEn": "Homemade granola",
-          "distanceScore": 0.5084082280679733,
+          "distanceScore": 0.839509468085998,
           "breaches": [
             {
               "nutrient": "fatG",
               "value": 7.3,
-              "target": 3.133333333333333,
+              "target": 1.0914285714285714,
               "tolerance": 2,
-              "absDiff": 4.166666666666667
+              "absDiff": 6.208571428571428
             },
             {
               "nutrient": "declaredKcal",
               "value": 147,
-              "target": 103.66666666666667,
+              "target": 97.2,
               "tolerance": 15,
-              "absDiff": 43.33333333333333
+              "absDiff": 49.8
             }
           ],
           "status": "verified"
         },
         {
-          "id": "noix-graines-roasted-chestnuts",
-          "nameFr": "Châtaignes européennes rôties",
-          "nameEn": "European sweet chestnuts, roasted",
-          "distanceScore": 0.39962917716171525,
+          "id": "feculents-cooked-beluga-lentils",
+          "nameFr": "Lentilles mûres, bouillies",
+          "nameEn": "Mature lentils, boiled",
+          "distanceScore": 0.6179698629029494,
           "breaches": [
             {
-              "nutrient": "fatG",
-              "value": 0.7,
-              "target": 3.133333333333333,
+              "nutrient": "proteinG",
+              "value": 9,
+              "target": 3.554285714285714,
               "tolerance": 2,
-              "absDiff": 2.4333333333333327
+              "absDiff": 5.445714285714287
             },
             {
               "nutrient": "declaredKcal",
-              "value": 74,
-              "target": 103.66666666666667,
+              "value": 116,
+              "target": 97.2,
               "tolerance": 15,
-              "absDiff": 29.66666666666667
+              "absDiff": 18.799999999999997
             }
           ],
           "status": "verified"
         },
         {
-          "id": "feculents-cooked-quinoa",
-          "nameFr": "Quinoa blanc cuit dans l'eau, sans huile ajoutée",
-          "nameEn": "White quinoa, cooked in water, no added oil",
-          "distanceScore": 0.16606748389316586,
-          "breaches": [],
+          "id": "feculents-rolled-oats-uncooked",
+          "nameFr": "Avoine sèche",
+          "nameEn": "Dry oats",
+          "distanceScore": 0.5257388579370008,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 5.9,
+              "target": 3.554285714285714,
+              "tolerance": 2,
+              "absDiff": 2.3457142857142865
+            },
+            {
+              "nutrient": "carbsG",
+              "value": 23.2,
+              "target": 18.57428571428571,
+              "tolerance": 4,
+              "absDiff": 4.625714285714288
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 136,
+              "target": 97.2,
+              "tolerance": 15,
+              "absDiff": 38.8
+            }
+          ],
           "status": "verified"
         }
       ]
@@ -1132,16 +1210,13 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 11,
-    "KCAL_DIFF_HIGH": 17,
-    "SUSPECT_CASE": 1,
-    "LEGACY_SOURCE_ONLY": 22,
-    "MISSING_GRAMS": 12,
     "UNDECLARED_MANUFACTURER_NUTRIENT": 16,
-    "PORTION_LABEL_MISMATCH_FR": 20,
-    "PORTION_LABEL_MISMATCH_EN": 20,
-    "KCAL_DIFF_MODERATE": 45,
-    "FAT_COMPONENTS_EXCEED_TOTAL": 8,
+    "PORTION_LABEL_MISMATCH_FR": 28,
+    "PORTION_LABEL_MISMATCH_EN": 28,
+    "KCAL_DIFF_MODERATE": 41,
+    "KCAL_DIFF_HIGH": 6,
+    "FAT_COMPONENTS_EXCEED_TOTAL": 9,
+    "MISSING_GRAMS": 3,
     "GUIDE_VS_CALCULATOR": 3
   },
   "decisionsNeeded": [
@@ -1166,739 +1241,8 @@
       "title": "Réviser les cas suspects obligatoires"
     }
   ],
-  "suspectCases": [
-    {
-      "id": "feculents-medium-sweet-potato",
-      "nameFr": "Pomme de terre moyenne",
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 1,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 82
-      },
-      "declaredKcal": 82,
-      "calculatedKcal": 16,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 82 vs Atwater 16.0 (Δ 66.0 / 412.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~82 kcal / 3 g protein / 1 g carbs",
-          "suspectId": "sweet_potato"
-        }
-      ]
-    }
-  ],
+  "suspectCases": [],
   "items": [
-    {
-      "id": "feculents-medium-sweet-potato",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pomme de terre moyenne",
-      "nameEn": "medium sweet potato",
-      "status": "unverified",
-      "portionLabelFr": "½ Pomme de terre moyenne (Douce) (75 g)",
-      "portionLabelEn": "½ medium sweet potato (75 g)",
-      "amount": 1,
-      "unit": "portion",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": 75,
-        "label": "½ Pomme de terre moyenne (Douce) (75 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": 75,
-        "label": "½ medium sweet potato (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 1,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 82
-      },
-      "declaredKcal": 82,
-      "calculatedKcal": 16,
-      "absDiff": 66,
-      "pctDiff": 412.5,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 82 vs Atwater 16.0 (Δ 66.0 / 412.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "ERROR",
-          "code": "SUSPECT_CASE",
-          "message": "Suspect legacy signature: ~82 kcal / 3 g protein / 1 g carbs",
-          "suspectId": "sweet_potato"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 2,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-lightly-sweetened-breakfast-cereal",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Céréales à déjeuner peu sucrées",
-      "nameEn": "Lightly sweetened breakfast cereal",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Céréales à déjeuner peu sucrées",
-      "portionLabelEn": "125 ml Lightly sweetened breakfast cereal",
-      "amount": 125,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml de Céréales à déjeuner peu sucrées"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml Lightly sweetened breakfast cereal"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 25,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 85
-      },
-      "declaredKcal": 85,
-      "calculatedKcal": 116,
-      "absDiff": 31,
-      "pctDiff": 26.72413793103448,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 85 vs Atwater 116.0 (Δ 31.0 / 26.7%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Muffin anglais, pain hot-dog ou hamburger",
-      "nameEn": "English muffin, hot dog or hamburger bun",
-      "status": "unverified",
-      "portionLabelFr": "½ Muffin anglais, pain hot-dog ou hamburger",
-      "portionLabelEn": "½ English muffin, hot dog or hamburger bun",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "½ Muffin anglais, pain hot-dog ou hamburger"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "½ English muffin, hot dog or hamburger bun"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 13,
-        "fiberG": 1,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 93
-      },
-      "declaredKcal": 93,
-      "calculatedKcal": 77,
-      "absDiff": 16,
-      "pctDiff": 20.77922077922078,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 93 vs Atwater 77.0 (Δ 16.0 / 20.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-10-2-cm-wheat-pita",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pain pita de 10,2 cm",
-      "nameEn": "10.2 cm wheat pita",
-      "status": "unverified",
-      "portionLabelFr": "1 Pain pita de 10,2 cm (blé)",
-      "portionLabelEn": "1 10.2 cm (4 in) wheat pita",
-      "amount": 1,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 Pain pita de 10,2 cm (blé)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 10.2 cm (4 in) wheat pita"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 15,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 109
-      },
-      "declaredKcal": 109,
-      "calculatedKcal": 72,
-      "absDiff": 37,
-      "pctDiff": 51.388888888888886,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 109 vs Atwater 72.0 (Δ 37.0 / 51.4%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-mashed-potato-with-milk",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pomme de terre en purée avec lait",
-      "nameEn": "Mashed potato with milk",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Pomme de terre en purée avec lait",
-      "portionLabelEn": "125 ml Mashed potato with milk",
-      "amount": 125,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml de Pomme de terre en purée avec lait"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml Mashed potato with milk"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 14,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 102
-      },
-      "declaredKcal": 102,
-      "calculatedKcal": 64,
-      "absDiff": 38,
-      "pctDiff": 59.375,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 102 vs Atwater 64.0 (Δ 38.0 / 59.4%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-couscous",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Couscous cuit",
-      "nameEn": "Cooked couscous",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Couscous cuit (75 g)",
-      "portionLabelEn": "125 ml Cooked couscous (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml de Couscous cuit (75 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Cooked couscous (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 23,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 62
-      },
-      "declaredKcal": 62,
-      "calculatedKcal": 100,
-      "absDiff": 38,
-      "pctDiff": 38,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 62 vs Atwater 100.0 (Δ 38.0 / 38.0%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-legumes",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Légumineuses cuites",
-      "nameEn": "Cooked legumes",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Légumineuses cuites (100 g)",
-      "portionLabelEn": "125 ml Cooked legumes (100 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 100,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 100,
-        "label": "125 ml de Légumineuses cuites (100 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 100,
-        "label": "125 ml Cooked legumes (100 g)"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 7,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 105
-      },
-      "declaredKcal": 105,
-      "calculatedKcal": 44,
-      "absDiff": 61,
-      "pctDiff": 138.63636363636365,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 105 vs Atwater 44.0 (Δ 61.0 / 138.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-beluga-lentils",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Lentilles Beluga cuites",
-      "nameEn": "Cooked beluga lentils",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Lentilles Beluga cuites (100 g)",
-      "portionLabelEn": "125 ml Cooked beluga lentils (100 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 100,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 100,
-        "label": "125 ml de Lentilles Beluga cuites (100 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 100,
-        "label": "125 ml Cooked beluga lentils (100 g)"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 14,
-        "fiberG": 2,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 87
-      },
-      "declaredKcal": 87,
-      "calculatedKcal": 72,
-      "absDiff": 15,
-      "pctDiff": 20.833333333333336,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 87 vs Atwater 72.0 (Δ 15.0 / 20.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-boiled-drained-corn",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Maïs bouilli, égoutté",
-      "nameEn": "Boiled drained corn",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Maïs bouilli, égoutté (75 g)",
-      "portionLabelEn": "125 ml Boiled drained corn (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml de Maïs bouilli, égoutté (75 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Boiled drained corn (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 11,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 64
-      },
-      "declaredKcal": 64,
-      "calculatedKcal": 52,
-      "absDiff": 12,
-      "pctDiff": 23.076923076923077,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 64 vs Atwater 52.0 (Δ 12.0 / 23.1%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-barley",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Orge cuit",
-      "nameEn": "Cooked barley",
-      "status": "unverified",
-      "portionLabelFr": "125 ml d'Orge cuit (75 g)",
-      "portionLabelEn": "125 ml Cooked barley (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml d'Orge cuit (75 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Cooked barley (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 6,
-        "carbsG": 16,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 109
-      },
-      "declaredKcal": 109,
-      "calculatedKcal": 88,
-      "absDiff": 21,
-      "pctDiff": 23.863636363636363,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 109 vs Atwater 88.0 (Δ 21.0 / 23.9%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-cooked-pasta",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pâtes cuites",
-      "nameEn": "Cooked pasta",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Pâtes cuites (blé) (75 g)",
-      "portionLabelEn": "125 ml Cooked pasta (wheat) (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml de Pâtes cuites (blé) (75 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Cooked pasta (wheat) (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 20,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 72
-      },
-      "declaredKcal": 72,
-      "calculatedKcal": 92,
-      "absDiff": 20,
-      "pctDiff": 21.73913043478261,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 72 vs Atwater 92.0 (Δ 20.0 / 21.7%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
     {
       "id": "produits-laitiers-plain-skyr",
       "displayCategory": "produits_laitiers",
@@ -2060,144 +1404,6 @@
       "canVerify": true
     },
     {
-      "id": "feculents-slice-bread",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pain",
-      "nameEn": "Bread",
-      "status": "unverified",
-      "portionLabelFr": "1 Tranche de pain (blé)",
-      "portionLabelEn": "1 slice Bread (wheat)",
-      "amount": 1,
-      "unit": "slice",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": null,
-        "label": "1 Tranche de pain (blé)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": null,
-        "label": "1 slice Bread (wheat)"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 19,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 76
-      },
-      "declaredKcal": 76,
-      "calculatedKcal": 88,
-      "absDiff": 12,
-      "pctDiff": 13.636363636363635,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 76 vs Atwater 88.0 (13.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-jerusalem-artichoke",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Topinambour",
-      "nameEn": "Jerusalem artichoke",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Topinambour",
-      "portionLabelEn": "125 ml Jerusalem artichoke",
-      "amount": 125,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml de Topinambour"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml Jerusalem artichoke"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 22,
-        "fiberG": 2,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 111
-      },
-      "declaredKcal": 111,
-      "calculatedKcal": 100,
-      "absDiff": 11,
-      "pctDiff": 11,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 111 vs Atwater 100.0 (11.0%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "fruits-banana",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -2274,197 +1480,6 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": true
-    },
-    {
-      "id": "feculents-rolled-oats",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Flocons d'avoine",
-      "nameEn": "Rolled oats",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Flocons d'avoine (sec, ~60 ml)",
-      "portionLabelEn": "45 g Rolled oats (dry, ~60 ml)",
-      "amount": 60,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 60,
-        "unit": "ml",
-        "grams": null,
-        "label": "45 g de Flocons d'avoine (sec, ~60 ml)"
-      },
-      "parsedEn": {
-        "amount": 60,
-        "unit": "ml",
-        "grams": null,
-        "label": "45 g Rolled oats (dry, ~60 ml)"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 15,
-        "fiberG": 2,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 88
-      },
-      "declaredKcal": 88,
-      "calculatedKcal": 76,
-      "absDiff": 12,
-      "pctDiff": 15.789473684210526,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 88 vs Atwater 76.0 (15.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-slice-ezekiel-sprouted-bread",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pain Ezekiel germé",
-      "nameEn": "Ezekiel sprouted bread",
-      "status": "unverified",
-      "portionLabelFr": "1 tranche de Pain Ezekiel germé (34 g)",
-      "portionLabelEn": "1 slice Ezekiel sprouted bread (34 g)",
-      "amount": 1,
-      "unit": "slice",
-      "grams": 34,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": 34,
-        "label": "1 tranche de Pain Ezekiel germé (34 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": 34,
-        "label": "1 slice Ezekiel sprouted bread (34 g)"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 15,
-        "fiberG": 3,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 84
-      },
-      "declaredKcal": 84,
-      "calculatedKcal": 76,
-      "absDiff": 8,
-      "pctDiff": 10.526315789473683,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 84 vs Atwater 76.0 (10.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "feculents-slice-sprouted-bread",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pain germé",
-      "nameEn": "Sprouted bread",
-      "status": "unverified",
-      "portionLabelFr": "1 tranche de Pain germé (sans farine enrichie)",
-      "portionLabelEn": "1 slice Sprouted bread (no enriched flour)",
-      "amount": 1,
-      "unit": "slice",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": null,
-        "label": "1 tranche de Pain germé (sans farine enrichie)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "slice",
-        "grams": null,
-        "label": "1 slice Sprouted bread (no enriched flour)"
-      },
-      "nutrients": {
-        "proteinG": 4,
-        "carbsG": 15,
-        "fiberG": 3,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 80
-      },
-      "declaredKcal": 80,
-      "calculatedKcal": 76,
-      "absDiff": 4,
-      "pctDiff": 5.263157894736842,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
     },
     {
       "id": "fruits-grapefruit",
@@ -2620,59 +1635,73 @@
       "id": "feculents-bagel",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Bagel",
-      "nameEn": "Bagel",
-      "status": "unverified",
-      "portionLabelFr": "½ Bagel (~135 g)",
-      "portionLabelEn": "½ Bagel (~135 g)",
-      "amount": 1,
-      "unit": "portion",
-      "grams": 135,
+      "exchangeProfileId": "starch-bread-bagel",
+      "classificationStatus": "approved",
+      "nameFr": "Bagel nature",
+      "nameEn": "Plain bagel",
+      "status": "verified",
+      "portionLabelFr": "½ bagel nature moyen (34,5 g)",
+      "portionLabelEn": "½ medium plain bagel (34.5 g)",
+      "amount": 0.5,
+      "unit": "piece",
+      "grams": 34.5,
       "parsedFr": {
         "amount": 1,
         "unit": "portion",
-        "grams": 135,
-        "label": "½ Bagel (~135 g)"
+        "grams": 34.5,
+        "label": "½ bagel nature moyen (34,5 g)"
       },
       "parsedEn": {
         "amount": 1,
         "unit": "portion",
-        "grams": 135,
-        "label": "½ Bagel (~135 g)"
+        "grams": 34.5,
+        "label": "½ medium plain bagel (34.5 g)"
       },
       "nutrients": {
-        "proteinG": 5,
-        "carbsG": 18,
-        "fiberG": 0,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 108
+        "proteinG": 3.6,
+        "carbsG": 18.1,
+        "fiberG": 0.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 91
       },
-      "declaredKcal": 108,
-      "calculatedKcal": 101,
-      "absDiff": 7,
-      "pctDiff": 6.9306930693069315,
+      "declaredKcal": 91,
+      "calculatedKcal": 91.30000000000001,
+      "absDiff": 0.30000000000001137,
+      "pctDiff": 0.3285870755750398,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34.5,
+            "label": "½ bagel nature moyen (34,5 g)"
+          }
         },
         {
           "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34.5,
+            "label": "½ medium plain bagel (34.5 g)"
+          }
         }
       ],
       "errorCount": 0,
       "warningCount": 2,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
     },
     {
       "id": "autres-sources-proteinees-performance-protein-bar",
@@ -3316,64 +2345,6 @@
       "canVerify": true
     },
     {
-      "id": "feculents-rolled-oats-uncooked",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Flocons d'avoine , avant cuisson",
-      "nameEn": "Rolled oats , uncooked",
-      "status": "unverified",
-      "portionLabelFr": "35 g de Flocons d'avoine (50 ml), avant cuisson",
-      "portionLabelEn": "35 g Rolled oats (50 ml), uncooked",
-      "amount": 50,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 50,
-        "unit": "ml",
-        "grams": null,
-        "label": "35 g de Flocons d'avoine (50 ml), avant cuisson"
-      },
-      "parsedEn": {
-        "amount": 50,
-        "unit": "ml",
-        "grams": null,
-        "label": "35 g Rolled oats (50 ml), uncooked"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 15,
-        "fiberG": 2,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 88
-      },
-      "declaredKcal": 88,
-      "calculatedKcal": 81,
-      "absDiff": 7,
-      "pctDiff": 8.641975308641975,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "produits-laitiers-allegro-9-cheese",
       "displayCategory": "produits_laitiers",
       "calculationGroup": "dairy",
@@ -3432,62 +2403,148 @@
       "canVerify": true
     },
     {
-      "id": "feculents-rice-cakes",
+      "id": "feculents-rolled-oats",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Galettes de riz",
-      "nameEn": "Rice cakes",
-      "status": "unverified",
-      "portionLabelFr": "2 Galettes de riz (~20 g)",
-      "portionLabelEn": "2 Rice cakes (~20 g)",
-      "amount": 2,
-      "unit": "count",
-      "grams": 20,
+      "exchangeProfileId": "starch-oatmeal-prepared",
+      "classificationStatus": "approved",
+      "nameFr": "Gruau instantané nature, préparé",
+      "nameEn": "Plain instant oatmeal, prepared",
+      "status": "verified",
+      "portionLabelFr": "175 ml de gruau nature préparé (173 g)",
+      "portionLabelEn": "175 ml prepared plain oatmeal (173 g)",
+      "amount": 175,
+      "unit": "ml",
+      "grams": 173.076,
       "parsedFr": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 20,
-        "label": "2 Galettes de riz (~20 g)"
+        "amount": 175,
+        "unit": "ml",
+        "grams": 173,
+        "label": "175 ml de gruau nature préparé (173 g)"
       },
       "parsedEn": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 20,
-        "label": "2 Rice cakes (~20 g)"
+        "amount": 175,
+        "unit": "ml",
+        "grams": 173,
+        "label": "175 ml prepared plain oatmeal (173 g)"
       },
       "nutrients": {
-        "proteinG": 3,
-        "carbsG": 14,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 74
+        "proteinG": 4.5,
+        "carbsG": 23.4,
+        "fiberG": 3.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 133
       },
-      "declaredKcal": 74,
-      "calculatedKcal": 68,
-      "absDiff": 6,
-      "pctDiff": 8.823529411764707,
+      "declaredKcal": 133,
+      "calculatedKcal": 132.29999999999998,
+      "absDiff": 0.700000000000017,
+      "pctDiff": 0.5291005291005421,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(173≠173.076)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 175,
+            "unit": "ml",
+            "grams": 173,
+            "label": "175 ml de gruau nature préparé (173 g)"
+          }
         },
         {
           "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(173≠173.076)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 175,
+            "unit": "ml",
+            "grams": 173,
+            "label": "175 ml prepared plain oatmeal (173 g)"
+          }
         }
       ],
       "errorCount": 0,
       "warningCount": 2,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-oatmeal-instant-dry",
+      "classificationStatus": "approved",
+      "nameFr": "Gruau instantané nature, sec",
+      "nameEn": "Plain instant oatmeal, dry",
+      "status": "verified",
+      "portionLabelFr": "1 sachet de gruau instantané nature, sec (28 g)",
+      "portionLabelEn": "1 packet plain instant oatmeal, dry (28 g)",
+      "amount": 28,
+      "unit": "g",
+      "grams": 28,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 28,
+        "label": "1 sachet de gruau instantané nature, sec (28 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 28,
+        "label": "1 packet plain instant oatmeal, dry (28 g)"
+      },
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.9,
+        "fiberG": 2.8,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 107
+      },
+      "declaredKcal": 107,
+      "calculatedKcal": 107.1,
+      "absDiff": 0.09999999999999432,
+      "pctDiff": 0.09337068160597042,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠28), unit(count≠g)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 28,
+            "label": "1 sachet de gruau instantané nature, sec (28 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠28), unit(count≠g)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 28,
+            "label": "1 packet plain instant oatmeal, dry (28 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
     },
     {
       "id": "produits-laitiers-kefir-fruit-low-fat",
@@ -4168,63 +3225,364 @@
       "canVerify": true
     },
     {
-      "id": "feculents-cooked-buckwheat",
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Sarrasin cuit",
-      "nameEn": "Cooked buckwheat",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Sarrasin cuit (75 g)",
-      "portionLabelEn": "125 ml Cooked buckwheat (75 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 75,
+      "exchangeProfileId": "starch-bread-english-muffin",
+      "classificationStatus": "approved",
+      "nameFr": "Muffin anglais nature",
+      "nameEn": "Plain English muffin",
+      "status": "verified",
+      "portionLabelFr": "½ muffin anglais nature (28,5 g)",
+      "portionLabelEn": "½ plain English muffin (28.5 g)",
+      "amount": 0.5,
+      "unit": "piece",
+      "grams": 28.5,
       "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml de Sarrasin cuit (75 g)"
+        "amount": 1,
+        "unit": "portion",
+        "grams": 28.5,
+        "label": "½ muffin anglais nature (28,5 g)"
       },
       "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 75,
-        "label": "125 ml Cooked buckwheat (75 g)"
+        "amount": 1,
+        "unit": "portion",
+        "grams": 28.5,
+        "label": "½ plain English muffin (28.5 g)"
       },
       "nutrients": {
-        "proteinG": 3,
-        "carbsG": 16,
-        "fiberG": 1,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 85
+        "proteinG": 2.7,
+        "carbsG": 12.8,
+        "fiberG": 0.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 67
       },
-      "declaredKcal": 85,
-      "calculatedKcal": 76,
-      "absDiff": 9,
-      "pctDiff": 11.842105263157894,
+      "declaredKcal": 67,
+      "calculatedKcal": 67.4,
+      "absDiff": 0.4000000000000057,
+      "pctDiff": 0.5934718100890292,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 85 vs Atwater 76.0 (11.8%)",
-          "resolutionStatus": "open"
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 28.5,
+            "label": "½ muffin anglais nature (28,5 g)"
+          }
         },
         {
           "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 28.5,
+            "label": "½ plain English muffin (28.5 g)"
+          }
         }
       ],
       "errorCount": 0,
       "warningCount": 2,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-bun",
+      "classificationStatus": "approved",
+      "nameFr": "Pain nature à hamburger ou à hot-dog",
+      "nameEn": "Plain hamburger or hot-dog bun",
+      "status": "verified",
+      "portionLabelFr": "1 pain nature à hamburger ou hot-dog (44 g)",
+      "portionLabelEn": "1 plain hamburger or hot-dog bun (44 g)",
+      "amount": 1,
+      "unit": "piece",
+      "grams": 44,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 44,
+        "label": "1 pain nature à hamburger ou hot-dog (44 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 44,
+        "label": "1 plain hamburger or hot-dog bun (44 g)"
+      },
+      "nutrients": {
+        "proteinG": 4.3,
+        "carbsG": 22.1,
+        "fiberG": 0.8,
+        "fatG": 1.7,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 123
+      },
+      "declaredKcal": 123,
+      "calculatedKcal": 120.9,
+      "absDiff": 2.0999999999999943,
+      "pctDiff": 1.7369727047146355,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 44,
+            "label": "1 pain nature à hamburger ou hot-dog (44 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 44,
+            "label": "1 plain hamburger or hot-dog bun (44 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-pita-whole-wheat",
+      "classificationStatus": "approved",
+      "nameFr": "Petit pain pita de blé entier",
+      "nameEn": "Small whole-wheat pita",
+      "status": "verified",
+      "portionLabelFr": "1 petit pita de blé entier (32 g)",
+      "portionLabelEn": "1 small whole-wheat pita (32 g)",
+      "amount": 1,
+      "unit": "piece",
+      "grams": 32,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 32,
+        "label": "1 petit pita de blé entier (32 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 32,
+        "label": "1 small whole-wheat pita (32 g)"
+      },
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 17.7,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 85
+      },
+      "declaredKcal": 85,
+      "calculatedKcal": 90.60000000000001,
+      "absDiff": 5.6000000000000085,
+      "pctDiff": 6.18101545253864,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 petit pita de blé entier (32 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 small whole-wheat pita (32 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-tortilla-flour",
+      "classificationStatus": "approved",
+      "nameFr": "Tortilla de farine nature",
+      "nameEn": "Plain flour tortilla",
+      "status": "verified",
+      "portionLabelFr": "1 petite tortilla de farine (32 g)",
+      "portionLabelEn": "1 small flour tortilla (32 g)",
+      "amount": 1,
+      "unit": "piece",
+      "grams": 32,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 32,
+        "label": "1 petite tortilla de farine (32 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 32,
+        "label": "1 small flour tortilla (32 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 16.8,
+        "fiberG": 1.3,
+        "fatG": 2.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 104
+      },
+      "declaredKcal": 104,
+      "calculatedKcal": 97.4,
+      "absDiff": 6.599999999999994,
+      "pctDiff": 6.776180698151944,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 petite tortilla de farine (32 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 small flour tortilla (32 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-tortilla-corn",
+      "classificationStatus": "approved",
+      "nameFr": "Tortilla de maïs sans sel",
+      "nameEn": "Unsalted corn tortilla",
+      "status": "verified",
+      "portionLabelFr": "1 tortilla de maïs moyenne (25 g)",
+      "portionLabelEn": "1 medium corn tortilla (25 g)",
+      "amount": 1,
+      "unit": "piece",
+      "grams": 25,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 25,
+        "label": "1 tortilla de maïs moyenne (25 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 25,
+        "label": "1 medium corn tortilla (25 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 11.3,
+        "fiberG": 1.1,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 56
+      },
+      "declaredKcal": 56,
+      "calculatedKcal": 55,
+      "absDiff": 1,
+      "pctDiff": 1.8181818181818181,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 25,
+            "label": "1 tortilla de maïs moyenne (25 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 25,
+            "label": "1 medium corn tortilla (25 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
     },
     {
       "id": "autres-sources-proteinees-egglife-wrap",
@@ -5910,59 +5268,6 @@
       "canVerify": true
     },
     {
-      "id": "feculents-plain-oatmeal-uncooked",
-      "displayCategory": "feculents",
-      "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Gruau nature , avant cuisson",
-      "nameEn": "Plain oatmeal , uncooked",
-      "status": "unverified",
-      "portionLabelFr": "75 ml de Gruau nature (~25 g), avant cuisson",
-      "portionLabelEn": "75 ml Plain oatmeal (~25 g), uncooked",
-      "amount": 75,
-      "unit": "ml",
-      "grams": 25,
-      "parsedFr": {
-        "amount": 75,
-        "unit": "ml",
-        "grams": 25,
-        "label": "75 ml de Gruau nature (~25 g), avant cuisson"
-      },
-      "parsedEn": {
-        "amount": 75,
-        "unit": "ml",
-        "grams": 25,
-        "label": "75 ml Plain oatmeal (~25 g), uncooked"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 11,
-        "fiberG": 1,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 63
-      },
-      "declaredKcal": 63,
-      "calculatedKcal": 61,
-      "absDiff": 2,
-      "pctDiff": 3.278688524590164,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "legumes-yellow-snap-beans",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -6275,6 +5580,60 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 10 vs Atwater 12.2 (18.0%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-corn",
+      "classificationStatus": "approved",
+      "nameFr": "Maïs jaune sucré, bouilli et égoutté",
+      "nameEn": "Yellow sweet corn, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "75 g de maïs jaune bouilli et égoutté",
+      "portionLabelEn": "75 g boiled drained yellow corn",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de maïs jaune bouilli et égoutté"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g boiled drained yellow corn"
+      },
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 15.7,
+        "fiberG": 1.8,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 72
+      },
+      "declaredKcal": 72,
+      "calculatedKcal": 83.10000000000001,
+      "absDiff": 11.100000000000009,
+      "pctDiff": 13.35740072202167,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 72 vs Atwater 83.1 (13.4%)",
           "resolutionStatus": "open"
         }
       ],
@@ -6988,54 +6347,54 @@
       "id": "feculents-cooked-rice",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Riz cuit",
-      "nameEn": "Cooked rice",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de Riz cuit (100 g)",
-      "portionLabelEn": "125 ml Cooked rice (100 g)",
-      "amount": 125,
-      "unit": "ml",
+      "exchangeProfileId": "starch-rice-white",
+      "classificationStatus": "approved",
+      "nameFr": "Riz blanc à grain moyen, cuit",
+      "nameEn": "Cooked medium-grain white rice",
+      "status": "verified",
+      "portionLabelFr": "100 g de riz blanc cuit",
+      "portionLabelEn": "100 g cooked white rice",
+      "amount": 100,
+      "unit": "g",
       "grams": 100,
       "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
+        "amount": 100,
+        "unit": "g",
         "grams": 100,
-        "label": "125 ml de Riz cuit (100 g)"
+        "label": "100 g de riz blanc cuit"
       },
       "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
+        "amount": 100,
+        "unit": "g",
         "grams": 100,
-        "label": "125 ml Cooked rice (100 g)"
+        "label": "100 g cooked white rice"
       },
       "nutrients": {
-        "proteinG": 2,
-        "carbsG": 22,
-        "fiberG": 3,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 91
+        "proteinG": 2.4,
+        "carbsG": 28.6,
+        "fiberG": null,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 130
       },
-      "declaredKcal": 91,
-      "calculatedKcal": 96,
-      "absDiff": 5,
-      "pctDiff": 5.208333333333334,
+      "declaredKcal": 130,
+      "calculatedKcal": 125.8,
+      "absDiff": 4.200000000000003,
+      "pctDiff": 3.3386327503974584,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.30000000000000004) > lipides totaux (0.2)"
         }
       ],
       "errorCount": 0,
       "warningCount": 1,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
     },
     {
       "id": "legumes-tomato-6-6-cm-in-diameter",
@@ -7518,6 +6877,53 @@
       "errorCount": 0,
       "warningCount": 0,
       "resolvedCount": 1,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-oats-dry",
+      "classificationStatus": "approved",
+      "nameFr": "Avoine sèche",
+      "nameEn": "Dry oats",
+      "status": "verified",
+      "portionLabelFr": "35 g d’avoine sèche",
+      "portionLabelEn": "35 g dry oats",
+      "amount": 35,
+      "unit": "g",
+      "grams": 35,
+      "parsedFr": {
+        "amount": 35,
+        "unit": "g",
+        "grams": 35,
+        "label": "35 g d’avoine sèche"
+      },
+      "parsedEn": {
+        "amount": 35,
+        "unit": "g",
+        "grams": 35,
+        "label": "35 g dry oats"
+      },
+      "nutrients": {
+        "proteinG": 5.9,
+        "carbsG": 23.2,
+        "fiberG": 3.7,
+        "fatG": 2.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 136
+      },
+      "declaredKcal": 136,
+      "calculatedKcal": 138,
+      "absDiff": 2,
+      "pctDiff": 1.4492753623188406,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
       "maxSeverity": "OK",
       "canVerify": true
     },
@@ -8509,6 +7915,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-cooked-bulgur",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-bulgur",
+      "classificationStatus": "approved",
+      "nameFr": "Bulgur cuit",
+      "nameEn": "Cooked bulgur",
+      "status": "verified",
+      "portionLabelFr": "75 g de bulgur cuit",
+      "portionLabelEn": "75 g cooked bulgur",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de bulgur cuit"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked bulgur"
+      },
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 13.9,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 66.6,
+      "absDiff": 4.599999999999994,
+      "pctDiff": 6.906906906906898,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "viandes-volaille-duck",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -8689,6 +8142,53 @@
       "calculatedKcal": 83,
       "absDiff": 4,
       "pctDiff": 4.819277108433735,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-breakfast-cereal-cheerios",
+      "classificationStatus": "approved",
+      "nameFr": "Céréales Cheerios originales",
+      "nameEn": "Original Cheerios cereal",
+      "status": "verified",
+      "portionLabelFr": "30 g de Cheerios originales",
+      "portionLabelEn": "30 g Original Cheerios",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de Cheerios originales"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g Original Cheerios"
+      },
+      "nutrients": {
+        "proteinG": 3.9,
+        "carbsG": 21.8,
+        "fiberG": 3.3,
+        "fatG": 1.9,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 119
+      },
+      "declaredKcal": 119,
+      "calculatedKcal": 119.89999999999999,
+      "absDiff": 0.8999999999999915,
+      "pctDiff": 0.7506255212677161,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -9267,6 +8767,53 @@
       "calculatedKcal": 71.4,
       "absDiff": 1.5999999999999943,
       "pctDiff": 2.240896358543409,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-couscous",
+      "classificationStatus": "approved",
+      "nameFr": "Couscous cuit",
+      "nameEn": "Cooked couscous",
+      "status": "verified",
+      "portionLabelFr": "75 g de couscous cuit",
+      "portionLabelEn": "75 g cooked couscous",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de couscous cuit"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked couscous"
+      },
+      "nutrients": {
+        "proteinG": 2.8,
+        "carbsG": 17.4,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 84
+      },
+      "declaredKcal": 84,
+      "calculatedKcal": 81.7,
+      "absDiff": 2.299999999999997,
+      "pctDiff": 2.8151774785801678,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -10229,6 +9776,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-rice-cakes",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-rice-cake",
+      "classificationStatus": "approved",
+      "nameFr": "Galettes de riz brun nature, sans sel",
+      "nameEn": "Plain unsalted brown-rice cakes",
+      "status": "verified",
+      "portionLabelFr": "2 galettes de riz brun (18 g)",
+      "portionLabelEn": "2 brown-rice cakes (18 g)",
+      "amount": 2,
+      "unit": "count",
+      "grams": 18,
+      "parsedFr": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 18,
+        "label": "2 galettes de riz brun (18 g)"
+      },
+      "parsedEn": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 18,
+        "label": "2 brown-rice cakes (18 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 14.7,
+        "fiberG": 0.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 70
+      },
+      "declaredKcal": 70,
+      "calculatedKcal": 69.3,
+      "absDiff": 0.7000000000000028,
+      "pctDiff": 1.0101010101010142,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-alaska-pollock",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -10699,6 +10293,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-cooked-buckwheat",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-buckwheat",
+      "classificationStatus": "approved",
+      "nameFr": "Gruau de sarrasin rôti, cuit",
+      "nameEn": "Roasted buckwheat groats, cooked",
+      "status": "verified",
+      "portionLabelFr": "75 g de gruau de sarrasin cuit",
+      "portionLabelEn": "75 g cooked buckwheat groats",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de gruau de sarrasin cuit"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked buckwheat groats"
+      },
+      "nutrients": {
+        "proteinG": 2.5,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "declaredKcal": 69,
+      "calculatedKcal": 74.5,
+      "absDiff": 5.5,
+      "pctDiff": 7.38255033557047,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-herring",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -10738,6 +10379,53 @@
       "calculatedKcal": 59.1,
       "absDiff": 1.8999999999999986,
       "pctDiff": 3.2148900169204713,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-black-bean",
+      "classificationStatus": "approved",
+      "nameFr": "Haricots noirs mûrs, bouillis",
+      "nameEn": "Mature black beans, boiled",
+      "status": "verified",
+      "portionLabelFr": "100 g de haricots noirs bouillis",
+      "portionLabelEn": "100 g boiled black beans",
+      "amount": 100,
+      "unit": "g",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g de haricots noirs bouillis"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g boiled black beans"
+      },
+      "nutrients": {
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 7,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 132
+      },
+      "declaredKcal": 132,
+      "calculatedKcal": 134.9,
+      "absDiff": 2.9000000000000057,
+      "pctDiff": 2.149740548554489,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -11827,6 +11515,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-cooked-beluga-lentils",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-lentil",
+      "classificationStatus": "approved",
+      "nameFr": "Lentilles mûres, bouillies",
+      "nameEn": "Mature lentils, boiled",
+      "status": "verified",
+      "portionLabelFr": "100 g de lentilles bouillies",
+      "portionLabelEn": "100 g boiled lentils",
+      "amount": 100,
+      "unit": "g",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g de lentilles bouillies"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g boiled lentils"
+      },
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 20.1,
+        "fiberG": 4.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 116
+      },
+      "declaredKcal": 116,
+      "calculatedKcal": 120,
+      "absDiff": 4,
+      "pctDiff": 3.3333333333333335,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-mahi-mahi",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -12054,6 +11789,53 @@
       "calculatedKcal": 47.2,
       "absDiff": 0.7999999999999972,
       "pctDiff": 1.6949152542372818,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-millet",
+      "classificationStatus": "approved",
+      "nameFr": "Millet cuit",
+      "nameEn": "Cooked millet",
+      "status": "verified",
+      "portionLabelFr": "75 g de millet cuit",
+      "portionLabelEn": "75 g cooked millet",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de millet cuit"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked millet"
+      },
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 17.8,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 89
+      },
+      "declaredKcal": 89,
+      "calculatedKcal": 88.80000000000001,
+      "absDiff": 0.19999999999998863,
+      "pctDiff": 0.22522522522521238,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -12861,6 +12643,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-cooked-barley",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-cooked-grain-barley",
+      "classificationStatus": "approved",
+      "nameFr": "Orge perlé cuit",
+      "nameEn": "Cooked pearled barley",
+      "status": "verified",
+      "portionLabelFr": "75 g d’orge perlé cuit",
+      "portionLabelEn": "75 g cooked pearled barley",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g d’orge perlé cuit"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked pearled barley"
+      },
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 21.2,
+        "fiberG": 1.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 92
+      },
+      "declaredKcal": 92,
+      "calculatedKcal": 94.3,
+      "absDiff": 2.299999999999997,
+      "pctDiff": 2.4390243902438993,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "noix-graines-oil-roasted-pecans",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -12955,6 +12784,194 @@
       "canVerify": true
     },
     {
+      "id": "feculents-slice-bread",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-whole-wheat",
+      "classificationStatus": "approved",
+      "nameFr": "Pain de blé entier commercial",
+      "nameEn": "Commercial whole-wheat bread",
+      "status": "verified",
+      "portionLabelFr": "1 tranche de pain de blé entier (36 g)",
+      "portionLabelEn": "1 slice whole-wheat bread (36 g)",
+      "amount": 1,
+      "unit": "slice",
+      "grams": 36,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 36,
+        "label": "1 tranche de pain de blé entier (36 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 36,
+        "label": "1 slice whole-wheat bread (36 g)"
+      },
+      "nutrients": {
+        "proteinG": 3.9,
+        "carbsG": 16.4,
+        "fiberG": 2.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 93
+      },
+      "declaredKcal": 93,
+      "calculatedKcal": 91.1,
+      "absDiff": 1.9000000000000057,
+      "pctDiff": 2.0856201975850777,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-sprouted-generic",
+      "classificationStatus": "approved",
+      "nameFr": "Pain de blé germé commercial",
+      "nameEn": "Commercial sprouted-wheat bread",
+      "status": "verified",
+      "portionLabelFr": "1 tranche de pain de blé germé (38 g)",
+      "portionLabelEn": "1 slice sprouted-wheat bread (38 g)",
+      "amount": 1,
+      "unit": "slice",
+      "grams": 38,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 38,
+        "label": "1 tranche de pain de blé germé (38 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 38,
+        "label": "1 slice sprouted-wheat bread (38 g)"
+      },
+      "nutrients": {
+        "proteinG": 5.1,
+        "carbsG": 16.6,
+        "fiberG": 3.3,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 100
+      },
+      "declaredKcal": 100,
+      "calculatedKcal": 99.4,
+      "absDiff": 0.5999999999999943,
+      "pctDiff": 0.603621730382288,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-rye-bread",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-rye",
+      "classificationStatus": "approved",
+      "nameFr": "Pain de seigle",
+      "nameEn": "Rye bread",
+      "status": "verified",
+      "portionLabelFr": "1 tranche de pain de seigle (27 g)",
+      "portionLabelEn": "1 slice rye bread (27 g)",
+      "amount": 1,
+      "unit": "slice",
+      "grams": 27,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 27,
+        "label": "1 tranche de pain de seigle (27 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 27,
+        "label": "1 slice rye bread (27 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 13.2,
+        "fiberG": 1.1,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 68
+      },
+      "declaredKcal": 68,
+      "calculatedKcal": 66.9,
+      "absDiff": 1.0999999999999943,
+      "pctDiff": 1.6442451420029809,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-bread-ezekiel-original",
+      "classificationStatus": "approved",
+      "nameFr": "Pain Food For Life Ezekiel 4:9 Original, grains entiers germés",
+      "nameEn": "Food For Life Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+      "status": "verified",
+      "portionLabelFr": "1 tranche de pain Ezekiel 4:9 Original (34 g)",
+      "portionLabelEn": "1 slice Ezekiel 4:9 Original bread (34 g)",
+      "amount": 1,
+      "unit": "slice",
+      "grams": 34,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "label": "1 tranche de pain Ezekiel 4:9 Original (34 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "label": "1 slice Ezekiel 4:9 Original bread (34 g)"
+      },
+      "nutrients": {
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 80
+      },
+      "declaredKcal": 80,
+      "calculatedKcal": 84.5,
+      "absDiff": 4.5,
+      "pctDiff": 5.325443786982249,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-canned-clams",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -12994,6 +13011,147 @@
       "calculatedKcal": 60.7,
       "absDiff": 3.299999999999997,
       "pctDiff": 5.4365733113673755,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-sweet-potato",
+      "classificationStatus": "approved",
+      "nameFr": "Patate douce cuite au four, pelée",
+      "nameEn": "Baked sweet potato, skin removed",
+      "status": "verified",
+      "portionLabelFr": "75 g de patate douce cuite au four",
+      "portionLabelEn": "75 g baked sweet potato",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de patate douce cuite au four"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g baked sweet potato"
+      },
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15.5,
+        "fiberG": 2.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 68
+      },
+      "declaredKcal": 68,
+      "calculatedKcal": 68.9,
+      "absDiff": 0.9000000000000057,
+      "pctDiff": 1.3062409288824466,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-pasta-whole-wheat",
+      "classificationStatus": "approved",
+      "nameFr": "Pâtes de blé entier cuites",
+      "nameEn": "Cooked whole-wheat pasta",
+      "status": "verified",
+      "portionLabelFr": "75 g de pâtes de blé entier cuites",
+      "portionLabelEn": "75 g cooked whole-wheat pasta",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de pâtes de blé entier cuites"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked whole-wheat pasta"
+      },
+      "nutrients": {
+        "proteinG": 4.5,
+        "carbsG": 22.6,
+        "fiberG": 2.4,
+        "fatG": 1.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 112
+      },
+      "declaredKcal": 112,
+      "calculatedKcal": 120.10000000000001,
+      "absDiff": 8.100000000000009,
+      "pctDiff": 6.744379683597009,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-pasta-enriched",
+      "classificationStatus": "approved",
+      "nameFr": "Pâtes enrichies cuites, macaroni ou spaghetti",
+      "nameEn": "Cooked enriched pasta, macaroni or spaghetti",
+      "status": "verified",
+      "portionLabelFr": "75 g de pâtes enrichies cuites",
+      "portionLabelEn": "75 g cooked enriched pasta",
+      "amount": 75,
+      "unit": "g",
+      "grams": 75,
+      "parsedFr": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g de pâtes enrichies cuites"
+      },
+      "parsedEn": {
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "label": "75 g cooked enriched pasta"
+      },
+      "nutrients": {
+        "proteinG": 4.4,
+        "carbsG": 23.1,
+        "fiberG": 1.4,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 119
+      },
+      "declaredKcal": 119,
+      "calculatedKcal": 116.3,
+      "absDiff": 2.700000000000003,
+      "pctDiff": 2.3215821152192633,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13331,6 +13489,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-cooked-legumes",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-legume-chickpea",
+      "classificationStatus": "approved",
+      "nameFr": "Pois chiches mûrs, bouillis",
+      "nameEn": "Mature chickpeas, boiled",
+      "status": "verified",
+      "portionLabelFr": "100 g de pois chiches bouillis",
+      "portionLabelEn": "100 g boiled chickpeas",
+      "amount": 100,
+      "unit": "g",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g de pois chiches bouillis"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g boiled chickpeas"
+      },
+      "nutrients": {
+        "proteinG": 8.9,
+        "carbsG": 27.4,
+        "fiberG": 4.6,
+        "fatG": 2.6,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 164
+      },
+      "declaredKcal": 164,
+      "calculatedKcal": 168.6,
+      "absDiff": 4.599999999999994,
+      "pctDiff": 2.7283511269276364,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "legumes-snow-peas",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -13464,6 +13669,53 @@
       "calculatedKcal": 47.1,
       "absDiff": 2.8999999999999986,
       "pctDiff": 6.157112526539275,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-potato-boiled",
+      "classificationStatus": "approved",
+      "nameFr": "Pomme de terre bouillie sans pelure",
+      "nameEn": "Boiled potato without skin",
+      "status": "verified",
+      "portionLabelFr": "100 g de pomme de terre bouillie sans pelure",
+      "portionLabelEn": "100 g boiled skinless potato",
+      "amount": 100,
+      "unit": "g",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g de pomme de terre bouillie sans pelure"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g boiled skinless potato"
+      },
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 86
+      },
+      "declaredKcal": 86,
+      "calculatedKcal": 87.7,
+      "absDiff": 1.7000000000000028,
+      "pctDiff": 1.9384264538198435,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13848,6 +14100,53 @@
       "canVerify": true
     },
     {
+      "id": "feculents-mashed-potato-with-milk",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-potato-mashed-milk",
+      "classificationStatus": "approved",
+      "nameFr": "Purée de pommes de terre maison préparée avec lait 2 %",
+      "nameEn": "Homemade mashed potato prepared with 2% milk",
+      "status": "verified",
+      "portionLabelFr": "125 ml de purée de pommes de terre avec lait 2 % (111 g)",
+      "portionLabelEn": "125 ml mashed potato with 2% milk (111 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 110.95,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 111,
+        "label": "125 ml de purée de pommes de terre avec lait 2 % (111 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 111,
+        "label": "125 ml mashed potato with 2% milk (111 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 90
+      },
+      "declaredKcal": 90,
+      "calculatedKcal": 92,
+      "absDiff": 2,
+      "pctDiff": 2.1739130434782608,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "feculents-cooked-quinoa",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -14075,6 +14374,53 @@
       "calculatedKcal": 126.6,
       "absDiff": 0.4000000000000057,
       "pctDiff": 0.3159557661927375,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-rice-brown",
+      "classificationStatus": "approved",
+      "nameFr": "Riz brun à grain moyen, cuit",
+      "nameEn": "Cooked medium-grain brown rice",
+      "status": "verified",
+      "portionLabelFr": "100 g de riz brun cuit",
+      "portionLabelEn": "100 g cooked brown rice",
+      "amount": 100,
+      "unit": "g",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g de riz brun cuit"
+      },
+      "parsedEn": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "label": "100 g cooked brown rice"
+      },
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 23.5,
+        "fiberG": 1.9,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 112
+      },
+      "declaredKcal": 112,
+      "calculatedKcal": 110.4,
+      "absDiff": 1.5999999999999943,
+      "pctDiff": 1.4492753623188355,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -15062,6 +15408,53 @@
       "calculatedKcal": 92.9,
       "absDiff": 0.09999999999999432,
       "pctDiff": 0.10764262648008,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "displayCategory": "feculents",
+      "calculationGroup": "starch",
+      "exchangeProfileId": "starch-root-jerusalem-artichoke",
+      "classificationStatus": "approved",
+      "nameFr": "Topinambour cru",
+      "nameEn": "Raw Jerusalem artichoke",
+      "status": "verified",
+      "portionLabelFr": "85 g de topinambour cru",
+      "portionLabelEn": "85 g raw Jerusalem artichoke",
+      "amount": 85,
+      "unit": "g",
+      "grams": 85,
+      "parsedFr": {
+        "amount": 85,
+        "unit": "g",
+        "grams": 85,
+        "label": "85 g de topinambour cru"
+      },
+      "parsedEn": {
+        "amount": 85,
+        "unit": "g",
+        "grams": 85,
+        "label": "85 g raw Jerusalem artichoke"
+      },
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 14.8,
+        "fiberG": 1.4,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 66,
+      "absDiff": 4,
+      "pctDiff": 6.0606060606060606,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,

@@ -1,0 +1,10 @@
+category,actual,expected,ok
+noix_graines,32,32,true
+matieres_grasses,23,23,true
+legumes,36,36,true
+fruits,33,33,true
+poissons_fruits_mer,36,36,true
+viandes_volaille,38,38,true
+autres_sources_proteinees,27,27,true
+feculents,33,33,true
+produits_laitiers,29,29,true

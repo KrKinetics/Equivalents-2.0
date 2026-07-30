@@ -1,0 +1,81 @@
+{
+  "evidenceId": "food-for-life-ezekiel-49-original-sprouted-bread",
+  "brand": "Food For Life",
+  "product": "Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+  "flavor": "Original",
+  "market": "North America",
+  "officialUrl": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+  "productUrl": "https://www.foodforlife.com/product/breads/ezekiel-49-sprouted-whole-grain-bread",
+  "smartLabelUrl": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "slice",
+    "grams": 34
+  },
+  "originalLabelValues": {
+    "declaredKcal": 80,
+    "proteinG": 5,
+    "carbsG": 15,
+    "fiberG": 3,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 1 / 1",
+    "targetBasis": "1 slice",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 1,
+    "canonicalAmount": 1,
+    "labelUnit": "slice",
+    "canonicalUnit": "slice",
+    "labelGrams": 34,
+    "canonicalGrams": 34
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 80,
+    "proteinG": 5,
+    "carbsG": 15,
+    "fiberG": 3,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "storedRounded": {
+    "declaredKcal": 80,
+    "proteinG": 5,
+    "carbsG": 15,
+    "fiberG": 3,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 1,
+    "unit": "slice",
+    "grams": 34,
+    "labelFr": "1 tranche de pain Ezekiel 4:9 Original (34 g)",
+    "labelEn": "1 slice Ezekiel 4:9 Original bread (34 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/food-for-life-ezekiel-49-original-sprouted-bread-smartlabel.html",
+    "snapshotSha256": "4928dfb6db42932a462ac01c327ee83f099a3c46b37a17a173a5a28b131cdc7f",
+    "notes": "SmartLabel: Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative. Product page: Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "feculents-slice-ezekiel-sprouted-bread",
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "evidenceHash": "ac07919ab941a4a3658531faf7f2adcb194ba6673d7c11f44871be6d144ff119"
+}

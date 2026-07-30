@@ -14,6 +14,7 @@ on:
       - batch/meat-poultry-complete-individual-validation
       - batch/other-protein-sources-complete-individual-validation
       - batch/dairy-alternatives-complete-individual-validation
+      - batch/starches-complete-individual-validation
       - main
       - master
   pull_request:
@@ -366,6 +367,40 @@ jobs:
           npm run nutrition:batch:apply -- --dry-run src/data/approved-batches/dairy-alternatives-complete-individual-validation-29-foods.json
           git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json
 
+      - name: Validate starches batch with scope
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-starches-validate"
+          mkdir -p "$SANDBOX/reports"
+          if [ -f reports/batches/starches-complete-individual-validation-32-foods/pre-apply-payload.json ]; then
+            cp reports/batches/starches-complete-individual-validation-32-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          npm run nutrition:batch:validate -- src/data/approved-batches/starches-complete-individual-validation-32-foods.json
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          npm run nutrition:batch:scope -- src/data/approved-batches/starches-complete-individual-validation-32-foods.json
+
+      - name: Dry-run starches batch in sandbox
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-starches-sandbox"
+          rm -rf "$SANDBOX"
+          mkdir -p "$SANDBOX/reports" "$SANDBOX/backups"
+          if [ -f reports/batches/starches-complete-individual-validation-32-foods/pre-apply-payload.json ]; then
+            cp reports/batches/starches-complete-individual-validation-32-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          cp src/data/nutrition-data-version.json "$SANDBOX/nutrition-data-version.json"
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          VERSION_DATA_PATH="$SANDBOX/nutrition-data-version.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          BACKUPS_DIR="$SANDBOX/backups" \
+          npm run nutrition:batch:apply -- --dry-run src/data/approved-batches/starches-complete-individual-validation-32-foods.json
+          git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json
+
       - name: Check nutrition pilot scope
         run: npm run pilot:check
 
@@ -402,6 +437,9 @@ jobs:
             exit 1
           }
 
+      - name: Run final ecosystem closure audit
+        run: npm run nutrition:final-audit
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -411,6 +449,7 @@ jobs:
             ci-artifacts/reports/
             ci-batch-sandbox/reports/
             reports/batches/
+            reports/nutrition-source-of-truth-final-audit/
             reports/nutrition-pilot-*.json
             reports/nutrition-pilot-*.html
           if-no-files-found: ignore

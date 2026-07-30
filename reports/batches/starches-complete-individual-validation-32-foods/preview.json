@@ -1,0 +1,5471 @@
+{
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "generatedAt": "2026-07-30T22:05:55.924Z",
+  "foods": [
+    {
+      "id": "feculents-bagel",
+      "operation": "update",
+      "identity": {
+        "fr": "Bagel nature",
+        "en": "Plain bagel",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "egg",
+          "cinnamon-raisin",
+          "whole wheat"
+        ]
+      },
+      "expectedRecordId": "3671",
+      "selectedRecordId": "3671",
+      "recordId": "3671",
+      "cnfDescription": {
+        "en": "Bagel, plain (with onion, poppy seed and/or sesame seed)",
+        "fr": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3671",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Bagel, plain (with onion, poppy seed and/or sesame seed))",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3671"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 34.5 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 264,
+          "protein_g": 10.56,
+          "carbohydrate_g": 52.38,
+          "fibre_g": 1.6,
+          "total_fat_g": 1.32,
+          "saturated_fat_g": 0.36,
+          "polyunsaturated_fat_g": 0.526,
+          "monounsaturated_fat_g": 0.39
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 91.08,
+          "proteinG": 3.6431999999999998,
+          "carbsG": 18.071099999999998,
+          "fiberG": 0.5519999999999999,
+          "fatG": 0.45539999999999997,
+          "saturatedFatG": 0.12419999999999999,
+          "polyunsaturatedFatG": 0.18147,
+          "monounsaturatedFatG": 0.13455
+        },
+        "storedRounded": {
+          "declaredKcal": 91,
+          "proteinG": 3.6,
+          "carbsG": 18.1,
+          "fiberG": 0.6,
+          "fatG": 0.5,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3671",
+        "selectedRecordId": "3671",
+        "selected": {
+          "recordId": "3671",
+          "descriptionEn": "Bagel, plain (with onion, poppy seed and/or sesame seed)",
+          "descriptionFr": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 264,
+            "protein_g": 10.56,
+            "carbohydrate_g": 52.38,
+            "fibre_g": 1.6,
+            "total_fat_g": 1.32,
+            "saturated_fat_g": 0.36,
+            "polyunsaturated_fat_g": 0.526,
+            "monounsaturated_fat_g": 0.39
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3671",
+            "descriptionEn": "Bagel, plain (with onion, poppy seed and/or sesame seed)",
+            "descriptionFr": "Bagel, nature (avec oignon, graines de pavot et/ou graines de sesame)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 264,
+              "protein_g": 10.56,
+              "carbohydrate_g": 52.38,
+              "fibre_g": 1.6,
+              "total_fat_g": 1.32,
+              "saturated_fat_g": 0.36,
+              "polyunsaturated_fat_g": 0.526,
+              "monounsaturated_fat_g": 0.39
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3671: Bagel, plain (with onion, poppy seed and/or sesame seed).",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 18,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 108
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.1,
+        "fiberG": 0.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 91
+      },
+      "beforePortion": {
+        "labelFr": "½ Bagel (~135 g)",
+        "labelEn": "½ Bagel (~135 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 135,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ bagel nature moyen (34,5 g)",
+        "labelEn": "½ medium plain bagel (34.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 34.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34.5,
+            "label": "½ bagel nature moyen (34,5 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34.5,
+            "label": "½ medium plain bagel (34.5 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "operation": "update",
+      "identity": {
+        "fr": "Gruau instantané nature, sec",
+        "en": "Plain instant oatmeal, dry",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "prepared",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ]
+      },
+      "expectedRecordId": "1413",
+      "selectedRecordId": "1413",
+      "recordId": "1413",
+      "cnfDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, dry",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1413",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cereal, hot, oats (oatmeal), instant: regular, dry)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1413"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 28 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 382,
+          "protein_g": 12.98,
+          "carbohydrate_g": 67.53,
+          "fibre_g": 10.1,
+          "total_fat_g": 6.68,
+          "saturated_fat_g": 1.161,
+          "polyunsaturated_fat_g": 2.458,
+          "monounsaturated_fat_g": 2.031
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 106.96000000000001,
+          "proteinG": 3.6344000000000003,
+          "carbsG": 18.908400000000004,
+          "fiberG": 2.8280000000000003,
+          "fatG": 1.8704,
+          "saturatedFatG": 0.32508000000000004,
+          "polyunsaturatedFatG": 0.6882400000000001,
+          "monounsaturatedFatG": 0.5686800000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 107,
+          "proteinG": 3.6,
+          "carbsG": 18.9,
+          "fiberG": 2.8,
+          "fatG": 1.9,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 0.7,
+          "monounsaturatedFatG": 0.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1413",
+        "selectedRecordId": "1413",
+        "selected": {
+          "recordId": "1413",
+          "descriptionEn": "Cereal, hot, oats (oatmeal), instant: regular, dry",
+          "descriptionFr": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 28,
+          "per100g": {
+            "energy_kcal": 382,
+            "protein_g": 12.98,
+            "carbohydrate_g": 67.53,
+            "fibre_g": 10.1,
+            "total_fat_g": 6.68,
+            "saturated_fat_g": 1.161,
+            "polyunsaturated_fat_g": 2.458,
+            "monounsaturated_fat_g": 2.031
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1413",
+            "descriptionEn": "Cereal, hot, oats (oatmeal), instant: regular, dry",
+            "descriptionFr": "Céréale, chaude, avoine (gruau), instantanée: nature, sèche",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 28,
+            "per100g": {
+              "energy_kcal": 382,
+              "protein_g": 12.98,
+              "carbohydrate_g": 67.53,
+              "fibre_g": 10.1,
+              "total_fat_g": 6.68,
+              "saturated_fat_g": 1.161,
+              "polyunsaturated_fat_g": 2.458,
+              "monounsaturated_fat_g": 2.031
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1413: Cereal, hot, oats (oatmeal), instant: regular, dry.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 11,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.9,
+        "fiberG": 2.8,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 107
+      },
+      "beforePortion": {
+        "labelFr": "75 ml de Gruau nature (~25 g), avant cuisson",
+        "labelEn": "75 ml Plain oatmeal (~25 g), uncooked",
+        "amount": 75,
+        "unit": "ml",
+        "grams": 25,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 sachet de gruau instantané nature, sec (28 g)",
+        "labelEn": "1 packet plain instant oatmeal, dry (28 g)",
+        "amount": 28,
+        "unit": "g",
+        "grams": 28,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠28), unit(count≠g)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 28,
+            "label": "1 sachet de gruau instantané nature, sec (28 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠28), unit(count≠g)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 28,
+            "label": "1 packet plain instant oatmeal, dry (28 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "operation": "update",
+      "identity": {
+        "fr": "Avoine sèche",
+        "en": "Dry oats",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "prepared",
+          "instant flavoured",
+          "granola"
+        ]
+      },
+      "expectedRecordId": "4421",
+      "selectedRecordId": "4421",
+      "recordId": "4421",
+      "cnfDescription": {
+        "en": "Grains, oats, dry",
+        "fr": "Grains céréaliers, avoine, sec"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4421",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, oats, dry)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, avoine, sec",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4421"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 35 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 389,
+          "protein_g": 16.89,
+          "carbohydrate_g": 66.27,
+          "fibre_g": 10.6,
+          "total_fat_g": 6.9,
+          "saturated_fat_g": 1.217,
+          "polyunsaturated_fat_g": 2.535,
+          "monounsaturated_fat_g": 2.178
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 136.14999999999998,
+          "proteinG": 5.9115,
+          "carbsG": 23.194499999999998,
+          "fiberG": 3.7099999999999995,
+          "fatG": 2.415,
+          "saturatedFatG": 0.42595,
+          "polyunsaturatedFatG": 0.88725,
+          "monounsaturatedFatG": 0.7623
+        },
+        "storedRounded": {
+          "declaredKcal": 136,
+          "proteinG": 5.9,
+          "carbsG": 23.2,
+          "fiberG": 3.7,
+          "fatG": 2.4,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 0.9,
+          "monounsaturatedFatG": 0.8
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4421",
+        "selectedRecordId": "4421",
+        "selected": {
+          "recordId": "4421",
+          "descriptionEn": "Grains, oats, dry",
+          "descriptionFr": "Grains céréaliers, avoine, sec",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 389,
+            "protein_g": 16.89,
+            "carbohydrate_g": 66.27,
+            "fibre_g": 10.6,
+            "total_fat_g": 6.9,
+            "saturated_fat_g": 1.217,
+            "polyunsaturated_fat_g": 2.535,
+            "monounsaturated_fat_g": 2.178
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4421",
+            "descriptionEn": "Grains, oats, dry",
+            "descriptionFr": "Grains céréaliers, avoine, sec",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 389,
+              "protein_g": 16.89,
+              "carbohydrate_g": 66.27,
+              "fibre_g": 10.6,
+              "total_fat_g": 6.9,
+              "saturated_fat_g": 1.217,
+              "polyunsaturated_fat_g": 2.535,
+              "monounsaturated_fat_g": 2.178
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4421: Grains, oats, dry.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 88
+      },
+      "afterNutrients": {
+        "proteinG": 5.9,
+        "carbsG": 23.2,
+        "fiberG": 3.7,
+        "fatG": 2.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 136
+      },
+      "beforePortion": {
+        "labelFr": "35 g de Flocons d'avoine (50 ml), avant cuisson",
+        "labelEn": "35 g Rolled oats (50 ml), uncooked",
+        "amount": 50,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "35 g d’avoine sèche",
+        "labelEn": "35 g dry oats",
+        "amount": 35,
+        "unit": "g",
+        "grams": 35,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-legumes",
+      "operation": "update",
+      "identity": {
+        "fr": "Pois chiches mûrs, bouillis",
+        "en": "Mature chickpeas, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "canned",
+          "dry",
+          "hummus",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "3390",
+      "selectedRecordId": "3390",
+      "recordId": "3390",
+      "cnfDescription": {
+        "en": "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled",
+        "fr": "Pois chiches (garbanzo), grains mûrs, bouillis"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3390",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pois chiches (garbanzo), grains mûrs, bouillis",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3390"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 164,
+          "protein_g": 8.86,
+          "carbohydrate_g": 27.42,
+          "fibre_g": 4.56,
+          "total_fat_g": 2.59,
+          "saturated_fat_g": 0.269,
+          "polyunsaturated_fat_g": 1.156,
+          "monounsaturated_fat_g": 0.583
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 164,
+          "proteinG": 8.86,
+          "carbsG": 27.42,
+          "fiberG": 4.56,
+          "fatG": 2.59,
+          "saturatedFatG": 0.269,
+          "polyunsaturatedFatG": 1.156,
+          "monounsaturatedFatG": 0.583
+        },
+        "storedRounded": {
+          "declaredKcal": 164,
+          "proteinG": 8.9,
+          "carbsG": 27.4,
+          "fiberG": 4.6,
+          "fatG": 2.6,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 1.2,
+          "monounsaturatedFatG": 0.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3390",
+        "selectedRecordId": "3390",
+        "selected": {
+          "recordId": "3390",
+          "descriptionEn": "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled",
+          "descriptionFr": "Pois chiches (garbanzo), grains mûrs, bouillis",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 67,
+          "per100g": {
+            "energy_kcal": 164,
+            "protein_g": 8.86,
+            "carbohydrate_g": 27.42,
+            "fibre_g": 4.56,
+            "total_fat_g": 2.59,
+            "saturated_fat_g": 0.269,
+            "polyunsaturated_fat_g": 1.156,
+            "monounsaturated_fat_g": 0.583
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3390",
+            "descriptionEn": "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled",
+            "descriptionFr": "Pois chiches (garbanzo), grains mûrs, bouillis",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 67,
+            "per100g": {
+              "energy_kcal": 164,
+              "protein_g": 8.86,
+              "carbohydrate_g": 27.42,
+              "fibre_g": 4.56,
+              "total_fat_g": 2.59,
+              "saturated_fat_g": 0.269,
+              "polyunsaturated_fat_g": 1.156,
+              "monounsaturated_fat_g": 0.583
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3390: Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 7,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 105
+      },
+      "afterNutrients": {
+        "proteinG": 8.9,
+        "carbsG": 27.4,
+        "fiberG": 4.6,
+        "fatG": 2.6,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 164
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Légumineuses cuites (100 g)",
+        "labelEn": "125 ml Cooked legumes (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de pois chiches bouillis",
+        "labelEn": "100 g boiled chickpeas",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 105 vs Atwater 44.0 (Δ 61.0 / 138.6%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "operation": "update",
+      "identity": {
+        "fr": "Maïs jaune sucré, bouilli et égoutté",
+        "en": "Yellow sweet corn, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "frozen",
+          "white corn",
+          "salt added",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "2068",
+      "selectedRecordId": "2068",
+      "recordId": "2068",
+      "cnfDescription": {
+        "en": "Corn, sweet, yellow, on or off the cob, boiled, drained",
+        "fr": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2068",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Corn, sweet, yellow, on or off the cob, boiled, drained)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2068"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 96,
+          "protein_g": 3.41,
+          "carbohydrate_g": 20.98,
+          "fibre_g": 2.4,
+          "total_fat_g": 1.5,
+          "saturated_fat_g": 0.197,
+          "polyunsaturated_fat_g": 0.603,
+          "monounsaturated_fat_g": 0.374
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 72,
+          "proteinG": 2.5575,
+          "carbsG": 15.735,
+          "fiberG": 1.7999999999999998,
+          "fatG": 1.125,
+          "saturatedFatG": 0.14775,
+          "polyunsaturatedFatG": 0.45225,
+          "monounsaturatedFatG": 0.28049999999999997
+        },
+        "storedRounded": {
+          "declaredKcal": 72,
+          "proteinG": 2.6,
+          "carbsG": 15.7,
+          "fiberG": 1.8,
+          "fatG": 1.1,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.5,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2068",
+        "selectedRecordId": "2068",
+        "selected": {
+          "recordId": "2068",
+          "descriptionEn": "Corn, sweet, yellow, on or off the cob, boiled, drained",
+          "descriptionFr": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 96,
+            "protein_g": 3.41,
+            "carbohydrate_g": 20.98,
+            "fibre_g": 2.4,
+            "total_fat_g": 1.5,
+            "saturated_fat_g": 0.197,
+            "polyunsaturated_fat_g": 0.603,
+            "monounsaturated_fat_g": 0.374
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2068",
+            "descriptionEn": "Corn, sweet, yellow, on or off the cob, boiled, drained",
+            "descriptionFr": "Maïs sucré, jaune, avec ou sans épi, bouilli, égoutté",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 96,
+              "protein_g": 3.41,
+              "carbohydrate_g": 20.98,
+              "fibre_g": 2.4,
+              "total_fat_g": 1.5,
+              "saturated_fat_g": 0.197,
+              "polyunsaturated_fat_g": 0.603,
+              "monounsaturated_fat_g": 0.374
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2068: Corn, sweet, yellow, on or off the cob, boiled, drained.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 11,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 15.7,
+        "fiberG": 1.8,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 72
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Maïs bouilli, égoutté (75 g)",
+        "labelEn": "125 ml Boiled drained corn (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de maïs jaune bouilli et égoutté",
+        "labelEn": "75 g boiled drained yellow corn",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 64 vs Atwater 52.0 (Δ 12.0 / 23.1%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 72 vs Atwater 83.1 (13.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "operation": "update",
+      "identity": {
+        "fr": "Muffin anglais nature",
+        "en": "Plain English muffin",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "multigrain",
+          "raisin-cinnamon",
+          "hamburger",
+          "hot dog"
+        ]
+      },
+      "expectedRecordId": "3900",
+      "selectedRecordId": "3900",
+      "recordId": "3900",
+      "cnfDescription": {
+        "en": "English muffin, plain (also sourdough)",
+        "fr": "Muffin anglais, nature (aussi levain)"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3900",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (English muffin, plain (also sourdough))",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Muffin anglais, nature (aussi levain)",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3900"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 28.5 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 235.153536542,
+          "protein_g": 9.410310206,
+          "carbohydrate_g": 44.91857393,
+          "fibre_g": 2.683600698,
+          "total_fat_g": 1.982,
+          "saturated_fat_g": 0.633361276,
+          "polyunsaturated_fat_g": 1.019751849,
+          "monounsaturated_fat_g": 0.330562842
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.01875791447,
+          "proteinG": 2.6819384087099998,
+          "carbsG": 12.801793570049998,
+          "fiberG": 0.7648261989299999,
+          "fatG": 0.56487,
+          "saturatedFatG": 0.18050796366,
+          "polyunsaturatedFatG": 0.29062927696499996,
+          "monounsaturatedFatG": 0.09421040996999999
+        },
+        "storedRounded": {
+          "declaredKcal": 67,
+          "proteinG": 2.7,
+          "carbsG": 12.8,
+          "fiberG": 0.8,
+          "fatG": 0.6,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3900",
+        "selectedRecordId": "3900",
+        "selected": {
+          "recordId": "3900",
+          "descriptionEn": "English muffin, plain (also sourdough)",
+          "descriptionFr": "Muffin anglais, nature (aussi levain)",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 30,
+          "per100g": {
+            "energy_kcal": 235.153536542,
+            "protein_g": 9.410310206,
+            "carbohydrate_g": 44.91857393,
+            "fibre_g": 2.683600698,
+            "total_fat_g": 1.982,
+            "saturated_fat_g": 0.633361276,
+            "polyunsaturated_fat_g": 1.019751849,
+            "monounsaturated_fat_g": 0.330562842
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3900",
+            "descriptionEn": "English muffin, plain (also sourdough)",
+            "descriptionFr": "Muffin anglais, nature (aussi levain)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 30,
+            "per100g": {
+              "energy_kcal": 235.153536542,
+              "protein_g": 9.410310206,
+              "carbohydrate_g": 44.91857393,
+              "fibre_g": 2.683600698,
+              "total_fat_g": 1.982,
+              "saturated_fat_g": 0.633361276,
+              "polyunsaturated_fat_g": 1.019751849,
+              "monounsaturated_fat_g": 0.330562842
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3900: English muffin, plain (also sourdough).",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 93
+      },
+      "afterNutrients": {
+        "proteinG": 2.7,
+        "carbsG": 12.8,
+        "fiberG": 0.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 67
+      },
+      "beforePortion": {
+        "labelFr": "½ Muffin anglais, pain hot-dog ou hamburger",
+        "labelEn": "½ English muffin, hot dog or hamburger bun",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ muffin anglais nature (28,5 g)",
+        "labelEn": "½ plain English muffin (28.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 28.5,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 93 vs Atwater 77.0 (Δ 16.0 / 20.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 28.5,
+            "label": "½ muffin anglais nature (28,5 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 28.5,
+            "label": "½ plain English muffin (28.5 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-barley",
+      "operation": "update",
+      "identity": {
+        "fr": "Orge perlé cuit",
+        "en": "Cooked pearled barley",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "malt",
+          "flour"
+        ]
+      },
+      "expectedRecordId": "4486",
+      "selectedRecordId": "4486",
+      "recordId": "4486",
+      "cnfDescription": {
+        "en": "Grains, barley, pearled, cooked",
+        "fr": "Grains céréaliers, orge, perlé, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4486",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, barley, pearled, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, orge, perlé, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4486"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 123,
+          "protein_g": 2.26,
+          "carbohydrate_g": 28.22,
+          "fibre_g": 2.46,
+          "total_fat_g": 0.44,
+          "saturated_fat_g": 0.093,
+          "polyunsaturated_fat_g": 0.214,
+          "monounsaturated_fat_g": 0.057
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 92.25,
+          "proteinG": 1.6949999999999998,
+          "carbsG": 21.165,
+          "fiberG": 1.845,
+          "fatG": 0.33,
+          "saturatedFatG": 0.06975,
+          "polyunsaturatedFatG": 0.1605,
+          "monounsaturatedFatG": 0.04275
+        },
+        "storedRounded": {
+          "declaredKcal": 92,
+          "proteinG": 1.7,
+          "carbsG": 21.2,
+          "fiberG": 1.8,
+          "fatG": 0.3,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4486",
+        "selectedRecordId": "4486",
+        "selected": {
+          "recordId": "4486",
+          "descriptionEn": "Grains, barley, pearled, cooked",
+          "descriptionFr": "Grains céréaliers, orge, perlé, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 123,
+            "protein_g": 2.26,
+            "carbohydrate_g": 28.22,
+            "fibre_g": 2.46,
+            "total_fat_g": 0.44,
+            "saturated_fat_g": 0.093,
+            "polyunsaturated_fat_g": 0.214,
+            "monounsaturated_fat_g": 0.057
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4486",
+            "descriptionEn": "Grains, barley, pearled, cooked",
+            "descriptionFr": "Grains céréaliers, orge, perlé, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 123,
+              "protein_g": 2.26,
+              "carbohydrate_g": 28.22,
+              "fibre_g": 2.46,
+              "total_fat_g": 0.44,
+              "saturated_fat_g": 0.093,
+              "polyunsaturated_fat_g": 0.214,
+              "monounsaturated_fat_g": 0.057
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4486: Grains, barley, pearled, cooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 6,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 109
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 21.2,
+        "fiberG": 1.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 92
+      },
+      "beforePortion": {
+        "labelFr": "125 ml d'Orge cuit (75 g)",
+        "labelEn": "125 ml Cooked barley (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g d’orge perlé cuit",
+        "labelEn": "75 g cooked pearled barley",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 109 vs Atwater 88.0 (Δ 21.0 / 23.9%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "operation": "update",
+      "identity": {
+        "fr": "Petit pain pita de blé entier",
+        "en": "Small whole-wheat pita",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "white",
+          "Greek style",
+          "fruit",
+          "cracker"
+        ]
+      },
+      "expectedRecordId": "3709",
+      "selectedRecordId": "3709",
+      "recordId": "3709",
+      "cnfDescription": {
+        "en": "Bread, pita, whole wheat",
+        "fr": "Pain, pita, blé entier"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3709",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Bread, pita, whole wheat)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pain, pita, blé entier",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3709"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 32 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 265.047744144,
+          "protein_g": 11.343911194,
+          "carbohydrate_g": 55.187174696,
+          "fibre_g": 6.273486849,
+          "total_fat_g": 1.726,
+          "saturated_fat_g": 0.42511929,
+          "polyunsaturated_fat_g": 0.820334857,
+          "monounsaturated_fat_g": 0.46736028
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 84.81527812607999,
+          "proteinG": 3.63005158208,
+          "carbsG": 17.65989590272,
+          "fiberG": 2.00751579168,
+          "fatG": 0.55232,
+          "saturatedFatG": 0.1360381728,
+          "polyunsaturatedFatG": 0.26250715424,
+          "monounsaturatedFatG": 0.1495552896
+        },
+        "storedRounded": {
+          "declaredKcal": 85,
+          "proteinG": 3.6,
+          "carbsG": 17.7,
+          "fiberG": 2,
+          "fatG": 0.6,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3709",
+        "selectedRecordId": "3709",
+        "selected": {
+          "recordId": "3709",
+          "descriptionEn": "Bread, pita, whole wheat",
+          "descriptionFr": "Pain, pita, blé entier",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 265.047744144,
+            "protein_g": 11.343911194,
+            "carbohydrate_g": 55.187174696,
+            "fibre_g": 6.273486849,
+            "total_fat_g": 1.726,
+            "saturated_fat_g": 0.42511929,
+            "polyunsaturated_fat_g": 0.820334857,
+            "monounsaturated_fat_g": 0.46736028
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3709",
+            "descriptionEn": "Bread, pita, whole wheat",
+            "descriptionFr": "Pain, pita, blé entier",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 265.047744144,
+              "protein_g": 11.343911194,
+              "carbohydrate_g": 55.187174696,
+              "fibre_g": 6.273486849,
+              "total_fat_g": 1.726,
+              "saturated_fat_g": 0.42511929,
+              "polyunsaturated_fat_g": 0.820334857,
+              "monounsaturated_fat_g": 0.46736028
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3709: Bread, pita, whole wheat.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 109
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 17.7,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 85
+      },
+      "beforePortion": {
+        "labelFr": "1 Pain pita de 10,2 cm (blé)",
+        "labelEn": "1 10.2 cm (4 in) wheat pita",
+        "amount": 1,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petit pita de blé entier (32 g)",
+        "labelEn": "1 small whole-wheat pita (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 109 vs Atwater 72.0 (Δ 37.0 / 51.4%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 petit pita de blé entier (32 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 small whole-wheat pita (32 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "operation": "update",
+      "identity": {
+        "fr": "Pâtes enrichies cuites, macaroni ou spaghetti",
+        "en": "Cooked enriched pasta, macaroni or spaghetti",
+        "preparationState": "cooked",
+        "exclusions": [
+          "whole wheat",
+          "egg noodles",
+          "corn pasta",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "4464",
+      "selectedRecordId": "4464",
+      "recordId": "4464",
+      "cnfDescription": {
+        "en": "Pasta (macaroni, spaghetti), enriched, cooked",
+        "fr": "Pâtes (macaroni, spaghetti), enrichi, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4464",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pasta (macaroni, spaghetti), enriched, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pâtes (macaroni, spaghetti), enrichi, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4464"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 158,
+          "protein_g": 5.8,
+          "carbohydrate_g": 30.86,
+          "fibre_g": 1.8,
+          "total_fat_g": 0.93,
+          "saturated_fat_g": 0.176,
+          "polyunsaturated_fat_g": 0.326,
+          "monounsaturated_fat_g": 0.131
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 118.5,
+          "proteinG": 4.35,
+          "carbsG": 23.145,
+          "fiberG": 1.35,
+          "fatG": 0.6975,
+          "saturatedFatG": 0.132,
+          "polyunsaturatedFatG": 0.2445,
+          "monounsaturatedFatG": 0.09825
+        },
+        "storedRounded": {
+          "declaredKcal": 119,
+          "proteinG": 4.4,
+          "carbsG": 23.1,
+          "fiberG": 1.4,
+          "fatG": 0.7,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4464",
+        "selectedRecordId": "4464",
+        "selected": {
+          "recordId": "4464",
+          "descriptionEn": "Pasta (macaroni, spaghetti), enriched, cooked",
+          "descriptionFr": "Pâtes (macaroni, spaghetti), enrichi, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 158,
+            "protein_g": 5.8,
+            "carbohydrate_g": 30.86,
+            "fibre_g": 1.8,
+            "total_fat_g": 0.93,
+            "saturated_fat_g": 0.176,
+            "polyunsaturated_fat_g": 0.326,
+            "monounsaturated_fat_g": 0.131
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4464",
+            "descriptionEn": "Pasta (macaroni, spaghetti), enriched, cooked",
+            "descriptionFr": "Pâtes (macaroni, spaghetti), enrichi, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 158,
+              "protein_g": 5.8,
+              "carbohydrate_g": 30.86,
+              "fibre_g": 1.8,
+              "total_fat_g": 0.93,
+              "saturated_fat_g": 0.176,
+              "polyunsaturated_fat_g": 0.326,
+              "monounsaturated_fat_g": 0.131
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4464: Pasta (macaroni, spaghetti), enriched, cooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 20,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 72
+      },
+      "afterNutrients": {
+        "proteinG": 4.4,
+        "carbsG": 23.1,
+        "fiberG": 1.4,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 119
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Pâtes cuites (blé) (75 g)",
+        "labelEn": "125 ml Cooked pasta (wheat) (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de pâtes enrichies cuites",
+        "labelEn": "75 g cooked enriched pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 72 vs Atwater 92.0 (Δ 20.0 / 21.7%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-mashed-potato-with-milk",
+      "operation": "update",
+      "identity": {
+        "fr": "Purée de pommes de terre maison préparée avec lait 2 %",
+        "en": "Homemade mashed potato prepared with 2% milk",
+        "preparationState": "cooked",
+        "exclusions": [
+          "butter",
+          "margarine",
+          "dehydrated",
+          "ready-to-eat"
+        ]
+      },
+      "expectedRecordId": "5278",
+      "selectedRecordId": "5278",
+      "recordId": "5278",
+      "cnfDescription": {
+        "en": "Potato, mashed, homemade, prepared with 2% M.F. milk",
+        "fr": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5278",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Potato, mashed, homemade, prepared with 2% M.F. milk)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5278"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 110.95 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 81,
+          "protein_g": 1.891,
+          "carbohydrate_g": 18.071,
+          "fibre_g": 1.224,
+          "total_fat_g": 0.325,
+          "saturated_fat_g": 0.101,
+          "polyunsaturated_fat_g": 0.04,
+          "monounsaturated_fat_g": 0.042
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 89.86949999999999,
+          "proteinG": 2.0980645,
+          "carbsG": 20.0497745,
+          "fiberG": 1.3580279999999998,
+          "fatG": 0.3605875,
+          "saturatedFatG": 0.1120595,
+          "polyunsaturatedFatG": 0.044379999999999996,
+          "monounsaturatedFatG": 0.046599
+        },
+        "storedRounded": {
+          "declaredKcal": 90,
+          "proteinG": 2.1,
+          "carbsG": 20,
+          "fiberG": 1.4,
+          "fatG": 0.4,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "5278",
+        "selectedRecordId": "5278",
+        "selected": {
+          "recordId": "5278",
+          "descriptionEn": "Potato, mashed, homemade, prepared with 2% M.F. milk",
+          "descriptionFr": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 26,
+          "per100g": {
+            "energy_kcal": 81,
+            "protein_g": 1.891,
+            "carbohydrate_g": 18.071,
+            "fibre_g": 1.224,
+            "total_fat_g": 0.325,
+            "saturated_fat_g": 0.101,
+            "polyunsaturated_fat_g": 0.04,
+            "monounsaturated_fat_g": 0.042
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5278",
+            "descriptionEn": "Potato, mashed, homemade, prepared with 2% M.F. milk",
+            "descriptionFr": "Pomme de terre, purée, faite maison, préparée avec lait 2% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 26,
+            "per100g": {
+              "energy_kcal": 81,
+              "protein_g": 1.891,
+              "carbohydrate_g": 18.071,
+              "fibre_g": 1.224,
+              "total_fat_g": 0.325,
+              "saturated_fat_g": 0.101,
+              "polyunsaturated_fat_g": 0.04,
+              "monounsaturated_fat_g": 0.042
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 5278: Potato, mashed, homemade, prepared with 2% M.F. milk.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 14,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 102
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 90
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Pomme de terre en purée avec lait",
+        "labelEn": "125 ml Mashed potato with milk",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de purée de pommes de terre avec lait 2 % (111 g)",
+        "labelEn": "125 ml mashed potato with 2% milk (111 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 110.95,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 102 vs Atwater 64.0 (Δ 38.0 / 59.4%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "operation": "update",
+      "identity": {
+        "fr": "Patate douce cuite au four, pelée",
+        "en": "Baked sweet potato, skin removed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "boiled",
+          "canned",
+          "candied"
+        ]
+      },
+      "expectedRecordId": "2241",
+      "selectedRecordId": "2241",
+      "recordId": "2241",
+      "cnfDescription": {
+        "en": "Sweet potato, baked, skin removed after baking",
+        "fr": "Patate douce, cuite au four, pelée après la cuisson"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2241",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Sweet potato, baked, skin removed after baking)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Patate douce, cuite au four, pelée après la cuisson",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2241"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 90,
+          "protein_g": 2.01,
+          "carbohydrate_g": 20.71,
+          "fibre_g": 3.3,
+          "total_fat_g": 0.15,
+          "saturated_fat_g": 0.052,
+          "polyunsaturated_fat_g": 0.092,
+          "monounsaturated_fat_g": 0.002
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.5,
+          "proteinG": 1.5074999999999998,
+          "carbsG": 15.5325,
+          "fiberG": 2.4749999999999996,
+          "fatG": 0.11249999999999999,
+          "saturatedFatG": 0.039,
+          "polyunsaturatedFatG": 0.069,
+          "monounsaturatedFatG": 0.0015
+        },
+        "storedRounded": {
+          "declaredKcal": 68,
+          "proteinG": 1.5,
+          "carbsG": 15.5,
+          "fiberG": 2.5,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2241",
+        "selectedRecordId": "2241",
+        "selected": {
+          "recordId": "2241",
+          "descriptionEn": "Sweet potato, baked, skin removed after baking",
+          "descriptionFr": "Patate douce, cuite au four, pelée après la cuisson",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 90,
+            "protein_g": 2.01,
+            "carbohydrate_g": 20.71,
+            "fibre_g": 3.3,
+            "total_fat_g": 0.15,
+            "saturated_fat_g": 0.052,
+            "polyunsaturated_fat_g": 0.092,
+            "monounsaturated_fat_g": 0.002
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2241",
+            "descriptionEn": "Sweet potato, baked, skin removed after baking",
+            "descriptionFr": "Patate douce, cuite au four, pelée après la cuisson",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 90,
+              "protein_g": 2.01,
+              "carbohydrate_g": 20.71,
+              "fibre_g": 3.3,
+              "total_fat_g": 0.15,
+              "saturated_fat_g": 0.052,
+              "polyunsaturated_fat_g": 0.092,
+              "monounsaturated_fat_g": 0.002
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2241: Sweet potato, baked, skin removed after baking.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 1,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 82
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15.5,
+        "fiberG": 2.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 68
+      },
+      "beforePortion": {
+        "labelFr": "½ Pomme de terre moyenne (Douce) (75 g)",
+        "labelEn": "½ medium sweet potato (75 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 75,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de patate douce cuite au four",
+        "labelEn": "75 g baked sweet potato",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 82 vs Atwater 16.0 (Δ 66.0 / 412.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~82 kcal / 3 g protein / 1 g carbs",
+          "suspectId": "sweet_potato"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-buckwheat",
+      "operation": "update",
+      "identity": {
+        "fr": "Gruau de sarrasin rôti, cuit",
+        "en": "Roasted buckwheat groats, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "flour",
+          "pancake"
+        ]
+      },
+      "expectedRecordId": "4413",
+      "selectedRecordId": "4413",
+      "recordId": "4413",
+      "cnfDescription": {
+        "en": "Grains, buckwheat groats, roasted, cooked",
+        "fr": "Grains céréaliers, gruau de sarrasin, rôti, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4413",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, buckwheat groats, roasted, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, gruau de sarrasin, rôti, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4413"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 92,
+          "protein_g": 3.38,
+          "carbohydrate_g": 19.94,
+          "fibre_g": 2.7,
+          "total_fat_g": 0.62,
+          "saturated_fat_g": 0.134,
+          "polyunsaturated_fat_g": 0.188,
+          "monounsaturated_fat_g": 0.188
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 69,
+          "proteinG": 2.535,
+          "carbsG": 14.955000000000002,
+          "fiberG": 2.0250000000000004,
+          "fatG": 0.46499999999999997,
+          "saturatedFatG": 0.1005,
+          "polyunsaturatedFatG": 0.14100000000000001,
+          "monounsaturatedFatG": 0.14100000000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 69,
+          "proteinG": 2.5,
+          "carbsG": 15,
+          "fiberG": 2,
+          "fatG": 0.5,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4413",
+        "selectedRecordId": "4413",
+        "selected": {
+          "recordId": "4413",
+          "descriptionEn": "Grains, buckwheat groats, roasted, cooked",
+          "descriptionFr": "Grains céréaliers, gruau de sarrasin, rôti, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 92,
+            "protein_g": 3.38,
+            "carbohydrate_g": 19.94,
+            "fibre_g": 2.7,
+            "total_fat_g": 0.62,
+            "saturated_fat_g": 0.134,
+            "polyunsaturated_fat_g": 0.188,
+            "monounsaturated_fat_g": 0.188
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4413",
+            "descriptionEn": "Grains, buckwheat groats, roasted, cooked",
+            "descriptionFr": "Grains céréaliers, gruau de sarrasin, rôti, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 92,
+              "protein_g": 3.38,
+              "carbohydrate_g": 19.94,
+              "fibre_g": 2.7,
+              "total_fat_g": 0.62,
+              "saturated_fat_g": 0.134,
+              "polyunsaturated_fat_g": 0.188,
+              "monounsaturated_fat_g": 0.188
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4413: Grains, buckwheat groats, roasted, cooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Sarrasin cuit (75 g)",
+        "labelEn": "125 ml Cooked buckwheat (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de gruau de sarrasin cuit",
+        "labelEn": "75 g cooked buckwheat groats",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 85 vs Atwater 76.0 (11.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-rice",
+      "operation": "update",
+      "identity": {
+        "fr": "Riz blanc à grain moyen, cuit",
+        "en": "Cooked medium-grain white rice",
+        "preparationState": "cooked",
+        "exclusions": [
+          "brown",
+          "glutinous",
+          "parboiled",
+          "instant",
+          "seasoned"
+        ]
+      },
+      "expectedRecordId": "4475",
+      "selectedRecordId": "4475",
+      "recordId": "4475",
+      "cnfDescription": {
+        "en": "Grains, rice, white, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz blanc, grain moyen, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4475",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, rice, white, medium-grain, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, riz blanc, grain moyen, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4475"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 130,
+          "protein_g": 2.38,
+          "carbohydrate_g": 28.59,
+          "fibre_g": null,
+          "total_fat_g": 0.21,
+          "saturated_fat_g": 0.057,
+          "polyunsaturated_fat_g": 0.056,
+          "monounsaturated_fat_g": 0.065
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 130,
+          "proteinG": 2.38,
+          "carbsG": 28.59,
+          "fiberG": null,
+          "fatG": 0.21,
+          "saturatedFatG": 0.057,
+          "polyunsaturatedFatG": 0.056,
+          "monounsaturatedFatG": 0.065
+        },
+        "storedRounded": {
+          "declaredKcal": 130,
+          "proteinG": 2.4,
+          "carbsG": 28.6,
+          "fiberG": null,
+          "fatG": 0.2,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4475",
+        "selectedRecordId": "4475",
+        "selected": {
+          "recordId": "4475",
+          "descriptionEn": "Grains, rice, white, medium-grain, cooked",
+          "descriptionFr": "Grains céréaliers, riz blanc, grain moyen, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 130,
+            "protein_g": 2.38,
+            "carbohydrate_g": 28.59,
+            "fibre_g": null,
+            "total_fat_g": 0.21,
+            "saturated_fat_g": 0.057,
+            "polyunsaturated_fat_g": 0.056,
+            "monounsaturated_fat_g": 0.065
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4475",
+            "descriptionEn": "Grains, rice, white, medium-grain, cooked",
+            "descriptionFr": "Grains céréaliers, riz blanc, grain moyen, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 130,
+              "protein_g": 2.38,
+              "carbohydrate_g": 28.59,
+              "fibre_g": null,
+              "total_fat_g": 0.21,
+              "saturated_fat_g": 0.057,
+              "polyunsaturated_fat_g": 0.056,
+              "monounsaturated_fat_g": 0.065
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4475: Grains, rice, white, medium-grain, cooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 22,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 91
+      },
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 28.6,
+        "fiberG": null,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 130
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Riz cuit (100 g)",
+        "labelEn": "125 ml Cooked rice (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de riz blanc cuit",
+        "labelEn": "100 g cooked white rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.30000000000000004) > lipides totaux (0.2)"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "operation": "update",
+      "identity": {
+        "fr": "Topinambour cru",
+        "en": "Raw Jerusalem artichoke",
+        "preparationState": "raw",
+        "exclusions": [
+          "cooked",
+          "pickled",
+          "artichoke heart"
+        ]
+      },
+      "expectedRecordId": "2100",
+      "selectedRecordId": "2100",
+      "recordId": "2100",
+      "cnfDescription": {
+        "en": "Jerusalem artichoke (sunchoke), raw",
+        "fr": "Topinambour, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2100",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Jerusalem artichoke (sunchoke), raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Topinambour, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2100"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 85 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 73,
+          "protein_g": 2,
+          "carbohydrate_g": 17.44,
+          "fibre_g": 1.6,
+          "total_fat_g": 0.01,
+          "saturated_fat_g": 0,
+          "polyunsaturated_fat_g": 0.001,
+          "monounsaturated_fat_g": 0.004
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 62.05,
+          "proteinG": 1.7,
+          "carbsG": 14.824,
+          "fiberG": 1.36,
+          "fatG": 0.0085,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.00085,
+          "monounsaturatedFatG": 0.0034
+        },
+        "storedRounded": {
+          "declaredKcal": 62,
+          "proteinG": 1.7,
+          "carbsG": 14.8,
+          "fiberG": 1.4,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2100",
+        "selectedRecordId": "2100",
+        "selected": {
+          "recordId": "2100",
+          "descriptionEn": "Jerusalem artichoke (sunchoke), raw",
+          "descriptionFr": "Topinambour, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 73,
+            "protein_g": 2,
+            "carbohydrate_g": 17.44,
+            "fibre_g": 1.6,
+            "total_fat_g": 0.01,
+            "saturated_fat_g": 0,
+            "polyunsaturated_fat_g": 0.001,
+            "monounsaturated_fat_g": 0.004
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2100",
+            "descriptionEn": "Jerusalem artichoke (sunchoke), raw",
+            "descriptionFr": "Topinambour, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 73,
+              "protein_g": 2,
+              "carbohydrate_g": 17.44,
+              "fibre_g": 1.6,
+              "total_fat_g": 0.01,
+              "saturated_fat_g": 0,
+              "polyunsaturated_fat_g": 0.001,
+              "monounsaturated_fat_g": 0.004
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2100: Jerusalem artichoke (sunchoke), raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 22,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 111
+      },
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 14.8,
+        "fiberG": 1.4,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Topinambour",
+        "labelEn": "125 ml Jerusalem artichoke",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "85 g de topinambour cru",
+        "labelEn": "85 g raw Jerusalem artichoke",
+        "amount": 85,
+        "unit": "g",
+        "grams": 85,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 111 vs Atwater 100.0 (11.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-slice-bread",
+      "operation": "update",
+      "identity": {
+        "fr": "Pain de blé entier commercial",
+        "en": "Commercial whole-wheat bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "white",
+          "toasted",
+          "60% whole wheat",
+          "sprouted"
+        ]
+      },
+      "expectedRecordId": "4067",
+      "selectedRecordId": "4067",
+      "recordId": "4067",
+      "cnfDescription": {
+        "en": "Bread, whole wheat, commercial",
+        "fr": "Pain, blé entier, commercial"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4067",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Bread, whole wheat, commercial)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pain, blé entier, commercial",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4067"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 36 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 257,
+          "protein_g": 10.7,
+          "carbohydrate_g": 45.64,
+          "fibre_g": 6.28,
+          "total_fat_g": 3.03,
+          "saturated_fat_g": 0.785,
+          "polyunsaturated_fat_g": 1.489,
+          "monounsaturated_fat_g": 0.62
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 92.52,
+          "proteinG": 3.8519999999999994,
+          "carbsG": 16.4304,
+          "fiberG": 2.2608,
+          "fatG": 1.0908,
+          "saturatedFatG": 0.2826,
+          "polyunsaturatedFatG": 0.5360400000000001,
+          "monounsaturatedFatG": 0.22319999999999998
+        },
+        "storedRounded": {
+          "declaredKcal": 93,
+          "proteinG": 3.9,
+          "carbsG": 16.4,
+          "fiberG": 2.3,
+          "fatG": 1.1,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": 0.5,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4067",
+        "selectedRecordId": "4067",
+        "selected": {
+          "recordId": "4067",
+          "descriptionEn": "Bread, whole wheat, commercial",
+          "descriptionFr": "Pain, blé entier, commercial",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 31,
+          "per100g": {
+            "energy_kcal": 257,
+            "protein_g": 10.7,
+            "carbohydrate_g": 45.64,
+            "fibre_g": 6.28,
+            "total_fat_g": 3.03,
+            "saturated_fat_g": 0.785,
+            "polyunsaturated_fat_g": 1.489,
+            "monounsaturated_fat_g": 0.62
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4067",
+            "descriptionEn": "Bread, whole wheat, commercial",
+            "descriptionFr": "Pain, blé entier, commercial",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 31,
+            "per100g": {
+              "energy_kcal": 257,
+              "protein_g": 10.7,
+              "carbohydrate_g": 45.64,
+              "fibre_g": 6.28,
+              "total_fat_g": 3.03,
+              "saturated_fat_g": 0.785,
+              "polyunsaturated_fat_g": 1.489,
+              "monounsaturated_fat_g": 0.62
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4067: Bread, whole wheat, commercial.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 19,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 76
+      },
+      "afterNutrients": {
+        "proteinG": 3.9,
+        "carbsG": 16.4,
+        "fiberG": 2.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 93
+      },
+      "beforePortion": {
+        "labelFr": "1 Tranche de pain (blé)",
+        "labelEn": "1 slice Bread (wheat)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de blé entier (36 g)",
+        "labelEn": "1 slice whole-wheat bread (36 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 36,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 76 vs Atwater 88.0 (13.6%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "operation": "update",
+      "identity": {
+        "fr": "Pain de blé germé commercial",
+        "en": "Commercial sprouted-wheat bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "Ezekiel",
+          "gluten-free"
+        ]
+      },
+      "expectedRecordId": "7282",
+      "selectedRecordId": "7282",
+      "recordId": "7282",
+      "cnfDescription": {
+        "en": "Bread, sprouted wheat, commercial",
+        "fr": "Pain, blé germé, commercial"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7282",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Bread, sprouted wheat, commercial)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pain, blé germé, commercial",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7282"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 38 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 264,
+          "protein_g": 13.36,
+          "carbohydrate_g": 43.69,
+          "fibre_g": 8.75,
+          "total_fat_g": 3.57,
+          "saturated_fat_g": 0.61,
+          "polyunsaturated_fat_g": 1.925,
+          "monounsaturated_fat_g": 0.877
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 100.32000000000001,
+          "proteinG": 5.0767999999999995,
+          "carbsG": 16.6022,
+          "fiberG": 3.325,
+          "fatG": 1.3566,
+          "saturatedFatG": 0.2318,
+          "polyunsaturatedFatG": 0.7315,
+          "monounsaturatedFatG": 0.33326
+        },
+        "storedRounded": {
+          "declaredKcal": 100,
+          "proteinG": 5.1,
+          "carbsG": 16.6,
+          "fiberG": 3.3,
+          "fatG": 1.4,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.7,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7282",
+        "selectedRecordId": "7282",
+        "selected": {
+          "recordId": "7282",
+          "descriptionEn": "Bread, sprouted wheat, commercial",
+          "descriptionFr": "Pain, blé germé, commercial",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 31,
+          "per100g": {
+            "energy_kcal": 264,
+            "protein_g": 13.36,
+            "carbohydrate_g": 43.69,
+            "fibre_g": 8.75,
+            "total_fat_g": 3.57,
+            "saturated_fat_g": 0.61,
+            "polyunsaturated_fat_g": 1.925,
+            "monounsaturated_fat_g": 0.877
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7282",
+            "descriptionEn": "Bread, sprouted wheat, commercial",
+            "descriptionFr": "Pain, blé germé, commercial",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 31,
+            "per100g": {
+              "energy_kcal": 264,
+              "protein_g": 13.36,
+              "carbohydrate_g": 43.69,
+              "fibre_g": 8.75,
+              "total_fat_g": 3.57,
+              "saturated_fat_g": 0.61,
+              "polyunsaturated_fat_g": 1.925,
+              "monounsaturated_fat_g": 0.877
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7282: Bread, sprouted wheat, commercial.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 80
+      },
+      "afterNutrients": {
+        "proteinG": 5.1,
+        "carbsG": 16.6,
+        "fiberG": 3.3,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 100
+      },
+      "beforePortion": {
+        "labelFr": "1 tranche de Pain germé (sans farine enrichie)",
+        "labelEn": "1 slice Sprouted bread (no enriched flour)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de blé germé (38 g)",
+        "labelEn": "1 slice sprouted-wheat bread (38 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 38,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "operation": "update",
+      "identity": {
+        "fr": "Céréales Cheerios originales",
+        "en": "Original Cheerios cereal",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "Honey Nut",
+          "Apple Cinnamon",
+          "multigrain",
+          "oat clusters"
+        ]
+      },
+      "expectedRecordId": "1475",
+      "selectedRecordId": "1475",
+      "recordId": "1475",
+      "cnfDescription": {
+        "en": "Cereal, ready to eat, Cheerios, General Mills",
+        "fr": "Céréale, prête-à-manger, Cheerios, General Mills"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1475",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cereal, ready to eat, Cheerios, General Mills)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Céréale, prête-à-manger, Cheerios, General Mills",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1475"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 397,
+          "protein_g": 12.88,
+          "carbohydrate_g": 72.73,
+          "fibre_g": 10.87,
+          "total_fat_g": 6.35,
+          "saturated_fat_g": 1.31,
+          "polyunsaturated_fat_g": 2.29,
+          "monounsaturated_fat_g": 2.22
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 119.1,
+          "proteinG": 3.864,
+          "carbsG": 21.819,
+          "fiberG": 3.2609999999999997,
+          "fatG": 1.9049999999999998,
+          "saturatedFatG": 0.393,
+          "polyunsaturatedFatG": 0.6869999999999999,
+          "monounsaturatedFatG": 0.666
+        },
+        "storedRounded": {
+          "declaredKcal": 119,
+          "proteinG": 3.9,
+          "carbsG": 21.8,
+          "fiberG": 3.3,
+          "fatG": 1.9,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 0.7,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1475",
+        "selectedRecordId": "1475",
+        "selected": {
+          "recordId": "1475",
+          "descriptionEn": "Cereal, ready to eat, Cheerios, General Mills",
+          "descriptionFr": "Céréale, prête-à-manger, Cheerios, General Mills",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 28,
+          "per100g": {
+            "energy_kcal": 397,
+            "protein_g": 12.88,
+            "carbohydrate_g": 72.73,
+            "fibre_g": 10.87,
+            "total_fat_g": 6.35,
+            "saturated_fat_g": 1.31,
+            "polyunsaturated_fat_g": 2.29,
+            "monounsaturated_fat_g": 2.22
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1475",
+            "descriptionEn": "Cereal, ready to eat, Cheerios, General Mills",
+            "descriptionFr": "Céréale, prête-à-manger, Cheerios, General Mills",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 28,
+            "per100g": {
+              "energy_kcal": 397,
+              "protein_g": 12.88,
+              "carbohydrate_g": 72.73,
+              "fibre_g": 10.87,
+              "total_fat_g": 6.35,
+              "saturated_fat_g": 1.31,
+              "polyunsaturated_fat_g": 2.29,
+              "monounsaturated_fat_g": 2.22
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1475: Cereal, ready to eat, Cheerios, General Mills.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 25,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 3.9,
+        "carbsG": 21.8,
+        "fiberG": 3.3,
+        "fatG": 1.9,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 119
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Céréales à déjeuner peu sucrées",
+        "labelEn": "125 ml Lightly sweetened breakfast cereal",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de Cheerios originales",
+        "labelEn": "30 g Original Cheerios",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 85 vs Atwater 116.0 (Δ 31.0 / 26.7%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "operation": "update",
+      "identity": {
+        "fr": "Couscous cuit",
+        "en": "Cooked couscous",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ]
+      },
+      "expectedRecordId": "4490",
+      "selectedRecordId": "4490",
+      "recordId": "4490",
+      "cnfDescription": {
+        "en": "Grains, couscous, cooked",
+        "fr": "Grains céréaliers, couscous, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4490",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, couscous, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, couscous, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4490"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 112,
+          "protein_g": 3.79,
+          "carbohydrate_g": 23.22,
+          "fibre_g": 0.89,
+          "total_fat_g": 0.16,
+          "saturated_fat_g": 0.029,
+          "polyunsaturated_fat_g": 0.064,
+          "monounsaturated_fat_g": 0.022
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 84,
+          "proteinG": 2.8425000000000002,
+          "carbsG": 17.415,
+          "fiberG": 0.6675,
+          "fatG": 0.12,
+          "saturatedFatG": 0.021750000000000002,
+          "polyunsaturatedFatG": 0.048,
+          "monounsaturatedFatG": 0.0165
+        },
+        "storedRounded": {
+          "declaredKcal": 84,
+          "proteinG": 2.8,
+          "carbsG": 17.4,
+          "fiberG": 0.7,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4490",
+        "selectedRecordId": "4490",
+        "selected": {
+          "recordId": "4490",
+          "descriptionEn": "Grains, couscous, cooked",
+          "descriptionFr": "Grains céréaliers, couscous, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 112,
+            "protein_g": 3.79,
+            "carbohydrate_g": 23.22,
+            "fibre_g": 0.89,
+            "total_fat_g": 0.16,
+            "saturated_fat_g": 0.029,
+            "polyunsaturated_fat_g": 0.064,
+            "monounsaturated_fat_g": 0.022
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4490",
+            "descriptionEn": "Grains, couscous, cooked",
+            "descriptionFr": "Grains céréaliers, couscous, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 112,
+              "protein_g": 3.79,
+              "carbohydrate_g": 23.22,
+              "fibre_g": 0.89,
+              "total_fat_g": 0.16,
+              "saturated_fat_g": 0.029,
+              "polyunsaturated_fat_g": 0.064,
+              "monounsaturated_fat_g": 0.022
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4490: Grains, couscous, cooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 23,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 2.8,
+        "carbsG": 17.4,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 84
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Couscous cuit (75 g)",
+        "labelEn": "125 ml Cooked couscous (75 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "75 g de couscous cuit",
+        "labelEn": "75 g cooked couscous",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 62 vs Atwater 100.0 (Δ 38.0 / 38.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-rice-cakes",
+      "operation": "update",
+      "identity": {
+        "fr": "Galettes de riz brun nature, sans sel",
+        "en": "Plain unsalted brown-rice cakes",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salted",
+          "buckwheat",
+          "sesame",
+          "multigrain",
+          "mini"
+        ]
+      },
+      "expectedRecordId": "4387",
+      "selectedRecordId": "4387",
+      "recordId": "4387",
+      "cnfDescription": {
+        "en": "Snacks, rice cakes, brown rice, plain, unsalted",
+        "fr": "Grignotises, galettes de riz brun, nature, sans sel"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4387",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Snacks, rice cakes, brown rice, plain, unsalted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grignotises, galettes de riz brun, nature, sans sel",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4387"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 18 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 387,
+          "protein_g": 8.2,
+          "carbohydrate_g": 81.5,
+          "fibre_g": 4.2,
+          "total_fat_g": 2.8,
+          "saturated_fat_g": 0.57,
+          "polyunsaturated_fat_g": 0.99,
+          "monounsaturated_fat_g": 1.03
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 69.66,
+          "proteinG": 1.4759999999999998,
+          "carbsG": 14.67,
+          "fiberG": 0.756,
+          "fatG": 0.504,
+          "saturatedFatG": 0.10259999999999998,
+          "polyunsaturatedFatG": 0.1782,
+          "monounsaturatedFatG": 0.1854
+        },
+        "storedRounded": {
+          "declaredKcal": 70,
+          "proteinG": 1.5,
+          "carbsG": 14.7,
+          "fiberG": 0.8,
+          "fatG": 0.5,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4387",
+        "selectedRecordId": "4387",
+        "selected": {
+          "recordId": "4387",
+          "descriptionEn": "Snacks, rice cakes, brown rice, plain, unsalted",
+          "descriptionFr": "Grignotises, galettes de riz brun, nature, sans sel",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 387,
+            "protein_g": 8.2,
+            "carbohydrate_g": 81.5,
+            "fibre_g": 4.2,
+            "total_fat_g": 2.8,
+            "saturated_fat_g": 0.57,
+            "polyunsaturated_fat_g": 0.99,
+            "monounsaturated_fat_g": 1.03
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4387",
+            "descriptionEn": "Snacks, rice cakes, brown rice, plain, unsalted",
+            "descriptionFr": "Grignotises, galettes de riz brun, nature, sans sel",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 387,
+              "protein_g": 8.2,
+              "carbohydrate_g": 81.5,
+              "fibre_g": 4.2,
+              "total_fat_g": 2.8,
+              "saturated_fat_g": 0.57,
+              "polyunsaturated_fat_g": 0.99,
+              "monounsaturated_fat_g": 1.03
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4387: Snacks, rice cakes, brown rice, plain, unsalted.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 74
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 14.7,
+        "fiberG": 0.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 70
+      },
+      "beforePortion": {
+        "labelFr": "2 Galettes de riz (~20 g)",
+        "labelEn": "2 Rice cakes (~20 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 galettes de riz brun (18 g)",
+        "labelEn": "2 brown-rice cakes (18 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 18,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-rolled-oats",
+      "operation": "update",
+      "identity": {
+        "fr": "Gruau instantané nature, préparé",
+        "en": "Plain instant oatmeal, prepared",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ]
+      },
+      "expectedRecordId": "1414",
+      "selectedRecordId": "1414",
+      "recordId": "1414",
+      "cnfDescription": {
+        "en": "Cereal, hot, oats (oatmeal), instant: regular, prepared",
+        "fr": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1414",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cereal, hot, oats (oatmeal), instant: regular, prepared)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1414"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 173.076 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 77,
+          "protein_g": 2.6017,
+          "carbohydrate_g": 13.5356,
+          "fibre_g": 2.0244,
+          "total_fat_g": 1.3389,
+          "saturated_fat_g": 0.2327,
+          "polyunsaturated_fat_g": 0.4927,
+          "monounsaturated_fat_g": 0.4071
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 133.26852,
+          "proteinG": 4.5029182919999995,
+          "carbsG": 23.426875056,
+          "fiberG": 3.503750544,
+          "fatG": 2.3173145639999997,
+          "saturatedFatG": 0.40274785199999996,
+          "polyunsaturatedFatG": 0.852745452,
+          "monounsaturatedFatG": 0.704592396
+        },
+        "storedRounded": {
+          "declaredKcal": 133,
+          "proteinG": 4.5,
+          "carbsG": 23.4,
+          "fiberG": 3.5,
+          "fatG": 2.3,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 0.9,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1414",
+        "selectedRecordId": "1414",
+        "selected": {
+          "recordId": "1414",
+          "descriptionEn": "Cereal, hot, oats (oatmeal), instant: regular, prepared",
+          "descriptionFr": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 28,
+          "per100g": {
+            "energy_kcal": 77,
+            "protein_g": 2.6017,
+            "carbohydrate_g": 13.5356,
+            "fibre_g": 2.0244,
+            "total_fat_g": 1.3389,
+            "saturated_fat_g": 0.2327,
+            "polyunsaturated_fat_g": 0.4927,
+            "monounsaturated_fat_g": 0.4071
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1414",
+            "descriptionEn": "Cereal, hot, oats (oatmeal), instant: regular, prepared",
+            "descriptionFr": "Céréale, chaude, avoine (gruau), instantanée: nature, préparée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 28,
+            "per100g": {
+              "energy_kcal": 77,
+              "protein_g": 2.6017,
+              "carbohydrate_g": 13.5356,
+              "fibre_g": 2.0244,
+              "total_fat_g": 1.3389,
+              "saturated_fat_g": 0.2327,
+              "polyunsaturated_fat_g": 0.4927,
+              "monounsaturated_fat_g": 0.4071
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1414: Cereal, hot, oats (oatmeal), instant: regular, prepared.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 88
+      },
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 23.4,
+        "fiberG": 3.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 133
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Flocons d'avoine (sec, ~60 ml)",
+        "labelEn": "45 g Rolled oats (dry, ~60 ml)",
+        "amount": 60,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "175 ml de gruau nature préparé (173 g)",
+        "labelEn": "175 ml prepared plain oatmeal (173 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 173.076,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 88 vs Atwater 76.0 (15.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(173≠173.076)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 175,
+            "unit": "ml",
+            "grams": 173,
+            "label": "175 ml de gruau nature préparé (173 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(173≠173.076)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 175,
+            "unit": "ml",
+            "grams": 173,
+            "label": "175 ml prepared plain oatmeal (173 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-beluga-lentils",
+      "operation": "update",
+      "identity": {
+        "fr": "Lentilles mûres, bouillies",
+        "en": "Mature lentils, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "pink lentils",
+          "sprouted",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "3393",
+      "selectedRecordId": "3393",
+      "recordId": "3393",
+      "cnfDescription": {
+        "en": "Lentils, mature seeds, boiled",
+        "fr": "Lentilles, grains mûrs, bouillis"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3393",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Lentils, mature seeds, boiled)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Lentilles, grains mûrs, bouillis",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3393"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 116,
+          "protein_g": 9.02,
+          "carbohydrate_g": 20.13,
+          "fibre_g": 4.25,
+          "total_fat_g": 0.38,
+          "saturated_fat_g": 0.053,
+          "polyunsaturated_fat_g": 0.175,
+          "monounsaturated_fat_g": 0.064
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 116,
+          "proteinG": 9.02,
+          "carbsG": 20.13,
+          "fiberG": 4.25,
+          "fatG": 0.38,
+          "saturatedFatG": 0.053,
+          "polyunsaturatedFatG": 0.175,
+          "monounsaturatedFatG": 0.064
+        },
+        "storedRounded": {
+          "declaredKcal": 116,
+          "proteinG": 9,
+          "carbsG": 20.1,
+          "fiberG": 4.3,
+          "fatG": 0.4,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3393",
+        "selectedRecordId": "3393",
+        "selected": {
+          "recordId": "3393",
+          "descriptionEn": "Lentils, mature seeds, boiled",
+          "descriptionFr": "Lentilles, grains mûrs, bouillis",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 116,
+            "protein_g": 9.02,
+            "carbohydrate_g": 20.13,
+            "fibre_g": 4.25,
+            "total_fat_g": 0.38,
+            "saturated_fat_g": 0.053,
+            "polyunsaturated_fat_g": 0.175,
+            "monounsaturated_fat_g": 0.064
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3393",
+            "descriptionEn": "Lentils, mature seeds, boiled",
+            "descriptionFr": "Lentilles, grains mûrs, bouillis",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 116,
+              "protein_g": 9.02,
+              "carbohydrate_g": 20.13,
+              "fibre_g": 4.25,
+              "total_fat_g": 0.38,
+              "saturated_fat_g": 0.053,
+              "polyunsaturated_fat_g": 0.175,
+              "monounsaturated_fat_g": 0.064
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3393: Lentils, mature seeds, boiled.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 14,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 87
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 20.1,
+        "fiberG": 4.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 116
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Lentilles Beluga cuites (100 g)",
+        "labelEn": "125 ml Cooked beluga lentils (100 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de lentilles bouillies",
+        "labelEn": "100 g boiled lentils",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 87 vs Atwater 72.0 (Δ 15.0 / 20.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "operation": "update",
+      "identity": {
+        "fr": "Pain Food For Life Ezekiel 4:9 Original, grains entiers germés",
+        "en": "Food For Life Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+        "preparationState": "ready_to_eat",
+        "brand": "Food For Life",
+        "marketNote": "Produit exact Food For Life Ezekiel 4:9 Original. La page produit et le SmartLabel officiel doivent être conservés."
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "recordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "Food For Life",
+        "recordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+        "url": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "1 slice label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Produit exact Food For Life Ezekiel 4:9 Original. La page produit et le SmartLabel officiel doivent être conservés. | Product page: https://www.foodforlife.com/product/breads/ezekiel-49-sprouted-whole-grain-bread | North America",
+        "brand": "Food For Life",
+        "productName": "Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+        "labelServingSize": "1 slice",
+        "evidenceRef": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+        "undeclaredNutrients": []
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 1 / 1",
+        "labelNutrients": {
+          "declaredKcal": 80,
+          "proteinG": 5,
+          "carbsG": 15,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 80,
+          "proteinG": 5,
+          "carbsG": 15,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "storedRounded": {
+          "declaredKcal": 80,
+          "proteinG": 5,
+          "carbsG": 15,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "undeclaredNutrients": [],
+        "declaredZeroNutrients": [
+          "saturatedFatG",
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "labelServingAmount": 1,
+        "canonicalAmount": 1,
+        "labelUnit": "slice",
+        "canonicalUnit": "slice",
+        "labelGrams": 34,
+        "canonicalGrams": 34,
+        "method": "same_unit",
+        "factor": 1,
+        "approvedStored": {
+          "declaredKcal": 80,
+          "proteinG": 5,
+          "carbsG": 15,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 84
+      },
+      "afterNutrients": {
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 80
+      },
+      "beforePortion": {
+        "labelFr": "1 tranche de Pain Ezekiel germé (34 g)",
+        "labelEn": "1 slice Ezekiel sprouted bread (34 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Ezekiel"
+      },
+      "afterPortion": {
+        "labelFr": "1 tranche de pain Ezekiel 4:9 Original (34 g)",
+        "labelEn": "1 slice Ezekiel 4:9 Original bread (34 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Food For Life"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 84 vs Atwater 76.0 (10.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "operation": "add",
+      "identity": {
+        "fr": "Riz brun à grain moyen, cuit",
+        "en": "Cooked medium-grain brown rice",
+        "preparationState": "cooked",
+        "exclusions": [
+          "white rice",
+          "dry",
+          "long-grain",
+          "seasoned"
+        ]
+      },
+      "expectedRecordId": "4423",
+      "selectedRecordId": "4423",
+      "recordId": "4423",
+      "cnfDescription": {
+        "en": "Grains, rice, brown, medium-grain, cooked",
+        "fr": "Grains céréaliers, riz brun, grain moyen, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4423",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, rice, brown, medium-grain, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, riz brun, grain moyen, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4423"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 112,
+          "protein_g": 2.32,
+          "carbohydrate_g": 23.51,
+          "fibre_g": 1.91,
+          "total_fat_g": 0.83,
+          "saturated_fat_g": 0.165,
+          "polyunsaturated_fat_g": 0.296,
+          "monounsaturated_fat_g": 0.3
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 112,
+          "proteinG": 2.32,
+          "carbsG": 23.51,
+          "fiberG": 1.91,
+          "fatG": 0.83,
+          "saturatedFatG": 0.165,
+          "polyunsaturatedFatG": 0.296,
+          "monounsaturatedFatG": 0.3
+        },
+        "storedRounded": {
+          "declaredKcal": 112,
+          "proteinG": 2.3,
+          "carbsG": 23.5,
+          "fiberG": 1.9,
+          "fatG": 0.8,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4423",
+        "selectedRecordId": "4423",
+        "selected": {
+          "recordId": "4423",
+          "descriptionEn": "Grains, rice, brown, medium-grain, cooked",
+          "descriptionFr": "Grains céréaliers, riz brun, grain moyen, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 112,
+            "protein_g": 2.32,
+            "carbohydrate_g": 23.51,
+            "fibre_g": 1.91,
+            "total_fat_g": 0.83,
+            "saturated_fat_g": 0.165,
+            "polyunsaturated_fat_g": 0.296,
+            "monounsaturated_fat_g": 0.3
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4423",
+            "descriptionEn": "Grains, rice, brown, medium-grain, cooked",
+            "descriptionFr": "Grains céréaliers, riz brun, grain moyen, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 112,
+              "protein_g": 2.32,
+              "carbohydrate_g": 23.51,
+              "fibre_g": 1.91,
+              "total_fat_g": 0.83,
+              "saturated_fat_g": 0.165,
+              "polyunsaturated_fat_g": 0.296,
+              "monounsaturated_fat_g": 0.3
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4423: Grains, rice, brown, medium-grain, cooked.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 23.5,
+        "fiberG": 1.9,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 112
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de riz brun cuit",
+        "labelEn": "100 g cooked brown rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "operation": "add",
+      "identity": {
+        "fr": "Pâtes de blé entier cuites",
+        "en": "Cooked whole-wheat pasta",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "enriched white pasta",
+          "mixed dish"
+        ]
+      },
+      "expectedRecordId": "4517",
+      "selectedRecordId": "4517",
+      "recordId": "4517",
+      "cnfDescription": {
+        "en": "Pasta, (spaghetti, macaroni), whole wheat, cooked",
+        "fr": "Pâtes, (spaghetti macaroni), blé entier, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4517",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pasta, (spaghetti, macaroni), whole wheat, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pâtes, (spaghetti macaroni), blé entier, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4517"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 149,
+          "protein_g": 5.99,
+          "carbohydrate_g": 30.07,
+          "fibre_g": 3.23,
+          "total_fat_g": 1.71,
+          "saturated_fat_g": 0.243,
+          "polyunsaturated_fat_g": 0.574,
+          "monounsaturated_fat_g": 0.176
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 111.75,
+          "proteinG": 4.4925,
+          "carbsG": 22.552500000000002,
+          "fiberG": 2.4225,
+          "fatG": 1.2825,
+          "saturatedFatG": 0.18225,
+          "polyunsaturatedFatG": 0.4305,
+          "monounsaturatedFatG": 0.132
+        },
+        "storedRounded": {
+          "declaredKcal": 112,
+          "proteinG": 4.5,
+          "carbsG": 22.6,
+          "fiberG": 2.4,
+          "fatG": 1.3,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.4,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4517",
+        "selectedRecordId": "4517",
+        "selected": {
+          "recordId": "4517",
+          "descriptionEn": "Pasta, (spaghetti, macaroni), whole wheat, cooked",
+          "descriptionFr": "Pâtes, (spaghetti macaroni), blé entier, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 149,
+            "protein_g": 5.99,
+            "carbohydrate_g": 30.07,
+            "fibre_g": 3.23,
+            "total_fat_g": 1.71,
+            "saturated_fat_g": 0.243,
+            "polyunsaturated_fat_g": 0.574,
+            "monounsaturated_fat_g": 0.176
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4517",
+            "descriptionEn": "Pasta, (spaghetti, macaroni), whole wheat, cooked",
+            "descriptionFr": "Pâtes, (spaghetti macaroni), blé entier, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 149,
+              "protein_g": 5.99,
+              "carbohydrate_g": 30.07,
+              "fibre_g": 3.23,
+              "total_fat_g": 1.71,
+              "saturated_fat_g": 0.243,
+              "polyunsaturated_fat_g": 0.574,
+              "monounsaturated_fat_g": 0.176
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4517: Pasta, (spaghetti, macaroni), whole wheat, cooked.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 4.5,
+        "carbsG": 22.6,
+        "fiberG": 2.4,
+        "fatG": 1.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 112
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de pâtes de blé entier cuites",
+        "labelEn": "75 g cooked whole-wheat pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "operation": "add",
+      "identity": {
+        "fr": "Pomme de terre bouillie sans pelure",
+        "en": "Boiled potato without skin",
+        "preparationState": "cooked",
+        "exclusions": [
+          "with skin",
+          "fried",
+          "mashed",
+          "salt added"
+        ]
+      },
+      "expectedRecordId": "2422",
+      "selectedRecordId": "2422",
+      "recordId": "2422",
+      "cnfDescription": {
+        "en": "Potato, boiled without skin, flesh",
+        "fr": "Pomme de terre, bouillie sans pelure, chair"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "2422",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Potato, boiled without skin, flesh)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pomme de terre, bouillie sans pelure, chair",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:2422"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 86,
+          "protein_g": 1.71,
+          "carbohydrate_g": 20.01,
+          "fibre_g": 1.4,
+          "total_fat_g": 0.1,
+          "saturated_fat_g": 0.026,
+          "polyunsaturated_fat_g": 0.043,
+          "monounsaturated_fat_g": 0.002
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 86,
+          "proteinG": 1.71,
+          "carbsG": 20.01,
+          "fiberG": 1.4,
+          "fatG": 0.1,
+          "saturatedFatG": 0.026,
+          "polyunsaturatedFatG": 0.043,
+          "monounsaturatedFatG": 0.002
+        },
+        "storedRounded": {
+          "declaredKcal": 86,
+          "proteinG": 1.7,
+          "carbsG": 20,
+          "fiberG": 1.4,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "2422",
+        "selectedRecordId": "2422",
+        "selected": {
+          "recordId": "2422",
+          "descriptionEn": "Potato, boiled without skin, flesh",
+          "descriptionFr": "Pomme de terre, bouillie sans pelure, chair",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 86,
+            "protein_g": 1.71,
+            "carbohydrate_g": 20.01,
+            "fibre_g": 1.4,
+            "total_fat_g": 0.1,
+            "saturated_fat_g": 0.026,
+            "polyunsaturated_fat_g": 0.043,
+            "monounsaturated_fat_g": 0.002
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "2422",
+            "descriptionEn": "Potato, boiled without skin, flesh",
+            "descriptionFr": "Pomme de terre, bouillie sans pelure, chair",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 86,
+              "protein_g": 1.71,
+              "carbohydrate_g": 20.01,
+              "fibre_g": 1.4,
+              "total_fat_g": 0.1,
+              "saturated_fat_g": 0.026,
+              "polyunsaturated_fat_g": 0.043,
+              "monounsaturated_fat_g": 0.002
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 2422: Potato, boiled without skin, flesh.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 86
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de pomme de terre bouillie sans pelure",
+        "labelEn": "100 g boiled skinless potato",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "operation": "add",
+      "identity": {
+        "fr": "Tortilla de maïs sans sel",
+        "en": "Unsalted corn tortilla",
+        "preparationState": "ready_to_cook",
+        "exclusions": [
+          "salted",
+          "chips",
+          "flour",
+          "fried"
+        ]
+      },
+      "expectedRecordId": "4048",
+      "selectedRecordId": "4048",
+      "recordId": "4048",
+      "cnfDescription": {
+        "en": "Tortilla, ready-to-bake / fry, corn, unsalted",
+        "fr": "Tortilla, prêt-à-cuire /frire, maïs, sans sel"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4048",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Tortilla, ready-to-bake / fry, corn, unsalted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Tortilla, prêt-à-cuire /frire, maïs, sans sel",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4048"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 25 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 222,
+          "protein_g": 4.566433769,
+          "carbohydrate_g": 45.031476421,
+          "fibre_g": 4.422439509,
+          "total_fat_g": 2.202,
+          "saturated_fat_g": 0.398853663,
+          "polyunsaturated_fat_g": 1.160564605,
+          "monounsaturated_fat_g": 0.57102744
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.5,
+          "proteinG": 1.14160844225,
+          "carbsG": 11.25786910525,
+          "fiberG": 1.10560987725,
+          "fatG": 0.5505,
+          "saturatedFatG": 0.09971341575,
+          "polyunsaturatedFatG": 0.29014115125,
+          "monounsaturatedFatG": 0.14275686
+        },
+        "storedRounded": {
+          "declaredKcal": 56,
+          "proteinG": 1.1,
+          "carbsG": 11.3,
+          "fiberG": 1.1,
+          "fatG": 0.6,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4048",
+        "selectedRecordId": "4048",
+        "selected": {
+          "recordId": "4048",
+          "descriptionEn": "Tortilla, ready-to-bake / fry, corn, unsalted",
+          "descriptionFr": "Tortilla, prêt-à-cuire /frire, maïs, sans sel",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 222,
+            "protein_g": 4.566433769,
+            "carbohydrate_g": 45.031476421,
+            "fibre_g": 4.422439509,
+            "total_fat_g": 2.202,
+            "saturated_fat_g": 0.398853663,
+            "polyunsaturated_fat_g": 1.160564605,
+            "monounsaturated_fat_g": 0.57102744
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4048",
+            "descriptionEn": "Tortilla, ready-to-bake / fry, corn, unsalted",
+            "descriptionFr": "Tortilla, prêt-à-cuire /frire, maïs, sans sel",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 222,
+              "protein_g": 4.566433769,
+              "carbohydrate_g": 45.031476421,
+              "fibre_g": 4.422439509,
+              "total_fat_g": 2.202,
+              "saturated_fat_g": 0.398853663,
+              "polyunsaturated_fat_g": 1.160564605,
+              "monounsaturated_fat_g": 0.57102744
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4048: Tortilla, ready-to-bake / fry, corn, unsalted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 11.3,
+        "fiberG": 1.1,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 56
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 tortilla de maïs moyenne (25 g)",
+        "labelEn": "1 medium corn tortilla (25 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 25,
+        "preparationState": "ready_to_cook",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "ERROR",
+          "code": "INVALID_PREP_STATE",
+          "message": "État de préparation invalide: ready_to_cook"
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 25,
+            "label": "1 tortilla de maïs moyenne (25 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 25,
+            "label": "1 medium corn tortilla (25 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": false,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "operation": "add",
+      "identity": {
+        "fr": "Tortilla de farine nature",
+        "en": "Plain flour tortilla",
+        "preparationState": "ready_to_cook",
+        "exclusions": [
+          "corn",
+          "cheese",
+          "whole wheat",
+          "chips"
+        ]
+      },
+      "expectedRecordId": "4049",
+      "selectedRecordId": "4049",
+      "recordId": "4049",
+      "cnfDescription": {
+        "en": "Tortilla, ready-to-bake / fry, flour, plain",
+        "fr": "Tortilla, prêt-à-cuire /frire, farine, nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4049",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Tortilla, ready-to-bake / fry, flour, plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Tortilla, prêt-à-cuire /frire, farine, nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4049"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 32 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 325,
+          "protein_g": 8.014189846,
+          "carbohydrate_g": 52.381839449,
+          "fibre_g": 4.161043818,
+          "total_fat_g": 6.99,
+          "saturated_fat_g": 2.182373038,
+          "polyunsaturated_fat_g": 2.624999392,
+          "monounsaturated_fat_g": 2.229216542
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 104,
+          "proteinG": 2.5645407507200004,
+          "carbsG": 16.76218862368,
+          "fiberG": 1.3315340217599998,
+          "fatG": 2.2368,
+          "saturatedFatG": 0.6983593721600001,
+          "polyunsaturatedFatG": 0.83999980544,
+          "monounsaturatedFatG": 0.7133492934400001
+        },
+        "storedRounded": {
+          "declaredKcal": 104,
+          "proteinG": 2.6,
+          "carbsG": 16.8,
+          "fiberG": 1.3,
+          "fatG": 2.2,
+          "saturatedFatG": 0.7,
+          "polyunsaturatedFatG": 0.8,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4049",
+        "selectedRecordId": "4049",
+        "selected": {
+          "recordId": "4049",
+          "descriptionEn": "Tortilla, ready-to-bake / fry, flour, plain",
+          "descriptionFr": "Tortilla, prêt-à-cuire /frire, farine, nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 325,
+            "protein_g": 8.014189846,
+            "carbohydrate_g": 52.381839449,
+            "fibre_g": 4.161043818,
+            "total_fat_g": 6.99,
+            "saturated_fat_g": 2.182373038,
+            "polyunsaturated_fat_g": 2.624999392,
+            "monounsaturated_fat_g": 2.229216542
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4049",
+            "descriptionEn": "Tortilla, ready-to-bake / fry, flour, plain",
+            "descriptionFr": "Tortilla, prêt-à-cuire /frire, farine, nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 325,
+              "protein_g": 8.014189846,
+              "carbohydrate_g": 52.381839449,
+              "fibre_g": 4.161043818,
+              "total_fat_g": 6.99,
+              "saturated_fat_g": 2.182373038,
+              "polyunsaturated_fat_g": 2.624999392,
+              "monounsaturated_fat_g": 2.229216542
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4049: Tortilla, ready-to-bake / fry, flour, plain.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 16.8,
+        "fiberG": 1.3,
+        "fatG": 2.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 104
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 petite tortilla de farine (32 g)",
+        "labelEn": "1 small flour tortilla (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32,
+        "preparationState": "ready_to_cook",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "ERROR",
+          "code": "INVALID_PREP_STATE",
+          "message": "État de préparation invalide: ready_to_cook"
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 petite tortilla de farine (32 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 32,
+            "label": "1 small flour tortilla (32 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": false,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "operation": "add",
+      "identity": {
+        "fr": "Pain nature à hamburger ou à hot-dog",
+        "en": "Plain hamburger or hot-dog bun",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "multigrain",
+          "calorie-reduced",
+          "whole wheat",
+          "sandwich"
+        ]
+      },
+      "expectedRecordId": "3985",
+      "selectedRecordId": "3985",
+      "recordId": "3985",
+      "cnfDescription": {
+        "en": "Roll, hamburger / hot dog, plain",
+        "fr": "Pain, petit pain, à hamburger / à hot-dog, nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3985",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Roll, hamburger / hot dog, plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pain, petit pain, à hamburger / à hot-dog, nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3985"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 44 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 279,
+          "protein_g": 9.77,
+          "carbohydrate_g": 50.12,
+          "fibre_g": 1.8,
+          "total_fat_g": 3.91,
+          "saturated_fat_g": 0.842,
+          "polyunsaturated_fat_g": 1.78,
+          "monounsaturated_fat_g": 0.748
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 122.76,
+          "proteinG": 4.2988,
+          "carbsG": 22.052799999999998,
+          "fiberG": 0.792,
+          "fatG": 1.7204000000000002,
+          "saturatedFatG": 0.37048,
+          "polyunsaturatedFatG": 0.7832,
+          "monounsaturatedFatG": 0.32912
+        },
+        "storedRounded": {
+          "declaredKcal": 123,
+          "proteinG": 4.3,
+          "carbsG": 22.1,
+          "fiberG": 0.8,
+          "fatG": 1.7,
+          "saturatedFatG": 0.4,
+          "polyunsaturatedFatG": 0.8,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3985",
+        "selectedRecordId": "3985",
+        "selected": {
+          "recordId": "3985",
+          "descriptionEn": "Roll, hamburger / hot dog, plain",
+          "descriptionFr": "Pain, petit pain, à hamburger / à hot-dog, nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 279,
+            "protein_g": 9.77,
+            "carbohydrate_g": 50.12,
+            "fibre_g": 1.8,
+            "total_fat_g": 3.91,
+            "saturated_fat_g": 0.842,
+            "polyunsaturated_fat_g": 1.78,
+            "monounsaturated_fat_g": 0.748
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3985",
+            "descriptionEn": "Roll, hamburger / hot dog, plain",
+            "descriptionFr": "Pain, petit pain, à hamburger / à hot-dog, nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 279,
+              "protein_g": 9.77,
+              "carbohydrate_g": 50.12,
+              "fibre_g": 1.8,
+              "total_fat_g": 3.91,
+              "saturated_fat_g": 0.842,
+              "polyunsaturated_fat_g": 1.78,
+              "monounsaturated_fat_g": 0.748
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3985: Roll, hamburger / hot dog, plain.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 4.3,
+        "carbsG": 22.1,
+        "fiberG": 0.8,
+        "fatG": 1.7,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 123
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 pain nature à hamburger ou hot-dog (44 g)",
+        "labelEn": "1 plain hamburger or hot-dog bun (44 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 44,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 44,
+            "label": "1 pain nature à hamburger ou hot-dog (44 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: unit(count≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "count",
+            "grams": 44,
+            "label": "1 plain hamburger or hot-dog bun (44 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "operation": "add",
+      "identity": {
+        "fr": "Haricots noirs mûrs, bouillis",
+        "en": "Mature black beans, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "canned",
+          "salt added",
+          "flour"
+        ]
+      },
+      "expectedRecordId": "3377",
+      "selectedRecordId": "3377",
+      "recordId": "3377",
+      "cnfDescription": {
+        "en": "Beans, black, mature seeds, boiled",
+        "fr": "Haricots, noirs, grains mûrs, bouillis"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "3377",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Beans, black, mature seeds, boiled)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Haricots, noirs, grains mûrs, bouillis",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:3377"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 132,
+          "protein_g": 8.86,
+          "carbohydrate_g": 23.71,
+          "fibre_g": 6.97,
+          "total_fat_g": 0.54,
+          "saturated_fat_g": 0.139,
+          "polyunsaturated_fat_g": 0.231,
+          "monounsaturated_fat_g": 0.047
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 132,
+          "proteinG": 8.86,
+          "carbsG": 23.71,
+          "fiberG": 6.97,
+          "fatG": 0.54,
+          "saturatedFatG": 0.139,
+          "polyunsaturatedFatG": 0.231,
+          "monounsaturatedFatG": 0.047
+        },
+        "storedRounded": {
+          "declaredKcal": 132,
+          "proteinG": 8.9,
+          "carbsG": 23.7,
+          "fiberG": 7,
+          "fatG": 0.5,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "3377",
+        "selectedRecordId": "3377",
+        "selected": {
+          "recordId": "3377",
+          "descriptionEn": "Beans, black, mature seeds, boiled",
+          "descriptionFr": "Haricots, noirs, grains mûrs, bouillis",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 132,
+            "protein_g": 8.86,
+            "carbohydrate_g": 23.71,
+            "fibre_g": 6.97,
+            "total_fat_g": 0.54,
+            "saturated_fat_g": 0.139,
+            "polyunsaturated_fat_g": 0.231,
+            "monounsaturated_fat_g": 0.047
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "3377",
+            "descriptionEn": "Beans, black, mature seeds, boiled",
+            "descriptionFr": "Haricots, noirs, grains mûrs, bouillis",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 132,
+              "protein_g": 8.86,
+              "carbohydrate_g": 23.71,
+              "fibre_g": 6.97,
+              "total_fat_g": 0.54,
+              "saturated_fat_g": 0.139,
+              "polyunsaturated_fat_g": 0.231,
+              "monounsaturated_fat_g": 0.047
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 3377: Beans, black, mature seeds, boiled.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 7,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 132
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de haricots noirs bouillis",
+        "labelEn": "100 g boiled black beans",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-bulgur",
+      "operation": "add",
+      "identity": {
+        "fr": "Bulgur cuit",
+        "en": "Cooked bulgur",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ]
+      },
+      "expectedRecordId": "4489",
+      "selectedRecordId": "4489",
+      "recordId": "4489",
+      "cnfDescription": {
+        "en": "Grains, bulgur, cooked",
+        "fr": "Grains céréaliers, bulgur, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4489",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, bulgur, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, bulgur, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4489"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 83,
+          "protein_g": 3.08,
+          "carbohydrate_g": 18.58,
+          "fibre_g": 2.85,
+          "total_fat_g": 0.24,
+          "saturated_fat_g": 0.042,
+          "polyunsaturated_fat_g": 0.098,
+          "monounsaturated_fat_g": 0.031
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 62.25,
+          "proteinG": 2.31,
+          "carbsG": 13.934999999999999,
+          "fiberG": 2.1375,
+          "fatG": 0.18,
+          "saturatedFatG": 0.0315,
+          "polyunsaturatedFatG": 0.07350000000000001,
+          "monounsaturatedFatG": 0.02325
+        },
+        "storedRounded": {
+          "declaredKcal": 62,
+          "proteinG": 2.3,
+          "carbsG": 13.9,
+          "fiberG": 2.1,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4489",
+        "selectedRecordId": "4489",
+        "selected": {
+          "recordId": "4489",
+          "descriptionEn": "Grains, bulgur, cooked",
+          "descriptionFr": "Grains céréaliers, bulgur, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 83,
+            "protein_g": 3.08,
+            "carbohydrate_g": 18.58,
+            "fibre_g": 2.85,
+            "total_fat_g": 0.24,
+            "saturated_fat_g": 0.042,
+            "polyunsaturated_fat_g": 0.098,
+            "monounsaturated_fat_g": 0.031
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4489",
+            "descriptionEn": "Grains, bulgur, cooked",
+            "descriptionFr": "Grains céréaliers, bulgur, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 83,
+              "protein_g": 3.08,
+              "carbohydrate_g": 18.58,
+              "fibre_g": 2.85,
+              "total_fat_g": 0.24,
+              "saturated_fat_g": 0.042,
+              "polyunsaturated_fat_g": 0.098,
+              "monounsaturated_fat_g": 0.031
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4489: Grains, bulgur, cooked.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 13.9,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de bulgur cuit",
+        "labelEn": "75 g cooked bulgur",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "operation": "add",
+      "identity": {
+        "fr": "Millet cuit",
+        "en": "Cooked millet",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "flour",
+          "mixed dish"
+        ]
+      },
+      "expectedRecordId": "4492",
+      "selectedRecordId": "4492",
+      "recordId": "4492",
+      "cnfDescription": {
+        "en": "Grains, millet, cooked",
+        "fr": "Grains céréaliers, millet, cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4492",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grains, millet, cooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grains céréaliers, millet, cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4492"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 75 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 119,
+          "protein_g": 3.51,
+          "carbohydrate_g": 23.67,
+          "fibre_g": 2.93,
+          "total_fat_g": 1,
+          "saturated_fat_g": 0.172,
+          "polyunsaturated_fat_g": 0.508,
+          "monounsaturated_fat_g": 0.184
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 89.25,
+          "proteinG": 2.6325,
+          "carbsG": 17.7525,
+          "fiberG": 2.1975000000000002,
+          "fatG": 0.75,
+          "saturatedFatG": 0.129,
+          "polyunsaturatedFatG": 0.381,
+          "monounsaturatedFatG": 0.138
+        },
+        "storedRounded": {
+          "declaredKcal": 89,
+          "proteinG": 2.6,
+          "carbsG": 17.8,
+          "fiberG": 2.2,
+          "fatG": 0.8,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.4,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4492",
+        "selectedRecordId": "4492",
+        "selected": {
+          "recordId": "4492",
+          "descriptionEn": "Grains, millet, cooked",
+          "descriptionFr": "Grains céréaliers, millet, cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 119,
+            "protein_g": 3.51,
+            "carbohydrate_g": 23.67,
+            "fibre_g": 2.93,
+            "total_fat_g": 1,
+            "saturated_fat_g": 0.172,
+            "polyunsaturated_fat_g": 0.508,
+            "monounsaturated_fat_g": 0.184
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4492",
+            "descriptionEn": "Grains, millet, cooked",
+            "descriptionFr": "Grains céréaliers, millet, cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 119,
+              "protein_g": 3.51,
+              "carbohydrate_g": 23.67,
+              "fibre_g": 2.93,
+              "total_fat_g": 1,
+              "saturated_fat_g": 0.172,
+              "polyunsaturated_fat_g": 0.508,
+              "monounsaturated_fat_g": 0.184
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4492: Grains, millet, cooked.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 17.8,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 89
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "75 g de millet cuit",
+        "labelEn": "75 g cooked millet",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "feculents-rye-bread",
+      "operation": "add",
+      "identity": {
+        "fr": "Pain de seigle",
+        "en": "Rye bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "crispbread",
+          "pumpernickel",
+          "roll"
+        ]
+      },
+      "expectedRecordId": "4065",
+      "selectedRecordId": "4065",
+      "recordId": "4065",
+      "cnfDescription": {
+        "en": "Bread, rye",
+        "fr": "Pain, seigle"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4065",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Bread, rye)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pain, seigle",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4065"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 27 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 251,
+          "protein_g": 9.04,
+          "carbohydrate_g": 48.78,
+          "fibre_g": 4.14,
+          "total_fat_g": 1.99,
+          "saturated_fat_g": 0.499,
+          "polyunsaturated_fat_g": 0.898,
+          "monounsaturated_fat_g": 0.502
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.77000000000001,
+          "proteinG": 2.4408,
+          "carbsG": 13.1706,
+          "fiberG": 1.1178,
+          "fatG": 0.5373,
+          "saturatedFatG": 0.13473000000000002,
+          "polyunsaturatedFatG": 0.24246,
+          "monounsaturatedFatG": 0.13554000000000002
+        },
+        "storedRounded": {
+          "declaredKcal": 68,
+          "proteinG": 2.4,
+          "carbsG": 13.2,
+          "fiberG": 1.1,
+          "fatG": 0.5,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4065",
+        "selectedRecordId": "4065",
+        "selected": {
+          "recordId": "4065",
+          "descriptionEn": "Bread, rye",
+          "descriptionFr": "Pain, seigle",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 251,
+            "protein_g": 9.04,
+            "carbohydrate_g": 48.78,
+            "fibre_g": 4.14,
+            "total_fat_g": 1.99,
+            "saturated_fat_g": 0.499,
+            "polyunsaturated_fat_g": 0.898,
+            "monounsaturated_fat_g": 0.502
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4065",
+            "descriptionEn": "Bread, rye",
+            "descriptionFr": "Pain, seigle",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 251,
+              "protein_g": 9.04,
+              "carbohydrate_g": 48.78,
+              "fibre_g": 4.14,
+              "total_fat_g": 1.99,
+              "saturated_fat_g": 0.499,
+              "polyunsaturated_fat_g": 0.898,
+              "monounsaturated_fat_g": 0.502
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4065: Bread, rye.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 13.2,
+        "fiberG": 1.1,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 68
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 tranche de pain de seigle (27 g)",
+        "labelEn": "1 slice rye bread (27 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 27,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    }
+  ]
+}
