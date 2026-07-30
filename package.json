@@ -1,0 +1,19 @@
+{
+  "name": "equiv-alim-pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "generate:mobile": "node generate.js --mobile",
+    "generate:landscape": "node generate.js --landscape"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "pdf-parse": "^2.4.5",
+    "puppeteer": "^25.1.0"
+  }
+}

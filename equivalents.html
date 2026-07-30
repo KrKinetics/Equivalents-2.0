@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --avg-bg: #fef3c7;
+    --brand-accent: #991F2D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    font-size: 9pt;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .content-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Filigrane — dans content-wrap pour ne pas toucher la couverture */
+  .brand-watermark {
+    position: fixed;
+    top: 50%;
+    left: 68%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+    text-align: center;
+    width: 380px;
+  }
+  .brand-watermark img {
+    width: 100%;
+    height: auto;
+    opacity: 0.075;
+  }
+  .brand-watermark.brand-elevate img {
+    opacity: 0.045;
+    mix-blend-mode: lighten;
+  }
+  .brand-watermark.brand-elevate .brand-watermark-text {
+    opacity: 0.1;
+  }
+  .brand-watermark-text {
+    margin-top: 14px;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--brand-accent);
+    opacity: 0.2;
+    line-height: 1.6;
+  }
+
+  /* Couverture */
+  .cover {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 48px;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    page-break-after: always;
+  }
+  .cover-logo-wrap {
+    border-radius: 16px;
+    padding: 28px 40px 22px;
+    margin-bottom: 32px;
+  }
+  .cover-logo-wrap.light {
+    background: #ffffff;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  }
+  .cover-logo-wrap.dark {
+    background: #000000;
+    border: 1px solid rgba(201, 162, 39, 0.35);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+    padding: 20px 28px 16px;
+  }
+  .cover-logo-wrap.elevate {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    max-width: 420px;
+  }
+  .cover-logo {
+    width: 420px;
+    max-width: 72vw;
+    height: auto;
+    display: block;
+  }
+  .cover-badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 40pt;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .cover-tagline {
+    font-size: 11pt;
+    opacity: 0.78;
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.55;
+  }
+  .cover-stats {
+    display: flex;
+    gap: 44px;
+    margin-top: 4px;
+  }
+  .cover-stat { text-align: center; }
+  .cover-stat .num {
+    font-size: 28pt;
+    font-weight: 700;
+    color: #60a5fa;
+    display: block;
+    line-height: 1;
+  }
+  .cover-stat .lbl {
+    font-size: 8pt;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    display: block;
+  }
+  .cover-ecosystem {
+    margin-top: 32px;
+    font-size: 7.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+
+  /* TOC */
+  .toc-page {
+    padding: 40px 48px;
+    page-break-after: always;
+    position: relative;
+  }
+  .toc-page h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22pt;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .toc-page .toc-desc { color: var(--muted); margin-bottom: 32px; font-size: 10pt; }
+  .toc-list { list-style: none; }
+  .toc-list li { border-bottom: 1px solid var(--border); }
+  .toc-list a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 11pt;
+  }
+  .toc-num {
+    font-size: 8pt;
+    color: var(--muted);
+    font-weight: 600;
+    min-width: 24px;
+  }
+
+  /* Sections */
+  .page-break { page-break-before: always; }
+  .page-break:first-of-type { page-break-before: auto; }
+  .section { padding: 32px 40px 40px; }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--accent);
+  }
+  .section-title-block { display: flex; gap: 14px; align-items: flex-start; }
+  .section-icon { font-size: 22pt; line-height: 1; margin-top: 2px; }
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18pt;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 9pt;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 8pt;
+    font-weight: 600;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .section-note {
+    font-size: 7.5pt;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--bg-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  thead { background: var(--accent); color: white; }
+  .header-main th {
+    padding: 8px 10px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 7.5pt;
+    letter-spacing: 0.02em;
+  }
+  .header-sub th {
+    padding: 5px 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 7pt;
+    background: color-mix(in srgb, var(--accent) 85%, black);
+  }
+  .group-header { border-bottom: 1px solid rgba(255,255,255,0.2); }
+  th:first-child, .cell-aliment { text-align: left !important; }
+  tbody tr.even { background: var(--bg); }
+  tbody tr.odd { background: var(--bg-alt); }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .cell-aliment { font-weight: 500; max-width: 220px; }
+  .cell-num { text-align: center; font-variant-numeric: tabular-nums; color: #334155; }
+  .average-row { background: var(--avg-bg) !important; }
+  .average-row td { border-top: 2px solid var(--accent); font-weight: 600; }
+  .avg-label { color: var(--accent); }
+
+  /* Footer */
+  .doc-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 40px;
+    font-size: 7pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    background: white;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 12mm 10mm 18mm 10mm;
+  }
+  @media print {
+    .cover { min-height: 190mm; }
+    .section { padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="cover">
+  <div class="cover-main">
+    <div class="cover-logo-wrap light">
+      <img class="cover-logo" src="assets/kinetics-logo-full.png" alt="KR Kinetics — Force, Conditionnement et Nutrition" />
+    </div>
+    <div class="cover-badge">Guide nutritionnel · Écosystème Kinetics</div>
+    <h1>Équivalents<br>Alimentaires</h1>
+    <p class="cover-tagline">Référence complète des portions équivalentes avec valeurs nutritionnelles détaillées par catégorie d'aliments.</p>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="num">9</span><span class="lbl">Catégories</span></div>
+      <div class="cover-stat"><span class="num">200+</span><span class="lbl">Aliments</span></div>
+      <div class="cover-stat"><span class="num">6</span><span class="lbl">Nutriments</span></div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <p class="cover-ecosystem">Conçu par KR Kinetics · Force, Conditionnement & Nutrition</p>
+    
+<div class="lang-bar lang-bar-in-cover">
+  <a href="#lang-en" class="lang-pdf-btn">
+    <span class="lang-pdf-btn-icon">🌐</span>
+    <span class="lang-pdf-btn-label">Passer en anglais</span>
+    <span class="lang-pdf-btn-sub">Version anglaise complète</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="brand-watermark brand-kinetics" aria-hidden="true">
+    <img src="assets/kinetics-logo-transparent.png" alt="" />
+    <p class="brand-watermark-text"><span class="t" data-fr-html="Conçu par&lt;br>KR Kinetics" data-en-html="Created by&lt;br>KR Kinetics">Conçu par<br>KR Kinetics</span></p>
+  </div>
+
+  <div class="toc-page">
+    <h2><span class="t" data-fr="Table des matières" data-en="Table of Contents">Table des matières</span></h2>
+    <p class="toc-desc"><span class="t" data-fr="Consultez rapidement la section correspondant à votre portion alimentaire." data-en="Quickly find the section matching your food portion.">Consultez rapidement la section correspondant à votre portion alimentaire.</span></p>
+    <ol class="toc-list"><li><a href="#section-0"><span class="toc-num">01</span><span class="t" data-fr="Noix &amp; graines" data-en="Nuts &amp; Seeds">Noix & graines</span></a></li><li><a href="#section-1"><span class="toc-num">02</span><span class="t" data-fr="Matières grasses" data-en="Fats">Matières grasses</span></a></li><li><a href="#section-2"><span class="toc-num">03</span><span class="t" data-fr="Légumes" data-en="Vegetables">Légumes</span></a></li><li><a href="#section-3"><span class="toc-num">04</span><span class="t" data-fr="Fruits" data-en="Fruits">Fruits</span></a></li><li><a href="#section-4"><span class="toc-num">05</span><span class="t" data-fr="Poissons &amp; fruits de mer" data-en="Fish &amp; Seafood">Poissons & fruits de mer</span></a></li><li><a href="#section-5"><span class="toc-num">06</span><span class="t" data-fr="Viandes &amp; volaille" data-en="Meats &amp; Poultry">Viandes & volaille</span></a></li><li><a href="#section-6"><span class="toc-num">07</span><span class="t" data-fr="Autres sources protéinées" data-en="Other Protein Sources">Autres sources protéinées</span></a></li><li><a href="#section-7"><span class="toc-num">08</span><span class="t" data-fr="Féculents" data-en="Starches">Féculents</span></a></li><li><a href="#section-8"><span class="toc-num">09</span><span class="t" data-fr="Produits laitiers" data-en="Dairy Products">Produits laitiers</span></a></li></ol>
+  </div>
+
+  <div id="section-0" class="page-break">
+    <div class="section" style="--accent: #8B6914">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🥜</span>
+          <div>
+            <h2><span class="t" data-fr="Noix &amp; graines" data-en="Nuts &amp; Seeds">Noix & graines</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de NOIX, c'est :" data-en="One NUTS portion is:">Une portion de NOIX, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead>
+      <tr class="header-main">
+        <th rowspan="2"><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th rowspan="2"><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th rowspan="2"><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th rowspan="2"><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th>
+        <th colspan="3" class="group-header"><span class="t" data-fr="Lipides (g)" data-en="Fats (g)">Lipides (g)</span></th>
+        <th rowspan="2"><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th>
+      </tr>
+      <tr class="header-sub">
+        <th><span class="t" data-fr="Saturés" data-en="Saturated">Saturés</span></th><th><span class="t" data-fr="Poly-ins." data-en="Polyunsat.">Poly-ins.</span></th><th><span class="t" data-fr="Mono-ins." data-en="Monounsat.">Mono-ins.</span></th>
+      </tr>
+    </thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="7 Amandes (5 g)" data-en="7 Almonds (5 g)">7 Amandes (5 g)</span></td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">53</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="10 Arachides" data-en="10 Peanuts">10 Arachides</span></td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">54</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="10 ml de Beurre d'arachide / amandes" data-en="10 ml Peanut / almond butter">10 ml de Beurre d'arachide / amandes</span></td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">66</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="10 ml de Tahini (beurre de sésame)" data-en="10 ml Tahini (sesame butter)">10 ml de Tahini (beurre de sésame)</span></td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">59</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de chanvre" data-en="15 ml Hemp seeds">15 ml de Graines de chanvre</span></td><td class="cell-num">4</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">5</td><td class="cell-num">1</td><td class="cell-num">77</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de chia moulues" data-en="15 ml Ground chia seeds">15 ml de Graines de chia moulues</span></td><td class="cell-num">3</td><td class="cell-num">6</td><td class="cell-num">5</td><td class="cell-num">0</td><td class="cell-num">4</td><td class="cell-num">1</td><td class="cell-num">77</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="20 ml de Graines de lin moulues" data-en="20 ml Ground flax seeds">20 ml de Graines de lin moulues</span></td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">53</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de citrouille rôties" data-en="15 ml Roasted pumpkin seeds">15 ml de Graines de citrouille rôties</span></td><td class="cell-num">3</td><td class="cell-num">6</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">45</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de pin déshydratées" data-en="15 ml Dehydrated pine nuts">15 ml de Graines de pin déshydratées</span></td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">60</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de sésame" data-en="15 ml Sesame seeds">15 ml de Graines de sésame</span></td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">61</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="15 ml de Graines de tournesol rôtie à l'huile" data-en="15 ml Oil-roasted sunflower seeds">15 ml de Graines de tournesol rôtie à l'huile</span></td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">48</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 ml d'Hummus" data-en="30 ml Hummus">30 ml d'Hummus</span></td><td class="cell-num">2</td><td class="cell-num">5</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">69</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="7 Noix d'acajou ou cajous (5 g)" data-en="7 Cashews (5 g)">7 Noix d'acajou ou cajous (5 g)</span></td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">53</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 ml de Noix de coco filamenté" data-en="15 ml Shredded coconut">15 ml de Noix de coco filamenté</span></td><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">31</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="5 Noix de Grenoble (9 g)" data-en="5 Walnuts (9 g)">5 Noix de Grenoble (9 g)</span></td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">4</td><td class="cell-num">1</td><td class="cell-num">54</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="2 Noix du Brésil (7 g)" data-en="2 Brazil nuts (7 g)">2 Noix du Brésil (7 g)</span></td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">55</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="7 Noix de macadamia" data-en="7 Macadamia nuts">7 Noix de macadamia</span></td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">4</td><td class="cell-num">51</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="5 Pacanes rôties à l'huile (9 g)" data-en="5 Oil-roasted pecans (9 g)">5 Pacanes rôties à l'huile (9 g)</span></td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">51</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="10 Pistaches crues (6 g)" data-en="10 Raw pistachios (6 g)">10 Pistaches crues (6 g)</span></td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">31</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="⅓ tasse de Soja ou edamames" data-en="⅓ cup Soybeans or edamame">⅓ tasse de Soja ou edamames</span></td><td class="cell-num">5</td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">64</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g Granola protéiné maison (noix / graines)" data-en="30 g Homemade protein granola (nuts / seeds)">30 g Granola protéiné maison (noix / graines)</span></td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">56</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="20 g Beurre de cajou nature" data-en="20 g Natural cashew butter">20 g Beurre de cajou nature</span></td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">57</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>56</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-1" class="page-break">
+    <div class="section" style="--accent: #C45C26">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🫒</span>
+          <div>
+            <h2><span class="t" data-fr="Matières grasses" data-en="Fats">Matières grasses</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de MATIÈRE GRASSE, c'est :" data-en="One FAT portion is:">Une portion de MATIÈRE GRASSE, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead>
+      <tr class="header-main">
+        <th rowspan="2"><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th rowspan="2"><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th rowspan="2"><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th rowspan="2"><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th>
+        <th colspan="3" class="group-header"><span class="t" data-fr="Lipides (g)" data-en="Fats (g)">Lipides (g)</span></th>
+        <th rowspan="2"><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th>
+      </tr>
+      <tr class="header-sub">
+        <th><span class="t" data-fr="Saturés" data-en="Saturated">Saturés</span></th><th><span class="t" data-fr="Poly-ins." data-en="Polyunsat.">Poly-ins.</span></th><th><span class="t" data-fr="Mono-ins." data-en="Monounsat.">Mono-ins.</span></th>
+      </tr>
+    </thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="⅙ d'avocat" data-en="⅙ avocado">⅙ d'avocat</span></td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">55</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1 carré de Chocolat noir > 70 %" data-en="1 square Dark chocolate > 70%">1 carré de Chocolat noir > 70 %</span></td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">61</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="15 g de fromage cheddar / mozzarella / Philadelphia" data-en="15 g Cheddar / mozzarella / cream cheese">15 g de fromage cheddar / mozzarella / Philadelphia</span></td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">44</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="7,5 ml d'Huile végétale (arachide, canola, olive)" data-en="7.5 ml Vegetable oil (peanut, canola, olive)">7,5 ml d'Huile végétale (arachide, canola, olive)</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">5</td><td class="cell-num">59</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="7,5 ml d'Huile de coco vierge" data-en="7.5 ml Virgin coconut oil">7,5 ml d'Huile de coco vierge</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">6</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">59</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="7,5 ml d'Huile MCT" data-en="7.5 ml MCT oil">7,5 ml d'Huile MCT</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">58</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 œuf entier" data-en="1 whole egg">1 œuf entier</span></td><td class="cell-num">6</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">70</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="2 jaunes d'œuf" data-en="2 egg yolks">2 jaunes d'œuf</span></td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">55</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="7,5 ml de Margarine non hydrogénée ou de beurre" data-en="7.5 ml Non-hydrogenated margarine or butter">7,5 ml de Margarine non hydrogénée ou de beurre</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">50</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="7,5 ml de mayonnaise" data-en="7.5 ml Mayonnaise">7,5 ml de mayonnaise</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">49</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="16 Olives de 1,6 × 2 cm" data-en="16 Olives 1.6 × 2 cm">16 Olives de 1,6 × 2 cm</span></td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">5</td><td class="cell-num">66</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="10 ml de vinaigrette à base d'huile végétale" data-en="10 ml Vegetable oil-based vinaigrette">10 ml de vinaigrette à base d'huile végétale</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">50</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="10 ml d'Huile de poisson (EPA / DHA)" data-en="10 ml Fish oil (EPA / DHA)">10 ml d'Huile de poisson (EPA / DHA)</span></td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">56</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>3</strong></td><td class="cell-num"><strong>56</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-2" class="page-break">
+    <div class="section" style="--accent: #2D6A4F">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🥦</span>
+          <div>
+            <h2><span class="t" data-fr="Légumes" data-en="Vegetables">Légumes</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de LÉGUMES, c'est :" data-en="One VEGETABLE portion is:">Une portion de LÉGUMES, c'est :</span></p>
+          </div>
+        </div>
+        <span class="badge"><span class="t" data-fr="À volonté" data-en="Unlimited">À volonté</span></span>
+      </div>
+      
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th><th><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Ail (15 ml)" data-en="Garlic (15 ml)">Ail (15 ml)</span></td><td class="cell-num">0,5</td><td class="cell-num">3</td><td class="cell-num">14</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Artichaut" data-en="Artichoke">Artichaut</span></td><td class="cell-num">3</td><td class="cell-num">10</td><td class="cell-num">52</td><td class="cell-num">2</td><td class="cell-num">0,3</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Asperges" data-en="Asparagus">Asperges</span></td><td class="cell-num">5</td><td class="cell-num">8</td><td class="cell-num">57</td><td class="cell-num">3</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Aubergine" data-en="Eggplant">Aubergine</span></td><td class="cell-num">1</td><td class="cell-num">5</td><td class="cell-num">26</td><td class="cell-num">3</td><td class="cell-num">0,6</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Betteraves" data-en="Beets">Betteraves</span></td><td class="cell-num">1</td><td class="cell-num">9</td><td class="cell-num">44</td><td class="cell-num">0,2</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Brocoli" data-en="Broccoli">Brocoli</span></td><td class="cell-num">3</td><td class="cell-num">5</td><td class="cell-num">35</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml de Chou kale" data-en="250 ml Kale">250 ml de Chou kale</span></td><td class="cell-num">2</td><td class="cell-num">6</td><td class="cell-num">33</td><td class="cell-num">3</td><td class="cell-num">0,3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Carottes" data-en="Carrots">Carottes</span></td><td class="cell-num">1</td><td class="cell-num">9</td><td class="cell-num">41</td><td class="cell-num">2</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Céleri" data-en="Celery">Céleri</span></td><td class="cell-num">1</td><td class="cell-num">5</td><td class="cell-num">26</td><td class="cell-num">2</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Champignons" data-en="Mushrooms">Champignons</span></td><td class="cell-num">2</td><td class="cell-num">3</td><td class="cell-num">22</td><td class="cell-num">3</td><td class="cell-num">0,4</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Chou de Bruxelles" data-en="Brussels sprouts">Chou de Bruxelles</span></td><td class="cell-num">2</td><td class="cell-num">7</td><td class="cell-num">40</td><td class="cell-num">3</td><td class="cell-num">0,6</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Chou-fleurs" data-en="Cauliflower">Chou-fleurs</span></td><td class="cell-num">2</td><td class="cell-num">6</td><td class="cell-num">34</td><td class="cell-num">0,2</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Concombres" data-en="Cucumbers">Concombres</span></td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">17</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="300 g de Courgette" data-en="300 g Zucchini">300 g de Courgette</span></td><td class="cell-num">2</td><td class="cell-num">7</td><td class="cell-num">51</td><td class="cell-num">2</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Courge" data-en="Squash">Courge</span></td><td class="cell-num">2</td><td class="cell-num">8</td><td class="cell-num">45</td><td class="cell-num">0,2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Échalotte" data-en="Shallot">Échalotte</span></td><td class="cell-num">1</td><td class="cell-num">4</td><td class="cell-num">21</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Épinards" data-en="Spinach">Épinards</span></td><td class="cell-num">2</td><td class="cell-num">2</td><td class="cell-num">18</td><td class="cell-num">5</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Fenouil" data-en="Fennel">Fenouil</span></td><td class="cell-num">1</td><td class="cell-num">6</td><td class="cell-num">30</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Haricots jaunes ou verts" data-en="Yellow or green beans">Haricots jaunes ou verts</span></td><td class="cell-num">2</td><td class="cell-num">8</td><td class="cell-num">41</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Jus de légumes (250 ml)" data-en="Vegetable juice (250 ml)">Jus de légumes (250 ml)</span></td><td class="cell-num">2</td><td class="cell-num">12</td><td class="cell-num">58</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Laitue romaine" data-en="Romaine lettuce">Laitue romaine</span></td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">9</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Navet bouilli égoutté" data-en="Boiled drained turnip">Navet bouilli égoutté</span></td><td class="cell-num">2</td><td class="cell-num">12</td><td class="cell-num">58</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Oignon" data-en="Onion">Oignon</span></td><td class="cell-num">1</td><td class="cell-num">8</td><td class="cell-num">37</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Poireau bouilli égoutté" data-en="Boiled drained leek">Poireau bouilli égoutté</span></td><td class="cell-num">1</td><td class="cell-num">8</td><td class="cell-num">38</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Pois mange-tout" data-en="Snow peas">Pois mange-tout</span></td><td class="cell-num">2</td><td class="cell-num">6</td><td class="cell-num">33</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Poivron vert / rouge / jaune" data-en="Green / red / yellow bell pepper">Poivron vert / rouge / jaune</span></td><td class="cell-num">1</td><td class="cell-num">10</td><td class="cell-num">47</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="Radis" data-en="Radishes">Radis</span></td><td class="cell-num">1</td><td class="cell-num">4</td><td class="cell-num">26</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="Tomate de 6,6 cm de diamètre" data-en="Tomato 6.6 cm in diameter">Tomate de 6,6 cm de diamètre</span></td><td class="cell-num">1</td><td class="cell-num">6</td><td class="cell-num">32</td><td class="cell-num">2</td><td class="cell-num">0,1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml de Bouillon d'os maison" data-en="250 ml Homemade bone broth">250 ml de Bouillon d'os maison</span></td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">50</td><td class="cell-num">0</td><td class="cell-num">0,4</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="200 g de Portobello grillé" data-en="200 g Grilled portobello mushroom">200 g de Portobello grillé</span></td><td class="cell-num">2</td><td class="cell-num">7</td><td class="cell-num">52</td><td class="cell-num">2</td><td class="cell-num">0,3</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>7</strong></td><td class="cell-num"><strong>53</strong></td><td class="cell-num"><strong>1,5</strong></td><td class="cell-num"><strong>0,4</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-3" class="page-break">
+    <div class="section" style="--accent: #E63946">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🍎</span>
+          <div>
+            <h2><span class="t" data-fr="Fruits" data-en="Fruits">Fruits</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de FRUIT, c'est :" data-en="One FRUIT portion is:">Une portion de FRUIT, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th><th><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml d'abricot (160 g)" data-en="250 ml apricots (160 g)">250 ml d'abricot (160 g)</span></td><td class="cell-num">2</td><td class="cell-num">18</td><td class="cell-num">85</td><td class="cell-num">3</td><td class="cell-num">0,6</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="175 ml d'ananas (110 g)" data-en="175 ml pineapple (110 g)">175 ml d'ananas (110 g)</span></td><td class="cell-num">1</td><td class="cell-num">14</td><td class="cell-num">64</td><td class="cell-num">2</td><td class="cell-num">0,0</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ banane (60 g)" data-en="½ banana (60 g)">½ banane (60 g)</span></td><td class="cell-num">1</td><td class="cell-num">14</td><td class="cell-num">63</td><td class="cell-num">1</td><td class="cell-num">0,5</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="175 ml de bleuets (110 g)" data-en="175 ml blueberries (110 g)">175 ml de bleuets (110 g)</span></td><td class="cell-num">1</td><td class="cell-num">15,4</td><td class="cell-num">69</td><td class="cell-num">2</td><td class="cell-num">0,4</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="20 g de Baies de goji séchées" data-en="20 g Dried goji berries">20 g de Baies de goji séchées</span></td><td class="cell-num">3</td><td class="cell-num">12</td><td class="cell-num">70</td><td class="cell-num">3</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="175 ml de cantaloup (110 g)" data-en="175 ml cantaloupe (110 g)">175 ml de cantaloup (110 g)</span></td><td class="cell-num">2</td><td class="cell-num">15,4</td><td class="cell-num">73</td><td class="cell-num">0,6</td><td class="cell-num">0,3</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml de cerise avec noyau (110 g)" data-en="250 ml cherries with pits (110 g)">250 ml de cerise avec noyau (110 g)</span></td><td class="cell-num">1</td><td class="cell-num">13</td><td class="cell-num">59</td><td class="cell-num">2</td><td class="cell-num">0,3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="2 clémentines" data-en="2 clementines">2 clémentines</span></td><td class="cell-num">1</td><td class="cell-num">14</td><td class="cell-num">61</td><td class="cell-num">3</td><td class="cell-num">0,5</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 datte Medjool (24 g)" data-en="1 Medjool date (24 g)">1 datte Medjool (24 g)</span></td><td class="cell-num">0</td><td class="cell-num">18</td><td class="cell-num">66</td><td class="cell-num">2</td><td class="cell-num">0,0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de compote de fruits sans sucre ajouté" data-en="125 ml unsweetened applesauce">125 ml de compote de fruits sans sucre ajouté</span></td><td class="cell-num">0,2</td><td class="cell-num">19</td><td class="cell-num">79</td><td class="cell-num">3</td><td class="cell-num">0,1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml de fraises (150 g)" data-en="250 ml strawberries (150 g)">250 ml de fraises (150 g)</span></td><td class="cell-num">1</td><td class="cell-num">12</td><td class="cell-num">57</td><td class="cell-num">0,2</td><td class="cell-num">0,3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="250 ml de framboises (130 g)" data-en="250 ml raspberries (130 g)">250 ml de framboises (130 g)</span></td><td class="cell-num">1</td><td class="cell-num">15</td><td class="cell-num">70</td><td class="cell-num">0</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de jus de fruits 100 % pur, sans sucre ajouté" data-en="125 ml 100% pure fruit juice, no added sugar">125 ml de jus de fruits 100 % pur, sans sucre ajouté</span></td><td class="cell-num">1</td><td class="cell-num">14</td><td class="cell-num">63</td><td class="cell-num">4</td><td class="cell-num">0,6</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="2 petits kiwis (130 g)" data-en="2 small kiwis (130 g)">2 petits kiwis (130 g)</span></td><td class="cell-num">1</td><td class="cell-num">16</td><td class="cell-num">73</td><td class="cell-num">6</td><td class="cell-num">0,7</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ mangue (110 g)" data-en="½ mango (110 g)">½ mangue (110 g)</span></td><td class="cell-num">0,5</td><td class="cell-num">18</td><td class="cell-num">77</td><td class="cell-num">0,7</td><td class="cell-num">0,3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="250 ml de melon d'eau (170 g)" data-en="250 ml watermelon (170 g)">250 ml de melon d'eau (170 g)</span></td><td class="cell-num">1</td><td class="cell-num">12</td><td class="cell-num">58</td><td class="cell-num">3</td><td class="cell-num">0,6</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="250 ml de mûres (150 g)" data-en="250 ml blackberries (150 g)">250 ml de mûres (150 g)</span></td><td class="cell-num">2</td><td class="cell-num">15</td><td class="cell-num">73</td><td class="cell-num">2</td><td class="cell-num">0,3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1 nectarine (ou 250 ml)" data-en="1 nectarine (or 250 ml)">1 nectarine (ou 250 ml)</span></td><td class="cell-num">1</td><td class="cell-num">16</td><td class="cell-num">73</td><td class="cell-num">1</td><td class="cell-num">0,3</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 orange (170 g)" data-en="1 orange (170 g)">1 orange (170 g)</span></td><td class="cell-num">1</td><td class="cell-num">16</td><td class="cell-num">69</td><td class="cell-num">3</td><td class="cell-num">0,4</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1 pamplemousse (250 g)" data-en="1 grapefruit (250 g)">1 pamplemousse (250 g)</span></td><td class="cell-num">1</td><td class="cell-num">18</td><td class="cell-num">78</td><td class="cell-num">1,4</td><td class="cell-num">0,42</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 pêche (100 g)" data-en="1 peach (100 g)">1 pêche (100 g)</span></td><td class="cell-num">1,2</td><td class="cell-num">10</td><td class="cell-num">46</td><td class="cell-num">1</td><td class="cell-num">0,5</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de poire (110 g)" data-en="125 ml pear (110 g)">125 ml de poire (110 g)</span></td><td class="cell-num">0,3</td><td class="cell-num">13</td><td class="cell-num">57</td><td class="cell-num">1</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 pomme (140 g)" data-en="1 apple (140 g)">1 pomme (140 g)</span></td><td class="cell-num">0,3</td><td class="cell-num">21</td><td class="cell-num">90</td><td class="cell-num">0</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ pomme-grenade" data-en="½ pomegranate">½ pomme-grenade</span></td><td class="cell-num">0,8</td><td class="cell-num">13</td><td class="cell-num">57</td><td class="cell-num">1</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="2 prunes (130 g)" data-en="2 plums (130 g)">2 prunes (130 g)</span></td><td class="cell-num">1</td><td class="cell-num">18</td><td class="cell-num">83</td><td class="cell-num">2</td><td class="cell-num">0,8</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="3 pruneaux (30 g)" data-en="3 prunes (30 g)">3 pruneaux (30 g)</span></td><td class="cell-num">0,8</td><td class="cell-num">15</td><td class="cell-num">63</td><td class="cell-num">1</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 ml de raisins secs (20 g)" data-en="30 ml raisins (20 g)">30 ml de raisins secs (20 g)</span></td><td class="cell-num">0,6</td><td class="cell-num">15</td><td class="cell-num">62</td><td class="cell-num">1</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 gros raisins (75 g)" data-en="15 large grapes (75 g)">15 gros raisins (75 g)</span></td><td class="cell-num">1</td><td class="cell-num">14</td><td class="cell-num">65</td><td class="cell-num">1</td><td class="cell-num">0,2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="40 g de Dattes Deglet Nour (3 dattes)" data-en="40 g Deglet Nour dates (3 dates)">40 g de Dattes Deglet Nour (3 dattes)</span></td><td class="cell-num">1</td><td class="cell-num">15</td><td class="cell-num">70</td><td class="cell-num">2</td><td class="cell-num">0,2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Canneberges séchées peu sucrées" data-en="30 g Lightly sweetened dried cranberries">30 g de Canneberges séchées peu sucrées</span></td><td class="cell-num">0</td><td class="cell-num">15</td><td class="cell-num">68</td><td class="cell-num">2</td><td class="cell-num">0,2</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>15</strong></td><td class="cell-num"><strong>71</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>0,3</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-4" class="page-break">
+    <div class="section" style="--accent: #0077B6">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🐟</span>
+          <div>
+            <h2><span class="t" data-fr="Poissons &amp; fruits de mer" data-en="Fish &amp; Seafood">Poissons & fruits de mer</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de POISSONS &amp; FRUITS DE MER, c'est :" data-en="One FISH &amp; SEAFOOD portion is:">Une portion de POISSONS & FRUITS DE MER, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      <p class="section-note"><span class="t" data-fr="* Les poissons et fruits de mer gras sont équivalents aux viandes et volailles : 1 once (30 g) par portion." data-en="* Fatty fish and seafood are equivalent to meats and poultry: 1 ounce (30 g) per portion.">* Les poissons et fruits de mer gras sont équivalents aux viandes et volailles : 1 once (30 g) par portion.</span></p>
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g d'Aiglefin" data-en="45 g Haddock">45 g d'Aiglefin</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">50</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g d'Anguille" data-en="30 g Eel">30 g d'Anguille</span></td><td class="cell-num">7</td><td class="cell-num">2</td><td class="cell-num">5</td><td class="cell-num">76</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Brochet" data-en="45 g Pike">45 g de Brochet</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">47</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Caviar" data-en="30 g Caviar">30 g de Caviar</span></td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">44</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Crabe" data-en="45 g Crab">45 g de Crabe</span></td><td class="cell-num">12</td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">36</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Surimi" data-en="30 g Surimi">30 g de Surimi</span></td><td class="cell-num">8</td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">57</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Crevette" data-en="45 g Shrimp">45 g de Crevette</span></td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">4</td><td class="cell-num">53</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g d'Escargot" data-en="45 g Snail">45 g d'Escargot</span></td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">52</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Hareng" data-en="30 g Herring">30 g de Hareng</span></td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">55</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g d'Homard" data-en="45 g Lobster">45 g d'Homard</span></td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">53</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g d'Huîtres" data-en="45 g Oysters">45 g d'Huîtres</span></td><td class="cell-num">9</td><td class="cell-num">3</td><td class="cell-num">2</td><td class="cell-num">77</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Maquereau" data-en="30 g Mackerel">30 g de Maquereau</span></td><td class="cell-num">7</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">67</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Morue" data-en="45 g Cod">45 g de Morue</span></td><td class="cell-num">10</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">66</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g de Moules" data-en="45 g Mussels">45 g de Moules</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">5</td><td class="cell-num">71</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Palourdes en conserve" data-en="45 g Canned clams">45 g de Palourdes en conserve</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">51</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g de Pétoncle" data-en="45 g Scallop">45 g de Pétoncle</span></td><td class="cell-num">8</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">41</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Sole" data-en="45 g Sole">45 g de Sole</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">3</td><td class="cell-num">61</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Sardines en conserve" data-en="30 g Canned sardines">30 g de Sardines en conserve</span></td><td class="cell-num">5</td><td class="cell-num">5</td><td class="cell-num">1</td><td class="cell-num">61</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Saumon de l'Atlantique" data-en="30 g Atlantic salmon">30 g de Saumon de l'Atlantique</span></td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">45</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g de Thon" data-en="45 g Tuna">45 g de Thon</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">50</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Thon en conserve au naturel, égoutté" data-en="45 g Canned tuna in water, drained">45 g de Thon en conserve au naturel, égoutté</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">50</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="50 g de Tilapia" data-en="50 g Tilapia">50 g de Tilapia</span></td><td class="cell-num">10</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">48</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Truite arc-en-ciel" data-en="45 g Rainbow trout">45 g de Truite arc-en-ciel</span></td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">47</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="45 g de Turbot" data-en="45 g Turbot">45 g de Turbot</span></td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">44</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Flétan" data-en="45 g Halibut">45 g de Flétan</span></td><td class="cell-num">10</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">52</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g d'Anchois au naturel (en conserve)" data-en="30 g Canned anchovies in water">30 g d'Anchois au naturel (en conserve)</span></td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">55</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>9</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>55</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-5" class="page-break">
+    <div class="section" style="--accent: #9D0208">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🥩</span>
+          <div>
+            <h2><span class="t" data-fr="Viandes &amp; volaille" data-en="Meats &amp; Poultry">Viandes & volaille</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de VIANDES &amp; VOLAILLE, c'est :" data-en="One MEAT &amp; POULTRY portion is:">Une portion de VIANDES & VOLAILLE, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      <p class="section-note"><span class="t" data-fr="* À consommer peu souvent : choix moins intéressants en raison de leur plus grande teneur en lipides." data-en="* Consume infrequently: less desirable choices due to their higher fat content.">* À consommer peu souvent : choix moins intéressants en raison de leur plus grande teneur en lipides.</span></p>
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g d'Agneau (Jarret)" data-en="30 g Lamb (shank)">30 g d'Agneau (Jarret)</span></td><td class="cell-num">56</td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Bison" data-en="30 g Bison">30 g de Bison</span></td><td class="cell-num">43</td><td class="cell-num">6</td><td class="cell-num">1</td><td class="cell-num">3</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf (aloyau)" data-en="30 g Beef (sirloin)">30 g de Bœuf (aloyau)</span></td><td class="cell-num">65</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf haché extra maigre" data-en="30 g Extra-lean ground beef">30 g de Bœuf haché extra maigre</span></td><td class="cell-num">47</td><td class="cell-num">10</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf faux-filet extra-maigre" data-en="30 g Extra-lean sirloin steak">30 g de Bœuf faux-filet extra-maigre</span></td><td class="cell-num">52</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf haché maigre *" data-en="30 g Lean ground beef *">30 g de Bœuf haché maigre *</span></td><td class="cell-num">62</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf haché mi-maigre *" data-en="30 g Medium ground beef *">30 g de Bœuf haché mi-maigre *</span></td><td class="cell-num">77</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">5</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Bœuf haché régulier *" data-en="30 g Regular ground beef *">30 g de Bœuf haché régulier *</span></td><td class="cell-num">91</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Canard" data-en="30 g Duck">30 g de Canard</span></td><td class="cell-num">37</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Caribou" data-en="30 g Caribou">30 g de Caribou</span></td><td class="cell-num">50</td><td class="cell-num">10</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Cheval" data-en="30 g Horse">30 g de Cheval</span></td><td class="cell-num">53</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Cuisse de poulet" data-en="30 g Chicken thigh">30 g de Cuisse de poulet</span></td><td class="cell-num">57</td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Dinde" data-en="30 g Turkey">30 g de Dinde</span></td><td class="cell-num">45</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g d'Escalope de veau" data-en="30 g Veal cutlet">30 g d'Escalope de veau</span></td><td class="cell-num">57</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Lapin" data-en="30 g Rabbit">30 g de Lapin</span></td><td class="cell-num">59</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g d'Orignal" data-en="30 g Moose">30 g d'Orignal</span></td><td class="cell-num">40</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Poitrine de poulet" data-en="30 g Chicken breast">30 g de Poitrine de poulet</span></td><td class="cell-num">48</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">7</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Poulet haché maigre" data-en="30 g Lean ground chicken">30 g de Poulet haché maigre</span></td><td class="cell-num">51</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Porc (Côtes levées de dos) *" data-en="30 g Pork (back ribs) *">30 g de Porc (Côtes levées de dos) *</span></td><td class="cell-num">77</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">5</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Filet de porc" data-en="30 g Pork tenderloin">30 g de Filet de porc</span></td><td class="cell-num">56</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Sanglier" data-en="30 g Wild boar">30 g de Sanglier</span></td><td class="cell-num">48</td><td class="cell-num">8</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 g de Saucisse *" data-en="15 g Sausage *">15 g de Saucisse *</span></td><td class="cell-num">59</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Veau haché" data-en="30 g Ground veal">30 g de Veau haché</span></td><td class="cell-num">52</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Viandes froides (jambon / dinde)" data-en="30 g Deli meats (ham / turkey)">30 g de Viandes froides (jambon / dinde)</span></td><td class="cell-num">55</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Wapiti" data-en="30 g Elk">30 g de Wapiti</span></td><td class="cell-num">44</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Jerky de bœuf nature" data-en="30 g Natural beef jerky">30 g de Jerky de bœuf nature</span></td><td class="cell-num">57</td><td class="cell-num">9</td><td class="cell-num">2</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Dinde fumée extra-maigre" data-en="30 g Extra-lean smoked turkey">30 g de Dinde fumée extra-maigre</span></td><td class="cell-num">55</td><td class="cell-num">9</td><td class="cell-num">1</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de Poulet en conserve (au naturel) égoutté" data-en="30 g Canned chicken in water, drained">30 g de Poulet en conserve (au naturel) égoutté</span></td><td class="cell-num">53</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">1</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>55</strong></td><td class="cell-num"><strong>9</strong></td><td class="cell-num"><strong>0</strong></td><td class="cell-num"><strong>2</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-6" class="page-break">
+    <div class="section" style="--accent: #6A4C93">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🥚</span>
+          <div>
+            <h2><span class="t" data-fr="Autres sources protéinées" data-en="Other Protein Sources">Autres sources protéinées</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion d'AUTRES SOURCES PROTÉINÉES, c'est :" data-en="One OTHER PROTEIN SOURCE portion is:">Une portion d'AUTRES SOURCES PROTÉINÉES, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="3 Blancs d'œuf (ou ¼ tasse)" data-en="3 Egg whites (or ¼ cup)">3 Blancs d'œuf (ou ¼ tasse)</span></td><td class="cell-num">36</td><td class="cell-num">2,5</td><td class="cell-num">1</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1,5 c. à table de PB2" data-en="1.5 tbsp PB2">1,5 c. à table de PB2</span></td><td class="cell-num">78</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ scoop de Lactosérum (Whey)" data-en="½ scoop Whey protein">½ scoop de Lactosérum (Whey)</span></td><td class="cell-num">57</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ scoop de Protéine végétale (pois / riz)" data-en="½ scoop Plant protein (pea / rice)">½ scoop de Protéine végétale (pois / riz)</span></td><td class="cell-num">58</td><td class="cell-num">9</td><td class="cell-num">1</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="50 g de Seitan" data-en="50 g Seitan">50 g de Seitan</span></td><td class="cell-num">60</td><td class="cell-num">12</td><td class="cell-num">2</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="100 ml de Core Power, Fairlife (42 g prot./bouteille)" data-en="100 ml Core Power, Fairlife (42 g prot./bottle)">100 ml de Core Power, Fairlife (42 g prot./bouteille)</span></td><td class="cell-num">63</td><td class="cell-num">12</td><td class="cell-num">2</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="50 g de Tempeh" data-en="50 g Tempeh">50 g de Tempeh</span></td><td class="cell-num">74</td><td class="cell-num">11</td><td class="cell-num">1</td><td class="cell-num">1</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="100 g de Tofu ferme" data-en="100 g Firm tofu">100 g de Tofu ferme</span></td><td class="cell-num">63</td><td class="cell-num">8</td><td class="cell-num">7,5</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 Wrap Egglife" data-en="1 Egglife wrap">1 Wrap Egglife</span></td><td class="cell-num">70</td><td class="cell-num">7</td><td class="cell-num">2</td><td class="cell-num">3</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ scoop de Caséine micellaire" data-en="½ scoop Micellar casein">½ scoop de Caséine micellaire</span></td><td class="cell-num">58</td><td class="cell-num">9</td><td class="cell-num">1</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ scoop d'Isolat de whey" data-en="½ scoop Whey isolate">½ scoop d'Isolat de whey</span></td><td class="cell-num">57</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ scoop de Protéine de bœuf (isolate)" data-en="½ scoop Beef protein isolate">½ scoop de Protéine de bœuf (isolate)</span></td><td class="cell-num">59</td><td class="cell-num">9</td><td class="cell-num">1</td><td class="cell-num">2</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="35 g de Barre protéinée performance" data-en="35 g Performance protein bar">35 g de Barre protéinée performance</span></td><td class="cell-num">59</td><td class="cell-num">9</td><td class="cell-num">2</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="15 g de Collagène hydrolysé (peptides)" data-en="15 g Hydrolyzed collagen (peptides)">15 g de Collagène hydrolysé (peptides)</span></td><td class="cell-num">55</td><td class="cell-num">9</td><td class="cell-num">0</td><td class="cell-num">0</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="100 g de Natto fermenté" data-en="100 g Fermented natto">100 g de Natto fermenté</span></td><td class="cell-num">60</td><td class="cell-num">9</td><td class="cell-num">3</td><td class="cell-num">2</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="150 ml de Boisson protéinée RTD" data-en="150 ml Ready-to-drink protein shake">150 ml de Boisson protéinée RTD</span></td><td class="cell-num">58</td><td class="cell-num">9</td><td class="cell-num">2</td><td class="cell-num">1</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>59</strong></td><td class="cell-num"><strong>9</strong></td><td class="cell-num"><strong>2</strong></td><td class="cell-num"><strong>2</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-7" class="page-break">
+    <div class="section" style="--accent: #BC6C25">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🍞</span>
+          <div>
+            <h2><span class="t" data-fr="Féculents" data-en="Starches">Féculents</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de FÉCULENTS, c'est :" data-en="One STARCH portion is:">Une portion de FÉCULENTS, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ Bagel (~135 g)" data-en="½ Bagel (~135 g)">½ Bagel (~135 g)</span></td><td class="cell-num">5</td><td class="cell-num">18</td><td class="cell-num">0</td><td class="cell-num">1</td><td class="cell-num">108</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="75 ml de Gruau nature (~25 g), avant cuisson" data-en="75 ml Plain oatmeal (~25 g), uncooked">75 ml de Gruau nature (~25 g), avant cuisson</span></td><td class="cell-num">2</td><td class="cell-num">11</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">63</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="35 g de Flocons d'avoine (50 ml), avant cuisson" data-en="35 g Rolled oats (50 ml), uncooked">35 g de Flocons d'avoine (50 ml), avant cuisson</span></td><td class="cell-num">3</td><td class="cell-num">15</td><td class="cell-num">2</td><td class="cell-num">1</td><td class="cell-num">88</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Légumineuses cuites (100 g)" data-en="125 ml Cooked legumes (100 g)">125 ml de Légumineuses cuites (100 g)</span></td><td class="cell-num">4</td><td class="cell-num">7</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">105</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de Maïs bouilli, égoutté (75 g)" data-en="125 ml Boiled drained corn (75 g)">125 ml de Maïs bouilli, égoutté (75 g)</span></td><td class="cell-num">2</td><td class="cell-num">11</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">64</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ Muffin anglais, pain hot-dog ou hamburger" data-en="½ English muffin, hot dog or hamburger bun">½ Muffin anglais, pain hot-dog ou hamburger</span></td><td class="cell-num">4</td><td class="cell-num">13</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">93</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml d'Orge cuit (75 g)" data-en="125 ml Cooked barley (75 g)">125 ml d'Orge cuit (75 g)</span></td><td class="cell-num">6</td><td class="cell-num">16</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">109</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1 Pain pita de 10,2 cm (blé)" data-en="1 10.2 cm (4 in) wheat pita">1 Pain pita de 10,2 cm (blé)</span></td><td class="cell-num">3</td><td class="cell-num">15</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">109</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de Pâtes cuites (blé) (75 g)" data-en="125 ml Cooked pasta (wheat) (75 g)">125 ml de Pâtes cuites (blé) (75 g)</span></td><td class="cell-num">3</td><td class="cell-num">20</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">72</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Pomme de terre en purée avec lait" data-en="125 ml Mashed potato with milk">125 ml de Pomme de terre en purée avec lait</span></td><td class="cell-num">2</td><td class="cell-num">14</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">102</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="½ Pomme de terre moyenne (Douce) (75 g)" data-en="½ medium sweet potato (75 g)">½ Pomme de terre moyenne (Douce) (75 g)</span></td><td class="cell-num">3</td><td class="cell-num">1</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">82</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Quinoa cuit (75 g)" data-en="125 ml Cooked quinoa (75 g)">125 ml de Quinoa cuit (75 g)</span></td><td class="cell-num">8</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">116</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de Sarrasin cuit (75 g)" data-en="125 ml Cooked buckwheat (75 g)">125 ml de Sarrasin cuit (75 g)</span></td><td class="cell-num">3</td><td class="cell-num">16</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">85</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Riz cuit (100 g)" data-en="125 ml Cooked rice (100 g)">125 ml de Riz cuit (100 g)</span></td><td class="cell-num">2</td><td class="cell-num">22</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">91</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de Topinambour" data-en="125 ml Jerusalem artichoke">125 ml de Topinambour</span></td><td class="cell-num">3</td><td class="cell-num">22</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">111</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="1 Tranche de pain (blé)" data-en="1 slice Bread (wheat)">1 Tranche de pain (blé)</span></td><td class="cell-num">3</td><td class="cell-num">19</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">76</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 tranche de Pain germé (sans farine enrichie)" data-en="1 slice Sprouted bread (no enriched flour)">1 tranche de Pain germé (sans farine enrichie)</span></td><td class="cell-num">4</td><td class="cell-num">15</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">80</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Céréales à déjeuner peu sucrées" data-en="125 ml Lightly sweetened breakfast cereal">125 ml de Céréales à déjeuner peu sucrées</span></td><td class="cell-num">4</td><td class="cell-num">25</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">85</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de Couscous cuit (75 g)" data-en="125 ml Cooked couscous (75 g)">125 ml de Couscous cuit (75 g)</span></td><td class="cell-num">2</td><td class="cell-num">23</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">62</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="2 Galettes de riz (~20 g)" data-en="2 Rice cakes (~20 g)">2 Galettes de riz (~20 g)</span></td><td class="cell-num">3</td><td class="cell-num">14</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">74</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="45 g de Flocons d'avoine (sec, ~60 ml)" data-en="45 g Rolled oats (dry, ~60 ml)">45 g de Flocons d'avoine (sec, ~60 ml)</span></td><td class="cell-num">4</td><td class="cell-num">15</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">88</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Lentilles Beluga cuites (100 g)" data-en="125 ml Cooked beluga lentils (100 g)">125 ml de Lentilles Beluga cuites (100 g)</span></td><td class="cell-num">4</td><td class="cell-num">14</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">87</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 tranche de Pain Ezekiel germé (34 g)" data-en="1 slice Ezekiel sprouted bread (34 g)">1 tranche de Pain Ezekiel germé (34 g)</span></td><td class="cell-num">4</td><td class="cell-num">15</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">84</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>4</strong></td><td class="cell-num"><strong>15</strong></td><td class="cell-num"><strong>1</strong></td><td class="cell-num"><strong>0</strong></td><td class="cell-num"><strong>89</strong></td></tr></tbody>
+      </table>
+    </div></div><div id="section-8" class="page-break">
+    <div class="section" style="--accent: #4895EF">
+      <div class="section-header">
+        <div class="section-title-block">
+          <span class="section-icon">🥛</span>
+          <div>
+            <h2><span class="t" data-fr="Produits laitiers" data-en="Dairy Products">Produits laitiers</span></h2>
+            <p class="section-subtitle"><span class="t" data-fr="Une portion de PRODUIT LAITIER, c'est :" data-en="One DAIRY portion is:">Une portion de PRODUIT LAITIER, c'est :</span></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <table>
+        <thead><tr class="header-main"><th><span class="t" data-fr="Aliments" data-en="Foods">Aliments</span></th><th><span class="t" data-fr="Protéines (g)" data-en="Protein (g)">Protéines (g)</span></th><th><span class="t" data-fr="Glucides (g)" data-en="Carbs (g)">Glucides (g)</span></th><th><span class="t" data-fr="Fibres (g)" data-en="Fiber (g)">Fibres (g)</span></th><th><span class="t" data-fr="Lipides (g)" data-en="Fat (g)">Lipides (g)</span></th><th><span class="t" data-fr="Calories (Kcal)" data-en="Calories (kcal)">Calories (Kcal)</span></th></tr></thead>
+        <tbody><tr class="even"><td class="cell-aliment"><span class="t" data-fr="100 ml de Yogourt 1-2 % sans sucre ajouté (100 g)" data-en="100 ml 1-2% yogurt, no added sugar (100 g)">100 ml de Yogourt 1-2 % sans sucre ajouté (100 g)</span></td><td class="cell-num">6</td><td class="cell-num">6</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">78</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="100 ml de Yogourt grec (100 g)" data-en="100 ml Greek yogurt (100 g)">100 ml de Yogourt grec (100 g)</span></td><td class="cell-num">1</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">67</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="100 g de Skyr 0 % nature" data-en="100 g 0% plain Skyr">100 g de Skyr 0 % nature</span></td><td class="cell-num">11</td><td class="cell-num">4</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">62</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="100 ml de Kéfir nature ou aux fruits (100 g)" data-en="100 ml Plain or fruit kefir (100 g)">100 ml de Kéfir nature ou aux fruits (100 g)</span></td><td class="cell-num">1</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">54</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="¾ tasse de Lait 1-2 %" data-en="¾ cup 1-2% milk">¾ tasse de Lait 1-2 %</span></td><td class="cell-num">5</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">89</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="150 ml de Lait filtré haute protéine (1 %)" data-en="150 ml High-protein filtered milk (1%)">150 ml de Lait filtré haute protéine (1 %)</span></td><td class="cell-num">8</td><td class="cell-num">4</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">75</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="1 tasse de Boisson d'amandes / orge / riz nature" data-en="1 cup Plain almond / barley / rice beverage">1 tasse de Boisson d'amandes / orge / riz nature</span></td><td class="cell-num">13</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">91</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ tasse de Boisson d'amandes / orge / riz à la vanille" data-en="½ cup Vanilla almond / barley / rice beverage">½ tasse de Boisson d'amandes / orge / riz à la vanille</span></td><td class="cell-num">10</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">67</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="¾ tasse de Boisson de soya" data-en="¾ cup Soy beverage">¾ tasse de Boisson de soya</span></td><td class="cell-num">15</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">88</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="½ bouteille de Core Power, Fairlife (26 g prot./bouteille)" data-en="½ bottle Core Power, Fairlife (26 g prot./bottle)">½ bouteille de Core Power, Fairlife (26 g prot./bouteille)</span></td><td class="cell-num">10</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">60</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="30 g de Fromage Allegro 9 %" data-en="30 g Allegro 9% cheese">30 g de Fromage Allegro 9 %</span></td><td class="cell-num">8</td><td class="cell-num">5</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">77</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="125 ml de Fromage cottage 1 %" data-en="125 ml 1% cottage cheese">125 ml de Fromage cottage 1 %</span></td><td class="cell-num">9</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">83</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="50 g de Ricotta partiellement écrémée" data-en="50 g Partly skimmed ricotta">50 g de Ricotta partiellement écrémée</span></td><td class="cell-num">7</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">2</td><td class="cell-num">69</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="25 g de Fromage suisse léger COGRUET (1 tranche)" data-en="25 g Light Swiss cheese COGRUET (1 slice)">25 g de Fromage suisse léger COGRUET (1 tranche)</span></td><td class="cell-num">4</td><td class="cell-num">1</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">59</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 ml de NATREL PLUS 2 %" data-en="125 ml NATREL PLUS 2%">125 ml de NATREL PLUS 2 %</span></td><td class="cell-num">5</td><td class="cell-num">2</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">66</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="30 g de fromage Le Six pourcent (Bergeron)" data-en="30 g Le Six pourcent cheese (Bergeron)">30 g de fromage Le Six pourcent (Bergeron)</span></td><td class="cell-num">10</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">82</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="125 g de Yaourt grec 0 % nature" data-en="125 g 0% plain Greek yogurt">125 g de Yaourt grec 0 % nature</span></td><td class="cell-num">7</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">72</td></tr><tr class="odd"><td class="cell-aliment"><span class="t" data-fr="150 ml de Lait au chocolat protéiné 1 %" data-en="150 ml 1% protein chocolate milk">150 ml de Lait au chocolat protéiné 1 %</span></td><td class="cell-num">7</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">73</td></tr><tr class="even"><td class="cell-aliment"><span class="t" data-fr="100 g de Fromage cottage 2 %" data-en="100 g 2% cottage cheese">100 g de Fromage cottage 2 %</span></td><td class="cell-num">7</td><td class="cell-num">3</td><td class="cell-num">0</td><td class="cell-num">0</td><td class="cell-num">74</td></tr><tr class="average-row"><td class="cell-aliment avg-label"><strong><span class="t" data-fr="Moyenne" data-en="Average">Moyenne</span></strong></td><td class="cell-num"><strong>7</strong></td><td class="cell-num"><strong>3</strong></td><td class="cell-num"><strong>0</strong></td><td class="cell-num"><strong>0</strong></td><td class="cell-num"><strong>74</strong></td></tr></tbody>
+      </table>
+    </div></div>
+</div>
+
+</body>
+</html>

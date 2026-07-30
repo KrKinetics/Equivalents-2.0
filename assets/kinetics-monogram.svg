@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-label="KR monogram">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black:ital@1&amp;display=swap');
+      .kr { font-family: 'Archivo Black', Impact, sans-serif; font-style: italic; font-size: 128px; font-weight: 900; fill: #5C1023; letter-spacing: -0.02em; }
+    </style>
+  </defs>
+  <rect width="320" height="200" fill="#FFFFFF"/>
+  <g transform="translate(160 128)">
+    <text text-anchor="middle" class="kr" transform="skewX(-12)">KR</text>
+  </g>
+  <g fill="#FFFFFF">
+    <polygon points="88,42 98,32 108,42 98,52"/>
+    <polygon points="208,42 218,32 228,42 218,52"/>
+    <polygon points="78,98 88,88 98,98 88,108"/>
+    <polygon points="238,98 248,88 258,98 248,108"/>
+  </g>
+</svg>
