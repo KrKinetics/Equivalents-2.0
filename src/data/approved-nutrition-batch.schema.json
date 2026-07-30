@@ -141,14 +141,26 @@
         "url",
         "accessedAt",
         "labelServing",
-        "labelNutrients",
-        "derivedUnroundedPer100Ml",
-        "storedPer100Ml"
+        "labelNutrients"
+      ],
+      "oneOf": [
+        {
+          "required": ["derivedUnroundedPer100Ml", "storedPer100Ml"]
+        },
+        {
+          "required": [
+            "derivedUnroundedForCanonicalPortion",
+            "storedForCanonicalPortion"
+          ]
+        }
       ],
       "properties": {
         "sourceType": { "type": "string", "minLength": 1 },
         "url": { "type": "string", "minLength": 1 },
         "accessedAt": { "type": "string", "minLength": 8 },
+        "brand": { "type": "string" },
+        "productName": { "type": "string" },
+        "market": { "type": "string" },
         "labelServing": {
           "type": "object",
           "additionalProperties": false,
@@ -160,7 +172,9 @@
         },
         "labelNutrients": { "type": "object" },
         "derivedUnroundedPer100Ml": { "type": "object" },
-        "storedPer100Ml": { "type": "object" }
+        "storedPer100Ml": { "type": "object" },
+        "derivedUnroundedForCanonicalPortion": { "type": "object" },
+        "storedForCanonicalPortion": { "type": "object" }
       }
     },
     "batchFood": {

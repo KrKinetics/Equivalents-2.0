@@ -90,3 +90,50 @@ export function convertManufacturerBottleTo100ml(labelNutrients, bottleMl = 414)
     storedRounded,
   };
 }
+
+export function convertManufacturerLabelToCanonicalPortion(
+  labelNutrients,
+  labelServingAmount,
+  canonicalAmount
+) {
+  const labelMl = Number(labelServingAmount);
+  const canonicalMl = Number(canonicalAmount);
+  if (!Number.isFinite(labelMl) || labelMl <= 0) {
+    throw new Error(`Invalid label serving amount: ${labelServingAmount}`);
+  }
+  if (!Number.isFinite(canonicalMl) || canonicalMl <= 0) {
+    throw new Error(`Invalid canonical portion amount: ${canonicalAmount}`);
+  }
+  const factor = canonicalMl / labelMl;
+  const keys = [
+    'declaredKcal',
+    'proteinG',
+    'carbsG',
+    'fiberG',
+    'fatG',
+    'saturatedFatG',
+    'polyunsaturatedFatG',
+    'monounsaturatedFatG',
+  ];
+  const derivedUnrounded = {};
+  const storedRounded = {};
+  for (const key of keys) {
+    const sourceValue = labelNutrients?.[key];
+    if (sourceValue == null) {
+      derivedUnrounded[key] = null;
+      storedRounded[key] = null;
+      continue;
+    }
+    const derived = Number(sourceValue) * factor;
+    derivedUnrounded[key] = derived;
+    storedRounded[key] = key === 'declaredKcal' ? roundKcal(derived) : roundMacro(derived);
+  }
+  return {
+    formula: `valueCanonical = valueLabel × ${canonicalMl} / ${labelMl}`,
+    labelServingAmount: labelMl,
+    canonicalAmount: canonicalMl,
+    labelNutrients: { ...labelNutrients },
+    derivedUnrounded,
+    storedRounded,
+  };
+}

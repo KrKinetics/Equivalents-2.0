@@ -1,0 +1,190 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "generatedAt": "2026-07-30T18:26:16.059Z",
+  "selections": [
+    {
+      "foodId": "matieres-grasses-avocado",
+      "operation": "update",
+      "expectedRecordId": "1511",
+      "selectedRecordId": "1511",
+      "descriptionEn": "Avocado, raw, all commercial varieties",
+      "descriptionFr": "Avocat, cru, toutes variétés commerciales"
+    },
+    {
+      "foodId": "matieres-grasses-square-dark-chocolate-70",
+      "operation": "update",
+      "expectedRecordId": "6672",
+      "selectedRecordId": "6672",
+      "descriptionEn": "Candies, chocolate, dark, 70-85% cocoa solids",
+      "descriptionFr": "Bonbons, chocolat noir, 70-85% solides de cacao"
+    },
+    {
+      "foodId": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "operation": "update",
+      "expectedRecordId": "119",
+      "selectedRecordId": "119",
+      "descriptionEn": "Cheese, cheddar, mild",
+      "descriptionFr": "Fromage cheddar, doux"
+    },
+    {
+      "foodId": "matieres-grasses-vegetable-oil",
+      "operation": "update",
+      "expectedRecordId": "422",
+      "selectedRecordId": "422",
+      "descriptionEn": "Vegetable oil, olive",
+      "descriptionFr": "Huile végétale, olive"
+    },
+    {
+      "foodId": "matieres-grasses-virgin-coconut-oil",
+      "operation": "update",
+      "expectedRecordId": "420",
+      "selectedRecordId": "420",
+      "descriptionEn": "Vegetable oil, coconut",
+      "descriptionFr": "Huile végétale, noix de coco"
+    },
+    {
+      "foodId": "matieres-grasses-whole-egg",
+      "operation": "update",
+      "expectedRecordId": "130",
+      "selectedRecordId": "130",
+      "descriptionEn": "Egg, chicken, whole, cooked, boiled in shell, hard-cooked",
+      "descriptionFr": "Oeuf, poule, entier, cuit, bouilli à la coque, dur"
+    },
+    {
+      "foodId": "matieres-grasses-egg-yolks",
+      "operation": "update",
+      "expectedRecordId": "6718",
+      "selectedRecordId": "6718",
+      "descriptionEn": "Egg, chicken, yolk, cooked",
+      "descriptionFr": "Oeuf, poule, jaune, cuit"
+    },
+    {
+      "foodId": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "operation": "update",
+      "expectedRecordId": "118",
+      "selectedRecordId": "118",
+      "descriptionEn": "Butter, regular",
+      "descriptionFr": "Beurre, salé"
+    },
+    {
+      "foodId": "matieres-grasses-mayonnaise",
+      "operation": "update",
+      "expectedRecordId": "531",
+      "selectedRecordId": "531",
+      "descriptionEn": "Salad dressing, mayonnaise, regular",
+      "descriptionFr": "Vinaigrette, mayonnaise, régulière"
+    },
+    {
+      "foodId": "matieres-grasses-olives-1-6-2-cm",
+      "operation": "update",
+      "expectedRecordId": "1613",
+      "selectedRecordId": "1613",
+      "descriptionEn": "Olive, ripe, canned, small to extra large",
+      "descriptionFr": "Olive, mûre, conserve, petite à extra large"
+    },
+    {
+      "foodId": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "operation": "update",
+      "expectedRecordId": "428",
+      "selectedRecordId": "428",
+      "descriptionEn": "Salad dressing, oil and vinegar, homemade",
+      "descriptionFr": "Vinaigrette, huile et vinaigre, faite maison"
+    },
+    {
+      "foodId": "matieres-grasses-fish-oil",
+      "operation": "update",
+      "expectedRecordId": "457",
+      "selectedRecordId": "457",
+      "descriptionEn": "Fish oil, cod liver",
+      "descriptionFr": "Huile de poisson, foie de morue"
+    },
+    {
+      "foodId": "matieres-grasses-dark-chocolate-60-69",
+      "operation": "add",
+      "expectedRecordId": "6671",
+      "selectedRecordId": "6671",
+      "descriptionEn": "Candies, chocolate, dark, 60-69% cocoa solids",
+      "descriptionFr": "Bonbons, chocolat noir, 60-69% solides de cacao"
+    },
+    {
+      "foodId": "matieres-grasses-mozzarella-cheese",
+      "operation": "add",
+      "expectedRecordId": "35",
+      "selectedRecordId": "35",
+      "descriptionEn": "Cheese, mozzarella, (48% water, 25% M.F.)",
+      "descriptionFr": "Fromage mozzarella (48%d'humidité, 25% M.G.)"
+    },
+    {
+      "foodId": "matieres-grasses-cream-cheese-plain",
+      "operation": "add",
+      "expectedRecordId": "28",
+      "selectedRecordId": "28",
+      "descriptionEn": "Cheese, cream cheese product, plain",
+      "descriptionFr": "Fromage, produit de fromage à la crème, nature"
+    },
+    {
+      "foodId": "matieres-grasses-canola-oil",
+      "operation": "add",
+      "expectedRecordId": "451",
+      "selectedRecordId": "451",
+      "descriptionEn": "Vegetable oil, canola",
+      "descriptionFr": "Huile végétale, canola (colza)"
+    },
+    {
+      "foodId": "matieres-grasses-peanut-oil",
+      "operation": "add",
+      "expectedRecordId": "418",
+      "selectedRecordId": "418",
+      "descriptionEn": "Vegetable oil, peanut",
+      "descriptionFr": "Huile végétale, arachide"
+    },
+    {
+      "foodId": "matieres-grasses-avocado-oil",
+      "operation": "add",
+      "expectedRecordId": "450",
+      "selectedRecordId": "450",
+      "descriptionEn": "Vegetable oil, avocado",
+      "descriptionFr": "Huile végétale, avocat"
+    },
+    {
+      "foodId": "matieres-grasses-unsalted-butter",
+      "operation": "add",
+      "expectedRecordId": "92",
+      "selectedRecordId": "92",
+      "descriptionEn": "Butter, unsalted",
+      "descriptionFr": "Beurre, sans sel"
+    },
+    {
+      "foodId": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "operation": "add",
+      "expectedRecordId": "7463",
+      "selectedRecordId": "7463",
+      "descriptionEn": "Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)",
+      "descriptionFr": "Margarine, molle, non hydrogénée, huile de canola (incluant huile de tournesol)"
+    },
+    {
+      "foodId": "matieres-grasses-green-olives",
+      "operation": "add",
+      "expectedRecordId": "5391",
+      "selectedRecordId": "5391",
+      "descriptionEn": "Olive, pickled, canned or bottled, green",
+      "descriptionFr": "Olive, marinée, conserve ou embouteillées, verte"
+    },
+    {
+      "foodId": "matieres-grasses-reduced-fat-mayonnaise",
+      "operation": "add",
+      "expectedRecordId": "5332",
+      "selectedRecordId": "5332",
+      "descriptionEn": "Salad dressing, mayonnaise, reduced fat",
+      "descriptionFr": "Vinaigrette, mayonnaise, teneur réduite en gras"
+    },
+    {
+      "foodId": "matieres-grasses-mct-oil",
+      "operation": "update",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/mct-oil-liquid-plastic-bottle",
+      "descriptionEn": null,
+      "descriptionFr": null
+    }
+  ]
+}

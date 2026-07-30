@@ -1,0 +1,189 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "transactions": [
+    {
+      "id": "matieres-grasses-avocado",
+      "operation": "update",
+      "transactionId": "1151160f-c677-48b3-9dd2-3654295074eb",
+      "expectedRecordId": "1511",
+      "selectedRecordId": "1511",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "operation": "update",
+      "transactionId": "5bb8b6e4-16f1-41c6-8687-2c0c4a8c9e00",
+      "expectedRecordId": "6672",
+      "selectedRecordId": "6672",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "operation": "update",
+      "transactionId": "1407875a-eef1-4c43-b6c9-1d224236edad",
+      "expectedRecordId": "119",
+      "selectedRecordId": "119",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "operation": "update",
+      "transactionId": "a785957c-a4e0-456a-a8fb-14046d12ab00",
+      "expectedRecordId": "422",
+      "selectedRecordId": "422",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "operation": "update",
+      "transactionId": "63e497e7-b33a-45d3-b46f-a7af63dfcb60",
+      "expectedRecordId": "420",
+      "selectedRecordId": "420",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-whole-egg",
+      "operation": "update",
+      "transactionId": "e777ac5c-4c38-4d82-b828-ed1e9399709f",
+      "expectedRecordId": "130",
+      "selectedRecordId": "130",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-egg-yolks",
+      "operation": "update",
+      "transactionId": "0e465409-7eb1-407c-9c40-9385c7122137",
+      "expectedRecordId": "6718",
+      "selectedRecordId": "6718",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "operation": "update",
+      "transactionId": "af9d6585-168f-4c7b-a340-0606742d1d28",
+      "expectedRecordId": "118",
+      "selectedRecordId": "118",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "operation": "update",
+      "transactionId": "7ea36fa1-a95f-4b6c-82b2-4a05cc4c61a3",
+      "expectedRecordId": "531",
+      "selectedRecordId": "531",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "operation": "update",
+      "transactionId": "3a381e9e-9cb3-4061-8ea1-e97451f7fa39",
+      "expectedRecordId": "1613",
+      "selectedRecordId": "1613",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "operation": "update",
+      "transactionId": "10d2df02-9f17-482d-83e8-9b4c7ded92f8",
+      "expectedRecordId": "428",
+      "selectedRecordId": "428",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "operation": "update",
+      "transactionId": "cf5ed873-f95c-4e46-8a7b-a0ed1144d827",
+      "expectedRecordId": "457",
+      "selectedRecordId": "457",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "operation": "add",
+      "transactionId": "a4a59be7-1e83-4d17-94a8-91a714afeaf3",
+      "expectedRecordId": "6671",
+      "selectedRecordId": "6671",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-mozzarella-cheese",
+      "operation": "add",
+      "transactionId": "d16c7dec-929c-4442-afea-fec211b0e5e6",
+      "expectedRecordId": "35",
+      "selectedRecordId": "35",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-cream-cheese-plain",
+      "operation": "add",
+      "transactionId": "c1dc9d1c-c1ca-4af6-aaeb-f9f4167cddd3",
+      "expectedRecordId": "28",
+      "selectedRecordId": "28",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-canola-oil",
+      "operation": "add",
+      "transactionId": "78db4ef7-2a8a-4fb3-902a-9df1fde65c15",
+      "expectedRecordId": "451",
+      "selectedRecordId": "451",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-peanut-oil",
+      "operation": "add",
+      "transactionId": "cc5f0728-f6f3-4724-9f42-b1febcf87838",
+      "expectedRecordId": "418",
+      "selectedRecordId": "418",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-avocado-oil",
+      "operation": "add",
+      "transactionId": "d12c047f-0b7b-4f48-88d5-d59887e38aee",
+      "expectedRecordId": "450",
+      "selectedRecordId": "450",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-unsalted-butter",
+      "operation": "add",
+      "transactionId": "078172d3-6102-4d42-bf46-873fffadac72",
+      "expectedRecordId": "92",
+      "selectedRecordId": "92",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "operation": "add",
+      "transactionId": "611215b0-d34b-45f9-b4c2-6e184cc8ffad",
+      "expectedRecordId": "7463",
+      "selectedRecordId": "7463",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-green-olives",
+      "operation": "add",
+      "transactionId": "dae40767-8e00-4d45-b6ce-75ed50e4f80e",
+      "expectedRecordId": "5391",
+      "selectedRecordId": "5391",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "operation": "add",
+      "transactionId": "c9765f86-196e-491d-aec4-afea0d2ce6e6",
+      "expectedRecordId": "5332",
+      "selectedRecordId": "5332",
+      "version": 3
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "operation": "update",
+      "transactionId": "e9b8efa7-b362-4f64-9b7b-fe310bcf14fa",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/mct-oil-liquid-plastic-bottle",
+      "version": 3
+    }
+  ]
+}

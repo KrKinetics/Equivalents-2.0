@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 214,
+  "protectedFoodsDataHash": "9e4893bfae4f308b47e1b3ae539ae118fb708cbbb080a029374aef1f95219cf5",
+  "foodCount": 237,
+  "checkedAt": "2026-07-30T18:26:16.057Z",
+  "batchId": "fats-complete-individual-validation-23-foods"
+}

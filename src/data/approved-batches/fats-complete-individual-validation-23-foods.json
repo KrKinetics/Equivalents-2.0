@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "title": "KR Kinetics — Validation individuelle complète des matières grasses",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 13 entrées existantes de la catégorie Matières grasses, séparer les aliments combinés et ajouter dix variantes utiles, tout en protégeant strictement les 214 autres aliments existants.",
+  "scope": {
+    "existingFoodCount": 227,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 237,
+    "batchFoodCount": 23,
+    "protectedFoodCount": 214,
+    "allowedFoodIds": [
+      "matieres-grasses-avocado",
+      "matieres-grasses-square-dark-chocolate-70",
+      "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "matieres-grasses-vegetable-oil",
+      "matieres-grasses-virgin-coconut-oil",
+      "matieres-grasses-whole-egg",
+      "matieres-grasses-egg-yolks",
+      "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "matieres-grasses-mayonnaise",
+      "matieres-grasses-olives-1-6-2-cm",
+      "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "matieres-grasses-fish-oil",
+      "matieres-grasses-dark-chocolate-60-69",
+      "matieres-grasses-mozzarella-cheese",
+      "matieres-grasses-cream-cheese-plain",
+      "matieres-grasses-canola-oil",
+      "matieres-grasses-peanut-oil",
+      "matieres-grasses-avocado-oil",
+      "matieres-grasses-unsalted-butter",
+      "matieres-grasses-non-hydrogenated-canola-margarine",
+      "matieres-grasses-green-olives",
+      "matieres-grasses-reduced-fat-mayonnaise",
+      "matieres-grasses-mct-oil"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment générique utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "NOW Foods",
+      "rule": "L’huile MCT utilise uniquement l’étiquette officielle NOW Foods et conserve la portion source, la conversion, la date de consultation et l’URL concrète."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF ou de l’étiquette fabricant.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s’affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec la source concrète."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "matieres-grasses-avocado",
+      "lockedIdentity": {
+        "fr": "Avocat cru, toutes variétés commerciales",
+        "en": "Avocado, raw, all commercial varieties",
+        "preparationState": "raw",
+        "exclusions": [
+          "oil",
+          "california",
+          "florida"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "⅙ d’un avocat moyen (34 g)",
+        "labelEn": "⅙ medium avocado (34 g)",
+        "amount": 0.16666666666666666,
+        "unit": "piece",
+        "grams": 34
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1511",
+        "matchKeywordsEn": [
+          "Avocado, raw, all commercial varieties"
+        ],
+        "mustContainConcepts": [
+          "Avocado, raw, all commercial varieties"
+        ],
+        "mustNotContainConcepts": [
+          "oil",
+          "california",
+          "florida"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1511: Avocado, raw, all commercial varieties."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-avocado",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "lockedIdentity": {
+        "fr": "Chocolat noir, 70 à 85 % de cacao",
+        "en": "Dark chocolate, 70–85% cocoa solids",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "45-59",
+          "60-69",
+          "coated coffee beans"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 carré de chocolat noir (10 g)",
+        "labelEn": "1 square dark chocolate (10 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6672",
+        "matchKeywordsEn": [
+          "Candies, chocolate, dark, 70-85% cocoa solids"
+        ],
+        "mustContainConcepts": [
+          "Candies, chocolate, dark, 70-85% cocoa solids"
+        ],
+        "mustNotContainConcepts": [
+          "45-59",
+          "60-69",
+          "coated coffee beans"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6672: Candies, chocolate, dark, 70-85% cocoa solids."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-chocolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "lockedIdentity": {
+        "fr": "Fromage cheddar doux",
+        "en": "Mild cheddar cheese",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "processed",
+          "reduced fat",
+          "mozzarella",
+          "cream cheese"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de fromage cheddar doux",
+        "labelEn": "15 g mild cheddar cheese",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "119",
+        "matchKeywordsEn": [
+          "Cheese, cheddar, mild"
+        ],
+        "mustContainConcepts": [
+          "Cheese, cheddar, mild"
+        ],
+        "mustNotContainConcepts": [
+          "processed",
+          "reduced fat",
+          "mozzarella",
+          "cream cheese"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 119: Cheese, cheddar, mild."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-cheese",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-vegetable-oil",
+      "lockedIdentity": {
+        "fr": "Huile d’olive",
+        "en": "Olive oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "corn",
+          "peanut",
+          "blend"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile d’olive (6,8 g)",
+        "labelEn": "7.5 ml olive oil (6.8 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "422",
+        "matchKeywordsEn": [
+          "Vegetable oil, olive"
+        ],
+        "mustContainConcepts": [
+          "Vegetable oil, olive"
+        ],
+        "mustNotContainConcepts": [
+          "corn",
+          "peanut",
+          "blend"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 422: Vegetable oil, olive."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "lockedIdentity": {
+        "fr": "Huile de noix de coco",
+        "en": "Coconut oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "shortening",
+          "cookie"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile de noix de coco (6,9 g)",
+        "labelEn": "7.5 ml coconut oil (6.9 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "420",
+        "matchKeywordsEn": [
+          "Vegetable oil, coconut"
+        ],
+        "mustContainConcepts": [
+          "Vegetable oil, coconut"
+        ],
+        "mustNotContainConcepts": [
+          "shortening",
+          "cookie"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 420: Vegetable oil, coconut."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-whole-egg",
+      "lockedIdentity": {
+        "fr": "Œuf de poule entier, cuit dur",
+        "en": "Chicken egg, whole, hard-cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried",
+          "poached",
+          "scrambled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 gros œuf cuit dur (50 g)",
+        "labelEn": "1 large hard-cooked egg (50 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 50
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "130",
+        "matchKeywordsEn": [
+          "Egg, chicken, whole, cooked, boiled in shell, hard-cooked"
+        ],
+        "mustContainConcepts": [
+          "Egg, chicken, whole, cooked, boiled in shell, hard-cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried",
+          "poached",
+          "scrambled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 130: Egg, chicken, whole, cooked, boiled in shell, hard-cooked."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-egg",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-egg-yolks",
+      "lockedIdentity": {
+        "fr": "Jaune d’œuf de poule, cuit",
+        "en": "Chicken egg yolk, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 jaune d’œuf cuit (17 g)",
+        "labelEn": "1 cooked egg yolk (17 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 17
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6718",
+        "matchKeywordsEn": [
+          "Egg, chicken, yolk, cooked"
+        ],
+        "mustContainConcepts": [
+          "Egg, chicken, yolk, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6718: Egg, chicken, yolk, cooked."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-egg",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "lockedIdentity": {
+        "fr": "Beurre salé",
+        "en": "Salted butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "margarine",
+          "unsalted",
+          "whipped"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml de beurre salé (7,2 g)",
+        "labelEn": "7.5 ml salted butter (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "118",
+        "matchKeywordsEn": [
+          "Butter, regular"
+        ],
+        "mustContainConcepts": [
+          "Butter, regular"
+        ],
+        "mustNotContainConcepts": [
+          "margarine",
+          "unsalted",
+          "whipped"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 118: Butter, regular."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-butter-spread",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-mayonnaise",
+      "lockedIdentity": {
+        "fr": "Mayonnaise régulière",
+        "en": "Regular mayonnaise",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "reduced fat",
+          "fat free",
+          "tofu",
+          "olive oil"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml de mayonnaise régulière (7 g)",
+        "labelEn": "7.5 ml regular mayonnaise (7 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "531",
+        "matchKeywordsEn": [
+          "Salad dressing, mayonnaise, regular"
+        ],
+        "mustContainConcepts": [
+          "Salad dressing, mayonnaise, regular"
+        ],
+        "mustNotContainConcepts": [
+          "reduced fat",
+          "fat free",
+          "tofu",
+          "olive oil"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 531: Salad dressing, mayonnaise, regular."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-mayonnaise",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "lockedIdentity": {
+        "fr": "Olives noires mûres, en conserve",
+        "en": "Ripe black olives, canned",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "green",
+          "jumbo",
+          "pickled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "16 petites olives noires (51 g)",
+        "labelEn": "16 small black olives (51 g)",
+        "amount": 16,
+        "unit": "count",
+        "grams": 51
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1613",
+        "matchKeywordsEn": [
+          "Olive, ripe, canned, small to extra large"
+        ],
+        "mustContainConcepts": [
+          "Olive, ripe, canned, small to extra large"
+        ],
+        "mustNotContainConcepts": [
+          "green",
+          "jumbo",
+          "pickled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1613: Olive, ripe, canned, small to extra large."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-olive",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "lockedIdentity": {
+        "fr": "Vinaigrette maison à l’huile et au vinaigre",
+        "en": "Homemade oil-and-vinegar dressing",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "mayonnaise",
+          "reduced fat",
+          "commercial"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 ml de vinaigrette maison (10,6 g)",
+        "labelEn": "10 ml homemade vinaigrette (10.6 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.6
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "428",
+        "matchKeywordsEn": [
+          "Salad dressing, oil and vinegar, homemade"
+        ],
+        "mustContainConcepts": [
+          "Salad dressing, oil and vinegar, homemade"
+        ],
+        "mustNotContainConcepts": [
+          "mayonnaise",
+          "reduced fat",
+          "commercial"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 428: Salad dressing, oil and vinegar, homemade."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-dressing",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-fish-oil",
+      "lockedIdentity": {
+        "fr": "Huile de foie de morue",
+        "en": "Cod liver oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "herring",
+          "salmon",
+          "sardine",
+          "menhaden"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile de foie de morue (6,9 g)",
+        "labelEn": "7.5 ml cod liver oil (6.9 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "457",
+        "matchKeywordsEn": [
+          "Fish oil, cod liver"
+        ],
+        "mustContainConcepts": [
+          "Fish oil, cod liver"
+        ],
+        "mustNotContainConcepts": [
+          "herring",
+          "salmon",
+          "sardine",
+          "menhaden"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 457: Fish oil, cod liver."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-fish-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "lockedIdentity": {
+        "fr": "Chocolat noir, 60 à 69 % de cacao",
+        "en": "Dark chocolate, 60–69% cocoa solids",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "45-59",
+          "70-85",
+          "coated coffee beans"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 carré de chocolat noir (10 g)",
+        "labelEn": "1 square dark chocolate (10 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 10
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6671",
+        "matchKeywordsEn": [
+          "Candies, chocolate, dark, 60-69% cocoa solids"
+        ],
+        "mustContainConcepts": [
+          "Candies, chocolate, dark, 60-69% cocoa solids"
+        ],
+        "mustNotContainConcepts": [
+          "45-59",
+          "70-85",
+          "coated coffee beans"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6671: Candies, chocolate, dark, 60-69% cocoa solids."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-chocolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-mozzarella-cheese",
+      "lockedIdentity": {
+        "fr": "Fromage mozzarella, 25 % M.G.",
+        "en": "Mozzarella cheese, 25% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "partly skimmed",
+          "fat free",
+          "processed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "18 g de fromage mozzarella",
+        "labelEn": "18 g mozzarella cheese",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "35",
+        "matchKeywordsEn": [
+          "Cheese, mozzarella, (48% water, 25% M.F.)"
+        ],
+        "mustContainConcepts": [
+          "Cheese, mozzarella, (48% water, 25% M.F.)"
+        ],
+        "mustNotContainConcepts": [
+          "partly skimmed",
+          "fat free",
+          "processed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 35: Cheese, mozzarella, (48% water, 25% M.F.)."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-cheese",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-cream-cheese-plain",
+      "lockedIdentity": {
+        "fr": "Produit de fromage à la crème, nature",
+        "en": "Plain cream cheese product",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "light",
+          "fat free",
+          "flavoured"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de fromage à la crème nature",
+        "labelEn": "15 g plain cream cheese",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "28",
+        "matchKeywordsEn": [
+          "Cheese, cream cheese product, plain"
+        ],
+        "mustContainConcepts": [
+          "Cheese, cream cheese product, plain"
+        ],
+        "mustNotContainConcepts": [
+          "light",
+          "fat free",
+          "flavoured"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 28: Cheese, cream cheese product, plain."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-cheese",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-canola-oil",
+      "lockedIdentity": {
+        "fr": "Huile de canola",
+        "en": "Canola oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "margarine",
+          "blend",
+          "soybean"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile de canola (7,1 g)",
+        "labelEn": "7.5 ml canola oil (7.1 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "451",
+        "matchKeywordsEn": [
+          "Vegetable oil, canola"
+        ],
+        "mustContainConcepts": [
+          "Vegetable oil, canola"
+        ],
+        "mustNotContainConcepts": [
+          "margarine",
+          "blend",
+          "soybean"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 451: Vegetable oil, canola."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-peanut-oil",
+      "lockedIdentity": {
+        "fr": "Huile d’arachide",
+        "en": "Peanut oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "peanuts",
+          "blend",
+          "olive"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile d’arachide (6,8 g)",
+        "labelEn": "7.5 ml peanut oil (6.8 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "418",
+        "matchKeywordsEn": [
+          "Vegetable oil, peanut"
+        ],
+        "mustContainConcepts": [
+          "Vegetable oil, peanut"
+        ],
+        "mustNotContainConcepts": [
+          "peanuts",
+          "blend",
+          "olive"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 418: Vegetable oil, peanut."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-avocado-oil",
+      "lockedIdentity": {
+        "fr": "Huile d’avocat",
+        "en": "Avocado oil",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw avocado"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile d’avocat (7,1 g)",
+        "labelEn": "7.5 ml avocado oil (7.1 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "450",
+        "matchKeywordsEn": [
+          "Vegetable oil, avocado"
+        ],
+        "mustContainConcepts": [
+          "Vegetable oil, avocado"
+        ],
+        "mustNotContainConcepts": [
+          "raw avocado"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 450: Vegetable oil, avocado."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-oil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-unsalted-butter",
+      "lockedIdentity": {
+        "fr": "Beurre sans sel",
+        "en": "Unsalted butter",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salted",
+          "whipped",
+          "butter oil"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml de beurre sans sel (7,2 g)",
+        "labelEn": "7.5 ml unsalted butter (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "92",
+        "matchKeywordsEn": [
+          "Butter, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Butter, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "salted",
+          "whipped",
+          "butter oil"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 92: Butter, unsalted."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-butter-spread",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "lockedIdentity": {
+        "fr": "Margarine molle non hydrogénée à l’huile de canola",
+        "en": "Non-hydrogenated soft canola-oil margarine",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "hydrogenated",
+          "plant sterols",
+          "calorie-reduced"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml de margarine non hydrogénée (7,2 g)",
+        "labelEn": "7.5 ml non-hydrogenated margarine (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7463",
+        "matchKeywordsEn": [
+          "Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)"
+        ],
+        "mustContainConcepts": [
+          "Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)"
+        ],
+        "mustNotContainConcepts": [
+          "hydrogenated",
+          "plant sterols",
+          "calorie-reduced"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7463: Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-butter-spread",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-green-olives",
+      "lockedIdentity": {
+        "fr": "Olives vertes marinées, en conserve ou en bouteille",
+        "en": "Green pickled olives, canned or bottled",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "ripe black",
+          "stuffed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "10 olives vertes (40 g)",
+        "labelEn": "10 green olives (40 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 40
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5391",
+        "matchKeywordsEn": [
+          "Olive, pickled, canned or bottled, green"
+        ],
+        "mustContainConcepts": [
+          "Olive, pickled, canned or bottled, green"
+        ],
+        "mustNotContainConcepts": [
+          "ripe black",
+          "stuffed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5391: Olive, pickled, canned or bottled, green."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-olive",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "lockedIdentity": {
+        "fr": "Mayonnaise à teneur réduite en gras",
+        "en": "Reduced-fat mayonnaise",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular",
+          "fat free",
+          "tofu"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "20 ml de mayonnaise réduite en gras (21 g)",
+        "labelEn": "20 ml reduced-fat mayonnaise (21 g)",
+        "amount": 20,
+        "unit": "ml",
+        "grams": 21
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5332",
+        "matchKeywordsEn": [
+          "Salad dressing, mayonnaise, reduced fat"
+        ],
+        "mustContainConcepts": [
+          "Salad dressing, mayonnaise, reduced fat"
+        ],
+        "mustNotContainConcepts": [
+          "regular",
+          "fat free",
+          "tofu"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5332: Salad dressing, mayonnaise, reduced fat."
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-mayonnaise",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "matieres-grasses-mct-oil",
+      "lockedIdentity": {
+        "fr": "Huile MCT NOW Foods (C8/C10)",
+        "en": "NOW Foods MCT Oil (C8/C10)",
+        "preparationState": "ready_to_eat",
+        "brand": "NOW Foods",
+        "marketNote": "Étiquette officielle du fabricant; huile MCT issue de noix de coco et de palmiste."
+      },
+      "canonicalPortion": {
+        "labelFr": "7,5 ml d’huile MCT NOW Foods",
+        "labelEn": "7.5 ml NOW Foods MCT Oil",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7
+      },
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.nowfoods.com/products/sports-nutrition/mct-oil-liquid-plastic-bottle",
+        "accessedAt": "2026-07-30",
+        "brand": "NOW Foods",
+        "productName": "MCT Oil Liquid",
+        "market": "North America",
+        "labelServing": {
+          "amount": 15,
+          "unit": "ml"
+        },
+        "labelNutrients": {
+          "declaredKcal": 130,
+          "proteinG": 0,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 14,
+          "saturatedFatG": 14,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 65,
+          "proteinG": 0,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 7,
+          "saturatedFatG": 7,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 65,
+          "proteinG": 0,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 7,
+          "saturatedFatG": 7,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "matieres_grasses",
+        "calculationGroup": "fat",
+        "exchangeProfileId": "fat-mct-oil",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 13 entrées existantes sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "Les aliments combinés deviennent des entrées précises et les variantes sont séparées.",
+    "Les 214 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 237 aliments.",
+    "La catégorie Matières grasses contient exactement 23 aliments.",
+    "Les 23 aliments de la catégorie sont verified après application.",
+    "Le nombre total d’aliments verified passe de 105 à 128.",
+    "Chaque entrée possède sa propre source, conversion, historique et transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 23 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T17:59:09.480Z",
+  "generatedAt": "2026-07-30T18:26:13.517Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -8,53 +8,53 @@
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 227,
-    "verifiedFoods": 105,
-    "unverifiedFoods": 122,
-    "blockingErrors": 73,
-    "blockingErrorCount": 73,
-    "foodsWithBlockingErrors": 68,
-    "warningCount": 347,
-    "foodsWithWarnings": 164,
-    "auditCleanFoods": 63,
-    "dataHash": "64ea5cf53ad54bdbd449c56d32ffaf28811bb10dcf8ccfd34869739ddd0c181a",
-    "shortHash": "64ea5cf53ad5",
-    "lastAuditedAt": "2026-07-30T17:59:09.463Z",
+    "totalFoods": 237,
+    "verifiedFoods": 128,
+    "unverifiedFoods": 109,
+    "blockingErrors": 60,
+    "blockingErrorCount": 60,
+    "foodsWithBlockingErrors": 55,
+    "warningCount": 310,
+    "foodsWithWarnings": 152,
+    "auditCleanFoods": 85,
+    "dataHash": "b19ecd292ef347aaa227147fc9749e0a8a2fab04f6e01445b0b1dac99177b5bc",
+    "shortHash": "b19ecd292ef3",
+    "lastAuditedAt": "2026-07-30T18:26:13.497Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "verified": 105,
-      "unverified": 122
+      "verified": 128,
+      "unverified": 109
     },
-    "foodsWithWarningsOnly": 96,
+    "foodsWithWarningsOnly": 97,
     "rejectedFoods": 0,
-    "activeFoods": 227,
-    "approvalBlockingErrorCount": 73,
-    "activeBlockingErrorCount": 73,
+    "activeFoods": 237,
+    "approvalBlockingErrorCount": 60,
+    "activeBlockingErrorCount": 60,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "activeFoodsWithBlockingErrors": 68,
+    "activeFoodsWithBlockingErrors": 55,
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 227,
-    "activeFoods": 227,
+    "totalFoods": 237,
+    "activeFoods": 237,
     "rejectedFoods": 0,
-    "verifiedFoods": 105,
-    "unverifiedFoods": 122,
-    "blockingErrorCount": 73,
-    "activeBlockingErrorCount": 73,
+    "verifiedFoods": 128,
+    "unverifiedFoods": 109,
+    "blockingErrorCount": 60,
+    "activeBlockingErrorCount": 60,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "foodsWithBlockingErrors": 68,
-    "activeFoodsWithBlockingErrors": 68,
+    "foodsWithBlockingErrors": 55,
+    "activeFoodsWithBlockingErrors": 55,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 347,
-    "foodsWithWarnings": 164,
-    "foodsWithWarningsOnly": 96,
-    "auditCleanFoods": 63,
-    "blockingErrors": 73,
-    "foodsWithErrors": 68,
-    "foodsOk": 63
+    "warningCount": 310,
+    "foodsWithWarnings": 152,
+    "foodsWithWarningsOnly": 97,
+    "auditCleanFoods": 85,
+    "blockingErrors": 60,
+    "foodsWithErrors": 55,
+    "foodsOk": 85
   },
   "groupStatistics": {
     "protein": {
@@ -753,10 +753,7 @@
       "approvalBlockers": [
         "reference_profile_not_approved",
         "dataset_not_approved",
-        "minVerifiedCount_null",
-        "minCoveragePercent_not_met",
-        "active_foods_not_all_verified",
-        "active_foods_have_blocking_errors"
+        "minVerifiedCount_null"
       ],
       "approvalCriteria": {
         "minVerifiedCount": null,
@@ -764,51 +761,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 41,
-      "activeFoodCount": 41,
-      "verifiedCount": 28,
+      "totalFoodsInGroup": 51,
+      "activeFoodCount": 51,
+      "verifiedCount": 51,
       "rejectedCount": 0,
-      "pendingCount": 13,
-      "coveragePercent": 68.29268292682927,
+      "pendingCount": 0,
+      "coveragePercent": 100,
       "proteinG": {
-        "mean": 1.8642857142857139,
-        "median": 1.8,
-        "min": 0.3,
-        "max": 3.2,
-        "stddev": 0.7424754819317884,
-        "count": 28
+        "mean": 1.42156862745098,
+        "median": 1.3,
+        "min": 0,
+        "max": 5.9,
+        "stddev": 1.2770769319802462,
+        "count": 51
       },
       "carbsG": {
-        "mean": 2.0642857142857145,
-        "median": 2,
-        "min": 0.9,
-        "max": 4.7,
-        "stddev": 1.0303592633835112,
-        "count": 28
+        "mean": 1.6058823529411765,
+        "median": 1.5,
+        "min": 0,
+        "max": 5.2,
+        "stddev": 1.368563007640625,
+        "count": 51
       },
       "fiberG": {
-        "mean": 0.9428571428571431,
-        "median": 0.8,
-        "min": 0.2,
+        "mean": 0.6411764705882355,
+        "median": 0.7,
+        "min": 0,
         "max": 3.8,
-        "stddev": 0.666904719402933,
-        "count": 28
+        "stddev": 0.7127907043693081,
+        "count": 51
       },
       "fatG": {
-        "mean": 5.335714285714286,
-        "median": 5.2,
+        "mean": 5.4784313725490215,
+        "median": 5.3,
         "min": 3,
         "max": 9.1,
-        "stddev": 1.3518750451007435,
-        "count": 28
+        "stddev": 1.2154527922531908,
+        "count": 51
       },
       "kcal": {
-        "mean": 59.42857142857143,
-        "median": 57,
+        "mean": 58.588235294117645,
+        "median": 58,
         "min": 33,
         "max": 91,
-        "stddev": 12.419902103236092,
-        "count": 28
+        "stddev": 10.056195047011045,
+        "count": 51
       },
       "referenceProfile": {
         "proteinG": null,
@@ -824,52 +821,30 @@
           "id": "noix-graines-ground-chia-seeds",
           "nameFr": "Graines de chia séchées, moulues ou entières",
           "nameEn": "Dried chia seeds, ground or whole",
-          "distanceScore": 0.7988343667711136,
-          "breaches": [],
-          "status": "verified"
-        },
-        {
-          "id": "noix-graines-ground-flax-seeds",
-          "nameFr": "Graines de lin moulues",
-          "nameEn": "Ground flaxseed",
-          "distanceScore": 0.41410239860541054,
+          "distanceScore": 0.9142669097375649,
           "breaches": [
             {
               "nutrient": "fatG",
-              "value": 3,
-              "target": 5.335714285714286,
+              "value": 3.4,
+              "target": 5.4784313725490215,
               "tolerance": 2,
-              "absDiff": 2.3357142857142863
-            },
-            {
-              "nutrient": "declaredKcal",
-              "value": 37,
-              "target": 59.42857142857143,
-              "tolerance": 15,
-              "absDiff": 22.42857142857143
+              "absDiff": 2.0784313725490215
             }
           ],
           "status": "verified"
         },
         {
-          "id": "noix-graines-shredded-coconut",
-          "nameFr": "Noix de coco desséchée, non sucrée",
-          "nameEn": "Desiccated coconut, unsweetened",
-          "distanceScore": 0.3972101409300205,
+          "id": "matieres-grasses-whole-egg",
+          "nameFr": "Œuf de poule entier, cuit dur",
+          "nameEn": "Chicken egg, whole, hard-cooked",
+          "distanceScore": 0.6712080254996154,
           "breaches": [
             {
-              "nutrient": "fatG",
-              "value": 3.2,
-              "target": 5.335714285714286,
+              "nutrient": "proteinG",
+              "value": 5.9,
+              "target": 1.42156862745098,
               "tolerance": 2,
-              "absDiff": 2.135714285714286
-            },
-            {
-              "nutrient": "declaredKcal",
-              "value": 33,
-              "target": 59.42857142857143,
-              "tolerance": 15,
-              "absDiff": 26.42857142857143
+              "absDiff": 4.478431372549021
             }
           ],
           "status": "verified"
@@ -878,7 +853,7 @@
           "id": "noix-graines-hummus",
           "nameFr": "Houmous commercial",
           "nameEn": "Commercial hummus",
-          "distanceScore": 0.38861675640290094,
+          "distanceScore": 0.5142979142135935,
           "breaches": [],
           "status": "verified"
         },
@@ -886,23 +861,31 @@
           "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
           "nameFr": "Noix mélangées avec arachides, rôties à sec, sans sel ajouté",
           "nameEn": "Mixed nuts with peanuts, dry roasted, no added salt",
-          "distanceScore": 0.3879018454771466,
+          "distanceScore": 0.5120106980619432,
           "breaches": [
             {
               "nutrient": "fatG",
               "value": 8,
-              "target": 5.335714285714286,
+              "target": 5.4784313725490215,
               "tolerance": 2,
-              "absDiff": 2.6642857142857137
+              "absDiff": 2.5215686274509785
             },
             {
               "nutrient": "declaredKcal",
               "value": 91,
-              "target": 59.42857142857143,
+              "target": 58.588235294117645,
               "tolerance": 15,
-              "absDiff": 31.57142857142857
+              "absDiff": 32.411764705882355
             }
           ],
+          "status": "verified"
+        },
+        {
+          "id": "matieres-grasses-avocado",
+          "nameFr": "Avocat cru, toutes variétés commerciales",
+          "nameEn": "Avocado, raw, all commercial varieties",
+          "distanceScore": 0.5017561001511626,
+          "breaches": [],
           "status": "verified"
         }
       ]
@@ -985,19 +968,17 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 106,
+    "MISSING_PREP_STATE": 93,
     "SCOOP_WITHOUT_GRAMS": 5,
     "KCAL_DIFF_HIGH": 56,
-    "MISSING_GRAMS": 42,
+    "MISSING_GRAMS": 30,
     "AMBIGUOUS_GROUP": 5,
     "GUIDE_VS_CALCULATOR": 2,
-    "LEGACY_SOURCE_ONLY": 122,
+    "LEGACY_SOURCE_ONLY": 109,
     "SUSPECT_CASE": 3,
-    "MISSING_TOTAL_FAT": 13,
-    "FIBER_GT_CARBS": 1,
     "KCAL_DIFF_MODERATE": 61,
-    "PORTION_LABEL_MISMATCH_FR": 3,
-    "PORTION_LABEL_MISMATCH_EN": 3,
+    "PORTION_LABEL_MISMATCH_FR": 4,
+    "PORTION_LABEL_MISMATCH_EN": 4,
     "FAT_COMPONENTS_EXCEED_TOTAL": 2
   },
   "decisionsNeeded": [
@@ -1572,79 +1553,6 @@
       "canVerify": false
     },
     {
-      "id": "matieres-grasses-olives-1-6-2-cm",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Olives de 1,6 × 2 cm",
-      "nameEn": "Olives 1.6 × 2 cm",
-      "status": "unverified",
-      "portionLabelFr": "16 Olives de 1,6 × 2 cm",
-      "portionLabelEn": "16 Olives 1.6 × 2 cm",
-      "amount": 16,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 16,
-        "unit": "count",
-        "grams": null,
-        "label": "16 Olives de 1,6 × 2 cm"
-      },
-      "parsedEn": {
-        "amount": 16,
-        "unit": "count",
-        "grams": null,
-        "label": "16 Olives 1.6 × 2 cm"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 1,
-        "fiberG": 2,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 5,
-        "declaredKcal": 66
-      },
-      "declaredKcal": 66,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "FIBER_GT_CARBS",
-          "message": "Fibres supérieures aux glucides"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
       "displayCategory": "autres_sources_proteinees",
       "calculationGroup": "whey",
@@ -1786,74 +1694,6 @@
       ],
       "errorCount": 1,
       "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-avocado",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "avocat",
-      "nameEn": "avocado",
-      "status": "unverified",
-      "portionLabelFr": "⅙ d'avocat",
-      "portionLabelEn": "⅙ avocado",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "⅙ d'avocat"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "⅙ avocado"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 3,
-        "fiberG": 2,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 3,
-        "declaredKcal": 55
-      },
-      "declaredKcal": 55,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
       "resolvedCount": 0,
       "maxSeverity": "ERROR",
       "canVerify": false
@@ -2047,74 +1887,6 @@
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 88 vs Atwater 64.0 (Δ 24.0 / 37.5%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-square-dark-chocolate-70",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "carré de Chocolat noir > 70 %",
-      "nameEn": "square Dark chocolate > 70%",
-      "status": "unverified",
-      "portionLabelFr": "1 carré de Chocolat noir > 70 %",
-      "portionLabelEn": "1 square Dark chocolate > 70%",
-      "amount": 1,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 carré de Chocolat noir > 70 %"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 square Dark chocolate > 70%"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 3,
-        "fiberG": 1,
-        "fatG": null,
-        "saturatedFatG": 3,
-        "polyunsaturatedFatG": 0,
-        "monounsaturatedFatG": 2,
-        "declaredKcal": 61
-      },
-      "declaredKcal": 61,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
         },
         {
           "severity": "WARNING",
@@ -2410,346 +2182,6 @@
       "canVerify": false
     },
     {
-      "id": "matieres-grasses-virgin-coconut-oil",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Huile de coco vierge",
-      "nameEn": "Virgin coconut oil",
-      "status": "unverified",
-      "portionLabelFr": "7,5 ml d'Huile de coco vierge",
-      "portionLabelEn": "7.5 ml Virgin coconut oil",
-      "amount": 7.5,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7,5 ml d'Huile de coco vierge"
-      },
-      "parsedEn": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7.5 ml Virgin coconut oil"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 6,
-        "polyunsaturatedFatG": 0,
-        "monounsaturatedFatG": 0,
-        "declaredKcal": 59
-      },
-      "declaredKcal": 59,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-fish-oil",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Huile de poisson",
-      "nameEn": "Fish oil",
-      "status": "unverified",
-      "portionLabelFr": "10 ml d'Huile de poisson (EPA / DHA)",
-      "portionLabelEn": "10 ml Fish oil (EPA / DHA)",
-      "amount": 10,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 10,
-        "unit": "ml",
-        "grams": null,
-        "label": "10 ml d'Huile de poisson (EPA / DHA)"
-      },
-      "parsedEn": {
-        "amount": 10,
-        "unit": "ml",
-        "grams": null,
-        "label": "10 ml Fish oil (EPA / DHA)"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 0,
-        "polyunsaturatedFatG": 3,
-        "monounsaturatedFatG": 2,
-        "declaredKcal": 56
-      },
-      "declaredKcal": 56,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-mct-oil",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Huile MCT",
-      "nameEn": "MCT oil",
-      "status": "unverified",
-      "portionLabelFr": "7,5 ml d'Huile MCT",
-      "portionLabelEn": "7.5 ml MCT oil",
-      "amount": 7.5,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7,5 ml d'Huile MCT"
-      },
-      "parsedEn": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7.5 ml MCT oil"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 7,
-        "polyunsaturatedFatG": 0,
-        "monounsaturatedFatG": 0,
-        "declaredKcal": 58
-      },
-      "declaredKcal": 58,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-vegetable-oil",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Huile végétale",
-      "nameEn": "Vegetable oil",
-      "status": "unverified",
-      "portionLabelFr": "7,5 ml d'Huile végétale (arachide, canola, olive)",
-      "portionLabelEn": "7.5 ml Vegetable oil (peanut, canola, olive)",
-      "amount": 7.5,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7,5 ml d'Huile végétale (arachide, canola, olive)"
-      },
-      "parsedEn": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7.5 ml Vegetable oil (peanut, canola, olive)"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 5,
-        "declaredKcal": 59
-      },
-      "declaredKcal": 59,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-egg-yolks",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "jaunes d'œuf",
-      "nameEn": "egg yolks",
-      "status": "unverified",
-      "portionLabelFr": "2 jaunes d'œuf",
-      "portionLabelEn": "2 egg yolks",
-      "amount": 2,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 2,
-        "unit": "count",
-        "grams": null,
-        "label": "2 jaunes d'œuf"
-      },
-      "parsedEn": {
-        "amount": 2,
-        "unit": "count",
-        "grams": null,
-        "label": "2 egg yolks"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 2,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 2,
-        "declaredKcal": 55
-      },
-      "declaredKcal": 55,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "produits-laitiers-cup-1-2-milk",
       "displayCategory": "produits_laitiers",
       "calculationGroup": "dairy",
@@ -2957,142 +2389,6 @@
       "canVerify": false
     },
     {
-      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Margarine non hydrogénée ou de beurre",
-      "nameEn": "Non-hydrogenated margarine or butter",
-      "status": "unverified",
-      "portionLabelFr": "7,5 ml de Margarine non hydrogénée ou de beurre",
-      "portionLabelEn": "7.5 ml Non-hydrogenated margarine or butter",
-      "amount": 7.5,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7,5 ml de Margarine non hydrogénée ou de beurre"
-      },
-      "parsedEn": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7.5 ml Non-hydrogenated margarine or butter"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 2,
-        "monounsaturatedFatG": 3,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-mayonnaise",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "mayonnaise",
-      "nameEn": "Mayonnaise",
-      "status": "unverified",
-      "portionLabelFr": "7,5 ml de mayonnaise",
-      "portionLabelEn": "7.5 ml Mayonnaise",
-      "amount": 7.5,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7,5 ml de mayonnaise"
-      },
-      "parsedEn": {
-        "amount": 7.5,
-        "unit": "ml",
-        "grams": null,
-        "label": "7.5 ml Mayonnaise"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 2,
-        "monounsaturatedFatG": 3,
-        "declaredKcal": 49
-      },
-      "declaredKcal": 49,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -3212,74 +2508,6 @@
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 66 vs Atwater 28.0 (Δ 38.0 / 135.7%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-whole-egg",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "œuf entier",
-      "nameEn": "whole egg",
-      "status": "unverified",
-      "portionLabelFr": "1 œuf entier",
-      "portionLabelEn": "1 whole egg",
-      "amount": 1,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 œuf entier"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": null,
-        "label": "1 whole egg"
-      },
-      "nutrients": {
-        "proteinG": 6,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 2,
-        "polyunsaturatedFatG": 1,
-        "monounsaturatedFatG": 2,
-        "declaredKcal": 70
-      },
-      "declaredKcal": 70,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
         },
         {
           "severity": "WARNING",
@@ -3487,74 +2715,6 @@
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 102 vs Atwater 64.0 (Δ 38.0 / 59.4%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "vinaigrette à base d'huile végétale",
-      "nameEn": "Vegetable oil-based vinaigrette",
-      "status": "unverified",
-      "portionLabelFr": "10 ml de vinaigrette à base d'huile végétale",
-      "portionLabelEn": "10 ml Vegetable oil-based vinaigrette",
-      "amount": 10,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 10,
-        "unit": "ml",
-        "grams": null,
-        "label": "10 ml de vinaigrette à base d'huile végétale"
-      },
-      "parsedEn": {
-        "amount": 10,
-        "unit": "ml",
-        "grams": null,
-        "label": "10 ml Vegetable oil-based vinaigrette"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 1,
-        "polyunsaturatedFatG": 2,
-        "monounsaturatedFatG": 3,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
         },
         {
           "severity": "WARNING",
@@ -4264,69 +3424,6 @@
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 77 vs Atwater 52.0 (Δ 25.0 / 48.1%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
-      "displayCategory": "matieres_grasses",
-      "calculationGroup": "fat",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "fromage cheddar / mozzarella / Philadelphia",
-      "nameEn": "Cheddar / mozzarella / cream cheese",
-      "status": "unverified",
-      "portionLabelFr": "15 g de fromage cheddar / mozzarella / Philadelphia",
-      "portionLabelEn": "15 g Cheddar / mozzarella / cream cheese",
-      "amount": 15,
-      "unit": "g",
-      "grams": 15,
-      "parsedFr": {
-        "amount": 15,
-        "unit": "g",
-        "grams": 15,
-        "label": "15 g de fromage cheddar / mozzarella / Philadelphia"
-      },
-      "parsedEn": {
-        "amount": 15,
-        "unit": "g",
-        "grams": 15,
-        "label": "15 g Cheddar / mozzarella / cream cheese"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 0,
-        "fiberG": 0,
-        "fatG": null,
-        "saturatedFatG": 2,
-        "polyunsaturatedFatG": 0,
-        "monounsaturatedFatG": 1,
-        "declaredKcal": 44
-      },
-      "declaredKcal": 44,
-      "calculatedKcal": null,
-      "absDiff": null,
-      "pctDiff": null,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "MISSING_TOTAL_FAT",
-          "message": "Lipides totaux absents"
         },
         {
           "severity": "WARNING",
@@ -7283,6 +6380,78 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": false
+    },
+    {
+      "id": "matieres-grasses-avocado",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-avocado",
+      "classificationStatus": "approved",
+      "nameFr": "Avocat cru, toutes variétés commerciales",
+      "nameEn": "Avocado, raw, all commercial varieties",
+      "status": "verified",
+      "portionLabelFr": "⅙ d’un avocat moyen (34 g)",
+      "portionLabelEn": "⅙ medium avocado (34 g)",
+      "amount": 0.16666666666666666,
+      "unit": "piece",
+      "grams": 34,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "portion",
+        "grams": 34,
+        "label": "⅙ d’un avocat moyen (34 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "portion",
+        "grams": 34,
+        "label": "⅙ medium avocado (34 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 2.9,
+        "fiberG": 2.3,
+        "fatG": 5,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 54
+      },
+      "declaredKcal": 54,
+      "calculatedKcal": 59.4,
+      "absDiff": 5.399999999999999,
+      "pctDiff": 9.090909090909088,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.16666666666666666), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34,
+            "label": "⅙ d’un avocat moyen (34 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.16666666666666666), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 34,
+            "label": "⅙ medium avocado (34 g)"
+          }
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
     },
     {
       "id": "feculents-bagel",
@@ -11817,6 +10986,100 @@
       "canVerify": true
     },
     {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread",
+      "classificationStatus": "approved",
+      "nameFr": "Beurre salé",
+      "nameEn": "Salted butter",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml de beurre salé (7,2 g)",
+      "portionLabelEn": "7.5 ml salted butter (7.2 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7.2,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7,5 ml de beurre salé (7,2 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7.5 ml salted butter (7.2 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.7,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 52
+      },
+      "declaredKcal": 52,
+      "calculatedKcal": 52.599999999999994,
+      "absDiff": 0.5999999999999943,
+      "pctDiff": 1.1406844106463772,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-unsalted-butter",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread",
+      "classificationStatus": "approved",
+      "nameFr": "Beurre sans sel",
+      "nameEn": "Unsalted butter",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml de beurre sans sel (7,2 g)",
+      "portionLabelEn": "7.5 ml unsalted butter (7.2 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7.2,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7,5 ml de beurre sans sel (7,2 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7.5 ml unsalted butter (7.2 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.6,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 52
+      },
+      "declaredKcal": 52,
+      "calculatedKcal": 52.599999999999994,
+      "absDiff": 0.5999999999999943,
+      "pctDiff": 1.1406844106463772,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "legumes-homemade-bone-broth",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -12105,6 +11368,100 @@
       "calculatedKcal": 73.89999999999999,
       "absDiff": 0.10000000000000853,
       "pctDiff": 0.1353179972936516,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-chocolate",
+      "classificationStatus": "approved",
+      "nameFr": "Chocolat noir, 60 à 69 % de cacao",
+      "nameEn": "Dark chocolate, 60–69% cocoa solids",
+      "status": "verified",
+      "portionLabelFr": "1 carré de chocolat noir (10 g)",
+      "portionLabelEn": "1 square dark chocolate (10 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 10,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "label": "1 carré de chocolat noir (10 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "label": "1 square dark chocolate (10 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 5.2,
+        "fiberG": 0.8,
+        "fatG": 3.8,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 58
+      },
+      "declaredKcal": 58,
+      "calculatedKcal": 57.39999999999999,
+      "absDiff": 0.6000000000000085,
+      "pctDiff": 1.0452961672474017,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-chocolate",
+      "classificationStatus": "approved",
+      "nameFr": "Chocolat noir, 70 à 85 % de cacao",
+      "nameEn": "Dark chocolate, 70–85% cocoa solids",
+      "status": "verified",
+      "portionLabelFr": "1 carré de chocolat noir (10 g)",
+      "portionLabelEn": "1 square dark chocolate (10 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 10,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "label": "1 carré de chocolat noir (10 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "label": "1 square dark chocolate (10 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 1.1,
+        "fatG": 4.3,
+        "saturatedFatG": 2.4,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 60.3,
+      "absDiff": 0.29999999999999716,
+      "pctDiff": 0.49751243781094057,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -12441,6 +11798,100 @@
       "calculatedKcal": 75.60000000000001,
       "absDiff": 6.6000000000000085,
       "pctDiff": 8.73015873015874,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese",
+      "classificationStatus": "approved",
+      "nameFr": "Fromage cheddar doux",
+      "nameEn": "Mild cheddar cheese",
+      "status": "verified",
+      "portionLabelFr": "15 g de fromage cheddar doux",
+      "portionLabelEn": "15 g mild cheddar cheese",
+      "amount": 15,
+      "unit": "g",
+      "grams": 15,
+      "parsedFr": {
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "label": "15 g de fromage cheddar doux"
+      },
+      "parsedEn": {
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "label": "15 g mild cheddar cheese"
+      },
+      "nutrients": {
+        "proteinG": 3.5,
+        "carbsG": 1.5,
+        "fiberG": 0,
+        "fatG": 4.8,
+        "saturatedFatG": 3.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 63
+      },
+      "declaredKcal": 63,
+      "calculatedKcal": 63.199999999999996,
+      "absDiff": 0.19999999999999574,
+      "pctDiff": 0.3164556962025249,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-mozzarella-cheese",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese",
+      "classificationStatus": "approved",
+      "nameFr": "Fromage mozzarella, 25 % M.G.",
+      "nameEn": "Mozzarella cheese, 25% M.F.",
+      "status": "verified",
+      "portionLabelFr": "18 g de fromage mozzarella",
+      "portionLabelEn": "18 g mozzarella cheese",
+      "amount": 18,
+      "unit": "g",
+      "grams": 18,
+      "parsedFr": {
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "label": "18 g de fromage mozzarella"
+      },
+      "parsedEn": {
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "label": "18 g mozzarella cheese"
+      },
+      "nutrients": {
+        "proteinG": 3.9,
+        "carbsG": 0.4,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 57
+      },
+      "declaredKcal": 57,
+      "calculatedKcal": 56.8,
+      "absDiff": 0.20000000000000284,
+      "pctDiff": 0.35211267605634305,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -12872,6 +12323,382 @@
       "canVerify": true
     },
     {
+      "id": "matieres-grasses-peanut-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile d’arachide",
+      "nameEn": "Peanut oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile d’arachide (6,8 g)",
+      "portionLabelEn": "7.5 ml peanut oil (6.8 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 6.8,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "label": "7,5 ml d’huile d’arachide (6,8 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "label": "7.5 ml peanut oil (6.8 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 3.1,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 61.199999999999996,
+      "absDiff": 1.1999999999999957,
+      "pctDiff": 1.9607843137254832,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-avocado-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile d’avocat",
+      "nameEn": "Avocado oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile d’avocat (7,1 g)",
+      "portionLabelEn": "7.5 ml avocado oil (7.1 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7.1,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "label": "7,5 ml d’huile d’avocat (7,1 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "label": "7.5 ml avocado oil (7.1 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 63
+      },
+      "declaredKcal": 63,
+      "calculatedKcal": 63.9,
+      "absDiff": 0.8999999999999986,
+      "pctDiff": 1.4084507042253498,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile d’olive",
+      "nameEn": "Olive oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile d’olive (6,8 g)",
+      "portionLabelEn": "7.5 ml olive oil (6.8 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 6.8,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "label": "7,5 ml d’huile d’olive (6,8 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "label": "7.5 ml olive oil (6.8 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 61.199999999999996,
+      "absDiff": 1.1999999999999957,
+      "pctDiff": 1.9607843137254832,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-canola-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile de canola",
+      "nameEn": "Canola oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile de canola (7,1 g)",
+      "portionLabelEn": "7.5 ml canola oil (7.1 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7.1,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "label": "7,5 ml d’huile de canola (7,1 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "label": "7.5 ml canola oil (7.1 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 4.5,
+        "declaredKcal": 63
+      },
+      "declaredKcal": 63,
+      "calculatedKcal": 63.9,
+      "absDiff": 0.8999999999999986,
+      "pctDiff": 1.4084507042253498,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-fish-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile de foie de morue",
+      "nameEn": "Cod liver oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile de foie de morue (6,9 g)",
+      "portionLabelEn": "7.5 ml cod liver oil (6.9 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 6.9,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "label": "7,5 ml d’huile de foie de morue (6,9 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "label": "7.5 ml cod liver oil (6.9 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.9,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 62.1,
+      "absDiff": 0.10000000000000142,
+      "pctDiff": 0.16103059581320678,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile de noix de coco",
+      "nameEn": "Coconut oil",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile de noix de coco (6,9 g)",
+      "portionLabelEn": "7.5 ml coconut oil (6.9 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 6.9,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "label": "7,5 ml d’huile de noix de coco (6,9 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "label": "7.5 ml coconut oil (6.9 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 5.7,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 61.199999999999996,
+      "absDiff": 0.8000000000000043,
+      "pctDiff": 1.307189542483667,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mct-oil",
+      "classificationStatus": "approved",
+      "nameFr": "Huile MCT NOW Foods (C8/C10)",
+      "nameEn": "NOW Foods MCT Oil (C8/C10)",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml d’huile MCT NOW Foods",
+      "portionLabelEn": "7.5 ml NOW Foods MCT Oil",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "label": "7,5 ml d’huile MCT NOW Foods"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "label": "7.5 ml NOW Foods MCT Oil"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7,
+        "saturatedFatG": 7,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 65
+      },
+      "declaredKcal": 65,
+      "calculatedKcal": 63,
+      "absDiff": 2,
+      "pctDiff": 3.1746031746031744,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-egg-yolks",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-egg",
+      "classificationStatus": "approved",
+      "nameFr": "Jaune d’œuf de poule, cuit",
+      "nameEn": "Chicken egg yolk, cooked",
+      "status": "verified",
+      "portionLabelFr": "1 jaune d’œuf cuit (17 g)",
+      "portionLabelEn": "1 cooked egg yolk (17 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 17,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 17,
+        "label": "1 jaune d’œuf cuit (17 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 17,
+        "label": "1 cooked egg yolk (17 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.7,
+        "carbsG": 0.6,
+        "fiberG": 0,
+        "fatG": 5.6,
+        "saturatedFatG": 1.7,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 63.6,
+      "absDiff": 3.6000000000000014,
+      "pctDiff": 5.660377358490568,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -13099,6 +12926,147 @@
       "calculatedKcal": 67.69999999999999,
       "absDiff": 6.699999999999989,
       "pctDiff": 9.896602658788758,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread",
+      "classificationStatus": "approved",
+      "nameFr": "Margarine molle non hydrogénée à l’huile de canola",
+      "nameEn": "Non-hydrogenated soft canola-oil margarine",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml de margarine non hydrogénée (7,2 g)",
+      "portionLabelEn": "7.5 ml non-hydrogenated margarine (7.2 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7.2,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7,5 ml de margarine non hydrogénée (7,2 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "label": "7.5 ml non-hydrogenated margarine (7.2 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 52
+      },
+      "declaredKcal": 52,
+      "calculatedKcal": 52.199999999999996,
+      "absDiff": 0.19999999999999574,
+      "pctDiff": 0.38314176245209913,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mayonnaise",
+      "classificationStatus": "approved",
+      "nameFr": "Mayonnaise à teneur réduite en gras",
+      "nameEn": "Reduced-fat mayonnaise",
+      "status": "verified",
+      "portionLabelFr": "20 ml de mayonnaise réduite en gras (21 g)",
+      "portionLabelEn": "20 ml reduced-fat mayonnaise (21 g)",
+      "amount": 20,
+      "unit": "ml",
+      "grams": 21,
+      "parsedFr": {
+        "amount": 20,
+        "unit": "ml",
+        "grams": 21,
+        "label": "20 ml de mayonnaise réduite en gras (21 g)"
+      },
+      "parsedEn": {
+        "amount": 20,
+        "unit": "ml",
+        "grams": 21,
+        "label": "20 ml reduced-fat mayonnaise (21 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 4.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 50.300000000000004,
+      "absDiff": 0.30000000000000426,
+      "pctDiff": 0.5964214711729706,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mayonnaise",
+      "classificationStatus": "approved",
+      "nameFr": "Mayonnaise régulière",
+      "nameEn": "Regular mayonnaise",
+      "status": "verified",
+      "portionLabelFr": "7,5 ml de mayonnaise régulière (7 g)",
+      "portionLabelEn": "7.5 ml regular mayonnaise (7 g)",
+      "amount": 7.5,
+      "unit": "ml",
+      "grams": 7,
+      "parsedFr": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7,
+        "label": "7,5 ml de mayonnaise régulière (7 g)"
+      },
+      "parsedEn": {
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7,
+        "label": "7.5 ml regular mayonnaise (7 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.2,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 48
+      },
+      "declaredKcal": 48,
+      "calculatedKcal": 47.2,
+      "absDiff": 0.7999999999999972,
+      "pctDiff": 1.6949152542372818,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13530,6 +13498,53 @@
       "canVerify": true
     },
     {
+      "id": "matieres-grasses-whole-egg",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-egg",
+      "classificationStatus": "approved",
+      "nameFr": "Œuf de poule entier, cuit dur",
+      "nameEn": "Chicken egg, whole, hard-cooked",
+      "status": "verified",
+      "portionLabelFr": "1 gros œuf cuit dur (50 g)",
+      "portionLabelEn": "1 large hard-cooked egg (50 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 50,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 50,
+        "label": "1 gros œuf cuit dur (50 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 50,
+        "label": "1 large hard-cooked egg (50 g)"
+      },
+      "nutrients": {
+        "proteinG": 5.9,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 5,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 71
+      },
+      "declaredKcal": 71,
+      "calculatedKcal": 72.2,
+      "absDiff": 1.2000000000000028,
+      "pctDiff": 1.6620498614958488,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "legumes-onion",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -13569,6 +13584,100 @@
       "calculatedKcal": 29.3,
       "absDiff": 2.3000000000000007,
       "pctDiff": 7.8498293515358375,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-olive",
+      "classificationStatus": "approved",
+      "nameFr": "Olives noires mûres, en conserve",
+      "nameEn": "Ripe black olives, canned",
+      "status": "verified",
+      "portionLabelFr": "16 petites olives noires (51 g)",
+      "portionLabelEn": "16 small black olives (51 g)",
+      "amount": 16,
+      "unit": "count",
+      "grams": 51,
+      "parsedFr": {
+        "amount": 16,
+        "unit": "count",
+        "grams": 51,
+        "label": "16 petites olives noires (51 g)"
+      },
+      "parsedEn": {
+        "amount": 16,
+        "unit": "count",
+        "grams": 51,
+        "label": "16 small black olives (51 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 3.1,
+        "fiberG": 0.8,
+        "fatG": 5.6,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 3.9,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 64.4,
+      "absDiff": 5.400000000000006,
+      "pctDiff": 8.385093167701871,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-green-olives",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-olive",
+      "classificationStatus": "approved",
+      "nameFr": "Olives vertes marinées, en conserve ou en bouteille",
+      "nameEn": "Green pickled olives, canned or bottled",
+      "status": "verified",
+      "portionLabelFr": "10 olives vertes (40 g)",
+      "portionLabelEn": "10 green olives (40 g)",
+      "amount": 10,
+      "unit": "count",
+      "grams": 40,
+      "parsedFr": {
+        "amount": 10,
+        "unit": "count",
+        "grams": 40,
+        "label": "10 olives vertes (40 g)"
+      },
+      "parsedEn": {
+        "amount": 10,
+        "unit": "count",
+        "grams": 40,
+        "label": "10 green olives (40 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 1.5,
+        "fiberG": 1.3,
+        "fatG": 6.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 4.5,
+        "declaredKcal": 58
+      },
+      "declaredKcal": 58,
+      "calculatedKcal": 62.5,
+      "absDiff": 4.5,
+      "pctDiff": 7.199999999999999,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13953,6 +14062,53 @@
       "canVerify": true
     },
     {
+      "id": "matieres-grasses-cream-cheese-plain",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese",
+      "classificationStatus": "approved",
+      "nameFr": "Produit de fromage à la crème, nature",
+      "nameEn": "Plain cream cheese product",
+      "status": "verified",
+      "portionLabelFr": "15 g de fromage à la crème nature",
+      "portionLabelEn": "15 g plain cream cheese",
+      "amount": 15,
+      "unit": "g",
+      "grams": 15,
+      "parsedFr": {
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "label": "15 g de fromage à la crème nature"
+      },
+      "parsedEn": {
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "label": "15 g plain cream cheese"
+      },
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 4.3,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 47
+      },
+      "declaredKcal": 47,
+      "calculatedKcal": 47.5,
+      "absDiff": 0.5,
+      "pctDiff": 1.0526315789473684,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-plums",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -14227,6 +14383,53 @@
       "calculatedKcal": 63.8,
       "absDiff": 3.799999999999997,
       "pctDiff": 5.956112852664573,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "displayCategory": "matieres_grasses",
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-dressing",
+      "classificationStatus": "approved",
+      "nameFr": "Vinaigrette maison à l’huile et au vinaigre",
+      "nameEn": "Homemade oil-and-vinegar dressing",
+      "status": "verified",
+      "portionLabelFr": "10 ml de vinaigrette maison (10,6 g)",
+      "portionLabelEn": "10 ml homemade vinaigrette (10.6 g)",
+      "amount": 10,
+      "unit": "ml",
+      "grams": 10.6,
+      "parsedFr": {
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.6,
+        "label": "10 ml de vinaigrette maison (10,6 g)"
+      },
+      "parsedEn": {
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.6,
+        "label": "10 ml homemade vinaigrette (10.6 g)"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 0.3,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 48
+      },
+      "declaredKcal": 48,
+      "calculatedKcal": 48.9,
+      "absDiff": 0.8999999999999986,
+      "pctDiff": 1.8404907975460092,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,

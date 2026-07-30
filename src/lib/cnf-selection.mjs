@@ -66,6 +66,12 @@ export function excludesConcept(haystack, concept) {
     if (/\bunsalted\b/.test(text)) return false;
     return /\bsalted\b/.test(text);
   }
+  if (needle === 'hydrogenated') {
+    if (/\bnon[- ]?hydrogenated\b/.test(text) || /\bunhydrogenated\b/.test(text)) {
+      return false;
+    }
+    return /\bhydrogenated\b/.test(text);
+  }
   return new RegExp(`\\b${needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(text);
 }
 
