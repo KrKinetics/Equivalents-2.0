@@ -24,6 +24,14 @@
         "lastAppliedAt": { "type": ["string", "null"] },
         "baseDataHash": { "type": ["string", "null"], "minLength": 1 },
         "exportDataHash": { "type": ["string", "null"], "minLength": 1 },
+        "lastAppliedFromBaseDataHash": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "lastAppliedExportDataHash": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
         "exportedAt": { "type": ["string", "null"] },
         "exportedBy": { "type": ["string", "null"] },
         "sourceDatasetVersion": { "type": ["string", "null"] },
@@ -69,6 +77,7 @@
         "at": { "type": "string" },
         "by": { "type": ["string", "null"] },
         "action": { "type": "string", "minLength": 1 },
+        "transactionId": { "type": ["string", "null"], "minLength": 1 },
         "path": { "type": ["string", "null"] },
         "oldValue": {},
         "newValue": {},

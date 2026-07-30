@@ -151,12 +151,18 @@ function main() {
   }
 
   incoming.meta = incoming.meta || {};
+  const appliedFromBaseDataHash = incoming.meta.baseDataHash;
+  const appliedExportDataHash = incoming.meta.exportDataHash;
   incoming.meta.totalFoods = incoming.foods.length;
-  incoming.meta.lastAppliedAt = new Date().toISOString();
   incoming.meta.schemaVersion = incoming.meta.schemaVersion || 2;
 
   const hash = computeFoodsDataHash(incoming.foods);
   const now = new Date().toISOString();
+  incoming.meta.lastAppliedFromBaseDataHash = appliedFromBaseDataHash;
+  incoming.meta.lastAppliedExportDataHash = appliedExportDataHash;
+  incoming.meta.baseDataHash = hash;
+  incoming.meta.exportDataHash = hash;
+  incoming.meta.lastAppliedAt = now;
   let version = {
     version: '1.0.0',
     status: 'draft',
@@ -195,10 +201,16 @@ function main() {
   let versionBackup = null;
   let reportBackup = null;
   let htmlReportBackup = null;
+  let csvReportBackup = null;
+  let reviewDataBackup = null;
   const reportPath = path.join(paths.reportsDir, 'food-equivalents-audit.json');
   const htmlReportPath = path.join(paths.reportsDir, 'food-equivalents-audit.html');
+  const csvReportPath = path.join(paths.reportsDir, 'food-equivalents-audit.csv');
+  const reviewDataPath = paths.reviewDataPath;
   const reportExisted = fs.existsSync(reportPath);
   const htmlReportExisted = fs.existsSync(htmlReportPath);
+  const csvReportExisted = fs.existsSync(csvReportPath);
+  const reviewDataExisted = fs.existsSync(reviewDataPath);
 
   try {
     if (targetExisted) {
@@ -218,6 +230,12 @@ function main() {
     }
     if (htmlReportExisted) {
       htmlReportBackup = backupFile(htmlReportPath, paths.backupsDir, 'pre-apply-report-html');
+    }
+    if (csvReportExisted) {
+      csvReportBackup = backupFile(csvReportPath, paths.backupsDir, 'pre-apply-report-csv');
+    }
+    if (reviewDataExisted) {
+      reviewDataBackup = backupFile(reviewDataPath, paths.backupsDir, 'pre-apply-review-data');
     }
 
     writeTwoFilesAtomically({
@@ -249,6 +267,8 @@ function main() {
     restoreFile(versionBackup, versionPath, versionExisted);
     restoreFile(reportBackup, reportPath, reportExisted);
     restoreFile(htmlReportBackup, htmlReportPath, htmlReportExisted);
+    restoreFile(csvReportBackup, csvReportPath, csvReportExisted);
+    restoreFile(reviewDataBackup, reviewDataPath, reviewDataExisted);
     for (const temp of [`${target}.tmp`, `${versionPath}.tmp`]) {
       if (fs.existsSync(temp)) fs.unlinkSync(temp);
     }

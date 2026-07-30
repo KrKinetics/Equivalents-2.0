@@ -6,9 +6,11 @@ import { computeFoodsDataHash, shortHash, stableStringify } from './data-hash.mj
 import { getFoodStatus, isVerifiedFood } from './food-status.mjs';
 import { validateReviewImport } from './review-import.mjs';
 import {
-  materialDataSnapshot,
+  diffMaterialData,
   hasPostMaterialReverify,
   collectVerificationIntegrityErrors,
+  validateMaterialChangeHistory,
+  validateVerifyTransaction,
 } from './verification-integrity.mjs';
 import { isMeaningfulString, isValidIsoDateTime, isValidApprovedAt } from './source-validators.mjs';
 
@@ -162,6 +164,20 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     for (const err of collectVerificationIntegrityErrors(incoming)) {
       errors.push(`${err.code}: ${incoming.id}: ${err.message}`);
     }
+    if (isVerifiedFood(incoming)) {
+      const latestVerify = validateVerifyTransaction(incoming);
+      const isNewVerify = latestVerify.transaction?.indexes.some(
+        (index) => index >= curHist.length
+      );
+      if (isNewVerify) {
+        const newVerifyCheck = validateVerifyTransaction(incoming, {
+          requireTransactionId: true,
+        });
+        if (!newVerifyCheck.ok) {
+          errors.push(`${newVerifyCheck.code}: ${incoming.id}: ${newVerifyCheck.message}`);
+        }
+      }
+    }
 
     const curWasVerified = isVerifiedFood(current);
     if (curWasVerified && getFoodStatus(incoming) !== 'verified') {
@@ -173,7 +189,8 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
       }
     }
 
-    const materialChanged = materialDataSnapshot(current) !== materialDataSnapshot(incoming);
+    const materialDifferences = diffMaterialData(current, incoming);
+    const materialChanged = materialDifferences.length > 0;
     const adminOrResolutionChanged =
       stableStringify({
         status: current.status,
@@ -191,6 +208,14 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
         `Modification de données sans progression de version pour ${incoming.id} (v${curVer}). Documentez une migration ou incrémentez food.version.`
       );
     }
+    if (materialChanged) {
+      const historyCheck = validateMaterialChangeHistory(current, incoming);
+      if (!historyCheck.ok) {
+        errors.push(
+          `MATERIAL_CHANGE_HISTORY_MISMATCH: ${incoming.id} — ${historyCheck.message}`
+        );
+      }
+    }
     if (adminOrResolutionChanged && nextVer === curVer && !migrationDocumented && !materialChanged) {
       // version bump still required when status/verification/resolutions change without material
       if (nextRes.length > curRes.length || getFoodStatus(current) !== getFoodStatus(incoming)) {
@@ -202,8 +227,12 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     // --migration-documented must NOT bypass this rule.
     if (curWasVerified && materialChanged) {
       if (isVerifiedFood(incoming)) {
+        const verifyCheck = validateVerifyTransaction(incoming, {
+          requireTransactionId: true,
+        });
         const reverifyOk =
           nextVer > curVer &&
+          verifyCheck.ok &&
           hasPostMaterialReverify(current, incoming) &&
           isMeaningfulString(incoming.verification?.verifiedBy) &&
           isMeaningfulString(incoming.verification?.datasetVersion, { minLength: 1 }) &&

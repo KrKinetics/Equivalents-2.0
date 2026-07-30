@@ -16,7 +16,10 @@ import {
   setPath,
 } from '../src/lib/food-change.mjs';
 import { validateReviewImport } from '../src/lib/review-import.mjs';
-import { knownSourceReferenceIds } from '../src/lib/source-validators.mjs';
+import {
+  isMeaningfulString,
+  knownSourceReferenceIds,
+} from '../src/lib/source-validators.mjs';
 import { stableStringify } from '../src/lib/data-hash-lite.mjs';
 import {
   DISPLAY_CATEGORIES,
@@ -175,28 +178,26 @@ function applyLiveEdit(food, path, value) {
 }
 
 function initFrom(payload, options = {}) {
-  const gate = validateReviewImport(payload);
+  const candidateData = clone(payload);
+  const gate = validateReviewImport(candidateData);
   if (!gate.ok) {
     throw new Error(gate.message || 'Import refusé');
   }
-  // Refuse duplicates before touching state
-  state.data = null;
-  state.dirty.clear();
-  state.originals.clear();
-  state.pendingByFood.clear();
-  state.commitTimers.forEach((t) => clearTimeout(t));
-  state.commitTimers.clear();
-
-  state.data = clone(payload);
-  state.selectedId = null;
-  if (!options.preserveExportMeta) {
-    state.lastExportAt = null;
-    state.lastExportHash = null;
+  const duplicateAudit = auditDataset(candidateData.foods);
+  if (
+    duplicateAudit.items.some((item) =>
+      item.alerts.some((alert) => alert.code === 'DUPLICATE_ID')
+    )
+  ) {
+    throw new Error('Import refusé: identifiant(s) dupliqué(s)');
   }
-  // Hash BEFORE ensureShapes so exportDataHash matches the imported payload bytes/shape.
-  return hashFoods(foods()).then((contentHash) => {
-    const meta = state.data.meta || {};
+
+  // Everything below is prepared off-state. Any rejection leaves the current
+  // session, dirty changes, originals, and selection untouched.
+  return hashFoods(candidateData.foods).then((contentHash) => {
+    const meta = candidateData.meta || {};
     const hasExportMeta = meta.exportDataHash != null || meta.baseDataHash != null;
+    let candidateBaseDataHash;
     if (hasExportMeta) {
       if (!meta.exportDataHash) {
         throw new Error('EXPORT_HASH_MISMATCH: meta.exportDataHash manquant');
@@ -209,22 +210,38 @@ function initFrom(payload, options = {}) {
       if (!meta.baseDataHash) {
         throw new Error('EXPORT_HASH_MISMATCH: meta.baseDataHash manquant pour une reprise d’export');
       }
-      state.baseDataHash = options.baseDataHash || meta.baseDataHash;
+      candidateBaseDataHash = options.baseDataHash || meta.baseDataHash;
     } else {
-      state.baseDataHash = options.baseDataHash || contentHash;
+      candidateBaseDataHash = options.baseDataHash || contentHash;
     }
 
-    for (const food of foods()) {
+    const candidateOriginals = new Map();
+    for (const food of candidateData.foods) {
       ensureShapes(food);
-      state.originals.set(food.id, JSON.stringify(food));
+      candidateOriginals.set(food.id, JSON.stringify(food));
     }
-
-    state.sourceDatasetVersion =
+    const candidateAudit = auditDataset(candidateData.foods);
+    const candidateSourceDatasetVersion =
       options.sourceDatasetVersion ||
       window.FOOD_AUDIT_SUMMARY?.version?.version ||
-      state.data.meta?.sourceDatasetVersion ||
+      candidateData.meta?.sourceDatasetVersion ||
       null;
-    refreshAudit();
+
+    state.commitTimers.forEach((timer) => clearTimeout(timer));
+    state.data = candidateData;
+    state.audit = candidateAudit;
+    state.selectedId = null;
+    state.dirty = new Set();
+    state.originals = candidateOriginals;
+    state.pendingByFood = new Map();
+    state.commitTimers = new Map();
+    state.baseDataHash = candidateBaseDataHash;
+    state.sourceDatasetVersion = candidateSourceDatasetVersion;
+    if (!options.preserveExportMeta) {
+      state.lastExportAt = null;
+      state.lastExportHash = null;
+    }
+
     const categories = [...new Set(foods().map((food) => food.displayCategory))].sort();
     document.getElementById('filterCat').innerHTML =
       '<option value="">Toutes catégories</option>' +
@@ -676,9 +693,19 @@ document.getElementById('btnVerify').onclick = () => {
     alert('Impossible: une source authoritative complète et aucune ERROR ouverte sont requises.');
     return;
   }
-  const approvedBy = prompt('Nom de la personne qui valide :');
-  if (!approvedBy) return;
+  const approvedBy = String(prompt('Nom de la personne qui valide :') || '').trim();
+  if (!isMeaningfulString(approvedBy)) {
+    alert('Impossible: le nom du validateur doit être significatif.');
+    return;
+  }
+  const datasetVersion =
+    window.FOOD_AUDIT_SUMMARY?.version?.version || state.sourceDatasetVersion || null;
+  if (!isMeaningfulString(datasetVersion, { minLength: 1 })) {
+    alert('Impossible: une version de dataset significative est requise.');
+    return;
+  }
   const at = new Date().toISOString();
+  const transactionId = crypto.randomUUID();
   applyFoodChange(food, {
     patches: [
       { path: 'status', value: 'verified' },
@@ -687,11 +714,12 @@ document.getElementById('btnVerify').onclick = () => {
       { path: 'verification.verifiedBy', value: approvedBy },
       {
         path: 'verification.datasetVersion',
-        value: window.FOOD_AUDIT_SUMMARY?.version?.version || null,
+        value: datasetVersion,
       },
     ],
     by: approvedBy,
     action: 'verify',
+    transactionId,
     administrative: true,
   });
   setFoodStatus(food, 'verified');

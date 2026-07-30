@@ -35,6 +35,10 @@ import {
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
 import {
+  diffMaterialData,
+  validateVerifyTransaction,
+} from '../src/lib/verification-integrity.mjs';
+import {
   knownSourceReferenceIds,
   isValidApprovedAt,
   isValidIsoDateOnly,
@@ -120,7 +124,10 @@ function asVerified(food, meta = {}) {
   const verifiedAt = meta.verifiedAt || '2026-07-29T00:00:00.000Z';
   const verifiedBy = meta.verifiedBy || 'Reviewer';
   const datasetVersion = meta.datasetVersion || '1.0.0';
-  const version = Number.isInteger(food.version) ? food.version : 1;
+  const versionAfter = Math.max(2, Number.isInteger(food.version) ? food.version : 2);
+  const versionBefore = versionAfter - 1;
+  const transactionId = meta.transactionId || `verify-${food.id}-${versionAfter}`;
+  food.version = versionAfter;
   food.status = 'verified';
   food.verification = {
     status: 'verified',
@@ -134,53 +141,98 @@ function asVerified(food, meta = {}) {
       timestamp: verifiedAt,
       by: verifiedBy,
       action: 'verify',
+      transactionId,
       path: 'status',
       oldValue: 'unverified',
       newValue: 'verified',
-      versionBefore: version,
-      versionAfter: version,
+      versionBefore,
+      versionAfter,
     },
     {
       timestamp: verifiedAt,
       by: verifiedBy,
       action: 'verify',
+      transactionId,
       path: 'verification.status',
       oldValue: 'unverified',
       newValue: 'verified',
-      versionBefore: version,
-      versionAfter: version,
+      versionBefore,
+      versionAfter,
     },
     {
       timestamp: verifiedAt,
       by: verifiedBy,
       action: 'verify',
+      transactionId,
       path: 'verification.verifiedAt',
       oldValue: null,
       newValue: verifiedAt,
-      versionBefore: version,
-      versionAfter: version,
+      versionBefore,
+      versionAfter,
     },
     {
       timestamp: verifiedAt,
       by: verifiedBy,
       action: 'verify',
+      transactionId,
       path: 'verification.verifiedBy',
       oldValue: null,
       newValue: verifiedBy,
-      versionBefore: version,
-      versionAfter: version,
+      versionBefore,
+      versionAfter,
     },
     {
       timestamp: verifiedAt,
       by: verifiedBy,
       action: 'verify',
+      transactionId,
       path: 'verification.datasetVersion',
       oldValue: null,
       newValue: datasetVersion,
-      versionBefore: version,
-      versionAfter: version,
+      versionBefore,
+      versionAfter,
     },
   ];
+  return food;
+}
+
+function appendVerifyTransaction(food, {
+  verifiedAt,
+  verifiedBy = 'Reviewer-2',
+  datasetVersion = '1.0.1',
+  transactionId = `verify-${food.id}-${verifiedAt}`,
+} = {}) {
+  const versionBefore = food.version;
+  const versionAfter = versionBefore + 1;
+  const previous = clone(food.verification);
+  food.version = versionAfter;
+  food.status = 'verified';
+  food.verification = {
+    status: 'verified',
+    verifiedAt,
+    verifiedBy,
+    datasetVersion,
+  };
+  const values = [
+    ['status', 'verified', 'verified'],
+    ['verification.status', previous.status, 'verified'],
+    ['verification.verifiedAt', previous.verifiedAt, verifiedAt],
+    ['verification.verifiedBy', previous.verifiedBy, verifiedBy],
+    ['verification.datasetVersion', previous.datasetVersion, datasetVersion],
+  ];
+  for (const [path, oldValue, newValue] of values) {
+    food.history.push({
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      transactionId,
+      path,
+      oldValue,
+      newValue,
+      versionBefore,
+      versionAfter,
+    });
+  }
   return food;
 }
 
@@ -1099,78 +1151,150 @@ test('verified without metadata is refused by audit, import, apply and approve',
   assert.notEqual(approve.status, 0);
 });
 
-test('verified material change without reverify is refused; with reverify is accepted', () => {
-  const currentFood = asVerified(cleanFood({ id: 'reverify-1', version: 2 }));
-  const current = {
-    foods: [currentFood],
-    meta: { schemaVersion: 2, totalFoods: 1 },
-  };
+test('generic verify history entry is refused', () => {
+  const food = asVerified(cleanFood({ id: 'generic-verify' }));
+  food.history = [
+    {
+      timestamp: food.verification.verifiedAt,
+      by: food.verification.verifiedBy,
+      action: 'verify',
+      transactionId: 'generic',
+      path: null,
+      versionBefore: food.version - 1,
+      versionAfter: food.version,
+    },
+  ];
+  const validation = validateVerifyTransaction(food);
+  assert.equal(validation.ok, false);
+  assert.equal(validation.code, 'VERIFICATION_HISTORY_INCOMPLETE');
+  assert.ok(
+    auditFood(food).alerts.some((alert) => alert.code === 'VERIFICATION_HISTORY_INCOMPLETE')
+  );
+});
 
-  const bad = clone(current);
-  bad.foods[0].nutrients.proteinG = 5;
-  bad.foods[0].version = 3;
-  bad.foods[0].history.push({
+test('partial verify transaction is refused', () => {
+  const food = asVerified(cleanFood({ id: 'partial-verify' }));
+  food.history = food.history.filter(
+    (entry) => entry.path === 'verification.verifiedAt'
+  );
+  const validation = validateVerifyTransaction(food);
+  assert.equal(validation.ok, false);
+  assert.equal(validation.code, 'VERIFICATION_HISTORY_INCOMPLETE');
+});
+
+test('material change with false history path is refused', () => {
+  const currentFood = asVerified(cleanFood({ id: 'false-material-history' }));
+  const current = { foods: [currentFood], meta: { schemaVersion: 2, totalFoods: 1 } };
+  const incoming = clone(current);
+  incoming.foods[0].nutrients.proteinG = 5;
+  incoming.foods[0].version += 1;
+  incoming.foods[0].history.push({
     timestamp: '2026-07-29T01:00:00.000Z',
     by: 'coach',
     action: 'update',
+    path: 'names.fr',
+    oldValue: incoming.foods[0].names.fr,
+    newValue: `${incoming.foods[0].names.fr} faux`,
+    versionBefore: currentFood.version,
+    versionAfter: incoming.foods[0].version,
+  });
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const result = assertApplyGovernance(current, incoming, {});
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.some((error) => /MATERIAL_CHANGE_HISTORY_MISMATCH/.test(error)));
+  assert.deepEqual(diffMaterialData(currentFood, incoming.foods[0]), [
+    { path: 'nutrients.proteinG', oldValue: 4, newValue: 5 },
+  ]);
+});
+
+test('exact material history followed by generic verify is refused', () => {
+  const currentFood = asVerified(cleanFood({ id: 'generic-reverify' }));
+  const current = { foods: [currentFood], meta: { schemaVersion: 2, totalFoods: 1 } };
+  const incoming = clone(current);
+  incoming.foods[0].nutrients.proteinG = 5;
+  incoming.foods[0].version += 1;
+  incoming.foods[0].history.push({
+    timestamp: '2026-07-29T01:00:00.000Z',
+    by: 'coach',
+    action: 'correction',
     path: 'nutrients.proteinG',
     oldValue: 4,
     newValue: 5,
-    versionBefore: 2,
-    versionAfter: 3,
+    versionBefore: currentFood.version,
+    versionAfter: incoming.foods[0].version,
   });
-  // stays verified — no new verify
-  bad.meta.baseDataHash = computeFoodsDataHash(current.foods);
-  bad.meta.exportDataHash = computeFoodsDataHash(bad.foods);
-  const refused = assertApplyGovernance(current, bad, { migrationDocumented: true });
-  assert.equal(refused.ok, false);
-  assert.ok(refused.errors.some((e) => /VERIFIED_MATERIAL_CHANGE_WITHOUT_REVERIFY/.test(e)));
+  incoming.foods[0].version += 1;
+  incoming.foods[0].verification.verifiedAt = '2026-07-29T02:00:00.000Z';
+  incoming.foods[0].verification.verifiedBy = 'Reviewer-2';
+  incoming.foods[0].verification.datasetVersion = '1.0.1';
+  incoming.foods[0].history.push({
+    timestamp: incoming.foods[0].verification.verifiedAt,
+    by: 'Reviewer-2',
+    action: 'verify',
+    transactionId: 'generic-reverify',
+    path: null,
+    versionBefore: incoming.foods[0].version - 1,
+    versionAfter: incoming.foods[0].version,
+  });
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const result = assertApplyGovernance(current, incoming, {});
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.some((error) => /VERIFICATION_HISTORY_INCOMPLETE/.test(error)));
+});
 
-  const good = clone(bad);
-  const newAt = '2026-07-29T02:00:00.000Z';
-  good.foods[0].version = 4;
-  good.foods[0].verification = {
-    status: 'verified',
-    verifiedAt: newAt,
-    verifiedBy: 'Reviewer-2',
-    datasetVersion: '1.0.1',
-  };
-  good.foods[0].status = 'verified';
-  good.foods[0].history.push(
-    {
-      timestamp: newAt,
-      by: 'Reviewer-2',
-      action: 'verify',
-      path: 'verification.verifiedAt',
-      oldValue: '2026-07-29T00:00:00.000Z',
-      newValue: newAt,
-      versionBefore: 3,
-      versionAfter: 4,
-    },
-    {
-      timestamp: newAt,
-      by: 'Reviewer-2',
-      action: 'verify',
-      path: 'verification.verifiedBy',
-      oldValue: 'Reviewer',
-      newValue: 'Reviewer-2',
-      versionBefore: 3,
-      versionAfter: 4,
-    },
-    {
-      timestamp: newAt,
-      by: 'Reviewer-2',
-      action: 'verify',
-      path: 'verification.datasetVersion',
-      oldValue: '1.0.0',
-      newValue: '1.0.1',
-      versionBefore: 3,
-      versionAfter: 4,
-    }
+test('exact material history followed by complete verify transaction is accepted', () => {
+  const currentFood = asVerified(cleanFood({ id: 'complete-reverify' }));
+  const current = { foods: [currentFood], meta: { schemaVersion: 2, totalFoods: 1 } };
+  const incoming = clone(current);
+  incoming.foods[0].nutrients.proteinG = 5;
+  incoming.foods[0].version += 1;
+  incoming.foods[0].history.push({
+    timestamp: '2026-07-29T01:00:00.000Z',
+    by: 'coach',
+    action: 'correction',
+    path: 'nutrients.proteinG',
+    oldValue: 4,
+    newValue: 5,
+    versionBefore: currentFood.version,
+    versionAfter: incoming.foods[0].version,
+  });
+  appendVerifyTransaction(incoming.foods[0], {
+    verifiedAt: '2026-07-29T02:00:00.000Z',
+  });
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const result = assertApplyGovernance(current, incoming, {});
+  assert.equal(result.ok, true, JSON.stringify(result.errors));
+});
+
+test('verify transaction timestamp before material modification is refused', () => {
+  const currentFood = asVerified(cleanFood({ id: 'early-reverify' }));
+  const current = { foods: [currentFood], meta: { schemaVersion: 2, totalFoods: 1 } };
+  const incoming = clone(current);
+  incoming.foods[0].nutrients.proteinG = 5;
+  incoming.foods[0].version += 1;
+  incoming.foods[0].history.push({
+    timestamp: '2026-07-29T03:00:00.000Z',
+    by: 'coach',
+    action: 'correction',
+    path: 'nutrients.proteinG',
+    oldValue: 4,
+    newValue: 5,
+    versionBefore: currentFood.version,
+    versionAfter: incoming.foods[0].version,
+  });
+  appendVerifyTransaction(incoming.foods[0], {
+    verifiedAt: '2026-07-29T02:00:00.000Z',
+  });
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const result = assertApplyGovernance(current, incoming, {});
+  assert.equal(result.ok, false);
+  assert.ok(
+    result.errors.some((error) => /VERIFIED_MATERIAL_CHANGE_WITHOUT_REVERIFY/.test(error))
   );
-  good.meta.exportDataHash = computeFoodsDataHash(good.foods);
-  const accepted = assertApplyGovernance(current, good, {});
-  assert.equal(accepted.ok, true, JSON.stringify(accepted.errors));
 });
 
 test('impossible calendar dates are refused', () => {
@@ -1338,6 +1462,92 @@ test('rejected food with incomplete nutrition does not block approval', () => {
     sandbox
   );
   assert.equal(result.status, 0, result.stderr || result.stdout);
+  const auditResult = runScript('scripts/audit-food-equivalents.mjs', [], sandbox);
+  assert.equal(auditResult.status, 0, auditResult.stderr || auditResult.stdout);
+  const auditedVersion = JSON.parse(fs.readFileSync(sandbox.version, 'utf8'));
+  const auditReport = JSON.parse(
+    fs.readFileSync(path.join(sandbox.reports, 'food-equivalents-audit.json'), 'utf8')
+  );
+  assert.equal(auditedVersion.status, 'approved');
+  assert.equal(auditedVersion.rejectedFoods, 1);
+  assert.equal(auditedVersion.unverifiedFoods, 0);
+  assert.ok(auditedVersion.rejectedBlockingErrorCount > 0);
+  assert.equal(auditedVersion.activeBlockingErrorCount, 0);
+  assert.ok(
+    auditReport.items
+      .find((item) => item.id === 'rejected-incomplete')
+      ?.alerts.some((alert) => alert.severity === 'ERROR')
+  );
+});
+
+test('complete A to B to C apply cycle works without allow-stale', () => {
+  const sandbox = makeSandbox('apply-cycle');
+  const baseA = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  const hashA = computeFoodsDataHash(baseA.foods);
+
+  const exportB = clone(baseA);
+  const foodB = exportB.foods[0];
+  const oldFr = foodB.names.fr;
+  const versionA = foodB.version;
+  foodB.names.fr = `${oldFr} B`;
+  foodB.version = versionA + 1;
+  foodB.history.push({
+    timestamp: '2026-07-29T06:00:00.000Z',
+    by: 'cycle-test',
+    action: 'update',
+    path: 'names.fr',
+    oldValue: oldFr,
+    newValue: foodB.names.fr,
+    versionBefore: versionA,
+    versionAfter: foodB.version,
+  });
+  const hashB = computeFoodsDataHash(exportB.foods);
+  exportB.meta.baseDataHash = hashA;
+  exportB.meta.exportDataHash = hashB;
+  exportB.meta.exportedAt = '2026-07-29T06:00:00.000Z';
+  exportB.meta.exportedBy = 'cycle-test';
+  const pathB = path.join(sandbox.root, 'export-b.json');
+  fs.writeFileSync(pathB, JSON.stringify(exportB), 'utf8');
+
+  const applyB = runScript('scripts/apply-food-equivalents.mjs', [pathB], sandbox);
+  assert.equal(applyB.status, 0, applyB.stderr || applyB.stdout);
+  const appliedB = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  assert.equal(appliedB.meta.baseDataHash, hashB);
+  assert.equal(appliedB.meta.exportDataHash, hashB);
+  assert.equal(appliedB.meta.lastAppliedFromBaseDataHash, hashA);
+  assert.equal(appliedB.meta.lastAppliedExportDataHash, hashB);
+
+  const exportC = clone(appliedB);
+  const foodC = exportC.foods[0];
+  const oldEn = foodC.names.en;
+  const versionB = foodC.version;
+  foodC.names.en = `${oldEn} C`;
+  foodC.version = versionB + 1;
+  foodC.history.push({
+    timestamp: '2026-07-29T07:00:00.000Z',
+    by: 'cycle-test',
+    action: 'correction',
+    path: 'names.en',
+    oldValue: oldEn,
+    newValue: foodC.names.en,
+    versionBefore: versionB,
+    versionAfter: foodC.version,
+  });
+  const hashC = computeFoodsDataHash(exportC.foods);
+  exportC.meta.baseDataHash = hashB;
+  exportC.meta.exportDataHash = hashC;
+  exportC.meta.exportedAt = '2026-07-29T07:00:00.000Z';
+  exportC.meta.exportedBy = 'cycle-test';
+  const pathC = path.join(sandbox.root, 'export-c.json');
+  fs.writeFileSync(pathC, JSON.stringify(exportC), 'utf8');
+
+  const applyC = runScript('scripts/apply-food-equivalents.mjs', [pathC], sandbox);
+  assert.equal(applyC.status, 0, applyC.stderr || applyC.stdout);
+  const appliedC = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  assert.equal(appliedC.meta.baseDataHash, hashC);
+  assert.equal(appliedC.meta.exportDataHash, hashC);
+  assert.equal(appliedC.meta.lastAppliedFromBaseDataHash, hashB);
+  assert.equal(appliedC.foods[0].names.en, foodC.names.en);
 });
 
 test('data:apply rolls back food and version when post-apply audit fails', () => {
@@ -1345,6 +1555,7 @@ test('data:apply rolls back food and version when post-apply audit fails', () =>
   const beforeFood = hashFile(sandbox.data);
   const beforeVersion = hashFile(sandbox.version);
   const incoming = clone(JSON.parse(fs.readFileSync(sandbox.data, 'utf8')));
+  const oldName = incoming.foods[0].names.fr;
   incoming.foods[0].names.fr = `${incoming.foods[0].names.fr} rollback-test`;
   incoming.foods[0].version = (incoming.foods[0].version || 1) + 1;
   incoming.foods[0].history = [
@@ -1354,7 +1565,7 @@ test('data:apply rolls back food and version when post-apply audit fails', () =>
       by: 'test',
       action: 'update',
       path: 'names.fr',
-      oldValue: 'x',
+      oldValue: oldName,
       newValue: incoming.foods[0].names.fr,
       versionBefore: incoming.foods[0].version - 1,
       versionAfter: incoming.foods[0].version,
@@ -1367,14 +1578,45 @@ test('data:apply rolls back food and version when post-apply audit fails', () =>
   const incomingPath = path.join(sandbox.root, 'incoming-rollback.json');
   fs.writeFileSync(incomingPath, JSON.stringify(incoming), 'utf8');
 
+  const artifactPaths = [
+    path.join(sandbox.reports, 'food-equivalents-audit.json'),
+    path.join(sandbox.reports, 'food-equivalents-audit.html'),
+    path.join(sandbox.reports, 'food-equivalents-audit.csv'),
+    sandbox.review,
+  ];
+  artifactPaths.forEach((artifact, index) => {
+    fs.mkdirSync(path.dirname(artifact), { recursive: true });
+    fs.writeFileSync(artifact, `before-${index}`, 'utf8');
+  });
+
   const failingAudit = path.join(sandbox.root, 'failing-audit.mjs');
-  fs.writeFileSync(failingAudit, 'process.exit(1);\n', 'utf8');
+  fs.writeFileSync(
+    failingAudit,
+    `import fs from 'fs';
+import path from 'path';
+const files = [
+  path.join(process.env.REPORTS_DIR, 'food-equivalents-audit.json'),
+  path.join(process.env.REPORTS_DIR, 'food-equivalents-audit.html'),
+  path.join(process.env.REPORTS_DIR, 'food-equivalents-audit.csv'),
+  process.env.REVIEW_DATA_PATH,
+];
+for (const file of files) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, 'failed-apply-output', 'utf8');
+}
+process.exit(1);
+`,
+    'utf8'
+  );
   sandbox.env.AUDIT_SCRIPT_PATH = failingAudit;
 
   const result = runScript('scripts/apply-food-equivalents.mjs', [incomingPath], sandbox);
   assert.notEqual(result.status, 0);
   assert.equal(hashFile(sandbox.data), beforeFood);
   assert.equal(hashFile(sandbox.version), beforeVersion);
+  artifactPaths.forEach((artifact, index) => {
+    assert.equal(fs.readFileSync(artifact, 'utf8'), `before-${index}`);
+  });
 });
 
 test('production files retain their exact before-suite hashes', () => {

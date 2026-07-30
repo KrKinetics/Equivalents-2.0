@@ -158,7 +158,8 @@ function main() {
     version.approvedAt = null;
     version.approvedBy = null;
   }
-  if (audited.summary.blockingErrorCount > 0) {
+  const approvalBlockingErrorCount = audited.summary.activeBlockingErrorCount;
+  if (approvalBlockingErrorCount > 0) {
     version.status = 'draft';
   } else if (version.status !== 'approved') {
     version.status = 'review';
@@ -176,10 +177,18 @@ function main() {
   }, {});
   version.totalFoods = audited.summary.totalFoods;
   version.verifiedFoods = verifiedFoods;
-  version.unverifiedFoods = version.totalFoods - verifiedFoods;
+  version.unverifiedFoods = audited.summary.unverifiedFoods;
+  version.rejectedFoods = audited.summary.rejectedFoods;
+  version.activeFoods = audited.summary.activeFoods;
   version.foodStatusCounts = foodStatusCounts;
   version.blockingErrorCount = audited.summary.blockingErrorCount;
+  version.approvalBlockingErrorCount = approvalBlockingErrorCount;
+  version.activeBlockingErrorCount = audited.summary.activeBlockingErrorCount;
+  version.rejectedBlockingErrorCount = audited.summary.rejectedBlockingErrorCount;
+  version.structuralBlockingErrorCount = audited.summary.structuralBlockingErrorCount;
   version.foodsWithBlockingErrors = audited.summary.foodsWithBlockingErrors;
+  version.activeFoodsWithBlockingErrors = audited.summary.activeFoodsWithBlockingErrors;
+  version.rejectedFoodsWithBlockingErrors = audited.summary.rejectedFoodsWithBlockingErrors;
   version.warningCount = audited.summary.warningCount;
   version.foodsWithWarnings = audited.summary.foodsWithWarnings;
   version.foodsWithWarningsOnly = audited.summary.foodsWithWarningsOnly;

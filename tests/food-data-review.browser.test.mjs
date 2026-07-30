@@ -480,6 +480,43 @@ test('structural import without id is refused', async () => {
   assert.equal(result.afterCount, result.beforeCount);
 });
 
+test('invalid export hash import leaves current dirty session intact', async () => {
+  const result = await page.evaluate(async () => {
+    const api = window.__REVIEW_TEST__;
+    const state = api.getState();
+    const food = state.data.foods[0];
+    state.selectedId = food.id;
+    api.applyLiveEdit(food, 'names.fr', `${food.names.fr}-unsaved`);
+    api.commitFood(food);
+
+    const before = {
+      data: JSON.stringify(state.data),
+      dirty: [...state.dirty],
+      originals: [...state.originals.entries()],
+      selectedId: state.selectedId,
+    };
+    const invalid = JSON.parse(JSON.stringify(state.data));
+    invalid.meta.baseDataHash = state.baseDataHash;
+    invalid.meta.exportDataHash = 'deadbeef';
+    let error = null;
+    try {
+      await api.initFrom(invalid);
+    } catch (caught) {
+      error = String(caught?.message || caught);
+    }
+    const after = {
+      data: JSON.stringify(state.data),
+      dirty: [...state.dirty],
+      originals: [...state.originals.entries()],
+      selectedId: state.selectedId,
+    };
+    return { before, after, error };
+  });
+
+  assert.match(result.error, /EXPORT_HASH_MISMATCH/);
+  assert.deepEqual(result.after, result.before);
+});
+
 test('re-importing an export preserves baseDataHash for the next export', async () => {
   const result = await page.evaluate(async () => {
     const api = window.__REVIEW_TEST__;

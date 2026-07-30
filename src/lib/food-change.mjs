@@ -128,6 +128,7 @@ export function applyFoodChange(food, change = {}) {
       timestamp: at,
       by,
       action,
+      ...(change.transactionId ? { transactionId: change.transactionId } : {}),
       path: entry.path,
       oldValue: entry.oldValue,
       newValue: entry.newValue,

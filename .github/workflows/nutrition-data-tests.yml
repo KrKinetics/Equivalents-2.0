@@ -28,12 +28,16 @@ jobs:
       - name: Check generated schema validator
         run: npm run schema:check
 
-      - name: Run all tests
-        run: npm run test:all
+      - name: Run Node tests
+        run: npm run test:nutrition
+
+      - name: Run browser tests
+        run: npm run test:browser
 
       - name: Audit nutrition data in sandbox
         run: |
-          SANDBOX=$(mktemp -d)
+          SANDBOX="$GITHUB_WORKSPACE/ci-artifacts"
+          rm -rf "$SANDBOX"
           mkdir -p "$SANDBOX/reports" "$SANDBOX/backups"
           cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
           cp src/data/nutrition-data-version.json "$SANDBOX/nutrition-data-version.json"
@@ -45,17 +49,24 @@ jobs:
           BACKUPS_DIR="$SANDBOX/backups" \
           REVIEW_DATA_PATH="$SANDBOX/food-data-review-data.js" \
           npm run data:audit
+          node --input-type=module -e "
+            import fs from 'fs';
+            import { computeFoodsDataHash } from './src/lib/data-hash.mjs';
+            const payload = JSON.parse(fs.readFileSync('$SANDBOX/food-equivalents.json', 'utf8'));
+            console.log('food count:', payload.foods.length);
+            console.log('food dataHash:', computeFoodsDataHash(payload.foods));
+          "
           # Never commit or overwrite production paths from CI
           git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json || {
             echo "CI must not modify production nutrition data"
             exit 1
           }
 
-      - name: Upload audit reports on failure
-        if: failure()
+      - name: Upload fresh audit reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: nutrition-audit-reports
           path: |
-            reports/
+            ci-artifacts/reports/
           if-no-files-found: ignore
