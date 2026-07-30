@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://krkinetics.local/schemas/manufacturer-evidence.schema.json",
+  "title": "KR Kinetics Manufacturer Nutrition Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidenceId",
+    "brand",
+    "product",
+    "flavor",
+    "market",
+    "officialUrl",
+    "accessedAt",
+    "labelServing",
+    "originalLabelValues",
+    "conversion",
+    "derivedUnrounded",
+    "storedRounded",
+    "evidenceHash"
+  ],
+  "properties": {
+    "evidenceId": { "type": "string", "minLength": 1 },
+    "brand": { "type": "string", "minLength": 1 },
+    "product": { "type": "string", "minLength": 1 },
+    "flavor": { "type": "string", "minLength": 1 },
+    "market": { "type": "string", "minLength": 1 },
+    "officialUrl": { "type": "string", "format": "uri" },
+    "accessedAt": { "type": "string", "minLength": 8 },
+    "labelServing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "unit"],
+      "properties": {
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "type": "string", "minLength": 1 }
+      }
+    },
+    "originalLabelValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declaredKcal",
+        "proteinG",
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG"
+      ],
+      "properties": {
+        "declaredKcal": { "type": "number" },
+        "proteinG": { "type": "number" },
+        "carbsG": { "type": "number" },
+        "fiberG": { "type": ["number", "null"] },
+        "fatG": { "type": "number" },
+        "saturatedFatG": { "type": ["number", "null"] },
+        "polyunsaturatedFatG": { "type": ["number", "null"] },
+        "monounsaturatedFatG": { "type": ["number", "null"] }
+      }
+    },
+    "conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formula", "targetBasis"],
+      "properties": {
+        "formula": { "type": "string", "minLength": 1 },
+        "targetBasis": { "type": "string", "minLength": 1 },
+        "bottleMl": { "type": "number" }
+      }
+    },
+    "derivedUnrounded": { "type": "object" },
+    "storedRounded": { "type": "object" },
+    "networkComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attempted": { "type": "boolean" },
+        "matched": { "type": ["boolean", "null"] },
+        "snapshotPath": { "type": ["string", "null"] },
+        "snapshotSha256": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "evidenceHash": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "linkedFoodId": { "type": "string" },
+    "batchId": { "type": "string" }
+  }
+}

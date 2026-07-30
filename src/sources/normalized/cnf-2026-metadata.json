@@ -1,0 +1,26 @@
+{
+  "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+  "datasetTitle": "Canadian Nutrient File, 2026",
+  "publisher": "Health Canada",
+  "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+  "downloadedAt": "2026-07-30T13:07:11.324Z",
+  "zipPath": "src/sources/cnf-2026/cnf_fcen_all-files-data_2026.zip",
+  "zipSha256": "f5faad8977ee6bbdd9d69c8649077cacd87d8658ad200509a4047db1e29edcdd",
+  "rawDirectory": "src/sources/cnf-2026/raw",
+  "foodCount": 5993,
+  "nutrientCodeMap": {
+    "energy_kcal": "208",
+    "protein_g": "203",
+    "carbohydrate_g": "205",
+    "fibre_g": "291",
+    "total_fat_g": "204",
+    "saturated_fat_g": "606",
+    "polyunsaturated_fat_g": "646",
+    "monounsaturated_fat_g": "645"
+  },
+  "hashDefinitions": {
+    "zipSha256": "SHA-256 of official CNF all-files ZIP",
+    "foodsFileSha256": "SHA-256 of normalized cnf-2026-foods.json"
+  },
+  "foodsFileSha256": "b8baa00b97562927039a64e130da8d2be9ff0ccec4cb69121cdff591677c9fb8"
+}

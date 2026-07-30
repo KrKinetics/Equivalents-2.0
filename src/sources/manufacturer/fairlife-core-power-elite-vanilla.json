@@ -1,0 +1,54 @@
+{
+  "evidenceId": "fairlife-autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+  "brand": "fairlife",
+  "product": "Core Power Elite",
+  "flavor": "vanilla",
+  "market": "US manufacturer label (fairlife.com)",
+  "officialUrl": "https://fairlife.com/core-power/vanilla-protein-shake-42g/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 414,
+    "unit": "ml"
+  },
+  "originalLabelValues": {
+    "declaredKcal": 230,
+    "proteinG": 42,
+    "carbsG": 8,
+    "fiberG": 0,
+    "fatG": 3.5,
+    "saturatedFatG": 2
+  },
+  "conversion": {
+    "formula": "valuePer100ml = valueBottle × 100 / 414",
+    "targetBasis": "100 ml",
+    "bottleMl": 414
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 55.55555555555556,
+    "proteinG": 10.144927536231885,
+    "carbsG": 1.9323671497584543,
+    "fiberG": 0,
+    "fatG": 0.8454106280193238,
+    "saturatedFatG": 0.48309178743961356
+  },
+  "storedRounded": {
+    "declaredKcal": 56,
+    "proteinG": 10.1,
+    "carbsG": 1.9,
+    "fiberG": 0,
+    "fatG": 0.8,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": null,
+    "snapshotPath": "src/sources/snapshots/fairlife-core-power-elite-vanilla.html",
+    "snapshotSha256": "d127125cc6e4cb9a2caccfa4d75fc4e1bd2efc583600b64704d091c7078c3325",
+    "notes": "Snapshot archived. Numeric page extraction is heuristic; approved spec values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "evidenceHash": "bea1d3046cadaca732cd5b2260dfe36e5396444e7557eba6fbba8e742e836400"
+}

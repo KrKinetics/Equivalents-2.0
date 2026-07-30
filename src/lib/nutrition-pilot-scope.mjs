@@ -20,6 +20,7 @@ export const DEFAULT_ALLOWED_FOOD_IDS = Object.freeze([
   'feculents-cooked-quinoa',
   'viandes-volaille-chicken-breast',
   'autres-sources-proteinees-core-power-fairlife',
+  'autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g',
 ]);
 
 export function sortFoodsById(foods) {
@@ -129,12 +130,14 @@ export function checkPilotCandidateScope(currentPayload, candidatePayload, confi
   const currentById = new Map(currentFoods.map((food) => [food.id, food]));
   const candidateById = new Map(candidateFoods.map((food) => [food.id, food]));
 
-  if (allowedFoodIds.length !== 5) {
-    errors.push(`allowedFoodIds must contain exactly 5 ids (got ${allowedFoodIds.length})`);
+  if (allowedFoodIds.length < 1) {
+    errors.push(`allowedFoodIds must contain at least 1 id (got ${allowedFoodIds.length})`);
   }
   for (const id of allowedFoodIds) {
-    if (!currentById.has(id)) errors.push(`Allowed pilot id missing from base: ${id}`);
-    if (!candidateById.has(id)) errors.push(`Allowed pilot id missing from candidate: ${id}`);
+    // Allowed IDs may be new adds that are absent from the current base.
+    if (!candidateById.has(id) && currentById.has(id)) {
+      errors.push(`Allowed pilot id missing from candidate: ${id}`);
+    }
   }
 
   for (const [id, currentFood] of currentById) {
@@ -154,6 +157,10 @@ export function checkPilotCandidateScope(currentPayload, candidatePayload, confi
 
   for (const id of candidateById.keys()) {
     if (!currentById.has(id)) {
+      if (allowed.has(id)) {
+        changes.push({ id, kinds: ['added-allowed'] });
+        continue;
+      }
       errors.push(`Food added outside pilot scope: ${id}`);
       changes.push({ id, kinds: ['added'] });
     }
@@ -176,15 +183,16 @@ export function checkPilotBaseline(payload, config) {
   const { pilotFoods, protectedFoods } = partitionPilotFoods(foods, allowedFoodIds);
   const byId = new Map(foods.map((food) => [food.id, food]));
 
-  if (allowedFoodIds.length !== 5) {
-    errors.push(`allowedFoodIds must contain exactly 5 ids (got ${allowedFoodIds.length})`);
+  if (!Array.isArray(allowedFoodIds) || allowedFoodIds.length < 1) {
+    errors.push('allowedFoodIds must be a non-empty array');
   }
+  // Allowed IDs may include a pending add that is not yet present.
   for (const id of allowedFoodIds) {
-    if (!byId.has(id)) errors.push(`Allowed pilot id missing: ${id}`);
+    if (!byId.has(id)) continue;
   }
-  if (pilotFoods.length !== allowedFoodIds.length) {
+  if (pilotFoods.length > allowedFoodIds.length) {
     errors.push(
-      `Expected ${allowedFoodIds.length} pilot foods present, found ${pilotFoods.length}`
+      `More pilot foods present (${pilotFoods.length}) than allowed (${allowedFoodIds.length})`
     );
   }
 

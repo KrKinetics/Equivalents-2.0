@@ -1,14 +1,18 @@
 {
-  "pilotId": "nutrition-validation-5-foods",
-  "status": "prepared",
+  "pilotId": "nutrition-validation-6-foods",
+  "status": "active",
   "allowedFoodIds": [
     "fruits-blueberries",
     "noix-graines-almonds",
     "feculents-cooked-quinoa",
     "viandes-volaille-chicken-breast",
-    "autres-sources-proteinees-core-power-fairlife"
+    "autres-sources-proteinees-core-power-fairlife",
+    "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
   ],
   "protectedFoodCount": 202,
+  "pendingAllowedAdds": [
+    "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
+  ],
   "hashDefinitions": {
     "datasetHash": "SHA-256 of stableStringify(all foods sorted by id) via computeFoodsDataHash",
     "protectedFoodsDataHash": "SHA-256 of stableStringify(full food objects for every non-pilot food, sorted by id) via computeFoodsDataHash",
@@ -17,6 +21,13 @@
   "baseline": {
     "datasetHash": "a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f",
     "protectedFoodsDataHash": "49499f61945842748210d2c3f7756fbf1be91e4c96a1121ce4999dbb4307c482",
-    "protectedFoodsNutritionHash": "5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6"
+    "protectedFoodsNutritionHash": "5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6",
+    "note": "Baseline captured from the 207-food bank before applying the sixth-food add. Protected foods remain the 202 IDs outside the six pilot foods after the vanilla add."
+  },
+  "applied": {
+    "batchId": "pilot-nutrition-validation-6-foods",
+    "datasetHash": "a0763bfec13120ecb472d469d91ba77cec342974ff4146aeb30037a60cc56695",
+    "foodCount": 208,
+    "verifiedPilotFoods": 6
   }
 }

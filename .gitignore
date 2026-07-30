@@ -25,3 +25,9 @@ Thumbs.db
 # Local apply test artifacts
 backups/tmp-apply-test.json
 backups/
+
+# Large CNF originals (re-download via npm run sources:cnf:sync; hashes in metadata)
+src/sources/cnf-2026/*.zip
+src/sources/cnf-2026/raw/
+src/sources/snapshots/*.html
+

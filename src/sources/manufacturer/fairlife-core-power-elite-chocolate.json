@@ -1,0 +1,54 @@
+{
+  "evidenceId": "fairlife-autres-sources-proteinees-core-power-fairlife",
+  "brand": "fairlife",
+  "product": "Core Power Elite",
+  "flavor": "chocolate",
+  "market": "US manufacturer label (fairlife.com)",
+  "officialUrl": "https://fairlife.com/core-power/chocolate-protein-shake-42g/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 414,
+    "unit": "ml"
+  },
+  "originalLabelValues": {
+    "declaredKcal": 230,
+    "proteinG": 42,
+    "carbsG": 9,
+    "fiberG": 2,
+    "fatG": 3.5,
+    "saturatedFatG": 2
+  },
+  "conversion": {
+    "formula": "valuePer100ml = valueBottle × 100 / 414",
+    "targetBasis": "100 ml",
+    "bottleMl": 414
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 55.55555555555556,
+    "proteinG": 10.144927536231885,
+    "carbsG": 2.173913043478261,
+    "fiberG": 0.48309178743961356,
+    "fatG": 0.8454106280193238,
+    "saturatedFatG": 0.48309178743961356
+  },
+  "storedRounded": {
+    "declaredKcal": 56,
+    "proteinG": 10.1,
+    "carbsG": 2.2,
+    "fiberG": 0.5,
+    "fatG": 0.8,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": null,
+    "snapshotPath": "src/sources/snapshots/fairlife-core-power-elite-chocolate.html",
+    "snapshotSha256": "118ee12781561f079ea7c7bc3c7bf97d200383ccdb2b865ea117008c7bf99a50",
+    "notes": "Snapshot archived. Numeric page extraction is heuristic; approved spec values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-core-power-fairlife",
+  "batchId": "pilot-nutrition-validation-6-foods",
+  "evidenceHash": "6f1376cc2cba301136d78368369e824ade8e7d06713d51ddb17d6fd5d8a88c1f"
+}
