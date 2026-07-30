@@ -37,15 +37,19 @@
         "existingFoodCount",
         "newFoodCount",
         "expectedFinalFoodCount",
-        "pilotFoodCount",
         "protectedFoodCount",
         "allowedFoodIds"
+      ],
+      "anyOf": [
+        { "required": ["pilotFoodCount"] },
+        { "required": ["batchFoodCount"] }
       ],
       "properties": {
         "existingFoodCount": { "type": "integer", "minimum": 0 },
         "newFoodCount": { "type": "integer", "minimum": 0 },
         "expectedFinalFoodCount": { "type": "integer", "minimum": 1 },
         "pilotFoodCount": { "type": "integer", "minimum": 1 },
+        "batchFoodCount": { "type": "integer", "minimum": 1 },
         "protectedFoodCount": { "type": "integer", "minimum": 0 },
         "allowedFoodIds": {
           "type": "array",

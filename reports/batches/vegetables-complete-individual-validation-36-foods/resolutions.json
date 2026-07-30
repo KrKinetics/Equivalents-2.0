@@ -1,0 +1,395 @@
+{
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "foods": [
+    {
+      "id": "legumes-garlic",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-artichoke",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-asparagus",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "1991",
+          "fieldsHash": "kcal:4.6|7.8|0.4|42",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:41.888Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 1991"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "legumes-eggplant",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-beets",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-broccoli",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-kale",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-carrots",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-celery",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-mushrooms",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "2399",
+          "fieldsHash": "kcal:2.3|2.4|0.3|16",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:41.892Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 2399"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "legumes-brussels-sprouts",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-cauliflower",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-cucumbers",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-zucchini",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-squash",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-shallot",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-spinach",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "2213",
+          "fieldsHash": "kcal:0.8|1|0.1|6",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:41.895Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 2213"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "legumes-fennel",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "legumes-yellow-or-green-beans",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-vegetable-juice",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-romaine-lettuce",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-boiled-drained-turnip",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-onion",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-boiled-drained-leek",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-snow-peas",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-radishes",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-homemade-bone-broth",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "legumes-grilled-portobello-mushroom",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-red-bell-pepper",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-yellow-bell-pepper",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-yellow-snap-beans",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-cremini-mushrooms",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "4974",
+          "fieldsHash": "kcal:1.9|3.2|0.1|16",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:41.902Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 4974"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "legumes-cooked-spaghetti-squash",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "legumes-low-sodium-vegetable-juice",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    }
+  ]
+}

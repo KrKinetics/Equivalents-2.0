@@ -1,0 +1,1743 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "title": "KR Kinetics — Validation individuelle complète des légumes",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 30 entrées de légumes existantes, préciser les identités ambiguës et ajouter six variantes utiles, tout en protégeant strictement les 181 autres aliments existants.",
+  "scope": {
+    "existingFoodCount": 211,
+    "newFoodCount": 6,
+    "expectedFinalFoodCount": 217,
+    "batchFoodCount": 36,
+    "protectedFoodCount": 181,
+    "allowedFoodIds": [
+      "legumes-garlic",
+      "legumes-artichoke",
+      "legumes-asparagus",
+      "legumes-eggplant",
+      "legumes-beets",
+      "legumes-broccoli",
+      "legumes-kale",
+      "legumes-carrots",
+      "legumes-celery",
+      "legumes-mushrooms",
+      "legumes-brussels-sprouts",
+      "legumes-cauliflower",
+      "legumes-cucumbers",
+      "legumes-zucchini",
+      "legumes-squash",
+      "legumes-shallot",
+      "legumes-spinach",
+      "legumes-fennel",
+      "legumes-yellow-or-green-beans",
+      "legumes-vegetable-juice",
+      "legumes-romaine-lettuce",
+      "legumes-boiled-drained-turnip",
+      "legumes-onion",
+      "legumes-boiled-drained-leek",
+      "legumes-snow-peas",
+      "legumes-green-red-yellow-bell-pepper",
+      "legumes-radishes",
+      "legumes-tomato-6-6-cm-in-diameter",
+      "legumes-homemade-bone-broth",
+      "legumes-grilled-portobello-mushroom",
+      "legumes-red-bell-pepper",
+      "legumes-yellow-bell-pepper",
+      "legumes-yellow-snap-beans",
+      "legumes-cremini-mushrooms",
+      "legumes-cooked-spaghetti-squash",
+      "legumes-low-sodium-vegetable-juice"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "N/A",
+      "rule": "Aucun produit de marque dans ce lot."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s’affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec le record CNF concret."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "legumes-garlic",
+      "lockedIdentity": {
+        "fr": "Ail frais, cru",
+        "en": "Garlic, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "powder",
+          "cooked",
+          "roasted",
+          "pickled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 ml d’ail frais haché (13 g)",
+        "labelEn": "15 ml fresh minced garlic (13 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 13
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2394",
+        "matchKeywordsEn": [
+          "Garlic, raw"
+        ],
+        "mustContainConcepts": [
+          "Garlic, raw"
+        ],
+        "mustNotContainConcepts": [
+          "powder",
+          "cooked",
+          "roasted",
+          "pickled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2394: Garlic, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-aromatic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-artichoke",
+      "lockedIdentity": {
+        "fr": "Artichaut globe bouilli et égoutté",
+        "en": "Globe artichoke, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen",
+          "canned",
+          "marinated",
+          "jerusalem"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 artichaut moyen cuit, portion comestible (120 g)",
+        "labelEn": "1 medium cooked artichoke, edible portion (120 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 120
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2365",
+        "matchKeywordsEn": [
+          "Artichoke (Globe, French), boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Artichoke (Globe, French), boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "frozen",
+          "canned",
+          "marinated",
+          "jerusalem"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2365: Artichoke (Globe, French), boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-asparagus",
+      "lockedIdentity": {
+        "fr": "Asperges bouillies et égouttées",
+        "en": "Asparagus, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen",
+          "canned",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml d’asperges cuites (190 g)",
+        "labelEn": "250 ml cooked asparagus (190 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 190
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1991",
+        "matchKeywordsEn": [
+          "Asparagus, boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Asparagus, boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "frozen",
+          "canned",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1991: Asparagus, boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-eggplant",
+      "lockedIdentity": {
+        "fr": "Aubergine fraîche, crue",
+        "en": "Eggplant, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "pickled",
+          "dip"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml d’aubergine crue en cubes (87 g)",
+        "labelEn": "250 ml raw eggplant cubes (87 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 87
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2088",
+        "matchKeywordsEn": [
+          "Eggplant (aubergine, brinjal), raw"
+        ],
+        "mustContainConcepts": [
+          "Eggplant (aubergine, brinjal), raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "pickled",
+          "dip"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2088: Eggplant (aubergine, brinjal), raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-beets",
+      "lockedIdentity": {
+        "fr": "Betteraves bouillies et égouttées",
+        "en": "Beets, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "pickled",
+          "harvard",
+          "greens"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de betteraves cuites tranchées (90 g)",
+        "labelEn": "125 ml cooked sliced beets (90 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 90
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2501",
+        "matchKeywordsEn": [
+          "Beets, boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Beets, boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "pickled",
+          "harvard",
+          "greens"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2501: Beets, boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-broccoli",
+      "lockedIdentity": {
+        "fr": "Brocoli frais, cru",
+        "en": "Broccoli, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "chinese",
+          "rapini"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de brocoli cru haché (93 g)",
+        "labelEn": "250 ml chopped raw broccoli (93 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 93
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2374",
+        "matchKeywordsEn": [
+          "Broccoli, raw"
+        ],
+        "mustContainConcepts": [
+          "Broccoli, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "chinese",
+          "rapini"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2374: Broccoli, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-cruciferous",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-kale",
+      "lockedIdentity": {
+        "fr": "Chou kale frais, cru",
+        "en": "Kale, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "scotch"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de chou kale cru haché (71 g)",
+        "labelEn": "250 ml chopped raw kale (71 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 71
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2395",
+        "matchKeywordsEn": [
+          "Kale, raw"
+        ],
+        "mustContainConcepts": [
+          "Kale, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "scotch"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2395: Kale, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-leafy",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-carrots",
+      "lockedIdentity": {
+        "fr": "Carotte fraîche, crue",
+        "en": "Carrot, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "canned",
+          "frozen",
+          "juice",
+          "dehydrated"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 carotte moyenne (61 g)",
+        "labelEn": "1 medium carrot (61 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 61
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2380",
+        "matchKeywordsEn": [
+          "Carrot, raw"
+        ],
+        "mustContainConcepts": [
+          "Carrot, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "canned",
+          "frozen",
+          "juice",
+          "dehydrated"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2380: Carrot, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-celery",
+      "lockedIdentity": {
+        "fr": "Céleri frais, cru",
+        "en": "Celery, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "flakes",
+          "seed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 branches moyennes de céleri (80 g)",
+        "labelEn": "2 medium celery stalks (80 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 80
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2386",
+        "matchKeywordsEn": [
+          "Celery, raw"
+        ],
+        "mustContainConcepts": [
+          "Celery, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "flakes",
+          "seed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2386: Celery, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-mushrooms",
+      "lockedIdentity": {
+        "fr": "Champignons blancs frais, crus",
+        "en": "White mushrooms, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "canned",
+          "stir-fried",
+          "microwaved"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de champignons blancs crus tranchés (74 g)",
+        "labelEn": "250 ml sliced raw white mushrooms (74 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2399",
+        "matchKeywordsEn": [
+          "Mushroom, white, raw"
+        ],
+        "mustContainConcepts": [
+          "Mushroom, white, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "canned",
+          "stir-fried",
+          "microwaved"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2399: Mushroom, white, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-mushroom",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-brussels-sprouts",
+      "lockedIdentity": {
+        "fr": "Choux de Bruxelles bouillis et égouttés",
+        "en": "Brussels sprouts, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de choux de Bruxelles cuits (82 g)",
+        "labelEn": "125 ml cooked Brussels sprouts (82 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2379",
+        "matchKeywordsEn": [
+          "Brussels sprouts, boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Brussels sprouts, boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "frozen",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2379: Brussels sprouts, boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-cruciferous",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-cauliflower",
+      "lockedIdentity": {
+        "fr": "Chou-fleur frais, cru",
+        "en": "Cauliflower, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "green",
+          "pickled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de chou-fleur cru en morceaux (113 g)",
+        "labelEn": "250 ml raw cauliflower pieces (113 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 113
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2385",
+        "matchKeywordsEn": [
+          "Cauliflower, raw"
+        ],
+        "mustContainConcepts": [
+          "Cauliflower, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "green",
+          "pickled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2385: Cauliflower, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-cruciferous",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-cucumbers",
+      "lockedIdentity": {
+        "fr": "Concombre frais avec pelure, cru",
+        "en": "Cucumber, fresh, raw, with peel",
+        "preparationState": "raw",
+        "exclusions": [
+          "peeled",
+          "pickled",
+          "sea cucumber"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de concombre cru tranché (126 g)",
+        "labelEn": "250 ml sliced raw cucumber (126 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 126
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2363",
+        "matchKeywordsEn": [
+          "Cucumber, raw"
+        ],
+        "mustContainConcepts": [
+          "Cucumber, raw"
+        ],
+        "mustNotContainConcepts": [
+          "peeled",
+          "pickled",
+          "sea cucumber"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2363: Cucumber, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-zucchini",
+      "lockedIdentity": {
+        "fr": "Courgette fraîche, crue",
+        "en": "Zucchini, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "fried",
+          "tomato juice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de courgette crue tranchée (119 g)",
+        "labelEn": "250 ml sliced raw zucchini (119 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 119
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2225",
+        "matchKeywordsEn": [
+          "Squash, summer, zucchini, raw"
+        ],
+        "mustContainConcepts": [
+          "Squash, summer, zucchini, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "fried",
+          "tomato juice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2225: Squash, summer, zucchini, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-squash",
+      "lockedIdentity": {
+        "fr": "Courge musquée cuite au four",
+        "en": "Butternut squash, baked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "frozen",
+          "spaghetti",
+          "summer"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de courge musquée cuite en cubes (108 g)",
+        "labelEn": "125 ml baked butternut squash cubes (108 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 108
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2452",
+        "matchKeywordsEn": [
+          "Squash, winter, butternut, baked"
+        ],
+        "mustContainConcepts": [
+          "Squash, winter, butternut, baked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "frozen",
+          "spaghetti",
+          "summer"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2452: Squash, winter, butternut, baked."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-shallot",
+      "lockedIdentity": {
+        "fr": "Échalote fraîche, crue",
+        "en": "Shallot, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "freeze-dried",
+          "cooked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 ml d’échalote crue hachée (24 g)",
+        "labelEn": "30 ml chopped raw shallot (24 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 24
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2326",
+        "matchKeywordsEn": [
+          "Shallot, raw"
+        ],
+        "mustContainConcepts": [
+          "Shallot, raw"
+        ],
+        "mustNotContainConcepts": [
+          "freeze-dried",
+          "cooked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2326: Shallot, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-aromatic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-spinach",
+      "lockedIdentity": {
+        "fr": "Épinards frais, crus",
+        "en": "Spinach, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "new zealand",
+          "vine"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml d’épinards crus (28 g)",
+        "labelEn": "250 ml raw spinach (28 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 28
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2213",
+        "matchKeywordsEn": [
+          "Spinach, raw"
+        ],
+        "mustContainConcepts": [
+          "Spinach, raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "new zealand",
+          "vine"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2213: Spinach, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-leafy",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-fennel",
+      "lockedIdentity": {
+        "fr": "Bulbe de fenouil frais, cru",
+        "en": "Fennel bulb, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "seed",
+          "spice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de fenouil cru tranché (92 g)",
+        "labelEn": "250 ml sliced raw fennel (92 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 92
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2350",
+        "matchKeywordsEn": [
+          "Fennel, bulb, raw"
+        ],
+        "mustContainConcepts": [
+          "Fennel, bulb, raw"
+        ],
+        "mustNotContainConcepts": [
+          "seed",
+          "spice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2350: Fennel, bulb, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-yellow-or-green-beans",
+      "lockedIdentity": {
+        "fr": "Haricots verts bouillis et égouttés",
+        "en": "Green snap beans, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "salt added",
+          "mature seeds"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de haricots verts cuits (66 g)",
+        "labelEn": "125 ml cooked green snap beans (66 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2371",
+        "matchKeywordsEn": [
+          "Beans, snap (Italian, green or yellow), boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Beans, snap (Italian, green or yellow), boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "frozen",
+          "salt added",
+          "mature seeds"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2371: Beans, snap (Italian, green or yellow), boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-vegetable-juice",
+      "lockedIdentity": {
+        "fr": "Cocktail de jus de légumes régulier",
+        "en": "Regular vegetable juice cocktail",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "low sodium",
+          "fruit",
+          "drink"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de cocktail de jus de légumes (267 g)",
+        "labelEn": "250 ml vegetable juice cocktail (267 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 267
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2473",
+        "matchKeywordsEn": [
+          "Vegetable juice cocktail, canned"
+        ],
+        "mustContainConcepts": [
+          "Vegetable juice cocktail, canned"
+        ],
+        "mustNotContainConcepts": [
+          "low sodium",
+          "fruit",
+          "drink"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2473: Vegetable juice cocktail, canned."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-juice",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-romaine-lettuce",
+      "lockedIdentity": {
+        "fr": "Laitue romaine fraîche, crue",
+        "en": "Romaine lettuce, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "cooked",
+          "iceberg"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "500 ml de laitue romaine déchiquetée (59 g)",
+        "labelEn": "500 ml shredded romaine lettuce (59 g)",
+        "amount": 500,
+        "unit": "ml",
+        "grams": 59
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2116",
+        "matchKeywordsEn": [
+          "Lettuce, cos or romaine"
+        ],
+        "mustContainConcepts": [
+          "Lettuce, cos or romaine"
+        ],
+        "mustNotContainConcepts": [
+          "cooked",
+          "iceberg"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2116: Lettuce, cos or romaine."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-leafy",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-boiled-drained-turnip",
+      "lockedIdentity": {
+        "fr": "Navet bouilli et égoutté",
+        "en": "Turnip, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "greens",
+          "frozen",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de navet cuit en cubes (82 g)",
+        "labelEn": "125 ml cooked turnip cubes (82 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2262",
+        "matchKeywordsEn": [
+          "Turnip, boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Turnip, boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "greens",
+          "frozen",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2262: Turnip, boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-onion",
+      "lockedIdentity": {
+        "fr": "Oignon frais, cru",
+        "en": "Onion, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "powder",
+          "dehydrated",
+          "frozen",
+          "spring"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml d’oignon cru haché (68 g)",
+        "labelEn": "125 ml chopped raw onion (68 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 68
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2401",
+        "matchKeywordsEn": [
+          "Onion, raw"
+        ],
+        "mustContainConcepts": [
+          "Onion, raw"
+        ],
+        "mustNotContainConcepts": [
+          "powder",
+          "dehydrated",
+          "frozen",
+          "spring"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2401: Onion, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-aromatic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-boiled-drained-leek",
+      "lockedIdentity": {
+        "fr": "Poireau bouilli et égoutté",
+        "en": "Leek, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "freeze-dried",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de poireau cuit (55 g)",
+        "labelEn": "125 ml cooked leek (55 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 55
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2397",
+        "matchKeywordsEn": [
+          "Leeks (bulb and lower-leaf portion), boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Leeks (bulb and lower-leaf portion), boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "freeze-dried",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2397: Leeks (bulb and lower-leaf portion), boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-aromatic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-snow-peas",
+      "lockedIdentity": {
+        "fr": "Pois mange-tout frais, crus",
+        "en": "Snow peas, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "boiled",
+          "frozen",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de pois mange-tout crus (52 g)",
+        "labelEn": "125 ml raw snow peas (52 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 52
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2408",
+        "matchKeywordsEn": [
+          "Peas, edible-podded (snow peas), raw"
+        ],
+        "mustContainConcepts": [
+          "Peas, edible-podded (snow peas), raw"
+        ],
+        "mustNotContainConcepts": [
+          "boiled",
+          "frozen",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2408: Peas, edible-podded (snow peas), raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-higher-carb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "lockedIdentity": {
+        "fr": "Poivron vert doux, frais et cru",
+        "en": "Green sweet pepper, fresh and raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "red",
+          "yellow",
+          "canned",
+          "boiled",
+          "frozen",
+          "sauteed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de poivron vert cru haché (79 g)",
+        "labelEn": "125 ml chopped raw green pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2413",
+        "matchKeywordsEn": [
+          "Pepper, sweet, green, raw"
+        ],
+        "mustContainConcepts": [
+          "Pepper, sweet, green, raw"
+        ],
+        "mustNotContainConcepts": [
+          "red",
+          "yellow",
+          "canned",
+          "boiled",
+          "frozen",
+          "sauteed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2413: Pepper, sweet, green, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-radishes",
+      "lockedIdentity": {
+        "fr": "Radis frais, crus",
+        "en": "Radishes, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "daikon",
+          "pickled",
+          "sprouted",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de radis crus tranchés (123 g)",
+        "labelEn": "250 ml sliced raw radishes (123 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 123
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2443",
+        "matchKeywordsEn": [
+          "Radish, raw"
+        ],
+        "mustContainConcepts": [
+          "Radish, raw"
+        ],
+        "mustNotContainConcepts": [
+          "daikon",
+          "pickled",
+          "sprouted",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2443: Radish, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "lockedIdentity": {
+        "fr": "Tomate rouge mûre, fraîche et crue",
+        "en": "Red ripe tomato, fresh and raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "green",
+          "canned",
+          "paste",
+          "puree",
+          "juice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tomate moyenne (123 g)",
+        "labelEn": "1 medium tomato (123 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 123
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2460",
+        "matchKeywordsEn": [
+          "Tomato, red, ripe, raw, year round average"
+        ],
+        "mustContainConcepts": [
+          "Tomato, red, ripe, raw, year round average"
+        ],
+        "mustNotContainConcepts": [
+          "green",
+          "canned",
+          "paste",
+          "puree",
+          "juice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2460: Tomato, red, ripe, raw, year round average."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-homemade-bone-broth",
+      "lockedIdentity": {
+        "fr": "Bouillon de légumes prêt à servir, faible en sodium",
+        "en": "Vegetable broth, ready-to-serve, low sodium",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "chicken",
+          "beef",
+          "bone",
+          "condensed",
+          "dehydrated"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de bouillon de légumes faible en sodium (253 g)",
+        "labelEn": "250 ml low-sodium vegetable broth (253 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 253
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7378",
+        "matchKeywordsEn": [
+          "Soup, broth, vegetable, ready-to-serve, low sodium"
+        ],
+        "mustContainConcepts": [
+          "Soup, broth, vegetable, ready-to-serve, low sodium"
+        ],
+        "mustNotContainConcepts": [
+          "chicken",
+          "beef",
+          "bone",
+          "condensed",
+          "dehydrated"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7378: Soup, broth, vegetable, ready-to-serve, low sodium."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-broth",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "legumes-grilled-portobello-mushroom",
+      "lockedIdentity": {
+        "fr": "Champignon portobello grillé, sans gras ajouté",
+        "en": "Portobello mushroom, grilled, no added fat",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried",
+          "with oil"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de portobello grillé tranché (128 g)",
+        "labelEn": "250 ml sliced grilled portobello (128 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 128
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5957",
+        "matchKeywordsEn": [
+          "Mushroom, portabella (portobello), grilled"
+        ],
+        "mustContainConcepts": [
+          "Mushroom, portabella (portobello), grilled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried",
+          "with oil"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5957: Mushroom, portabella (portobello), grilled."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-mushroom",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-red-bell-pepper",
+      "lockedIdentity": {
+        "fr": "Poivron rouge doux, frais et cru",
+        "en": "Red sweet pepper, fresh and raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "green",
+          "yellow",
+          "canned",
+          "boiled",
+          "frozen",
+          "sauteed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de poivron rouge cru haché (79 g)",
+        "labelEn": "125 ml chopped raw red pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2484",
+        "matchKeywordsEn": [
+          "Pepper, sweet, red, raw"
+        ],
+        "mustContainConcepts": [
+          "Pepper, sweet, red, raw"
+        ],
+        "mustNotContainConcepts": [
+          "green",
+          "yellow",
+          "canned",
+          "boiled",
+          "frozen",
+          "sauteed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2484: Pepper, sweet, red, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-yellow-bell-pepper",
+      "lockedIdentity": {
+        "fr": "Poivron jaune doux, frais et cru",
+        "en": "Yellow sweet pepper, fresh and raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "green",
+          "red",
+          "canned",
+          "boiled",
+          "frozen"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de poivron jaune cru haché (79 g)",
+        "labelEn": "125 ml chopped raw yellow pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2344",
+        "matchKeywordsEn": [
+          "Pepper, sweet, yellow, raw"
+        ],
+        "mustContainConcepts": [
+          "Pepper, sweet, yellow, raw"
+        ],
+        "mustNotContainConcepts": [
+          "green",
+          "red",
+          "canned",
+          "boiled",
+          "frozen"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2344: Pepper, sweet, yellow, raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-yellow-snap-beans",
+      "lockedIdentity": {
+        "fr": "Haricots jaunes bouillis et égouttés",
+        "en": "Yellow snap beans, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "salt added",
+          "mature seeds"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de haricots jaunes cuits (66 g)",
+        "labelEn": "125 ml cooked yellow snap beans (66 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2371",
+        "matchKeywordsEn": [
+          "Beans, snap (Italian, green or yellow), boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Beans, snap (Italian, green or yellow), boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "frozen",
+          "salt added",
+          "mature seeds"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2371: Beans, snap (Italian, green or yellow), boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-cremini-mushrooms",
+      "lockedIdentity": {
+        "fr": "Champignons cremini frais, crus",
+        "en": "Cremini mushrooms, fresh and raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "white",
+          "portobello",
+          "cooked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de champignons cremini crus tranchés (74 g)",
+        "labelEn": "250 ml sliced raw cremini mushrooms (74 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4974",
+        "matchKeywordsEn": [
+          "Mushroom, brown, Italian (crimini), raw"
+        ],
+        "mustContainConcepts": [
+          "Mushroom, brown, Italian (crimini), raw"
+        ],
+        "mustNotContainConcepts": [
+          "white",
+          "portobello",
+          "cooked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4974: Mushroom, brown, Italian (crimini), raw."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-mushroom",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-cooked-spaghetti-squash",
+      "lockedIdentity": {
+        "fr": "Courge spaghetti cuite et égouttée",
+        "en": "Spaghetti squash, cooked and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "butternut",
+          "summer",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de courge spaghetti cuite (164 g)",
+        "labelEn": "250 ml cooked spaghetti squash (164 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 164
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2459",
+        "matchKeywordsEn": [
+          "Squash, winter, spaghetti, baked or boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Squash, winter, spaghetti, baked or boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "butternut",
+          "summer",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2459: Squash, winter, spaghetti, baked or boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "legumes-low-sodium-vegetable-juice",
+      "lockedIdentity": {
+        "fr": "Cocktail de jus de légumes faible en sodium",
+        "en": "Low-sodium vegetable juice cocktail",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular",
+          "fruit",
+          "drink"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de cocktail de jus de légumes faible en sodium (268 g)",
+        "labelEn": "250 ml low-sodium vegetable juice cocktail (268 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 268
+      },
+      "portionDecision": "Portion approuvée individuellement pour une mesure pratique et reproductible. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7421",
+        "matchKeywordsEn": [
+          "Vegetable juice cocktail, canned, low sodium"
+        ],
+        "mustContainConcepts": [
+          "Vegetable juice cocktail, canned, low sodium"
+        ],
+        "mustNotContainConcepts": [
+          "regular",
+          "fruit",
+          "drink"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7421: Vegetable juice cocktail, canned, low sodium."
+      },
+      "classification": {
+        "displayCategory": "legumes",
+        "calculationGroup": "vegetable",
+        "exchangeProfileId": "vegetable-juice",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 30 entrées existantes sont revues individuellement.",
+    "Six variantes utiles sont ajoutées et vérifiées individuellement.",
+    "Les 181 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 217 aliments.",
+    "La catégorie Légumes contient exactement 36 aliments.",
+    "Les 36 légumes sont verified après application.",
+    "Le nombre total d’aliments verified passe de 38 à 74.",
+    "Chaque entrée possède son propre recordId CNF, sa conversion, son historique et sa transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 36 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}

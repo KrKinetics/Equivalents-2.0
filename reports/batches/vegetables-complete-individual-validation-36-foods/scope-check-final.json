@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 181,
+  "protectedFoodsDataHash": "e5d0288f0953765f296c777543c097301f24145fa6f3c57ad84088bcc8729492",
+  "foodCount": 217,
+  "checkedAt": "2026-07-30T16:59:41.921Z",
+  "batchId": "vegetables-complete-individual-validation-36-foods"
+}

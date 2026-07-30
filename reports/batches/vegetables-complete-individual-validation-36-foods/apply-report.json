@@ -1,0 +1,699 @@
+{
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "dryRun": false,
+  "appliedAt": "2026-07-30T16:59:24.062Z",
+  "applied": [
+    {
+      "id": "legumes-garlic",
+      "operation": "update",
+      "recordId": "2394",
+      "expectedRecordId": "2394",
+      "selectedRecordId": "2394",
+      "transactionId": "dffa3535-a9aa-49f5-b739-6fd34482a3dd",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.3,
+        "fiberG": 0.3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 19
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-artichoke",
+      "operation": "update",
+      "recordId": "2365",
+      "expectedRecordId": "2365",
+      "selectedRecordId": "2365",
+      "transactionId": "d44278e4-992e-489e-b789-fad0039246c5",
+      "nutrients": {
+        "proteinG": 3.5,
+        "carbsG": 14.3,
+        "fiberG": 4.7,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 64
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-asparagus",
+      "operation": "update",
+      "recordId": "1991",
+      "expectedRecordId": "1991",
+      "selectedRecordId": "1991",
+      "transactionId": "3947cc67-1864-4f53-93a9-2ac62296b12a",
+      "nutrients": {
+        "proteinG": 4.6,
+        "carbsG": 7.8,
+        "fiberG": 3.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 42
+      },
+      "version": 4
+    },
+    {
+      "id": "legumes-eggplant",
+      "operation": "update",
+      "recordId": "2088",
+      "expectedRecordId": "2088",
+      "selectedRecordId": "2088",
+      "transactionId": "49007442-dc75-4f37-b6f6-7db3294eccc4",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 5.1,
+        "fiberG": 2.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-beets",
+      "operation": "update",
+      "recordId": "2501",
+      "expectedRecordId": "2501",
+      "selectedRecordId": "2501",
+      "transactionId": "8772fca6-6233-49d8-b83e-36a0b005281b",
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 9,
+        "fiberG": 1.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 40
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-broccoli",
+      "operation": "update",
+      "recordId": "2374",
+      "expectedRecordId": "2374",
+      "selectedRecordId": "2374",
+      "transactionId": "40c8738e-7f63-4a8a-8f20-3e5834e9181a",
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 6.2,
+        "fiberG": 2.2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 32
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-kale",
+      "operation": "update",
+      "recordId": "2395",
+      "expectedRecordId": "2395",
+      "selectedRecordId": "2395",
+      "transactionId": "6a4e4bea-2619-4c55-9308-7d02fe4d70cf",
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 3.1,
+        "fiberG": 1.7,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 25
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-carrots",
+      "operation": "update",
+      "recordId": "2380",
+      "expectedRecordId": "2380",
+      "selectedRecordId": "2380",
+      "transactionId": "d1b60a61-008b-4c85-a7af-12d259bdad16",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 5.8,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 25
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-celery",
+      "operation": "update",
+      "recordId": "2386",
+      "expectedRecordId": "2386",
+      "selectedRecordId": "2386",
+      "transactionId": "da483102-fe02-4d51-87ee-adf967eda40c",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 2.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 11
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-mushrooms",
+      "operation": "update",
+      "recordId": "2399",
+      "expectedRecordId": "2399",
+      "selectedRecordId": "2399",
+      "transactionId": "69b3d3bc-74fa-4669-8ce6-3f674c28b2b1",
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.4,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "version": 4
+    },
+    {
+      "id": "legumes-brussels-sprouts",
+      "operation": "update",
+      "recordId": "2379",
+      "expectedRecordId": "2379",
+      "selectedRecordId": "2379",
+      "transactionId": "4d9cb761-ff8e-435f-bf38-7c9540c4f73d",
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 5.8,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-cauliflower",
+      "operation": "update",
+      "recordId": "2385",
+      "expectedRecordId": "2385",
+      "selectedRecordId": "2385",
+      "transactionId": "d008fc15-8c53-442f-ac3d-b1d5e7cc526f",
+      "nutrients": {
+        "proteinG": 2.2,
+        "carbsG": 5.6,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 28
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-cucumbers",
+      "operation": "update",
+      "recordId": "2363",
+      "expectedRecordId": "2363",
+      "selectedRecordId": "2363",
+      "transactionId": "a32db016-9765-4b3f-b859-68aa9e2f3f0e",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-zucchini",
+      "operation": "update",
+      "recordId": "2225",
+      "expectedRecordId": "2225",
+      "selectedRecordId": "2225",
+      "transactionId": "b548639d-2e8c-4158-bae9-d3459a36aa5b",
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 3.7,
+        "fiberG": 1.2,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-squash",
+      "operation": "update",
+      "recordId": "2452",
+      "expectedRecordId": "2452",
+      "selectedRecordId": "2452",
+      "transactionId": "28b6c833-796d-4e6e-88d4-f92825781074",
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 11.3,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 43
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-shallot",
+      "operation": "update",
+      "recordId": "2326",
+      "expectedRecordId": "2326",
+      "selectedRecordId": "2326",
+      "transactionId": "cb1eea9e-c699-4fa3-89a8-74ecae0babb8",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-spinach",
+      "operation": "update",
+      "recordId": "2213",
+      "expectedRecordId": "2213",
+      "selectedRecordId": "2213",
+      "transactionId": "9537dd45-9c17-420d-b6cc-af25af10ab7d",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 1,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 6
+      },
+      "version": 4
+    },
+    {
+      "id": "legumes-fennel",
+      "operation": "update",
+      "recordId": "2350",
+      "expectedRecordId": "2350",
+      "selectedRecordId": "2350",
+      "transactionId": "2e8d3639-ad3d-40b1-857a-aec51e4e7cff",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 6.7,
+        "fiberG": 2.9,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 29
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-yellow-or-green-beans",
+      "operation": "update",
+      "recordId": "2371",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "transactionId": "aafa6984-2f24-44ad-8a28-cd3082d1daed",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-vegetable-juice",
+      "operation": "update",
+      "recordId": "2473",
+      "expectedRecordId": "2473",
+      "selectedRecordId": "2473",
+      "transactionId": "cb8935d1-2aec-465d-bd4e-3f62d3dcc0c1",
+      "nutrients": {
+        "proteinG": 2.5,
+        "carbsG": 10.3,
+        "fiberG": 1.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-romaine-lettuce",
+      "operation": "update",
+      "recordId": "2116",
+      "expectedRecordId": "2116",
+      "selectedRecordId": "2116",
+      "transactionId": "1100d0f1-5a29-40e0-9229-8363cad1ddfa",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.9,
+        "fiberG": 1.2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 10
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-boiled-drained-turnip",
+      "operation": "update",
+      "recordId": "2262",
+      "expectedRecordId": "2262",
+      "selectedRecordId": "2262",
+      "transactionId": "a48fb46e-bf4d-4001-9e5a-fa8536f85589",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4.1,
+        "fiberG": 1.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 18
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-onion",
+      "operation": "update",
+      "recordId": "2401",
+      "expectedRecordId": "2401",
+      "selectedRecordId": "2401",
+      "transactionId": "4756d5f0-cefb-49cb-891a-df6dfc344426",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 6.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 27
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-boiled-drained-leek",
+      "operation": "update",
+      "recordId": "2397",
+      "expectedRecordId": "2397",
+      "selectedRecordId": "2397",
+      "transactionId": "dc2d9ce6-2a0a-4b3f-bfd6-7da8449368d9",
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 4.2,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-snow-peas",
+      "operation": "update",
+      "recordId": "2408",
+      "expectedRecordId": "2408",
+      "selectedRecordId": "2408",
+      "transactionId": "9b6559e2-b7b8-4c47-8c50-1eccdeb4ab80",
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 3.9,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "operation": "update",
+      "recordId": "2413",
+      "expectedRecordId": "2413",
+      "selectedRecordId": "2413",
+      "transactionId": "277adeaa-fa95-45c1-a856-8e5c2ceb2012",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 3.7,
+        "fiberG": 1.1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-radishes",
+      "operation": "update",
+      "recordId": "2443",
+      "expectedRecordId": "2443",
+      "selectedRecordId": "2443",
+      "transactionId": "c4d4efae-4c24-485a-ae98-c2a85d5b5bde",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.2,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "operation": "update",
+      "recordId": "2460",
+      "expectedRecordId": "2460",
+      "selectedRecordId": "2460",
+      "transactionId": "69a67c7a-8d71-4d85-961c-5018e4eff01c",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 4.8,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-homemade-bone-broth",
+      "operation": "update",
+      "recordId": "7378",
+      "expectedRecordId": "7378",
+      "selectedRecordId": "7378",
+      "transactionId": "21580700-e550-4432-8fe7-38515f8309ec",
+      "nutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.9,
+        "fiberG": 0.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 10
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-grilled-portobello-mushroom",
+      "operation": "update",
+      "recordId": "5957",
+      "expectedRecordId": "5957",
+      "selectedRecordId": "5957",
+      "transactionId": "ff07b430-d133-4fd9-b44b-1af1ff13f689",
+      "nutrients": {
+        "proteinG": 4.2,
+        "carbsG": 5.7,
+        "fiberG": 2.8,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 37
+      },
+      "version": 3
+    },
+    {
+      "id": "legumes-red-bell-pepper",
+      "operation": "add",
+      "recordId": "2484",
+      "expectedRecordId": "2484",
+      "selectedRecordId": "2484",
+      "transactionId": "273d94d4-dd41-4394-ac85-9e3935c6d4c9",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.8,
+        "fiberG": 1.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 21
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "legumes-yellow-bell-pepper",
+      "operation": "add",
+      "recordId": "2344",
+      "expectedRecordId": "2344",
+      "selectedRecordId": "2344",
+      "transactionId": "af656342-1fa0-44a9-8ba5-589e313d4dc7",
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 5,
+        "fiberG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 21
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "legumes-yellow-snap-beans",
+      "operation": "add",
+      "recordId": "2371",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "transactionId": "de07f11d-aaee-4a8c-b7b9-25f3de5f2bd2",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "legumes-cremini-mushrooms",
+      "operation": "add",
+      "recordId": "4974",
+      "expectedRecordId": "4974",
+      "selectedRecordId": "4974",
+      "transactionId": "342e5e9c-b63a-49c1-a3a8-a2d762aa0e9c",
+      "nutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3.2,
+        "fiberG": 0.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "version": 4,
+      "startedUnverified": true
+    },
+    {
+      "id": "legumes-cooked-spaghetti-squash",
+      "operation": "add",
+      "recordId": "2459",
+      "expectedRecordId": "2459",
+      "selectedRecordId": "2459",
+      "transactionId": "77a06407-41a1-4c87-880d-61b486b23295",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 10.6,
+        "fiberG": 2.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 44
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "legumes-low-sodium-vegetable-juice",
+      "operation": "add",
+      "recordId": "7421",
+      "expectedRecordId": "7421",
+      "selectedRecordId": "7421",
+      "transactionId": "6e9e88d4-891e-4cd8-bb7c-970be81e79b1",
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 10.3,
+        "fiberG": 1.3,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 51
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ],
+  "dataHash": "7ef2dffada18897410bf6706cd4c266a1854e08cd2e410e7ca100f50b72e88dc",
+  "foodCount": 217
+}

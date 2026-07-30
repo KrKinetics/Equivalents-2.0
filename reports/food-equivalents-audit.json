@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T14:44:31.692Z",
+  "generatedAt": "2026-07-30T16:59:38.953Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -8,53 +8,53 @@
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 211,
-    "verifiedFoods": 38,
-    "unverifiedFoods": 173,
-    "blockingErrors": 98,
-    "blockingErrorCount": 98,
-    "foodsWithBlockingErrors": 93,
-    "warningCount": 466,
-    "foodsWithWarnings": 192,
-    "auditCleanFoods": 19,
-    "dataHash": "e7f1ea29502c652d839921bc3f1594bf5c69568468d7b72f8045eef4e24da2b5",
-    "shortHash": "e7f1ea29502c",
-    "lastAuditedAt": "2026-07-30T14:44:31.681Z",
+    "totalFoods": 217,
+    "verifiedFoods": 74,
+    "unverifiedFoods": 143,
+    "blockingErrors": 94,
+    "blockingErrorCount": 94,
+    "foodsWithBlockingErrors": 89,
+    "warningCount": 400,
+    "foodsWithWarnings": 185,
+    "auditCleanFoods": 32,
+    "dataHash": "7ef2dffada18897410bf6706cd4c266a1854e08cd2e410e7ca100f50b72e88dc",
+    "shortHash": "7ef2dffada18",
+    "lastAuditedAt": "2026-07-30T16:59:38.939Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "verified": 38,
-      "unverified": 173
+      "verified": 74,
+      "unverified": 143
     },
-    "foodsWithWarningsOnly": 99,
+    "foodsWithWarningsOnly": 96,
     "rejectedFoods": 0,
-    "activeFoods": 211,
-    "approvalBlockingErrorCount": 98,
-    "activeBlockingErrorCount": 98,
+    "activeFoods": 217,
+    "approvalBlockingErrorCount": 94,
+    "activeBlockingErrorCount": 94,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "activeFoodsWithBlockingErrors": 93,
+    "activeFoodsWithBlockingErrors": 89,
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 211,
-    "activeFoods": 211,
+    "totalFoods": 217,
+    "activeFoods": 217,
     "rejectedFoods": 0,
-    "verifiedFoods": 38,
-    "unverifiedFoods": 173,
-    "blockingErrorCount": 98,
-    "activeBlockingErrorCount": 98,
+    "verifiedFoods": 74,
+    "unverifiedFoods": 143,
+    "blockingErrorCount": 94,
+    "activeBlockingErrorCount": 94,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "foodsWithBlockingErrors": 93,
-    "activeFoodsWithBlockingErrors": 93,
+    "foodsWithBlockingErrors": 89,
+    "activeFoodsWithBlockingErrors": 89,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 466,
-    "foodsWithWarnings": 192,
-    "foodsWithWarningsOnly": 99,
-    "auditCleanFoods": 19,
-    "blockingErrors": 98,
-    "foodsWithErrors": 93,
-    "foodsOk": 19
+    "warningCount": 400,
+    "foodsWithWarnings": 185,
+    "foodsWithWarningsOnly": 96,
+    "auditCleanFoods": 32,
+    "blockingErrors": 94,
+    "foodsWithErrors": 89,
+    "foodsOk": 32
   },
   "groupStatistics": {
     "protein": {
@@ -251,10 +251,7 @@
       "approvalBlockers": [
         "reference_profile_not_approved",
         "dataset_not_approved",
-        "minVerifiedCount_null",
-        "minCoveragePercent_not_met",
-        "active_foods_not_all_verified",
-        "active_foods_have_blocking_errors"
+        "minVerifiedCount_null"
       ],
       "approvalCriteria": {
         "minVerifiedCount": null,
@@ -262,51 +259,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 30,
-      "activeFoodCount": 30,
-      "verifiedCount": 0,
+      "totalFoodsInGroup": 36,
+      "activeFoodCount": 36,
+      "verifiedCount": 36,
       "rejectedCount": 0,
-      "pendingCount": 30,
-      "coveragePercent": 0,
+      "pendingCount": 0,
+      "coveragePercent": 100,
       "proteinG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 1.4555555555555557,
+        "median": 1.1,
+        "min": 0.3,
+        "max": 4.6,
+        "stddev": 1.0404516723710342,
+        "count": 36
       },
       "carbsG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 5.513888888888888,
+        "median": 4.9,
+        "min": 1,
+        "max": 14.3,
+        "stddev": 2.9304463607129674,
+        "count": 36
       },
       "fiberG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 1.5972222222222223,
+        "median": 1.5,
+        "min": 0.3,
+        "max": 4.7,
+        "stddev": 0.9616908060022231,
+        "count": 36
       },
       "fatG": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 0.2694444444444444,
+        "median": 0.2,
+        "min": 0,
+        "max": 1.1,
+        "stddev": 0.2470621025970648,
+        "count": 36
       },
       "kcal": {
-        "mean": null,
-        "median": null,
-        "min": null,
-        "max": null,
-        "stddev": null,
-        "count": 0
+        "mean": 26.27777777777778,
+        "median": 22,
+        "min": 6,
+        "max": 64,
+        "stddev": 13.464474126086895,
+        "count": 36
       },
       "referenceProfile": {
         "proteinG": null,
@@ -317,7 +314,123 @@
       },
       "referenceProfileApproved": false,
       "foodsOutsideTolerance": [],
-      "furthestFoods": []
+      "furthestFoods": [
+        {
+          "id": "legumes-artichoke",
+          "nameFr": "Artichaut globe bouilli et égoutté",
+          "nameEn": "Globe artichoke, boiled and drained",
+          "distanceScore": 1.2118155095331913,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 3.5,
+              "target": 1.4555555555555557,
+              "tolerance": 2,
+              "absDiff": 2.0444444444444443
+            },
+            {
+              "nutrient": "carbsG",
+              "value": 14.3,
+              "target": 5.513888888888888,
+              "tolerance": 4,
+              "absDiff": 8.786111111111111
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 64,
+              "target": 26.27777777777778,
+              "tolerance": 15,
+              "absDiff": 37.72222222222222
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "legumes-asparagus",
+          "nameFr": "Asperges bouillies et égouttées",
+          "nameEn": "Asparagus, boiled and drained",
+          "distanceScore": 0.8059097349294262,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 4.6,
+              "target": 1.4555555555555557,
+              "tolerance": 2,
+              "absDiff": 3.144444444444444
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 42,
+              "target": 26.27777777777778,
+              "tolerance": 15,
+              "absDiff": 15.722222222222221
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "legumes-vegetable-juice",
+          "nameFr": "Cocktail de jus de légumes régulier",
+          "nameEn": "Regular vegetable juice cocktail",
+          "distanceScore": 0.5923245539496402,
+          "breaches": [
+            {
+              "nutrient": "carbsG",
+              "value": 10.3,
+              "target": 5.513888888888888,
+              "tolerance": 4,
+              "absDiff": 4.786111111111112
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 59,
+              "target": 26.27777777777778,
+              "tolerance": 15,
+              "absDiff": 32.72222222222222
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "legumes-low-sodium-vegetable-juice",
+          "nameFr": "Cocktail de jus de légumes faible en sodium",
+          "nameEn": "Low-sodium vegetable juice cocktail",
+          "distanceScore": 0.5564800829504675,
+          "breaches": [
+            {
+              "nutrient": "carbsG",
+              "value": 10.3,
+              "target": 5.513888888888888,
+              "tolerance": 4,
+              "absDiff": 4.786111111111112
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 51,
+              "target": 26.27777777777778,
+              "tolerance": 15,
+              "absDiff": 24.72222222222222
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "legumes-grilled-portobello-mushroom",
+          "nameFr": "Champignon portobello grillé, sans gras ajouté",
+          "nameEn": "Portobello mushroom, grilled, no added fat",
+          "distanceScore": 0.5564660907027913,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 4.2,
+              "target": 1.4555555555555557,
+              "tolerance": 2,
+              "absDiff": 2.7444444444444445
+            }
+          ],
+          "status": "verified"
+        }
+      ]
     },
     "fruit": {
       "calculationGroup": "fruit",
@@ -672,20 +785,20 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 150,
+    "MISSING_PREP_STATE": 123,
     "SCOOP_WITHOUT_GRAMS": 5,
     "KCAL_DIFF_HIGH": 56,
-    "MISSING_GRAMS": 84,
+    "MISSING_GRAMS": 56,
     "AMBIGUOUS_GROUP": 5,
     "GUIDE_VS_CALCULATOR": 2,
-    "LEGACY_SOURCE_ONLY": 173,
+    "LEGACY_SOURCE_ONLY": 143,
     "SUSPECT_CASE": 3,
     "MISSING_TOTAL_FAT": 34,
-    "FIBER_GT_CARBS": 4,
-    "KCAL_DIFF_MODERATE": 41,
+    "FIBER_GT_CARBS": 2,
+    "KCAL_DIFF_MODERATE": 61,
     "PORTION_LABEL_MISMATCH_FR": 3,
     "PORTION_LABEL_MISMATCH_EN": 3,
-    "FAT_COMPONENTS_EXCEED_TOTAL": 1
+    "FAT_COMPONENTS_EXCEED_TOTAL": 2
   },
   "decisionsNeeded": [
     {
@@ -1942,75 +2055,6 @@
           "severity": "ERROR",
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 88 vs Atwater 64.0 (Δ 24.0 / 37.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-homemade-bone-broth",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Bouillon d'os maison",
-      "nameEn": "Homemade bone broth",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de Bouillon d'os maison",
-      "portionLabelEn": "250 ml Homemade bone broth",
-      "amount": 250,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "250 ml de Bouillon d'os maison"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "250 ml Homemade bone broth"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 1,
-        "fiberG": 0,
-        "fatG": 0.4,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": 15.6,
-      "absDiff": 34.4,
-      "pctDiff": 220.51282051282053,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 50 vs Atwater 15.6 (Δ 34.4 / 220.5%)",
           "resolutionStatus": "open"
         },
         {
@@ -3947,75 +3991,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-radishes",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Radis",
-      "nameEn": "Radishes",
-      "status": "unverified",
-      "portionLabelFr": "Radis",
-      "portionLabelEn": "Radishes",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Radis"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Radishes"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 4,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 26
-      },
-      "declaredKcal": 26,
-      "calculatedKcal": 20.9,
-      "absDiff": 5.100000000000001,
-      "pctDiff": 24.401913875598094,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 26 vs Atwater 20.9 (Δ 5.1 / 24.4%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "noix-graines-cup-soybeans-or-edamame",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -4716,70 +4691,6 @@
           "severity": "ERROR",
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 55 vs Atwater 36.0 (Δ 19.0 / 52.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-zucchini",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Courgette",
-      "nameEn": "Zucchini",
-      "status": "unverified",
-      "portionLabelFr": "300 g de Courgette",
-      "portionLabelEn": "300 g Zucchini",
-      "amount": 300,
-      "unit": "g",
-      "grams": 300,
-      "parsedFr": {
-        "amount": 300,
-        "unit": "g",
-        "grams": 300,
-        "label": "300 g de Courgette"
-      },
-      "parsedEn": {
-        "amount": 300,
-        "unit": "g",
-        "grams": 300,
-        "label": "300 g Zucchini"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 7,
-        "fiberG": 2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 51
-      },
-      "declaredKcal": 51,
-      "calculatedKcal": 37.8,
-      "absDiff": 13.200000000000003,
-      "pctDiff": 34.92063492063493,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 51 vs Atwater 37.8 (Δ 13.2 / 34.9%)",
           "resolutionStatus": "open"
         },
         {
@@ -6858,65 +6769,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-grilled-portobello-mushroom",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Portobello grillé",
-      "nameEn": "Grilled portobello mushroom",
-      "status": "unverified",
-      "portionLabelFr": "200 g de Portobello grillé",
-      "portionLabelEn": "200 g Grilled portobello mushroom",
-      "amount": 200,
-      "unit": "g",
-      "grams": 200,
-      "parsedFr": {
-        "amount": 200,
-        "unit": "g",
-        "grams": 200,
-        "label": "200 g de Portobello grillé"
-      },
-      "parsedEn": {
-        "amount": 200,
-        "unit": "g",
-        "grams": 200,
-        "label": "200 g Grilled portobello mushroom"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 7,
-        "fiberG": 2,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 52
-      },
-      "declaredKcal": 52,
-      "calculatedKcal": 38.7,
-      "absDiff": 13.299999999999997,
-      "pctDiff": 34.36692506459947,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 52 vs Atwater 38.7 (Δ 13.3 / 34.4%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-canned-sardines",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -6976,280 +6828,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-eggplant",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Aubergine",
-      "nameEn": "Eggplant",
-      "status": "unverified",
-      "portionLabelFr": "Aubergine",
-      "portionLabelEn": "Eggplant",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Aubergine"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Eggplant"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 5,
-        "fiberG": 3,
-        "fatG": 0.6,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 26
-      },
-      "declaredKcal": 26,
-      "calculatedKcal": 29.4,
-      "absDiff": 3.3999999999999986,
-      "pctDiff": 11.564625850340132,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 26 vs Atwater 29.4 (11.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-squash",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Courge",
-      "nameEn": "Squash",
-      "status": "unverified",
-      "portionLabelFr": "Courge",
-      "portionLabelEn": "Squash",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Courge"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Squash"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 8,
-        "fiberG": 0.2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 45
-      },
-      "declaredKcal": 45,
-      "calculatedKcal": 40.9,
-      "absDiff": 4.100000000000001,
-      "pctDiff": 10.024449877750614,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 45 vs Atwater 40.9 (10.0%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-spinach",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Épinards",
-      "nameEn": "Spinach",
-      "status": "unverified",
-      "portionLabelFr": "Épinards",
-      "portionLabelEn": "Spinach",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Épinards"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Spinach"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 2,
-        "fiberG": 5,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 18
-      },
-      "declaredKcal": 18,
-      "calculatedKcal": 17.8,
-      "absDiff": 0.1999999999999993,
-      "pctDiff": 1.1235955056179736,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "FIBER_GT_CARBS",
-          "message": "Fibres supérieures aux glucides"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-romaine-lettuce",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Laitue romaine",
-      "nameEn": "Romaine lettuce",
-      "status": "unverified",
-      "portionLabelFr": "Laitue romaine",
-      "portionLabelEn": "Romaine lettuce",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Laitue romaine"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Romaine lettuce"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 1,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 9
-      },
-      "declaredKcal": 9,
-      "calculatedKcal": 8.9,
-      "absDiff": 0.09999999999999964,
-      "pctDiff": 1.1235955056179736,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "FIBER_GT_CARBS",
-          "message": "Fibres supérieures aux glucides"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "feculents-slice-bread",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -7299,75 +6877,6 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 76 vs Atwater 88.0 (13.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-tomato-6-6-cm-in-diameter",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Tomate de 6,6 cm de diamètre",
-      "nameEn": "Tomato 6.6 cm in diameter",
-      "status": "unverified",
-      "portionLabelFr": "Tomate de 6,6 cm de diamètre",
-      "portionLabelEn": "Tomato 6.6 cm in diameter",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Tomate de 6,6 cm de diamètre"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Tomato 6.6 cm in diameter"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 6,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 32
-      },
-      "declaredKcal": 32,
-      "calculatedKcal": 28.9,
-      "absDiff": 3.1000000000000014,
-      "pctDiff": 10.726643598615922,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 32 vs Atwater 28.9 (10.7%)",
           "resolutionStatus": "open"
         },
         {
@@ -7590,195 +7099,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-garlic",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Ail",
-      "nameEn": "Garlic",
-      "status": "unverified",
-      "portionLabelFr": "Ail (15 ml)",
-      "portionLabelEn": "Garlic (15 ml)",
-      "amount": 15,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 15,
-        "unit": "ml",
-        "grams": null,
-        "label": "Ail (15 ml)"
-      },
-      "parsedEn": {
-        "amount": 15,
-        "unit": "ml",
-        "grams": null,
-        "label": "Garlic (15 ml)"
-      },
-      "nutrients": {
-        "proteinG": 0.5,
-        "carbsG": 3,
-        "fiberG": 0,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 14
-      },
-      "declaredKcal": 14,
-      "calculatedKcal": 14,
-      "absDiff": 0,
-      "pctDiff": 0,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-artichoke",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Artichaut",
-      "nameEn": "Artichoke",
-      "status": "unverified",
-      "portionLabelFr": "Artichaut",
-      "portionLabelEn": "Artichoke",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Artichaut"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Artichoke"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 10,
-        "fiberG": 2,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 52
-      },
-      "declaredKcal": 52,
-      "calculatedKcal": 54.7,
-      "absDiff": 2.700000000000003,
-      "pctDiff": 4.936014625228524,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-asparagus",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Asperges",
-      "nameEn": "Asparagus",
-      "status": "unverified",
-      "portionLabelFr": "Asperges",
-      "portionLabelEn": "Asparagus",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Asperges"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Asparagus"
-      },
-      "nutrients": {
-        "proteinG": 5,
-        "carbsG": 8,
-        "fiberG": 3,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 57
-      },
-      "declaredKcal": 57,
-      "calculatedKcal": 52.9,
-      "absDiff": 4.100000000000001,
-      "pctDiff": 7.750472589792063,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "fruits-banana",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -7855,69 +7175,6 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": true
-    },
-    {
-      "id": "legumes-beets",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Betteraves",
-      "nameEn": "Beets",
-      "status": "unverified",
-      "portionLabelFr": "Betteraves",
-      "portionLabelEn": "Beets",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Betteraves"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Beets"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 9,
-        "fiberG": 0.2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 44
-      },
-      "declaredKcal": 44,
-      "calculatedKcal": 41.8,
-      "absDiff": 2.200000000000003,
-      "pctDiff": 5.26315789473685,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
     },
     {
       "id": "viandes-volaille-extra-lean-ground-beef",
@@ -8047,69 +7304,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-broccoli",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Brocoli",
-      "nameEn": "Broccoli",
-      "status": "unverified",
-      "portionLabelFr": "Brocoli",
-      "portionLabelEn": "Broccoli",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Brocoli"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Broccoli"
-      },
-      "nutrients": {
-        "proteinG": 3,
-        "carbsG": 5,
-        "fiberG": 3,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 35
-      },
-      "declaredKcal": 35,
-      "calculatedKcal": 33.8,
-      "absDiff": 1.2000000000000028,
-      "pctDiff": 3.550295857988174,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-caribou",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -8160,195 +7354,6 @@
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 50 vs Atwater 58.0 (13.8%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-carrots",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Carottes",
-      "nameEn": "Carrots",
-      "status": "unverified",
-      "portionLabelFr": "Carottes",
-      "portionLabelEn": "Carrots",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Carottes"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Carrots"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 9,
-        "fiberG": 2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 41
-      },
-      "declaredKcal": 41,
-      "calculatedKcal": 41.8,
-      "absDiff": 0.7999999999999972,
-      "pctDiff": 1.9138755980861177,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-celery",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Céleri",
-      "nameEn": "Celery",
-      "status": "unverified",
-      "portionLabelFr": "Céleri",
-      "portionLabelEn": "Celery",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Céleri"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Celery"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 5,
-        "fiberG": 2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 26
-      },
-      "declaredKcal": 26,
-      "calculatedKcal": 25.8,
-      "absDiff": 0.1999999999999993,
-      "pctDiff": 0.7751937984496096,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-mushrooms",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Champignons",
-      "nameEn": "Mushrooms",
-      "status": "unverified",
-      "portionLabelFr": "Champignons",
-      "portionLabelEn": "Mushrooms",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Champignons"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Mushrooms"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 3,
-        "fiberG": 3,
-        "fatG": 0.4,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 22
-      },
-      "declaredKcal": 22,
-      "calculatedKcal": 23.6,
-      "absDiff": 1.6000000000000014,
-      "pctDiff": 6.7796610169491585,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
         },
         {
           "severity": "WARNING",
@@ -8427,258 +7432,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-brussels-sprouts",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Chou de Bruxelles",
-      "nameEn": "Brussels sprouts",
-      "status": "unverified",
-      "portionLabelFr": "Chou de Bruxelles",
-      "portionLabelEn": "Brussels sprouts",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Chou de Bruxelles"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Brussels sprouts"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 7,
-        "fiberG": 3,
-        "fatG": 0.6,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 40
-      },
-      "declaredKcal": 40,
-      "calculatedKcal": 41.4,
-      "absDiff": 1.3999999999999986,
-      "pctDiff": 3.3816425120772915,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-kale",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Chou kale",
-      "nameEn": "Kale",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de Chou kale",
-      "portionLabelEn": "250 ml Kale",
-      "amount": 250,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "250 ml de Chou kale"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "250 ml Kale"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 6,
-        "fiberG": 3,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 33
-      },
-      "declaredKcal": 33,
-      "calculatedKcal": 34.7,
-      "absDiff": 1.7000000000000028,
-      "pctDiff": 4.899135446685887,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-cauliflower",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Chou-fleurs",
-      "nameEn": "Cauliflower",
-      "status": "unverified",
-      "portionLabelFr": "Chou-fleurs",
-      "portionLabelEn": "Cauliflower",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Chou-fleurs"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Cauliflower"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 6,
-        "fiberG": 0.2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 34
-      },
-      "declaredKcal": 34,
-      "calculatedKcal": 33.8,
-      "absDiff": 0.20000000000000284,
-      "pctDiff": 0.5917159763313694,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-cucumbers",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Concombres",
-      "nameEn": "Cucumbers",
-      "status": "unverified",
-      "portionLabelFr": "Concombres",
-      "portionLabelEn": "Cucumbers",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Concombres"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Cucumbers"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 3,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 17
-      },
-      "declaredKcal": 17,
-      "calculatedKcal": 16.9,
-      "absDiff": 0.10000000000000142,
-      "pctDiff": 0.5917159763313694,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-turkey",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -8743,69 +7496,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-shallot",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Échalotte",
-      "nameEn": "Shallot",
-      "status": "unverified",
-      "portionLabelFr": "Échalotte",
-      "portionLabelEn": "Shallot",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Échalotte"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Shallot"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 4,
-        "fiberG": 3,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 21
-      },
-      "declaredKcal": 21,
-      "calculatedKcal": 21.8,
-      "absDiff": 0.8000000000000007,
-      "pctDiff": 3.6697247706422047,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-veal-cutlet",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -8856,69 +7546,6 @@
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 57 vs Atwater 50.0 (14.0%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-fennel",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Fenouil",
-      "nameEn": "Fennel",
-      "status": "unverified",
-      "portionLabelFr": "Fenouil",
-      "portionLabelEn": "Fennel",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Fenouil"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Fennel"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 6,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 30
-      },
-      "declaredKcal": 30,
-      "calculatedKcal": 28.9,
-      "absDiff": 1.1000000000000014,
-      "pctDiff": 3.806228373702427,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
         },
         {
           "severity": "WARNING",
@@ -9061,69 +7688,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-yellow-or-green-beans",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Haricots jaunes ou verts",
-      "nameEn": "Yellow or green beans",
-      "status": "unverified",
-      "portionLabelFr": "Haricots jaunes ou verts",
-      "portionLabelEn": "Yellow or green beans",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Haricots jaunes ou verts"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Yellow or green beans"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 8,
-        "fiberG": 3,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 41
-      },
-      "declaredKcal": 41,
-      "calculatedKcal": 41.8,
-      "absDiff": 0.7999999999999972,
-      "pctDiff": 1.9138755980861177,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-lobster",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -9252,69 +7816,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-vegetable-juice",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Jus de légumes",
-      "nameEn": "Vegetable juice",
-      "status": "unverified",
-      "portionLabelFr": "Jus de légumes (250 ml)",
-      "portionLabelEn": "Vegetable juice (250 ml)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "Jus de légumes (250 ml)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "Vegetable juice (250 ml)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 12,
-        "fiberG": 3,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 58
-      },
-      "declaredKcal": 58,
-      "calculatedKcal": 57.8,
-      "absDiff": 0.20000000000000284,
-      "pctDiff": 0.3460207612456797,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-cod",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -9365,69 +7866,6 @@
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 66 vs Atwater 57.0 (15.8%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-onion",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Oignon",
-      "nameEn": "Onion",
-      "status": "unverified",
-      "portionLabelFr": "Oignon",
-      "portionLabelEn": "Onion",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Oignon"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Onion"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 8,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 37
-      },
-      "declaredKcal": 37,
-      "calculatedKcal": 36.9,
-      "absDiff": 0.10000000000000142,
-      "pctDiff": 0.27100271002710413,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
         },
         {
           "severity": "WARNING",
@@ -9645,132 +8083,6 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": true
-    },
-    {
-      "id": "legumes-snow-peas",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pois mange-tout",
-      "nameEn": "Snow peas",
-      "status": "unverified",
-      "portionLabelFr": "Pois mange-tout",
-      "portionLabelEn": "Snow peas",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Pois mange-tout"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Snow peas"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 6,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 33
-      },
-      "declaredKcal": 33,
-      "calculatedKcal": 32.9,
-      "absDiff": 0.10000000000000142,
-      "pctDiff": 0.30395136778115933,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-green-red-yellow-bell-pepper",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Poivron vert / rouge / jaune",
-      "nameEn": "Green / red / yellow bell pepper",
-      "status": "unverified",
-      "portionLabelFr": "Poivron vert / rouge / jaune",
-      "portionLabelEn": "Green / red / yellow bell pepper",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Poivron vert / rouge / jaune"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Green / red / yellow bell pepper"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 10,
-        "fiberG": 3,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 47
-      },
-      "declaredKcal": 47,
-      "calculatedKcal": 45.8,
-      "absDiff": 1.2000000000000028,
-      "pctDiff": 2.620087336244548,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
     },
     {
       "id": "viandes-volaille-wild-boar",
@@ -10441,6 +8753,65 @@
       "canVerify": false
     },
     {
+      "id": "legumes-fennel",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Bulbe de fenouil frais, cru",
+      "nameEn": "Fennel bulb, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de fenouil cru tranché (92 g)",
+      "portionLabelEn": "250 ml sliced raw fennel (92 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 92,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 92,
+        "label": "250 ml de fenouil cru tranché (92 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 92,
+        "label": "250 ml sliced raw fennel (92 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 6.7,
+        "fiberG": 2.9,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 29
+      },
+      "declaredKcal": 29,
+      "calculatedKcal": 33,
+      "absDiff": 4,
+      "pctDiff": 12.121212121212121,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 29 vs Atwater 33.0 (12.1%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.4) > lipides totaux (0.2)"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 2,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "viandes-volaille-duck",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -11035,64 +9406,6 @@
       "canVerify": false
     },
     {
-      "id": "legumes-boiled-drained-turnip",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Navet bouilli égoutté",
-      "nameEn": "Boiled drained turnip",
-      "status": "unverified",
-      "portionLabelFr": "Navet bouilli égoutté",
-      "portionLabelEn": "Boiled drained turnip",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Navet bouilli égoutté"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Boiled drained turnip"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 12,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 58
-      },
-      "declaredKcal": 58,
-      "calculatedKcal": 56.9,
-      "absDiff": 1.1000000000000014,
-      "pctDiff": 1.9332161687170502,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-canned-clams",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -11196,64 +9509,6 @@
           "severity": "WARNING",
           "code": "MISSING_PREP_STATE",
           "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "legumes-boiled-drained-leek",
-      "displayCategory": "legumes",
-      "calculationGroup": "vegetable",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Poireau bouilli égoutté",
-      "nameEn": "Boiled drained leek",
-      "status": "unverified",
-      "portionLabelFr": "Poireau bouilli égoutté",
-      "portionLabelEn": "Boiled drained leek",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Poireau bouilli égoutté"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "Boiled drained leek"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 8,
-        "fiberG": 2,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 38
-      },
-      "declaredKcal": 38,
-      "calculatedKcal": 36.9,
-      "absDiff": 1.1000000000000014,
-      "pctDiff": 2.981029810298107,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
         },
         {
           "severity": "WARNING",
@@ -11962,6 +10217,60 @@
       "canVerify": true
     },
     {
+      "id": "legumes-garlic",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-aromatic",
+      "classificationStatus": "approved",
+      "nameFr": "Ail frais, cru",
+      "nameEn": "Garlic, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "15 ml d’ail frais haché (13 g)",
+      "portionLabelEn": "15 ml fresh minced garlic (13 g)",
+      "amount": 15,
+      "unit": "ml",
+      "grams": 13,
+      "parsedFr": {
+        "amount": 15,
+        "unit": "ml",
+        "grams": 13,
+        "label": "15 ml d’ail frais haché (13 g)"
+      },
+      "parsedEn": {
+        "amount": 15,
+        "unit": "ml",
+        "grams": 13,
+        "label": "15 ml fresh minced garlic (13 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.3,
+        "fiberG": 0.3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 19
+      },
+      "declaredKcal": 19,
+      "calculatedKcal": 21.299999999999997,
+      "absDiff": 2.299999999999997,
+      "pctDiff": 10.798122065727688,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 19 vs Atwater 21.3 (10.8%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-canned-anchovies-in-water",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -12015,6 +10324,114 @@
       "canVerify": false
     },
     {
+      "id": "legumes-artichoke",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Artichaut globe bouilli et égoutté",
+      "nameEn": "Globe artichoke, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "1 artichaut moyen cuit, portion comestible (120 g)",
+      "portionLabelEn": "1 medium cooked artichoke, edible portion (120 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 120,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 120,
+        "label": "1 artichaut moyen cuit, portion comestible (120 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 120,
+        "label": "1 medium cooked artichoke, edible portion (120 g)"
+      },
+      "nutrients": {
+        "proteinG": 3.5,
+        "carbsG": 14.3,
+        "fiberG": 4.7,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 64
+      },
+      "declaredKcal": 64,
+      "calculatedKcal": 74.8,
+      "absDiff": 10.799999999999997,
+      "pctDiff": 14.438502673796789,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 64 vs Atwater 74.8 (14.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-eggplant",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Aubergine fraîche, crue",
+      "nameEn": "Eggplant, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml d’aubergine crue en cubes (87 g)",
+      "portionLabelEn": "250 ml raw eggplant cubes (87 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 87,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 87,
+        "label": "250 ml d’aubergine crue en cubes (87 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 87,
+        "label": "250 ml raw eggplant cubes (87 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 5.1,
+        "fiberG": 2.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "declaredKcal": 22,
+      "calculatedKcal": 25.8,
+      "absDiff": 3.8000000000000007,
+      "pctDiff": 14.728682170542637,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 22 vs Atwater 25.8 (14.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "fruits-blueberries",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -12059,6 +10476,60 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 63 vs Atwater 70.4 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-broccoli",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "classificationStatus": "approved",
+      "nameFr": "Brocoli frais, cru",
+      "nameEn": "Broccoli, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de brocoli cru haché (93 g)",
+      "portionLabelEn": "250 ml chopped raw broccoli (93 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 93,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 93,
+        "label": "250 ml de brocoli cru haché (93 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 93,
+        "label": "250 ml chopped raw broccoli (93 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 6.2,
+        "fiberG": 2.2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 32
+      },
+      "declaredKcal": 32,
+      "calculatedKcal": 37.900000000000006,
+      "absDiff": 5.900000000000006,
+      "pctDiff": 15.567282321899748,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 32 vs Atwater 37.9 (15.6%)",
           "resolutionStatus": "open"
         }
       ],
@@ -12177,6 +10648,276 @@
       "canVerify": true
     },
     {
+      "id": "legumes-celery",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Céleri frais, cru",
+      "nameEn": "Celery, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "2 branches moyennes de céleri (80 g)",
+      "portionLabelEn": "2 medium celery stalks (80 g)",
+      "amount": 2,
+      "unit": "count",
+      "grams": 80,
+      "parsedFr": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 80,
+        "label": "2 branches moyennes de céleri (80 g)"
+      },
+      "parsedEn": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 80,
+        "label": "2 medium celery stalks (80 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 2.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 11
+      },
+      "declaredKcal": 11,
+      "calculatedKcal": 12.9,
+      "absDiff": 1.9000000000000004,
+      "pctDiff": 14.728682170542637,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 11 vs Atwater 12.9 (14.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-grilled-portobello-mushroom",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-mushroom",
+      "classificationStatus": "approved",
+      "nameFr": "Champignon portobello grillé, sans gras ajouté",
+      "nameEn": "Portobello mushroom, grilled, no added fat",
+      "status": "verified",
+      "portionLabelFr": "250 ml de portobello grillé tranché (128 g)",
+      "portionLabelEn": "250 ml sliced grilled portobello (128 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 128,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 128,
+        "label": "250 ml de portobello grillé tranché (128 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 128,
+        "label": "250 ml sliced grilled portobello (128 g)"
+      },
+      "nutrients": {
+        "proteinG": 4.2,
+        "carbsG": 5.7,
+        "fiberG": 2.8,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 37
+      },
+      "declaredKcal": 37,
+      "calculatedKcal": 45.9,
+      "absDiff": 8.899999999999999,
+      "pctDiff": 19.38997821350762,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 37 vs Atwater 45.9 (19.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-kale",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-leafy",
+      "classificationStatus": "approved",
+      "nameFr": "Chou kale frais, cru",
+      "nameEn": "Kale, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de chou kale cru haché (71 g)",
+      "portionLabelEn": "250 ml chopped raw kale (71 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 71,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 71,
+        "label": "250 ml de chou kale cru haché (71 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 71,
+        "label": "250 ml chopped raw kale (71 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 3.1,
+        "fiberG": 1.7,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 25
+      },
+      "declaredKcal": 25,
+      "calculatedKcal": 30.700000000000003,
+      "absDiff": 5.700000000000003,
+      "pctDiff": 18.566775244299684,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 25 vs Atwater 30.7 (18.6%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-cauliflower",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "classificationStatus": "approved",
+      "nameFr": "Chou-fleur frais, cru",
+      "nameEn": "Cauliflower, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de chou-fleur cru en morceaux (113 g)",
+      "portionLabelEn": "250 ml raw cauliflower pieces (113 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 113,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 113,
+        "label": "250 ml de chou-fleur cru en morceaux (113 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 113,
+        "label": "250 ml raw cauliflower pieces (113 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.2,
+        "carbsG": 5.6,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 28
+      },
+      "declaredKcal": 28,
+      "calculatedKcal": 33.9,
+      "absDiff": 5.899999999999999,
+      "pctDiff": 17.40412979351032,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 28 vs Atwater 33.9 (17.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-brussels-sprouts",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "classificationStatus": "approved",
+      "nameFr": "Choux de Bruxelles bouillis et égouttés",
+      "nameEn": "Brussels sprouts, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de choux de Bruxelles cuits (82 g)",
+      "portionLabelEn": "125 ml cooked Brussels sprouts (82 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 82,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "label": "125 ml de choux de Bruxelles cuits (82 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "label": "125 ml cooked Brussels sprouts (82 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 5.8,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "declaredKcal": 30,
+      "calculatedKcal": 35.2,
+      "absDiff": 5.200000000000003,
+      "pctDiff": 14.772727272727279,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 30 vs Atwater 35.2 (14.8%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "fruits-clementines",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -12221,6 +10962,276 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.2 (10.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-low-sodium-vegetable-juice",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-juice",
+      "classificationStatus": "approved",
+      "nameFr": "Cocktail de jus de légumes faible en sodium",
+      "nameEn": "Low-sodium vegetable juice cocktail",
+      "status": "verified",
+      "portionLabelFr": "250 ml de cocktail de jus de légumes faible en sodium (268 g)",
+      "portionLabelEn": "250 ml low-sodium vegetable juice cocktail (268 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 268,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 268,
+        "label": "250 ml de cocktail de jus de légumes faible en sodium (268 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 268,
+        "label": "250 ml low-sodium vegetable juice cocktail (268 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 10.3,
+        "fiberG": 1.3,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 51
+      },
+      "declaredKcal": 51,
+      "calculatedKcal": 58.900000000000006,
+      "absDiff": 7.900000000000006,
+      "pctDiff": 13.412563667232606,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 51 vs Atwater 58.9 (13.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-cucumbers",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Concombre frais avec pelure, cru",
+      "nameEn": "Cucumber, fresh, raw, with peel",
+      "status": "verified",
+      "portionLabelFr": "250 ml de concombre cru tranché (126 g)",
+      "portionLabelEn": "250 ml sliced raw cucumber (126 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 126,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 126,
+        "label": "250 ml de concombre cru tranché (126 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 126,
+        "label": "250 ml sliced raw cucumber (126 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "declaredKcal": 20,
+      "calculatedKcal": 22.499999999999996,
+      "absDiff": 2.4999999999999964,
+      "pctDiff": 11.111111111111097,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 20 vs Atwater 22.5 (11.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-squash",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Courge musquée cuite au four",
+      "nameEn": "Butternut squash, baked",
+      "status": "verified",
+      "portionLabelFr": "125 ml de courge musquée cuite en cubes (108 g)",
+      "portionLabelEn": "125 ml baked butternut squash cubes (108 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 108,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 108,
+        "label": "125 ml de courge musquée cuite en cubes (108 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 108,
+        "label": "125 ml baked butternut squash cubes (108 g)"
+      },
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 11.3,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 43
+      },
+      "declaredKcal": 43,
+      "calculatedKcal": 50.1,
+      "absDiff": 7.100000000000001,
+      "pctDiff": 14.171656686626749,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 43 vs Atwater 50.1 (14.2%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-cooked-spaghetti-squash",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Courge spaghetti cuite et égouttée",
+      "nameEn": "Spaghetti squash, cooked and drained",
+      "status": "verified",
+      "portionLabelFr": "250 ml de courge spaghetti cuite (164 g)",
+      "portionLabelEn": "250 ml cooked spaghetti squash (164 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 164,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 164,
+        "label": "250 ml de courge spaghetti cuite (164 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 164,
+        "label": "250 ml cooked spaghetti squash (164 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 10.6,
+        "fiberG": 2.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 44
+      },
+      "declaredKcal": 44,
+      "calculatedKcal": 50.4,
+      "absDiff": 6.399999999999999,
+      "pctDiff": 12.698412698412694,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 44 vs Atwater 50.4 (12.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-zucchini",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Courgette fraîche, crue",
+      "nameEn": "Zucchini, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de courgette crue tranchée (119 g)",
+      "portionLabelEn": "250 ml sliced raw zucchini (119 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 119,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 119,
+        "label": "250 ml de courgette crue tranchée (119 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 119,
+        "label": "250 ml sliced raw zucchini (119 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 3.7,
+        "fiberG": 1.2,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "declaredKcal": 20,
+      "calculatedKcal": 24,
+      "absDiff": 4,
+      "pctDiff": 16.666666666666664,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 20 vs Atwater 24.0 (16.7%)",
           "resolutionStatus": "open"
         }
       ],
@@ -12498,6 +11509,168 @@
       "canVerify": false
     },
     {
+      "id": "legumes-yellow-snap-beans",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Haricots jaunes bouillis et égouttés",
+      "nameEn": "Yellow snap beans, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de haricots jaunes cuits (66 g)",
+      "portionLabelEn": "125 ml cooked yellow snap beans (66 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 66,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "label": "125 ml de haricots jaunes cuits (66 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "label": "125 ml cooked yellow snap beans (66 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "declaredKcal": 23,
+      "calculatedKcal": 27.400000000000002,
+      "absDiff": 4.400000000000002,
+      "pctDiff": 16.058394160583948,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 23 vs Atwater 27.4 (16.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-yellow-or-green-beans",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Haricots verts bouillis et égouttés",
+      "nameEn": "Green snap beans, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de haricots verts cuits (66 g)",
+      "portionLabelEn": "125 ml cooked green snap beans (66 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 66,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "label": "125 ml de haricots verts cuits (66 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "label": "125 ml cooked green snap beans (66 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "declaredKcal": 23,
+      "calculatedKcal": 27.400000000000002,
+      "absDiff": 4.400000000000002,
+      "pctDiff": 16.058394160583948,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 23 vs Atwater 27.4 (16.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-romaine-lettuce",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-leafy",
+      "classificationStatus": "approved",
+      "nameFr": "Laitue romaine fraîche, crue",
+      "nameEn": "Romaine lettuce, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "500 ml de laitue romaine déchiquetée (59 g)",
+      "portionLabelEn": "500 ml shredded romaine lettuce (59 g)",
+      "amount": 500,
+      "unit": "ml",
+      "grams": 59,
+      "parsedFr": {
+        "amount": 500,
+        "unit": "ml",
+        "grams": 59,
+        "label": "500 ml de laitue romaine déchiquetée (59 g)"
+      },
+      "parsedEn": {
+        "amount": 500,
+        "unit": "ml",
+        "grams": 59,
+        "label": "500 ml shredded romaine lettuce (59 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.9,
+        "fiberG": 1.2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 10
+      },
+      "declaredKcal": 10,
+      "calculatedKcal": 12.2,
+      "absDiff": 2.1999999999999993,
+      "pctDiff": 18.032786885245898,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 10 vs Atwater 12.2 (18.0%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "fruits-watermelon",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -12767,6 +11940,222 @@
       "canVerify": true
     },
     {
+      "id": "legumes-boiled-drained-leek",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-aromatic",
+      "classificationStatus": "approved",
+      "nameFr": "Poireau bouilli et égoutté",
+      "nameEn": "Leek, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de poireau cuit (55 g)",
+      "portionLabelEn": "125 ml cooked leek (55 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 55,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 55,
+        "label": "125 ml de poireau cuit (55 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 55,
+        "label": "125 ml cooked leek (55 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 4.2,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "declaredKcal": 17,
+      "calculatedKcal": 19.3,
+      "absDiff": 2.3000000000000007,
+      "pctDiff": 11.917098445595858,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 17 vs Atwater 19.3 (11.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-yellow-bell-pepper",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Poivron jaune doux, frais et cru",
+      "nameEn": "Yellow sweet pepper, fresh and raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml de poivron jaune cru haché (79 g)",
+      "portionLabelEn": "125 ml chopped raw yellow pepper (79 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 79,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml de poivron jaune cru haché (79 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml chopped raw yellow pepper (79 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 5,
+        "fiberG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 21
+      },
+      "declaredKcal": 21,
+      "calculatedKcal": 25,
+      "absDiff": 4,
+      "pctDiff": 16,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 21 vs Atwater 25.0 (16.0%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-red-bell-pepper",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Poivron rouge doux, frais et cru",
+      "nameEn": "Red sweet pepper, fresh and raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml de poivron rouge cru haché (79 g)",
+      "portionLabelEn": "125 ml chopped raw red pepper (79 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 79,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml de poivron rouge cru haché (79 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml chopped raw red pepper (79 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.8,
+        "fiberG": 1.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 21
+      },
+      "declaredKcal": 21,
+      "calculatedKcal": 24.2,
+      "absDiff": 3.1999999999999993,
+      "pctDiff": 13.223140495867765,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 21 vs Atwater 24.2 (13.2%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Poivron vert doux, frais et cru",
+      "nameEn": "Green sweet pepper, fresh and raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml de poivron vert cru haché (79 g)",
+      "portionLabelEn": "125 ml chopped raw green pepper (79 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 79,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml de poivron vert cru haché (79 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "label": "125 ml chopped raw green pepper (79 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 3.7,
+        "fiberG": 1.1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "declaredKcal": 16,
+      "calculatedKcal": 18.5,
+      "absDiff": 2.5,
+      "pctDiff": 13.513513513513514,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 16 vs Atwater 18.5 (13.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "fruits-apple",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -12981,6 +12370,60 @@
       "canVerify": false
     },
     {
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Tomate rouge mûre, fraîche et crue",
+      "nameEn": "Red ripe tomato, fresh and raw",
+      "status": "verified",
+      "portionLabelFr": "1 tomate moyenne (123 g)",
+      "portionLabelEn": "1 medium tomato (123 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 123,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 123,
+        "label": "1 tomate moyenne (123 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 123,
+        "label": "1 medium tomato (123 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 4.8,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "declaredKcal": 22,
+      "calculatedKcal": 25.400000000000002,
+      "absDiff": 3.400000000000002,
+      "pctDiff": 13.38582677165355,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 22 vs Atwater 25.4 (13.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "noix-graines-almonds",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -13122,6 +12565,60 @@
       "canVerify": true
     },
     {
+      "id": "legumes-asparagus",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Asperges bouillies et égouttées",
+      "nameEn": "Asparagus, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "250 ml d’asperges cuites (190 g)",
+      "portionLabelEn": "250 ml cooked asparagus (190 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 190,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 190,
+        "label": "250 ml d’asperges cuites (190 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 190,
+        "label": "250 ml cooked asparagus (190 g)"
+      },
+      "nutrients": {
+        "proteinG": 4.6,
+        "carbsG": 7.8,
+        "fiberG": 3.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 42
+      },
+      "declaredKcal": 42,
+      "calculatedKcal": 53.199999999999996,
+      "absDiff": 11.199999999999996,
+      "pctDiff": 21.052631578947363,
+      "alerts": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 42 vs Atwater 53.2 (Δ 11.2 / 21.1%)",
+          "resolutionStatus": "resolved_documented"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 1,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-dried-goji-berries",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -13161,6 +12658,147 @@
       "calculatedKcal": 74.10000000000001,
       "absDiff": 4.1000000000000085,
       "pctDiff": 5.533063427800281,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-beets",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Betteraves bouillies et égouttées",
+      "nameEn": "Beets, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de betteraves cuites tranchées (90 g)",
+      "portionLabelEn": "125 ml cooked sliced beets (90 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 90,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 90,
+        "label": "125 ml de betteraves cuites tranchées (90 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 90,
+        "label": "125 ml cooked sliced beets (90 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 9,
+        "fiberG": 1.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 40
+      },
+      "declaredKcal": 40,
+      "calculatedKcal": 43.8,
+      "absDiff": 3.799999999999997,
+      "pctDiff": 8.675799086757985,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-homemade-bone-broth",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-broth",
+      "classificationStatus": "approved",
+      "nameFr": "Bouillon de légumes prêt à servir, faible en sodium",
+      "nameEn": "Vegetable broth, ready-to-serve, low sodium",
+      "status": "verified",
+      "portionLabelFr": "250 ml de bouillon de légumes faible en sodium (253 g)",
+      "portionLabelEn": "250 ml low-sodium vegetable broth (253 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 253,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 253,
+        "label": "250 ml de bouillon de légumes faible en sodium (253 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 253,
+        "label": "250 ml low-sodium vegetable broth (253 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.9,
+        "fiberG": 0.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 10
+      },
+      "declaredKcal": 10,
+      "calculatedKcal": 10.6,
+      "absDiff": 0.5999999999999996,
+      "pctDiff": 5.660377358490563,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-carrots",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Carotte fraîche, crue",
+      "nameEn": "Carrot, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "1 carotte moyenne (61 g)",
+      "portionLabelEn": "1 medium carrot (61 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 61,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 61,
+        "label": "1 carotte moyenne (61 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 61,
+        "label": "1 medium carrot (61 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 5.8,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 25
+      },
+      "declaredKcal": 25,
+      "calculatedKcal": 26.499999999999996,
+      "absDiff": 1.4999999999999964,
+      "pctDiff": 5.660377358490553,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13216,6 +12854,161 @@
       "canVerify": true
     },
     {
+      "id": "legumes-mushrooms",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-mushroom",
+      "classificationStatus": "approved",
+      "nameFr": "Champignons blancs frais, crus",
+      "nameEn": "White mushrooms, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de champignons blancs crus tranchés (74 g)",
+      "portionLabelEn": "250 ml sliced raw white mushrooms (74 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 74,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "label": "250 ml de champignons blancs crus tranchés (74 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "label": "250 ml sliced raw white mushrooms (74 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.4,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "declaredKcal": 16,
+      "calculatedKcal": 21.499999999999996,
+      "absDiff": 5.4999999999999964,
+      "pctDiff": 25.581395348837198,
+      "alerts": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 16 vs Atwater 21.5 (Δ 5.5 / 25.6%)",
+          "resolutionStatus": "resolved_documented"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 1,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-cremini-mushrooms",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-mushroom",
+      "classificationStatus": "approved",
+      "nameFr": "Champignons cremini frais, crus",
+      "nameEn": "Cremini mushrooms, fresh and raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de champignons cremini crus tranchés (74 g)",
+      "portionLabelEn": "250 ml sliced raw cremini mushrooms (74 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 74,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "label": "250 ml de champignons cremini crus tranchés (74 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "label": "250 ml sliced raw cremini mushrooms (74 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3.2,
+        "fiberG": 0.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "declaredKcal": 16,
+      "calculatedKcal": 21.299999999999997,
+      "absDiff": 5.299999999999997,
+      "pctDiff": 24.88262910798121,
+      "alerts": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 16 vs Atwater 21.3 (Δ 5.3 / 24.9%)",
+          "resolutionStatus": "resolved_documented"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 1,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-vegetable-juice",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-juice",
+      "classificationStatus": "approved",
+      "nameFr": "Cocktail de jus de légumes régulier",
+      "nameEn": "Regular vegetable juice cocktail",
+      "status": "verified",
+      "portionLabelFr": "250 ml de cocktail de jus de légumes (267 g)",
+      "portionLabelEn": "250 ml vegetable juice cocktail (267 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 267,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 267,
+        "label": "250 ml de cocktail de jus de légumes (267 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 267,
+        "label": "250 ml vegetable juice cocktail (267 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.5,
+        "carbsG": 10.3,
+        "fiberG": 1.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 58.400000000000006,
+      "absDiff": 0.5999999999999943,
+      "pctDiff": 1.027397260273963,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-unsweetened-applesauce",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -13259,6 +13052,107 @@
       "errorCount": 0,
       "warningCount": 0,
       "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-shallot",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-aromatic",
+      "classificationStatus": "approved",
+      "nameFr": "Échalote fraîche, crue",
+      "nameEn": "Shallot, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "30 ml d’échalote crue hachée (24 g)",
+      "portionLabelEn": "30 ml chopped raw shallot (24 g)",
+      "amount": 30,
+      "unit": "ml",
+      "grams": 24,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "ml",
+        "grams": 24,
+        "label": "30 ml d’échalote crue hachée (24 g)"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "ml",
+        "grams": 24,
+        "label": "30 ml chopped raw shallot (24 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "declaredKcal": 17,
+      "calculatedKcal": 18.4,
+      "absDiff": 1.3999999999999986,
+      "pctDiff": 7.608695652173907,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-spinach",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-leafy",
+      "classificationStatus": "approved",
+      "nameFr": "Épinards frais, crus",
+      "nameEn": "Spinach, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml d’épinards crus (28 g)",
+      "portionLabelEn": "250 ml raw spinach (28 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 28,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 28,
+        "label": "250 ml d’épinards crus (28 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 28,
+        "label": "250 ml raw spinach (28 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 1,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 6
+      },
+      "declaredKcal": 6,
+      "calculatedKcal": 8.1,
+      "absDiff": 2.0999999999999996,
+      "pctDiff": 25.925925925925924,
+      "alerts": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 6 vs Atwater 8.1 (Δ 2.1 / 25.9%)",
+          "resolutionStatus": "resolved_documented"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 1,
       "maxSeverity": "OK",
       "canVerify": true
     },
@@ -13592,6 +13486,100 @@
       "canVerify": true
     },
     {
+      "id": "legumes-boiled-drained-turnip",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Navet bouilli et égoutté",
+      "nameEn": "Turnip, boiled and drained",
+      "status": "verified",
+      "portionLabelFr": "125 ml de navet cuit en cubes (82 g)",
+      "portionLabelEn": "125 ml cooked turnip cubes (82 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 82,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "label": "125 ml de navet cuit en cubes (82 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "label": "125 ml cooked turnip cubes (82 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4.1,
+        "fiberG": 1.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 18
+      },
+      "declaredKcal": 18,
+      "calculatedKcal": 19.699999999999996,
+      "absDiff": 1.6999999999999957,
+      "pctDiff": 8.629441624365462,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-onion",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-aromatic",
+      "classificationStatus": "approved",
+      "nameFr": "Oignon frais, cru",
+      "nameEn": "Onion, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml d’oignon cru haché (68 g)",
+      "portionLabelEn": "125 ml chopped raw onion (68 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 68,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 68,
+        "label": "125 ml d’oignon cru haché (68 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 68,
+        "label": "125 ml chopped raw onion (68 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 6.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 27
+      },
+      "declaredKcal": 27,
+      "calculatedKcal": 29.3,
+      "absDiff": 2.3000000000000007,
+      "pctDiff": 7.8498293515358375,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-orange",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -13631,6 +13619,53 @@
       "calculatedKcal": 68.2,
       "absDiff": 6.200000000000003,
       "pctDiff": 9.090909090909095,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-snow-peas",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "classificationStatus": "approved",
+      "nameFr": "Pois mange-tout frais, crus",
+      "nameEn": "Snow peas, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml de pois mange-tout crus (52 g)",
+      "portionLabelEn": "125 ml raw snow peas (52 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 52,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 52,
+        "label": "125 ml de pois mange-tout crus (52 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 52,
+        "label": "125 ml raw snow peas (52 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 3.9,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "declaredKcal": 22,
+      "calculatedKcal": 22.5,
+      "absDiff": 0.5,
+      "pctDiff": 2.2222222222222223,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13772,6 +13807,53 @@
       "calculatedKcal": 89.8,
       "absDiff": 0.20000000000000284,
       "pctDiff": 0.22271714922049313,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "legumes-radishes",
+      "displayCategory": "legumes",
+      "calculationGroup": "vegetable",
+      "exchangeProfileId": "vegetable-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Radis frais, crus",
+      "nameEn": "Radishes, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de radis crus tranchés (123 g)",
+      "portionLabelEn": "250 ml sliced raw radishes (123 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 123,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 123,
+        "label": "250 ml de radis crus tranchés (123 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 123,
+        "label": "250 ml sliced raw radishes (123 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.2,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "declaredKcal": 20,
+      "calculatedKcal": 20.9,
+      "absDiff": 0.8999999999999986,
+      "pctDiff": 4.3062200956937735,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,

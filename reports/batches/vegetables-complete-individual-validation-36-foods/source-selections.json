@@ -1,0 +1,294 @@
+{
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "generatedAt": "2026-07-30T16:59:41.924Z",
+  "selections": [
+    {
+      "foodId": "legumes-garlic",
+      "operation": "update",
+      "expectedRecordId": "2394",
+      "selectedRecordId": "2394",
+      "descriptionEn": "Garlic, raw",
+      "descriptionFr": "Ail, cru"
+    },
+    {
+      "foodId": "legumes-artichoke",
+      "operation": "update",
+      "expectedRecordId": "2365",
+      "selectedRecordId": "2365",
+      "descriptionEn": "Artichoke (Globe, French), boiled, drained",
+      "descriptionFr": "Artichaut, bouilli, égoutté"
+    },
+    {
+      "foodId": "legumes-asparagus",
+      "operation": "update",
+      "expectedRecordId": "1991",
+      "selectedRecordId": "1991",
+      "descriptionEn": "Asparagus, boiled, drained",
+      "descriptionFr": "Asperge, bouillie, égouttée"
+    },
+    {
+      "foodId": "legumes-eggplant",
+      "operation": "update",
+      "expectedRecordId": "2088",
+      "selectedRecordId": "2088",
+      "descriptionEn": "Eggplant (aubergine, brinjal), raw",
+      "descriptionFr": "Aubergine, crue"
+    },
+    {
+      "foodId": "legumes-beets",
+      "operation": "update",
+      "expectedRecordId": "2501",
+      "selectedRecordId": "2501",
+      "descriptionEn": "Beets, boiled, drained",
+      "descriptionFr": "Betteraves, bouillies, égouttées"
+    },
+    {
+      "foodId": "legumes-broccoli",
+      "operation": "update",
+      "expectedRecordId": "2374",
+      "selectedRecordId": "2374",
+      "descriptionEn": "Broccoli, raw",
+      "descriptionFr": "Brocoli, cru"
+    },
+    {
+      "foodId": "legumes-kale",
+      "operation": "update",
+      "expectedRecordId": "2395",
+      "selectedRecordId": "2395",
+      "descriptionEn": "Kale, raw",
+      "descriptionFr": "Chou vert frisé, cru"
+    },
+    {
+      "foodId": "legumes-carrots",
+      "operation": "update",
+      "expectedRecordId": "2380",
+      "selectedRecordId": "2380",
+      "descriptionEn": "Carrot, raw",
+      "descriptionFr": "Carotte, crue"
+    },
+    {
+      "foodId": "legumes-celery",
+      "operation": "update",
+      "expectedRecordId": "2386",
+      "selectedRecordId": "2386",
+      "descriptionEn": "Celery, raw",
+      "descriptionFr": "Céleri, cru"
+    },
+    {
+      "foodId": "legumes-mushrooms",
+      "operation": "update",
+      "expectedRecordId": "2399",
+      "selectedRecordId": "2399",
+      "descriptionEn": "Mushroom, white, raw",
+      "descriptionFr": "Champignon, blanc, cru"
+    },
+    {
+      "foodId": "legumes-brussels-sprouts",
+      "operation": "update",
+      "expectedRecordId": "2379",
+      "selectedRecordId": "2379",
+      "descriptionEn": "Brussels sprouts, boiled, drained",
+      "descriptionFr": "Choux de Bruxelles, bouillis, égouttés"
+    },
+    {
+      "foodId": "legumes-cauliflower",
+      "operation": "update",
+      "expectedRecordId": "2385",
+      "selectedRecordId": "2385",
+      "descriptionEn": "Cauliflower, raw",
+      "descriptionFr": "Chou-fleur, cru"
+    },
+    {
+      "foodId": "legumes-cucumbers",
+      "operation": "update",
+      "expectedRecordId": "2363",
+      "selectedRecordId": "2363",
+      "descriptionEn": "Cucumber, raw",
+      "descriptionFr": "Concombre, cru"
+    },
+    {
+      "foodId": "legumes-zucchini",
+      "operation": "update",
+      "expectedRecordId": "2225",
+      "selectedRecordId": "2225",
+      "descriptionEn": "Squash, summer, zucchini, raw",
+      "descriptionFr": "Courge d'été, courgette (zucchini), crue"
+    },
+    {
+      "foodId": "legumes-squash",
+      "operation": "update",
+      "expectedRecordId": "2452",
+      "selectedRecordId": "2452",
+      "descriptionEn": "Squash, winter, butternut, baked",
+      "descriptionFr": "Courge d'hiver, courge musquée, cuite au four"
+    },
+    {
+      "foodId": "legumes-shallot",
+      "operation": "update",
+      "expectedRecordId": "2326",
+      "selectedRecordId": "2326",
+      "descriptionEn": "Shallot, raw",
+      "descriptionFr": "Échalote, crue"
+    },
+    {
+      "foodId": "legumes-spinach",
+      "operation": "update",
+      "expectedRecordId": "2213",
+      "selectedRecordId": "2213",
+      "descriptionEn": "Spinach, raw",
+      "descriptionFr": "Épinard, cru"
+    },
+    {
+      "foodId": "legumes-fennel",
+      "operation": "update",
+      "expectedRecordId": "2350",
+      "selectedRecordId": "2350",
+      "descriptionEn": "Fennel, bulb, raw",
+      "descriptionFr": "Fenouil, bulbe, cru"
+    },
+    {
+      "foodId": "legumes-yellow-or-green-beans",
+      "operation": "update",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "descriptionEn": "Beans, snap (Italian, green or yellow), boiled, drained",
+      "descriptionFr": "Haricots italiens, jaunes ou verts, bouillis, égouttés"
+    },
+    {
+      "foodId": "legumes-vegetable-juice",
+      "operation": "update",
+      "expectedRecordId": "2473",
+      "selectedRecordId": "2473",
+      "descriptionEn": "Vegetable juice cocktail, canned",
+      "descriptionFr": "Légumes, jus, cocktail, conserve"
+    },
+    {
+      "foodId": "legumes-romaine-lettuce",
+      "operation": "update",
+      "expectedRecordId": "2116",
+      "selectedRecordId": "2116",
+      "descriptionEn": "Lettuce, cos or romaine",
+      "descriptionFr": "Laitue, romaine"
+    },
+    {
+      "foodId": "legumes-boiled-drained-turnip",
+      "operation": "update",
+      "expectedRecordId": "2262",
+      "selectedRecordId": "2262",
+      "descriptionEn": "Turnip, boiled, drained",
+      "descriptionFr": "Navet, bouilli, égoutté"
+    },
+    {
+      "foodId": "legumes-onion",
+      "operation": "update",
+      "expectedRecordId": "2401",
+      "selectedRecordId": "2401",
+      "descriptionEn": "Onion, raw",
+      "descriptionFr": "Oignon, cru"
+    },
+    {
+      "foodId": "legumes-boiled-drained-leek",
+      "operation": "update",
+      "expectedRecordId": "2397",
+      "selectedRecordId": "2397",
+      "descriptionEn": "Leeks (bulb and lower-leaf portion), boiled, drained",
+      "descriptionFr": "Poireaux (bulbe et portion inférieure), bouillis, égouttés"
+    },
+    {
+      "foodId": "legumes-snow-peas",
+      "operation": "update",
+      "expectedRecordId": "2408",
+      "selectedRecordId": "2408",
+      "descriptionEn": "Peas, edible-podded (snow peas), raw",
+      "descriptionFr": "Pois mange-tout, crus"
+    },
+    {
+      "foodId": "legumes-green-red-yellow-bell-pepper",
+      "operation": "update",
+      "expectedRecordId": "2413",
+      "selectedRecordId": "2413",
+      "descriptionEn": "Pepper, sweet, green, raw",
+      "descriptionFr": "Poivron vert, cru"
+    },
+    {
+      "foodId": "legumes-radishes",
+      "operation": "update",
+      "expectedRecordId": "2443",
+      "selectedRecordId": "2443",
+      "descriptionEn": "Radish, raw",
+      "descriptionFr": "Radis, cru"
+    },
+    {
+      "foodId": "legumes-tomato-6-6-cm-in-diameter",
+      "operation": "update",
+      "expectedRecordId": "2460",
+      "selectedRecordId": "2460",
+      "descriptionEn": "Tomato, red, ripe, raw, year round average",
+      "descriptionFr": "Tomate, rouge, mûre, crue, moyenne durant toute l'année"
+    },
+    {
+      "foodId": "legumes-homemade-bone-broth",
+      "operation": "update",
+      "expectedRecordId": "7378",
+      "selectedRecordId": "7378",
+      "descriptionEn": "Soup, broth, vegetable, ready-to-serve, low sodium",
+      "descriptionFr": "Soupe, bouillon, légumes, prêt-à-servir, faible en sodium"
+    },
+    {
+      "foodId": "legumes-grilled-portobello-mushroom",
+      "operation": "update",
+      "expectedRecordId": "5957",
+      "selectedRecordId": "5957",
+      "descriptionEn": "Mushroom, portabella (portobello), grilled",
+      "descriptionFr": "Champignon, portobella (portobello), grillé"
+    },
+    {
+      "foodId": "legumes-red-bell-pepper",
+      "operation": "add",
+      "expectedRecordId": "2484",
+      "selectedRecordId": "2484",
+      "descriptionEn": "Pepper, sweet, red, raw",
+      "descriptionFr": "Poivron rouge, cru"
+    },
+    {
+      "foodId": "legumes-yellow-bell-pepper",
+      "operation": "add",
+      "expectedRecordId": "2344",
+      "selectedRecordId": "2344",
+      "descriptionEn": "Pepper, sweet, yellow, raw",
+      "descriptionFr": "Poivron jaune, cru"
+    },
+    {
+      "foodId": "legumes-yellow-snap-beans",
+      "operation": "add",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "descriptionEn": "Beans, snap (Italian, green or yellow), boiled, drained",
+      "descriptionFr": "Haricots italiens, jaunes ou verts, bouillis, égouttés"
+    },
+    {
+      "foodId": "legumes-cremini-mushrooms",
+      "operation": "add",
+      "expectedRecordId": "4974",
+      "selectedRecordId": "4974",
+      "descriptionEn": "Mushroom, brown, Italian (crimini), raw",
+      "descriptionFr": "Champignon, bruns, italien (crimini), cru"
+    },
+    {
+      "foodId": "legumes-cooked-spaghetti-squash",
+      "operation": "add",
+      "expectedRecordId": "2459",
+      "selectedRecordId": "2459",
+      "descriptionEn": "Squash, winter, spaghetti, baked or boiled, drained",
+      "descriptionFr": "Courge d'hiver, spaghetti, au four ou bouillie, égouttée"
+    },
+    {
+      "foodId": "legumes-low-sodium-vegetable-juice",
+      "operation": "add",
+      "expectedRecordId": "7421",
+      "selectedRecordId": "7421",
+      "descriptionEn": "Vegetable juice cocktail, canned, low sodium",
+      "descriptionFr": "Légumes, jus, cocktail, conserve, faible en sodium"
+    }
+  ]
+}
