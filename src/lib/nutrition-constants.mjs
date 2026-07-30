@@ -79,13 +79,13 @@ export const EXPECTED_CATEGORY_COUNTS = {
   matieres_grasses: 23,
   legumes: 36,
   fruits: 33,
-  poissons_fruits_mer: 26,
+  poissons_fruits_mer: 36,
   viandes_volaille: 28,
   autres_sources_proteinees: 17,
   feculents: 23,
   produits_laitiers: 19,
 };
 
-export const TOTAL_FOODS_EXPECTED = 237;
+export const TOTAL_FOODS_EXPECTED = 247;
 
 export const DATASET_STATUSES = ['draft', 'review', 'approved'];

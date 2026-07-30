@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 211,
+  "protectedFoodsDataHash": "f5959253bbf5257d71980cfc5d75105842807493b078db356792a957d5df1c13",
+  "foodCount": 247,
+  "checkedAt": "2026-07-30T19:04:55.265Z",
+  "batchId": "fish-seafood-complete-individual-validation-36-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}

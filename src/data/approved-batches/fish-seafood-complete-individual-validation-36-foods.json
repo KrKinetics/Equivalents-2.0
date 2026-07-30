@@ -1,0 +1,1700 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "fish-seafood-complete-individual-validation-36-foods",
+  "title": "KR Kinetics — Validation individuelle complète des poissons et fruits de mer",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 26 entrées existantes de la catégorie Poissons et fruits de mer, préciser les états de préparation et ajouter dix variantes utiles, tout en protégeant strictement les 211 autres aliments existants.",
+  "scope": {
+    "existingFoodCount": 237,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 247,
+    "batchFoodCount": 36,
+    "protectedFoodCount": 211,
+    "allowedFoodIds": [
+      "poissons-fruits-mer-haddock",
+      "poissons-fruits-mer-eel",
+      "poissons-fruits-mer-pike",
+      "poissons-fruits-mer-caviar",
+      "poissons-fruits-mer-crab",
+      "poissons-fruits-mer-surimi",
+      "poissons-fruits-mer-shrimp",
+      "poissons-fruits-mer-snail",
+      "poissons-fruits-mer-herring",
+      "poissons-fruits-mer-lobster",
+      "poissons-fruits-mer-oysters",
+      "poissons-fruits-mer-mackerel",
+      "poissons-fruits-mer-cod",
+      "poissons-fruits-mer-mussels",
+      "poissons-fruits-mer-canned-clams",
+      "poissons-fruits-mer-scallop",
+      "poissons-fruits-mer-sole",
+      "poissons-fruits-mer-canned-sardines",
+      "poissons-fruits-mer-atlantic-salmon",
+      "poissons-fruits-mer-tuna",
+      "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "poissons-fruits-mer-tilapia",
+      "poissons-fruits-mer-rainbow-trout",
+      "poissons-fruits-mer-turbot",
+      "poissons-fruits-mer-halibut",
+      "poissons-fruits-mer-canned-anchovies-in-water",
+      "poissons-fruits-mer-sockeye-salmon",
+      "poissons-fruits-mer-smoked-chinook-salmon",
+      "poissons-fruits-mer-canned-pink-salmon",
+      "poissons-fruits-mer-canned-white-tuna-water",
+      "poissons-fruits-mer-canned-light-tuna-oil",
+      "poissons-fruits-mer-alaska-pollock",
+      "poissons-fruits-mer-octopus",
+      "poissons-fruits-mer-swordfish",
+      "poissons-fruits-mer-mahi-mahi",
+      "poissons-fruits-mer-sea-bass"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "N/A",
+      "rule": "Aucun produit de marque dans ce lot."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s’affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec le record CNF concret."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-haddock",
+      "lockedIdentity": {
+        "fr": "Aiglefin cuit au four ou grillé",
+        "en": "Haddock, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "smoked",
+          "breaded",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g d’aiglefin cuit",
+        "labelEn": "45 g cooked haddock",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3199",
+        "matchKeywordsEn": [
+          "Fish, haddock, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, haddock, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "smoked",
+          "breaded",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3199: Fish, haddock, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-eel",
+      "lockedIdentity": {
+        "fr": "Anguille cuite au four ou grillée",
+        "en": "Eel, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "smoked",
+          "sauce"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g d’anguille cuite",
+        "labelEn": "30 g cooked eel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3005",
+        "matchKeywordsEn": [
+          "Fish, eel, mixed species, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, eel, mixed species, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "smoked",
+          "sauce"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3005: Fish, eel, mixed species, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-pike",
+      "lockedIdentity": {
+        "fr": "Grand brochet cuit",
+        "en": "Northern pike, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "liver",
+          "pickerel"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de brochet cuit",
+        "labelEn": "45 g cooked northern pike",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3037",
+        "matchKeywordsEn": [
+          "Fish, pike, northern, Indigenous, cooked"
+        ],
+        "mustContainConcepts": [
+          "Fish, pike, northern, Indigenous, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "liver",
+          "pickerel"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3037: Fish, pike, northern, Indigenous, cooked."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-caviar",
+      "lockedIdentity": {
+        "fr": "Caviar noir ou rouge, granuleux",
+        "en": "Black or red granular caviar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "roe on kelp",
+          "spread"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de caviar",
+        "labelEn": "30 g caviar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2995",
+        "matchKeywordsEn": [
+          "Fish, caviar, black and red, granular"
+        ],
+        "mustContainConcepts": [
+          "Fish, caviar, black and red, granular"
+        ],
+        "mustNotContainConcepts": [
+          "roe on kelp",
+          "spread"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2995: Fish, caviar, black and red, granular."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-seafood-specialty",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-crab",
+      "lockedIdentity": {
+        "fr": "Crabe des neiges bouilli ou cuit à la vapeur",
+        "en": "Atlantic snow crab, boiled or steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "imitation",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de chair de crabe des neiges cuite",
+        "labelEn": "45 g cooked snow crab meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3173",
+        "matchKeywordsEn": [
+          "Crustaceans, crab, atlantic snow crab (spider, queen), boiled or steamed"
+        ],
+        "mustContainConcepts": [
+          "Crustaceans, crab, atlantic snow crab (spider, queen), boiled or steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "imitation",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3173: Crustaceans, crab, atlantic snow crab (spider, queen), boiled or steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-shellfish-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-surimi",
+      "lockedIdentity": {
+        "fr": "Surimi de poisson",
+        "en": "Fish surimi",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "imitation shrimp",
+          "imitation scallop",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de surimi",
+        "labelEn": "30 g fish surimi",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3074",
+        "matchKeywordsEn": [
+          "Fish, surimi"
+        ],
+        "mustContainConcepts": [
+          "Fish, surimi"
+        ],
+        "mustNotContainConcepts": [
+          "imitation shrimp",
+          "imitation scallop",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3074: Fish, surimi."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-processed-seafood",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-shrimp",
+      "lockedIdentity": {
+        "fr": "Crevettes bouillies ou cuites à la vapeur",
+        "en": "Shrimp, boiled or steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "breaded",
+          "fried",
+          "imitation",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de crevettes cuites",
+        "labelEn": "45 g cooked shrimp",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3212",
+        "matchKeywordsEn": [
+          "Crustaceans, shrimp, mixed species, boiled or steamed"
+        ],
+        "mustContainConcepts": [
+          "Crustaceans, shrimp, mixed species, boiled or steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "breaded",
+          "fried",
+          "imitation",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3212: Crustaceans, shrimp, mixed species, boiled or steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-shellfish-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-snail",
+      "lockedIdentity": {
+        "fr": "Escargot cru, chair comestible",
+        "en": "Snail, raw edible meat",
+        "preparationState": "raw",
+        "exclusions": [
+          "garlic butter",
+          "prepared dish",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de chair d’escargot crue",
+        "labelEn": "45 g raw snail meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5635",
+        "matchKeywordsEn": [
+          "Mollusks, snail, raw"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, snail, raw"
+        ],
+        "mustNotContainConcepts": [
+          "garlic butter",
+          "prepared dish",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5635: Mollusks, snail, raw."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-herring",
+      "lockedIdentity": {
+        "fr": "Hareng de l’Atlantique cuit au four ou grillé",
+        "en": "Atlantic herring, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "pickled",
+          "kippered",
+          "smoked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de hareng cuit",
+        "labelEn": "30 g cooked Atlantic herring",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3015",
+        "matchKeywordsEn": [
+          "Fish, herring, Atlantic, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, herring, Atlantic, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "pickled",
+          "kippered",
+          "smoked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3015: Fish, herring, Atlantic, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-lobster",
+      "lockedIdentity": {
+        "fr": "Homard d’Amérique bouilli ou cuit à la vapeur",
+        "en": "American lobster, boiled or steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "paste",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de chair de homard cuite",
+        "labelEn": "45 g cooked lobster meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3210",
+        "matchKeywordsEn": [
+          "Crustaceans, lobster, american (northern), boiled or steamed"
+        ],
+        "mustContainConcepts": [
+          "Crustaceans, lobster, american (northern), boiled or steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "paste",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3210: Crustaceans, lobster, american (northern), boiled or steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-shellfish-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-oysters",
+      "lockedIdentity": {
+        "fr": "Huîtres de l’Est d’élevage, crues",
+        "en": "Farmed eastern oysters, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "wild",
+          "fried",
+          "canned",
+          "steamed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g d’huîtres crues",
+        "labelEn": "45 g raw farmed eastern oysters",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3191",
+        "matchKeywordsEn": [
+          "Mollusks, oyster, eastern (blue point), farmed, raw"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, oyster, eastern (blue point), farmed, raw"
+        ],
+        "mustNotContainConcepts": [
+          "wild",
+          "fried",
+          "canned",
+          "steamed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3191: Mollusks, oyster, eastern (blue point), farmed, raw."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-mackerel",
+      "lockedIdentity": {
+        "fr": "Maquereau bleu cuit au four ou grillé",
+        "en": "Atlantic mackerel, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "salt added",
+          "king"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de maquereau cuit",
+        "labelEn": "30 g cooked Atlantic mackerel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3022",
+        "matchKeywordsEn": [
+          "Fish, mackerel, atlantic, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, mackerel, atlantic, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "salt added",
+          "king"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3022: Fish, mackerel, atlantic, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-cod",
+      "lockedIdentity": {
+        "fr": "Morue de l’Atlantique cuite au four ou grillée",
+        "en": "Atlantic cod, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "smoked",
+          "salted",
+          "canned",
+          "pacific"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de morue cuite",
+        "labelEn": "45 g cooked Atlantic cod",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3195",
+        "matchKeywordsEn": [
+          "Fish, cod (scrod), Atlantic, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, cod (scrod), Atlantic, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "smoked",
+          "salted",
+          "canned",
+          "pacific"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3195: Fish, cod (scrod), Atlantic, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-mussels",
+      "lockedIdentity": {
+        "fr": "Moules bleues bouillies ou cuites à la vapeur",
+        "en": "Blue mussels, boiled or steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de moules cuites",
+        "labelEn": "45 g cooked blue mussels",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3116",
+        "matchKeywordsEn": [
+          "Mollusks, mussel, blue, boiled or steamed"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, mussel, blue, boiled or steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3116: Mollusks, mussel, blue, boiled or steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-canned-clams",
+      "lockedIdentity": {
+        "fr": "Palourdes en conserve, solides égouttés",
+        "en": "Canned clams, drained solids",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "liquid",
+          "fried",
+          "raw"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de palourdes en conserve égouttées",
+        "labelEn": "45 g canned drained clams",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3112",
+        "matchKeywordsEn": [
+          "Mollusks, clam, mixed species, canned, drained solids"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, clam, mixed species, canned, drained solids"
+        ],
+        "mustNotContainConcepts": [
+          "liquid",
+          "fried",
+          "raw"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3112: Mollusks, clam, mixed species, canned, drained solids."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-scallop",
+      "lockedIdentity": {
+        "fr": "Pétoncles cuits à la vapeur",
+        "en": "Bay or sea scallops, steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried",
+          "imitation"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de pétoncles cuits",
+        "labelEn": "45 g steamed scallops",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5634",
+        "matchKeywordsEn": [
+          "Mollusks, scallop (bay and sea), cooked, steamed"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, scallop (bay and sea), cooked, steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried",
+          "imitation"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5634: Mollusks, scallop (bay and sea), cooked, steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-sole",
+      "lockedIdentity": {
+        "fr": "Poisson plat (sole, plie ou flet) cuit au four ou grillé",
+        "en": "Flatfish (sole, flounder or plaice), baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "breaded",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de poisson plat cuit",
+        "labelEn": "45 g cooked flatfish",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3007",
+        "matchKeywordsEn": [
+          "Fish, flatfish (flounder or sole or plaice), baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, flatfish (flounder or sole or plaice), baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "breaded",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3007: Fish, flatfish (flounder or sole or plaice), baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-canned-sardines",
+      "lockedIdentity": {
+        "fr": "Sardines de l’Atlantique en conserve dans l’huile, égouttées avec arêtes",
+        "en": "Atlantic sardines canned in oil, drained with bone",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "tomato sauce",
+          "pacific",
+          "without bone"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de sardines en conserve égouttées",
+        "labelEn": "30 g canned drained sardines",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3203",
+        "matchKeywordsEn": [
+          "Fish, sardine, Atlantic, canned in oil, drained solids with bone"
+        ],
+        "mustContainConcepts": [
+          "Fish, sardine, Atlantic, canned in oil, drained solids with bone"
+        ],
+        "mustNotContainConcepts": [
+          "tomato sauce",
+          "pacific",
+          "without bone"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3203: Fish, sardine, Atlantic, canned in oil, drained solids with bone."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-atlantic-salmon",
+      "lockedIdentity": {
+        "fr": "Saumon de l’Atlantique d’élevage, cuit au four ou grillé",
+        "en": "Farmed Atlantic salmon, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "wild",
+          "raw",
+          "smoked",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de saumon de l’Atlantique cuit",
+        "labelEn": "30 g cooked farmed Atlantic salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3183",
+        "matchKeywordsEn": [
+          "Fish, salmon, atlantic, farmed, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, salmon, atlantic, farmed, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "wild",
+          "raw",
+          "smoked",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3183: Fish, salmon, atlantic, farmed, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-tuna",
+      "lockedIdentity": {
+        "fr": "Thon à nageoires jaunes cuit au four ou grillé",
+        "en": "Yellowfin tuna, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "bluefin",
+          "skipjack"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de thon jaune cuit",
+        "labelEn": "45 g cooked yellowfin tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3167",
+        "matchKeywordsEn": [
+          "Fish, tuna, yellowfin, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, tuna, yellowfin, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "bluefin",
+          "skipjack"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3167: Fish, tuna, yellowfin, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "lockedIdentity": {
+        "fr": "Thon pâle en conserve dans l’eau, égoutté, sans sel ajouté",
+        "en": "Light tuna canned in water, drained, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "oil",
+          "white tuna",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de thon pâle en conserve égoutté",
+        "labelEn": "45 g canned drained light tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3131",
+        "matchKeywordsEn": [
+          "Fish, tuna, light, canned in water, drained, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Fish, tuna, light, canned in water, drained, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "oil",
+          "white tuna",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3131: Fish, tuna, light, canned in water, drained, unsalted."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-canned-fish-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-tilapia",
+      "lockedIdentity": {
+        "fr": "Tilapia cuit au four ou grillé",
+        "en": "Tilapia, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried",
+          "breaded"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de tilapia cuit",
+        "labelEn": "45 g cooked tilapia",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5967",
+        "matchKeywordsEn": [
+          "Fish, tilapia, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, tilapia, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried",
+          "breaded"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5967: Fish, tilapia, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-rainbow-trout",
+      "lockedIdentity": {
+        "fr": "Truite arc-en-ciel d’élevage cuite au four ou grillée",
+        "en": "Farmed rainbow trout, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "wild",
+          "raw",
+          "smoked",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de truite arc-en-ciel cuite",
+        "labelEn": "30 g cooked farmed rainbow trout",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3187",
+        "matchKeywordsEn": [
+          "Fish, trout, rainbow, farmed, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, trout, rainbow, farmed, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "wild",
+          "raw",
+          "smoked",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3187: Fish, trout, rainbow, farmed, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-turbot",
+      "lockedIdentity": {
+        "fr": "Turbot européen cuit au four ou grillé",
+        "en": "European turbot, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "greenland halibut"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de turbot cuit",
+        "labelEn": "45 g cooked European turbot",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3168",
+        "matchKeywordsEn": [
+          "Fish, turbot, European, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, turbot, European, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "greenland halibut"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3168: Fish, turbot, European, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-halibut",
+      "lockedIdentity": {
+        "fr": "Flétan de l’Atlantique ou du Pacifique cuit au four ou grillé",
+        "en": "Atlantic or Pacific halibut, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "greenland",
+          "turbot"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de flétan cuit",
+        "labelEn": "45 g cooked halibut",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3012",
+        "matchKeywordsEn": [
+          "Fish, halibut, Atlantic or Pacific, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, halibut, Atlantic or Pacific, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "greenland",
+          "turbot"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3012: Fish, halibut, Atlantic or Pacific, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "poissons-fruits-mer-canned-anchovies-in-water",
+      "lockedIdentity": {
+        "fr": "Anchois européens en conserve dans l’huile d’olive, égouttés",
+        "en": "European anchovies canned in olive oil, drained",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "water packed",
+          "paste"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g d’anchois en conserve égouttés",
+        "labelEn": "30 g canned drained anchovies",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2985",
+        "matchKeywordsEn": [
+          "Fish, anchovy, european, canned with olive oil, drained solids"
+        ],
+        "mustContainConcepts": [
+          "Fish, anchovy, european, canned with olive oil, drained solids"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "water packed",
+          "paste"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2985: Fish, anchovy, european, canned with olive oil, drained solids."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-sockeye-salmon",
+      "lockedIdentity": {
+        "fr": "Saumon sockeye cuit au four ou grillé",
+        "en": "Sockeye salmon, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "canned",
+          "smoked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de saumon sockeye cuit",
+        "labelEn": "30 g cooked sockeye salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3053",
+        "matchKeywordsEn": [
+          "Fish, salmon, sockeye (red), baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, salmon, sockeye (red), baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "canned",
+          "smoked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3053: Fish, salmon, sockeye (red), baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fatty-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-smoked-chinook-salmon",
+      "lockedIdentity": {
+        "fr": "Saumon quinnat fumé",
+        "en": "Smoked Chinook salmon",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "raw",
+          "lox",
+          "baked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de saumon quinnat fumé",
+        "labelEn": "30 g smoked Chinook salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3050",
+        "matchKeywordsEn": [
+          "Fish, salmon, chinook (spring), smoked"
+        ],
+        "mustContainConcepts": [
+          "Fish, salmon, chinook (spring), smoked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "lox",
+          "baked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3050: Fish, salmon, chinook (spring), smoked."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-smoked-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-canned-pink-salmon",
+      "lockedIdentity": {
+        "fr": "Saumon rose en conserve, égoutté, sans peau ni arêtes",
+        "en": "Canned pink salmon, drained, skinless and boneless",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "with bones",
+          "with liquid",
+          "raw"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de saumon rose en conserve égoutté",
+        "labelEn": "45 g canned drained pink salmon",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7082",
+        "matchKeywordsEn": [
+          "Fish, salmon, pink, canned, drained solids, without skin and bones"
+        ],
+        "mustContainConcepts": [
+          "Fish, salmon, pink, canned, drained solids, without skin and bones"
+        ],
+        "mustNotContainConcepts": [
+          "with bones",
+          "with liquid",
+          "raw"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7082: Fish, salmon, pink, canned, drained solids, without skin and bones."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-canned-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-canned-white-tuna-water",
+      "lockedIdentity": {
+        "fr": "Thon blanc en conserve dans l’eau, égoutté, sans sel ajouté",
+        "en": "White tuna canned in water, drained, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "oil",
+          "light tuna",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de thon blanc en conserve égoutté",
+        "labelEn": "45 g canned drained white tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3133",
+        "matchKeywordsEn": [
+          "Fish, tuna, white, canned with water, drained, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Fish, tuna, white, canned with water, drained, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "oil",
+          "light tuna",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3133: Fish, tuna, white, canned with water, drained, unsalted."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-canned-fish-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-canned-light-tuna-oil",
+      "lockedIdentity": {
+        "fr": "Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté",
+        "en": "Light tuna canned in oil, drained, unsalted",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "water",
+          "white tuna",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de thon pâle dans l’huile, égoutté",
+        "labelEn": "45 g canned light tuna in oil, drained",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3214",
+        "matchKeywordsEn": [
+          "Fish, tuna, light, canned in oil, drained, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Fish, tuna, light, canned in oil, drained, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "water",
+          "white tuna",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3214: Fish, tuna, light, canned in oil, drained, unsalted."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-canned-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-alaska-pollock",
+      "lockedIdentity": {
+        "fr": "Goberge d’Alaska cuite au four ou grillée",
+        "en": "Alaska pollock, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "surimi",
+          "atlantic pollock"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de goberge d’Alaska cuite",
+        "labelEn": "45 g cooked Alaska pollock",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3040",
+        "matchKeywordsEn": [
+          "Fish, pollock, Alaska, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, pollock, Alaska, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "surimi",
+          "atlantic pollock"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3040: Fish, pollock, Alaska, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-octopus",
+      "lockedIdentity": {
+        "fr": "Poulpe bouilli ou cuit à la vapeur",
+        "en": "Common octopus, boiled or steamed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de poulpe cuit",
+        "labelEn": "45 g cooked octopus",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3176",
+        "matchKeywordsEn": [
+          "Mollusks, octopus, common, boiled or steamed"
+        ],
+        "mustContainConcepts": [
+          "Mollusks, octopus, common, boiled or steamed"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3176: Mollusks, octopus, common, boiled or steamed."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-mollusk-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-swordfish",
+      "lockedIdentity": {
+        "fr": "Espadon cuit au four ou grillé",
+        "en": "Swordfish, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "smoked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g d’espadon cuit",
+        "labelEn": "45 g cooked swordfish",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3076",
+        "matchKeywordsEn": [
+          "Fish, swordfish, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, swordfish, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "smoked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3076: Fish, swordfish, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fish-moderate-fat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-mahi-mahi",
+      "lockedIdentity": {
+        "fr": "Mahi-mahi cuit au four ou grillé",
+        "en": "Mahi-mahi, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de mahi-mahi cuit",
+        "labelEn": "45 g cooked mahi-mahi",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3141",
+        "matchKeywordsEn": [
+          "Fish, dolphinfish (mahimahi), baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, dolphinfish (mahimahi), baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3141: Fish, dolphinfish (mahimahi), baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lean-fish",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "poissons-fruits-mer-sea-bass",
+      "lockedIdentity": {
+        "fr": "Bar de mer cuit au four ou grillé",
+        "en": "Sea bass, baked or broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "freshwater bass",
+          "striped bass"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "45 g de bar de mer cuit",
+        "labelEn": "45 g cooked sea bass",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3057",
+        "matchKeywordsEn": [
+          "Fish, sea bass, mixed species, baked or broiled"
+        ],
+        "mustContainConcepts": [
+          "Fish, sea bass, mixed species, baked or broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "freshwater bass",
+          "striped bass"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3057: Fish, sea bass, mixed species, baked or broiled."
+      },
+      "classification": {
+        "displayCategory": "poissons_fruits_mer",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-fish-moderate-fat",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 26 entrées existantes sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "Les états de préparation et formes de conserve sont précis et traçables.",
+    "Les 211 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 247 aliments.",
+    "La catégorie Poissons et fruits de mer contient exactement 36 aliments.",
+    "Les 36 aliments de la catégorie sont verified après application.",
+    "Le nombre total d’aliments verified passe de 128 à 164.",
+    "Chaque entrée possède son propre recordId CNF, sa conversion, son historique et sa transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 36 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}
