@@ -83,62 +83,70 @@ function fixturePayload() {
 }
 
 function eligibleFixturePayload() {
-  const payload = fixturePayload();
-  const food = payload.foods[0];
-  payload.foods = [food];
-  payload.meta.totalFoods = 1;
-  food.id = 'ui-eligible-verify';
-  food.displayCategory = 'feculents';
-  food.calculationGroup = 'starch';
-  food.exchangeProfileId = 'starch-cooked-grain';
-  food.names = { fr: 'Quinoa cuit', en: 'Cooked quinoa' };
-  food.portion = {
-    labelFr: '100 g de quinoa cuit',
-    labelEn: '100 g cooked quinoa',
-    amount: 100,
-    unit: 'g',
-    grams: 100,
-    preparationState: 'cooked',
-    brandSpecific: false,
-    brand: null,
-  };
-  food.nutrients = {
-    proteinG: 4,
-    carbsG: 21,
-    fiberG: 2,
-    fatG: 2,
-    saturatedFatG: 0.2,
-    polyunsaturatedFatG: 1,
-    monounsaturatedFatG: 0.6,
-    declaredKcal: 118,
-  };
-  food.source = {
-    type: 'canadian_nutrient_file',
-    name: 'Canadian Nutrient File',
-    recordId: 'CNF-UI-123',
-    url: null,
-    doi: null,
-    accessedAt: '2026-07-29',
-    servingDescription: '100 g cooked',
-    nutrientsBasis: 'as_consumed',
-    notes: null,
-    brand: null,
-    productName: null,
-    labelServingSize: null,
-    evidenceRef: null,
-  };
-  food.classificationStatus = 'approved';
-  food.version = 1;
-  food.history = [];
-  food.auditResolutions = [];
-  food.verification = {
+  // Build a clean shell — never clone a live verified food (history/version leakage).
+  const food = {
+    id: 'ui-eligible-verify',
+    displayCategory: 'feculents',
+    calculationGroup: 'starch',
+    exchangeProfileId: 'starch-cooked-grain',
+    classificationStatus: 'approved',
+    names: { fr: 'Quinoa cuit', en: 'Cooked quinoa' },
+    portion: {
+      labelFr: '100 g de quinoa cuit',
+      labelEn: '100 g cooked quinoa',
+      amount: 100,
+      unit: 'g',
+      grams: 100,
+      preparationState: 'cooked',
+      brandSpecific: false,
+      brand: null,
+    },
+    nutrients: {
+      proteinG: 4,
+      carbsG: 21,
+      fiberG: 2,
+      fatG: 2,
+      saturatedFatG: 0.2,
+      polyunsaturatedFatG: 1,
+      monounsaturatedFatG: 0.6,
+      declaredKcal: 118,
+    },
+    legacySource: { reference: 'ui-fixture', referenceId: 'ui-eligible-verify' },
+    source: {
+      type: 'canadian_nutrient_file',
+      name: 'Canadian Nutrient File',
+      recordId: 'CNF-UI-123',
+      url: null,
+      doi: null,
+      accessedAt: '2026-07-29',
+      servingDescription: '100 g cooked',
+      nutrientsBasis: 'as_consumed',
+      notes: null,
+      brand: null,
+      productName: null,
+      labelServingSize: null,
+      evidenceRef: null,
+    },
     status: 'unverified',
-    verifiedAt: null,
-    verifiedBy: null,
-    datasetVersion: null,
+    version: 1,
+    verification: {
+      status: 'unverified',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    },
+    auditResolutions: [],
+    history: [],
   };
-  food.status = 'unverified';
-  return payload;
+  return {
+    meta: {
+      schemaVersion: 2,
+      totalFoods: 1,
+      notes: ['browser-eligible-verify-fixture'],
+      importPolicy: 'test-only',
+    },
+    foods: [food],
+  };
 }
 
 let serverInfo;
