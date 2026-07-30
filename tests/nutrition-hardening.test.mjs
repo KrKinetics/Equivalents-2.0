@@ -11,8 +11,13 @@ import {
   auditDataset,
   auditFood,
   canMarkVerified,
+  getResolutionState,
   validateSource,
 } from '../src/lib/food-audit-core.mjs';
+import { applyFoodChange } from '../src/lib/food-change.mjs';
+import { computeFoodsDataHash } from '../src/lib/data-hash.mjs';
+import { assertApplyGovernance, bumpSemver } from '../src/lib/dataset-governance.mjs';
+import { validateReviewImport } from '../src/lib/review-import.mjs';
 import { calculateGroupStatistics } from '../src/lib/group-statistics.mjs';
 import {
   parsePortion,
@@ -27,6 +32,7 @@ import {
   TOTAL_FOODS_EXPECTED,
 } from '../src/lib/nutrition-constants.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
+import { getFoodStatus } from '../src/lib/food-status.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
@@ -367,8 +373,30 @@ test('data:apply dry-run writes nothing and real apply creates only temporary ba
   for (const food of applicablePayload.foods) {
     if (food.portion.unit === 'scoop' && food.portion.grams == null) {
       food.portion.grams = 30;
+      food.version = (food.version || 1) + 1;
+      food.history = [
+        ...(food.history || []),
+        {
+          timestamp: new Date().toISOString(),
+          by: 'test',
+          action: 'update',
+          path: 'portion.grams',
+          oldValue: null,
+          newValue: 30,
+          reason: 'test scoop grams',
+          versionBefore: food.version - 1,
+          versionAfter: food.version,
+        },
+      ];
     }
   }
+  applicablePayload.meta.baseDataHash = computeFoodsDataHash(
+    JSON.parse(fs.readFileSync(sandbox.data, 'utf8')).foods
+  );
+  applicablePayload.meta.exportDataHash = computeFoodsDataHash(applicablePayload.foods);
+  applicablePayload.meta.exportedAt = new Date().toISOString();
+  applicablePayload.meta.exportedBy = 'test';
+  applicablePayload.meta.sourceDatasetVersion = '1.0.0';
   fs.writeFileSync(incoming, JSON.stringify(applicablePayload), 'utf8');
   const targetBefore = hashFile(sandbox.data);
   const versionBefore = hashFile(sandbox.version);
@@ -438,6 +466,145 @@ test('foodsWithWarnings counts all warning foods and warning-only remains disjoi
   assert.equal(result.summary.foodsWithWarnings, warningFoods);
   assert.equal(result.summary.foodsWithWarnings, 207);
   assert.equal(result.summary.foodsWithWarningsOnly, warningOnlyFoods);
+});
+
+test('absurd CNF source values are refused by validateSource and schema', () => {
+  const absurd = {
+    type: 'canadian_nutrient_file',
+    name: 'x',
+    recordId: 'x',
+    accessedAt: 'not-a-date',
+    servingDescription: 'x',
+    nutrientsBasis: 'banana',
+  };
+  const result = validateSource(cleanFood({ source: absurd }));
+  assert.equal(result.ok, false);
+  const codes = new Set(result.alerts.map((a) => a.code));
+  assert.ok(codes.has('INSUFFICIENT_SOURCE') || codes.has('SOURCE_RECORD_ID_MISSING'));
+  assert.ok(codes.has('SOURCE_ACCESS_DATE_MISSING'));
+  assert.ok(codes.has('SOURCE_SERVING_MISSING'));
+  assert.ok(codes.has('SOURCE_BASIS_MISSING'));
+
+  const payload = clone(realPayload);
+  payload.foods[0] = cleanFood({ id: payload.foods[0].id, source: absurd });
+  // keep required structural fields from original id path — cleanFood replaces fully
+  payload.foods[0].id = realPayload.foods[0].id;
+  payload.foods[0].legacySectionKey = realPayload.foods[0].legacySectionKey;
+  payload.foods[0].legacyIndex = realPayload.foods[0].legacyIndex;
+  const validation = validateFoodEquivalentsPayload(payload);
+  assert.equal(validation.ok, false);
+  assert.ok(
+    validation.errors.some((e) => /nutrientsBasis|accessedAt|enum|pattern/i.test(`${e.path} ${e.message}`))
+  );
+});
+
+test('resolution without fieldsHash does not neutralize KCAL_DIFF_HIGH', () => {
+  const food = cleanFood({
+    nutrients: {
+      proteinG: 4,
+      carbsG: 21,
+      fiberG: 2,
+      fatG: 2,
+      saturatedFatG: 0.2,
+      polyunsaturatedFatG: 1,
+      monounsaturatedFatG: 0.6,
+      declaredKcal: 500,
+    },
+    auditResolutions: [
+      {
+        code: 'KCAL_DIFF_HIGH',
+        reason: 'Label uses different rounding',
+        approvedBy: 'Reviewer',
+        approvedAt: '2026-07-29',
+        sourceReferenceId: 'CNF-123',
+        // fieldsHash intentionally omitted
+      },
+    ],
+  });
+  const state = getResolutionState(food, 'KCAL_DIFF_HIGH');
+  assert.equal(state.status, 'invalid');
+  const audited = auditFood(food);
+  assert.ok(audited.alerts.some((a) => a.code === 'KCAL_DIFF_HIGH' && a.severity === 'ERROR'));
+  assert.equal(audited.errorCount > 0, true);
+  assert.equal(
+    audited.alerts.find((a) => a.code === 'KCAL_DIFF_HIGH')?.resolutionStatus,
+    'invalid'
+  );
+});
+
+test('material nutrient edit auto-unverifies a verified food', () => {
+  const food = cleanFood({
+    status: 'verified',
+    verification: {
+      status: 'verified',
+      verifiedAt: '2026-07-29T00:00:00.000Z',
+      verifiedBy: 'Reviewer',
+      datasetVersion: '1.0.0',
+    },
+  });
+  assert.equal(getFoodStatus(food), 'verified');
+  const result = applyFoodChange(food, {
+    path: 'nutrients.proteinG',
+    value: 5,
+    by: 'coach',
+    reason: 'manual correction draft',
+  });
+  assert.equal(result.unverified, true);
+  assert.equal(getFoodStatus(food), 'unverified');
+  assert.equal(food.nutrients.proteinG, 5);
+  assert.ok(food.history.some((h) => h.action === 'auto_unverify'));
+  assert.ok(
+    food.history.some(
+      (h) => h.previousVerification?.verifiedBy === 'Reviewer'
+    )
+  );
+});
+
+test('stale export cannot overwrite a newer base without --allow-stale', () => {
+  const sandbox = makeSandbox('stale');
+  const current = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  const staleExport = clone(current);
+  staleExport.meta.baseDataHash = '0'.repeat(64);
+  staleExport.meta.exportDataHash = computeFoodsDataHash(staleExport.foods);
+  const incoming = path.join(sandbox.root, 'stale.json');
+  fs.writeFileSync(incoming, JSON.stringify(staleExport), 'utf8');
+  const before = hashFile(sandbox.data);
+  const refused = runScript('scripts/apply-food-equivalents.mjs', [incoming], sandbox);
+  assert.notEqual(refused.status, 0);
+  assert.match(`${refused.stdout}\n${refused.stderr}`, /périmé|stale|baseDataHash/i);
+  assert.equal(hashFile(sandbox.data), before);
+
+  const governance = assertApplyGovernance(current, staleExport, {});
+  assert.equal(governance.ok, false);
+});
+
+test('review import refuses duplicate IDs before initFrom', () => {
+  const payload = {
+    meta: { schemaVersion: 2, totalFoods: 2 },
+    foods: [cleanFood({ id: 'dup' }), cleanFood({ id: 'dup', names: { fr: 'B', en: 'B' } })],
+  };
+  const gate = validateReviewImport(payload);
+  assert.equal(gate.ok, false);
+  assert.deepEqual(gate.duplicateIds, ['dup']);
+  const app = fs.readFileSync(path.join(ROOT, 'tools', 'food-data-review-app.js'), 'utf8');
+  assert.match(app, /validateReviewImport/);
+  assert.match(app, /DUPLICATE_ID/);
+});
+
+test('schema rejects negative detailed fat components', () => {
+  const payload = clone(realPayload);
+  payload.foods[0].nutrients.saturatedFatG = -1;
+  payload.foods[0].nutrients.polyunsaturatedFatG = -0.5;
+  payload.foods[0].nutrients.monounsaturatedFatG = -2;
+  const validation = validateFoodEquivalentsPayload(payload);
+  assert.equal(validation.ok, false);
+  assert.ok(validation.errors.some((e) => /saturatedFatG|minimum/i.test(`${e.path} ${e.message}`)));
+});
+
+test('semver bump policy helpers work', () => {
+  assert.equal(bumpSemver('1.0.0', 'patch'), '1.0.1');
+  assert.equal(bumpSemver('1.0.0', 'minor'), '1.1.0');
+  assert.equal(bumpSemver('1.0.0', 'major'), '2.0.0');
 });
 
 test('production files retain their exact before-suite hashes', () => {

@@ -8,6 +8,16 @@ import {
 } from '../src/lib/food-audit-core.mjs';
 import { getFoodStatus, setFoodStatus } from '../src/lib/food-status.mjs';
 import {
+  applyFoodChange,
+  beginPendingEdits,
+  commitPendingEdits,
+  queuePendingEdit,
+  getPath,
+  setPath,
+} from '../src/lib/food-change.mjs';
+import { validateReviewImport } from '../src/lib/review-import.mjs';
+import { stableStringify } from '../src/lib/data-hash-lite.mjs';
+import {
   DISPLAY_CATEGORIES,
   CALCULATION_GROUPS,
   PORTION_UNITS,
@@ -25,6 +35,11 @@ const state = {
   dirty: new Set(),
   originals: new Map(),
   lastExportAt: null,
+  lastExportHash: null,
+  baseDataHash: null,
+  sourceDatasetVersion: null,
+  pendingByFood: new Map(),
+  commitTimers: new Map(),
 };
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -38,6 +53,17 @@ function esc(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+async function sha256Hex(text) {
+  const data = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function hashFoods(list) {
+  const normalized = clone(list || []).sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  return sha256Hex(stableStringify(normalized));
 }
 
 function ensureShapes(food) {
@@ -61,17 +87,21 @@ function ensureShapes(food) {
   food.exchangeProfileId ??= null;
   food.classificationStatus ||= 'pending';
   if (food.portion?.grams === '') food.portion.grams = null;
+  if (!Number.isInteger(food.version)) food.version = 1;
 }
 
 function refreshHeader() {
   const header = document.getElementById('headerMeta');
   if (!header || !state.data) return;
+  const sinceLoad = state.dirty.size;
   const exported = state.lastExportAt
     ? ` · dernier export ${new Date(state.lastExportAt).toLocaleString('fr-CA')}`
-    : '';
+    : ' · jamais exporté';
+  const hash = state.lastExportHash ? ` · hash ${state.lastExportHash.slice(0, 12)}` : '';
   header.textContent =
     `${foods().length} aliments · schema ${state.data.meta?.schemaVersion ?? '?'} · ` +
-    `${state.dirty.size} modification(s) non exportée(s)${exported}`;
+    `${sinceLoad} modification(s) depuis chargement/export` +
+    `${exported}${hash}`;
 }
 
 function refreshAudit() {
@@ -87,48 +117,102 @@ function updateDirty(food) {
   refreshHeader();
 }
 
-function invalidateVerifiedAfterEdit(food) {
-  if (getFoodStatus(food) !== 'verified') return false;
-  const item = state.audit.byId[food.id];
-  if (item && canMarkVerified(food, item.alerts)) return false;
-  setFoodStatus(food, 'unverified');
-  food.history.push({
-    at: new Date().toISOString(),
-    action: 'auto_unverify',
-    reason: 'Edit made the verified status invalid under the shared audit rules',
-  });
-  refreshAudit();
-  return true;
-}
-
-function afterMutation(food, { checkVerified = true } = {}) {
+function afterMutation(food) {
   ensureShapes(food);
   refreshAudit();
-  if (checkVerified) invalidateVerifiedAfterEdit(food);
   updateDirty(food);
   renderList();
   refreshKcalAndAlerts();
 }
 
-function initFrom(payload) {
-  if (!payload || !Array.isArray(payload.foods)) throw new Error('JSON invalide: foods[] requis');
-  state.data = clone(payload);
+function getPending(food) {
+  let pending = state.pendingByFood.get(food.id);
+  if (!pending) {
+    pending = beginPendingEdits();
+    state.pendingByFood.set(food.id, pending);
+  }
+  return pending;
+}
+
+function scheduleCommit(food) {
+  const existing = state.commitTimers.get(food.id);
+  if (existing) clearTimeout(existing);
+  const timer = setTimeout(() => commitFood(food), 600);
+  state.commitTimers.set(food.id, timer);
+}
+
+function commitFood(food, meta = {}) {
+  const timer = state.commitTimers.get(food.id);
+  if (timer) {
+    clearTimeout(timer);
+    state.commitTimers.delete(food.id);
+  }
+  const pending = state.pendingByFood.get(food.id);
+  if (!pending?.patches?.length) {
+    afterMutation(food);
+    return;
+  }
+  commitPendingEdits(food, pending, {
+    by: meta.by || 'coach',
+    action: meta.action || 'update',
+    reason: meta.reason || null,
+  });
+  afterMutation(food);
+}
+
+function applyLiveEdit(food, path, value) {
+  const pending = getPending(food);
+  if (!(path in pending.baselines)) {
+    pending.baselines[path] = clone(getPath(food, path));
+  }
+  queuePendingEdit(pending, path, value);
+  setPath(food, path, value);
+  scheduleCommit(food);
+  updateDirty(food);
+  refreshAudit();
+  refreshKcalAndAlerts();
+}
+
+function initFrom(payload, options = {}) {
+  const gate = validateReviewImport(payload);
+  if (!gate.ok) {
+    throw new Error(gate.message || 'Import refusé');
+  }
+  // Refuse duplicates before touching state
+  state.data = null;
   state.dirty.clear();
   state.originals.clear();
+  state.pendingByFood.clear();
+  state.commitTimers.forEach((t) => clearTimeout(t));
+  state.commitTimers.clear();
+
+  state.data = clone(payload);
   state.selectedId = null;
-  state.lastExportAt = null;
+  if (!options.preserveExportMeta) {
+    state.lastExportAt = null;
+    state.lastExportHash = null;
+  }
   for (const food of foods()) {
     ensureShapes(food);
     state.originals.set(food.id, JSON.stringify(food));
   }
-  refreshAudit();
-
-  const categories = [...new Set(foods().map((food) => food.displayCategory))].sort();
-  document.getElementById('filterCat').innerHTML =
-    '<option value="">Toutes catégories</option>' +
-    categories.map((category) => `<option value="${esc(category)}">${esc(category)}</option>`).join('');
-  renderList();
-  renderEditor();
+  // base hash = content loaded into the UI
+  return hashFoods(foods()).then((hash) => {
+    state.baseDataHash = options.baseDataHash || hash;
+    state.sourceDatasetVersion =
+      options.sourceDatasetVersion ||
+      window.FOOD_AUDIT_SUMMARY?.version?.version ||
+      state.data.meta?.sourceDatasetVersion ||
+      null;
+    refreshAudit();
+    const categories = [...new Set(foods().map((food) => food.displayCategory))].sort();
+    document.getElementById('filterCat').innerHTML =
+      '<option value="">Toutes catégories</option>' +
+      categories.map((category) => `<option value="${esc(category)}">${esc(category)}</option>`).join('');
+    renderList();
+    renderEditor();
+    return state;
+  });
 }
 
 function renderList() {
@@ -163,6 +247,10 @@ function renderList() {
         ${dirty ? '<span class="badge dirty">modifié</span>' : ''}
       </div>`;
     element.onclick = () => {
+      if (state.selectedId && state.selectedId !== food.id) {
+        const prev = foods().find((f) => f.id === state.selectedId);
+        if (prev) commitFood(prev);
+      }
       state.selectedId = food.id;
       renderList();
       renderEditor();
@@ -171,7 +259,7 @@ function renderList() {
   }
 }
 
-function field(label, value, onChange, type = 'text', options = null) {
+function field(label, pathOrValue, onChange, type = 'text', options = null) {
   const wrapper = document.createElement('div');
   wrapper.className = 'field';
   const caption = document.createElement('label');
@@ -186,15 +274,31 @@ function field(label, value, onChange, type = 'text', options = null) {
       input.appendChild(element);
     }
   } else input.type = type;
+
+  const value = typeof pathOrValue === 'function' ? null : pathOrValue;
   input.value = value == null ? '' : value;
-  input.addEventListener(type === 'select' ? 'change' : 'input', () => {
+
+  const emit = () => {
     let next = input.value;
     if (type === 'number') next = next === '' ? null : Number(next);
     else if (type === 'select' && next === '') next = null;
     onChange(next);
     wrapper.classList.add('changed');
-    afterMutation(selected());
-  });
+  };
+
+  if (type === 'select') {
+    input.addEventListener('change', () => {
+      emit();
+      const food = selected();
+      if (food) commitFood(food);
+    });
+  } else {
+    input.addEventListener('input', emit);
+    input.addEventListener('blur', () => {
+      const food = selected();
+      if (food) commitFood(food);
+    });
+  }
   wrapper.append(caption, input);
   return wrapper;
 }
@@ -222,9 +326,10 @@ function refreshKcalAndAlerts() {
   const alerts = document.getElementById('alertList');
   if (alerts) {
     alerts.innerHTML = item.alerts.map((alert) => {
-      const resolution = alert.resolutionStatus === 'resolved_documented'
-        ? ' — résolue et documentée'
-        : alert.resolutionStatus === 'stale' ? ' — résolution périmée' : '';
+      let resolution = '';
+      if (alert.resolutionStatus === 'resolved_documented') resolution = ' — résolue et documentée';
+      else if (alert.resolutionStatus === 'stale') resolution = ' — résolution périmée (stale)';
+      else if (alert.resolutionStatus === 'invalid') resolution = ' — résolution invalide';
       return `<li class="${esc(alert.severity[0])}">[${esc(alert.severity)}] ${esc(alert.code)}: ${esc(alert.message)}${resolution}</li>`;
     }).join('') || '<li>Aucune alerte</li>';
   }
@@ -280,25 +385,28 @@ function renderResolutionSection(food, item) {
   save.textContent = 'Enregistrer la résolution';
   save.style.marginTop = '12px';
   save.onclick = () => {
+    commitFood(food);
     if (!values.reason.trim() || !values.approvedBy.trim() || !values.approvedAt || !values.sourceReferenceId.trim()) {
-      alert('Tous les champs de résolution sont requis.');
+      alert('Tous les champs de résolution sont requis (fieldsHash sera calculé automatiquement).');
       return;
     }
-    food.auditResolutions.push({
+    const resolution = {
       code: values.code,
       reason: values.reason.trim(),
       approvedBy: values.approvedBy.trim(),
       approvedAt: values.approvedAt,
       sourceReferenceId: values.sourceReferenceId.trim(),
       fieldsHash: resolutionSnapshotHash(values.code, food),
-    });
-    food.version = (food.version || 1) + 1;
-    food.history.push({
-      at: new Date().toISOString(),
-      action: 'document_audit_resolution',
-      code: values.code,
+      createdAt: new Date().toISOString(),
+      version: 1,
+    };
+    applyFoodChange(food, {
+      path: 'auditResolutions',
+      value: [...(food.auditResolutions || []), resolution],
       by: values.approvedBy.trim(),
-      version: food.version,
+      action: 'document_audit_resolution',
+      reason: values.reason.trim(),
+      administrative: true,
     });
     afterMutation(food);
     renderEditor();
@@ -334,18 +442,28 @@ function renderEditor() {
   identityGrid.append(
     id,
     field('Statut (manuel)', MANUAL_STATUSES.includes(getFoodStatus(food)) ? getFoodStatus(food) : 'unverified', (value) => {
+      commitFood(food);
+      applyFoodChange(food, {
+        patches: [
+          { path: 'status', value },
+          { path: 'verification.status', value },
+        ],
+        by: 'coach',
+        action: 'manual_status',
+        administrative: value === 'rejected' ? false : true,
+      });
       setFoodStatus(food, value);
-      food.history.push({ at: new Date().toISOString(), action: 'manual_status', status: value });
+      afterMutation(food);
     }, 'select', MANUAL_STATUSES),
-    field('Nom FR', food.names.fr, (value) => { food.names.fr = value; }),
-    field('Nom EN', food.names.en, (value) => { food.names.en = value; }),
-    field('Catégorie visible', food.displayCategory, (value) => { food.displayCategory = value; }, 'select', DISPLAY_CATEGORIES),
-    field('Groupe calcul', food.calculationGroup, (value) => { food.calculationGroup = value; }, 'select', CALCULATION_GROUPS),
-    field('exchangeProfileId', food.exchangeProfileId, (value) => { food.exchangeProfileId = value; }),
-    field('classificationStatus', food.classificationStatus, (value) => { food.classificationStatus = value; }, 'select', CLASSIFICATION_STATUSES),
+    field('Nom FR', food.names.fr, (value) => applyLiveEdit(food, 'names.fr', value)),
+    field('Nom EN', food.names.en, (value) => applyLiveEdit(food, 'names.en', value)),
+    field('Catégorie visible', food.displayCategory, (value) => applyLiveEdit(food, 'displayCategory', value), 'select', DISPLAY_CATEGORIES),
+    field('Groupe calcul', food.calculationGroup, (value) => applyLiveEdit(food, 'calculationGroup', value), 'select', CALCULATION_GROUPS),
+    field('exchangeProfileId', food.exchangeProfileId, (value) => applyLiveEdit(food, 'exchangeProfileId', value)),
+    field('classificationStatus', food.classificationStatus, (value) => applyLiveEdit(food, 'classificationStatus', value), 'select', CLASSIFICATION_STATUSES),
   );
   if (getFoodStatus(food) === 'verified') {
-    identityGrid.insertAdjacentHTML('beforeend', '<p class="verified-note">Statut actuel: verified — utilisez les boutons pour le modifier.</p>');
+    identityGrid.insertAdjacentHTML('beforeend', '<p class="verified-note">Statut actuel: verified — toute modification matérielle repasse à unverified.</p>');
   }
   identity.appendChild(identityGrid);
   main.appendChild(identity);
@@ -361,13 +479,13 @@ function renderEditor() {
   const portionGrid = document.createElement('div');
   portionGrid.className = 'grid';
   portionGrid.append(
-    field('Label FR', food.portion.labelFr, (value) => { food.portion.labelFr = value; }),
-    field('Label EN', food.portion.labelEn, (value) => { food.portion.labelEn = value; }),
-    field('Quantité', food.portion.amount, (value) => { food.portion.amount = value; }, 'number'),
-    field('Unité', food.portion.unit, (value) => { food.portion.unit = value; }, 'select', PORTION_UNITS),
-    field('Grammes', food.portion.grams, (value) => { food.portion.grams = value; }, 'number'),
-    field('État préparation', food.portion.preparationState, (value) => { food.portion.preparationState = value; }, 'select', [null, ...PREPARATION_STATES]),
-    field('Marque', food.portion.brand, (value) => { food.portion.brand = value; }),
+    field('Label FR', food.portion.labelFr, (value) => applyLiveEdit(food, 'portion.labelFr', value)),
+    field('Label EN', food.portion.labelEn, (value) => applyLiveEdit(food, 'portion.labelEn', value)),
+    field('Quantité', food.portion.amount, (value) => applyLiveEdit(food, 'portion.amount', value), 'number'),
+    field('Unité', food.portion.unit, (value) => applyLiveEdit(food, 'portion.unit', value), 'select', PORTION_UNITS),
+    field('Grammes', food.portion.grams, (value) => applyLiveEdit(food, 'portion.grams', value), 'number'),
+    field('État préparation', food.portion.preparationState, (value) => applyLiveEdit(food, 'portion.preparationState', value), 'select', [null, ...PREPARATION_STATES]),
+    field('Marque', food.portion.brand, (value) => applyLiveEdit(food, 'portion.brand', value)),
   );
   portion.appendChild(portionGrid);
   main.appendChild(portion);
@@ -378,14 +496,14 @@ function renderEditor() {
   const nutrientGrid = document.createElement('div');
   nutrientGrid.className = 'grid';
   nutrientGrid.append(
-    field('Protéines (g)', food.nutrients.proteinG, (value) => { food.nutrients.proteinG = value; }, 'number'),
-    field('Glucides (g)', food.nutrients.carbsG, (value) => { food.nutrients.carbsG = value; }, 'number'),
-    field('Fibres (g)', food.nutrients.fiberG, (value) => { food.nutrients.fiberG = value; }, 'number'),
-    field('Lipides totaux (g)', food.nutrients.fatG, (value) => { food.nutrients.fatG = value; }, 'number'),
-    field('Saturés (g)', food.nutrients.saturatedFatG, (value) => { food.nutrients.saturatedFatG = value; }, 'number'),
-    field('Poly (g)', food.nutrients.polyunsaturatedFatG, (value) => { food.nutrients.polyunsaturatedFatG = value; }, 'number'),
-    field('Mono (g)', food.nutrients.monounsaturatedFatG, (value) => { food.nutrients.monounsaturatedFatG = value; }, 'number'),
-    field('Calories déclarées', food.nutrients.declaredKcal, (value) => { food.nutrients.declaredKcal = value; }, 'number'),
+    field('Protéines (g)', food.nutrients.proteinG, (value) => applyLiveEdit(food, 'nutrients.proteinG', value), 'number'),
+    field('Glucides (g)', food.nutrients.carbsG, (value) => applyLiveEdit(food, 'nutrients.carbsG', value), 'number'),
+    field('Fibres (g)', food.nutrients.fiberG, (value) => applyLiveEdit(food, 'nutrients.fiberG', value), 'number'),
+    field('Lipides totaux (g)', food.nutrients.fatG, (value) => applyLiveEdit(food, 'nutrients.fatG', value), 'number'),
+    field('Saturés (g)', food.nutrients.saturatedFatG, (value) => applyLiveEdit(food, 'nutrients.saturatedFatG', value), 'number'),
+    field('Poly (g)', food.nutrients.polyunsaturatedFatG, (value) => applyLiveEdit(food, 'nutrients.polyunsaturatedFatG', value), 'number'),
+    field('Mono (g)', food.nutrients.monounsaturatedFatG, (value) => applyLiveEdit(food, 'nutrients.monounsaturatedFatG', value), 'number'),
+    field('Calories déclarées', food.nutrients.declaredKcal, (value) => applyLiveEdit(food, 'nutrients.declaredKcal', value), 'number'),
   );
   nutrients.appendChild(nutrientGrid);
   main.appendChild(nutrients);
@@ -396,19 +514,19 @@ function renderEditor() {
   const sourceGrid = document.createElement('div');
   sourceGrid.className = 'grid';
   sourceGrid.append(
-    field('source.type', food.source.type, (value) => { food.source.type = value; }, 'select', [null, ...SOURCE_TYPES]),
-    field('source.name', food.source.name, (value) => { food.source.name = value; }),
-    field('recordId', food.source.recordId, (value) => { food.source.recordId = value; }),
-    field('url', food.source.url, (value) => { food.source.url = value; }),
-    field('doi', food.source.doi, (value) => { food.source.doi = value; }),
-    field('accessedAt', food.source.accessedAt, (value) => { food.source.accessedAt = value; }, 'date'),
-    field('servingDescription', food.source.servingDescription, (value) => { food.source.servingDescription = value; }),
-    field('nutrientsBasis', food.source.nutrientsBasis, (value) => { food.source.nutrientsBasis = value; }, 'select', [null, ...NUTRIENTS_BASIS]),
-    field('notes', food.source.notes, (value) => { food.source.notes = value; }, 'textarea'),
-    field('brand (étiquette)', food.source.brand, (value) => { food.source.brand = value; }),
-    field('productName', food.source.productName, (value) => { food.source.productName = value; }),
-    field('labelServingSize', food.source.labelServingSize, (value) => { food.source.labelServingSize = value; }),
-    field('evidenceRef', food.source.evidenceRef, (value) => { food.source.evidenceRef = value; }),
+    field('source.type', food.source.type, (value) => applyLiveEdit(food, 'source.type', value), 'select', [null, ...SOURCE_TYPES]),
+    field('source.name', food.source.name, (value) => applyLiveEdit(food, 'source.name', value)),
+    field('recordId', food.source.recordId, (value) => applyLiveEdit(food, 'source.recordId', value)),
+    field('url', food.source.url, (value) => applyLiveEdit(food, 'source.url', value)),
+    field('doi', food.source.doi, (value) => applyLiveEdit(food, 'source.doi', value)),
+    field('accessedAt', food.source.accessedAt, (value) => applyLiveEdit(food, 'source.accessedAt', value), 'date'),
+    field('servingDescription', food.source.servingDescription, (value) => applyLiveEdit(food, 'source.servingDescription', value)),
+    field('nutrientsBasis', food.source.nutrientsBasis, (value) => applyLiveEdit(food, 'source.nutrientsBasis', value), 'select', [null, ...NUTRIENTS_BASIS]),
+    field('notes', food.source.notes, (value) => applyLiveEdit(food, 'source.notes', value), 'textarea'),
+    field('brand (étiquette)', food.source.brand, (value) => applyLiveEdit(food, 'source.brand', value)),
+    field('productName', food.source.productName, (value) => applyLiveEdit(food, 'source.productName', value)),
+    field('labelServingSize', food.source.labelServingSize, (value) => applyLiveEdit(food, 'source.labelServingSize', value)),
+    field('evidenceRef', food.source.evidenceRef, (value) => applyLiveEdit(food, 'source.evidenceRef', value)),
   );
   source.appendChild(sourceGrid);
   source.insertAdjacentHTML('beforeend',
@@ -418,14 +536,35 @@ function renderEditor() {
   refreshKcalAndAlerts();
 }
 
-function exportCheckpoint() {
-  state.lastExportAt = new Date().toISOString();
+async function exportCheckpoint() {
+  for (const food of foods()) commitFood(food);
+  const exportDataHash = await hashFoods(foods());
+  const exportedAt = new Date().toISOString();
+  const exportedBy = window.prompt('Exporté par (nom ou rôle) :', 'coach') || 'coach';
+  state.data.meta = state.data.meta || {};
+  state.data.meta.baseDataHash = state.baseDataHash;
+  state.data.meta.exportDataHash = exportDataHash;
+  state.data.meta.exportedAt = exportedAt;
+  state.data.meta.exportedBy = exportedBy;
+  state.data.meta.sourceDatasetVersion = state.sourceDatasetVersion;
+  state.data.meta.totalFoods = foods().length;
+
   const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
   const anchor = document.createElement('a');
   anchor.href = URL.createObjectURL(blob);
   anchor.download = 'food-equivalents.corrected.json';
   anchor.click();
   URL.revokeObjectURL(anchor.href);
+
+  state.lastExportAt = exportedAt;
+  state.lastExportHash = exportDataHash;
+  state.dirty.clear();
+  state.originals.clear();
+  for (const food of foods()) {
+    state.originals.set(food.id, JSON.stringify(food));
+  }
+  // After export, subsequent edits are relative to exported content; base hash for next apply cycle
+  // remains the hash of the dataset that was originally loaded for stale detection of THIS export.
   refreshHeader();
 }
 
@@ -433,7 +572,9 @@ document.getElementById('search').oninput = renderList;
 document.getElementById('filterCat').onchange = renderList;
 document.getElementById('filterErr').onchange = renderList;
 document.getElementById('filterStatus').onchange = renderList;
-document.getElementById('btnExport').onclick = exportCheckpoint;
+document.getElementById('btnExport').onclick = () => {
+  exportCheckpoint().catch((error) => alert(`Export impossible: ${error.message}`));
+};
 
 document.getElementById('importFile').onchange = async (event) => {
   const file = event.target.files?.[0];
@@ -443,7 +584,24 @@ document.getElementById('importFile').onchange = async (event) => {
     return;
   }
   try {
-    initFrom(JSON.parse(await file.text()));
+    const payload = JSON.parse(await file.text());
+    const gate = validateReviewImport(payload);
+    if (!gate.ok) {
+      alert(gate.message);
+      return;
+    }
+    // Audit before init — refuse DUPLICATE_ID explicitly
+    const preAudit = auditDataset(payload.foods || []);
+    const dupes = [...new Set(
+      preAudit.items
+        .filter((item) => item.alerts.some((a) => a.code === 'DUPLICATE_ID'))
+        .map((item) => item.id)
+    )];
+    if (dupes.length) {
+      alert(`Import refusé: identifiant(s) dupliqué(s): ${dupes.join(', ')}`);
+      return;
+    }
+    await initFrom(payload);
   } catch (error) {
     alert(`Import impossible: ${error.message}`);
   } finally {
@@ -454,9 +612,17 @@ document.getElementById('importFile').onchange = async (event) => {
 document.getElementById('btnReject').onclick = () => {
   const food = selected();
   if (!food) return;
+  commitFood(food);
+  applyFoodChange(food, {
+    patches: [
+      { path: 'status', value: 'rejected' },
+      { path: 'verification.status', value: 'rejected' },
+    ],
+    by: 'coach',
+    action: 'reject',
+  });
   setFoodStatus(food, 'rejected');
-  food.history.push({ at: new Date().toISOString(), action: 'reject' });
-  afterMutation(food, { checkVerified: false });
+  afterMutation(food);
   renderEditor();
 };
 
@@ -464,24 +630,33 @@ document.getElementById('btnVerify').onclick = () => {
   const food = selected();
   const item = selectedAudit();
   if (!food || !item) return;
+  commitFood(food);
   if (!validateSource(food).ok || !canMarkVerified(food, item.alerts)) {
     alert('Impossible: une source authoritative complète et aucune ERROR ouverte sont requises.');
     return;
   }
   const approvedBy = prompt('Nom de la personne qui valide :');
   if (!approvedBy) return;
-  setFoodStatus(food, 'verified');
-  food.verification.verifiedAt = new Date().toISOString();
-  food.verification.verifiedBy = approvedBy;
-  food.verification.datasetVersion = window.FOOD_AUDIT_SUMMARY?.version?.version || null;
-  food.version = (food.version || 1) + 1;
-  food.history.push({
-    at: food.verification.verifiedAt,
-    action: 'verify',
+  const at = new Date().toISOString();
+  applyFoodChange(food, {
+    patches: [
+      { path: 'status', value: 'verified' },
+      { path: 'verification.status', value: 'verified' },
+      { path: 'verification.verifiedAt', value: at },
+      { path: 'verification.verifiedBy', value: approvedBy },
+      {
+        path: 'verification.datasetVersion',
+        value: window.FOOD_AUDIT_SUMMARY?.version?.version || null,
+      },
+    ],
     by: approvedBy,
-    version: food.version,
+    action: 'verify',
+    administrative: true,
   });
-  afterMutation(food, { checkVerified: false });
+  setFoodStatus(food, 'verified');
+  food.verification.verifiedAt = at;
+  food.verification.verifiedBy = approvedBy;
+  afterMutation(food);
   renderEditor();
 };
 
@@ -496,11 +671,28 @@ window.__REVIEW_TEST__ = {
   getFoodStatus,
   setFoodStatus,
   MANUAL_STATUSES,
+  validateReviewImport,
+  validateSource,
+  canMarkVerified,
+  applyFoodChange,
   getState: () => state,
   initFrom,
   refreshAudit,
+  commitFood,
+  applyLiveEdit,
+  exportCheckpoint,
+  hashFoods,
 };
 
-if (window.FOOD_EQUIVALENTS_DATA) initFrom(window.FOOD_EQUIVALENTS_DATA);
-else document.getElementById('headerMeta').textContent =
-  'Aucune donnée embarquée. Lancez npm run data:audit, ou importez un JSON.';
+const boot = window.FOOD_EQUIVALENTS_DATA
+  ? initFrom(window.FOOD_EQUIVALENTS_DATA)
+  : Promise.resolve(null);
+
+boot.then(() => {
+  if (!state.data) {
+    document.getElementById('headerMeta').textContent =
+      'Aucune donnée embarquée. Lancez npm run data:audit, ou importez un JSON.';
+  }
+}).catch((error) => {
+  document.getElementById('headerMeta').textContent = `Chargement impossible: ${error.message}`;
+});

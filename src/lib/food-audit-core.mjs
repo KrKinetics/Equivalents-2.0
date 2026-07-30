@@ -13,6 +13,16 @@ import {
 } from './nutrition-constants.mjs';
 import { parsePortionLabel } from './legacy-portion-parser.mjs';
 import { getFoodStatus, hasStatusMismatch, isVerifiedFood } from './food-status.mjs';
+import {
+  isMeaningfulString,
+  isValidIsoDateOnly,
+  isValidHttpUrl,
+  isValidDoi,
+  isValidNutrientsBasis,
+  looksLikeServingDescription,
+  looksLikeEvidenceRef,
+  knownSourceReferenceIds,
+} from './source-validators.mjs';
 
 export const RESOLVABLE_CODES = new Set([
   'KCAL_DIFF_HIGH',
@@ -122,15 +132,38 @@ export function resolutionSnapshotHash(code, food) {
   return `generic:${code}`;
 }
 
+function isValidApprovedAt(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return false;
+  if (isValidIsoDateOnly(raw)) return true;
+  if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return isValidIsoDateOnly(raw.slice(0, 10));
+  return false;
+}
+
+/** Resolution lifecycle: open | invalid | stale | resolved_documented */
 export function getResolutionState(food, code) {
   const list = food.auditResolutions || [];
   const match = [...list].reverse().find((r) => r && r.code === code);
   if (!match) return { status: 'open', resolution: null };
-  if (!match.reason || !match.approvedBy || !match.approvedAt || !match.sourceReferenceId) {
-    return { status: 'open', resolution: match };
+
+  if (!RESOLVABLE_CODES.has(code) || !RESOLVABLE_CODES.has(match.code)) {
+    return { status: 'invalid', resolution: match };
   }
+  if (!match.fieldsHash) return { status: 'invalid', resolution: match };
+  if (!match.reason || !match.approvedBy || !match.sourceReferenceId) {
+    return { status: 'invalid', resolution: match };
+  }
+  if (!isValidApprovedAt(match.approvedAt)) {
+    return { status: 'invalid', resolution: match };
+  }
+
+  const known = knownSourceReferenceIds(food);
+  if (!known.includes(String(match.sourceReferenceId).trim())) {
+    return { status: 'invalid', resolution: match };
+  }
+
   const expected = resolutionSnapshotHash(code, food);
-  if (match.fieldsHash && match.fieldsHash !== expected) {
+  if (match.fieldsHash !== expected) {
     return { status: 'stale', resolution: match };
   }
   return { status: 'resolved_documented', resolution: match };
@@ -160,7 +193,7 @@ export function compareLabelToCanonical(label, canonical, lang) {
 
 /**
  * Detailed source validation. Returns { ok, alerts }.
- * type+name alone is NEVER enough.
+ * Empty/generic strings, invalid dates/URLs/DOI, and type+name alone are NEVER enough.
  */
 export function validateSource(food) {
   const alerts = [];
@@ -183,48 +216,73 @@ export function validateSource(food) {
     if (!cond) push(alerts, 'ERROR', code, message);
   };
 
+  // Shared field quality checks when values are present
+  if (s.accessedAt != null && s.accessedAt !== '') {
+    need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt doit être une date ISO YYYY-MM-DD valide et non future');
+  }
+  if (s.url != null && s.url !== '') {
+    need(isValidHttpUrl(s.url), 'SOURCE_URL_OR_RECORD_MISSING', 'url doit être une URI HTTP/HTTPS valide');
+  }
+  if (s.doi != null && s.doi !== '') {
+    need(isValidDoi(s.doi), 'SOURCE_URL_OR_RECORD_MISSING', 'doi doit être un DOI valide ou une URL doi.org');
+  }
+  if (s.nutrientsBasis != null && s.nutrientsBasis !== '') {
+    need(isValidNutrientsBasis(s.nutrientsBasis), 'SOURCE_BASIS_MISSING', 'nutrientsBasis doit appartenir à l’enum autorisé');
+  }
+
   switch (s.type) {
     case 'canadian_nutrient_file':
     case 'usda_fooddata_central':
-      need(!!s.name, 'INSUFFICIENT_SOURCE', 'source.name requis');
-      need(!!s.recordId, 'SOURCE_RECORD_ID_MISSING', 'source.recordId requis');
-      need(!!s.accessedAt, 'SOURCE_ACCESS_DATE_MISSING', 'source.accessedAt requis');
-      need(!!s.servingDescription, 'SOURCE_SERVING_MISSING', 'source.servingDescription requis');
-      need(!!s.nutrientsBasis, 'SOURCE_BASIS_MISSING', 'source.nutrientsBasis requis');
+      need(isMeaningfulString(s.name), 'INSUFFICIENT_SOURCE', 'source.name requis et significatif');
+      need(isMeaningfulString(s.recordId, { minLength: 2 }), 'SOURCE_RECORD_ID_MISSING', 'recordId exploitable requis (pas x/- /test)');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription doit décrire une portion ou une base en grammes');
+      need(isValidNutrientsBasis(s.nutrientsBasis), 'SOURCE_BASIS_MISSING', 'nutrientsBasis enum requis (ne peut pas être null)');
       break;
     case 'manufacturer_label': {
       const brand = s.brand || food.portion?.brand;
-      need(!!brand, 'INSUFFICIENT_SOURCE', 'brand requis pour manufacturer_label');
-      need(!!s.productName, 'INSUFFICIENT_SOURCE', 'productName requis');
-      need(!!s.labelServingSize, 'SOURCE_SERVING_MISSING', 'labelServingSize requis');
-      need(!!s.accessedAt, 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt requis');
-      need(!!s.evidenceRef, 'SOURCE_EVIDENCE_MISSING', 'evidenceRef requis');
-      need(!!s.servingDescription, 'SOURCE_SERVING_MISSING', 'servingDescription requis');
+      need(isMeaningfulString(brand), 'INSUFFICIENT_SOURCE', 'brand significatif requis');
+      need(isMeaningfulString(s.productName), 'INSUFFICIENT_SOURCE', 'productName significatif requis');
+      need(isMeaningfulString(s.labelServingSize), 'SOURCE_SERVING_MISSING', 'labelServingSize significatif requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(looksLikeEvidenceRef(s.evidenceRef), 'SOURCE_EVIDENCE_MISSING', 'evidenceRef (chemin, URL ou id de preuve) requis');
+      need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription doit correspondre à la portion d’étiquette');
       break;
     }
     case 'manufacturer_website':
-      need(!!(s.brand || s.productName), 'INSUFFICIENT_SOURCE', 'brand ou productName requis');
-      need(!!s.url, 'SOURCE_URL_OR_RECORD_MISSING', 'url requis');
-      need(!!s.accessedAt, 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt requis');
-      need(!!s.servingDescription, 'SOURCE_SERVING_MISSING', 'servingDescription requis');
+      need(
+        isMeaningfulString(s.brand) || isMeaningfulString(s.productName),
+        'INSUFFICIENT_SOURCE',
+        'brand ou productName significatif requis'
+      );
+      need(isValidHttpUrl(s.url), 'SOURCE_URL_OR_RECORD_MISSING', 'url HTTP/HTTPS valide requise');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription significatif requis');
       break;
     case 'peer_reviewed_reference':
-      need(!!s.name, 'INSUFFICIENT_SOURCE', 'source.name requis');
-      need(!!(s.recordId || s.url || s.doi), 'SOURCE_URL_OR_RECORD_MISSING', 'recordId, DOI ou URL requis');
-      need(!!s.accessedAt, 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt requis');
-      need(!!s.servingDescription, 'SOURCE_SERVING_MISSING', 'servingDescription requis');
+      need(isMeaningfulString(s.name), 'INSUFFICIENT_SOURCE', 'source.name significatif requis');
+      need(
+        isMeaningfulString(s.recordId) || isValidHttpUrl(s.url) || isValidDoi(s.doi),
+        'SOURCE_URL_OR_RECORD_MISSING',
+        'recordId, DOI ou URL valide requis'
+      );
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription significatif requis');
       break;
     case 'other_authoritative':
-      need(!!s.name, 'INSUFFICIENT_SOURCE', 'source.name requis');
-      need(!!(s.url || s.recordId), 'SOURCE_URL_OR_RECORD_MISSING', 'URL ou recordId requis');
-      need(!!s.accessedAt, 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt requis');
-      need(!!s.notes, 'INSUFFICIENT_SOURCE', 'notes justifiant le caractère authoritative requises');
+      need(isMeaningfulString(s.name), 'INSUFFICIENT_SOURCE', 'source.name significatif requis');
+      need(
+        isValidHttpUrl(s.url) || isMeaningfulString(s.recordId),
+        'SOURCE_URL_OR_RECORD_MISSING',
+        'URL HTTP/HTTPS ou recordId exploitable requis'
+      );
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isMeaningfulString(s.notes, { minLength: 10 }), 'INSUFFICIENT_SOURCE', 'notes justifiant le caractère authoritative requises');
       break;
     default:
       push(alerts, 'ERROR', 'INSUFFICIENT_SOURCE', `Type de source inconnu: ${s.type}`);
   }
 
-  // type+name only is never enough: if no other field filled beyond type/name, block
   const extras = [
     s.recordId,
     s.url,

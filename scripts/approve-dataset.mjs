@@ -1,8 +1,12 @@
 /**
  * Approve the audited nutrition dataset when every readiness gate passes.
+ * Optionally bumps semver and archives an immutable release under releases/data/.
  */
 import fs from 'fs';
+import path from 'path';
+import { backupFile } from '../src/lib/backup.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
+import { bumpSemver, describeBumpPolicy } from '../src/lib/dataset-governance.mjs';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
 import { isActiveFood, isVerifiedFood } from '../src/lib/food-status.mjs';
 import { calculateAllGroupStatistics } from '../src/lib/group-statistics.mjs';
@@ -15,11 +19,43 @@ function parseApprovedBy(argv) {
   return index >= 0 ? String(argv[index + 1] || '').trim() : '';
 }
 
+function parseBump(argv) {
+  const equalsArg = argv.find((arg) => arg.startsWith('--bump='));
+  if (equalsArg) return equalsArg.slice('--bump='.length).trim().toLowerCase();
+  const index = argv.indexOf('--bump');
+  return index >= 0 ? String(argv[index + 1] || '').trim().toLowerCase() : 'patch';
+}
+
+function parseChangeSummary(argv) {
+  const equalsArg = argv.find((arg) => arg.startsWith('--summary='));
+  if (equalsArg) return equalsArg.slice('--summary='.length).trim();
+  const index = argv.indexOf('--summary');
+  return index >= 0 ? String(argv[index + 1] || '').trim() : '';
+}
+
+function replaceAtomically(tempPath, targetPath) {
+  try {
+    fs.renameSync(tempPath, targetPath);
+  } catch (error) {
+    if (!['EEXIST', 'EPERM', 'EACCES'].includes(error.code) || !fs.existsSync(targetPath)) {
+      throw error;
+    }
+    fs.unlinkSync(targetPath);
+    fs.renameSync(tempPath, targetPath);
+  }
+}
+
 function main() {
-  const approvedBy = parseApprovedBy(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  const approvedBy = parseApprovedBy(argv);
   if (!approvedBy) {
     throw new Error('Approval refused: provide an approver with --by "Name".');
   }
+  const bump = parseBump(argv);
+  if (!['patch', 'minor', 'major'].includes(bump)) {
+    throw new Error(`Invalid --bump ${bump}. Use patch|minor|major.\n${JSON.stringify(describeBumpPolicy(), null, 2)}`);
+  }
+  const summaryArg = parseChangeSummary(argv);
 
   const paths = resolvePaths();
   const payload = JSON.parse(fs.readFileSync(paths.foodDataPath, 'utf8'));
@@ -38,7 +74,6 @@ function main() {
   );
   const hash = computeFoodsDataHash(foods);
 
-  // Group approval evaluates the state that would exist after this command succeeds.
   const groupStatistics = calculateAllGroupStatistics(foods, groupsDoc, {
     ...version,
     status: 'approved',
@@ -90,14 +125,94 @@ function main() {
   }
 
   const approvedAt = new Date().toISOString();
+  const previousVersion = version.version;
+  const nextVersion = bumpSemver(version.version || '0.0.0', bump);
+  const changeSummary =
+    summaryArg ||
+    `Approved ${bump} bump ${previousVersion} → ${nextVersion} by ${approvedBy}`;
+
   const approvedVersion = {
     ...version,
+    version: nextVersion,
+    previousVersion,
     status: 'approved',
     approvedAt,
     approvedBy,
+    changeSummary,
+    dataHash: hash,
+    shortHash: shortHash(hash),
+    bump,
   };
-  fs.writeFileSync(paths.versionDataPath, JSON.stringify(approvedVersion, null, 2), 'utf8');
-  console.log(`Dataset approved by ${approvedBy} at ${approvedAt}.`);
+
+  const releasesDir = path.join(paths.root, 'releases', 'data');
+  fs.mkdirSync(releasesDir, { recursive: true });
+  const releaseDir = path.join(releasesDir, nextVersion);
+  if (fs.existsSync(releaseDir)) {
+    throw new Error(`Release directory already exists: ${releaseDir}`);
+  }
+
+  const versionBackup = backupFile(paths.versionDataPath, paths.backupsDir, 'pre-approve');
+  const foodBackup = backupFile(paths.foodDataPath, paths.backupsDir, 'pre-approve');
+  console.log('Backups:', foodBackup, versionBackup);
+
+  const tempVersion = `${paths.versionDataPath}.tmp`;
+  const auditReportPath = path.join(paths.reportsDir, 'food-equivalents-audit.json');
+  let auditReport = null;
+  if (fs.existsSync(auditReportPath)) {
+    auditReport = JSON.parse(fs.readFileSync(auditReportPath, 'utf8'));
+  }
+
+  try {
+    fs.mkdirSync(releaseDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(releaseDir, 'food-equivalents.json'),
+      JSON.stringify(payload, null, 2),
+      'utf8'
+    );
+    fs.writeFileSync(
+      path.join(releaseDir, 'nutrition-data-version.json'),
+      JSON.stringify(approvedVersion, null, 2),
+      'utf8'
+    );
+    fs.writeFileSync(
+      path.join(releaseDir, 'audit-report.json'),
+      JSON.stringify(auditReport || audited, null, 2),
+      'utf8'
+    );
+    fs.writeFileSync(
+      path.join(releaseDir, 'release-manifest.json'),
+      JSON.stringify(
+        {
+          version: nextVersion,
+          previousVersion,
+          bump,
+          approvedBy,
+          approvedAt,
+          changeSummary,
+          dataHash: hash,
+          shortHash: shortHash(hash),
+          policy: describeBumpPolicy(),
+        },
+        null,
+        2
+      ),
+      'utf8'
+    );
+
+    fs.writeFileSync(tempVersion, JSON.stringify(approvedVersion, null, 2), 'utf8');
+    replaceAtomically(tempVersion, paths.versionDataPath);
+    console.log(`Dataset approved by ${approvedBy} at ${approvedAt}.`);
+    console.log(`Version ${previousVersion} → ${nextVersion} (${bump}).`);
+    console.log(`Immutable archive: ${releaseDir}`);
+  } catch (error) {
+    if (fs.existsSync(tempVersion)) fs.unlinkSync(tempVersion);
+    if (fs.existsSync(releaseDir)) {
+      fs.rmSync(releaseDir, { recursive: true, force: true });
+    }
+    throw error;
+  } finally {
+    if (fs.existsSync(tempVersion)) fs.unlinkSync(tempVersion);
+  }
 }
 
 try {

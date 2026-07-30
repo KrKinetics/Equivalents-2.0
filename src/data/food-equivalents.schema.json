@@ -4,16 +4,30 @@
   "title": "KR Kinetics Food Equivalents Dataset",
   "type": "object",
   "required": ["meta", "foods"],
+  "additionalProperties": false,
   "properties": {
     "meta": {
       "type": "object",
       "required": ["schemaVersion", "totalFoods"],
+      "additionalProperties": false,
       "properties": {
         "schemaVersion": { "type": "integer", "minimum": 1 },
         "importedAt": { "type": ["string", "null"] },
         "totalFoods": { "type": "integer", "minimum": 0 },
         "importPolicy": { "type": "string" },
-        "notes": { "type": "array" }
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "sourceFiles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "bootstrapWarning": { "type": "string" },
+        "lastAppliedAt": { "type": ["string", "null"] },
+        "baseDataHash": { "type": ["string", "null"], "minLength": 1 },
+        "exportDataHash": { "type": ["string", "null"], "minLength": 1 },
+        "exportedAt": { "type": ["string", "null"] },
+        "exportedBy": { "type": ["string", "null"] },
+        "sourceDatasetVersion": { "type": ["string", "null"] },
+        "allowStaleReason": { "type": ["string", "null"] }
       }
     },
     "foods": {
@@ -22,6 +36,81 @@
     }
   },
   "$defs": {
+    "isoDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "isoDateTime": {
+      "type": "string",
+      "minLength": 10
+    },
+    "httpUrl": {
+      "type": "string",
+      "pattern": "^https?://.+"
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^(10\\.\\d{4,9}/\\S+|https?://(dx\\.)?doi\\.org/10\\.\\d{4,9}/\\S+)$"
+    },
+    "nutrient": {
+      "type": ["number", "null"],
+      "minimum": 0
+    },
+    "historyEntry": {
+      "type": "object",
+      "required": ["action"],
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["timestamp"] },
+        { "required": ["at"] }
+      ],
+      "properties": {
+        "timestamp": { "type": "string" },
+        "at": { "type": "string" },
+        "by": { "type": ["string", "null"] },
+        "action": { "type": "string", "minLength": 1 },
+        "path": { "type": ["string", "null"] },
+        "oldValue": {},
+        "newValue": {},
+        "reason": { "type": ["string", "null"] },
+        "versionBefore": { "type": ["integer", "null"], "minimum": 1 },
+        "versionAfter": { "type": ["integer", "null"], "minimum": 1 },
+        "version": { "type": ["integer", "null"], "minimum": 1 },
+        "code": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"] },
+        "previousVerification": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "verifiedAt": { "type": ["string", "null"] },
+            "verifiedBy": { "type": ["string", "null"] },
+            "datasetVersion": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "auditResolution": {
+      "type": "object",
+      "required": [
+        "code",
+        "reason",
+        "approvedBy",
+        "approvedAt",
+        "sourceReferenceId",
+        "fieldsHash"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 },
+        "approvedBy": { "type": "string", "minLength": 1 },
+        "approvedAt": { "type": "string", "minLength": 10 },
+        "sourceReferenceId": { "type": "string", "minLength": 1 },
+        "fieldsHash": { "type": "string", "minLength": 1 },
+        "createdAt": { "type": ["string", "null"] },
+        "version": { "type": "integer", "minimum": 1 }
+      }
+    },
     "food": {
       "type": "object",
       "required": [
@@ -38,8 +127,11 @@
         "verification",
         "classificationStatus"
       ],
+      "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "minLength": 1 },
+        "legacySectionKey": { "type": ["string", "null"] },
+        "legacyIndex": { "type": ["integer", "null"], "minimum": 0 },
         "displayCategory": {
           "enum": [
             "noix_graines",
@@ -63,6 +155,7 @@
         "names": {
           "type": "object",
           "required": ["fr", "en"],
+          "additionalProperties": false,
           "properties": {
             "fr": { "type": "string", "minLength": 1 },
             "en": { "type": "string", "minLength": 1 }
@@ -71,6 +164,7 @@
         "portion": {
           "type": "object",
           "required": ["labelFr", "labelEn", "amount", "unit"],
+          "additionalProperties": false,
           "properties": {
             "labelFr": { "type": "string", "minLength": 1 },
             "labelEn": { "type": "string", "minLength": 1 },
@@ -105,20 +199,30 @@
         "nutrients": {
           "type": "object",
           "required": ["proteinG", "carbsG", "declaredKcal"],
+          "additionalProperties": false,
           "properties": {
-            "proteinG": { "type": ["number", "null"] },
-            "carbsG": { "type": ["number", "null"] },
-            "fiberG": { "type": ["number", "null"] },
-            "fatG": { "type": ["number", "null"] },
-            "saturatedFatG": { "type": ["number", "null"] },
-            "polyunsaturatedFatG": { "type": ["number", "null"] },
-            "monounsaturatedFatG": { "type": ["number", "null"] },
-            "declaredKcal": { "type": ["number", "null"] }
+            "proteinG": { "$ref": "#/$defs/nutrient" },
+            "carbsG": { "$ref": "#/$defs/nutrient" },
+            "fiberG": { "$ref": "#/$defs/nutrient" },
+            "fatG": { "$ref": "#/$defs/nutrient" },
+            "saturatedFatG": { "$ref": "#/$defs/nutrient" },
+            "polyunsaturatedFatG": { "$ref": "#/$defs/nutrient" },
+            "monounsaturatedFatG": { "$ref": "#/$defs/nutrient" },
+            "declaredKcal": { "$ref": "#/$defs/nutrient" }
           }
         },
-        "legacySource": { "type": ["object", "null"] },
+        "legacySource": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "reference": { "type": ["string", "null"] },
+            "referenceId": { "type": ["string", "null"] },
+            "notes": { "type": ["string", "null"] }
+          }
+        },
         "source": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "type": {
               "anyOf": [
@@ -137,10 +241,40 @@
             },
             "name": { "type": ["string", "null"] },
             "recordId": { "type": ["string", "null"] },
-            "url": { "type": ["string", "null"] },
-            "accessedAt": { "type": ["string", "null"] },
+            "url": {
+              "anyOf": [
+                { "type": "null" },
+                { "$ref": "#/$defs/httpUrl" }
+              ]
+            },
+            "doi": {
+              "anyOf": [
+                { "type": "null" },
+                { "$ref": "#/$defs/doi" }
+              ]
+            },
+            "accessedAt": {
+              "anyOf": [
+                { "type": "null" },
+                { "$ref": "#/$defs/isoDate" }
+              ]
+            },
             "servingDescription": { "type": ["string", "null"] },
-            "nutrientsBasis": { "type": ["string", "null"] },
+            "nutrientsBasis": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "enum": [
+                    "as_consumed",
+                    "as_purchased",
+                    "dry",
+                    "cooked",
+                    "label_serving",
+                    "unknown"
+                  ]
+                }
+              ]
+            },
             "notes": { "type": ["string", "null"] },
             "brand": { "type": ["string", "null"] },
             "productName": { "type": ["string", "null"] },
@@ -153,6 +287,7 @@
         "verification": {
           "type": "object",
           "required": ["status"],
+          "additionalProperties": false,
           "properties": {
             "status": { "enum": ["unverified", "verified", "rejected"] },
             "verifiedAt": { "type": ["string", "null"] },
@@ -160,8 +295,14 @@
             "datasetVersion": { "type": ["string", "null"] }
           }
         },
-        "auditResolutions": { "type": "array" },
-        "history": { "type": "array" }
+        "auditResolutions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/auditResolution" }
+        },
+        "history": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/historyEntry" }
+        }
       }
     }
   }

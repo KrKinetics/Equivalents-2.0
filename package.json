@@ -15,7 +15,9 @@
     "data:report:classification": "node scripts/report-classification.mjs",
     "data:report:prep": "node scripts/report-not-applicable-candidates.mjs",
     "test": "node --test tests/nutrition-hardening.test.mjs",
-    "test:nutrition": "node --test tests/nutrition-hardening.test.mjs"
+    "test:nutrition": "node --test tests/nutrition-hardening.test.mjs",
+    "test:browser": "node --test tests/food-data-review.browser.test.mjs",
+    "test:all": "node --test tests/nutrition-hardening.test.mjs tests/food-data-review.browser.test.mjs"
   },
   "keywords": [],
   "author": "",

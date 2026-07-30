@@ -1,14 +1,7 @@
 import crypto from 'crypto';
+import { stableStringify } from './data-hash-lite.mjs';
 
-/**
- * Stable JSON stringify with sorted object keys.
- */
-export function stableStringify(value) {
-  if (value === null || typeof value !== 'object') return JSON.stringify(value);
-  if (Array.isArray(value)) return `[${value.map((v) => stableStringify(v)).join(',')}]`;
-  const keys = Object.keys(value).sort();
-  return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`;
-}
+export { stableStringify };
 
 /**
  * Hash foods only (normalized) — excludes volatile meta timestamps.

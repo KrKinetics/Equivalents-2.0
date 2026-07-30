@@ -7,6 +7,7 @@ import path from 'path';
 import { spawnSync } from 'child_process';
 import { backupFile } from '../src/lib/backup.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
+import { assertApplyGovernance } from '../src/lib/dataset-governance.mjs';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
 import { resolvePaths } from '../src/lib/paths.mjs';
@@ -29,15 +30,30 @@ const STRUCTURAL_AUDIT_CODES = new Set([
 
 function usage() {
   throw new Error(
-    'Usage: npm run data:apply -- [--dry-run] path/to/food-equivalents.corrected.json'
+    'Usage: npm run data:apply -- [--dry-run] [--allow-stale --reason "…"] [--migration-documented] path/to/food-equivalents.corrected.json'
   );
 }
 
 function parseArgs(argv) {
   const dryRun = argv.includes('--dry-run');
-  const positional = argv.filter((arg) => arg !== '--dry-run');
+  const allowStale = argv.includes('--allow-stale');
+  const migrationDocumented = argv.includes('--migration-documented');
+  let staleReason = '';
+  const reasonEq = argv.find((arg) => arg.startsWith('--reason='));
+  if (reasonEq) staleReason = reasonEq.slice('--reason='.length).trim();
+  const reasonIdx = argv.indexOf('--reason');
+  if (reasonIdx >= 0) staleReason = String(argv[reasonIdx + 1] || '').trim();
+
+  const positional = argv.filter((arg, i) => {
+    if (arg === '--dry-run' || arg === '--allow-stale' || arg === '--migration-documented') {
+      return false;
+    }
+    if (arg === '--reason' || arg.startsWith('--reason=')) return false;
+    if (reasonIdx >= 0 && i === reasonIdx + 1) return false;
+    return true;
+  });
   if (positional.length !== 1) usage();
-  return { dryRun, input: positional[0] };
+  return { dryRun, allowStale, staleReason, migrationDocumented, input: positional[0] };
 }
 
 function restoreFile(backupPath, filePath, existedBefore) {
@@ -67,7 +83,9 @@ function replaceAtomically(tempPath, targetPath, backupPath) {
 }
 
 function main() {
-  const { dryRun, input } = parseArgs(process.argv.slice(2));
+  const { dryRun, allowStale, staleReason, migrationDocumented, input } = parseArgs(
+    process.argv.slice(2)
+  );
   const paths = resolvePaths();
   const target = paths.foodDataPath;
   const versionPath = paths.versionDataPath;
@@ -89,13 +107,35 @@ function main() {
     throw new Error(`Invalid JSON — apply aborted:\n${details}${remainder}`);
   }
 
+  let current = null;
   if (fs.existsSync(target)) {
-    const current = JSON.parse(fs.readFileSync(target, 'utf8'));
+    current = JSON.parse(fs.readFileSync(target, 'utf8'));
     const curIds = new Set((current.foods || []).map((f) => f.id));
     const newIds = new Set((incoming.foods || []).map((f) => f.id));
     const missingIds = [...curIds].filter((id) => !newIds.has(id));
     if (missingIds.length) {
       throw new Error(`Apply refused: missing existing id(s): ${missingIds.join(', ')}`);
+    }
+
+    const governance = assertApplyGovernance(current, incoming, {
+      allowStale,
+      staleReason,
+      migrationDocumented,
+    });
+    if (!governance.ok) {
+      console.error('Apply refused (gouvernance):');
+      for (const err of governance.errors) console.error(` - ${err}`);
+      if (!allowStale) {
+        console.error('Note: --force n’est pas proposé pour un export périmé. Utilisez --allow-stale --reason "…" si nécessaire.');
+      }
+      throw new Error(`Apply refused: ${governance.errors.length} governance error(s).`);
+    }
+    for (const warning of governance.warnings) {
+      console.warn(`WARNING: ${warning}`);
+    }
+    if (allowStale) {
+      incoming.meta = incoming.meta || {};
+      incoming.meta.allowStaleReason = staleReason;
     }
   }
 
@@ -113,6 +153,7 @@ function main() {
         validation: { ok: true, errorCount: 0 },
         audit: audited.summary,
         structuralAuditErrors,
+        staleOverride: allowStale ? { reason: staleReason } : null,
       },
       null,
       2
@@ -155,6 +196,9 @@ function main() {
     version.approvedBy = null;
     version.changeSummary = 'Dataset modified after approval — returned to review';
   }
+  if (allowStale) {
+    version.changeSummary = `Applied with --allow-stale: ${staleReason}`;
+  }
   version.dataHash = hash;
   version.shortHash = shortHash(hash);
   if (hashChanged) version.lastModifiedAt = now;
@@ -174,12 +218,12 @@ function main() {
     fs.writeFileSync(tempPath, JSON.stringify(incoming, null, 2), 'utf8');
 
     if (targetExisted) {
-      foodBackup = backupFile(target, paths.backupsDir, 'pre-apply');
+      foodBackup = backupFile(target, paths.backupsDir, allowStale ? 'pre-apply-stale' : 'pre-apply');
       backupStarted = true;
       console.log('Food backup created:', foodBackup);
     }
     if (versionExisted) {
-      versionBackup = backupFile(versionPath, paths.backupsDir, 'pre-apply');
+      versionBackup = backupFile(versionPath, paths.backupsDir, allowStale ? 'pre-apply-stale' : 'pre-apply');
       backupStarted = true;
       console.log('Version backup created:', versionBackup);
     }
