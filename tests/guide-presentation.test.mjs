@@ -19,6 +19,11 @@ test('presentation includes all 287 verified foods', () => {
   assert.equal(model.meta.totalFoods, 287);
   assert.equal(model.meta.verifiedFoods, 287);
   assert.equal(model.sections.flatMap((section) => section.foods).length, 287);
+  assert.equal(model.meta.foodsLabelFr, '287 aliments vérifiés');
+  assert.equal(model.meta.foodsLabelEn, '287 verified foods');
+  assert.equal(model.meta.updatedLabelFr, 'Mise à jour : 30 juillet 2026');
+  assert.equal(model.meta.updatedLabelEn, 'Updated: July 30, 2026');
+  assert.equal(model.watermarkEn, 'PREVIEW — UNAPPROVED EXCHANGE PROFILES');
 });
 
 test('category counts match the source of truth', () => {

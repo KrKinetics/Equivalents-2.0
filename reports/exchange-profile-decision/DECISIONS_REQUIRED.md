@@ -1,8 +1,28 @@
 # Décisions requises — profils d’échange
 
-> **APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS.**  
+> **APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS / PREVIEW — UNAPPROVED EXCHANGE PROFILES**  
 > Document de décision pour une personne non développeuse.  
-> Les chiffres ci-dessous sont des **propositions d’analyse**, jamais une approbation.
+> Les chiffres ci-dessous sont des **propositions d’analyse**, jamais une approbation de production.
+
+## Décision du propriétaire (consignée)
+
+**Modèle retenu : HYBRIDE D/A DE TRANSITION.**
+
+- **D** = architecture cible à long terme (profils d’échange → familles `exchangeRollupId` → pont calculateur).
+- **A** = règle d’affaires temporaire du calculateur actuel et des plans existants.
+- **B** = point de départ statistique seulement dans des familles nutritionnellement comparables.
+- **C** = ne doit pas devenir le modèle principal.
+- Aucune MOYENNE de production modifiée dans cette PR.
+- `calculation-groups.json` non approuvé; dataset demeure en **review**.
+
+Refus explicite d’une cible unique pour :
+1. noix/graines + huiles;
+2. protéines maigres + protéines grasses;
+3. lait/yogourt + fromages + boissons végétales;
+4. whey + collagène + barres + boissons protéinées;
+5. légumineuses + pains/riz/pâtes et autres féculents céréaliers.
+
+Voir aussi `EXCHANGE_ROLLUP_PROPOSAL.md` (couche intermédiaire non approuvée).
 
 ## 1. État actuel
 
@@ -10,6 +30,7 @@
 - Statut du jeu de données: **review** (non publié / non approuvé).
 - **157 exchangeProfileId** distincts.
 - Groupes calculateur présents: dairy, fat, fruit, protein, starch, vegetable, whey.
+- Observations du groupe calculateur `whey`: **0** (voir section whey / rollup proposal — les produits whey sont classés `protein` via `protein-whey-*`).
 - Les groupes de calcul restent `approved: false` avec `referenceProfile` et `minVerifiedCount` encore null.
 - Le générateur PDF production utilise encore l’objet DATA legacy; l’aperçu de cette PR lit uniquement la source de vérité.
 - Les MOYENNES du calculateur n’ont **pas** été modifiées.
@@ -19,9 +40,9 @@
 1. Aucun `referenceProfile` approuvé par groupe.
 2. `minVerifiedCount` non défini.
 3. Jeu de données encore en `review`.
-4. Pas de choix humain entre les modèles A/B/C/D.
+4. Couche `exchangeRollupId` encore à l’état de proposition (non branchée).
 5. Groupes trop hétérogènes pour une seule cible d’équivalence sans pont explicite (voir section 7).
-6. Impact client / plans existants non encore signé.
+6. Impact client / plans existants non encore migré hors de la règle A.
 
 ## 3. Comparaison des quatre modèles
 
@@ -95,12 +116,12 @@ Tolérances diagnostiques utilisées: P±2 g, G±4 g, L±2 g, fibres±2 g, kcal�
 
 | Groupe | A historique | Moyenne | Médiane | Médoïde | Prop. B | Hors tolérance |
 | --- | --- | --- | --- | --- | --- | --- |
-| dairy | P 7 / G 10 / L 2 | P 8.13448275862069 / G 7.460714285714287 / L 2.5785714285714287 | P 8.5 / G 5.6 / L 2.25 | P 9 / G 4.5 / L 2.5 · Lait Natrel Plus 2 % sans lactose | P 8.5 / G 6 / L 2.3 | 29 |
-| fat | P 1 / G 2 / L 6 | P 1.42156862745098 / G 1.6058823529411765 / L 5.4784313725490215 | P 1.3 / G 1.5 / L 5.3 | P 1.2 / G 1.1 / L 5.2 · Noix de Grenoble | P 1.3 / G 2 / L 5.3 | 9 |
-| fruit | P 1 / G 15 / L 2 | P 0.9606060606060606 / G 14.999999999999998 / L 0.29090909090909084 | P 0.9 / G 15 / L 0.2 | P 1 / G 15.2 / L 0.2 · Cerises douces fraîches, crues | P 0.9 / G 15 / L 0.2 | 0 |
-| protein | P 9 / G 0 / L 2 | P 9.189320388349516 / G 1.1679611650485437 / L 2.266019417475728 | P 9.2 / G 0 / L 1.7 | P 9.3 / G 0 / L 1.7 · Turbot européen cuit au four ou grillé | P 9.2 / G 0 / L 1.7 | 45 |
-| starch | P 3 / G 18 / L 1 | P 3.554285714285714 / G 18.57428571428571 / L 1.0914285714285714 | P 2.8 / G 17.7 / L 0.6 | P 2.6 / G 17.8 / L 0.8 · Millet cuit | P 2.8 / G 18 / L 0.6 | 16 |
-| vegetable | P 2 / G 7 / L 0 | P 1.4555555555555557 / G 5.513888888888888 / L 0.2694444444444444 | P 1.1 / G 4.9 / L 0.2 | P 1.1 / G 4.8 / L 0.2 · Tomate rouge mûre, fraîche et crue | P 1.1 / G 5 / L 0.2 | 9 |
+| dairy | P 7 / G 10 / L 2 | P 8.1345 / G 7.4607 / L 2.5786 | P 8.5 / G 5.6 / L 2.25 | P 9 / G 4.5 / L 2.5 · Lait Natrel Plus 2 % sans lactose | P 8.5 / G 6 / L 2.3 | 29 |
+| fat | P 1 / G 2 / L 6 | P 1.4216 / G 1.6059 / L 5.4784 | P 1.3 / G 1.5 / L 5.3 | P 1.2 / G 1.1 / L 5.2 · Noix de Grenoble | P 1.3 / G 2 / L 5.3 | 9 |
+| fruit | P 1 / G 15 / L 2 | P 0.9606 / G 15 / L 0.2909 | P 0.9 / G 15 / L 0.2 | P 1 / G 15.2 / L 0.2 · Cerises douces fraîches, crues | P 0.9 / G 15 / L 0.2 | 0 |
+| protein | P 9 / G 0 / L 2 | P 9.1893 / G 1.168 / L 2.266 | P 9.2 / G 0 / L 1.7 | P 9.3 / G 0 / L 1.7 · Turbot européen cuit au four ou grillé | P 9.2 / G 0 / L 1.7 | 45 |
+| starch | P 3 / G 18 / L 1 | P 3.5543 / G 18.5743 / L 1.0914 | P 2.8 / G 17.7 / L 0.6 | P 2.6 / G 17.8 / L 0.8 · Millet cuit | P 2.8 / G 18 / L 0.6 | 16 |
+| vegetable | P 2 / G 7 / L 0 | P 1.4556 / G 5.5139 / L 0.2694 | P 1.1 / G 4.9 / L 0.2 | P 1.1 / G 4.8 / L 0.2 · Tomate rouge mûre, fraîche et crue | P 1.1 / G 5 / L 0.2 | 9 |
 | whey | P 22 / G 2 / L 2 | P — / G — / L — | P — / G — / L — | P — / G — / L — · — | P — / G — / L — | 0 |
 
 > La moyenne et la médiane sont des **statistiques**; A est une **règle d’affaires**. Ne pas les confondre.
@@ -160,33 +181,32 @@ Les kcal/fibres absentes des règles historiques restent **non inventées** (aff
 - **vegetable**: Asperges bouillies et égouttées (score 0.90)
 - **vegetable**: Cocktail de jus de légumes régulier (score 0.76)
 
-## 8. Recommandation principale
+## 8. Recommandation / décision principale
 
-**RECOMMANDATION CURSOR — modèle principal recommandé: conserver les groupes calculateur comme pont UI, mais n’approuver aucune cible unique sur les sous-profils signalés non équivalents; ceci n’est pas une décision approuvée.**
+**Décision propriétaire : HYBRIDE D/A DE TRANSITION** (architecture D, règle temporaire A).
 
 En pratique, cela signifie:
-1. Garder les groupes calculateur comme pont UI.
-2. Ne pas approuver automatiquement une moyenne/médiane comme règle d’affaires.
-3. Traiter séparément les ponts non équivalents avant toute publication « finale ».
+1. Conserver A pour le calculateur et les plans existants (inchangés).
+2. Construire la couche D via `exchangeRollupId` (voir `EXCHANGE_ROLLUP_PROPOSAL.md`), sans brancher les 157 profils un par un.
+3. Utiliser B seulement à l’intérieur de familles comparables; ne pas promouvoir C comme modèle principal.
+4. Ne jamais présenter la règle d’affaires A comme une moyenne statistique.
 
 ## 9. Solution de repli
 
-**RECOMMANDATION CURSOR — utile comme solution de repli courte durée, pas comme modèle final si l’on veut refléter les 287 valeurs vérifiées; ceci n’est pas une décision.**
+Si la couche D n’est pas prête : rester sur **A** exclusivement pour le calculateur, tout en maintenant l’aperçu SoT sans moyennes non approuvées.
 
-Repli opérationnel: conserver A (legacy) pour le calculateur pendant la revue humaine, tout en publiant seulement l’aperçu SoT **sans** lignes de moyennes non approuvées.
+## 10. Cases de décision
 
-## 10. Cases de décision (à cocher par le propriétaire)
+- [x] **Décision modèle**: HYBRIDE D/A DE TRANSITION
+- [ ] J’approuve des valeurs groupe par groupe pour une future PR d’approbation: ___________
+- [x] Je **refuse** une cible unique pour noix+huiles
+- [x] Je **refuse** une cible unique protéines maigres+grasses
+- [x] Je **refuse** une cible unique laitiers+fromages+boissons végétales
+- [x] Je **refuse** une cible unique whey+collagène+barres/boissons protéinées
+- [x] Je **refuse** une cible unique légumineuses+féculents céréaliers
+- [ ] Impact journée type accepté pour une migration future: oui / non / avec ajustements ___________
+- [x] **Ne pas** modifier les MOYENNES dans cette PR
+- [x] **Ne pas** approuver `calculation-groups.json` dans cette PR
+- [ ] Approbateur / date de la future PR d’application: ____________________________
 
-- [ ] **Décision modèle**: A / B / C / D / hybride: ___________
-- [ ] J’approuve les valeurs groupe par groupe listées en section 4: ___________
-- [ ] J’autorise (ou refuse) une cible unique pour noix+huiles: ___________
-- [ ] J’autorise (ou refuse) une cible unique protéines maigres+grasses: ___________
-- [ ] J’autorise (ou refuse) une cible unique laitiers+fromages+boissons végétales: ___________
-- [ ] J’autorise (ou refuse) une cible unique whey+collagène+barres: ___________
-- [ ] J’autorise (ou refuse) une cible unique légumineuses+féculents céréaliers: ___________
-- [ ] Impact journée type accepté (section 6): oui / non / avec ajustements ___________
-- [ ] Autoriser la mise à jour ultérieure des MOYENNES du calculateur: oui / non
-- [ ] Autoriser l’approbation ultérieure de `calculation-groups.json`: oui / non
-- [ ] Approbateur / date: ____________________________
-
-> Rappel: cocher ces cases **ici** ne modifie aucun fichier de production. Une PR séparée d’approbation sera requise.
+> Rappel: cette consignation **ne modifie aucun fichier de production**. Une PR séparée sera requise pour brancher le calculateur.

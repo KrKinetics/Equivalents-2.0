@@ -89,14 +89,23 @@ export function buildGuidePresentationModel({ foodsPayload, categoryMapping, ver
   if (included.length !== foods.length || new Set(included.map((food) => food.id)).size !== foods.length) {
     throw new Error('Guide presentation must include every food exactly once; check category mapping');
   }
+  const verifiedFoods = foods.filter((food) => food.status === 'verified' || food.verification?.status === 'verified').length;
   return {
     watermark: 'APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS',
+    watermarkFr: 'APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS',
+    watermarkEn: 'PREVIEW — UNAPPROVED EXCHANGE PROFILES',
     meta: {
       totalFoods: foods.length,
-      verifiedFoods: foods.filter((food) => food.status === 'verified' || food.verification?.status === 'verified').length,
+      verifiedFoods,
       version: versionMeta?.version ?? null,
       shortHash: versionMeta?.shortHash ?? String(versionMeta?.dataHash || '').slice(0, 12),
       generatedAt: versionMeta?.lastModifiedAt || new Date().toISOString(),
+      foodsLabelFr: `${verifiedFoods} aliments vérifiés`,
+      foodsLabelEn: `${verifiedFoods} verified foods`,
+      updatedLabelFr: 'Mise à jour : 30 juillet 2026',
+      updatedLabelEn: 'Updated: July 30, 2026',
+      noteFr: 'valeurs individuelles vérifiées',
+      noteEn: 'verified individual values',
       note: 'valeurs individuelles vérifiées',
     },
     sections,

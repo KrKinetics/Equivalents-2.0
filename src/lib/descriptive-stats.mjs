@@ -37,8 +37,24 @@ export function normalizeFrName(value) {
     .trim();
 }
 
-export function formatNumberForLocale(value, lang = 'fr') {
-  if (value == null || typeof value !== 'number' || !Number.isFinite(value)) return '—';
-  const text = String(value);
+/**
+ * Deterministic display formatting. Never coerces null to 0.
+ * Caps binary float noise (e.g. 30.699999999999996 → 30.7).
+ */
+export function formatStatNumber(value, maxDecimals = 4) {
+  if (value == null || typeof value !== 'number' || !Number.isFinite(value)) return null;
+  const factor = 10 ** maxDecimals;
+  const rounded = Math.round((value + Number.EPSILON) * factor) / factor;
+  if (Object.is(rounded, -0)) return 0;
+  return rounded;
+}
+
+export function formatNumberForLocale(value, lang = 'fr', maxDecimals = 4) {
+  const cleaned = formatStatNumber(value, maxDecimals);
+  if (cleaned == null) return '—';
+  let text = String(cleaned);
+  if (text.includes('e') || text.includes('E')) {
+    text = cleaned.toFixed(maxDecimals).replace(/\.?0+$/, '');
+  }
   return lang === 'fr' ? text.replace('.', ',') : text;
 }

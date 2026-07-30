@@ -303,6 +303,11 @@
   "shortHash": "8492cde87e61",
   "version": "1.0.0",
   "generatedAt": "2026-07-30T01:25:20.093Z",
+  "logo": {
+    "sourcePath": "assets/kinetics-logo-transparent.png",
+    "stagedPath": "reports/guide-preview/assets/kinetics-logo.png",
+    "htmlSrc": "./assets/kinetics-logo.png"
+  },
   "sourcePaths": {
     "foods": "src/data/food-equivalents.json",
     "categoryMapping": "src/data/category-mapping.json",

@@ -2,6 +2,18 @@
   "generatedAt": "2026-07-30T01:25:20.093Z",
   "version": "1.0.0",
   "dataHash": "8492cde87e61b1425f27eea11edbd02abd5dd4e3624f98e0a3c860bea42e47c6",
+  "decisionModel": "hybrid_D_A_transition",
+  "levelCounts": {
+    "calculationGroup": 7,
+    "displayCategory": 9,
+    "exchangeProfileId": 157,
+    "allLevels": 173
+  },
+  "foodCountChecksums": {
+    "calculationGroupTotal": 287,
+    "displayCategoryTotal": 287,
+    "exchangeProfileIdTotal": 287
+  },
   "calculationGroup": {
     "dairy": {
       "level": "calculationGroup",

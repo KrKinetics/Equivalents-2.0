@@ -1,0 +1,5053 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "proposal_not_approved",
+  "decisionModel": "hybrid_D_A_transition",
+  "policy": {
+    "longTermArchitecture": "D",
+    "temporaryCalculatorBusinessRule": "A",
+    "mediansB": "starting_point_inside_comparable_families_only",
+    "medoidsC": "not_primary_model",
+    "forbiddenUniqueTargets": [
+      "nuts_vs_oils",
+      "lean_vs_fatty_protein",
+      "dairy_splits",
+      "whey_vs_collagen_bars",
+      "legumes_vs_cereal_starches"
+    ],
+    "doNotModifyProductionInThisPr": true
+  },
+  "meta": {
+    "totalFoods": 287,
+    "exchangeProfileCount": 157,
+    "singletonExchangeProfiles": 122,
+    "rollupCount": 21,
+    "minSampleForStableRollup": 3,
+    "insufficientSampleRollupCount": 4
+  },
+  "forbiddenMerges": [
+    {
+      "id": "nuts_vs_oils",
+      "a": "nuts_seeds",
+      "b": "oils_spreads",
+      "reason": "Noix/graines ≠ huiles"
+    },
+    {
+      "id": "lean_vs_fatty_protein",
+      "a": "protein_lean",
+      "b": "protein_fatty",
+      "reason": "Protéines maigres ≠ grasses"
+    },
+    {
+      "id": "dairy_splits",
+      "a": "dairy_milk_yogurt",
+      "b": "dairy_cheese_or_plant",
+      "reason": "Lait/yogourt ≠ fromages ≠ boissons végétales"
+    },
+    {
+      "id": "whey_vs_collagen_bars",
+      "a": "whey_powders",
+      "b": "collagen_bars_rtd",
+      "reason": "Whey ≠ collagène ≠ barres ≠ boissons protéinées"
+    },
+    {
+      "id": "legumes_vs_cereal_starches",
+      "a": "starch_legume",
+      "b": "starch_cereal",
+      "reason": "Légumineuses ≠ pains/riz/pâtes"
+    }
+  ],
+  "wheyObservation": {
+    "calculatorGroupWheyFoodCount": 0,
+    "foodsWithWheyExchangeProfile": 3,
+    "foodsWithWheyExchangeProfileButProteinGroup": 3,
+    "explanationFr": "Le groupe calculateur `whey` existe dans calculation-groups.json et dans les MOYENNES historiques, mais aucun aliment n’a actuellement `calculationGroup: \"whey\"`. Les produits whey portent des `exchangeProfileId` `protein-whey-*` tout en restant classés `calculationGroup: \"protein\"`. C’est pourquoi les statistiques B/C/D du groupe whey sont vides (0 observation), alors que des produits whey existent bien dans la banque.",
+    "explanationEn": "Calculator group `whey` exists in calculation-groups.json and legacy MOYENNES, but no food currently has `calculationGroup: \"whey\"`. Whey products use `exchangeProfileId` values `protein-whey-*` while remaining classified as `calculationGroup: \"protein\"`. That is why B/C/D stats for the whey calculator group have zero observations even though whey products exist.",
+    "proposedBridge": {
+      "productionChangeInThisPr": false,
+      "map": "exchangeRollupId=rollup-whey-powders → calculatorGroup=whey (future approval only)",
+      "keepSeparatedFrom": [
+        "rollup-collagen-incomplete",
+        "rollup-protein-bars",
+        "rollup-protein-rtd"
+      ]
+    }
+  },
+  "rollups": [
+    {
+      "exchangeRollupId": "rollup-collagen-incomplete",
+      "calculatorBridgeProfileId": "rollup-collagen-incomplete",
+      "foodCount": 1,
+      "verifiedCount": 1,
+      "exchangeProfileIds": [
+        "protein-collagen-incomplete"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": true,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 9,
+          "median": 9,
+          "p25": 9,
+          "p75": 9,
+          "min": 9,
+          "max": 9,
+          "stddev": null,
+          "mad": 0
+        },
+        "carbsG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": null,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": null,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": null,
+          "mad": 0
+        },
+        "declaredKcal": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 35,
+          "median": 35,
+          "p25": 35,
+          "p75": 35,
+          "min": 35,
+          "max": 35,
+          "stddev": null,
+          "mad": 0
+        }
+      },
+      "medianProfile": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "declaredKcal": 35
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "declaredKcal": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": null,
+        "bridge": "unassigned",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-dairy-cheese",
+      "calculatorBridgeProfileId": "rollup-dairy-cheese",
+      "foodCount": 3,
+      "verifiedCount": 3,
+      "exchangeProfileIds": [
+        "dairy-cheese-6-percent",
+        "dairy-cheese-allegro-9",
+        "dairy-cheese-swiss-light"
+      ],
+      "exchangeProfileCount": 3,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 8.8333,
+          "median": 9.6,
+          "p25": 8.25,
+          "p75": 9.8,
+          "min": 6.9,
+          "max": 10,
+          "stddev": 1.6862,
+          "mad": 0.4
+        },
+        "carbsG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 1.4667,
+          "median": 1.2,
+          "p25": 1.1,
+          "p75": 1.7,
+          "min": 1,
+          "max": 2.2,
+          "stddev": 0.6429,
+          "mad": 0.2
+        },
+        "fiberG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 3.1,
+          "median": 2.5,
+          "p25": 2.15,
+          "p75": 3.75,
+          "min": 1.8,
+          "max": 5,
+          "stddev": 1.6823,
+          "mad": 0.7
+        },
+        "declaredKcal": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 74.3333,
+          "median": 70,
+          "p25": 65,
+          "p75": 81.5,
+          "min": 60,
+          "max": 93,
+          "stddev": 16.9214,
+          "mad": 10
+        }
+      },
+      "medianProfile": {
+        "proteinG": 9.6,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "declaredKcal": 70
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.4,
+          "stddev": 1.6862,
+          "iqr": 1.55
+        },
+        "carbsG": {
+          "mad": 0.2,
+          "stddev": 0.6429,
+          "iqr": 0.6
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0.7,
+          "stddev": 1.6823,
+          "iqr": 1.6
+        },
+        "declaredKcal": {
+          "mad": 10,
+          "stddev": 16.9214,
+          "iqr": 16.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "dairy",
+        "bridge": "keep_dairy_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt",
+      "foodCount": 19,
+      "verifiedCount": 19,
+      "exchangeProfileIds": [
+        "dairy-cottage-1",
+        "dairy-cottage-2",
+        "dairy-filtered-milk-fairlife-2",
+        "dairy-greek-yogurt-0",
+        "dairy-greek-yogurt-2",
+        "dairy-greek-yogurt-fruit-0",
+        "dairy-high-protein-chocolate-milk",
+        "dairy-high-protein-milk-natrel-2",
+        "dairy-kefir-fruit-low-fat",
+        "dairy-kefir-plain-low-fat",
+        "dairy-milk-2",
+        "dairy-milk-skim",
+        "dairy-milk-whole",
+        "dairy-protein-shake-core-power-26",
+        "dairy-quark-fat-free",
+        "dairy-ricotta-light",
+        "dairy-skyr-0",
+        "dairy-yogurt-fat-free-plain",
+        "dairy-yogurt-low-fat-plain"
+      ],
+      "exchangeProfileCount": 19,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 19,
+          "nullCount": 0,
+          "mean": 9.6842,
+          "median": 10.8,
+          "p25": 8.3,
+          "p75": 12.05,
+          "min": 3.2,
+          "max": 15.5,
+          "stddev": 3.3817,
+          "mad": 2.3
+        },
+        "carbsG": {
+          "numericCount": 18,
+          "nullCount": 1,
+          "mean": 6.8778,
+          "median": 5.7,
+          "p25": 4,
+          "p75": 10.35,
+          "min": 3.4,
+          "max": 14.7,
+          "stddev": 3.5719,
+          "mad": 2
+        },
+        "fiberG": {
+          "numericCount": 18,
+          "nullCount": 1,
+          "mean": 0.0556,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 1,
+          "stddev": 0.2357,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 18,
+          "nullCount": 1,
+          "mean": 2.2,
+          "median": 1.65,
+          "p25": 0.4,
+          "p75": 2.725,
+          "min": 0.1,
+          "max": 8,
+          "stddev": 2.1879,
+          "mad": 1.15
+        },
+        "declaredKcal": {
+          "numericCount": 19,
+          "nullCount": 0,
+          "mean": 84.6842,
+          "median": 85,
+          "p25": 67.5,
+          "p75": 95.5,
+          "min": 44,
+          "max": 152,
+          "stddev": 27.7089,
+          "mad": 16
+        }
+      },
+      "medianProfile": {
+        "proteinG": 10.8,
+        "carbsG": 5.7,
+        "fiberG": 0,
+        "fatG": 1.65,
+        "declaredKcal": 85
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 2.3,
+          "stddev": 3.3817,
+          "iqr": 3.75
+        },
+        "carbsG": {
+          "mad": 2,
+          "stddev": 3.5719,
+          "iqr": 6.35
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0.2357,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 1.15,
+          "stddev": 2.1879,
+          "iqr": 2.325
+        },
+        "declaredKcal": {
+          "mad": 16,
+          "stddev": 27.7089,
+          "iqr": 28
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "dairy",
+        "bridge": "keep_dairy_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink",
+      "foodCount": 7,
+      "verifiedCount": 7,
+      "exchangeProfileIds": [
+        "dairy-alternative-almond-unsweetened",
+        "dairy-alternative-almond-vanilla",
+        "dairy-alternative-oat-quinoa",
+        "dairy-alternative-rice-unsweetened",
+        "dairy-alternative-soy-unsweetened",
+        "dairy-alternative-soy-vanilla",
+        "dairy-goat-milk-whole"
+      ],
+      "exchangeProfileCount": 7,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 7,
+          "nullCount": 0,
+          "mean": 3.6286,
+          "median": 1.7,
+          "p25": 0.95,
+          "p75": 6.55,
+          "min": 0.4,
+          "max": 8.3,
+          "stddev": 3.3545,
+          "mad": 1.3
+        },
+        "carbsG": {
+          "numericCount": 7,
+          "nullCount": 0,
+          "mean": 11.5286,
+          "median": 10.3,
+          "p25": 5.5,
+          "p75": 14.55,
+          "min": 3.4,
+          "max": 26.9,
+          "stddev": 8.2064,
+          "mad": 4.9
+        },
+        "fiberG": {
+          "numericCount": 7,
+          "nullCount": 0,
+          "mean": 0.6429,
+          "median": 1,
+          "p25": 0,
+          "p75": 1,
+          "min": 0,
+          "max": 1.5,
+          "stddev": 0.6268,
+          "mad": 0.5
+        },
+        "fatG": {
+          "numericCount": 7,
+          "nullCount": 0,
+          "mean": 3.3286,
+          "median": 2.3,
+          "p25": 2.15,
+          "p75": 3.45,
+          "min": 1.8,
+          "max": 8,
+          "stddev": 2.1616,
+          "mad": 0.5
+        },
+        "declaredKcal": {
+          "numericCount": 7,
+          "nullCount": 0,
+          "mean": 90,
+          "median": 80,
+          "p25": 61,
+          "p75": 123.5,
+          "min": 37,
+          "max": 144,
+          "stddev": 41.501,
+          "mad": 42
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1.7,
+        "carbsG": 10.3,
+        "fiberG": 1,
+        "fatG": 2.3,
+        "declaredKcal": 80
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 1.3,
+          "stddev": 3.3545,
+          "iqr": 5.6
+        },
+        "carbsG": {
+          "mad": 4.9,
+          "stddev": 8.2064,
+          "iqr": 9.05
+        },
+        "fiberG": {
+          "mad": 0.5,
+          "stddev": 0.6268,
+          "iqr": 1
+        },
+        "fatG": {
+          "mad": 0.5,
+          "stddev": 2.1616,
+          "iqr": 1.3
+        },
+        "declaredKcal": {
+          "mad": 42,
+          "stddev": 41.501,
+          "iqr": 62.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "dairy",
+        "bridge": "keep_dairy_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-fat-cheese-portion",
+      "calculatorBridgeProfileId": "rollup-fat-cheese-portion",
+      "foodCount": 3,
+      "verifiedCount": 3,
+      "exchangeProfileIds": [
+        "fat-cheese"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 2.8,
+          "median": 3.5,
+          "p25": 2.25,
+          "p75": 3.7,
+          "min": 1,
+          "max": 3.9,
+          "stddev": 1.5716,
+          "mad": 0.4
+        },
+        "carbsG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 1.0333,
+          "median": 1.2,
+          "p25": 0.8,
+          "p75": 1.35,
+          "min": 0.4,
+          "max": 1.5,
+          "stddev": 0.5686,
+          "mad": 0.3
+        },
+        "fiberG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 4.5,
+          "median": 4.4,
+          "p25": 4.35,
+          "p75": 4.6,
+          "min": 4.3,
+          "max": 4.8,
+          "stddev": 0.2646,
+          "mad": 0.1
+        },
+        "declaredKcal": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 55.6667,
+          "median": 57,
+          "p25": 52,
+          "p75": 60,
+          "min": 47,
+          "max": 63,
+          "stddev": 8.0829,
+          "mad": 6
+        }
+      },
+      "medianProfile": {
+        "proteinG": 3.5,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "declaredKcal": 57
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.4,
+          "stddev": 1.5716,
+          "iqr": 1.45
+        },
+        "carbsG": {
+          "mad": 0.3,
+          "stddev": 0.5686,
+          "iqr": 0.55
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0.1,
+          "stddev": 0.2646,
+          "iqr": 0.25
+        },
+        "declaredKcal": {
+          "mad": 6,
+          "stddev": 8.0829,
+          "iqr": 8
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fat",
+        "bridge": "keep_fat_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-fat-other",
+      "calculatorBridgeProfileId": "rollup-fat-other",
+      "foodCount": 4,
+      "verifiedCount": 4,
+      "exchangeProfileIds": [
+        "fat-chocolate",
+        "fat-egg"
+      ],
+      "exchangeProfileCount": 2,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 2.5,
+          "median": 1.75,
+          "p25": 0.75,
+          "p75": 3.5,
+          "min": 0.6,
+          "max": 5.9,
+          "stddev": 2.4563,
+          "mad": 1.05
+        },
+        "carbsG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 2.825,
+          "median": 2.75,
+          "p25": 0.825,
+          "p75": 4.75,
+          "min": 0.6,
+          "max": 5.2,
+          "stddev": 2.4116,
+          "mad": 2
+        },
+        "fiberG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 0.475,
+          "median": 0.4,
+          "p25": 0,
+          "p75": 0.875,
+          "min": 0,
+          "max": 1.1,
+          "stddev": 0.562,
+          "mad": 0.4
+        },
+        "fatG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 4.675,
+          "median": 4.65,
+          "p25": 4.175,
+          "p75": 5.15,
+          "min": 3.8,
+          "max": 5.6,
+          "stddev": 0.789,
+          "mad": 0.6
+        },
+        "declaredKcal": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 62.25,
+          "median": 60,
+          "p25": 59.5,
+          "p75": 62.75,
+          "min": 58,
+          "max": 71,
+          "stddev": 5.909,
+          "mad": 1
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1.75,
+        "carbsG": 2.75,
+        "fiberG": 0.4,
+        "fatG": 4.65,
+        "declaredKcal": 60
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 1.05,
+          "stddev": 2.4563,
+          "iqr": 2.75
+        },
+        "carbsG": {
+          "mad": 2,
+          "stddev": 2.4116,
+          "iqr": 3.925
+        },
+        "fiberG": {
+          "mad": 0.4,
+          "stddev": 0.562,
+          "iqr": 0.875
+        },
+        "fatG": {
+          "mad": 0.6,
+          "stddev": 0.789,
+          "iqr": 0.975
+        },
+        "declaredKcal": {
+          "mad": 1,
+          "stddev": 5.909,
+          "iqr": 3.25
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fat",
+        "bridge": "keep_fat_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard",
+      "foodCount": 33,
+      "verifiedCount": 33,
+      "exchangeProfileIds": [
+        "fruit-standard"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 33,
+          "nullCount": 0,
+          "mean": 0.9606,
+          "median": 0.9,
+          "p25": 0.5,
+          "p75": 1.2,
+          "min": 0,
+          "max": 2.9,
+          "stddev": 0.6144,
+          "mad": 0.4
+        },
+        "carbsG": {
+          "numericCount": 33,
+          "nullCount": 0,
+          "mean": 15,
+          "median": 15,
+          "p25": 14.6,
+          "p75": 15.5,
+          "min": 12,
+          "max": 18,
+          "stddev": 1.1619,
+          "mad": 0.5
+        },
+        "fiberG": {
+          "numericCount": 32,
+          "nullCount": 1,
+          "mean": 2.2844,
+          "median": 2.05,
+          "p25": 1.075,
+          "p75": 2.825,
+          "min": 0.3,
+          "max": 8.5,
+          "stddev": 1.8302,
+          "mad": 0.9
+        },
+        "fatG": {
+          "numericCount": 33,
+          "nullCount": 0,
+          "mean": 0.2909,
+          "median": 0.2,
+          "p25": 0.1,
+          "p75": 0.4,
+          "min": 0,
+          "max": 0.9,
+          "stddev": 0.217,
+          "mad": 0.1
+        },
+        "declaredKcal": {
+          "numericCount": 33,
+          "nullCount": 0,
+          "mean": 60.3636,
+          "median": 60,
+          "p25": 57,
+          "p75": 63,
+          "min": 51,
+          "max": 70,
+          "stddev": 4.9423,
+          "mad": 3
+        }
+      },
+      "medianProfile": {
+        "proteinG": 0.9,
+        "carbsG": 15,
+        "fiberG": 2.05,
+        "fatG": 0.2,
+        "declaredKcal": 60
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.4,
+          "stddev": 0.6144,
+          "iqr": 0.7
+        },
+        "carbsG": {
+          "mad": 0.5,
+          "stddev": 1.1619,
+          "iqr": 0.9
+        },
+        "fiberG": {
+          "mad": 0.9,
+          "stddev": 1.8302,
+          "iqr": 1.75
+        },
+        "fatG": {
+          "mad": 0.1,
+          "stddev": 0.217,
+          "iqr": 0.3
+        },
+        "declaredKcal": {
+          "mad": 3,
+          "stddev": 4.9423,
+          "iqr": 6
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fruit",
+        "bridge": "keep_fruit_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter",
+      "foodCount": 5,
+      "verifiedCount": 5,
+      "exchangeProfileIds": [
+        "fat-nut-butter",
+        "fat-seed-butter"
+      ],
+      "exchangeProfileCount": 2,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 5,
+          "nullCount": 0,
+          "mean": 2.06,
+          "median": 1.9,
+          "p25": 1.9,
+          "p75": 2.3,
+          "min": 1.7,
+          "max": 2.5,
+          "stddev": 0.3286,
+          "mad": 0.2
+        },
+        "carbsG": {
+          "numericCount": 5,
+          "nullCount": 0,
+          "mean": 2.42,
+          "median": 2.3,
+          "p25": 2.1,
+          "p75": 2.6,
+          "min": 2.1,
+          "max": 3,
+          "stddev": 0.3834,
+          "mad": 0.2
+        },
+        "fiberG": {
+          "numericCount": 5,
+          "nullCount": 0,
+          "mean": 0.72,
+          "median": 0.8,
+          "p25": 0.6,
+          "p75": 0.9,
+          "min": 0.2,
+          "max": 1.1,
+          "stddev": 0.3421,
+          "mad": 0.2
+        },
+        "fatG": {
+          "numericCount": 5,
+          "nullCount": 0,
+          "mean": 5.64,
+          "median": 5.4,
+          "p25": 5.4,
+          "p75": 6.1,
+          "min": 5.2,
+          "max": 6.1,
+          "stddev": 0.4278,
+          "mad": 0.2
+        },
+        "declaredKcal": {
+          "numericCount": 5,
+          "nullCount": 0,
+          "mean": 64.4,
+          "median": 65,
+          "p25": 61,
+          "p75": 68,
+          "min": 60,
+          "max": 68,
+          "stddev": 3.7815,
+          "mad": 3
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1.9,
+        "carbsG": 2.3,
+        "fiberG": 0.8,
+        "fatG": 5.4,
+        "declaredKcal": 65
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.2,
+          "stddev": 0.3286,
+          "iqr": 0.4
+        },
+        "carbsG": {
+          "mad": 0.2,
+          "stddev": 0.3834,
+          "iqr": 0.5
+        },
+        "fiberG": {
+          "mad": 0.2,
+          "stddev": 0.3421,
+          "iqr": 0.3
+        },
+        "fatG": {
+          "mad": 0.2,
+          "stddev": 0.4278,
+          "iqr": 0.7
+        },
+        "declaredKcal": {
+          "mad": 3,
+          "stddev": 3.7815,
+          "iqr": 7
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fat",
+        "bridge": "keep_fat_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds",
+      "foodCount": 27,
+      "verifiedCount": 27,
+      "exchangeProfileIds": [
+        "fat-coconut",
+        "fat-legume-spread",
+        "fat-mixed-nuts",
+        "fat-nut-seed",
+        "fat-seed",
+        "fat-seed-high-fibre",
+        "protein-fat-soy-nut",
+        "protein-plant-edamame",
+        "starch-chestnut",
+        "starch-fat-granola"
+      ],
+      "exchangeProfileCount": 10,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 27,
+          "nullCount": 0,
+          "mean": 2.4037,
+          "median": 1.8,
+          "p25": 1.25,
+          "p75": 2.75,
+          "min": 0.3,
+          "max": 11.7,
+          "stddev": 2.2043,
+          "mad": 0.6
+        },
+        "carbsG": {
+          "numericCount": 27,
+          "nullCount": 0,
+          "mean": 3.4259,
+          "median": 2,
+          "p25": 1.2,
+          "p75": 3.5,
+          "min": 0.9,
+          "max": 15.9,
+          "stddev": 4.1013,
+          "mad": 0.9
+        },
+        "fiberG": {
+          "numericCount": 27,
+          "nullCount": 0,
+          "mean": 1.2444,
+          "median": 0.8,
+          "p25": 0.8,
+          "p75": 1.35,
+          "min": 0.3,
+          "max": 4,
+          "stddev": 0.9673,
+          "mad": 0.2
+        },
+        "fatG": {
+          "numericCount": 27,
+          "nullCount": 0,
+          "mean": 5.1519,
+          "median": 4.9,
+          "p25": 4.15,
+          "p75": 6.05,
+          "min": 0.7,
+          "max": 9.1,
+          "stddev": 1.7044,
+          "mad": 0.9
+        },
+        "declaredKcal": {
+          "numericCount": 27,
+          "nullCount": 0,
+          "mean": 65.4444,
+          "median": 57,
+          "p25": 52.5,
+          "p75": 71.5,
+          "min": 33,
+          "max": 147,
+          "stddev": 25.2378,
+          "mad": 7
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1.8,
+        "carbsG": 2,
+        "fiberG": 0.8,
+        "fatG": 4.9,
+        "declaredKcal": 57
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.6,
+          "stddev": 2.2043,
+          "iqr": 1.5
+        },
+        "carbsG": {
+          "mad": 0.9,
+          "stddev": 4.1013,
+          "iqr": 2.3
+        },
+        "fiberG": {
+          "mad": 0.2,
+          "stddev": 0.9673,
+          "iqr": 0.55
+        },
+        "fatG": {
+          "mad": 0.9,
+          "stddev": 1.7044,
+          "iqr": 1.9
+        },
+        "declaredKcal": {
+          "mad": 7,
+          "stddev": 25.2378,
+          "iqr": 19
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fat",
+        "bridge": "keep_fat_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads",
+      "foodCount": 16,
+      "verifiedCount": 16,
+      "exchangeProfileIds": [
+        "fat-avocado",
+        "fat-butter-spread",
+        "fat-dressing",
+        "fat-fish-oil",
+        "fat-mayonnaise",
+        "fat-mct-oil",
+        "fat-oil",
+        "fat-olive"
+      ],
+      "exchangeProfileCount": 8,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 16,
+          "nullCount": 0,
+          "mean": 0.1188,
+          "median": 0,
+          "p25": 0,
+          "p75": 0.1,
+          "min": 0,
+          "max": 0.7,
+          "stddev": 0.204,
+          "mad": 0
+        },
+        "carbsG": {
+          "numericCount": 16,
+          "nullCount": 0,
+          "mean": 0.6063,
+          "median": 0,
+          "p25": 0,
+          "p75": 0.6,
+          "min": 0,
+          "max": 3.1,
+          "stddev": 1.0982,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 16,
+          "nullCount": 0,
+          "mean": 0.275,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 2.3,
+          "stddev": 0.6537,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 16,
+          "nullCount": 0,
+          "mean": 6.1125,
+          "median": 5.95,
+          "p25": 5.525,
+          "p75": 6.825,
+          "min": 4.7,
+          "max": 7.1,
+          "stddev": 0.8188,
+          "mad": 0.85
+        },
+        "declaredKcal": {
+          "numericCount": 16,
+          "nullCount": 0,
+          "mean": 56.75,
+          "median": 58.5,
+          "p25": 52,
+          "p75": 62,
+          "min": 48,
+          "max": 65,
+          "stddev": 5.7908,
+          "mad": 4.5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.95,
+        "declaredKcal": 58.5
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0,
+          "stddev": 0.204,
+          "iqr": 0.1
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": 1.0982,
+          "iqr": 0.6
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0.6537,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0.85,
+          "stddev": 0.8188,
+          "iqr": 1.3
+        },
+        "declaredKcal": {
+          "mad": 4.5,
+          "stddev": 5.7908,
+          "iqr": 10
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "fat",
+        "bridge": "keep_fat_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-protein-bars",
+      "calculatorBridgeProfileId": "rollup-protein-bars",
+      "foodCount": 2,
+      "verifiedCount": 2,
+      "exchangeProfileIds": [
+        "protein-bar-high-fibre",
+        "starch-cooked-grain-barley"
+      ],
+      "exchangeProfileCount": 2,
+      "insufficientSample": true,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 5.85,
+          "median": 5.85,
+          "p25": 3.775,
+          "p75": 7.925,
+          "min": 1.7,
+          "max": 10,
+          "stddev": 5.869,
+          "mad": 4.15
+        },
+        "carbsG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 16.6,
+          "median": 16.6,
+          "p25": 14.3,
+          "p75": 18.9,
+          "min": 12,
+          "max": 21.2,
+          "stddev": 6.5054,
+          "mad": 4.6
+        },
+        "fiberG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 4.65,
+          "median": 4.65,
+          "p25": 3.225,
+          "p75": 6.075,
+          "min": 1.8,
+          "max": 7.5,
+          "stddev": 4.0305,
+          "mad": 2.85
+        },
+        "fatG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 1.65,
+          "median": 1.65,
+          "p25": 0.975,
+          "p75": 2.325,
+          "min": 0.3,
+          "max": 3,
+          "stddev": 1.9092,
+          "mad": 1.35
+        },
+        "declaredKcal": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 88.5,
+          "median": 88.5,
+          "p25": 86.75,
+          "p75": 90.25,
+          "min": 85,
+          "max": 92,
+          "stddev": 4.9497,
+          "mad": 3.5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 5.85,
+        "carbsG": 16.6,
+        "fiberG": 4.65,
+        "fatG": 1.65,
+        "declaredKcal": 88.5
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 4.15,
+          "stddev": 5.869,
+          "iqr": 4.15
+        },
+        "carbsG": {
+          "mad": 4.6,
+          "stddev": 6.5054,
+          "iqr": 4.6
+        },
+        "fiberG": {
+          "mad": 2.85,
+          "stddev": 4.0305,
+          "iqr": 2.85
+        },
+        "fatG": {
+          "mad": 1.35,
+          "stddev": 1.9092,
+          "iqr": 1.35
+        },
+        "declaredKcal": {
+          "mad": 3.5,
+          "stddev": 4.9497,
+          "iqr": 3.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "protein",
+        "bridge": "keep_protein_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty",
+      "foodCount": 11,
+      "verifiedCount": 11,
+      "exchangeProfileIds": [
+        "protein-beef-fatty-steak",
+        "protein-fatty-fish",
+        "protein-processed-meat-high-fat"
+      ],
+      "exchangeProfileCount": 3,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 11,
+          "nullCount": 0,
+          "mean": 6.8545,
+          "median": 7.1,
+          "p25": 6.75,
+          "p75": 7.65,
+          "min": 2.8,
+          "max": 8.7,
+          "stddev": 1.6046,
+          "mad": 0.5
+        },
+        "carbsG": {
+          "numericCount": 11,
+          "nullCount": 0,
+          "mean": 0.0909,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0.8,
+          "stddev": 0.2427,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 11,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 11,
+          "nullCount": 0,
+          "mean": 3.8636,
+          "median": 3.5,
+          "p25": 3.05,
+          "p75": 4.9,
+          "min": 1.7,
+          "max": 6.5,
+          "stddev": 1.4706,
+          "mad": 1
+        },
+        "declaredKcal": {
+          "numericCount": 11,
+          "nullCount": 0,
+          "mean": 64.2727,
+          "median": 62,
+          "p25": 55.5,
+          "p75": 75,
+          "min": 44,
+          "max": 86,
+          "stddev": 14.0861,
+          "mad": 12
+        }
+      },
+      "medianProfile": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.5,
+        "declaredKcal": 62
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.5,
+          "stddev": 1.6046,
+          "iqr": 0.9
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": 0.2427,
+          "iqr": 0
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 1,
+          "stddev": 1.4706,
+          "iqr": 1.85
+        },
+        "declaredKcal": {
+          "mad": 12,
+          "stddev": 14.0861,
+          "iqr": 19.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "protein",
+        "bridge": "keep_protein_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean",
+      "foodCount": 79,
+      "verifiedCount": 79,
+      "exchangeProfileIds": [
+        "protein-beef-isolate",
+        "protein-beef-lean-steak",
+        "protein-beef-standard",
+        "protein-canned-chicken",
+        "protein-canned-fish",
+        "protein-canned-fish-lean",
+        "protein-casein-micellar",
+        "protein-chicken-dark-meat",
+        "protein-chicken-with-skin",
+        "protein-deli-ham",
+        "protein-duck",
+        "protein-egg-substitute-powder",
+        "protein-egg-white-cooked",
+        "protein-egg-white-wrap",
+        "protein-game-lean",
+        "protein-ground-beef-extra-lean",
+        "protein-ground-beef-lean",
+        "protein-ground-beef-medium",
+        "protein-ground-beef-regular",
+        "protein-ground-poultry",
+        "protein-ground-veal",
+        "protein-jerky",
+        "protein-lamb",
+        "protein-lean-animal",
+        "protein-lean-fish",
+        "protein-liquid-egg-white",
+        "protein-mollusk",
+        "protein-mollusk-lean",
+        "protein-natto",
+        "protein-pea-isolate",
+        "protein-plant-soy-generic",
+        "protein-pork-lean",
+        "protein-pork-ribs",
+        "protein-pork-standard",
+        "protein-powdered-peanut",
+        "protein-processed-poultry",
+        "protein-processed-seafood",
+        "protein-rice",
+        "protein-seafood-specialty",
+        "protein-seitan-branded",
+        "protein-shellfish-lean",
+        "protein-smoked-fish",
+        "protein-smoked-turkey",
+        "protein-soy-isolate",
+        "protein-tempeh",
+        "protein-tempeh-cooked",
+        "protein-tofu-extra-firm",
+        "protein-tofu-firm",
+        "protein-tofu-silken-firm",
+        "protein-turkey",
+        "protein-veal"
+      ],
+      "exchangeProfileCount": 51,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 79,
+          "nullCount": 0,
+          "mean": 9.3013,
+          "median": 9.3,
+          "p25": 8.45,
+          "p75": 10.6,
+          "min": 2.3,
+          "max": 13.4,
+          "stddev": 2.0173,
+          "mad": 1.3
+        },
+        "carbsG": {
+          "numericCount": 79,
+          "nullCount": 0,
+          "mean": 1.0013,
+          "median": 0,
+          "p25": 0,
+          "p75": 1.85,
+          "min": 0,
+          "max": 7.5,
+          "stddev": 1.6717,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 77,
+          "nullCount": 2,
+          "mean": 0.1377,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 2.7,
+          "stddev": 0.4267,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 79,
+          "nullCount": 0,
+          "mean": 2.0987,
+          "median": 1.3,
+          "p25": 0.65,
+          "p75": 3,
+          "min": 0,
+          "max": 7.8,
+          "stddev": 1.9227,
+          "mad": 0.9
+        },
+        "declaredKcal": {
+          "numericCount": 79,
+          "nullCount": 0,
+          "mean": 61.1772,
+          "median": 55,
+          "p25": 48,
+          "p75": 73.5,
+          "min": 27,
+          "max": 120,
+          "stddev": 19.8603,
+          "mad": 10
+        }
+      },
+      "medianProfile": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "declaredKcal": 55
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 1.3,
+          "stddev": 2.0173,
+          "iqr": 2.15
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": 1.6717,
+          "iqr": 1.85
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0.4267,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0.9,
+          "stddev": 1.9227,
+          "iqr": 2.35
+        },
+        "declaredKcal": {
+          "mad": 10,
+          "stddev": 19.8603,
+          "iqr": 25.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "protein",
+        "bridge": "keep_protein_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-protein-moderate-fat",
+      "calculatorBridgeProfileId": "rollup-protein-moderate-fat",
+      "foodCount": 2,
+      "verifiedCount": 2,
+      "exchangeProfileIds": [
+        "protein-fish-moderate-fat"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": true,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 10.6,
+          "median": 10.6,
+          "p25": 10.6,
+          "p75": 10.6,
+          "min": 10.6,
+          "max": 10.6,
+          "stddev": 0,
+          "mad": 0
+        },
+        "carbsG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 0,
+          "median": 0,
+          "p25": 0,
+          "p75": 0,
+          "min": 0,
+          "max": 0,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 2.4,
+          "median": 2.4,
+          "p25": 1.8,
+          "p75": 3,
+          "min": 1.2,
+          "max": 3.6,
+          "stddev": 1.6971,
+          "mad": 1.2
+        },
+        "declaredKcal": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 66.5,
+          "median": 66.5,
+          "p25": 61.25,
+          "p75": 71.75,
+          "min": 56,
+          "max": 77,
+          "stddev": 14.8492,
+          "mad": 10.5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "declaredKcal": 66.5
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 1.2,
+          "stddev": 1.6971,
+          "iqr": 1.2
+        },
+        "declaredKcal": {
+          "mad": 10.5,
+          "stddev": 14.8492,
+          "iqr": 10.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "protein",
+        "bridge": "keep_protein_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-protein-rtd",
+      "foodCount": 4,
+      "verifiedCount": 4,
+      "exchangeProfileIds": [
+        "protein-ready-to-drink",
+        "protein-rtd-muscle-milk",
+        "protein-rtd-premier"
+      ],
+      "exchangeProfileCount": 3,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 9.85,
+          "median": 10.05,
+          "p25": 9.8,
+          "p75": 10.1,
+          "min": 9.2,
+          "max": 10.1,
+          "stddev": 0.4359,
+          "mad": 0.05
+        },
+        "carbsG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 2.45,
+          "median": 2.05,
+          "p25": 1.875,
+          "p75": 2.625,
+          "min": 1.8,
+          "max": 3.9,
+          "stddev": 0.9815,
+          "mad": 0.2
+        },
+        "fiberG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 0.475,
+          "median": 0.55,
+          "p25": 0.375,
+          "p75": 0.65,
+          "min": 0,
+          "max": 0.8,
+          "stddev": 0.3403,
+          "mad": 0.15
+        },
+        "fatG": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 1.55,
+          "median": 0.85,
+          "p25": 0.8,
+          "p75": 1.6,
+          "min": 0.8,
+          "max": 3.7,
+          "stddev": 1.4341,
+          "mad": 0.05
+        },
+        "declaredKcal": {
+          "numericCount": 4,
+          "nullCount": 0,
+          "mean": 62.25,
+          "median": 56,
+          "p25": 54.25,
+          "p75": 64,
+          "min": 49,
+          "max": 88,
+          "stddev": 17.4809,
+          "mad": 3.5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 10.05,
+        "carbsG": 2.05,
+        "fiberG": 0.55,
+        "fatG": 0.85,
+        "declaredKcal": 56
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.05,
+          "stddev": 0.4359,
+          "iqr": 0.3
+        },
+        "carbsG": {
+          "mad": 0.2,
+          "stddev": 0.9815,
+          "iqr": 0.75
+        },
+        "fiberG": {
+          "mad": 0.15,
+          "stddev": 0.3403,
+          "iqr": 0.275
+        },
+        "fatG": {
+          "mad": 0.05,
+          "stddev": 1.4341,
+          "iqr": 0.8
+        },
+        "declaredKcal": {
+          "mad": 3.5,
+          "stddev": 17.4809,
+          "iqr": 9.75
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "protein",
+        "bridge": "keep_protein_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal",
+      "foodCount": 29,
+      "verifiedCount": 29,
+      "exchangeProfileIds": [
+        "starch-bread-bagel",
+        "starch-bread-bun",
+        "starch-bread-english-muffin",
+        "starch-bread-ezekiel-original",
+        "starch-bread-pita-whole-wheat",
+        "starch-bread-rye",
+        "starch-bread-sprouted-generic",
+        "starch-bread-whole-wheat",
+        "starch-breakfast-cereal-cheerios",
+        "starch-cooked-grain",
+        "starch-cooked-grain-buckwheat",
+        "starch-cooked-grain-bulgur",
+        "starch-cooked-grain-couscous",
+        "starch-cooked-grain-millet",
+        "starch-corn",
+        "starch-oatmeal-instant-dry",
+        "starch-oatmeal-prepared",
+        "starch-oats-dry",
+        "starch-pasta-enriched",
+        "starch-pasta-whole-wheat",
+        "starch-potato-boiled",
+        "starch-potato-mashed-milk",
+        "starch-rice-brown",
+        "starch-rice-cake",
+        "starch-rice-white",
+        "starch-root-jerusalem-artichoke",
+        "starch-sweet-potato",
+        "starch-tortilla-corn",
+        "starch-tortilla-flour"
+      ],
+      "exchangeProfileCount": 29,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 29,
+          "nullCount": 0,
+          "mean": 3.1172,
+          "median": 2.7,
+          "p25": 2.3,
+          "p75": 3.9,
+          "min": 1.1,
+          "max": 5.9,
+          "stddev": 1.228,
+          "mad": 0.9
+        },
+        "carbsG": {
+          "numericCount": 29,
+          "nullCount": 0,
+          "mean": 18.1345,
+          "median": 17.4,
+          "p25": 15,
+          "p75": 21.8,
+          "min": 11.3,
+          "max": 28.6,
+          "stddev": 4.0463,
+          "mad": 2.6
+        },
+        "fiberG": {
+          "numericCount": 28,
+          "nullCount": 1,
+          "mean": 1.9179,
+          "median": 1.95,
+          "p25": 1.25,
+          "p75": 2.425,
+          "min": 0.6,
+          "max": 3.7,
+          "stddev": 0.9047,
+          "mad": 0.6
+        },
+        "fatG": {
+          "numericCount": 29,
+          "nullCount": 0,
+          "mean": 0.9103,
+          "median": 0.6,
+          "p25": 0.5,
+          "p75": 1.4,
+          "min": 0,
+          "max": 2.4,
+          "stddev": 0.7163,
+          "mad": 0.5
+        },
+        "declaredKcal": {
+          "numericCount": 29,
+          "nullCount": 0,
+          "mean": 92.3103,
+          "median": 90,
+          "p25": 70,
+          "p75": 112,
+          "min": 56,
+          "max": 136,
+          "stddev": 23.3821,
+          "mad": 21
+        }
+      },
+      "medianProfile": {
+        "proteinG": 2.7,
+        "carbsG": 17.4,
+        "fiberG": 1.95,
+        "fatG": 0.6,
+        "declaredKcal": 90
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.9,
+          "stddev": 1.228,
+          "iqr": 1.6
+        },
+        "carbsG": {
+          "mad": 2.6,
+          "stddev": 4.0463,
+          "iqr": 6.8
+        },
+        "fiberG": {
+          "mad": 0.6,
+          "stddev": 0.9047,
+          "iqr": 1.175
+        },
+        "fatG": {
+          "mad": 0.5,
+          "stddev": 0.7163,
+          "iqr": 0.9
+        },
+        "declaredKcal": {
+          "mad": 21,
+          "stddev": 23.3821,
+          "iqr": 42
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "starch",
+        "bridge": "keep_starch_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-starch-legume",
+      "calculatorBridgeProfileId": "rollup-starch-legume",
+      "foodCount": 3,
+      "verifiedCount": 3,
+      "exchangeProfileIds": [
+        "starch-legume-black-bean",
+        "starch-legume-chickpea",
+        "starch-legume-lentil"
+      ],
+      "exchangeProfileCount": 3,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 8.9333,
+          "median": 8.9,
+          "p25": 8.9,
+          "p75": 8.95,
+          "min": 8.9,
+          "max": 9,
+          "stddev": 0.0577,
+          "mad": 0
+        },
+        "carbsG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 23.7333,
+          "median": 23.7,
+          "p25": 21.9,
+          "p75": 25.55,
+          "min": 20.1,
+          "max": 27.4,
+          "stddev": 3.6501,
+          "mad": 3.6
+        },
+        "fiberG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 5.3,
+          "median": 4.6,
+          "p25": 4.45,
+          "p75": 5.8,
+          "min": 4.3,
+          "max": 7,
+          "stddev": 1.4799,
+          "mad": 0.3
+        },
+        "fatG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 1.1667,
+          "median": 0.5,
+          "p25": 0.45,
+          "p75": 1.55,
+          "min": 0.4,
+          "max": 2.6,
+          "stddev": 1.2423,
+          "mad": 0.1
+        },
+        "declaredKcal": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 137.3333,
+          "median": 132,
+          "p25": 124,
+          "p75": 148,
+          "min": 116,
+          "max": 164,
+          "stddev": 24.4404,
+          "mad": 16
+        }
+      },
+      "medianProfile": {
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 4.6,
+        "fatG": 0.5,
+        "declaredKcal": 132
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0,
+          "stddev": 0.0577,
+          "iqr": 0.05
+        },
+        "carbsG": {
+          "mad": 3.6,
+          "stddev": 3.6501,
+          "iqr": 3.65
+        },
+        "fiberG": {
+          "mad": 0.3,
+          "stddev": 1.4799,
+          "iqr": 1.35
+        },
+        "fatG": {
+          "mad": 0.1,
+          "stddev": 1.2423,
+          "iqr": 1.1
+        },
+        "declaredKcal": {
+          "mad": 16,
+          "stddev": 24.4404,
+          "iqr": 24
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "starch",
+        "bridge": "keep_starch_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb",
+      "foodCount": 6,
+      "verifiedCount": 6,
+      "exchangeProfileIds": [
+        "vegetable-higher-carb"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 6,
+          "nullCount": 0,
+          "mean": 1.45,
+          "median": 1.25,
+          "p25": 0.7,
+          "p75": 1.5,
+          "min": 0.6,
+          "max": 3.5,
+          "stddev": 1.0821,
+          "mad": 0.45
+        },
+        "carbsG": {
+          "numericCount": 6,
+          "nullCount": 0,
+          "mean": 8.0667,
+          "median": 7.4,
+          "p25": 4.525,
+          "p75": 10.725,
+          "min": 3.9,
+          "max": 14.3,
+          "stddev": 4.2051,
+          "mad": 3.4
+        },
+        "fiberG": {
+          "numericCount": 6,
+          "nullCount": 0,
+          "mean": 2.05,
+          "median": 1.7,
+          "p25": 1.525,
+          "p75": 1.8,
+          "min": 0.9,
+          "max": 4.7,
+          "stddev": 1.3398,
+          "mad": 0.15
+        },
+        "fatG": {
+          "numericCount": 6,
+          "nullCount": 0,
+          "mean": 0.1667,
+          "median": 0.1,
+          "p25": 0.1,
+          "p75": 0.175,
+          "min": 0.1,
+          "max": 0.4,
+          "stddev": 0.1211,
+          "mad": 0
+        },
+        "declaredKcal": {
+          "numericCount": 6,
+          "nullCount": 0,
+          "mean": 35.3333,
+          "median": 32.5,
+          "p25": 22.75,
+          "p75": 42.25,
+          "min": 18,
+          "max": 64,
+          "stddev": 17.2472,
+          "mad": 10.5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1.25,
+        "carbsG": 7.4,
+        "fiberG": 1.7,
+        "fatG": 0.1,
+        "declaredKcal": 32.5
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.45,
+          "stddev": 1.0821,
+          "iqr": 0.8
+        },
+        "carbsG": {
+          "mad": 3.4,
+          "stddev": 4.2051,
+          "iqr": 6.2
+        },
+        "fiberG": {
+          "mad": 0.15,
+          "stddev": 1.3398,
+          "iqr": 0.275
+        },
+        "fatG": {
+          "mad": 0,
+          "stddev": 0.1211,
+          "iqr": 0.075
+        },
+        "declaredKcal": {
+          "mad": 10.5,
+          "stddev": 17.2472,
+          "iqr": 19.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "vegetable",
+        "bridge": "keep_vegetable_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-vegetable-juice",
+      "calculatorBridgeProfileId": "rollup-vegetable-juice",
+      "foodCount": 2,
+      "verifiedCount": 2,
+      "exchangeProfileIds": [
+        "vegetable-juice"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": true,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 2.45,
+          "median": 2.45,
+          "p25": 2.425,
+          "p75": 2.475,
+          "min": 2.4,
+          "max": 2.5,
+          "stddev": 0.0707,
+          "mad": 0.05
+        },
+        "carbsG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 10.3,
+          "median": 10.3,
+          "p25": 10.3,
+          "p75": 10.3,
+          "min": 10.3,
+          "max": 10.3,
+          "stddev": 0,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 1.4,
+          "median": 1.4,
+          "p25": 1.35,
+          "p75": 1.45,
+          "min": 1.3,
+          "max": 1.5,
+          "stddev": 0.1414,
+          "mad": 0.1
+        },
+        "fatG": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 0.85,
+          "median": 0.85,
+          "p25": 0.825,
+          "p75": 0.875,
+          "min": 0.8,
+          "max": 0.9,
+          "stddev": 0.0707,
+          "mad": 0.05
+        },
+        "declaredKcal": {
+          "numericCount": 2,
+          "nullCount": 0,
+          "mean": 55,
+          "median": 55,
+          "p25": 53,
+          "p75": 57,
+          "min": 51,
+          "max": 59,
+          "stddev": 5.6569,
+          "mad": 4
+        }
+      },
+      "medianProfile": {
+        "proteinG": 2.45,
+        "carbsG": 10.3,
+        "fiberG": 1.4,
+        "fatG": 0.85,
+        "declaredKcal": 55
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.05,
+          "stddev": 0.0707,
+          "iqr": 0.05
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": 0,
+          "iqr": 0
+        },
+        "fiberG": {
+          "mad": 0.1,
+          "stddev": 0.1414,
+          "iqr": 0.1
+        },
+        "fatG": {
+          "mad": 0.05,
+          "stddev": 0.0707,
+          "iqr": 0.05
+        },
+        "declaredKcal": {
+          "mad": 4,
+          "stddev": 5.6569,
+          "iqr": 4
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "vegetable",
+        "bridge": "keep_vegetable_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy",
+      "foodCount": 28,
+      "verifiedCount": 28,
+      "exchangeProfileIds": [
+        "vegetable-aromatic",
+        "vegetable-broth",
+        "vegetable-cruciferous",
+        "vegetable-leafy",
+        "vegetable-mushroom",
+        "vegetable-standard"
+      ],
+      "exchangeProfileCount": 6,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 28,
+          "nullCount": 0,
+          "mean": 1.3857,
+          "median": 1,
+          "p25": 0.775,
+          "p75": 1.95,
+          "min": 0.3,
+          "max": 4.6,
+          "stddev": 1.0526,
+          "mad": 0.3
+        },
+        "carbsG": {
+          "numericCount": 28,
+          "nullCount": 0,
+          "mean": 4.625,
+          "median": 4.7,
+          "p25": 3.575,
+          "p75": 5.625,
+          "min": 1,
+          "max": 10.6,
+          "stddev": 1.9731,
+          "mad": 1
+        },
+        "fiberG": {
+          "numericCount": 28,
+          "nullCount": 0,
+          "mean": 1.5143,
+          "median": 1.2,
+          "p25": 0.775,
+          "p75": 2.05,
+          "min": 0.3,
+          "max": 3.8,
+          "stddev": 0.9001,
+          "mad": 0.55
+        },
+        "fatG": {
+          "numericCount": 28,
+          "nullCount": 0,
+          "mean": 0.25,
+          "median": 0.2,
+          "p25": 0.1,
+          "p75": 0.3,
+          "min": 0,
+          "max": 1.1,
+          "stddev": 0.2203,
+          "mad": 0.1
+        },
+        "declaredKcal": {
+          "numericCount": 28,
+          "nullCount": 0,
+          "mean": 22.2857,
+          "median": 21,
+          "p25": 16.75,
+          "p75": 27.25,
+          "min": 6,
+          "max": 44,
+          "stddev": 9.1038,
+          "mad": 5
+        }
+      },
+      "medianProfile": {
+        "proteinG": 1,
+        "carbsG": 4.7,
+        "fiberG": 1.2,
+        "fatG": 0.2,
+        "declaredKcal": 21
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.3,
+          "stddev": 1.0526,
+          "iqr": 1.175
+        },
+        "carbsG": {
+          "mad": 1,
+          "stddev": 1.9731,
+          "iqr": 2.05
+        },
+        "fiberG": {
+          "mad": 0.55,
+          "stddev": 0.9001,
+          "iqr": 1.275
+        },
+        "fatG": {
+          "mad": 0.1,
+          "stddev": 0.2203,
+          "iqr": 0.2
+        },
+        "declaredKcal": {
+          "mad": 5,
+          "stddev": 9.1038,
+          "iqr": 10.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "vegetable",
+        "bridge": "keep_vegetable_group",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-whey-powders",
+      "calculatorBridgeProfileId": "rollup-whey-powders",
+      "foodCount": 3,
+      "verifiedCount": 3,
+      "exchangeProfileIds": [
+        "protein-whey-generic",
+        "protein-whey-hydrolysate",
+        "protein-whey-isolate"
+      ],
+      "exchangeProfileCount": 3,
+      "insufficientSample": false,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 13.0667,
+          "median": 12.5,
+          "p25": 12.1,
+          "p75": 13.75,
+          "min": 11.7,
+          "max": 15,
+          "stddev": 1.7214,
+          "mad": 0.8
+        },
+        "carbsG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 1.1333,
+          "median": 1,
+          "p25": 0.95,
+          "p75": 1.25,
+          "min": 0.9,
+          "max": 1.5,
+          "stddev": 0.3215,
+          "mad": 0.1
+        },
+        "fiberG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 0.1667,
+          "median": 0,
+          "p25": 0,
+          "p75": 0.25,
+          "min": 0,
+          "max": 0.5,
+          "stddev": 0.2887,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 0.4,
+          "median": 0.5,
+          "p25": 0.35,
+          "p75": 0.5,
+          "min": 0.2,
+          "max": 0.5,
+          "stddev": 0.1732,
+          "mad": 0
+        },
+        "declaredKcal": {
+          "numericCount": 3,
+          "nullCount": 0,
+          "mean": 59.3333,
+          "median": 55,
+          "p25": 54,
+          "p75": 62.5,
+          "min": 53,
+          "max": 70,
+          "stddev": 9.2916,
+          "mad": 2
+        }
+      },
+      "medianProfile": {
+        "proteinG": 12.5,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "declaredKcal": 55
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0.8,
+          "stddev": 1.7214,
+          "iqr": 1.65
+        },
+        "carbsG": {
+          "mad": 0.1,
+          "stddev": 0.3215,
+          "iqr": 0.3
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": 0.2887,
+          "iqr": 0.25
+        },
+        "fatG": {
+          "mad": 0,
+          "stddev": 0.1732,
+          "iqr": 0.15
+        },
+        "declaredKcal": {
+          "mad": 2,
+          "stddev": 9.2916,
+          "iqr": 8.5
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "whey",
+        "bridge": "map_rollup_whey_powders_to_calculator_whey",
+        "note": "Les aliments whey sont aujourd’hui classés calculationGroup=protein; le groupe calculateur whey est vide. Pont proposé sans mutation production.",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    }
+  ],
+  "assignments": [
+    {
+      "foodId": "noix-graines-almonds",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-peanuts",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-peanut-almond-butter",
+      "exchangeProfileId": "fat-nut-butter",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter"
+    },
+    {
+      "foodId": "noix-graines-tahini",
+      "exchangeProfileId": "fat-seed-butter",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter"
+    },
+    {
+      "foodId": "noix-graines-hemp-seeds",
+      "exchangeProfileId": "fat-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-ground-chia-seeds",
+      "exchangeProfileId": "fat-seed-high-fibre",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-ground-flax-seeds",
+      "exchangeProfileId": "fat-seed-high-fibre",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-roasted-pumpkin-seeds",
+      "exchangeProfileId": "fat-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-dehydrated-pine-nuts",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-sesame-seeds",
+      "exchangeProfileId": "fat-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-oil-roasted-sunflower-seeds",
+      "exchangeProfileId": "fat-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-hummus",
+      "exchangeProfileId": "fat-legume-spread",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-cashews",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-shredded-coconut",
+      "exchangeProfileId": "fat-coconut",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-walnuts",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-brazil-nuts",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-macadamia-nuts",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-oil-roasted-pecans",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-raw-pistachios",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-cup-soybeans-or-edamame",
+      "exchangeProfileId": "protein-plant-edamame",
+      "calculationGroup": "protein",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-homemade-protein-granola",
+      "exchangeProfileId": "starch-fat-granola",
+      "calculationGroup": "starch",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-natural-cashew-butter",
+      "exchangeProfileId": "fat-nut-butter",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter"
+    },
+    {
+      "foodId": "matieres-grasses-avocado",
+      "exchangeProfileId": "fat-avocado",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-square-dark-chocolate-70",
+      "exchangeProfileId": "fat-chocolate",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-other",
+      "calculatorBridgeProfileId": "rollup-fat-other"
+    },
+    {
+      "foodId": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "exchangeProfileId": "fat-cheese",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-cheese-portion",
+      "calculatorBridgeProfileId": "rollup-fat-cheese-portion"
+    },
+    {
+      "foodId": "matieres-grasses-vegetable-oil",
+      "exchangeProfileId": "fat-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-virgin-coconut-oil",
+      "exchangeProfileId": "fat-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-mct-oil",
+      "exchangeProfileId": "fat-mct-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-whole-egg",
+      "exchangeProfileId": "fat-egg",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-other",
+      "calculatorBridgeProfileId": "rollup-fat-other"
+    },
+    {
+      "foodId": "matieres-grasses-egg-yolks",
+      "exchangeProfileId": "fat-egg",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-other",
+      "calculatorBridgeProfileId": "rollup-fat-other"
+    },
+    {
+      "foodId": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "exchangeProfileId": "fat-butter-spread",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-mayonnaise",
+      "exchangeProfileId": "fat-mayonnaise",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-olives-1-6-2-cm",
+      "exchangeProfileId": "fat-olive",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "exchangeProfileId": "fat-dressing",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-fish-oil",
+      "exchangeProfileId": "fat-fish-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "legumes-garlic",
+      "exchangeProfileId": "vegetable-aromatic",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-artichoke",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-asparagus",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-eggplant",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-beets",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-broccoli",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-kale",
+      "exchangeProfileId": "vegetable-leafy",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-carrots",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-celery",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-mushrooms",
+      "exchangeProfileId": "vegetable-mushroom",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-brussels-sprouts",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-cauliflower",
+      "exchangeProfileId": "vegetable-cruciferous",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-cucumbers",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-zucchini",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-squash",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-shallot",
+      "exchangeProfileId": "vegetable-aromatic",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-spinach",
+      "exchangeProfileId": "vegetable-leafy",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-fennel",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-yellow-or-green-beans",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-vegetable-juice",
+      "exchangeProfileId": "vegetable-juice",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-juice",
+      "calculatorBridgeProfileId": "rollup-vegetable-juice"
+    },
+    {
+      "foodId": "legumes-romaine-lettuce",
+      "exchangeProfileId": "vegetable-leafy",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-boiled-drained-turnip",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-onion",
+      "exchangeProfileId": "vegetable-aromatic",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-boiled-drained-leek",
+      "exchangeProfileId": "vegetable-aromatic",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-snow-peas",
+      "exchangeProfileId": "vegetable-higher-carb",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-higher-carb",
+      "calculatorBridgeProfileId": "rollup-vegetable-higher-carb"
+    },
+    {
+      "foodId": "legumes-green-red-yellow-bell-pepper",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-radishes",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-tomato-6-6-cm-in-diameter",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-homemade-bone-broth",
+      "exchangeProfileId": "vegetable-broth",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-grilled-portobello-mushroom",
+      "exchangeProfileId": "vegetable-mushroom",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "fruits-apricots",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-pineapple",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-banana",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-blueberries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-dried-goji-berries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-cantaloupe",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-cherries-with-pits",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-clementines",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-medjool-date",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-unsweetened-applesauce",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-strawberries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-raspberries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-pure-fruit-juice-no-added-sugar",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-small-kiwis",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-mango",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-watermelon",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-blackberries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-nectarine",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-orange",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-grapefruit",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-peach",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-pear",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-apple",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-pomegranate",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-plums",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-prunes",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-raisins",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-large-grapes",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-deglet-nour-dates",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-lightly-sweetened-dried-cranberries",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "poissons-fruits-mer-haddock",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-eel",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-pike",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-caviar",
+      "exchangeProfileId": "protein-seafood-specialty",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-crab",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-surimi",
+      "exchangeProfileId": "protein-processed-seafood",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-shrimp",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-snail",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-herring",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-lobster",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-oysters",
+      "exchangeProfileId": "protein-mollusk",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-mackerel",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-cod",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-mussels",
+      "exchangeProfileId": "protein-mollusk",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-clams",
+      "exchangeProfileId": "protein-mollusk",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-scallop",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-sole",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-sardines",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-atlantic-salmon",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-tuna",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "exchangeProfileId": "protein-canned-fish-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-tilapia",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-rainbow-trout",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-turbot",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-halibut",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-anchovies-in-water",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "viandes-volaille-lamb",
+      "exchangeProfileId": "protein-lamb",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-bison",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-beef",
+      "exchangeProfileId": "protein-beef-standard",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-extra-lean-ground-beef",
+      "exchangeProfileId": "protein-ground-beef-extra-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-extra-lean-sirloin-steak",
+      "exchangeProfileId": "protein-beef-lean-steak",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-lean-ground-beef",
+      "exchangeProfileId": "protein-ground-beef-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-medium-ground-beef",
+      "exchangeProfileId": "protein-ground-beef-medium",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-regular-ground-beef",
+      "exchangeProfileId": "protein-ground-beef-regular",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-duck",
+      "exchangeProfileId": "protein-duck",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-caribou",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-horse",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-chicken-thigh",
+      "exchangeProfileId": "protein-chicken-dark-meat",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-turkey",
+      "exchangeProfileId": "protein-turkey",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-veal-cutlet",
+      "exchangeProfileId": "protein-veal",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-rabbit",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-moose",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-chicken-breast",
+      "exchangeProfileId": "protein-lean-animal",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-lean-ground-chicken",
+      "exchangeProfileId": "protein-ground-poultry",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-pork",
+      "exchangeProfileId": "protein-pork-ribs",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-pork-tenderloin",
+      "exchangeProfileId": "protein-pork-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-wild-boar",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-sausage",
+      "exchangeProfileId": "protein-processed-meat-high-fat",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "viandes-volaille-ground-veal",
+      "exchangeProfileId": "protein-ground-veal",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-deli-meats",
+      "exchangeProfileId": "protein-deli-ham",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-elk",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-natural-beef-jerky",
+      "exchangeProfileId": "protein-jerky",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-extra-lean-smoked-turkey",
+      "exchangeProfileId": "protein-smoked-turkey",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-canned-chicken-in-water-drained",
+      "exchangeProfileId": "protein-canned-chicken",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-egg-whites",
+      "exchangeProfileId": "protein-egg-white-cooked",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-5-tbsp-pb2",
+      "exchangeProfileId": "protein-powdered-peanut",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-whey-protein",
+      "exchangeProfileId": "protein-whey-generic",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-whey-powders",
+      "calculatorBridgeProfileId": "rollup-whey-powders"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-plant-protein",
+      "exchangeProfileId": "protein-plant-soy-generic",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-seitan",
+      "exchangeProfileId": "protein-seitan-branded",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-core-power-fairlife",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-protein-rtd"
+    },
+    {
+      "foodId": "autres-sources-proteinees-tempeh",
+      "exchangeProfileId": "protein-tempeh",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-firm-tofu",
+      "exchangeProfileId": "protein-tofu-firm",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-egglife-wrap",
+      "exchangeProfileId": "protein-egg-white-wrap",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-micellar-casein",
+      "exchangeProfileId": "protein-casein-micellar",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-whey-isolate",
+      "exchangeProfileId": "protein-whey-isolate",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-whey-powders",
+      "calculatorBridgeProfileId": "rollup-whey-powders"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "exchangeProfileId": "protein-beef-isolate",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-performance-protein-bar",
+      "exchangeProfileId": "protein-bar-high-fibre",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-bars",
+      "calculatorBridgeProfileId": "rollup-protein-bars"
+    },
+    {
+      "foodId": "autres-sources-proteinees-hydrolyzed-collagen",
+      "exchangeProfileId": "protein-collagen-incomplete",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-collagen-incomplete",
+      "calculatorBridgeProfileId": "rollup-collagen-incomplete"
+    },
+    {
+      "foodId": "autres-sources-proteinees-fermented-natto",
+      "exchangeProfileId": "protein-natto",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "exchangeProfileId": "protein-rtd-muscle-milk",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-protein-rtd"
+    },
+    {
+      "foodId": "feculents-bagel",
+      "exchangeProfileId": "starch-bread-bagel",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-plain-oatmeal-uncooked",
+      "exchangeProfileId": "starch-oatmeal-instant-dry",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-rolled-oats-uncooked",
+      "exchangeProfileId": "starch-oats-dry",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-legumes",
+      "exchangeProfileId": "starch-legume-chickpea",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-legume",
+      "calculatorBridgeProfileId": "rollup-starch-legume"
+    },
+    {
+      "foodId": "feculents-boiled-drained-corn",
+      "exchangeProfileId": "starch-corn",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "exchangeProfileId": "starch-bread-english-muffin",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-barley",
+      "exchangeProfileId": "starch-cooked-grain-barley",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-protein-bars",
+      "calculatorBridgeProfileId": "rollup-protein-bars"
+    },
+    {
+      "foodId": "feculents-10-2-cm-wheat-pita",
+      "exchangeProfileId": "starch-bread-pita-whole-wheat",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-pasta",
+      "exchangeProfileId": "starch-pasta-enriched",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-mashed-potato-with-milk",
+      "exchangeProfileId": "starch-potato-mashed-milk",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-medium-sweet-potato",
+      "exchangeProfileId": "starch-sweet-potato",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-quinoa",
+      "exchangeProfileId": "starch-cooked-grain",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-buckwheat",
+      "exchangeProfileId": "starch-cooked-grain-buckwheat",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-rice",
+      "exchangeProfileId": "starch-rice-white",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-jerusalem-artichoke",
+      "exchangeProfileId": "starch-root-jerusalem-artichoke",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-slice-bread",
+      "exchangeProfileId": "starch-bread-whole-wheat",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-slice-sprouted-bread",
+      "exchangeProfileId": "starch-bread-sprouted-generic",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-lightly-sweetened-breakfast-cereal",
+      "exchangeProfileId": "starch-breakfast-cereal-cheerios",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-couscous",
+      "exchangeProfileId": "starch-cooked-grain-couscous",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-rice-cakes",
+      "exchangeProfileId": "starch-rice-cake",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-rolled-oats",
+      "exchangeProfileId": "starch-oatmeal-prepared",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-beluga-lentils",
+      "exchangeProfileId": "starch-legume-lentil",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-legume",
+      "calculatorBridgeProfileId": "rollup-starch-legume"
+    },
+    {
+      "foodId": "feculents-slice-ezekiel-sprouted-bread",
+      "exchangeProfileId": "starch-bread-ezekiel-original",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+      "exchangeProfileId": "dairy-yogurt-low-fat-plain",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-greek-yogurt",
+      "exchangeProfileId": "dairy-greek-yogurt-2",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-plain-skyr",
+      "exchangeProfileId": "dairy-skyr-0",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-plain-or-fruit-kefir",
+      "exchangeProfileId": "dairy-kefir-plain-low-fat",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-cup-1-2-milk",
+      "exchangeProfileId": "dairy-milk-2",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-high-protein-filtered-milk",
+      "exchangeProfileId": "dairy-filtered-milk-fairlife-2",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+      "exchangeProfileId": "dairy-alternative-almond-unsweetened",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-cup-vanilla-almond-barley-rice-beverage",
+      "exchangeProfileId": "dairy-alternative-almond-vanilla",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-cup-soy-beverage",
+      "exchangeProfileId": "dairy-alternative-soy-unsweetened",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-bottle-core-power-fairlife",
+      "exchangeProfileId": "dairy-protein-shake-core-power-26",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-allegro-9-cheese",
+      "exchangeProfileId": "dairy-cheese-allegro-9",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-cheese",
+      "calculatorBridgeProfileId": "rollup-dairy-cheese"
+    },
+    {
+      "foodId": "produits-laitiers-cottage-cheese",
+      "exchangeProfileId": "dairy-cottage-1",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-partly-skimmed-ricotta",
+      "exchangeProfileId": "dairy-ricotta-light",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-light-swiss-cheese-cogruet",
+      "exchangeProfileId": "dairy-cheese-swiss-light",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-cheese",
+      "calculatorBridgeProfileId": "rollup-dairy-cheese"
+    },
+    {
+      "foodId": "produits-laitiers-natrel-plus-2",
+      "exchangeProfileId": "dairy-high-protein-milk-natrel-2",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-le-six-pourcent-cheese",
+      "exchangeProfileId": "dairy-cheese-6-percent",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-cheese",
+      "calculatorBridgeProfileId": "rollup-dairy-cheese"
+    },
+    {
+      "foodId": "produits-laitiers-plain-greek-yogurt",
+      "exchangeProfileId": "dairy-greek-yogurt-0",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-protein-chocolate-milk",
+      "exchangeProfileId": "dairy-high-protein-chocolate-milk",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-cottage-cheese-2",
+      "exchangeProfileId": "dairy-cottage-2",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
+      "exchangeProfileId": "protein-ready-to-drink",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-protein-rtd"
+    },
+    {
+      "foodId": "fruits-apple-juice-100-pure-no-added-sugar",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "exchangeProfileId": "fruit-standard",
+      "calculationGroup": "fruit",
+      "displayCategory": "fruits",
+      "exchangeRollupId": "rollup-fruit-standard",
+      "calculatorBridgeProfileId": "rollup-fruit-standard"
+    },
+    {
+      "foodId": "legumes-red-bell-pepper",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-yellow-bell-pepper",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-yellow-snap-beans",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-cremini-mushrooms",
+      "exchangeProfileId": "vegetable-mushroom",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-cooked-spaghetti-squash",
+      "exchangeProfileId": "vegetable-standard",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-non-starchy",
+      "calculatorBridgeProfileId": "rollup-vegetable-non-starchy"
+    },
+    {
+      "foodId": "legumes-low-sodium-vegetable-juice",
+      "exchangeProfileId": "vegetable-juice",
+      "calculationGroup": "vegetable",
+      "displayCategory": "legumes",
+      "exchangeRollupId": "rollup-vegetable-juice",
+      "calculatorBridgeProfileId": "rollup-vegetable-juice"
+    },
+    {
+      "foodId": "noix-graines-almond-butter-plain",
+      "exchangeProfileId": "fat-nut-butter",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter"
+    },
+    {
+      "foodId": "noix-graines-hazelnuts-dried",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "exchangeProfileId": "fat-mixed-nuts",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-sunflower-seed-butter",
+      "exchangeProfileId": "fat-seed-butter",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nut-seed-butter",
+      "calculatorBridgeProfileId": "rollup-nut-seed-butter"
+    },
+    {
+      "foodId": "noix-graines-pecans-dried",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-pistachios-dry-roasted",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-roasted-soy-nuts-unsalted",
+      "exchangeProfileId": "protein-fat-soy-nut",
+      "calculationGroup": "protein",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-roasted-chestnuts",
+      "exchangeProfileId": "starch-chestnut",
+      "calculationGroup": "starch",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-peanuts-dry-roasted-unsalted",
+      "exchangeProfileId": "fat-nut-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "noix-graines-pumpkin-seeds-dried",
+      "exchangeProfileId": "fat-seed",
+      "calculationGroup": "fat",
+      "displayCategory": "noix_graines",
+      "exchangeRollupId": "rollup-nuts-seeds",
+      "calculatorBridgeProfileId": "rollup-nuts-seeds"
+    },
+    {
+      "foodId": "matieres-grasses-dark-chocolate-60-69",
+      "exchangeProfileId": "fat-chocolate",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-other",
+      "calculatorBridgeProfileId": "rollup-fat-other"
+    },
+    {
+      "foodId": "matieres-grasses-mozzarella-cheese",
+      "exchangeProfileId": "fat-cheese",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-cheese-portion",
+      "calculatorBridgeProfileId": "rollup-fat-cheese-portion"
+    },
+    {
+      "foodId": "matieres-grasses-cream-cheese-plain",
+      "exchangeProfileId": "fat-cheese",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-fat-cheese-portion",
+      "calculatorBridgeProfileId": "rollup-fat-cheese-portion"
+    },
+    {
+      "foodId": "matieres-grasses-canola-oil",
+      "exchangeProfileId": "fat-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-peanut-oil",
+      "exchangeProfileId": "fat-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-avocado-oil",
+      "exchangeProfileId": "fat-oil",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-unsalted-butter",
+      "exchangeProfileId": "fat-butter-spread",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "exchangeProfileId": "fat-butter-spread",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-green-olives",
+      "exchangeProfileId": "fat-olive",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "matieres-grasses-reduced-fat-mayonnaise",
+      "exchangeProfileId": "fat-mayonnaise",
+      "calculationGroup": "fat",
+      "displayCategory": "matieres_grasses",
+      "exchangeRollupId": "rollup-oils-spreads",
+      "calculatorBridgeProfileId": "rollup-oils-spreads"
+    },
+    {
+      "foodId": "poissons-fruits-mer-sockeye-salmon",
+      "exchangeProfileId": "protein-fatty-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "poissons-fruits-mer-smoked-chinook-salmon",
+      "exchangeProfileId": "protein-smoked-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-pink-salmon",
+      "exchangeProfileId": "protein-canned-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-white-tuna-water",
+      "exchangeProfileId": "protein-canned-fish-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-canned-light-tuna-oil",
+      "exchangeProfileId": "protein-canned-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-alaska-pollock",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-octopus",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-swordfish",
+      "exchangeProfileId": "protein-fish-moderate-fat",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-moderate-fat",
+      "calculatorBridgeProfileId": "rollup-protein-moderate-fat"
+    },
+    {
+      "foodId": "poissons-fruits-mer-mahi-mahi",
+      "exchangeProfileId": "protein-lean-fish",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "poissons-fruits-mer-sea-bass",
+      "exchangeProfileId": "protein-fish-moderate-fat",
+      "calculationGroup": "protein",
+      "displayCategory": "poissons_fruits_mer",
+      "exchangeRollupId": "rollup-protein-moderate-fat",
+      "calculatorBridgeProfileId": "rollup-protein-moderate-fat"
+    },
+    {
+      "foodId": "viandes-volaille-beef-tenderloin-steak",
+      "exchangeProfileId": "protein-beef-lean-steak",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-beef-ribeye-steak",
+      "exchangeProfileId": "protein-beef-fatty-steak",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "viandes-volaille-chicken-drumstick",
+      "exchangeProfileId": "protein-chicken-dark-meat",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-chicken-thigh-with-skin",
+      "exchangeProfileId": "protein-chicken-with-skin",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-ground-turkey",
+      "exchangeProfileId": "protein-ground-poultry",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-pork-centre-chop",
+      "exchangeProfileId": "protein-pork-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-pork-shoulder",
+      "exchangeProfileId": "protein-pork-standard",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-bacon-cooked",
+      "exchangeProfileId": "protein-processed-meat-high-fat",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-fatty",
+      "calculatorBridgeProfileId": "rollup-protein-fatty"
+    },
+    {
+      "foodId": "viandes-volaille-venison",
+      "exchangeProfileId": "protein-game-lean",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "viandes-volaille-turkey-bacon",
+      "exchangeProfileId": "protein-processed-poultry",
+      "calculationGroup": "protein",
+      "displayCategory": "viandes_volaille",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-extra-firm-tofu",
+      "exchangeProfileId": "protein-tofu-extra-firm",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-silken-firm-tofu",
+      "exchangeProfileId": "protein-tofu-silken-firm",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-cooked-tempeh",
+      "exchangeProfileId": "protein-tempeh-cooked",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-soy-protein-isolate",
+      "exchangeProfileId": "protein-soy-isolate",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-egg-substitute-powder",
+      "exchangeProfileId": "protein-egg-substitute-powder",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "exchangeProfileId": "protein-liquid-egg-white",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "exchangeProfileId": "protein-pea-isolate",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "exchangeProfileId": "protein-rice",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-lean",
+      "calculatorBridgeProfileId": "rollup-protein-lean"
+    },
+    {
+      "foodId": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "exchangeProfileId": "protein-rtd-premier",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-protein-rtd"
+    },
+    {
+      "foodId": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "exchangeProfileId": "protein-whey-hydrolysate",
+      "calculationGroup": "protein",
+      "displayCategory": "autres_sources_proteinees",
+      "exchangeRollupId": "rollup-whey-powders",
+      "calculatorBridgeProfileId": "rollup-whey-powders"
+    },
+    {
+      "foodId": "produits-laitiers-yogurt-fat-free-plain",
+      "exchangeProfileId": "dairy-yogurt-fat-free-plain",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-greek-yogurt-fat-free-fruit",
+      "exchangeProfileId": "dairy-greek-yogurt-fruit-0",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-kefir-fruit-low-fat",
+      "exchangeProfileId": "dairy-kefir-fruit-low-fat",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-skim-milk",
+      "exchangeProfileId": "dairy-milk-skim",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-whole-milk",
+      "exchangeProfileId": "dairy-milk-whole",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-oat-quinoa-beverage-unsweetened",
+      "exchangeProfileId": "dairy-alternative-oat-quinoa",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-rice-beverage-unsweetened",
+      "exchangeProfileId": "dairy-alternative-rice-unsweetened",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-soy-beverage-vanilla",
+      "exchangeProfileId": "dairy-alternative-soy-vanilla",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "produits-laitiers-quark-fat-free-plain",
+      "exchangeProfileId": "dairy-quark-fat-free",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-milk-yogurt",
+      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+    },
+    {
+      "foodId": "produits-laitiers-goat-milk-whole",
+      "exchangeProfileId": "dairy-goat-milk-whole",
+      "calculationGroup": "dairy",
+      "displayCategory": "produits_laitiers",
+      "exchangeRollupId": "rollup-dairy-plant-drink",
+      "calculatorBridgeProfileId": "rollup-dairy-plant-drink"
+    },
+    {
+      "foodId": "feculents-cooked-brown-rice",
+      "exchangeProfileId": "starch-rice-brown",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-whole-wheat-pasta",
+      "exchangeProfileId": "starch-pasta-whole-wheat",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-boiled-potato",
+      "exchangeProfileId": "starch-potato-boiled",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-corn-tortilla",
+      "exchangeProfileId": "starch-tortilla-corn",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-flour-tortilla",
+      "exchangeProfileId": "starch-tortilla-flour",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-hamburger-hot-dog-bun",
+      "exchangeProfileId": "starch-bread-bun",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-black-beans",
+      "exchangeProfileId": "starch-legume-black-bean",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-legume",
+      "calculatorBridgeProfileId": "rollup-starch-legume"
+    },
+    {
+      "foodId": "feculents-cooked-bulgur",
+      "exchangeProfileId": "starch-cooked-grain-bulgur",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-cooked-millet",
+      "exchangeProfileId": "starch-cooked-grain-millet",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    },
+    {
+      "foodId": "feculents-rye-bread",
+      "exchangeProfileId": "starch-bread-rye",
+      "calculationGroup": "starch",
+      "displayCategory": "feculents",
+      "exchangeRollupId": "rollup-starch-cereal",
+      "calculatorBridgeProfileId": "rollup-starch-cereal"
+    }
+  ]
+}

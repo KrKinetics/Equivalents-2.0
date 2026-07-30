@@ -1,5 +1,5 @@
 import { mean, median, stddev, nutrientSeries } from './group-statistics.mjs';
-import { mad, percentile, roundHalfAwayFromZero } from './descriptive-stats.mjs';
+import { formatStatNumber, mad, percentile, roundHalfAwayFromZero } from './descriptive-stats.mjs';
 
 export const NUTRIENT_KEYS = ['proteinG', 'carbsG', 'fiberG', 'fatG', 'declaredKcal'];
 export const DEFAULT_TOLERANCES = { proteinG: 2, carbsG: 4, fiberG: 2, fatG: 2, declaredKcal: 15 };
@@ -176,9 +176,9 @@ export function estimateTypicalDayImpact(profileByGroup) {
 
 function fmtMacro(profile) {
   if (!profile) return 'P — / G — / L —';
-  const p = isNumber(profile.proteinG) ? profile.proteinG : '—';
-  const g = isNumber(profile.carbsG) ? profile.carbsG : '—';
-  const l = isNumber(profile.fatG) ? profile.fatG : '—';
+  const p = isNumber(profile.proteinG) ? formatStatNumber(profile.proteinG) : '—';
+  const g = isNumber(profile.carbsG) ? formatStatNumber(profile.carbsG) : '—';
+  const l = isNumber(profile.fatG) ? formatStatNumber(profile.fatG) : '—';
   return `P ${p} / G ${g} / L ${l}`;
 }
 
@@ -357,11 +357,33 @@ export function buildDecisionsMarkdown(analysis, candidates) {
 
   const hetero = (analysis.heterogeneityNotes || []).map((note) => `- ${note}`).join('\n') || '- Aucune';
 
+  const wheyCount = analysis.calculationGroup.whey?.totalCount ?? 0;
+
   return `# Décisions requises — profils d’échange
 
-> **APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS.**  
+> **APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS / PREVIEW — UNAPPROVED EXCHANGE PROFILES**  
 > Document de décision pour une personne non développeuse.  
-> Les chiffres ci-dessous sont des **propositions d’analyse**, jamais une approbation.
+> Les chiffres ci-dessous sont des **propositions d’analyse**, jamais une approbation de production.
+
+## Décision du propriétaire (consignée)
+
+**Modèle retenu : HYBRIDE D/A DE TRANSITION.**
+
+- **D** = architecture cible à long terme (profils d’échange → familles \`exchangeRollupId\` → pont calculateur).
+- **A** = règle d’affaires temporaire du calculateur actuel et des plans existants.
+- **B** = point de départ statistique seulement dans des familles nutritionnellement comparables.
+- **C** = ne doit pas devenir le modèle principal.
+- Aucune MOYENNE de production modifiée dans cette PR.
+- \`calculation-groups.json\` non approuvé; dataset demeure en **review**.
+
+Refus explicite d’une cible unique pour :
+1. noix/graines + huiles;
+2. protéines maigres + protéines grasses;
+3. lait/yogourt + fromages + boissons végétales;
+4. whey + collagène + barres + boissons protéinées;
+5. légumineuses + pains/riz/pâtes et autres féculents céréaliers.
+
+Voir aussi \`EXCHANGE_ROLLUP_PROPOSAL.md\` (couche intermédiaire non approuvée).
 
 ## 1. État actuel
 
@@ -369,6 +391,7 @@ export function buildDecisionsMarkdown(analysis, candidates) {
 - Statut du jeu de données: **review** (non publié / non approuvé).
 - **${analysis.meta.exchangeProfileCount} exchangeProfileId** distincts.
 - Groupes calculateur présents: ${groups.join(', ')}.
+- Observations du groupe calculateur \`whey\`: **${wheyCount}** (voir section whey / rollup proposal — les produits whey sont classés \`protein\` via \`protein-whey-*\`).
 - Les groupes de calcul restent \`approved: false\` avec \`referenceProfile\` et \`minVerifiedCount\` encore null.
 - Le générateur PDF production utilise encore l’objet DATA legacy; l’aperçu de cette PR lit uniquement la source de vérité.
 - Les MOYENNES du calculateur n’ont **pas** été modifiées.
@@ -378,9 +401,9 @@ export function buildDecisionsMarkdown(analysis, candidates) {
 1. Aucun \`referenceProfile\` approuvé par groupe.
 2. \`minVerifiedCount\` non défini.
 3. Jeu de données encore en \`review\`.
-4. Pas de choix humain entre les modèles A/B/C/D.
+4. Couche \`exchangeRollupId\` encore à l’état de proposition (non branchée).
 5. Groupes trop hétérogènes pour une seule cible d’équivalence sans pont explicite (voir section 7).
-6. Impact client / plans existants non encore signé.
+6. Impact client / plans existants non encore migré hors de la règle A.
 
 ## 3. Comparaison des quatre modèles
 
@@ -474,35 +497,34 @@ ${hetero}
 
 ${outlierLines}
 
-## 8. Recommandation principale
+## 8. Recommandation / décision principale
 
-**${candidates.D.cursorRecommendation}**
+**Décision propriétaire : HYBRIDE D/A DE TRANSITION** (architecture D, règle temporaire A).
 
 En pratique, cela signifie:
-1. Garder les groupes calculateur comme pont UI.
-2. Ne pas approuver automatiquement une moyenne/médiane comme règle d’affaires.
-3. Traiter séparément les ponts non équivalents avant toute publication « finale ».
+1. Conserver A pour le calculateur et les plans existants (inchangés).
+2. Construire la couche D via \`exchangeRollupId\` (voir \`EXCHANGE_ROLLUP_PROPOSAL.md\`), sans brancher les 157 profils un par un.
+3. Utiliser B seulement à l’intérieur de familles comparables; ne pas promouvoir C comme modèle principal.
+4. Ne jamais présenter la règle d’affaires A comme une moyenne statistique.
 
 ## 9. Solution de repli
 
-**${candidates.A.cursorRecommendation}**
+Si la couche D n’est pas prête : rester sur **A** exclusivement pour le calculateur, tout en maintenant l’aperçu SoT sans moyennes non approuvées.
 
-Repli opérationnel: conserver A (legacy) pour le calculateur pendant la revue humaine, tout en publiant seulement l’aperçu SoT **sans** lignes de moyennes non approuvées.
+## 10. Cases de décision
 
-## 10. Cases de décision (à cocher par le propriétaire)
+- [x] **Décision modèle**: HYBRIDE D/A DE TRANSITION
+- [ ] J’approuve des valeurs groupe par groupe pour une future PR d’approbation: ___________
+- [x] Je **refuse** une cible unique pour noix+huiles
+- [x] Je **refuse** une cible unique protéines maigres+grasses
+- [x] Je **refuse** une cible unique laitiers+fromages+boissons végétales
+- [x] Je **refuse** une cible unique whey+collagène+barres/boissons protéinées
+- [x] Je **refuse** une cible unique légumineuses+féculents céréaliers
+- [ ] Impact journée type accepté pour une migration future: oui / non / avec ajustements ___________
+- [x] **Ne pas** modifier les MOYENNES dans cette PR
+- [x] **Ne pas** approuver \`calculation-groups.json\` dans cette PR
+- [ ] Approbateur / date de la future PR d’application: ____________________________
 
-- [ ] **Décision modèle**: A / B / C / D / hybride: ___________
-- [ ] J’approuve les valeurs groupe par groupe listées en section 4: ___________
-- [ ] J’autorise (ou refuse) une cible unique pour noix+huiles: ___________
-- [ ] J’autorise (ou refuse) une cible unique protéines maigres+grasses: ___________
-- [ ] J’autorise (ou refuse) une cible unique laitiers+fromages+boissons végétales: ___________
-- [ ] J’autorise (ou refuse) une cible unique whey+collagène+barres: ___________
-- [ ] J’autorise (ou refuse) une cible unique légumineuses+féculents céréaliers: ___________
-- [ ] Impact journée type accepté (section 6): oui / non / avec ajustements ___________
-- [ ] Autoriser la mise à jour ultérieure des MOYENNES du calculateur: oui / non
-- [ ] Autoriser l’approbation ultérieure de \`calculation-groups.json\`: oui / non
-- [ ] Approbateur / date: ____________________________
-
-> Rappel: cocher ces cases **ici** ne modifie aucun fichier de production. Une PR séparée d’approbation sera requise.
+> Rappel: cette consignation **ne modifie aucun fichier de production**. Une PR séparée sera requise pour brancher le calculateur.
 `;
 }

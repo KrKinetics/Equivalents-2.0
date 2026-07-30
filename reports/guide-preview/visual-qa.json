@@ -1,5 +1,31 @@
 {
   "generatedAt": "2026-07-30T01:25:20.093Z",
+  "images": [
+    {
+      "page": "landscape-fr",
+      "images": [
+        {
+          "src": "./assets/kinetics-logo.png",
+          "complete": true,
+          "naturalWidth": 2048,
+          "naturalHeight": 2048,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "page": "mobile-bilingual",
+      "images": [
+        {
+          "src": "./assets/kinetics-logo.png",
+          "complete": true,
+          "naturalWidth": 2048,
+          "naturalHeight": 2048,
+          "ok": true
+        }
+      ]
+    }
+  ],
   "sections": [
     {
       "section": "noix",
@@ -16,6 +42,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -35,6 +64,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -54,6 +86,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -72,6 +107,9 @@
           "count": 0
         },
         "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
           "pass": true
         }
       },
@@ -92,6 +130,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -111,6 +152,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -130,6 +174,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -148,6 +195,9 @@
           "count": 0
         },
         "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
           "pass": true
         }
       },
@@ -168,6 +218,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -187,6 +240,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -206,6 +262,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -224,6 +283,9 @@
           "count": 0
         },
         "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
           "pass": true
         }
       },
@@ -244,6 +306,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -263,6 +328,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -281,6 +349,9 @@
           "count": 0
         },
         "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
           "pass": true
         }
       },
@@ -301,6 +372,9 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
@@ -319,6 +393,9 @@
           "count": 0
         },
         "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
           "pass": true
         }
       },
@@ -339,9 +416,30 @@
         },
         "orphanHeader": {
           "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
         }
       },
       "status": "PASS"
+    }
+  ],
+  "pdfOrphans": {
+    "mobile": {
+      "pageCount": 24,
+      "failures": []
+    },
+    "landscape": {
+      "pageCount": 11,
+      "failures": []
+    }
+  },
+  "headerReadability": [
+    {
+      "mode": "mobile",
+      "tableCount": 0,
+      "thinHeaderCount": 0,
+      "pass": true
     }
   ],
   "overall": "PASS"
