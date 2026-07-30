@@ -1,0 +1,515 @@
+{
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "selected": [
+    {
+      "id": "autres-sources-proteinees-egg-whites",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "6605",
+      "expectedRecordId": "6605",
+      "selectedRecordId": "6605",
+      "transactionId": "543f2992-f8b9-4571-b046-e318df678607",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 48
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7231",
+      "expectedRecordId": "7231",
+      "selectedRecordId": "7231",
+      "transactionId": "7d3afa31-e957-47c4-b4dd-556ff1c69910",
+      "nutrients": {
+        "proteinG": 11.7,
+        "carbsG": 0.9,
+        "fiberG": 0.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7232",
+      "expectedRecordId": "7232",
+      "selectedRecordId": "7232",
+      "transactionId": "f955674d-b3e9-400f-975f-fe9ae0a1c6a4",
+      "nutrients": {
+        "proteinG": 11.1,
+        "carbsG": 5.8,
+        "fiberG": 1.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 78
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-tempeh",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3321",
+      "expectedRecordId": "3321",
+      "selectedRecordId": "3321",
+      "transactionId": "42824d5a-50f9-4e22-9300-2cf1818a0f49",
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 3.8,
+        "fiberG": null,
+        "fatG": 5.4,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 96
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-firm-tofu",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3418",
+      "expectedRecordId": "3418",
+      "selectedRecordId": "3418",
+      "transactionId": "e46937f5-00ef-49c6-812e-6f17bd5128b0",
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.3,
+        "fiberG": 0.4,
+        "fatG": 6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 3.4,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 95
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-fermented-natto",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3320",
+      "expectedRecordId": "3320",
+      "selectedRecordId": "3320",
+      "transactionId": "95f8cf61-ddb1-43bb-acc3-15c96fa67a64",
+      "nutrients": {
+        "proteinG": 9.7,
+        "carbsG": 6.3,
+        "fiberG": 2.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 106
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7228",
+      "expectedRecordId": "7228",
+      "selectedRecordId": "7228",
+      "transactionId": "10ce1c8c-6d22-48c6-9896-0c34e505adce",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 3.9,
+        "fiberG": 0.8,
+        "fatG": 3.7,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 2.5,
+        "declaredKcal": 88
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "transactionId": "6daca3a3-56b0-44c0-868a-1c89d964f889",
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 7.5,
+        "fiberG": 1.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-seitan",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "transactionId": "ab1b7572-d9f7-41a9-842d-1fc2d92fca33",
+      "nutrients": {
+        "proteinG": 12,
+        "carbsG": 4,
+        "fiberG": 1,
+        "fatG": 6,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 120
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "transactionId": "69c0c4c3-970f-4b9e-b209-9699c122c030",
+      "nutrients": {
+        "proteinG": 11,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "transactionId": "f545af84-82c4-418a-9010-a5ffa1b555a5",
+      "nutrients": {
+        "proteinG": 12,
+        "carbsG": 2,
+        "fiberG": 0.5,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "transactionId": "e2b5b23c-865d-46ff-90ec-b6451fbca9c1",
+      "nutrients": {
+        "proteinG": 12.5,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://musclemedsrx.com/products/carnivor",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://musclemedsrx.com/products/carnivor",
+      "transactionId": "f6cd61cf-7041-4034-b4a8-e2d8b0fb130a",
+      "nutrients": {
+        "proteinG": 11.5,
+        "carbsG": 3,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-performance-protein-bar",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "transactionId": "50e53f00-b743-49d2-80dc-16d155870b5f",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 12,
+        "fiberG": 7.5,
+        "fatG": 3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "version": 4
+    },
+    {
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "transactionId": "931c639b-bc6c-4474-ab79-5a2216358fd8",
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 35
+      },
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-extra-firm-tofu",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "3404",
+      "expectedRecordId": "3404",
+      "selectedRecordId": "3404",
+      "transactionId": "b6fcd115-352c-4c1c-8003-72df2538e861",
+      "nutrients": {
+        "proteinG": 11.3,
+        "carbsG": 3.6,
+        "fiberG": 1.1,
+        "fatG": 5.2,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 98
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-silken-firm-tofu",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4911",
+      "expectedRecordId": "4911",
+      "selectedRecordId": "4911",
+      "transactionId": "0e13d371-813e-4d55-8ee4-a036dfc1bd83",
+      "nutrients": {
+        "proteinG": 10.4,
+        "carbsG": 3.6,
+        "fiberG": 0.2,
+        "fatG": 4.1,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 93
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-cooked-tempeh",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4986",
+      "expectedRecordId": "4986",
+      "selectedRecordId": "4986",
+      "transactionId": "906881ca-7cfd-4abf-9897-9c189290d15e",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 3.8,
+        "fiberG": null,
+        "fatG": 5.7,
+        "saturatedFatG": 1.7,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 98
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-soy-protein-isolate",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "3328",
+      "expectedRecordId": "3328",
+      "selectedRecordId": "3328",
+      "transactionId": "f41d61d3-5a79-4f97-8b20-e74403489a6e",
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-egg-substitute-powder",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "6421",
+      "expectedRecordId": "6421",
+      "selectedRecordId": "6421",
+      "transactionId": "966191c8-c196-4197-a6fe-cec0676e3470",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 3.9,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 80
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "operation": "add",
+      "adapter": "manufacturer",
+      "recordId": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "transactionId": "aa2eb8ca-d816-429d-b7ce-1d6c7a5b1f63",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "operation": "add",
+      "adapter": "manufacturer",
+      "recordId": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "transactionId": "9058575b-fb77-440c-a9eb-6569261ac6ac",
+      "nutrients": {
+        "proteinG": 12.5,
+        "carbsG": 3,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "operation": "add",
+      "adapter": "manufacturer",
+      "recordId": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "transactionId": "497e139f-a4b2-4309-8c87-325390672505",
+      "nutrients": {
+        "proteinG": 12,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "operation": "add",
+      "adapter": "manufacturer",
+      "recordId": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "transactionId": "035aba63-b5e2-470e-a8d3-0178988549e2",
+      "nutrients": {
+        "proteinG": 9.2,
+        "carbsG": 1.8,
+        "fiberG": 0.6,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 49
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "operation": "add",
+      "adapter": "manufacturer",
+      "recordId": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "transactionId": "1553c0fc-39c1-441f-af30-d9419aff69f2",
+      "nutrients": {
+        "proteinG": 15,
+        "carbsG": 1.5,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ]
+}

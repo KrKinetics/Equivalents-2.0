@@ -1,0 +1,78 @@
+{
+  "evidenceId": "quest-chocolate-brownie-protein-bar",
+  "brand": "Quest Nutrition",
+  "product": "Chocolate Brownie Protein Bar",
+  "flavor": "Chocolate Brownie",
+  "market": "North America",
+  "officialUrl": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "bar",
+    "grams": 60
+  },
+  "originalLabelValues": {
+    "declaredKcal": 170,
+    "proteinG": 20,
+    "carbsG": 24,
+    "fiberG": 15,
+    "fatG": 6,
+    "saturatedFatG": 1,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 0.5 / 1",
+    "targetBasis": "0.5 bar",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 1,
+    "canonicalAmount": 0.5,
+    "labelUnit": "bar",
+    "canonicalUnit": "bar",
+    "labelGrams": 60,
+    "canonicalGrams": 30
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 85,
+    "proteinG": 10,
+    "carbsG": 12,
+    "fiberG": 7.5,
+    "fatG": 3,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 85,
+    "proteinG": 10,
+    "carbsG": 12,
+    "fiberG": 7.5,
+    "fatG": 3,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 0.5,
+    "unit": "bar",
+    "grams": 30,
+    "labelFr": "½ barre Quest Chocolate Brownie (30 g)",
+    "labelEn": "½ Quest Chocolate Brownie bar (30 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/quest-chocolate-brownie-protein-bar.html",
+    "snapshotSha256": "b4461c079ccaf18d297fd6c1b3d620f7d0f6b691fe51a12c11a4baf565560df1",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-performance-protein-bar",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "288d2cc5330c0f221c049a818b37c4e04397544b4d69d9a62ed8a1c3be564be6"
+}

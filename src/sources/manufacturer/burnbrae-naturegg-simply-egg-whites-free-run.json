@@ -1,0 +1,81 @@
+{
+  "evidenceId": "burnbrae-naturegg-simply-egg-whites-free-run",
+  "brand": "Burnbrae Farms",
+  "product": "Naturegg Simply Egg Whites Free Run",
+  "flavor": "Free Run",
+  "market": "Canada",
+  "officialUrl": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 100,
+    "unit": "g",
+    "grams": 100
+  },
+  "originalLabelValues": {
+    "declaredKcal": 45,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 100 / 100",
+    "targetBasis": "100 g",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 100,
+    "canonicalAmount": 100,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 100,
+    "canonicalGrams": 100
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 45,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "storedRounded": {
+    "declaredKcal": 45,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [
+    "fiberG",
+    "fatG",
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 100,
+    "unit": "g",
+    "grams": 100,
+    "labelFr": "100 g de blancs d’œufs liquides Naturegg (⅓ tasse)",
+    "labelEn": "100 g Naturegg liquid egg whites (⅓ cup)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": null,
+    "snapshotPath": null,
+    "snapshotSha256": null,
+    "notes": "HTTP 403; network comparison not completed. Approved specification values used."
+  },
+  "linkedFoodId": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "ca0a4ec50346a280da86759163ba497babd6d8f1aa907d3c7d6f3bcbf1aaa76a"
+}

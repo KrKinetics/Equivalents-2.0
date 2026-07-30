@@ -1,0 +1,81 @@
+{
+  "evidenceId": "egglife-original-egg-white-wraps",
+  "brand": "Egglife Foods",
+  "product": "Original Egg White Wraps",
+  "flavor": "Original",
+  "market": "North America",
+  "officialUrl": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 2,
+    "unit": "wraps",
+    "grams": 57
+  },
+  "originalLabelValues": {
+    "declaredKcal": 50,
+    "proteinG": 11,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 2 / 2",
+    "targetBasis": "2 wraps",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 2,
+    "canonicalAmount": 2,
+    "labelUnit": "wrap",
+    "canonicalUnit": "wrap",
+    "labelGrams": 57,
+    "canonicalGrams": 57
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 50,
+    "proteinG": 11,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 50,
+    "proteinG": 11,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG",
+    "saturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 2,
+    "unit": "wraps",
+    "grams": 57,
+    "labelFr": "2 wraps Egglife Original (57 g)",
+    "labelEn": "2 Egglife Original wraps (57 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/egglife-original-egg-white-wraps.html",
+    "snapshotSha256": "b80b33cc91b35f65636892cccbe75aba72ccb9c056c93e903aab0830519e95d8",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-egglife-wrap",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "a217b4f01f4088c6b4141a3831f1d636affe6df05b5d3ed66a773c9014dadaf0"
+}

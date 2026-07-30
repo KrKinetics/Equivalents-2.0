@@ -1,0 +1,82 @@
+{
+  "evidenceId": "now-sprouted-brown-rice-protein",
+  "brand": "NOW Foods",
+  "product": "Sprouted Brown Rice Protein Powder",
+  "flavor": "Unflavored",
+  "market": "North America",
+  "officialUrl": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "tbsp",
+    "grams": 5
+  },
+  "originalLabelValues": {
+    "declaredKcal": 15,
+    "proteinG": 4,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 3 / 1",
+    "targetBasis": "3 tbsp",
+    "method": "same_unit",
+    "factor": 3,
+    "labelAmount": 1,
+    "canonicalAmount": 3,
+    "labelUnit": "tbsp",
+    "canonicalUnit": "tbsp",
+    "labelGrams": 5,
+    "canonicalGrams": 15
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 45,
+    "proteinG": 12,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "storedRounded": {
+    "declaredKcal": 45,
+    "proteinG": 12,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [
+    "carbsG",
+    "fiberG",
+    "fatG",
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 3,
+    "unit": "tbsp",
+    "grams": 15,
+    "labelFr": "3 c. à table de protéine de riz brun germé NOW (15 g)",
+    "labelEn": "3 tbsp NOW sprouted brown rice protein (15 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/now-sprouted-brown-rice-protein.html",
+    "snapshotSha256": "35a19a35aeefb91deacf14511cf17efb22e8b34322e97462462223734f7969e4",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "c0bedcee590d01f5479ef24dcef009ec3a41ca1d9655e86663cd3c7b96b71824"
+}

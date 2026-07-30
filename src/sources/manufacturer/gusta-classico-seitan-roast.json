@@ -1,0 +1,78 @@
+{
+  "evidenceId": "gusta-classico-seitan-roast",
+  "brand": "GUSTA",
+  "product": "Classico Seitan Roast",
+  "flavor": "Classico",
+  "market": "Canada",
+  "officialUrl": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 50,
+    "unit": "g",
+    "grams": 50
+  },
+  "originalLabelValues": {
+    "declaredKcal": 120,
+    "proteinG": 12,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 6,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 50 / 50",
+    "targetBasis": "50 g",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 50,
+    "canonicalAmount": 50,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 50,
+    "canonicalGrams": 50
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 120,
+    "proteinG": 12,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 6,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 120,
+    "proteinG": 12,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 6,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 50,
+    "unit": "g",
+    "grams": 50,
+    "labelFr": "50 g de rôti de seitan GUSTA Classico",
+    "labelEn": "50 g GUSTA Classico seitan roast"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": null,
+    "snapshotPath": null,
+    "snapshotSha256": null,
+    "notes": "Network unavailable or fetch failed (fetch failed); approved specification values used without network comparison."
+  },
+  "linkedFoodId": "autres-sources-proteinees-seitan",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "16c33fc221de98d0d510b2351242322e802b573344baf52f4185feb14b0e9019"
+}

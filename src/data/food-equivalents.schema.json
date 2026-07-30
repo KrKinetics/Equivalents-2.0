@@ -181,7 +181,24 @@
             "labelEn": { "type": "string", "minLength": 1 },
             "amount": { "type": "number", "exclusiveMinimum": 0 },
             "unit": {
-              "enum": ["bottle", "slice", "piece", "count", "cup", "tbsp", "tsp", "ml", "g", "oz", "scoop", "portion"]
+              "enum": [
+                "bottle",
+                "slice",
+                "piece",
+                "count",
+                "cup",
+                "tbsp",
+                "tsp",
+                "ml",
+                "g",
+                "oz",
+                "scoop",
+                "portion",
+                "wrap",
+                "wraps",
+                "bar",
+                "bars"
+              ]
             },
             "grams": { "type": ["number", "null"], "exclusiveMinimum": 0 },
             "preparationState": {

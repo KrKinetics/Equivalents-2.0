@@ -56,6 +56,11 @@
           "minItems": 1,
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
+        },
+        "protectedVerifiedFoodIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
         }
       }
     },
@@ -167,7 +172,8 @@
           "required": ["amount", "unit"],
           "properties": {
             "amount": { "type": "number", "exclusiveMinimum": 0 },
-            "unit": { "type": "string", "minLength": 1 }
+            "unit": { "type": "string", "minLength": 1 },
+            "grams": { "type": ["number", "null"], "minimum": 0 }
           }
         },
         "labelNutrients": { "type": "object" },

@@ -192,6 +192,11 @@ function main() {
   const fats = live.foods.filter((f) => f.displayCategory === 'matieres_grasses');
   const fishSeafood = live.foods.filter((f) => f.displayCategory === 'poissons_fruits_mer');
   const meatPoultry = live.foods.filter((f) => f.displayCategory === 'viandes_volaille');
+  const otherProtein = live.foods.filter(
+    (f) => f.displayCategory === 'autres_sources_proteinees'
+  );
+  const manufacturerApplied = result.applied.filter((a) => a.adapter === 'manufacturer');
+  const cnfApplied = result.applied.filter((a) => a.adapter === 'cnf_2026');
   const finalReport = {
     batchId: batch.batchId,
     generatedAt: new Date().toISOString(),
@@ -211,6 +216,10 @@ function main() {
       fishSeafoodVerified: fishSeafood.filter((f) => f.status === 'verified').length,
       meatPoultryCount: meatPoultry.length,
       meatPoultryVerified: meatPoultry.filter((f) => f.status === 'verified').length,
+      otherProteinCount: otherProtein.length,
+      otherProteinVerified: otherProtein.filter((f) => f.status === 'verified').length,
+      cnfSources: cnfApplied.length,
+      manufacturerSources: manufacturerApplied.length,
       totalFoods: live.foods.length,
       totalVerified: live.foods.filter((f) => f.status === 'verified').length,
       protectedUnchanged: result.scopeCheck?.protectedFoodCount ?? null,
@@ -220,23 +229,31 @@ function main() {
     foods: result.applied.map((row) => {
       const previewRow = result.preview.foods.find((f) => f.id === row.id);
       const food = live.foods.find((f) => f.id === row.id);
+      const batchEntry = batch.foods.find((f) => f.id === row.id);
       return {
         id: row.id,
         operation: row.operation,
         sourceType: food.source?.type || null,
         expectedRecordId: row.expectedRecordId,
         selectedRecordId: row.selectedRecordId,
+        manufacturerReference: batchEntry?.manufacturerLabel?.url || null,
+        brand: food.source?.brand || batchEntry?.manufacturerLabel?.brand || null,
+        productName:
+          food.source?.productName || batchEntry?.manufacturerLabel?.productName || null,
         cnfDescription: previewRow?.cnfDescription || null,
         sourceDescription:
           previewRow?.cnfDescription ||
           (food.source?.productName
             ? { en: food.source.productName, fr: food.names?.fr || null }
             : null),
+        labelServing: batchEntry?.manufacturerLabel?.labelServing || null,
         beforePortion: previewRow?.before?.portion || null,
         afterPortion: food.portion,
         beforeNutrients: previewRow?.before?.nutrients || null,
         afterNutrients: food.nutrients,
         formula: previewRow?.conversion?.formula || null,
+        declaredZeroNutrients: previewRow?.conversion?.declaredZeroNutrients || [],
+        undeclaredNutrients: previewRow?.conversion?.undeclaredNutrients || [],
         errorsBefore: (previewRow?.alertsBefore || [])
           .filter((a) => a.severity === 'ERROR')
           .map((a) => a.code),

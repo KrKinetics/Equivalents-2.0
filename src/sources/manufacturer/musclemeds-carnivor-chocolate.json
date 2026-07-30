@@ -1,0 +1,80 @@
+{
+  "evidenceId": "musclemeds-carnivor-chocolate",
+  "brand": "MuscleMeds",
+  "product": "Carnivor Beef Protein Isolate — Chocolate",
+  "flavor": "Chocolate",
+  "market": "North America",
+  "officialUrl": "https://musclemedsrx.com/products/carnivor",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "scoop",
+    "grams": 33.9
+  },
+  "originalLabelValues": {
+    "declaredKcal": 120,
+    "proteinG": 23,
+    "carbsG": 6,
+    "fiberG": 1,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 0.5 / 1",
+    "targetBasis": "0.5 scoop",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 1,
+    "canonicalAmount": 0.5,
+    "labelUnit": "scoop",
+    "canonicalUnit": "scoop",
+    "labelGrams": 33.9,
+    "canonicalGrams": 16.95
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 60,
+    "proteinG": 11.5,
+    "carbsG": 3,
+    "fiberG": 0.5,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "storedRounded": {
+    "declaredKcal": 60,
+    "proteinG": 11.5,
+    "carbsG": 3,
+    "fiberG": 0.5,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [
+    "fatG",
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 0.5,
+    "unit": "scoop",
+    "grams": 16.95,
+    "labelFr": "½ scoop de Carnivor chocolat (17 g)",
+    "labelEn": "½ scoop Carnivor chocolate (17 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/musclemeds-carnivor-chocolate.html",
+    "snapshotSha256": "4020018c839cb53240d0edbdca709456faa00c751fbb1644e01455adc6f4fb4b",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-scoop-beef-protein-isolate",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "e4657b63d6f8721f405228fe37d0a478a9ef74716e9889d219fd366161ace01f"
+}

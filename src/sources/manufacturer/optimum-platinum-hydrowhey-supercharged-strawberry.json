@@ -1,0 +1,80 @@
+{
+  "evidenceId": "optimum-platinum-hydrowhey-supercharged-strawberry",
+  "brand": "Optimum Nutrition",
+  "product": "Platinum Hydrowhey — Supercharged Strawberry",
+  "flavor": "Supercharged Strawberry",
+  "market": "United States",
+  "officialUrl": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "scoop",
+    "grams": 40
+  },
+  "originalLabelValues": {
+    "declaredKcal": 140,
+    "proteinG": 30,
+    "carbsG": 3,
+    "fiberG": 0,
+    "fatG": 1,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 0.5 / 1",
+    "targetBasis": "0.5 scoop",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 1,
+    "canonicalAmount": 0.5,
+    "labelUnit": "scoop",
+    "canonicalUnit": "scoop",
+    "labelGrams": 40,
+    "canonicalGrams": 20
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 70,
+    "proteinG": 15,
+    "carbsG": 1.5,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0.25,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 70,
+    "proteinG": 15,
+    "carbsG": 1.5,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0.3,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG"
+  ],
+  "canonicalPortion": {
+    "amount": 0.5,
+    "unit": "scoop",
+    "grams": 20,
+    "labelFr": "½ scoop de Platinum Hydrowhey fraise (20 g)",
+    "labelEn": "½ scoop Platinum Hydrowhey strawberry (20 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/optimum-platinum-hydrowhey-supercharged-strawberry.html",
+    "snapshotSha256": "5eb11f234368c494989fc8c70cee7a9cb17586a3acdcb0622964a7e5f71ae210",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "3ad8e1143fb5f7462acc434680df49a2dfd0f74bfe06f0127c409f50af932b2e"
+}

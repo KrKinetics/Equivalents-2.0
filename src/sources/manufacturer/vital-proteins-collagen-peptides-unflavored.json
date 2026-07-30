@@ -1,0 +1,82 @@
+{
+  "evidenceId": "vital-proteins-collagen-peptides-unflavored",
+  "brand": "Vital Proteins",
+  "product": "Collagen Peptides — Unflavored",
+  "flavor": "Unflavored",
+  "market": "North America",
+  "officialUrl": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 2,
+    "unit": "scoops",
+    "grams": 20
+  },
+  "originalLabelValues": {
+    "declaredKcal": 70,
+    "proteinG": 18,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 1 / 2",
+    "targetBasis": "1 scoop",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 2,
+    "canonicalAmount": 1,
+    "labelUnit": "scoop",
+    "canonicalUnit": "scoop",
+    "labelGrams": 20,
+    "canonicalGrams": 10
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 35,
+    "proteinG": 9,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "storedRounded": {
+    "declaredKcal": 35,
+    "proteinG": 9,
+    "carbsG": 0,
+    "fiberG": 0,
+    "fatG": 0,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": 0,
+    "monounsaturatedFatG": 0
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [
+    "carbsG",
+    "fiberG",
+    "fatG",
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 1,
+    "unit": "scoop",
+    "grams": 10,
+    "labelFr": "1 scoop de peptides de collagène Vital Proteins (10 g)",
+    "labelEn": "1 scoop Vital Proteins Collagen Peptides (10 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/vital-proteins-collagen-peptides-unflavored.html",
+    "snapshotSha256": "95b57f7ce92dcdd708aedf29ad21e542e7ce03449cbe835beb296783050c2330",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-hydrolyzed-collagen",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "b07fbd8927f68e78d31bb800e09258596276223ef08b8b10ced6934a7000b63d"
+}

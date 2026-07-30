@@ -8,12 +8,13 @@
   "purpose": "Copier ce fichier, renseigner les aliments, puis valider / prévisualiser / appliquer via le moteur générique.",
   "scope": {
     "existingFoodCount": 208,
-    "newFoodCount": 0,
-    "expectedFinalFoodCount": 208,
-    "pilotFoodCount": 1,
+    "newFoodCount": 1,
+    "expectedFinalFoodCount": 209,
+    "pilotFoodCount": 2,
     "protectedFoodCount": 207,
     "allowedFoodIds": [
-      "example-food-id"
+      "example-food-id",
+      "example-manufacturer-food-id"
     ]
   },
   "sourcePolicy": {
@@ -61,6 +62,68 @@
         "displayCategory": "fruits",
         "calculationGroup": "fruit",
         "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "example-manufacturer-food-id",
+      "lockedIdentity": {
+        "fr": "Exemple fabricant FR",
+        "en": "Manufacturer example EN",
+        "preparationState": "dry_uncooked",
+        "brand": "Example Brand"
+      },
+      "canonicalPortion": {
+        "labelFr": "0,5 scoop (20 g)",
+        "labelEn": "0.5 scoop (20 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 20
+      },
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://example.com/product",
+        "accessedAt": "YYYY-MM-DD",
+        "brand": "Example Brand",
+        "productName": "Example Protein",
+        "market": "North America",
+        "labelServing": { "amount": 1, "unit": "scoop", "grams": 40 },
+        "labelNutrients": {
+          "declaredKcal": 140,
+          "proteinG": 30,
+          "carbsG": 3,
+          "fiberG": 0,
+          "fatG": 1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 70,
+          "proteinG": 15,
+          "carbsG": 1.5,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.25,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 70,
+          "proteinG": 15,
+          "carbsG": 1.5,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-manufacturer-example",
         "classificationStatus": "approved"
       }
     }
