@@ -1,0 +1,2168 @@
+{
+  "batchId": "fish-seafood-complete-individual-validation-36-foods",
+  "generatedAt": "2026-07-30T19:04:40.260Z",
+  "summary": {
+    "updates": 26,
+    "adds": 10,
+    "verifiedInBatch": 36,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "fatsCount": 23,
+    "fatsVerified": 23,
+    "fishSeafoodCount": 36,
+    "fishSeafoodVerified": 36,
+    "totalFoods": 247,
+    "totalVerified": 164,
+    "protectedUnchanged": 211,
+    "protectedFoodsDataHash": "f5959253bbf5257d71980cfc5d75105842807493b078db356792a957d5df1c13",
+    "dataHash": "6929efe329316e670e73c8e1c1c2980089b681358f1dc0a01cc2e14b93fd74cc"
+  },
+  "foods": [
+    {
+      "id": "poissons-fruits-mer-haddock",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3199",
+      "selectedRecordId": "3199",
+      "cnfDescription": {
+        "en": "Fish, haddock, baked or broiled",
+        "fr": "Poisson, aiglefin, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, haddock, baked or broiled",
+        "fr": "Poisson, aiglefin, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g d'Aiglefin",
+        "labelEn": "45 g Haddock",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g d’aiglefin cuit",
+        "labelEn": "45 g cooked haddock",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 41
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f7bfa0a8-c9d0-47af-ba16-180c9dbb619c",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-eel",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3005",
+      "selectedRecordId": "3005",
+      "cnfDescription": {
+        "en": "Fish, eel, mixed species, baked or broiled",
+        "fr": "Poisson, anguille, espèces diverses, cuites au four ou grillées"
+      },
+      "sourceDescription": {
+        "en": "Fish, eel, mixed species, baked or broiled",
+        "fr": "Poisson, anguille, espèces diverses, cuites au four ou grillées"
+      },
+      "beforePortion": {
+        "labelFr": "30 g d'Anguille",
+        "labelEn": "30 g Eel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g d’anguille cuite",
+        "labelEn": "30 g cooked eel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 76
+      },
+      "afterNutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.5,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 2.8,
+        "declaredKcal": 71
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "390c83b3-d38f-4f21-b14e-45a60b365f78",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-pike",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3037",
+      "selectedRecordId": "3037",
+      "cnfDescription": {
+        "en": "Fish, pike, northern, Indigenous, cooked",
+        "fr": "Poisson, grand brochet, autochtone, cuit"
+      },
+      "sourceDescription": {
+        "en": "Fish, pike, northern, Indigenous, cooked",
+        "fr": "Poisson, grand brochet, autochtone, cuit"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Brochet",
+        "labelEn": "45 g Pike",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de brochet cuit",
+        "labelEn": "45 g cooked northern pike",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 47
+      },
+      "afterNutrients": {
+        "proteinG": 9.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 43
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7ceb3b2d-6556-41c1-ba1a-886627a92544",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-caviar",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2995",
+      "selectedRecordId": "2995",
+      "cnfDescription": {
+        "en": "Fish, caviar, black and red, granular",
+        "fr": "Poisson, caviar, noir et rouge, granuleux"
+      },
+      "sourceDescription": {
+        "en": "Fish, caviar, black and red, granular",
+        "fr": "Poisson, caviar, noir et rouge, granuleux"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Caviar",
+        "labelEn": "30 g Caviar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de caviar",
+        "labelEn": "30 g caviar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 44
+      },
+      "afterNutrients": {
+        "proteinG": 7.4,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 5.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 79
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6aff3fc9-11fd-44ad-a4b3-76d80200a2a7",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-seafood-specialty"
+    },
+    {
+      "id": "poissons-fruits-mer-crab",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3173",
+      "selectedRecordId": "3173",
+      "cnfDescription": {
+        "en": "Crustaceans, crab, atlantic snow crab (spider, queen), boiled or steamed",
+        "fr": "Crustacés, crabe des neiges (crabe-araignée), à vapeur ou bouilli"
+      },
+      "sourceDescription": {
+        "en": "Crustaceans, crab, atlantic snow crab (spider, queen), boiled or steamed",
+        "fr": "Crustacés, crabe des neiges (crabe-araignée), à vapeur ou bouilli"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Crabe",
+        "labelEn": "45 g Crab",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de chair de crabe des neiges cuite",
+        "labelEn": "45 g cooked snow crab meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 12,
+        "carbsG": 3,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 36
+      },
+      "afterNutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9c87d781-00f4-4180-a41e-15c5365802ac",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-surimi",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3074",
+      "selectedRecordId": "3074",
+      "cnfDescription": {
+        "en": "Fish, surimi",
+        "fr": "Poisson, surimi"
+      },
+      "sourceDescription": {
+        "en": "Fish, surimi",
+        "fr": "Poisson, surimi"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Surimi",
+        "labelEn": "30 g Surimi",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de surimi",
+        "labelEn": "30 g fish surimi",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 4.6,
+        "carbsG": 2.1,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "4f06fc59-3354-40e8-a817-97cf54b0f4c2",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-processed-seafood"
+    },
+    {
+      "id": "poissons-fruits-mer-shrimp",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3212",
+      "selectedRecordId": "3212",
+      "cnfDescription": {
+        "en": "Crustaceans, shrimp, mixed species, boiled or steamed",
+        "fr": "Crustacés, crevette, espèces diverses, à vapeur ou bouillies"
+      },
+      "sourceDescription": {
+        "en": "Crustaceans, shrimp, mixed species, boiled or steamed",
+        "fr": "Crustacés, crevette, espèces diverses, à vapeur ou bouillies"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Crevette",
+        "labelEn": "45 g Shrimp",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de crevettes cuites",
+        "labelEn": "45 g cooked shrimp",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0.7,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8fc0b956-17ba-4141-ad11-62403524d4a3",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-snail",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5635",
+      "selectedRecordId": "5635",
+      "cnfDescription": {
+        "en": "Mollusks, snail, raw",
+        "fr": "Mollusques, escargot, cru"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, snail, raw",
+        "fr": "Mollusques, escargot, cru"
+      },
+      "beforePortion": {
+        "labelFr": "45 g d'Escargot",
+        "labelEn": "45 g Snail",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de chair d’escargot crue",
+        "labelEn": "45 g raw snail meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 41
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "913a49fd-0951-4a97-91e6-87d234a31dd4",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-herring",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3015",
+      "selectedRecordId": "3015",
+      "cnfDescription": {
+        "en": "Fish, herring, Atlantic, baked or broiled",
+        "fr": "Poisson, hareng, atlantique, cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, herring, Atlantic, baked or broiled",
+        "fr": "Poisson, hareng, atlantique, cuit au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Hareng",
+        "labelEn": "30 g Herring",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de hareng cuit",
+        "labelEn": "30 g cooked Atlantic herring",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 61
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "0cb029fa-e874-4d5b-a318-9f4fc9afc57c",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-lobster",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3210",
+      "selectedRecordId": "3210",
+      "cnfDescription": {
+        "en": "Crustaceans, lobster, american (northern), boiled or steamed",
+        "fr": "Crustacés, homard, d'amérique, à vapeur ou bouilli"
+      },
+      "sourceDescription": {
+        "en": "Crustaceans, lobster, american (northern), boiled or steamed",
+        "fr": "Crustacés, homard, d'amérique, à vapeur ou bouilli"
+      },
+      "beforePortion": {
+        "labelFr": "45 g d'Homard",
+        "labelEn": "45 g Lobster",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de chair de homard cuite",
+        "labelEn": "45 g cooked lobster meat",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 8.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "06989a70-ceea-4720-9e11-7bc74f317174",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-oysters",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3191",
+      "selectedRecordId": "3191",
+      "cnfDescription": {
+        "en": "Mollusks, oyster, eastern (blue point), farmed, raw",
+        "fr": "Mollusques, huître, américaine (de l'est), élevage, crue"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, oyster, eastern (blue point), farmed, raw",
+        "fr": "Mollusques, huître, américaine (de l'est), élevage, crue"
+      },
+      "beforePortion": {
+        "labelFr": "45 g d'Huîtres",
+        "labelEn": "45 g Oysters",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g d’huîtres crues",
+        "labelEn": "45 g raw farmed eastern oysters",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 3,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.5,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 27
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "60717407-38c0-42b8-b1cf-ff1c46a206f1",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk"
+    },
+    {
+      "id": "poissons-fruits-mer-mackerel",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3022",
+      "selectedRecordId": "3022",
+      "cnfDescription": {
+        "en": "Fish, mackerel, atlantic, baked or broiled",
+        "fr": "Poisson, maquereau bleu, cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, mackerel, atlantic, baked or broiled",
+        "fr": "Poisson, maquereau bleu, cuit au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Maquereau",
+        "labelEn": "30 g Mackerel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de maquereau cuit",
+        "labelEn": "30 g cooked Atlantic mackerel",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 67
+      },
+      "afterNutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 79
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "5882a157-2140-4f6d-b55a-1feda10a6592",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-cod",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3195",
+      "selectedRecordId": "3195",
+      "cnfDescription": {
+        "en": "Fish, cod (scrod), Atlantic, baked or broiled",
+        "fr": "Poisson, morue de l'Atlantique, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, cod (scrod), Atlantic, baked or broiled",
+        "fr": "Poisson, morue de l'Atlantique, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Morue",
+        "labelEn": "45 g Cod",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de morue cuite",
+        "labelEn": "45 g cooked Atlantic cod",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 47
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7efe4eb3-002d-41be-b987-1425779dbece",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-mussels",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3116",
+      "selectedRecordId": "3116",
+      "cnfDescription": {
+        "en": "Mollusks, mussel, blue, boiled or steamed",
+        "fr": "Mollusques, moule, bleue, à vapeur ou bouillie"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, mussel, blue, boiled or steamed",
+        "fr": "Mollusques, moule, bleue, à vapeur ou bouillie"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Moules",
+        "labelEn": "45 g Mussels",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de moules cuites",
+        "labelEn": "45 g cooked blue mussels",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 71
+      },
+      "afterNutrients": {
+        "proteinG": 10.7,
+        "carbsG": 3.3,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 77
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ff200274-11f2-4c27-aa1d-7bf72743a546",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-clams",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3112",
+      "selectedRecordId": "3112",
+      "cnfDescription": {
+        "en": "Mollusks, clam, mixed species, canned, drained solids",
+        "fr": "Mollusques, mye (palourde), espèces diverses, conserve, égouttées"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, clam, mixed species, canned, drained solids",
+        "fr": "Mollusques, mye (palourde), espèces diverses, conserve, égouttées"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Palourdes en conserve",
+        "labelEn": "45 g Canned clams",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "canned",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de palourdes en conserve égouttées",
+        "labelEn": "45 g canned drained clams",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 10.9,
+        "carbsG": 2.7,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 64
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ab06c879-e7ae-4f67-ae4d-577503fc0001",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk"
+    },
+    {
+      "id": "poissons-fruits-mer-scallop",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5634",
+      "selectedRecordId": "5634",
+      "cnfDescription": {
+        "en": "Mollusks, scallop (bay and sea), cooked, steamed",
+        "fr": "Mollusques, pétoncle (de baie ou géant), cuit à la vapeur"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, scallop (bay and sea), cooked, steamed",
+        "fr": "Mollusques, pétoncle (de baie ou géant), cuit à la vapeur"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Pétoncle",
+        "labelEn": "45 g Scallop",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de pétoncles cuits",
+        "labelEn": "45 g steamed scallops",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 41
+      },
+      "afterNutrients": {
+        "proteinG": 9.2,
+        "carbsG": 2.4,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "14b4e98d-cdcb-4292-979f-926ccd2e3841",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-sole",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3007",
+      "selectedRecordId": "3007",
+      "cnfDescription": {
+        "en": "Fish, flatfish (flounder or sole or plaice), baked or broiled",
+        "fr": "Poisson plat (plie ou flet ou sole), cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, flatfish (flounder or sole or plaice), baked or broiled",
+        "fr": "Poisson plat (plie ou flet ou sole), cuit au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Sole",
+        "labelEn": "45 g Sole",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de poisson plat cuit",
+        "labelEn": "45 g cooked flatfish",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 39
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2fc47290-d153-4f0d-b3b4-f02a6f5facb9",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-sardines",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3203",
+      "selectedRecordId": "3203",
+      "cnfDescription": {
+        "en": "Fish, sardine, Atlantic, canned in oil, drained solids with bone",
+        "fr": "Poisson, sardine, Atlantique, conserve, dans l' huile, égoutté avec arêtes"
+      },
+      "sourceDescription": {
+        "en": "Fish, sardine, Atlantic, canned in oil, drained solids with bone",
+        "fr": "Poisson, sardine, Atlantique, conserve, dans l' huile, égoutté avec arêtes"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Sardines en conserve",
+        "labelEn": "30 g Canned sardines",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "canned",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de sardines en conserve égouttées",
+        "labelEn": "30 g canned drained sardines",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 5,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 7.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.4,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "578afe2f-2a43-4ce5-abc4-f69730f05991",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-atlantic-salmon",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3183",
+      "selectedRecordId": "3183",
+      "cnfDescription": {
+        "en": "Fish, salmon, atlantic, farmed, baked or broiled",
+        "fr": "Poisson, saumon, atlantique, élevage, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, salmon, atlantic, farmed, baked or broiled",
+        "fr": "Poisson, saumon, atlantique, élevage, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Saumon de l'Atlantique",
+        "labelEn": "30 g Atlantic salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de saumon de l’Atlantique cuit",
+        "labelEn": "30 g cooked farmed Atlantic salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 45
+      },
+      "afterNutrients": {
+        "proteinG": 6.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.4,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e65509fc-4dd1-463c-93ac-8786f63b8caa",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-tuna",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3167",
+      "selectedRecordId": "3167",
+      "cnfDescription": {
+        "en": "Fish, tuna, yellowfin, baked or broiled",
+        "fr": "Poisson, thon à nageoires jaunes, cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, tuna, yellowfin, baked or broiled",
+        "fr": "Poisson, thon à nageoires jaunes, cuit au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Thon",
+        "labelEn": "45 g Tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de thon jaune cuit",
+        "labelEn": "45 g cooked yellowfin tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "26e70f49-cd03-4f0e-a907-acf903e9545a",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3131",
+      "selectedRecordId": "3131",
+      "cnfDescription": {
+        "en": "Fish, tuna, light, canned in water, drained, unsalted",
+        "fr": "Poisson, thon, chair pale, conserve, dans l'eau, égoutté, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Fish, tuna, light, canned in water, drained, unsalted",
+        "fr": "Poisson, thon, chair pale, conserve, dans l'eau, égoutté, sans sel"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Thon en conserve au naturel, égoutté",
+        "labelEn": "45 g Canned tuna in water, drained",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "drained",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de thon pâle en conserve égoutté",
+        "labelEn": "45 g canned drained light tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 11.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1c0d8e38-9a86-4ce2-9615-44a8c53c5539",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-tilapia",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5967",
+      "selectedRecordId": "5967",
+      "cnfDescription": {
+        "en": "Fish, tilapia, baked or broiled",
+        "fr": "Poisson, tilapia, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, tilapia, baked or broiled",
+        "fr": "Poisson, tilapia, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "50 g de Tilapia",
+        "labelEn": "50 g Tilapia",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de tilapia cuit",
+        "labelEn": "45 g cooked tilapia",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 48
+      },
+      "afterNutrients": {
+        "proteinG": 11.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f2edf21e-b673-4fe2-9c8e-be8e80300d11",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-rainbow-trout",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3187",
+      "selectedRecordId": "3187",
+      "cnfDescription": {
+        "en": "Fish, trout, rainbow, farmed, baked or broiled",
+        "fr": "Poisson, truite, arc-en-ciel, élevage, au four ou grillée"
+      },
+      "sourceDescription": {
+        "en": "Fish, trout, rainbow, farmed, baked or broiled",
+        "fr": "Poisson, truite, arc-en-ciel, élevage, au four ou grillée"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Truite arc-en-ciel",
+        "labelEn": "45 g Rainbow trout",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de truite arc-en-ciel cuite",
+        "labelEn": "30 g cooked farmed rainbow trout",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 47
+      },
+      "afterNutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ce9c2658-1634-44f5-81fa-bc52ab61aecf",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-turbot",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3168",
+      "selectedRecordId": "3168",
+      "cnfDescription": {
+        "en": "Fish, turbot, European, baked or broiled",
+        "fr": "Poisson, turbot, européen, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, turbot, European, baked or broiled",
+        "fr": "Poisson, turbot, européen, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Turbot",
+        "labelEn": "45 g Turbot",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de turbot cuit",
+        "labelEn": "45 g cooked European turbot",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 44
+      },
+      "afterNutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ea54397a-eab2-477a-a9eb-16d70abcc397",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-halibut",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3012",
+      "selectedRecordId": "3012",
+      "cnfDescription": {
+        "en": "Fish, halibut, Atlantic or Pacific, baked or broiled",
+        "fr": "Poisson, flétan, Atlantique ou Pacifique, au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, halibut, Atlantic or Pacific, baked or broiled",
+        "fr": "Poisson, flétan, Atlantique ou Pacifique, au four ou grillé"
+      },
+      "beforePortion": {
+        "labelFr": "45 g de Flétan",
+        "labelEn": "45 g Halibut",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "45 g de flétan cuit",
+        "labelEn": "45 g cooked halibut",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 10.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "080e63da-7536-420b-94b5-30ba99d89cf5",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-anchovies-in-water",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "2985",
+      "selectedRecordId": "2985",
+      "cnfDescription": {
+        "en": "Fish, anchovy, european, canned with olive oil, drained solids",
+        "fr": "Poisson, anchois, européen, conserve avec huile d'olive, égoutté"
+      },
+      "sourceDescription": {
+        "en": "Fish, anchovy, european, canned with olive oil, drained solids",
+        "fr": "Poisson, anchois, européen, conserve avec huile d'olive, égoutté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g d'Anchois au naturel (en conserve)",
+        "labelEn": "30 g Canned anchovies in water",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "canned",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g d’anchois en conserve égouttés",
+        "labelEn": "30 g canned drained anchovies",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 63
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "53ca6357-534f-444c-a8e9-8d26128a34f3",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-sockeye-salmon",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3053",
+      "selectedRecordId": "3053",
+      "cnfDescription": {
+        "en": "Fish, salmon, sockeye (red), baked or broiled",
+        "fr": "Poisson, saumon, rouge (sockeye), cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, salmon, sockeye (red), baked or broiled",
+        "fr": "Poisson, saumon, rouge (sockeye), cuit au four ou grillé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de saumon sockeye cuit",
+        "labelEn": "30 g cooked sockeye salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 7.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 47
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "51912b5e-dac6-48b6-9a1e-efe817cead95",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-smoked-chinook-salmon",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3050",
+      "selectedRecordId": "3050",
+      "cnfDescription": {
+        "en": "Fish, salmon, chinook (spring), smoked",
+        "fr": "Poisson, saumon, quinnat, fumé"
+      },
+      "sourceDescription": {
+        "en": "Fish, salmon, chinook (spring), smoked",
+        "fr": "Poisson, saumon, quinnat, fumé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de saumon quinnat fumé",
+        "labelEn": "30 g smoked Chinook salmon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 5.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 35
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "abaf010b-2ac0-43cb-bf5a-0c842bc53822",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-smoked-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-pink-salmon",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7082",
+      "selectedRecordId": "7082",
+      "cnfDescription": {
+        "en": "Fish, salmon, pink, canned, drained solids, without skin and bones",
+        "fr": "Poisson, saumon, rose, conserve, égoutté, sans peau et os"
+      },
+      "sourceDescription": {
+        "en": "Fish, salmon, pink, canned, drained solids, without skin and bones",
+        "fr": "Poisson, saumon, rose, conserve, égoutté, sans peau et os"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de saumon rose en conserve égoutté",
+        "labelEn": "45 g canned drained pink salmon",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 11.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 61
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "eaa1eb43-cd36-4ca7-9d5c-c79b96c1ef20",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-white-tuna-water",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3133",
+      "selectedRecordId": "3133",
+      "cnfDescription": {
+        "en": "Fish, tuna, white, canned with water, drained, unsalted",
+        "fr": "Poisson, thon, chair blanche, conserve, dans l'eau, égoutté, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Fish, tuna, white, canned with water, drained, unsalted",
+        "fr": "Poisson, thon, chair blanche, conserve, dans l'eau, égoutté, sans sel"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de thon blanc en conserve égoutté",
+        "labelEn": "45 g canned drained white tuna",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "800cf15f-5b9a-490a-8bb2-546747a5de73",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-canned-light-tuna-oil",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3214",
+      "selectedRecordId": "3214",
+      "cnfDescription": {
+        "en": "Fish, tuna, light, canned in oil, drained, unsalted",
+        "fr": "Poisson, thon, chair pale, conserve, dans l'huile, égoutté, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Fish, tuna, light, canned in oil, drained, unsalted",
+        "fr": "Poisson, thon, chair pale, conserve, dans l'huile, égoutté, sans sel"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de thon pâle dans l’huile, égoutté",
+        "labelEn": "45 g canned light tuna in oil, drained",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 89
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2637082c-5fb6-4004-9f65-5cdd4eb70744",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-alaska-pollock",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3040",
+      "selectedRecordId": "3040",
+      "cnfDescription": {
+        "en": "Fish, pollock, Alaska, baked or broiled",
+        "fr": "Poisson, goberge d'Alaska, cuite au four ou grillée"
+      },
+      "sourceDescription": {
+        "en": "Fish, pollock, Alaska, baked or broiled",
+        "fr": "Poisson, goberge d'Alaska, cuite au four ou grillée"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de goberge d’Alaska cuite",
+        "labelEn": "45 g cooked Alaska pollock",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "025a0356-62e0-4229-80a5-81bcf5037f26",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-octopus",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3176",
+      "selectedRecordId": "3176",
+      "cnfDescription": {
+        "en": "Mollusks, octopus, common, boiled or steamed",
+        "fr": "Mollusques, poulpe ordinaire, à vapeur ou bouilli"
+      },
+      "sourceDescription": {
+        "en": "Mollusks, octopus, common, boiled or steamed",
+        "fr": "Mollusques, poulpe ordinaire, à vapeur ou bouilli"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de poulpe cuit",
+        "labelEn": "45 g cooked octopus",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 13.4,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 74
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9b925203-641d-4d72-8d45-63db061cc89d",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean"
+    },
+    {
+      "id": "poissons-fruits-mer-swordfish",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3076",
+      "selectedRecordId": "3076",
+      "cnfDescription": {
+        "en": "Fish, swordfish, baked or broiled",
+        "fr": "Poisson, espadon, cuit au four ou grillé"
+      },
+      "sourceDescription": {
+        "en": "Fish, swordfish, baked or broiled",
+        "fr": "Poisson, espadon, cuit au four ou grillé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g d’espadon cuit",
+        "labelEn": "45 g cooked swordfish",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 77
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "031175b3-8ebf-4687-be35-c3e913a00802",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fish-moderate-fat"
+    },
+    {
+      "id": "poissons-fruits-mer-mahi-mahi",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3141",
+      "selectedRecordId": "3141",
+      "cnfDescription": {
+        "en": "Fish, dolphinfish (mahimahi), baked or broiled",
+        "fr": "Poisson, coryphène commune (mahi mahi), au four ou grillée"
+      },
+      "sourceDescription": {
+        "en": "Fish, dolphinfish (mahimahi), baked or broiled",
+        "fr": "Poisson, coryphène commune (mahi mahi), au four ou grillée"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de mahi-mahi cuit",
+        "labelEn": "45 g cooked mahi-mahi",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 49
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d20d320f-1676-42ab-a74a-a937a364582d",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish"
+    },
+    {
+      "id": "poissons-fruits-mer-sea-bass",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3057",
+      "selectedRecordId": "3057",
+      "cnfDescription": {
+        "en": "Fish, sea bass, mixed species, baked or broiled",
+        "fr": "Poisson, bar commun (serran), espèces diverses, cuites au four ou grillées"
+      },
+      "sourceDescription": {
+        "en": "Fish, sea bass, mixed species, baked or broiled",
+        "fr": "Poisson, bar commun (serran), espèces diverses, cuites au four ou grillées"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "45 g de bar de mer cuit",
+        "labelEn": "45 g cooked sea bass",
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 56
+      },
+      "formula": "valuePortion = valuePer100g × 45 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "145c8b79-baf7-44b2-8e7e-72ee4da5be31",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fish-moderate-fat"
+    }
+  ]
+}

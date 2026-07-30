@@ -25,22 +25,22 @@
 </style></head><body>
 <header>
   <h1>Audit — équivalents alimentaires</h1>
-  <div class="meta">Version 1.0.0 · draft · hash b19ecd292ef3 · généré 2026-07-30T18:26:13.517Z · 4-4-9 = contrôle seulement</div>
+  <div class="meta">Version 1.0.0 · draft · hash 6929efe32931 · généré 2026-07-30T19:04:52.645Z · 4-4-9 = contrôle seulement</div>
 </header>
 <section class="stats">
-  <div class="stat"><b>237</b><span>Aliments</span></div>
-  <div class="stat"><b>55</b><span>Aliments avec ERROR</span></div>
-  <div class="stat"><b>60</b><span>Alertes ERROR (count)</span></div>
-  <div class="stat"><b>152</b><span>Aliments WARNING</span></div>
-  <div class="stat"><b>310</b><span>Alertes WARNING (count)</span></div>
-  <div class="stat"><b>85</b><span>Audit clean</span></div>
-  <div class="stat"><b>128</b><span>Verified</span></div>
+  <div class="stat"><b>247</b><span>Aliments</span></div>
+  <div class="stat"><b>46</b><span>Aliments avec ERROR</span></div>
+  <div class="stat"><b>51</b><span>Alertes ERROR (count)</span></div>
+  <div class="stat"><b>126</b><span>Aliments WARNING</span></div>
+  <div class="stat"><b>254</b><span>Alertes WARNING (count)</span></div>
+  <div class="stat"><b>121</b><span>Audit clean</span></div>
+  <div class="stat"><b>164</b><span>Verified</span></div>
 </section>
 <p class="note">Cet audit ne modifie jamais les nutriments. Les résolutions documentées restent visibles comme « résolue et documentée ».</p>
 <div class="controls">
   <input id="q" placeholder="Rechercher…" size="32" />
   <select id="sev"><option value="">Gravité</option><option>ERROR</option><option>WARNING</option><option>OK</option></select>
-  <select id="cat"><option value="">Catégorie</option><option>autres_sources_proteinees</option><option>feculents</option><option>produits_laitiers</option><option>viandes_volaille</option><option>poissons_fruits_mer</option><option>fruits</option><option>matieres_grasses</option><option>legumes</option><option>noix_graines</option></select>
+  <select id="cat"><option value="">Catégorie</option><option>autres_sources_proteinees</option><option>feculents</option><option>produits_laitiers</option><option>viandes_volaille</option><option>fruits</option><option>matieres_grasses</option><option>legumes</option><option>poissons_fruits_mer</option><option>noix_graines</option></select>
   <select id="group"><option value="">Groupe</option><option>whey</option><option>protein</option><option>starch</option><option>dairy</option><option>fruit</option><option>fat</option><option>vegetable</option></select>
   <select id="status"><option value="">Statut</option><option>unverified</option><option>verified</option><option>rejected</option></select>
 </div>
@@ -470,21 +470,6 @@
       <td>68.5</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 91 vs Atwater 54.0 (Δ 37.0 / 68.5%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Caviar</td>
-      <td>Caviar</td>
-      <td>unverified</td>
-      <td>44</td>
-      <td>28.0</td>
-      <td>16.0</td>
-      <td>57.1</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 44 vs Atwater 28.0 (Δ 16.0 / 57.1%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="ERROR" data-cat="autres_sources_proteinees" data-group="protein" data-status="unverified">
       <td>ERROR</td>
       <td>1</td>
@@ -499,51 +484,6 @@
       <td>19.0</td>
       <td>52.8</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 55 vs Atwater 36.0 (Δ 19.0 / 52.8%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Crabe</td>
-      <td>Crab</td>
-      <td>unverified</td>
-      <td>36</td>
-      <td>69.0</td>
-      <td>33.0</td>
-      <td>47.8</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 36 vs Atwater 69.0 (Δ 33.0 / 47.8%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Crevette</td>
-      <td>Shrimp</td>
-      <td>unverified</td>
-      <td>53</td>
-      <td>72.0</td>
-      <td>19.0</td>
-      <td>26.4</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 53 vs Atwater 72.0 (Δ 19.0 / 26.4%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Escargot</td>
-      <td>Snail</td>
-      <td>unverified</td>
-      <td>52</td>
-      <td>28.0</td>
-      <td>24.0</td>
-      <td>85.7</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 52 vs Atwater 28.0 (Δ 24.0 / 85.7%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="ERROR" data-cat="produits_laitiers" data-group="dairy" data-status="unverified">
       <td>ERROR</td>
@@ -620,36 +560,6 @@
       <td>63.9</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 59 vs Atwater 36.0 (Δ 23.0 / 63.9%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Maquereau</td>
-      <td>Mackerel</td>
-      <td>unverified</td>
-      <td>67</td>
-      <td>45.0</td>
-      <td>22.0</td>
-      <td>48.9</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 67 vs Atwater 45.0 (Δ 22.0 / 48.9%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Moules</td>
-      <td>Mussels</td>
-      <td>unverified</td>
-      <td>71</td>
-      <td>89.0</td>
-      <td>18.0</td>
-      <td>20.2</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 71 vs Atwater 89.0 (Δ 18.0 / 20.2%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="ERROR" data-cat="viandes_volaille" data-group="protein" data-status="unverified">
       <td>ERROR</td>
       <td>1</td>
@@ -695,21 +605,6 @@
       <td>31.1</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 59 vs Atwater 45.0 (Δ 14.0 / 31.1%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Saumon de l'Atlantique</td>
-      <td>Atlantic salmon</td>
-      <td>unverified</td>
-      <td>45</td>
-      <td>28.0</td>
-      <td>17.0</td>
-      <td>60.7</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 45 vs Atwater 28.0 (Δ 17.0 / 60.7%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="ERROR" data-cat="autres_sources_proteinees" data-group="protein" data-status="unverified">
       <td>ERROR</td>
       <td>1</td>
@@ -739,21 +634,6 @@
       <td>17.0</td>
       <td>21.3</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 63 vs Atwater 80.0 (Δ 17.0 / 21.3%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Turbot</td>
-      <td>Turbot</td>
-      <td>unverified</td>
-      <td>44</td>
-      <td>36.0</td>
-      <td>8.0</td>
-      <td>22.2</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 44 vs Atwater 36.0 (Δ 8.0 / 22.2%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="ERROR" data-cat="produits_laitiers" data-group="dairy" data-status="unverified">
       <td>ERROR</td>
@@ -860,21 +740,6 @@
       <td>21.7</td>
       <td class="alerts">[ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 72 vs Atwater 92.0 (Δ 20.0 / 21.7%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="ERROR" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>ERROR</td>
-      <td>1</td>
-      <td>1</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Sardines en conserve</td>
-      <td>Canned sardines</td>
-      <td>unverified</td>
-      <td>61</td>
-      <td>49.0</td>
-      <td>12.0</td>
-      <td>24.5</td>
-      <td class="alerts">[ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 61 vs Atwater 49.0 (Δ 12.0 / 24.5%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="feculents" data-group="starch" data-status="unverified">
       <td>WARNING</td>
       <td>0</td>
@@ -919,21 +784,6 @@
       <td>7.0</td>
       <td>11.1</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 70 vs Atwater 63.0 (11.1%) | [WARNING] MISSING_GRAMS: Poids en grammes absent | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Aiglefin</td>
-      <td>Haddock</td>
-      <td>unverified</td>
-      <td>50</td>
-      <td>44.0</td>
-      <td>6.0</td>
-      <td>13.6</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 50 vs Atwater 44.0 (13.6%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="WARNING" data-cat="fruits" data-group="fruit" data-status="verified">
       <td>WARNING</td>
@@ -1055,66 +905,6 @@
       <td>15.8</td>
       <td class="alerts">[WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 88 vs Atwater 76.0 (15.8%) | [WARNING] MISSING_GRAMS: Poids en grammes absent | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Hareng</td>
-      <td>Herring</td>
-      <td>unverified</td>
-      <td>55</td>
-      <td>46.0</td>
-      <td>9.0</td>
-      <td>19.6</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 55 vs Atwater 46.0 (19.6%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Homard</td>
-      <td>Lobster</td>
-      <td>unverified</td>
-      <td>53</td>
-      <td>45.0</td>
-      <td>8.0</td>
-      <td>17.8</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 53 vs Atwater 45.0 (17.8%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Huîtres</td>
-      <td>Oysters</td>
-      <td>unverified</td>
-      <td>77</td>
-      <td>66.0</td>
-      <td>11.0</td>
-      <td>16.7</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 77 vs Atwater 66.0 (16.7%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Morue</td>
-      <td>Cod</td>
-      <td>unverified</td>
-      <td>66</td>
-      <td>57.0</td>
-      <td>9.0</td>
-      <td>15.8</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 66 vs Atwater 57.0 (15.8%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="feculents" data-group="starch" data-status="unverified">
       <td>WARNING</td>
       <td>0</td>
@@ -1175,36 +965,6 @@
       <td>17.1</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 48 vs Atwater 41.0 (17.1%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Sole</td>
-      <td>Sole</td>
-      <td>unverified</td>
-      <td>61</td>
-      <td>71.0</td>
-      <td>10.0</td>
-      <td>14.1</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 61 vs Atwater 71.0 (14.1%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>3</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Thon</td>
-      <td>Tuna</td>
-      <td>unverified</td>
-      <td>50</td>
-      <td>44.0</td>
-      <td>6.0</td>
-      <td>13.6</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 50 vs Atwater 44.0 (13.6%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="viandes_volaille" data-group="protein" data-status="unverified">
       <td>WARNING</td>
       <td>0</td>
@@ -1234,21 +994,6 @@
       <td>12.0</td>
       <td>18.2</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 78 vs Atwater 66.0 (18.2%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Anguille</td>
-      <td>Eel</td>
-      <td>unverified</td>
-      <td>76</td>
-      <td>81.0</td>
-      <td>5.0</td>
-      <td>6.2</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="WARNING" data-cat="matieres_grasses" data-group="fat" data-status="verified">
       <td>WARNING</td>
@@ -1323,21 +1068,6 @@
       <td>81.0</td>
       <td>4.0</td>
       <td>4.9</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Brochet</td>
-      <td>Pike</td>
-      <td>unverified</td>
-      <td>47</td>
-      <td>44.0</td>
-      <td>3.0</td>
-      <td>6.8</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="WARNING" data-cat="legumes" data-group="vegetable" data-status="verified">
@@ -1415,21 +1145,6 @@
       <td>3.7</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Flétan</td>
-      <td>Halibut</td>
-      <td>unverified</td>
-      <td>52</td>
-      <td>49.0</td>
-      <td>3.0</td>
-      <td>6.1</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="feculents" data-group="starch" data-status="unverified">
       <td>WARNING</td>
       <td>0</td>
@@ -1503,36 +1218,6 @@
       <td>66.0</td>
       <td>6.0</td>
       <td>9.1</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Palourdes en conserve</td>
-      <td>Canned clams</td>
-      <td>unverified</td>
-      <td>51</td>
-      <td>44.0</td>
-      <td>7.0</td>
-      <td>15.9</td>
-      <td class="alerts">[WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 51 vs Atwater 44.0 (15.9%) | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Pétoncle</td>
-      <td>Scallop</td>
-      <td>unverified</td>
-      <td>41</td>
-      <td>45.0</td>
-      <td>4.0</td>
-      <td>8.9</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="WARNING" data-cat="viandes_volaille" data-group="protein" data-status="unverified">
@@ -1625,51 +1310,6 @@
       <td>3.3</td>
       <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Surimi</td>
-      <td>Surimi</td>
-      <td>unverified</td>
-      <td>57</td>
-      <td>54.0</td>
-      <td>3.0</td>
-      <td>5.6</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Tilapia</td>
-      <td>Tilapia</td>
-      <td>unverified</td>
-      <td>48</td>
-      <td>49.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>2</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Truite arc-en-ciel</td>
-      <td>Rainbow trout</td>
-      <td>unverified</td>
-      <td>47</td>
-      <td>44.0</td>
-      <td>3.0</td>
-      <td>6.8</td>
-      <td class="alerts">[WARNING] MISSING_PREP_STATE: État cru/cuit/égoutté non précisé | [WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="viandes_volaille" data-group="protein" data-status="unverified">
       <td>WARNING</td>
       <td>0</td>
@@ -1729,21 +1369,6 @@
       <td>2.3</td>
       <td>10.8</td>
       <td class="alerts">[WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 19 vs Atwater 21.3 (10.8%)</td>
-    </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>1</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Anchois au naturel</td>
-      <td>Canned anchovies in water</td>
-      <td>unverified</td>
-      <td>55</td>
-      <td>54.0</td>
-      <td>1.0</td>
-      <td>1.9</td>
-      <td class="alerts">[WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
 <tr data-severity="WARNING" data-cat="legumes" data-group="vegetable" data-status="verified">
       <td>WARNING</td>
@@ -2300,21 +1925,6 @@
       <td>5.2</td>
       <td class="alerts">[WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
     </tr>
-<tr data-severity="WARNING" data-cat="poissons_fruits_mer" data-group="protein" data-status="unverified">
-      <td>WARNING</td>
-      <td>0</td>
-      <td>1</td>
-      <td>poissons_fruits_mer</td>
-      <td>protein</td>
-      <td>Thon en conserve au naturel, égoutté</td>
-      <td>Canned tuna in water, drained</td>
-      <td>unverified</td>
-      <td>50</td>
-      <td>53.0</td>
-      <td>3.0</td>
-      <td>5.7</td>
-      <td class="alerts">[WARNING] LEGACY_SOURCE_ONLY: Seule la source legacy du guide est présente — insuffisante pour verified</td>
-    </tr>
 <tr data-severity="WARNING" data-cat="legumes" data-group="vegetable" data-status="verified">
       <td>WARNING</td>
       <td>0</td>
@@ -2329,6 +1939,21 @@
       <td>3.4</td>
       <td>13.4</td>
       <td class="alerts">[WARNING] KCAL_DIFF_MODERATE: Différence calorique modérée: déclaré 22 vs Atwater 25.4 (13.4%)</td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Aiglefin cuit au four ou grillé</td>
+      <td>Haddock, baked or broiled</td>
+      <td>verified</td>
+      <td>41</td>
+      <td>37.8</td>
+      <td>3.2</td>
+      <td>8.5</td>
+      <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
       <td>OK</td>
@@ -2358,6 +1983,36 @@
       <td>60.9</td>
       <td>5.9</td>
       <td>9.7</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Anchois européens en conserve dans l’huile d’olive, égouttés</td>
+      <td>European anchovies canned in olive oil, drained</td>
+      <td>verified</td>
+      <td>63</td>
+      <td>60.9</td>
+      <td>2.1</td>
+      <td>3.4</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Anguille cuite au four ou grillée</td>
+      <td>Eel, baked or broiled</td>
+      <td>verified</td>
+      <td>71</td>
+      <td>68.9</td>
+      <td>2.1</td>
+      <td>3.0</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
@@ -2433,6 +2088,21 @@
       <td>74.1</td>
       <td>4.1</td>
       <td>5.5</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Bar de mer cuit au four ou grillé</td>
+      <td>Sea bass, baked or broiled</td>
+      <td>verified</td>
+      <td>56</td>
+      <td>53.2</td>
+      <td>2.8</td>
+      <td>5.3</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="legumes" data-group="vegetable" data-status="verified">
@@ -2570,6 +2240,21 @@
       <td>5.7</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Caviar noir ou rouge, granuleux</td>
+      <td>Black or red granular caviar</td>
+      <td>verified</td>
+      <td>79</td>
+      <td>83.0</td>
+      <td>4.0</td>
+      <td>4.8</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="fruits" data-group="fruit" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -2690,6 +2375,36 @@
       <td>9.5</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Crabe des neiges bouilli ou cuit à la vapeur</td>
+      <td>Atlantic snow crab, boiled or steamed</td>
+      <td>verified</td>
+      <td>52</td>
+      <td>49.1</td>
+      <td>2.9</td>
+      <td>5.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Crevettes bouillies ou cuites à la vapeur</td>
+      <td>Shrimp, boiled or steamed</td>
+      <td>verified</td>
+      <td>54</td>
+      <td>51.2</td>
+      <td>2.8</td>
+      <td>5.5</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="legumes" data-group="vegetable" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -2734,6 +2449,51 @@
       <td>2.1</td>
       <td>25.9</td>
       <td class="alerts">[ERROR] KCAL_DIFF_HIGH: Différence calorique élevée: déclaré 6 vs Atwater 8.1 (Δ 2.1 / 25.9%) [résolue et documentée]</td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Escargot cru, chair comestible</td>
+      <td>Snail, raw edible meat</td>
+      <td>verified</td>
+      <td>41</td>
+      <td>37.8</td>
+      <td>3.2</td>
+      <td>8.5</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Espadon cuit au four ou grillé</td>
+      <td>Swordfish, baked or broiled</td>
+      <td>verified</td>
+      <td>77</td>
+      <td>74.8</td>
+      <td>2.2</td>
+      <td>2.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Flétan de l’Atlantique ou du Pacifique cuit au four ou grillé</td>
+      <td>Atlantic or Pacific halibut, baked or broiled</td>
+      <td>verified</td>
+      <td>50</td>
+      <td>46.7</td>
+      <td>3.3</td>
+      <td>7.1</td>
+      <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="fruits" data-group="fruit" data-status="verified">
       <td>OK</td>
@@ -2793,6 +2553,21 @@
       <td>56.8</td>
       <td>0.2</td>
       <td>0.4</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Goberge d’Alaska cuite au four ou grillée</td>
+      <td>Alaska pollock, baked or broiled</td>
+      <td>verified</td>
+      <td>50</td>
+      <td>46.9</td>
+      <td>3.1</td>
+      <td>6.6</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
@@ -2900,6 +2675,21 @@
       <td>7.0</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Grand brochet cuit</td>
+      <td>Northern pike, cooked</td>
+      <td>verified</td>
+      <td>43</td>
+      <td>40.7</td>
+      <td>2.3</td>
+      <td>5.7</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="starch" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -2913,6 +2703,36 @@
       <td>147.3</td>
       <td>0.3</td>
       <td>0.2</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Hareng de l’Atlantique cuit au four ou grillé</td>
+      <td>Atlantic herring, baked or broiled</td>
+      <td>verified</td>
+      <td>61</td>
+      <td>59.1</td>
+      <td>1.9</td>
+      <td>3.2</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Homard d’Amérique bouilli ou cuit à la vapeur</td>
+      <td>American lobster, boiled or steamed</td>
+      <td>verified</td>
+      <td>40</td>
+      <td>38.0</td>
+      <td>2.0</td>
+      <td>5.3</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
@@ -3035,6 +2855,21 @@
       <td>3.2</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Huîtres de l’Est d’élevage, crues</td>
+      <td>Farmed eastern oysters, raw</td>
+      <td>verified</td>
+      <td>27</td>
+      <td>25.5</td>
+      <td>1.5</td>
+      <td>5.9</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="matieres_grasses" data-group="fat" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -3125,6 +2960,36 @@
       <td>9.9</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Mahi-mahi cuit au four ou grillé</td>
+      <td>Mahi-mahi, baked or broiled</td>
+      <td>verified</td>
+      <td>49</td>
+      <td>46.4</td>
+      <td>2.6</td>
+      <td>5.6</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Maquereau bleu cuit au four ou grillé</td>
+      <td>Atlantic mackerel, baked or broiled</td>
+      <td>verified</td>
+      <td>79</td>
+      <td>76.5</td>
+      <td>2.5</td>
+      <td>3.3</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="matieres_grasses" data-group="fat" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -3168,6 +3033,36 @@
       <td>47.2</td>
       <td>0.8</td>
       <td>1.7</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Morue de l’Atlantique cuite au four ou grillée</td>
+      <td>Atlantic cod, baked or broiled</td>
+      <td>verified</td>
+      <td>47</td>
+      <td>44.8</td>
+      <td>2.2</td>
+      <td>4.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Moules bleues bouillies ou cuites à la vapeur</td>
+      <td>Blue mussels, boiled or steamed</td>
+      <td>verified</td>
+      <td>77</td>
+      <td>74.0</td>
+      <td>3.0</td>
+      <td>4.1</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="legumes" data-group="vegetable" data-status="verified">
@@ -3410,6 +3305,36 @@
       <td>7.4</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Palourdes en conserve, solides égouttés</td>
+      <td>Canned clams, drained solids</td>
+      <td>verified</td>
+      <td>64</td>
+      <td>60.7</td>
+      <td>3.3</td>
+      <td>5.4</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Pétoncles cuits à la vapeur</td>
+      <td>Bay or sea scallops, steamed</td>
+      <td>verified</td>
+      <td>50</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -3470,6 +3395,21 @@
       <td>2.2</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Poisson plat (sole, plie ou flet) cuit au four ou grillé</td>
+      <td>Flatfish (sole, flounder or plaice), baked or broiled</td>
+      <td>verified</td>
+      <td>39</td>
+      <td>37.5</td>
+      <td>1.5</td>
+      <td>4.0</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="viandes_volaille" data-group="protein" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -3482,6 +3422,21 @@
       <td>50</td>
       <td>47.1</td>
       <td>2.9</td>
+      <td>6.2</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Poulpe bouilli ou cuit à la vapeur</td>
+      <td>Common octopus, boiled or steamed</td>
+      <td>verified</td>
+      <td>74</td>
+      <td>69.7</td>
+      <td>4.3</td>
       <td>6.2</td>
       <td class="alerts"></td>
     </tr>
@@ -3575,6 +3530,96 @@
       <td>9.8</td>
       <td class="alerts"></td>
     </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Sardines de l’Atlantique en conserve dans l’huile, égouttées avec arêtes</td>
+      <td>Atlantic sardines canned in oil, drained with bone</td>
+      <td>verified</td>
+      <td>62</td>
+      <td>60.2</td>
+      <td>1.8</td>
+      <td>3.0</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Saumon de l’Atlantique d’élevage, cuit au four ou grillé</td>
+      <td>Farmed Atlantic salmon, baked or broiled</td>
+      <td>verified</td>
+      <td>62</td>
+      <td>59.7</td>
+      <td>2.3</td>
+      <td>3.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Saumon quinnat fumé</td>
+      <td>Smoked Chinook salmon</td>
+      <td>verified</td>
+      <td>35</td>
+      <td>33.7</td>
+      <td>1.3</td>
+      <td>3.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Saumon rose en conserve, égoutté, sans peau ni arêtes</td>
+      <td>Canned pink salmon, drained, skinless and boneless</td>
+      <td>verified</td>
+      <td>61</td>
+      <td>61.5</td>
+      <td>0.5</td>
+      <td>0.8</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Saumon sockeye cuit au four ou grillé</td>
+      <td>Sockeye salmon, baked or broiled</td>
+      <td>verified</td>
+      <td>47</td>
+      <td>46.9</td>
+      <td>0.1</td>
+      <td>0.2</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Surimi de poisson</td>
+      <td>Fish surimi</td>
+      <td>verified</td>
+      <td>30</td>
+      <td>29.5</td>
+      <td>0.5</td>
+      <td>1.7</td>
+      <td class="alerts"></td>
+    </tr>
 <tr data-severity="OK" data-cat="noix_graines" data-group="fat" data-status="verified">
       <td>OK</td>
       <td>0</td>
@@ -3588,6 +3633,111 @@
       <td>63.8</td>
       <td>3.8</td>
       <td>6.0</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Thon à nageoires jaunes cuit au four ou grillé</td>
+      <td>Yellowfin tuna, baked or broiled</td>
+      <td>verified</td>
+      <td>59</td>
+      <td>55.1</td>
+      <td>3.9</td>
+      <td>7.1</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Thon blanc en conserve dans l’eau, égoutté, sans sel ajouté</td>
+      <td>White tuna canned in water, drained, unsalted</td>
+      <td>verified</td>
+      <td>58</td>
+      <td>54.1</td>
+      <td>3.9</td>
+      <td>7.2</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Thon pâle en conserve dans l’eau, égoutté, sans sel ajouté</td>
+      <td>Light tuna canned in water, drained, unsalted</td>
+      <td>verified</td>
+      <td>52</td>
+      <td>49.6</td>
+      <td>2.4</td>
+      <td>4.8</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté</td>
+      <td>Light tuna canned in oil, drained, unsalted</td>
+      <td>verified</td>
+      <td>89</td>
+      <td>85.7</td>
+      <td>3.3</td>
+      <td>3.9</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Tilapia cuit au four ou grillé</td>
+      <td>Tilapia, baked or broiled</td>
+      <td>verified</td>
+      <td>58</td>
+      <td>58.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Truite arc-en-ciel d’élevage cuite au four ou grillée</td>
+      <td>Farmed rainbow trout, baked or broiled</td>
+      <td>verified</td>
+      <td>50</td>
+      <td>48.2</td>
+      <td>1.8</td>
+      <td>3.7</td>
+      <td class="alerts"></td>
+    </tr>
+<tr data-severity="OK" data-cat="poissons_fruits_mer" data-group="protein" data-status="verified">
+      <td>OK</td>
+      <td>0</td>
+      <td>0</td>
+      <td>poissons_fruits_mer</td>
+      <td>protein</td>
+      <td>Turbot européen cuit au four ou grillé</td>
+      <td>European turbot, baked or broiled</td>
+      <td>verified</td>
+      <td>55</td>
+      <td>52.5</td>
+      <td>2.5</td>
+      <td>4.8</td>
       <td class="alerts"></td>
     </tr>
 <tr data-severity="OK" data-cat="matieres_grasses" data-group="fat" data-status="verified">
@@ -3607,7 +3757,7 @@
     </tr></tbody></table></div>
 <script>
 const rows=[...document.querySelectorAll('#tbl tbody tr')];
-const data=[{"maxSeverity":"ERROR","errorCount":2,"warningCount":5,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Isolat de whey","nameEn":"Whey isolate","status":"unverified","declaredKcal":57,"calculatedKcal":36,"absDiff":21,"pctDiff":58.333333333333336},{"maxSeverity":"ERROR","errorCount":2,"warningCount":5,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Lactosérum","nameEn":"Whey protein","status":"unverified","declaredKcal":57,"calculatedKcal":36,"absDiff":21,"pctDiff":58.333333333333336},{"maxSeverity":"ERROR","errorCount":2,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Blancs d'œuf","nameEn":"Egg whites","status":"unverified","declaredKcal":36,"calculatedKcal":14,"absDiff":22,"pctDiff":157.14285714285714},{"maxSeverity":"ERROR","errorCount":2,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pomme de terre moyenne","nameEn":"medium sweet potato","status":"unverified","declaredKcal":82,"calculatedKcal":16,"absDiff":66,"pctDiff":412.5},{"maxSeverity":"ERROR","errorCount":2,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yogourt grec","nameEn":"Greek yogurt","status":"unverified","declaredKcal":67,"calculatedKcal":16,"absDiff":51,"pctDiff":318.75},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Caséine micellaire","nameEn":"Micellar casein","status":"unverified","declaredKcal":58,"calculatedKcal":58,"absDiff":0,"pctDiff":0},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Protéine de bœuf","nameEn":"Beef protein isolate","status":"unverified","declaredKcal":59,"calculatedKcal":58,"absDiff":1,"pctDiff":1.7241379310344827},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Protéine végétale","nameEn":"Plant protein","status":"unverified","declaredKcal":58,"calculatedKcal":58,"absDiff":0,"pctDiff":0},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson d'amandes / orge / riz à la vanille","nameEn":"Vanilla almond / barley / rice beverage","status":"unverified","declaredKcal":67,"calculatedKcal":52,"absDiff":15,"pctDiff":28.846153846153843},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson d'amandes / orge / riz nature","nameEn":"Plain almond / barley / rice beverage","status":"unverified","declaredKcal":91,"calculatedKcal":64,"absDiff":27,"pctDiff":42.1875},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson de soya","nameEn":"Soy beverage","status":"unverified","declaredKcal":88,"calculatedKcal":64,"absDiff":24,"pctDiff":37.5},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Céréales à déjeuner peu sucrées","nameEn":"Lightly sweetened breakfast cereal","status":"unverified","declaredKcal":85,"calculatedKcal":116,"absDiff":31,"pctDiff":26.72413793103448},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Core Power, Fairlife","nameEn":"Core Power, Fairlife","status":"unverified","declaredKcal":60,"calculatedKcal":48,"absDiff":12,"pctDiff":25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage cottage 1 %","nameEn":"1% cottage cheese","status":"unverified","declaredKcal":83,"calculatedKcal":48,"absDiff":35,"pctDiff":72.91666666666666},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage suisse léger COGRUET","nameEn":"Light Swiss cheese COGRUET","status":"unverified","declaredKcal":59,"calculatedKcal":20,"absDiff":39,"pctDiff":195},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait 1-2 %","nameEn":"1-2% milk","status":"unverified","declaredKcal":89,"calculatedKcal":32,"absDiff":57,"pctDiff":178.125},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait au chocolat protéiné 1 %","nameEn":"1% protein chocolate milk","status":"unverified","declaredKcal":73,"calculatedKcal":40,"absDiff":33,"pctDiff":82.5},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait filtré haute protéine","nameEn":"High-protein filtered milk","status":"unverified","declaredKcal":75,"calculatedKcal":48,"absDiff":27,"pctDiff":56.25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Muffin anglais, pain hot-dog ou hamburger","nameEn":"English muffin, hot dog or hamburger bun","status":"unverified","declaredKcal":93,"calculatedKcal":77,"absDiff":16,"pctDiff":20.77922077922078},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"NATREL PLUS 2 %","nameEn":"NATREL PLUS 2%","status":"unverified","declaredKcal":66,"calculatedKcal":28,"absDiff":38,"pctDiff":135.71428571428572},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain pita de 10,2 cm","nameEn":"10.2 cm wheat pita","status":"unverified","declaredKcal":109,"calculatedKcal":72,"absDiff":37,"pctDiff":51.388888888888886},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"PB2","nameEn":"PB2","status":"unverified","declaredKcal":78,"calculatedKcal":54,"absDiff":24,"pctDiff":44.44444444444444},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pomme de terre en purée avec lait","nameEn":"Mashed potato with milk","status":"unverified","declaredKcal":102,"calculatedKcal":64,"absDiff":38,"pctDiff":59.375},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Agneau","nameEn":"Lamb","status":"unverified","declaredKcal":56,"calculatedKcal":46,"absDiff":10,"pctDiff":21.73913043478261},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bison","nameEn":"Bison","status":"unverified","declaredKcal":43,"calculatedKcal":55,"absDiff":12,"pctDiff":21.818181818181817},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf","nameEn":"Beef","status":"unverified","declaredKcal":65,"calculatedKcal":45,"absDiff":20,"pctDiff":44.44444444444444},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché maigre *","nameEn":"Lean ground beef *","status":"unverified","declaredKcal":62,"calculatedKcal":41,"absDiff":21,"pctDiff":51.21951219512195},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché régulier *","nameEn":"Regular ground beef *","status":"unverified","declaredKcal":91,"calculatedKcal":54,"absDiff":37,"pctDiff":68.51851851851852},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Caviar","nameEn":"Caviar","status":"unverified","declaredKcal":44,"calculatedKcal":28,"absDiff":16,"pctDiff":57.14285714285714},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Collagène hydrolysé","nameEn":"Hydrolyzed collagen","status":"unverified","declaredKcal":55,"calculatedKcal":36,"absDiff":19,"pctDiff":52.77777777777778},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Crabe","nameEn":"Crab","status":"unverified","declaredKcal":36,"calculatedKcal":69,"absDiff":33,"pctDiff":47.82608695652174},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Crevette","nameEn":"Shrimp","status":"unverified","declaredKcal":53,"calculatedKcal":72,"absDiff":19,"pctDiff":26.38888888888889},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Escargot","nameEn":"Snail","status":"unverified","declaredKcal":52,"calculatedKcal":28,"absDiff":24,"pctDiff":85.71428571428571},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage Allegro 9 %","nameEn":"Allegro 9% cheese","status":"unverified","declaredKcal":77,"calculatedKcal":52,"absDiff":25,"pctDiff":48.07692307692308},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage cottage 2 %","nameEn":"2% cottage cheese","status":"unverified","declaredKcal":74,"calculatedKcal":40,"absDiff":34,"pctDiff":85},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"fromage Le Six pourcent","nameEn":"Le Six pourcent cheese","status":"unverified","declaredKcal":82,"calculatedKcal":40,"absDiff":42,"pctDiff":105},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Kéfir nature ou aux fruits","nameEn":"Plain or fruit kefir","status":"unverified","declaredKcal":54,"calculatedKcal":12,"absDiff":42,"pctDiff":350},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Lapin","nameEn":"Rabbit","status":"unverified","declaredKcal":59,"calculatedKcal":36,"absDiff":23,"pctDiff":63.888888888888886},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Maquereau","nameEn":"Mackerel","status":"unverified","declaredKcal":67,"calculatedKcal":45,"absDiff":22,"pctDiff":48.888888888888886},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Moules","nameEn":"Mussels","status":"unverified","declaredKcal":71,"calculatedKcal":89,"absDiff":18,"pctDiff":20.224719101123593},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Orignal","nameEn":"Moose","status":"unverified","declaredKcal":40,"calculatedKcal":54,"absDiff":14,"pctDiff":25.925925925925924},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Ricotta partiellement écrémée","nameEn":"Partly skimmed ricotta","status":"unverified","declaredKcal":69,"calculatedKcal":54,"absDiff":15,"pctDiff":27.77777777777778},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Saucisse *","nameEn":"Sausage *","status":"unverified","declaredKcal":59,"calculatedKcal":45,"absDiff":14,"pctDiff":31.11111111111111},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Saumon de l'Atlantique","nameEn":"Atlantic salmon","status":"unverified","declaredKcal":45,"calculatedKcal":28,"absDiff":17,"pctDiff":60.71428571428571},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Tempeh","nameEn":"Tempeh","status":"unverified","declaredKcal":74,"calculatedKcal":57,"absDiff":17,"pctDiff":29.82456140350877},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Tofu ferme","nameEn":"Firm tofu","status":"unverified","declaredKcal":63,"calculatedKcal":80,"absDiff":17,"pctDiff":21.25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Turbot","nameEn":"Turbot","status":"unverified","declaredKcal":44,"calculatedKcal":36,"absDiff":8,"pctDiff":22.22222222222222},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yaourt grec 0 % nature","nameEn":"0% plain Greek yogurt","status":"unverified","declaredKcal":72,"calculatedKcal":40,"absDiff":32,"pctDiff":80},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Couscous cuit","nameEn":"Cooked couscous","status":"unverified","declaredKcal":62,"calculatedKcal":100,"absDiff":38,"pctDiff":38},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Légumineuses cuites","nameEn":"Cooked legumes","status":"unverified","declaredKcal":105,"calculatedKcal":44,"absDiff":61,"pctDiff":138.63636363636365},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Lentilles Beluga cuites","nameEn":"Cooked beluga lentils","status":"unverified","declaredKcal":87,"calculatedKcal":72,"absDiff":15,"pctDiff":20.833333333333336},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Maïs bouilli, égoutté","nameEn":"Boiled drained corn","status":"unverified","declaredKcal":64,"calculatedKcal":52,"absDiff":12,"pctDiff":23.076923076923077},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Orge cuit","nameEn":"Cooked barley","status":"unverified","declaredKcal":109,"calculatedKcal":88,"absDiff":21,"pctDiff":23.863636363636363},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pâtes cuites","nameEn":"Cooked pasta","status":"unverified","declaredKcal":72,"calculatedKcal":92,"absDiff":20,"pctDiff":21.73913043478261},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Sardines en conserve","nameEn":"Canned sardines","status":"unverified","declaredKcal":61,"calculatedKcal":49,"absDiff":12,"pctDiff":24.489795918367346},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"pain","nameEn":"Bread","status":"unverified","declaredKcal":76,"calculatedKcal":88,"absDiff":12,"pctDiff":13.636363636363635},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Topinambour","nameEn":"Jerusalem artichoke","status":"unverified","declaredKcal":111,"calculatedKcal":100,"absDiff":11,"pctDiff":11},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Wrap Egglife","nameEn":"Egglife wrap","status":"unverified","declaredKcal":70,"calculatedKcal":63,"absDiff":7,"pctDiff":11.11111111111111},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Aiglefin","nameEn":"Haddock","status":"unverified","declaredKcal":50,"calculatedKcal":44,"absDiff":6,"pctDiff":13.636363636363635},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Banane fraîche, crue","nameEn":"Banana, fresh, raw","status":"verified","declaredKcal":53,"calculatedKcal":59.39999999999999,"absDiff":6.3999999999999915,"pctDiff":10.774410774410761},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché extra maigre","nameEn":"Extra-lean ground beef","status":"unverified","declaredKcal":47,"calculatedKcal":58,"absDiff":11,"pctDiff":18.96551724137931},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Boisson protéinée RTD","nameEn":"Ready-to-drink protein shake","status":"unverified","declaredKcal":58,"calculatedKcal":53,"absDiff":5,"pctDiff":9.433962264150944},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Caribou","nameEn":"Caribou","status":"unverified","declaredKcal":50,"calculatedKcal":58,"absDiff":8,"pctDiff":13.793103448275861},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Cheval","nameEn":"Horse","status":"unverified","declaredKcal":53,"calculatedKcal":45,"absDiff":8,"pctDiff":17.77777777777778},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Dinde","nameEn":"Turkey","status":"unverified","declaredKcal":45,"calculatedKcal":50,"absDiff":5,"pctDiff":10},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Escalope de veau","nameEn":"Veal cutlet","status":"unverified","declaredKcal":57,"calculatedKcal":50,"absDiff":7,"pctDiff":14.000000000000002},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Flocons d'avoine","nameEn":"Rolled oats","status":"unverified","declaredKcal":88,"calculatedKcal":76,"absDiff":12,"pctDiff":15.789473684210526},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Hareng","nameEn":"Herring","status":"unverified","declaredKcal":55,"calculatedKcal":46,"absDiff":9,"pctDiff":19.565217391304348},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Homard","nameEn":"Lobster","status":"unverified","declaredKcal":53,"calculatedKcal":45,"absDiff":8,"pctDiff":17.77777777777778},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Huîtres","nameEn":"Oysters","status":"unverified","declaredKcal":77,"calculatedKcal":66,"absDiff":11,"pctDiff":16.666666666666664},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Morue","nameEn":"Cod","status":"unverified","declaredKcal":66,"calculatedKcal":57,"absDiff":9,"pctDiff":15.789473684210526},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain Ezekiel germé","nameEn":"Ezekiel sprouted bread","status":"unverified","declaredKcal":84,"calculatedKcal":76,"absDiff":8,"pctDiff":10.526315789473683},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain germé","nameEn":"Sprouted bread","status":"unverified","declaredKcal":80,"calculatedKcal":76,"absDiff":4,"pctDiff":5.263157894736842},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pamplemousse frais, cru","nameEn":"Grapefruit, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.2,"absDiff":7.200000000000003,"pctDiff":10.876132930513599},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Sanglier","nameEn":"Wild boar","status":"unverified","declaredKcal":48,"calculatedKcal":41,"absDiff":7,"pctDiff":17.073170731707318},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Sole","nameEn":"Sole","status":"unverified","declaredKcal":61,"calculatedKcal":71,"absDiff":10,"pctDiff":14.084507042253522},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon","nameEn":"Tuna","status":"unverified","declaredKcal":50,"calculatedKcal":44,"absDiff":6,"pctDiff":13.636363636363635},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Veau haché","nameEn":"Ground veal","status":"unverified","declaredKcal":52,"calculatedKcal":63,"absDiff":11,"pctDiff":17.46031746031746},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yogourt 1-2 % sans sucre ajouté","nameEn":"1-2% yogurt, no added sugar","status":"unverified","declaredKcal":78,"calculatedKcal":66,"absDiff":12,"pctDiff":18.181818181818183},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Anguille","nameEn":"Eel","status":"unverified","declaredKcal":76,"calculatedKcal":81,"absDiff":5,"pctDiff":6.172839506172839},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Avocat cru, toutes variétés commerciales","nameEn":"Avocado, raw, all commercial varieties","status":"verified","declaredKcal":54,"calculatedKcal":59.4,"absDiff":5.399999999999999,"pctDiff":9.090909090909088},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Bagel","nameEn":"Bagel","status":"unverified","declaredKcal":108,"calculatedKcal":101,"absDiff":7,"pctDiff":6.9306930693069315},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Barre protéinée performance","nameEn":"Performance protein bar","status":"unverified","declaredKcal":59,"calculatedKcal":62,"absDiff":3,"pctDiff":4.838709677419355},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf faux-filet extra-maigre","nameEn":"Extra-lean sirloin steak","status":"unverified","declaredKcal":52,"calculatedKcal":54,"absDiff":2,"pctDiff":3.7037037037037033},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché mi-maigre *","nameEn":"Medium ground beef *","status":"unverified","declaredKcal":77,"calculatedKcal":81,"absDiff":4,"pctDiff":4.938271604938271},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Brochet","nameEn":"Pike","status":"unverified","declaredKcal":47,"calculatedKcal":44,"absDiff":3,"pctDiff":6.8181818181818175},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Bulbe de fenouil frais, cru","nameEn":"Fennel bulb, fresh, raw","status":"verified","declaredKcal":29,"calculatedKcal":33,"absDiff":4,"pctDiff":12.121212121212121},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Canard","nameEn":"Duck","status":"unverified","declaredKcal":37,"calculatedKcal":36,"absDiff":1,"pctDiff":2.7777777777777777},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Cuisse de poulet","nameEn":"Chicken thigh","status":"unverified","declaredKcal":57,"calculatedKcal":53,"absDiff":4,"pctDiff":7.547169811320755},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Dinde fumée extra-maigre","nameEn":"Extra-lean smoked turkey","status":"unverified","declaredKcal":55,"calculatedKcal":58,"absDiff":3,"pctDiff":5.172413793103448},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Filet de porc","nameEn":"Pork tenderloin","status":"unverified","declaredKcal":56,"calculatedKcal":54,"absDiff":2,"pctDiff":3.7037037037037033},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Flétan","nameEn":"Halibut","status":"unverified","declaredKcal":52,"calculatedKcal":49,"absDiff":3,"pctDiff":6.122448979591836},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Flocons d'avoine , avant cuisson","nameEn":"Rolled oats , uncooked","status":"unverified","declaredKcal":88,"calculatedKcal":81,"absDiff":7,"pctDiff":8.641975308641975},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Galettes de riz","nameEn":"Rice cakes","status":"unverified","declaredKcal":74,"calculatedKcal":68,"absDiff":6,"pctDiff":8.823529411764707},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Jerky de bœuf nature","nameEn":"Natural beef jerky","status":"unverified","declaredKcal":57,"calculatedKcal":62,"absDiff":5,"pctDiff":8.064516129032258},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Mangue fraîche, crue","nameEn":"Mango, fresh, raw","status":"verified","declaredKcal":66,"calculatedKcal":73.19999999999999,"absDiff":7.199999999999989,"pctDiff":9.836065573770478},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Natto fermenté","nameEn":"Fermented natto","status":"unverified","declaredKcal":60,"calculatedKcal":66,"absDiff":6,"pctDiff":9.090909090909092},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Palourdes en conserve","nameEn":"Canned clams","status":"unverified","declaredKcal":51,"calculatedKcal":44,"absDiff":7,"pctDiff":15.909090909090908},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Pétoncle","nameEn":"Scallop","status":"unverified","declaredKcal":41,"calculatedKcal":45,"absDiff":4,"pctDiff":8.88888888888889},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Porc *","nameEn":"Pork *","status":"unverified","declaredKcal":77,"calculatedKcal":77,"absDiff":0,"pctDiff":0},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poulet en conserve égoutté","nameEn":"Canned chicken in water, drained","status":"unverified","declaredKcal":53,"calculatedKcal":45,"absDiff":8,"pctDiff":17.77777777777778},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poulet haché maigre","nameEn":"Lean ground chicken","status":"unverified","declaredKcal":51,"calculatedKcal":54,"absDiff":3,"pctDiff":5.555555555555555},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Sarrasin cuit","nameEn":"Cooked buckwheat","status":"unverified","declaredKcal":85,"calculatedKcal":76,"absDiff":9,"pctDiff":11.842105263157894},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Seitan","nameEn":"Seitan","status":"unverified","declaredKcal":60,"calculatedKcal":65,"absDiff":5,"pctDiff":7.6923076923076925},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Skyr 0 % nature","nameEn":"0% plain Skyr","status":"unverified","declaredKcal":62,"calculatedKcal":60,"absDiff":2,"pctDiff":3.3333333333333335},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Surimi","nameEn":"Surimi","status":"unverified","declaredKcal":57,"calculatedKcal":54,"absDiff":3,"pctDiff":5.555555555555555},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Tilapia","nameEn":"Tilapia","status":"unverified","declaredKcal":48,"calculatedKcal":49,"absDiff":1,"pctDiff":2.0408163265306123},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Truite arc-en-ciel","nameEn":"Rainbow trout","status":"unverified","declaredKcal":47,"calculatedKcal":44,"absDiff":3,"pctDiff":6.8181818181818175},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Viandes froides","nameEn":"Deli meats","status":"unverified","declaredKcal":55,"calculatedKcal":54,"absDiff":1,"pctDiff":1.8518518518518516},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Wapiti","nameEn":"Elk","status":"unverified","declaredKcal":44,"calculatedKcal":45,"absDiff":1,"pctDiff":2.2222222222222223},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Abricots frais, crus","nameEn":"Apricots, fresh, raw","status":"verified","declaredKcal":67,"calculatedKcal":74.9,"absDiff":7.900000000000006,"pctDiff":10.547396528704947},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Ail frais, cru","nameEn":"Garlic, fresh, raw","status":"verified","declaredKcal":19,"calculatedKcal":21.299999999999997,"absDiff":2.299999999999997,"pctDiff":10.798122065727688},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Anchois au naturel","nameEn":"Canned anchovies in water","status":"unverified","declaredKcal":55,"calculatedKcal":54,"absDiff":1,"pctDiff":1.8518518518518516},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Artichaut globe bouilli et égoutté","nameEn":"Globe artichoke, boiled and drained","status":"verified","declaredKcal":64,"calculatedKcal":74.8,"absDiff":10.799999999999997,"pctDiff":14.438502673796789},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Aubergine fraîche, crue","nameEn":"Eggplant, fresh, raw","status":"verified","declaredKcal":22,"calculatedKcal":25.8,"absDiff":3.8000000000000007,"pctDiff":14.728682170542637},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Bleuets frais, crus, cultivés","nameEn":"Blueberries, fresh, raw, cultivated","status":"verified","declaredKcal":63,"calculatedKcal":70.39999999999999,"absDiff":7.3999999999999915,"pctDiff":10.511363636363626},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Brocoli frais, cru","nameEn":"Broccoli, fresh, raw","status":"verified","declaredKcal":32,"calculatedKcal":37.900000000000006,"absDiff":5.900000000000006,"pctDiff":15.567282321899748},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Canneberges séchées sucrées","nameEn":"Sweetened dried cranberries","status":"verified","declaredKcal":55,"calculatedKcal":61.4,"absDiff":6.399999999999999,"pctDiff":10.42345276872964},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Cantaloup frais, cru","nameEn":"Cantaloupe, fresh, raw","status":"verified","declaredKcal":56,"calculatedKcal":62.300000000000004,"absDiff":6.300000000000004,"pctDiff":10.112359550561804},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Céleri frais, cru","nameEn":"Celery, fresh, raw","status":"verified","declaredKcal":11,"calculatedKcal":12.9,"absDiff":1.9000000000000004,"pctDiff":14.728682170542637},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignon portobello grillé, sans gras ajouté","nameEn":"Portobello mushroom, grilled, no added fat","status":"verified","declaredKcal":37,"calculatedKcal":45.9,"absDiff":8.899999999999999,"pctDiff":19.38997821350762},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Chou kale frais, cru","nameEn":"Kale, fresh, raw","status":"verified","declaredKcal":25,"calculatedKcal":30.700000000000003,"absDiff":5.700000000000003,"pctDiff":18.566775244299684},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Chou-fleur frais, cru","nameEn":"Cauliflower, fresh, raw","status":"verified","declaredKcal":28,"calculatedKcal":33.9,"absDiff":5.899999999999999,"pctDiff":17.40412979351032},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Choux de Bruxelles bouillis et égouttés","nameEn":"Brussels sprouts, boiled and drained","status":"verified","declaredKcal":30,"calculatedKcal":35.2,"absDiff":5.200000000000003,"pctDiff":14.772727272727279},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Clémentines fraîches, crues","nameEn":"Clementines, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.2,"absDiff":7.200000000000003,"pctDiff":10.876132930513599},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Cocktail de jus de légumes faible en sodium","nameEn":"Low-sodium vegetable juice cocktail","status":"verified","declaredKcal":51,"calculatedKcal":58.900000000000006,"absDiff":7.900000000000006,"pctDiff":13.412563667232606},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Concombre frais avec pelure, cru","nameEn":"Cucumber, fresh, raw, with peel","status":"verified","declaredKcal":20,"calculatedKcal":22.499999999999996,"absDiff":2.4999999999999964,"pctDiff":11.111111111111097},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courge musquée cuite au four","nameEn":"Butternut squash, baked","status":"verified","declaredKcal":43,"calculatedKcal":50.1,"absDiff":7.100000000000001,"pctDiff":14.171656686626749},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courge spaghetti cuite et égouttée","nameEn":"Spaghetti squash, cooked and drained","status":"verified","declaredKcal":44,"calculatedKcal":50.4,"absDiff":6.399999999999999,"pctDiff":12.698412698412694},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courgette fraîche, crue","nameEn":"Zucchini, fresh, raw","status":"verified","declaredKcal":20,"calculatedKcal":24,"absDiff":4,"pctDiff":16.666666666666664},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Datte Medjool séchée","nameEn":"Medjool date, dried","status":"verified","declaredKcal":66,"calculatedKcal":73.6,"absDiff":7.599999999999994,"pctDiff":10.326086956521733},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Dattes sèches naturelles, petit format","nameEn":"Natural dried dates, small variety","status":"verified","declaredKcal":59,"calculatedKcal":66.10000000000001,"absDiff":7.1000000000000085,"pctDiff":10.741301059001525},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml","nameEn":"fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle","status":"verified","declaredKcal":56,"calculatedKcal":56.400000000000006,"absDiff":0.4000000000000057,"pctDiff":0.7092198581560384},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml","nameEn":"fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle","status":"verified","declaredKcal":56,"calculatedKcal":55.2,"absDiff":0.7999999999999972,"pctDiff":1.4492753623188355},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Gruau nature , avant cuisson","nameEn":"Plain oatmeal , uncooked","status":"unverified","declaredKcal":63,"calculatedKcal":61,"absDiff":2,"pctDiff":3.278688524590164},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Haricots jaunes bouillis et égouttés","nameEn":"Yellow snap beans, boiled and drained","status":"verified","declaredKcal":23,"calculatedKcal":27.400000000000002,"absDiff":4.400000000000002,"pctDiff":16.058394160583948},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Haricots verts bouillis et égouttés","nameEn":"Green snap beans, boiled and drained","status":"verified","declaredKcal":23,"calculatedKcal":27.400000000000002,"absDiff":4.400000000000002,"pctDiff":16.058394160583948},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Laitue romaine fraîche, crue","nameEn":"Romaine lettuce, fresh, raw","status":"verified","declaredKcal":10,"calculatedKcal":12.2,"absDiff":2.1999999999999993,"pctDiff":18.032786885245898},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Melon d'eau frais, cru","nameEn":"Watermelon, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":67.9,"absDiff":7.900000000000006,"pctDiff":11.634756995581744},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Mûres fraîches, crues","nameEn":"Blackberries, fresh, raw","status":"verified","declaredKcal":65,"calculatedKcal":73.1,"absDiff":8.099999999999994,"pctDiff":11.080711354309159},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Nectarine fraîche, crue","nameEn":"Nectarine, fresh, raw","status":"verified","declaredKcal":62,"calculatedKcal":70.5,"absDiff":8.5,"pctDiff":12.056737588652481},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pêche fraîche, crue","nameEn":"Peach, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.4,"absDiff":7.400000000000006,"pctDiff":11.144578313253021},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Poire fraîche avec pelure, crue","nameEn":"Pear, fresh, raw, with skin","status":"verified","declaredKcal":57,"calculatedKcal":63.3,"absDiff":6.299999999999997,"pctDiff":9.952606635071087},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poireau bouilli et égoutté","nameEn":"Leek, boiled and drained","status":"verified","declaredKcal":17,"calculatedKcal":19.3,"absDiff":2.3000000000000007,"pctDiff":11.917098445595858},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron jaune doux, frais et cru","nameEn":"Yellow sweet pepper, fresh and raw","status":"verified","declaredKcal":21,"calculatedKcal":25,"absDiff":4,"pctDiff":16},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron rouge doux, frais et cru","nameEn":"Red sweet pepper, fresh and raw","status":"verified","declaredKcal":21,"calculatedKcal":24.2,"absDiff":3.1999999999999993,"pctDiff":13.223140495867765},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron vert doux, frais et cru","nameEn":"Green sweet pepper, fresh and raw","status":"verified","declaredKcal":16,"calculatedKcal":18.5,"absDiff":2.5,"pctDiff":13.513513513513514},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pomme fraîche avec pelure, crue","nameEn":"Apple, fresh, raw, with skin","status":"verified","declaredKcal":57,"calculatedKcal":63.8,"absDiff":6.799999999999997,"pctDiff":10.658307210031344},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pruneaux séchés, non cuits","nameEn":"Prunes, dried, uncooked","status":"verified","declaredKcal":60,"calculatedKcal":66.9,"absDiff":6.900000000000006,"pctDiff":10.313901345291487},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Riz cuit","nameEn":"Cooked rice","status":"unverified","declaredKcal":91,"calculatedKcal":96,"absDiff":5,"pctDiff":5.208333333333334},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon en conserve au naturel, égoutté","nameEn":"Canned tuna in water, drained","status":"unverified","declaredKcal":50,"calculatedKcal":53,"absDiff":3,"pctDiff":5.660377358490567},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Tomate rouge mûre, fraîche et crue","nameEn":"Red ripe tomato, fresh and raw","status":"verified","declaredKcal":22,"calculatedKcal":25.400000000000002,"absDiff":3.400000000000002,"pctDiff":13.38582677165355},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Amandes entières, crues, non salées","nameEn":"Almonds, whole, raw, unsalted","status":"verified","declaredKcal":49,"calculatedKcal":52.2,"absDiff":3.200000000000003,"pctDiff":6.130268199233722},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Ananas frais, cru","nameEn":"Pineapple, fresh, raw","status":"verified","declaredKcal":55,"calculatedKcal":60.9,"absDiff":5.899999999999999,"pctDiff":9.688013136288996},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Arachides crues, non salées","nameEn":"Peanuts, raw, unsalted","status":"verified","declaredKcal":57,"calculatedKcal":60.900000000000006,"absDiff":3.9000000000000057,"pctDiff":6.403940886699516},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Arachides rôties à sec, non salées","nameEn":"Peanuts, dry roasted, unsalted","status":"verified","declaredKcal":59,"calculatedKcal":63,"absDiff":4,"pctDiff":6.349206349206349},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Arilles de grenade fraîches, crues","nameEn":"Pomegranate arils, fresh, raw","status":"verified","declaredKcal":66,"calculatedKcal":73.3,"absDiff":7.299999999999997,"pctDiff":9.959072305593448},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Asperges bouillies et égouttées","nameEn":"Asparagus, boiled and drained","status":"verified","declaredKcal":42,"calculatedKcal":53.199999999999996,"absDiff":11.199999999999996,"pctDiff":21.052631578947363},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Baies de goji séchées","nameEn":"Goji berries, dried","status":"verified","declaredKcal":70,"calculatedKcal":74.10000000000001,"absDiff":4.1000000000000085,"pctDiff":5.533063427800281},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Betteraves bouillies et égouttées","nameEn":"Beets, boiled and drained","status":"verified","declaredKcal":40,"calculatedKcal":43.8,"absDiff":3.799999999999997,"pctDiff":8.675799086757985},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre d’amandes nature","nameEn":"Plain almond butter","status":"verified","declaredKcal":68,"calculatedKcal":72.5,"absDiff":4.5,"pctDiff":6.206896551724138},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre d’arachide naturel","nameEn":"Natural peanut butter","status":"verified","declaredKcal":61,"calculatedKcal":66,"absDiff":5,"pctDiff":7.575757575757576},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre de cajou nature","nameEn":"Plain cashew butter","status":"verified","declaredKcal":65,"calculatedKcal":68.2,"absDiff":3.200000000000003,"pctDiff":4.692082111436954},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre de graines de tournesol","nameEn":"Sunflower seed butter","status":"verified","declaredKcal":68,"calculatedKcal":72.9,"absDiff":4.900000000000006,"pctDiff":6.721536351165988},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Beurre salé","nameEn":"Salted butter","status":"verified","declaredKcal":52,"calculatedKcal":52.599999999999994,"absDiff":0.5999999999999943,"pctDiff":1.1406844106463772},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Beurre sans sel","nameEn":"Unsalted butter","status":"verified","declaredKcal":52,"calculatedKcal":52.599999999999994,"absDiff":0.5999999999999943,"pctDiff":1.1406844106463772},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Bouillon de légumes prêt à servir, faible en sodium","nameEn":"Vegetable broth, ready-to-serve, low sodium","status":"verified","declaredKcal":10,"calculatedKcal":10.6,"absDiff":0.5999999999999996,"pctDiff":5.660377358490563},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Carotte fraîche, crue","nameEn":"Carrot, fresh, raw","status":"verified","declaredKcal":25,"calculatedKcal":26.499999999999996,"absDiff":1.4999999999999964,"pctDiff":5.660377358490553},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Cerises douces fraîches, crues","nameEn":"Sweet cherries, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":66.6,"absDiff":6.599999999999994,"pctDiff":9.909909909909901},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignons blancs frais, crus","nameEn":"White mushrooms, fresh, raw","status":"verified","declaredKcal":16,"calculatedKcal":21.499999999999996,"absDiff":5.4999999999999964,"pctDiff":25.581395348837198},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignons cremini frais, crus","nameEn":"Cremini mushrooms, fresh and raw","status":"verified","declaredKcal":16,"calculatedKcal":21.299999999999997,"absDiff":5.299999999999997,"pctDiff":24.88262910798121},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"starch","nameFr":"Châtaignes européennes rôties","nameEn":"European sweet chestnuts, roasted","status":"verified","declaredKcal":74,"calculatedKcal":73.89999999999999,"absDiff":0.10000000000000853,"pctDiff":0.1353179972936516},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Chocolat noir, 60 à 69 % de cacao","nameEn":"Dark chocolate, 60–69% cocoa solids","status":"verified","declaredKcal":58,"calculatedKcal":57.39999999999999,"absDiff":0.6000000000000085,"pctDiff":1.0452961672474017},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Chocolat noir, 70 à 85 % de cacao","nameEn":"Dark chocolate, 70–85% cocoa solids","status":"verified","declaredKcal":60,"calculatedKcal":60.3,"absDiff":0.29999999999999716,"pctDiff":0.49751243781094057},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Cocktail de jus de légumes régulier","nameEn":"Regular vegetable juice cocktail","status":"verified","declaredKcal":59,"calculatedKcal":58.400000000000006,"absDiff":0.5999999999999943,"pctDiff":1.027397260273963},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Compote de pommes non sucrée","nameEn":"Unsweetened applesauce","status":"verified","declaredKcal":54,"calculatedKcal":59.699999999999996,"absDiff":5.699999999999996,"pctDiff":9.54773869346733},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Échalote fraîche, crue","nameEn":"Shallot, fresh, raw","status":"verified","declaredKcal":17,"calculatedKcal":18.4,"absDiff":1.3999999999999986,"pctDiff":7.608695652173907},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"protein","nameFr":"Edamames bouillis et égouttés","nameEn":"Edamame, boiled and drained","status":"verified","declaredKcal":134,"calculatedKcal":143.7,"absDiff":9.699999999999989,"pctDiff":6.750173973556012},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Épinards frais, crus","nameEn":"Spinach, fresh, raw","status":"verified","declaredKcal":6,"calculatedKcal":8.1,"absDiff":2.0999999999999996,"pctDiff":25.925925925925924},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Fraises fraîches, crues","nameEn":"Strawberries, fresh, raw","status":"verified","declaredKcal":53,"calculatedKcal":58.1,"absDiff":5.100000000000001,"pctDiff":8.777969018932877},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Framboises fraîches, crues","nameEn":"Raspberries, fresh, raw","status":"verified","declaredKcal":69,"calculatedKcal":75.60000000000001,"absDiff":6.6000000000000085,"pctDiff":8.73015873015874},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Fromage cheddar doux","nameEn":"Mild cheddar cheese","status":"verified","declaredKcal":63,"calculatedKcal":63.199999999999996,"absDiff":0.19999999999999574,"pctDiff":0.3164556962025249},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Fromage mozzarella, 25 % M.G.","nameEn":"Mozzarella cheese, 25% M.F.","status":"verified","declaredKcal":57,"calculatedKcal":56.8,"absDiff":0.20000000000000284,"pctDiff":0.35211267605634305},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de chanvre décortiquées","nameEn":"Hulled hemp seeds","status":"verified","declaredKcal":55,"calculatedKcal":60.5,"absDiff":5.5,"pctDiff":9.090909090909092},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de chia séchées, moulues ou entières","nameEn":"Dried chia seeds, ground or whole","status":"verified","declaredKcal":53,"calculatedKcal":56.199999999999996,"absDiff":3.1999999999999957,"pctDiff":5.693950177935935},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de citrouille et de courge décortiquées, rôties","nameEn":"Pumpkin and squash seed kernels, roasted","status":"verified","declaredKcal":57,"calculatedKcal":62.1,"absDiff":5.100000000000001,"pctDiff":8.212560386473431},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de citrouille et de courge décortiquées, séchées","nameEn":"Pumpkin and squash seed kernels, dried","status":"verified","declaredKcal":56,"calculatedKcal":60.5,"absDiff":4.5,"pctDiff":7.43801652892562},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de lin moulues","nameEn":"Ground flaxseed","status":"verified","declaredKcal":37,"calculatedKcal":40.2,"absDiff":3.200000000000003,"pctDiff":7.960199004975131},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de sésame décortiquées, séchées","nameEn":"Sesame seed kernels, dried and shelled","status":"verified","declaredKcal":50,"calculatedKcal":54.1,"absDiff":4.100000000000001,"pctDiff":7.578558225508321},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de tournesol décortiquées, rôties à l’huile","nameEn":"Sunflower seed kernels, oil roasted","status":"verified","declaredKcal":53,"calculatedKcal":57,"absDiff":4,"pctDiff":7.017543859649122},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"starch","nameFr":"Granola maison","nameEn":"Homemade granola","status":"verified","declaredKcal":147,"calculatedKcal":147.3,"absDiff":0.30000000000001137,"pctDiff":0.20366598778004844},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Houmous commercial","nameEn":"Commercial hummus","status":"verified","declaredKcal":73,"calculatedKcal":77.9,"absDiff":4.900000000000006,"pctDiff":6.290115532734282},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’arachide","nameEn":"Peanut oil","status":"verified","declaredKcal":60,"calculatedKcal":61.199999999999996,"absDiff":1.1999999999999957,"pctDiff":1.9607843137254832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’avocat","nameEn":"Avocado oil","status":"verified","declaredKcal":63,"calculatedKcal":63.9,"absDiff":0.8999999999999986,"pctDiff":1.4084507042253498},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’olive","nameEn":"Olive oil","status":"verified","declaredKcal":60,"calculatedKcal":61.199999999999996,"absDiff":1.1999999999999957,"pctDiff":1.9607843137254832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de canola","nameEn":"Canola oil","status":"verified","declaredKcal":63,"calculatedKcal":63.9,"absDiff":0.8999999999999986,"pctDiff":1.4084507042253498},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de foie de morue","nameEn":"Cod liver oil","status":"verified","declaredKcal":62,"calculatedKcal":62.1,"absDiff":0.10000000000000142,"pctDiff":0.16103059581320678},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de noix de coco","nameEn":"Coconut oil","status":"verified","declaredKcal":62,"calculatedKcal":61.199999999999996,"absDiff":0.8000000000000043,"pctDiff":1.307189542483667},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile MCT NOW Foods (C8/C10)","nameEn":"NOW Foods MCT Oil (C8/C10)","status":"verified","declaredKcal":65,"calculatedKcal":63,"absDiff":2,"pctDiff":3.1746031746031744},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Jaune d’œuf de poule, cuit","nameEn":"Chicken egg yolk, cooked","status":"verified","declaredKcal":60,"calculatedKcal":63.6,"absDiff":3.6000000000000014,"pctDiff":5.660377358490568},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus d'ananas 100 % pur, sans sucre ajouté","nameEn":"100% pure pineapple juice, no added sugar","status":"verified","declaredKcal":70,"calculatedKcal":71.8,"absDiff":1.7999999999999972,"pctDiff":2.506963788300832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus d'orange 100 % pur, sans sucre ajouté","nameEn":"100% pure orange juice, no added sugar","status":"verified","declaredKcal":59,"calculatedKcal":60.7,"absDiff":1.7000000000000028,"pctDiff":2.8006589785832006},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus de pamplemousse rose 100 % pur, sans sucre ajouté","nameEn":"100% pure pink grapefruit juice, no added sugar","status":"verified","declaredKcal":51,"calculatedKcal":51.699999999999996,"absDiff":0.6999999999999957,"pctDiff":1.3539651837524096},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus de pomme 100 % pur, sans sucre ajouté","nameEn":"100% pure apple juice, no added sugar","status":"verified","declaredKcal":60,"calculatedKcal":61.4,"absDiff":1.3999999999999986,"pctDiff":2.280130293159607},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Kiwis verts frais, crus","nameEn":"Green kiwifruit, fresh, raw","status":"verified","declaredKcal":61,"calculatedKcal":67.69999999999999,"absDiff":6.699999999999989,"pctDiff":9.896602658788758},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Margarine molle non hydrogénée à l’huile de canola","nameEn":"Non-hydrogenated soft canola-oil margarine","status":"verified","declaredKcal":52,"calculatedKcal":52.199999999999996,"absDiff":0.19999999999999574,"pctDiff":0.38314176245209913},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Mayonnaise à teneur réduite en gras","nameEn":"Reduced-fat mayonnaise","status":"verified","declaredKcal":50,"calculatedKcal":50.300000000000004,"absDiff":0.30000000000000426,"pctDiff":0.5964214711729706},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Mayonnaise régulière","nameEn":"Regular mayonnaise","status":"verified","declaredKcal":48,"calculatedKcal":47.2,"absDiff":0.7999999999999972,"pctDiff":1.6949152542372818},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Navet bouilli et égoutté","nameEn":"Turnip, boiled and drained","status":"verified","declaredKcal":18,"calculatedKcal":19.699999999999996,"absDiff":1.6999999999999957,"pctDiff":8.629441624365462},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noisettes séchées, non blanchies","nameEn":"Hazelnuts, dried, unblanched","status":"verified","declaredKcal":75,"calculatedKcal":80.9,"absDiff":5.900000000000006,"pctDiff":7.292954264524109},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de cajou crues, non salées","nameEn":"Cashews, raw, unsalted","status":"verified","declaredKcal":66,"calculatedKcal":70.9,"absDiff":4.900000000000006,"pctDiff":6.911142454160797},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de coco desséchée, non sucrée","nameEn":"Desiccated coconut, unsweetened","status":"verified","declaredKcal":33,"calculatedKcal":34.8,"absDiff":1.7999999999999972,"pctDiff":5.17241379310344},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de Grenoble","nameEn":"English or Persian walnuts","status":"verified","declaredKcal":52,"calculatedKcal":56,"absDiff":4,"pctDiff":7.142857142857142},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de macadamia crues","nameEn":"Macadamia nuts, raw","status":"verified","declaredKcal":86,"calculatedKcal":92.3,"absDiff":6.299999999999997,"pctDiff":6.8255687973997805},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"protein","nameFr":"Noix de soya rôties, non salées","nameEn":"Roasted soy nuts, unsalted","status":"verified","declaredKcal":70,"calculatedKcal":75.4,"absDiff":5.400000000000006,"pctDiff":7.161803713527859},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix du Brésil séchées, non blanchies","nameEn":"Brazil nuts, dried, unblanched","status":"verified","declaredKcal":66,"calculatedKcal":70.7,"absDiff":4.700000000000003,"pctDiff":6.647807637906651},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix mélangées avec arachides, rôties à sec, sans sel ajouté","nameEn":"Mixed nuts with peanuts, dry roasted, no added salt","status":"verified","declaredKcal":91,"calculatedKcal":97.2,"absDiff":6.200000000000003,"pctDiff":6.378600823045271},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Œuf de poule entier, cuit dur","nameEn":"Chicken egg, whole, hard-cooked","status":"verified","declaredKcal":71,"calculatedKcal":72.2,"absDiff":1.2000000000000028,"pctDiff":1.6620498614958488},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Oignon frais, cru","nameEn":"Onion, fresh, raw","status":"verified","declaredKcal":27,"calculatedKcal":29.3,"absDiff":2.3000000000000007,"pctDiff":7.8498293515358375},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Olives noires mûres, en conserve","nameEn":"Ripe black olives, canned","status":"verified","declaredKcal":59,"calculatedKcal":64.4,"absDiff":5.400000000000006,"pctDiff":8.385093167701871},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Olives vertes marinées, en conserve ou en bouteille","nameEn":"Green pickled olives, canned or bottled","status":"verified","declaredKcal":58,"calculatedKcal":62.5,"absDiff":4.5,"pctDiff":7.199999999999999},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Orange fraîche, crue, variété commerciale","nameEn":"Orange, fresh, raw, commercial variety","status":"verified","declaredKcal":62,"calculatedKcal":68.2,"absDiff":6.200000000000003,"pctDiff":9.090909090909095},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pacanes rôties à l’huile","nameEn":"Pecans, oil roasted","status":"verified","declaredKcal":57,"calculatedKcal":60.8,"absDiff":3.799999999999997,"pctDiff":6.249999999999996},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pacanes séchées","nameEn":"Pecans, dried","status":"verified","declaredKcal":55,"calculatedKcal":59.4,"absDiff":4.399999999999999,"pctDiff":7.407407407407406},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pignons de pin séchés","nameEn":"Pine nuts, dried","status":"verified","declaredKcal":61,"calculatedKcal":65.4,"absDiff":4.400000000000006,"pctDiff":6.727828746177378},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pistaches crues, décortiquées","nameEn":"Pistachios, raw, shelled","status":"verified","declaredKcal":50,"calculatedKcal":53.7,"absDiff":3.700000000000003,"pctDiff":6.89013035381751},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pistaches rôties à sec, sans sel ajouté","nameEn":"Pistachios, dry roasted, unsalted","status":"verified","declaredKcal":51,"calculatedKcal":54.5,"absDiff":3.5,"pctDiff":6.422018348623854},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Pois mange-tout frais, crus","nameEn":"Snow peas, fresh, raw","status":"verified","declaredKcal":22,"calculatedKcal":22.5,"absDiff":0.5,"pctDiff":2.2222222222222223},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée","nameEn":"Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil","status":"verified","declaredKcal":50,"calculatedKcal":47.1,"absDiff":2.8999999999999986,"pctDiff":6.157112526539275},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Produit de fromage à la crème, nature","nameEn":"Plain cream cheese product","status":"verified","declaredKcal":47,"calculatedKcal":47.5,"absDiff":0.5,"pctDiff":1.0526315789473684},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Prunes fraîches, crues","nameEn":"Plums, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":66.4,"absDiff":6.400000000000006,"pctDiff":9.638554216867478},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Quinoa blanc cuit dans l'eau, sans huile ajoutée","nameEn":"White quinoa, cooked in water, no added oil","status":"verified","declaredKcal":90,"calculatedKcal":89.8,"absDiff":0.20000000000000284,"pctDiff":0.22271714922049313},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Radis frais, crus","nameEn":"Radishes, fresh, raw","status":"verified","declaredKcal":20,"calculatedKcal":20.9,"absDiff":0.8999999999999986,"pctDiff":4.3062200956937735},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Raisins rouges ou verts sans pépins, crus","nameEn":"Red or green seedless grapes, raw","status":"verified","declaredKcal":59,"calculatedKcal":64.9,"absDiff":5.900000000000006,"pctDiff":9.090909090909099},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Raisins secs sans pépins","nameEn":"Seedless raisins (sultanas)","status":"verified","declaredKcal":60,"calculatedKcal":66.50000000000001,"absDiff":6.500000000000014,"pctDiff":9.774436090225583},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Tahini de graines de sésame rôties","nameEn":"Tahini from roasted sesame kernels","status":"verified","declaredKcal":60,"calculatedKcal":63.8,"absDiff":3.799999999999997,"pctDiff":5.956112852664573},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Vinaigrette maison à l’huile et au vinaigre","nameEn":"Homemade oil-and-vinegar dressing","status":"verified","declaredKcal":48,"calculatedKcal":48.9,"absDiff":0.8999999999999986,"pctDiff":1.8404907975460092}];
+const data=[{"maxSeverity":"ERROR","errorCount":2,"warningCount":5,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Isolat de whey","nameEn":"Whey isolate","status":"unverified","declaredKcal":57,"calculatedKcal":36,"absDiff":21,"pctDiff":58.333333333333336},{"maxSeverity":"ERROR","errorCount":2,"warningCount":5,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Lactosérum","nameEn":"Whey protein","status":"unverified","declaredKcal":57,"calculatedKcal":36,"absDiff":21,"pctDiff":58.333333333333336},{"maxSeverity":"ERROR","errorCount":2,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Blancs d'œuf","nameEn":"Egg whites","status":"unverified","declaredKcal":36,"calculatedKcal":14,"absDiff":22,"pctDiff":157.14285714285714},{"maxSeverity":"ERROR","errorCount":2,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pomme de terre moyenne","nameEn":"medium sweet potato","status":"unverified","declaredKcal":82,"calculatedKcal":16,"absDiff":66,"pctDiff":412.5},{"maxSeverity":"ERROR","errorCount":2,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yogourt grec","nameEn":"Greek yogurt","status":"unverified","declaredKcal":67,"calculatedKcal":16,"absDiff":51,"pctDiff":318.75},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Caséine micellaire","nameEn":"Micellar casein","status":"unverified","declaredKcal":58,"calculatedKcal":58,"absDiff":0,"pctDiff":0},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Protéine de bœuf","nameEn":"Beef protein isolate","status":"unverified","declaredKcal":59,"calculatedKcal":58,"absDiff":1,"pctDiff":1.7241379310344827},{"maxSeverity":"ERROR","errorCount":1,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"whey","nameFr":"Protéine végétale","nameEn":"Plant protein","status":"unverified","declaredKcal":58,"calculatedKcal":58,"absDiff":0,"pctDiff":0},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson d'amandes / orge / riz à la vanille","nameEn":"Vanilla almond / barley / rice beverage","status":"unverified","declaredKcal":67,"calculatedKcal":52,"absDiff":15,"pctDiff":28.846153846153843},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson d'amandes / orge / riz nature","nameEn":"Plain almond / barley / rice beverage","status":"unverified","declaredKcal":91,"calculatedKcal":64,"absDiff":27,"pctDiff":42.1875},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Boisson de soya","nameEn":"Soy beverage","status":"unverified","declaredKcal":88,"calculatedKcal":64,"absDiff":24,"pctDiff":37.5},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Céréales à déjeuner peu sucrées","nameEn":"Lightly sweetened breakfast cereal","status":"unverified","declaredKcal":85,"calculatedKcal":116,"absDiff":31,"pctDiff":26.72413793103448},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Core Power, Fairlife","nameEn":"Core Power, Fairlife","status":"unverified","declaredKcal":60,"calculatedKcal":48,"absDiff":12,"pctDiff":25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage cottage 1 %","nameEn":"1% cottage cheese","status":"unverified","declaredKcal":83,"calculatedKcal":48,"absDiff":35,"pctDiff":72.91666666666666},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage suisse léger COGRUET","nameEn":"Light Swiss cheese COGRUET","status":"unverified","declaredKcal":59,"calculatedKcal":20,"absDiff":39,"pctDiff":195},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait 1-2 %","nameEn":"1-2% milk","status":"unverified","declaredKcal":89,"calculatedKcal":32,"absDiff":57,"pctDiff":178.125},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait au chocolat protéiné 1 %","nameEn":"1% protein chocolate milk","status":"unverified","declaredKcal":73,"calculatedKcal":40,"absDiff":33,"pctDiff":82.5},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Lait filtré haute protéine","nameEn":"High-protein filtered milk","status":"unverified","declaredKcal":75,"calculatedKcal":48,"absDiff":27,"pctDiff":56.25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Muffin anglais, pain hot-dog ou hamburger","nameEn":"English muffin, hot dog or hamburger bun","status":"unverified","declaredKcal":93,"calculatedKcal":77,"absDiff":16,"pctDiff":20.77922077922078},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"NATREL PLUS 2 %","nameEn":"NATREL PLUS 2%","status":"unverified","declaredKcal":66,"calculatedKcal":28,"absDiff":38,"pctDiff":135.71428571428572},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain pita de 10,2 cm","nameEn":"10.2 cm wheat pita","status":"unverified","declaredKcal":109,"calculatedKcal":72,"absDiff":37,"pctDiff":51.388888888888886},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"PB2","nameEn":"PB2","status":"unverified","declaredKcal":78,"calculatedKcal":54,"absDiff":24,"pctDiff":44.44444444444444},{"maxSeverity":"ERROR","errorCount":1,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pomme de terre en purée avec lait","nameEn":"Mashed potato with milk","status":"unverified","declaredKcal":102,"calculatedKcal":64,"absDiff":38,"pctDiff":59.375},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Agneau","nameEn":"Lamb","status":"unverified","declaredKcal":56,"calculatedKcal":46,"absDiff":10,"pctDiff":21.73913043478261},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bison","nameEn":"Bison","status":"unverified","declaredKcal":43,"calculatedKcal":55,"absDiff":12,"pctDiff":21.818181818181817},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf","nameEn":"Beef","status":"unverified","declaredKcal":65,"calculatedKcal":45,"absDiff":20,"pctDiff":44.44444444444444},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché maigre *","nameEn":"Lean ground beef *","status":"unverified","declaredKcal":62,"calculatedKcal":41,"absDiff":21,"pctDiff":51.21951219512195},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché régulier *","nameEn":"Regular ground beef *","status":"unverified","declaredKcal":91,"calculatedKcal":54,"absDiff":37,"pctDiff":68.51851851851852},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Collagène hydrolysé","nameEn":"Hydrolyzed collagen","status":"unverified","declaredKcal":55,"calculatedKcal":36,"absDiff":19,"pctDiff":52.77777777777778},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage Allegro 9 %","nameEn":"Allegro 9% cheese","status":"unverified","declaredKcal":77,"calculatedKcal":52,"absDiff":25,"pctDiff":48.07692307692308},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Fromage cottage 2 %","nameEn":"2% cottage cheese","status":"unverified","declaredKcal":74,"calculatedKcal":40,"absDiff":34,"pctDiff":85},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"fromage Le Six pourcent","nameEn":"Le Six pourcent cheese","status":"unverified","declaredKcal":82,"calculatedKcal":40,"absDiff":42,"pctDiff":105},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Kéfir nature ou aux fruits","nameEn":"Plain or fruit kefir","status":"unverified","declaredKcal":54,"calculatedKcal":12,"absDiff":42,"pctDiff":350},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Lapin","nameEn":"Rabbit","status":"unverified","declaredKcal":59,"calculatedKcal":36,"absDiff":23,"pctDiff":63.888888888888886},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Orignal","nameEn":"Moose","status":"unverified","declaredKcal":40,"calculatedKcal":54,"absDiff":14,"pctDiff":25.925925925925924},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Ricotta partiellement écrémée","nameEn":"Partly skimmed ricotta","status":"unverified","declaredKcal":69,"calculatedKcal":54,"absDiff":15,"pctDiff":27.77777777777778},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Saucisse *","nameEn":"Sausage *","status":"unverified","declaredKcal":59,"calculatedKcal":45,"absDiff":14,"pctDiff":31.11111111111111},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Tempeh","nameEn":"Tempeh","status":"unverified","declaredKcal":74,"calculatedKcal":57,"absDiff":17,"pctDiff":29.82456140350877},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Tofu ferme","nameEn":"Firm tofu","status":"unverified","declaredKcal":63,"calculatedKcal":80,"absDiff":17,"pctDiff":21.25},{"maxSeverity":"ERROR","errorCount":1,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yaourt grec 0 % nature","nameEn":"0% plain Greek yogurt","status":"unverified","declaredKcal":72,"calculatedKcal":40,"absDiff":32,"pctDiff":80},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Couscous cuit","nameEn":"Cooked couscous","status":"unverified","declaredKcal":62,"calculatedKcal":100,"absDiff":38,"pctDiff":38},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Légumineuses cuites","nameEn":"Cooked legumes","status":"unverified","declaredKcal":105,"calculatedKcal":44,"absDiff":61,"pctDiff":138.63636363636365},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Lentilles Beluga cuites","nameEn":"Cooked beluga lentils","status":"unverified","declaredKcal":87,"calculatedKcal":72,"absDiff":15,"pctDiff":20.833333333333336},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Maïs bouilli, égoutté","nameEn":"Boiled drained corn","status":"unverified","declaredKcal":64,"calculatedKcal":52,"absDiff":12,"pctDiff":23.076923076923077},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Orge cuit","nameEn":"Cooked barley","status":"unverified","declaredKcal":109,"calculatedKcal":88,"absDiff":21,"pctDiff":23.863636363636363},{"maxSeverity":"ERROR","errorCount":1,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pâtes cuites","nameEn":"Cooked pasta","status":"unverified","declaredKcal":72,"calculatedKcal":92,"absDiff":20,"pctDiff":21.73913043478261},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"pain","nameEn":"Bread","status":"unverified","declaredKcal":76,"calculatedKcal":88,"absDiff":12,"pctDiff":13.636363636363635},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Topinambour","nameEn":"Jerusalem artichoke","status":"unverified","declaredKcal":111,"calculatedKcal":100,"absDiff":11,"pctDiff":11},{"maxSeverity":"WARNING","errorCount":0,"warningCount":4,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Wrap Egglife","nameEn":"Egglife wrap","status":"unverified","declaredKcal":70,"calculatedKcal":63,"absDiff":7,"pctDiff":11.11111111111111},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Banane fraîche, crue","nameEn":"Banana, fresh, raw","status":"verified","declaredKcal":53,"calculatedKcal":59.39999999999999,"absDiff":6.3999999999999915,"pctDiff":10.774410774410761},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché extra maigre","nameEn":"Extra-lean ground beef","status":"unverified","declaredKcal":47,"calculatedKcal":58,"absDiff":11,"pctDiff":18.96551724137931},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Boisson protéinée RTD","nameEn":"Ready-to-drink protein shake","status":"unverified","declaredKcal":58,"calculatedKcal":53,"absDiff":5,"pctDiff":9.433962264150944},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Caribou","nameEn":"Caribou","status":"unverified","declaredKcal":50,"calculatedKcal":58,"absDiff":8,"pctDiff":13.793103448275861},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Cheval","nameEn":"Horse","status":"unverified","declaredKcal":53,"calculatedKcal":45,"absDiff":8,"pctDiff":17.77777777777778},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Dinde","nameEn":"Turkey","status":"unverified","declaredKcal":45,"calculatedKcal":50,"absDiff":5,"pctDiff":10},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Escalope de veau","nameEn":"Veal cutlet","status":"unverified","declaredKcal":57,"calculatedKcal":50,"absDiff":7,"pctDiff":14.000000000000002},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Flocons d'avoine","nameEn":"Rolled oats","status":"unverified","declaredKcal":88,"calculatedKcal":76,"absDiff":12,"pctDiff":15.789473684210526},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain Ezekiel germé","nameEn":"Ezekiel sprouted bread","status":"unverified","declaredKcal":84,"calculatedKcal":76,"absDiff":8,"pctDiff":10.526315789473683},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Pain germé","nameEn":"Sprouted bread","status":"unverified","declaredKcal":80,"calculatedKcal":76,"absDiff":4,"pctDiff":5.263157894736842},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pamplemousse frais, cru","nameEn":"Grapefruit, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.2,"absDiff":7.200000000000003,"pctDiff":10.876132930513599},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Sanglier","nameEn":"Wild boar","status":"unverified","declaredKcal":48,"calculatedKcal":41,"absDiff":7,"pctDiff":17.073170731707318},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Veau haché","nameEn":"Ground veal","status":"unverified","declaredKcal":52,"calculatedKcal":63,"absDiff":11,"pctDiff":17.46031746031746},{"maxSeverity":"WARNING","errorCount":0,"warningCount":3,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Yogourt 1-2 % sans sucre ajouté","nameEn":"1-2% yogurt, no added sugar","status":"unverified","declaredKcal":78,"calculatedKcal":66,"absDiff":12,"pctDiff":18.181818181818183},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Avocat cru, toutes variétés commerciales","nameEn":"Avocado, raw, all commercial varieties","status":"verified","declaredKcal":54,"calculatedKcal":59.4,"absDiff":5.399999999999999,"pctDiff":9.090909090909088},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Bagel","nameEn":"Bagel","status":"unverified","declaredKcal":108,"calculatedKcal":101,"absDiff":7,"pctDiff":6.9306930693069315},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Barre protéinée performance","nameEn":"Performance protein bar","status":"unverified","declaredKcal":59,"calculatedKcal":62,"absDiff":3,"pctDiff":4.838709677419355},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf faux-filet extra-maigre","nameEn":"Extra-lean sirloin steak","status":"unverified","declaredKcal":52,"calculatedKcal":54,"absDiff":2,"pctDiff":3.7037037037037033},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Bœuf haché mi-maigre *","nameEn":"Medium ground beef *","status":"unverified","declaredKcal":77,"calculatedKcal":81,"absDiff":4,"pctDiff":4.938271604938271},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Bulbe de fenouil frais, cru","nameEn":"Fennel bulb, fresh, raw","status":"verified","declaredKcal":29,"calculatedKcal":33,"absDiff":4,"pctDiff":12.121212121212121},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Canard","nameEn":"Duck","status":"unverified","declaredKcal":37,"calculatedKcal":36,"absDiff":1,"pctDiff":2.7777777777777777},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Cuisse de poulet","nameEn":"Chicken thigh","status":"unverified","declaredKcal":57,"calculatedKcal":53,"absDiff":4,"pctDiff":7.547169811320755},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Dinde fumée extra-maigre","nameEn":"Extra-lean smoked turkey","status":"unverified","declaredKcal":55,"calculatedKcal":58,"absDiff":3,"pctDiff":5.172413793103448},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Filet de porc","nameEn":"Pork tenderloin","status":"unverified","declaredKcal":56,"calculatedKcal":54,"absDiff":2,"pctDiff":3.7037037037037033},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Flocons d'avoine , avant cuisson","nameEn":"Rolled oats , uncooked","status":"unverified","declaredKcal":88,"calculatedKcal":81,"absDiff":7,"pctDiff":8.641975308641975},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Galettes de riz","nameEn":"Rice cakes","status":"unverified","declaredKcal":74,"calculatedKcal":68,"absDiff":6,"pctDiff":8.823529411764707},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Jerky de bœuf nature","nameEn":"Natural beef jerky","status":"unverified","declaredKcal":57,"calculatedKcal":62,"absDiff":5,"pctDiff":8.064516129032258},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Mangue fraîche, crue","nameEn":"Mango, fresh, raw","status":"verified","declaredKcal":66,"calculatedKcal":73.19999999999999,"absDiff":7.199999999999989,"pctDiff":9.836065573770478},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Natto fermenté","nameEn":"Fermented natto","status":"unverified","declaredKcal":60,"calculatedKcal":66,"absDiff":6,"pctDiff":9.090909090909092},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Porc *","nameEn":"Pork *","status":"unverified","declaredKcal":77,"calculatedKcal":77,"absDiff":0,"pctDiff":0},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poulet en conserve égoutté","nameEn":"Canned chicken in water, drained","status":"unverified","declaredKcal":53,"calculatedKcal":45,"absDiff":8,"pctDiff":17.77777777777778},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poulet haché maigre","nameEn":"Lean ground chicken","status":"unverified","declaredKcal":51,"calculatedKcal":54,"absDiff":3,"pctDiff":5.555555555555555},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Sarrasin cuit","nameEn":"Cooked buckwheat","status":"unverified","declaredKcal":85,"calculatedKcal":76,"absDiff":9,"pctDiff":11.842105263157894},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"Seitan","nameEn":"Seitan","status":"unverified","declaredKcal":60,"calculatedKcal":65,"absDiff":5,"pctDiff":7.6923076923076925},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"produits_laitiers","calculationGroup":"dairy","nameFr":"Skyr 0 % nature","nameEn":"0% plain Skyr","status":"unverified","declaredKcal":62,"calculatedKcal":60,"absDiff":2,"pctDiff":3.3333333333333335},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Viandes froides","nameEn":"Deli meats","status":"unverified","declaredKcal":55,"calculatedKcal":54,"absDiff":1,"pctDiff":1.8518518518518516},{"maxSeverity":"WARNING","errorCount":0,"warningCount":2,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Wapiti","nameEn":"Elk","status":"unverified","declaredKcal":44,"calculatedKcal":45,"absDiff":1,"pctDiff":2.2222222222222223},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Abricots frais, crus","nameEn":"Apricots, fresh, raw","status":"verified","declaredKcal":67,"calculatedKcal":74.9,"absDiff":7.900000000000006,"pctDiff":10.547396528704947},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Ail frais, cru","nameEn":"Garlic, fresh, raw","status":"verified","declaredKcal":19,"calculatedKcal":21.299999999999997,"absDiff":2.299999999999997,"pctDiff":10.798122065727688},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Artichaut globe bouilli et égoutté","nameEn":"Globe artichoke, boiled and drained","status":"verified","declaredKcal":64,"calculatedKcal":74.8,"absDiff":10.799999999999997,"pctDiff":14.438502673796789},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Aubergine fraîche, crue","nameEn":"Eggplant, fresh, raw","status":"verified","declaredKcal":22,"calculatedKcal":25.8,"absDiff":3.8000000000000007,"pctDiff":14.728682170542637},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Bleuets frais, crus, cultivés","nameEn":"Blueberries, fresh, raw, cultivated","status":"verified","declaredKcal":63,"calculatedKcal":70.39999999999999,"absDiff":7.3999999999999915,"pctDiff":10.511363636363626},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Brocoli frais, cru","nameEn":"Broccoli, fresh, raw","status":"verified","declaredKcal":32,"calculatedKcal":37.900000000000006,"absDiff":5.900000000000006,"pctDiff":15.567282321899748},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Canneberges séchées sucrées","nameEn":"Sweetened dried cranberries","status":"verified","declaredKcal":55,"calculatedKcal":61.4,"absDiff":6.399999999999999,"pctDiff":10.42345276872964},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Cantaloup frais, cru","nameEn":"Cantaloupe, fresh, raw","status":"verified","declaredKcal":56,"calculatedKcal":62.300000000000004,"absDiff":6.300000000000004,"pctDiff":10.112359550561804},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Céleri frais, cru","nameEn":"Celery, fresh, raw","status":"verified","declaredKcal":11,"calculatedKcal":12.9,"absDiff":1.9000000000000004,"pctDiff":14.728682170542637},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignon portobello grillé, sans gras ajouté","nameEn":"Portobello mushroom, grilled, no added fat","status":"verified","declaredKcal":37,"calculatedKcal":45.9,"absDiff":8.899999999999999,"pctDiff":19.38997821350762},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Chou kale frais, cru","nameEn":"Kale, fresh, raw","status":"verified","declaredKcal":25,"calculatedKcal":30.700000000000003,"absDiff":5.700000000000003,"pctDiff":18.566775244299684},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Chou-fleur frais, cru","nameEn":"Cauliflower, fresh, raw","status":"verified","declaredKcal":28,"calculatedKcal":33.9,"absDiff":5.899999999999999,"pctDiff":17.40412979351032},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Choux de Bruxelles bouillis et égouttés","nameEn":"Brussels sprouts, boiled and drained","status":"verified","declaredKcal":30,"calculatedKcal":35.2,"absDiff":5.200000000000003,"pctDiff":14.772727272727279},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Clémentines fraîches, crues","nameEn":"Clementines, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.2,"absDiff":7.200000000000003,"pctDiff":10.876132930513599},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Cocktail de jus de légumes faible en sodium","nameEn":"Low-sodium vegetable juice cocktail","status":"verified","declaredKcal":51,"calculatedKcal":58.900000000000006,"absDiff":7.900000000000006,"pctDiff":13.412563667232606},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Concombre frais avec pelure, cru","nameEn":"Cucumber, fresh, raw, with peel","status":"verified","declaredKcal":20,"calculatedKcal":22.499999999999996,"absDiff":2.4999999999999964,"pctDiff":11.111111111111097},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courge musquée cuite au four","nameEn":"Butternut squash, baked","status":"verified","declaredKcal":43,"calculatedKcal":50.1,"absDiff":7.100000000000001,"pctDiff":14.171656686626749},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courge spaghetti cuite et égouttée","nameEn":"Spaghetti squash, cooked and drained","status":"verified","declaredKcal":44,"calculatedKcal":50.4,"absDiff":6.399999999999999,"pctDiff":12.698412698412694},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Courgette fraîche, crue","nameEn":"Zucchini, fresh, raw","status":"verified","declaredKcal":20,"calculatedKcal":24,"absDiff":4,"pctDiff":16.666666666666664},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Datte Medjool séchée","nameEn":"Medjool date, dried","status":"verified","declaredKcal":66,"calculatedKcal":73.6,"absDiff":7.599999999999994,"pctDiff":10.326086956521733},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Dattes sèches naturelles, petit format","nameEn":"Natural dried dates, small variety","status":"verified","declaredKcal":59,"calculatedKcal":66.10000000000001,"absDiff":7.1000000000000085,"pctDiff":10.741301059001525},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml","nameEn":"fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle","status":"verified","declaredKcal":56,"calculatedKcal":56.400000000000006,"absDiff":0.4000000000000057,"pctDiff":0.7092198581560384},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"autres_sources_proteinees","calculationGroup":"protein","nameFr":"fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml","nameEn":"fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle","status":"verified","declaredKcal":56,"calculatedKcal":55.2,"absDiff":0.7999999999999972,"pctDiff":1.4492753623188355},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Gruau nature , avant cuisson","nameEn":"Plain oatmeal , uncooked","status":"unverified","declaredKcal":63,"calculatedKcal":61,"absDiff":2,"pctDiff":3.278688524590164},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Haricots jaunes bouillis et égouttés","nameEn":"Yellow snap beans, boiled and drained","status":"verified","declaredKcal":23,"calculatedKcal":27.400000000000002,"absDiff":4.400000000000002,"pctDiff":16.058394160583948},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Haricots verts bouillis et égouttés","nameEn":"Green snap beans, boiled and drained","status":"verified","declaredKcal":23,"calculatedKcal":27.400000000000002,"absDiff":4.400000000000002,"pctDiff":16.058394160583948},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Laitue romaine fraîche, crue","nameEn":"Romaine lettuce, fresh, raw","status":"verified","declaredKcal":10,"calculatedKcal":12.2,"absDiff":2.1999999999999993,"pctDiff":18.032786885245898},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Melon d'eau frais, cru","nameEn":"Watermelon, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":67.9,"absDiff":7.900000000000006,"pctDiff":11.634756995581744},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Mûres fraîches, crues","nameEn":"Blackberries, fresh, raw","status":"verified","declaredKcal":65,"calculatedKcal":73.1,"absDiff":8.099999999999994,"pctDiff":11.080711354309159},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Nectarine fraîche, crue","nameEn":"Nectarine, fresh, raw","status":"verified","declaredKcal":62,"calculatedKcal":70.5,"absDiff":8.5,"pctDiff":12.056737588652481},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pêche fraîche, crue","nameEn":"Peach, fresh, raw","status":"verified","declaredKcal":59,"calculatedKcal":66.4,"absDiff":7.400000000000006,"pctDiff":11.144578313253021},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Poire fraîche avec pelure, crue","nameEn":"Pear, fresh, raw, with skin","status":"verified","declaredKcal":57,"calculatedKcal":63.3,"absDiff":6.299999999999997,"pctDiff":9.952606635071087},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poireau bouilli et égoutté","nameEn":"Leek, boiled and drained","status":"verified","declaredKcal":17,"calculatedKcal":19.3,"absDiff":2.3000000000000007,"pctDiff":11.917098445595858},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron jaune doux, frais et cru","nameEn":"Yellow sweet pepper, fresh and raw","status":"verified","declaredKcal":21,"calculatedKcal":25,"absDiff":4,"pctDiff":16},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron rouge doux, frais et cru","nameEn":"Red sweet pepper, fresh and raw","status":"verified","declaredKcal":21,"calculatedKcal":24.2,"absDiff":3.1999999999999993,"pctDiff":13.223140495867765},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Poivron vert doux, frais et cru","nameEn":"Green sweet pepper, fresh and raw","status":"verified","declaredKcal":16,"calculatedKcal":18.5,"absDiff":2.5,"pctDiff":13.513513513513514},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pomme fraîche avec pelure, crue","nameEn":"Apple, fresh, raw, with skin","status":"verified","declaredKcal":57,"calculatedKcal":63.8,"absDiff":6.799999999999997,"pctDiff":10.658307210031344},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Pruneaux séchés, non cuits","nameEn":"Prunes, dried, uncooked","status":"verified","declaredKcal":60,"calculatedKcal":66.9,"absDiff":6.900000000000006,"pctDiff":10.313901345291487},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Riz cuit","nameEn":"Cooked rice","status":"unverified","declaredKcal":91,"calculatedKcal":96,"absDiff":5,"pctDiff":5.208333333333334},{"maxSeverity":"WARNING","errorCount":0,"warningCount":1,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Tomate rouge mûre, fraîche et crue","nameEn":"Red ripe tomato, fresh and raw","status":"verified","declaredKcal":22,"calculatedKcal":25.400000000000002,"absDiff":3.400000000000002,"pctDiff":13.38582677165355},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Aiglefin cuit au four ou grillé","nameEn":"Haddock, baked or broiled","status":"verified","declaredKcal":41,"calculatedKcal":37.8,"absDiff":3.200000000000003,"pctDiff":8.465608465608474},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Amandes entières, crues, non salées","nameEn":"Almonds, whole, raw, unsalted","status":"verified","declaredKcal":49,"calculatedKcal":52.2,"absDiff":3.200000000000003,"pctDiff":6.130268199233722},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Ananas frais, cru","nameEn":"Pineapple, fresh, raw","status":"verified","declaredKcal":55,"calculatedKcal":60.9,"absDiff":5.899999999999999,"pctDiff":9.688013136288996},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Anchois européens en conserve dans l’huile d’olive, égouttés","nameEn":"European anchovies canned in olive oil, drained","status":"verified","declaredKcal":63,"calculatedKcal":60.89999999999999,"absDiff":2.1000000000000085,"pctDiff":3.44827586206898},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Anguille cuite au four ou grillée","nameEn":"Eel, baked or broiled","status":"verified","declaredKcal":71,"calculatedKcal":68.9,"absDiff":2.0999999999999943,"pctDiff":3.047895500725681},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Arachides crues, non salées","nameEn":"Peanuts, raw, unsalted","status":"verified","declaredKcal":57,"calculatedKcal":60.900000000000006,"absDiff":3.9000000000000057,"pctDiff":6.403940886699516},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Arachides rôties à sec, non salées","nameEn":"Peanuts, dry roasted, unsalted","status":"verified","declaredKcal":59,"calculatedKcal":63,"absDiff":4,"pctDiff":6.349206349206349},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Arilles de grenade fraîches, crues","nameEn":"Pomegranate arils, fresh, raw","status":"verified","declaredKcal":66,"calculatedKcal":73.3,"absDiff":7.299999999999997,"pctDiff":9.959072305593448},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Asperges bouillies et égouttées","nameEn":"Asparagus, boiled and drained","status":"verified","declaredKcal":42,"calculatedKcal":53.199999999999996,"absDiff":11.199999999999996,"pctDiff":21.052631578947363},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Baies de goji séchées","nameEn":"Goji berries, dried","status":"verified","declaredKcal":70,"calculatedKcal":74.10000000000001,"absDiff":4.1000000000000085,"pctDiff":5.533063427800281},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Bar de mer cuit au four ou grillé","nameEn":"Sea bass, baked or broiled","status":"verified","declaredKcal":56,"calculatedKcal":53.199999999999996,"absDiff":2.8000000000000043,"pctDiff":5.2631578947368505},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Betteraves bouillies et égouttées","nameEn":"Beets, boiled and drained","status":"verified","declaredKcal":40,"calculatedKcal":43.8,"absDiff":3.799999999999997,"pctDiff":8.675799086757985},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre d’amandes nature","nameEn":"Plain almond butter","status":"verified","declaredKcal":68,"calculatedKcal":72.5,"absDiff":4.5,"pctDiff":6.206896551724138},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre d’arachide naturel","nameEn":"Natural peanut butter","status":"verified","declaredKcal":61,"calculatedKcal":66,"absDiff":5,"pctDiff":7.575757575757576},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre de cajou nature","nameEn":"Plain cashew butter","status":"verified","declaredKcal":65,"calculatedKcal":68.2,"absDiff":3.200000000000003,"pctDiff":4.692082111436954},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Beurre de graines de tournesol","nameEn":"Sunflower seed butter","status":"verified","declaredKcal":68,"calculatedKcal":72.9,"absDiff":4.900000000000006,"pctDiff":6.721536351165988},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Beurre salé","nameEn":"Salted butter","status":"verified","declaredKcal":52,"calculatedKcal":52.599999999999994,"absDiff":0.5999999999999943,"pctDiff":1.1406844106463772},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Beurre sans sel","nameEn":"Unsalted butter","status":"verified","declaredKcal":52,"calculatedKcal":52.599999999999994,"absDiff":0.5999999999999943,"pctDiff":1.1406844106463772},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Bouillon de légumes prêt à servir, faible en sodium","nameEn":"Vegetable broth, ready-to-serve, low sodium","status":"verified","declaredKcal":10,"calculatedKcal":10.6,"absDiff":0.5999999999999996,"pctDiff":5.660377358490563},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Carotte fraîche, crue","nameEn":"Carrot, fresh, raw","status":"verified","declaredKcal":25,"calculatedKcal":26.499999999999996,"absDiff":1.4999999999999964,"pctDiff":5.660377358490553},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Caviar noir ou rouge, granuleux","nameEn":"Black or red granular caviar","status":"verified","declaredKcal":79,"calculatedKcal":83,"absDiff":4,"pctDiff":4.819277108433735},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Cerises douces fraîches, crues","nameEn":"Sweet cherries, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":66.6,"absDiff":6.599999999999994,"pctDiff":9.909909909909901},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignons blancs frais, crus","nameEn":"White mushrooms, fresh, raw","status":"verified","declaredKcal":16,"calculatedKcal":21.499999999999996,"absDiff":5.4999999999999964,"pctDiff":25.581395348837198},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Champignons cremini frais, crus","nameEn":"Cremini mushrooms, fresh and raw","status":"verified","declaredKcal":16,"calculatedKcal":21.299999999999997,"absDiff":5.299999999999997,"pctDiff":24.88262910798121},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"starch","nameFr":"Châtaignes européennes rôties","nameEn":"European sweet chestnuts, roasted","status":"verified","declaredKcal":74,"calculatedKcal":73.89999999999999,"absDiff":0.10000000000000853,"pctDiff":0.1353179972936516},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Chocolat noir, 60 à 69 % de cacao","nameEn":"Dark chocolate, 60–69% cocoa solids","status":"verified","declaredKcal":58,"calculatedKcal":57.39999999999999,"absDiff":0.6000000000000085,"pctDiff":1.0452961672474017},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Chocolat noir, 70 à 85 % de cacao","nameEn":"Dark chocolate, 70–85% cocoa solids","status":"verified","declaredKcal":60,"calculatedKcal":60.3,"absDiff":0.29999999999999716,"pctDiff":0.49751243781094057},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Cocktail de jus de légumes régulier","nameEn":"Regular vegetable juice cocktail","status":"verified","declaredKcal":59,"calculatedKcal":58.400000000000006,"absDiff":0.5999999999999943,"pctDiff":1.027397260273963},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Compote de pommes non sucrée","nameEn":"Unsweetened applesauce","status":"verified","declaredKcal":54,"calculatedKcal":59.699999999999996,"absDiff":5.699999999999996,"pctDiff":9.54773869346733},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Crabe des neiges bouilli ou cuit à la vapeur","nameEn":"Atlantic snow crab, boiled or steamed","status":"verified","declaredKcal":52,"calculatedKcal":49.099999999999994,"absDiff":2.9000000000000057,"pctDiff":5.906313645621194},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Crevettes bouillies ou cuites à la vapeur","nameEn":"Shrimp, boiled or steamed","status":"verified","declaredKcal":54,"calculatedKcal":51.2,"absDiff":2.799999999999997,"pctDiff":5.468749999999995},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Échalote fraîche, crue","nameEn":"Shallot, fresh, raw","status":"verified","declaredKcal":17,"calculatedKcal":18.4,"absDiff":1.3999999999999986,"pctDiff":7.608695652173907},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"protein","nameFr":"Edamames bouillis et égouttés","nameEn":"Edamame, boiled and drained","status":"verified","declaredKcal":134,"calculatedKcal":143.7,"absDiff":9.699999999999989,"pctDiff":6.750173973556012},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Épinards frais, crus","nameEn":"Spinach, fresh, raw","status":"verified","declaredKcal":6,"calculatedKcal":8.1,"absDiff":2.0999999999999996,"pctDiff":25.925925925925924},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Escargot cru, chair comestible","nameEn":"Snail, raw edible meat","status":"verified","declaredKcal":41,"calculatedKcal":37.8,"absDiff":3.200000000000003,"pctDiff":8.465608465608474},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Espadon cuit au four ou grillé","nameEn":"Swordfish, baked or broiled","status":"verified","declaredKcal":77,"calculatedKcal":74.8,"absDiff":2.200000000000003,"pctDiff":2.941176470588239},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Flétan de l’Atlantique ou du Pacifique cuit au four ou grillé","nameEn":"Atlantic or Pacific halibut, baked or broiled","status":"verified","declaredKcal":50,"calculatedKcal":46.699999999999996,"absDiff":3.3000000000000043,"pctDiff":7.066381156316927},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Fraises fraîches, crues","nameEn":"Strawberries, fresh, raw","status":"verified","declaredKcal":53,"calculatedKcal":58.1,"absDiff":5.100000000000001,"pctDiff":8.777969018932877},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Framboises fraîches, crues","nameEn":"Raspberries, fresh, raw","status":"verified","declaredKcal":69,"calculatedKcal":75.60000000000001,"absDiff":6.6000000000000085,"pctDiff":8.73015873015874},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Fromage cheddar doux","nameEn":"Mild cheddar cheese","status":"verified","declaredKcal":63,"calculatedKcal":63.199999999999996,"absDiff":0.19999999999999574,"pctDiff":0.3164556962025249},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Fromage mozzarella, 25 % M.G.","nameEn":"Mozzarella cheese, 25% M.F.","status":"verified","declaredKcal":57,"calculatedKcal":56.8,"absDiff":0.20000000000000284,"pctDiff":0.35211267605634305},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Goberge d’Alaska cuite au four ou grillée","nameEn":"Alaska pollock, baked or broiled","status":"verified","declaredKcal":50,"calculatedKcal":46.9,"absDiff":3.1000000000000014,"pctDiff":6.6098081023454185},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de chanvre décortiquées","nameEn":"Hulled hemp seeds","status":"verified","declaredKcal":55,"calculatedKcal":60.5,"absDiff":5.5,"pctDiff":9.090909090909092},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de chia séchées, moulues ou entières","nameEn":"Dried chia seeds, ground or whole","status":"verified","declaredKcal":53,"calculatedKcal":56.199999999999996,"absDiff":3.1999999999999957,"pctDiff":5.693950177935935},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de citrouille et de courge décortiquées, rôties","nameEn":"Pumpkin and squash seed kernels, roasted","status":"verified","declaredKcal":57,"calculatedKcal":62.1,"absDiff":5.100000000000001,"pctDiff":8.212560386473431},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de citrouille et de courge décortiquées, séchées","nameEn":"Pumpkin and squash seed kernels, dried","status":"verified","declaredKcal":56,"calculatedKcal":60.5,"absDiff":4.5,"pctDiff":7.43801652892562},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de lin moulues","nameEn":"Ground flaxseed","status":"verified","declaredKcal":37,"calculatedKcal":40.2,"absDiff":3.200000000000003,"pctDiff":7.960199004975131},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de sésame décortiquées, séchées","nameEn":"Sesame seed kernels, dried and shelled","status":"verified","declaredKcal":50,"calculatedKcal":54.1,"absDiff":4.100000000000001,"pctDiff":7.578558225508321},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Graines de tournesol décortiquées, rôties à l’huile","nameEn":"Sunflower seed kernels, oil roasted","status":"verified","declaredKcal":53,"calculatedKcal":57,"absDiff":4,"pctDiff":7.017543859649122},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Grand brochet cuit","nameEn":"Northern pike, cooked","status":"verified","declaredKcal":43,"calculatedKcal":40.7,"absDiff":2.299999999999997,"pctDiff":5.6511056511056434},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"starch","nameFr":"Granola maison","nameEn":"Homemade granola","status":"verified","declaredKcal":147,"calculatedKcal":147.3,"absDiff":0.30000000000001137,"pctDiff":0.20366598778004844},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Hareng de l’Atlantique cuit au four ou grillé","nameEn":"Atlantic herring, baked or broiled","status":"verified","declaredKcal":61,"calculatedKcal":59.1,"absDiff":1.8999999999999986,"pctDiff":3.2148900169204713},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Homard d’Amérique bouilli ou cuit à la vapeur","nameEn":"American lobster, boiled or steamed","status":"verified","declaredKcal":40,"calculatedKcal":38,"absDiff":2,"pctDiff":5.263157894736842},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Houmous commercial","nameEn":"Commercial hummus","status":"verified","declaredKcal":73,"calculatedKcal":77.9,"absDiff":4.900000000000006,"pctDiff":6.290115532734282},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’arachide","nameEn":"Peanut oil","status":"verified","declaredKcal":60,"calculatedKcal":61.199999999999996,"absDiff":1.1999999999999957,"pctDiff":1.9607843137254832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’avocat","nameEn":"Avocado oil","status":"verified","declaredKcal":63,"calculatedKcal":63.9,"absDiff":0.8999999999999986,"pctDiff":1.4084507042253498},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile d’olive","nameEn":"Olive oil","status":"verified","declaredKcal":60,"calculatedKcal":61.199999999999996,"absDiff":1.1999999999999957,"pctDiff":1.9607843137254832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de canola","nameEn":"Canola oil","status":"verified","declaredKcal":63,"calculatedKcal":63.9,"absDiff":0.8999999999999986,"pctDiff":1.4084507042253498},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de foie de morue","nameEn":"Cod liver oil","status":"verified","declaredKcal":62,"calculatedKcal":62.1,"absDiff":0.10000000000000142,"pctDiff":0.16103059581320678},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile de noix de coco","nameEn":"Coconut oil","status":"verified","declaredKcal":62,"calculatedKcal":61.199999999999996,"absDiff":0.8000000000000043,"pctDiff":1.307189542483667},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Huile MCT NOW Foods (C8/C10)","nameEn":"NOW Foods MCT Oil (C8/C10)","status":"verified","declaredKcal":65,"calculatedKcal":63,"absDiff":2,"pctDiff":3.1746031746031744},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Huîtres de l’Est d’élevage, crues","nameEn":"Farmed eastern oysters, raw","status":"verified","declaredKcal":27,"calculatedKcal":25.5,"absDiff":1.5,"pctDiff":5.88235294117647},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Jaune d’œuf de poule, cuit","nameEn":"Chicken egg yolk, cooked","status":"verified","declaredKcal":60,"calculatedKcal":63.6,"absDiff":3.6000000000000014,"pctDiff":5.660377358490568},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus d'ananas 100 % pur, sans sucre ajouté","nameEn":"100% pure pineapple juice, no added sugar","status":"verified","declaredKcal":70,"calculatedKcal":71.8,"absDiff":1.7999999999999972,"pctDiff":2.506963788300832},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus d'orange 100 % pur, sans sucre ajouté","nameEn":"100% pure orange juice, no added sugar","status":"verified","declaredKcal":59,"calculatedKcal":60.7,"absDiff":1.7000000000000028,"pctDiff":2.8006589785832006},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus de pamplemousse rose 100 % pur, sans sucre ajouté","nameEn":"100% pure pink grapefruit juice, no added sugar","status":"verified","declaredKcal":51,"calculatedKcal":51.699999999999996,"absDiff":0.6999999999999957,"pctDiff":1.3539651837524096},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Jus de pomme 100 % pur, sans sucre ajouté","nameEn":"100% pure apple juice, no added sugar","status":"verified","declaredKcal":60,"calculatedKcal":61.4,"absDiff":1.3999999999999986,"pctDiff":2.280130293159607},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Kiwis verts frais, crus","nameEn":"Green kiwifruit, fresh, raw","status":"verified","declaredKcal":61,"calculatedKcal":67.69999999999999,"absDiff":6.699999999999989,"pctDiff":9.896602658788758},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Mahi-mahi cuit au four ou grillé","nameEn":"Mahi-mahi, baked or broiled","status":"verified","declaredKcal":49,"calculatedKcal":46.4,"absDiff":2.6000000000000014,"pctDiff":5.603448275862073},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Maquereau bleu cuit au four ou grillé","nameEn":"Atlantic mackerel, baked or broiled","status":"verified","declaredKcal":79,"calculatedKcal":76.5,"absDiff":2.5,"pctDiff":3.2679738562091507},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Margarine molle non hydrogénée à l’huile de canola","nameEn":"Non-hydrogenated soft canola-oil margarine","status":"verified","declaredKcal":52,"calculatedKcal":52.199999999999996,"absDiff":0.19999999999999574,"pctDiff":0.38314176245209913},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Mayonnaise à teneur réduite en gras","nameEn":"Reduced-fat mayonnaise","status":"verified","declaredKcal":50,"calculatedKcal":50.300000000000004,"absDiff":0.30000000000000426,"pctDiff":0.5964214711729706},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Mayonnaise régulière","nameEn":"Regular mayonnaise","status":"verified","declaredKcal":48,"calculatedKcal":47.2,"absDiff":0.7999999999999972,"pctDiff":1.6949152542372818},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Morue de l’Atlantique cuite au four ou grillée","nameEn":"Atlantic cod, baked or broiled","status":"verified","declaredKcal":47,"calculatedKcal":44.800000000000004,"absDiff":2.1999999999999957,"pctDiff":4.910714285714276},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Moules bleues bouillies ou cuites à la vapeur","nameEn":"Blue mussels, boiled or steamed","status":"verified","declaredKcal":77,"calculatedKcal":74,"absDiff":3,"pctDiff":4.054054054054054},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Navet bouilli et égoutté","nameEn":"Turnip, boiled and drained","status":"verified","declaredKcal":18,"calculatedKcal":19.699999999999996,"absDiff":1.6999999999999957,"pctDiff":8.629441624365462},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noisettes séchées, non blanchies","nameEn":"Hazelnuts, dried, unblanched","status":"verified","declaredKcal":75,"calculatedKcal":80.9,"absDiff":5.900000000000006,"pctDiff":7.292954264524109},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de cajou crues, non salées","nameEn":"Cashews, raw, unsalted","status":"verified","declaredKcal":66,"calculatedKcal":70.9,"absDiff":4.900000000000006,"pctDiff":6.911142454160797},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de coco desséchée, non sucrée","nameEn":"Desiccated coconut, unsweetened","status":"verified","declaredKcal":33,"calculatedKcal":34.8,"absDiff":1.7999999999999972,"pctDiff":5.17241379310344},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de Grenoble","nameEn":"English or Persian walnuts","status":"verified","declaredKcal":52,"calculatedKcal":56,"absDiff":4,"pctDiff":7.142857142857142},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix de macadamia crues","nameEn":"Macadamia nuts, raw","status":"verified","declaredKcal":86,"calculatedKcal":92.3,"absDiff":6.299999999999997,"pctDiff":6.8255687973997805},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"protein","nameFr":"Noix de soya rôties, non salées","nameEn":"Roasted soy nuts, unsalted","status":"verified","declaredKcal":70,"calculatedKcal":75.4,"absDiff":5.400000000000006,"pctDiff":7.161803713527859},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix du Brésil séchées, non blanchies","nameEn":"Brazil nuts, dried, unblanched","status":"verified","declaredKcal":66,"calculatedKcal":70.7,"absDiff":4.700000000000003,"pctDiff":6.647807637906651},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Noix mélangées avec arachides, rôties à sec, sans sel ajouté","nameEn":"Mixed nuts with peanuts, dry roasted, no added salt","status":"verified","declaredKcal":91,"calculatedKcal":97.2,"absDiff":6.200000000000003,"pctDiff":6.378600823045271},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Œuf de poule entier, cuit dur","nameEn":"Chicken egg, whole, hard-cooked","status":"verified","declaredKcal":71,"calculatedKcal":72.2,"absDiff":1.2000000000000028,"pctDiff":1.6620498614958488},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Oignon frais, cru","nameEn":"Onion, fresh, raw","status":"verified","declaredKcal":27,"calculatedKcal":29.3,"absDiff":2.3000000000000007,"pctDiff":7.8498293515358375},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Olives noires mûres, en conserve","nameEn":"Ripe black olives, canned","status":"verified","declaredKcal":59,"calculatedKcal":64.4,"absDiff":5.400000000000006,"pctDiff":8.385093167701871},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Olives vertes marinées, en conserve ou en bouteille","nameEn":"Green pickled olives, canned or bottled","status":"verified","declaredKcal":58,"calculatedKcal":62.5,"absDiff":4.5,"pctDiff":7.199999999999999},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Orange fraîche, crue, variété commerciale","nameEn":"Orange, fresh, raw, commercial variety","status":"verified","declaredKcal":62,"calculatedKcal":68.2,"absDiff":6.200000000000003,"pctDiff":9.090909090909095},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pacanes rôties à l’huile","nameEn":"Pecans, oil roasted","status":"verified","declaredKcal":57,"calculatedKcal":60.8,"absDiff":3.799999999999997,"pctDiff":6.249999999999996},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pacanes séchées","nameEn":"Pecans, dried","status":"verified","declaredKcal":55,"calculatedKcal":59.4,"absDiff":4.399999999999999,"pctDiff":7.407407407407406},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Palourdes en conserve, solides égouttés","nameEn":"Canned clams, drained solids","status":"verified","declaredKcal":64,"calculatedKcal":60.7,"absDiff":3.299999999999997,"pctDiff":5.4365733113673755},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Pétoncles cuits à la vapeur","nameEn":"Bay or sea scallops, steamed","status":"verified","declaredKcal":50,"calculatedKcal":50,"absDiff":0,"pctDiff":0},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pignons de pin séchés","nameEn":"Pine nuts, dried","status":"verified","declaredKcal":61,"calculatedKcal":65.4,"absDiff":4.400000000000006,"pctDiff":6.727828746177378},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pistaches crues, décortiquées","nameEn":"Pistachios, raw, shelled","status":"verified","declaredKcal":50,"calculatedKcal":53.7,"absDiff":3.700000000000003,"pctDiff":6.89013035381751},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Pistaches rôties à sec, sans sel ajouté","nameEn":"Pistachios, dry roasted, unsalted","status":"verified","declaredKcal":51,"calculatedKcal":54.5,"absDiff":3.5,"pctDiff":6.422018348623854},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Pois mange-tout frais, crus","nameEn":"Snow peas, fresh, raw","status":"verified","declaredKcal":22,"calculatedKcal":22.5,"absDiff":0.5,"pctDiff":2.2222222222222223},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Poisson plat (sole, plie ou flet) cuit au four ou grillé","nameEn":"Flatfish (sole, flounder or plaice), baked or broiled","status":"verified","declaredKcal":39,"calculatedKcal":37.5,"absDiff":1.5,"pctDiff":4},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"viandes_volaille","calculationGroup":"protein","nameFr":"Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée","nameEn":"Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil","status":"verified","declaredKcal":50,"calculatedKcal":47.1,"absDiff":2.8999999999999986,"pctDiff":6.157112526539275},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Poulpe bouilli ou cuit à la vapeur","nameEn":"Common octopus, boiled or steamed","status":"verified","declaredKcal":74,"calculatedKcal":69.7,"absDiff":4.299999999999997,"pctDiff":6.169296987087513},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Produit de fromage à la crème, nature","nameEn":"Plain cream cheese product","status":"verified","declaredKcal":47,"calculatedKcal":47.5,"absDiff":0.5,"pctDiff":1.0526315789473684},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Prunes fraîches, crues","nameEn":"Plums, fresh, raw","status":"verified","declaredKcal":60,"calculatedKcal":66.4,"absDiff":6.400000000000006,"pctDiff":9.638554216867478},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"feculents","calculationGroup":"starch","nameFr":"Quinoa blanc cuit dans l'eau, sans huile ajoutée","nameEn":"White quinoa, cooked in water, no added oil","status":"verified","declaredKcal":90,"calculatedKcal":89.8,"absDiff":0.20000000000000284,"pctDiff":0.22271714922049313},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"legumes","calculationGroup":"vegetable","nameFr":"Radis frais, crus","nameEn":"Radishes, fresh, raw","status":"verified","declaredKcal":20,"calculatedKcal":20.9,"absDiff":0.8999999999999986,"pctDiff":4.3062200956937735},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Raisins rouges ou verts sans pépins, crus","nameEn":"Red or green seedless grapes, raw","status":"verified","declaredKcal":59,"calculatedKcal":64.9,"absDiff":5.900000000000006,"pctDiff":9.090909090909099},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"fruits","calculationGroup":"fruit","nameFr":"Raisins secs sans pépins","nameEn":"Seedless raisins (sultanas)","status":"verified","declaredKcal":60,"calculatedKcal":66.50000000000001,"absDiff":6.500000000000014,"pctDiff":9.774436090225583},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Sardines de l’Atlantique en conserve dans l’huile, égouttées avec arêtes","nameEn":"Atlantic sardines canned in oil, drained with bone","status":"verified","declaredKcal":62,"calculatedKcal":60.2,"absDiff":1.7999999999999972,"pctDiff":2.9900332225913573},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Saumon de l’Atlantique d’élevage, cuit au four ou grillé","nameEn":"Farmed Atlantic salmon, baked or broiled","status":"verified","declaredKcal":62,"calculatedKcal":59.7,"absDiff":2.299999999999997,"pctDiff":3.8525963149078675},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Saumon quinnat fumé","nameEn":"Smoked Chinook salmon","status":"verified","declaredKcal":35,"calculatedKcal":33.7,"absDiff":1.2999999999999972,"pctDiff":3.857566765578626},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Saumon rose en conserve, égoutté, sans peau ni arêtes","nameEn":"Canned pink salmon, drained, skinless and boneless","status":"verified","declaredKcal":61,"calculatedKcal":61.5,"absDiff":0.5,"pctDiff":0.8130081300813009},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Saumon sockeye cuit au four ou grillé","nameEn":"Sockeye salmon, baked or broiled","status":"verified","declaredKcal":47,"calculatedKcal":46.9,"absDiff":0.10000000000000142,"pctDiff":0.21321961620469387},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Surimi de poisson","nameEn":"Fish surimi","status":"verified","declaredKcal":30,"calculatedKcal":29.499999999999996,"absDiff":0.5000000000000036,"pctDiff":1.6949152542373003},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"noix_graines","calculationGroup":"fat","nameFr":"Tahini de graines de sésame rôties","nameEn":"Tahini from roasted sesame kernels","status":"verified","declaredKcal":60,"calculatedKcal":63.8,"absDiff":3.799999999999997,"pctDiff":5.956112852664573},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon à nageoires jaunes cuit au four ou grillé","nameEn":"Yellowfin tuna, baked or broiled","status":"verified","declaredKcal":59,"calculatedKcal":55.1,"absDiff":3.8999999999999986,"pctDiff":7.078039927404715},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon blanc en conserve dans l’eau, égoutté, sans sel ajouté","nameEn":"White tuna canned in water, drained, unsalted","status":"verified","declaredKcal":58,"calculatedKcal":54.1,"absDiff":3.8999999999999986,"pctDiff":7.208872458410348},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon pâle en conserve dans l’eau, égoutté, sans sel ajouté","nameEn":"Light tuna canned in water, drained, unsalted","status":"verified","declaredKcal":52,"calculatedKcal":49.6,"absDiff":2.3999999999999986,"pctDiff":4.838709677419352},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté","nameEn":"Light tuna canned in oil, drained, unsalted","status":"verified","declaredKcal":89,"calculatedKcal":85.7,"absDiff":3.299999999999997,"pctDiff":3.850641773628935},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Tilapia cuit au four ou grillé","nameEn":"Tilapia, baked or broiled","status":"verified","declaredKcal":58,"calculatedKcal":58,"absDiff":0,"pctDiff":0},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Truite arc-en-ciel d’élevage cuite au four ou grillée","nameEn":"Farmed rainbow trout, baked or broiled","status":"verified","declaredKcal":50,"calculatedKcal":48.2,"absDiff":1.7999999999999972,"pctDiff":3.73443983402489},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"poissons_fruits_mer","calculationGroup":"protein","nameFr":"Turbot européen cuit au four ou grillé","nameEn":"European turbot, baked or broiled","status":"verified","declaredKcal":55,"calculatedKcal":52.5,"absDiff":2.5,"pctDiff":4.761904761904762},{"maxSeverity":"OK","errorCount":0,"warningCount":0,"displayCategory":"matieres_grasses","calculationGroup":"fat","nameFr":"Vinaigrette maison à l’huile et au vinaigre","nameEn":"Homemade oil-and-vinegar dressing","status":"verified","declaredKcal":48,"calculatedKcal":48.9,"absDiff":0.8999999999999986,"pctDiff":1.8404907975460092}];
 function applyFilters(){const q=document.getElementById('q').value.toLowerCase();const sev=document.getElementById('sev').value;const cat=document.getElementById('cat').value;const group=document.getElementById('group').value;const status=document.getElementById('status').value;rows.forEach(tr=>{const text=tr.innerText.toLowerCase();tr.style.display=(!q||text.includes(q))&&(!sev||tr.dataset.severity===sev)&&(!cat||tr.dataset.cat===cat)&&(!group||tr.dataset.group===group)&&(!status||tr.dataset.status===status)?'':'none';});}
 ['q','sev','cat','group','status'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilters));
 let sortKey='errorCount',asc=false;

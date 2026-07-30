@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T18:26:13.517Z",
+  "generatedAt": "2026-07-30T19:04:52.645Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -8,53 +8,53 @@
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 237,
-    "verifiedFoods": 128,
-    "unverifiedFoods": 109,
-    "blockingErrors": 60,
-    "blockingErrorCount": 60,
-    "foodsWithBlockingErrors": 55,
-    "warningCount": 310,
-    "foodsWithWarnings": 152,
-    "auditCleanFoods": 85,
-    "dataHash": "b19ecd292ef347aaa227147fc9749e0a8a2fab04f6e01445b0b1dac99177b5bc",
-    "shortHash": "b19ecd292ef3",
-    "lastAuditedAt": "2026-07-30T18:26:13.497Z",
+    "totalFoods": 247,
+    "verifiedFoods": 164,
+    "unverifiedFoods": 83,
+    "blockingErrors": 51,
+    "blockingErrorCount": 51,
+    "foodsWithBlockingErrors": 46,
+    "warningCount": 254,
+    "foodsWithWarnings": 126,
+    "auditCleanFoods": 121,
+    "dataHash": "6929efe329316e670e73c8e1c1c2980089b681358f1dc0a01cc2e14b93fd74cc",
+    "shortHash": "6929efe32931",
+    "lastAuditedAt": "2026-07-30T19:04:52.623Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "verified": 128,
-      "unverified": 109
+      "verified": 164,
+      "unverified": 83
     },
-    "foodsWithWarningsOnly": 97,
+    "foodsWithWarningsOnly": 80,
     "rejectedFoods": 0,
-    "activeFoods": 237,
-    "approvalBlockingErrorCount": 60,
-    "activeBlockingErrorCount": 60,
+    "activeFoods": 247,
+    "approvalBlockingErrorCount": 51,
+    "activeBlockingErrorCount": 51,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "activeFoodsWithBlockingErrors": 55,
+    "activeFoodsWithBlockingErrors": 46,
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 237,
-    "activeFoods": 237,
+    "totalFoods": 247,
+    "activeFoods": 247,
     "rejectedFoods": 0,
-    "verifiedFoods": 128,
-    "unverifiedFoods": 109,
-    "blockingErrorCount": 60,
-    "activeBlockingErrorCount": 60,
+    "verifiedFoods": 164,
+    "unverifiedFoods": 83,
+    "blockingErrorCount": 51,
+    "activeBlockingErrorCount": 51,
     "rejectedBlockingErrorCount": 0,
     "structuralBlockingErrorCount": 0,
-    "foodsWithBlockingErrors": 55,
-    "activeFoodsWithBlockingErrors": 55,
+    "foodsWithBlockingErrors": 46,
+    "activeFoodsWithBlockingErrors": 46,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 310,
-    "foodsWithWarnings": 152,
-    "foodsWithWarningsOnly": 97,
-    "auditCleanFoods": 85,
-    "blockingErrors": 60,
-    "foodsWithErrors": 55,
-    "foodsOk": 85
+    "warningCount": 254,
+    "foodsWithWarnings": 126,
+    "foodsWithWarningsOnly": 80,
+    "auditCleanFoods": 121,
+    "blockingErrors": 51,
+    "foodsWithErrors": 46,
+    "foodsOk": 121
   },
   "groupStatistics": {
     "protein": {
@@ -76,51 +76,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 68,
-      "activeFoodCount": 68,
-      "verifiedCount": 5,
+      "totalFoodsInGroup": 78,
+      "activeFoodCount": 78,
+      "verifiedCount": 41,
       "rejectedCount": 0,
-      "pendingCount": 63,
-      "coveragePercent": 7.352941176470589,
+      "pendingCount": 37,
+      "coveragePercent": 52.56410256410257,
       "proteinG": {
-        "mean": 9.4,
-        "median": 10.1,
-        "min": 5.8,
-        "max": 11.7,
-        "stddev": 2.1931712199461306,
-        "count": 5
+        "mean": 9.158536585365857,
+        "median": 9.5,
+        "min": 2.3,
+        "max": 13.4,
+        "stddev": 2.3944702555843227,
+        "count": 41
       },
       "carbsG": {
-        "mean": 3.8200000000000003,
-        "median": 2.2,
+        "mean": 0.8999999999999998,
+        "median": 0,
         "min": 0,
         "max": 10.5,
-        "stddev": 4.061649911058312,
-        "count": 5
+        "stddev": 1.9175505208468437,
+        "count": 41
       },
       "fiberG": {
-        "mean": 1.44,
-        "median": 0.5,
+        "mean": 0.175609756097561,
+        "median": 0,
         "min": 0,
         "max": 4,
-        "stddev": 1.8146625030566979,
-        "count": 5
+        "stddev": 0.7462507915590036,
+        "count": 41
       },
       "fatG": {
-        "mean": 2.5199999999999996,
+        "mean": 1.7780487804878051,
         "median": 1.1,
-        "min": 0.8,
+        "min": 0.2,
         "max": 6.1,
-        "stddev": 2.3657979626333265,
-        "count": 5
+        "stddev": 1.623347189470255,
+        "count": 41
       },
       "kcal": {
-        "mean": 73.2,
+        "mean": 57.75609756097561,
         "median": 56,
-        "min": 50,
+        "min": 27,
         "max": 134,
-        "stddev": 34.77355316903925,
-        "count": 5
+        "stddev": 18.39399424785829,
+        "count": 41
       },
       "referenceProfile": {
         "proteinG": null,
@@ -136,83 +136,35 @@
           "id": "noix-graines-cup-soybeans-or-edamame",
           "nameFr": "Edamames bouillis et égouttés",
           "nameEn": "Edamame, boiled and drained",
-          "distanceScore": 1.1887389284745407,
+          "distanceScore": 1.9965927752230157,
           "breaches": [
             {
               "nutrient": "proteinG",
               "value": 11.7,
-              "target": 9.4,
+              "target": 9.158536585365857,
               "tolerance": 2,
-              "absDiff": 2.299999999999999
+              "absDiff": 2.5414634146341424
             },
             {
               "nutrient": "carbsG",
               "value": 10.5,
-              "target": 3.8200000000000003,
+              "target": 0.8999999999999998,
               "tolerance": 4,
-              "absDiff": 6.68
+              "absDiff": 9.6
             },
             {
               "nutrient": "fatG",
               "value": 6.1,
-              "target": 2.5199999999999996,
+              "target": 1.7780487804878051,
               "tolerance": 2,
-              "absDiff": 3.58
+              "absDiff": 4.3219512195121945
             },
             {
               "nutrient": "declaredKcal",
               "value": 134,
-              "target": 73.2,
+              "target": 57.75609756097561,
               "tolerance": 15,
-              "absDiff": 60.8
-            }
-          ],
-          "status": "verified"
-        },
-        {
-          "id": "viandes-volaille-chicken-breast",
-          "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
-          "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
-          "distanceScore": 0.5692140504149572,
-          "breaches": [
-            {
-              "nutrient": "declaredKcal",
-              "value": 50,
-              "target": 73.2,
-              "tolerance": 15,
-              "absDiff": 23.200000000000003
-            }
-          ],
-          "status": "verified"
-        },
-        {
-          "id": "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g",
-          "nameFr": "fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",
-          "nameEn": "fairlife Core Power Elite Vanilla, 42 g protein, 414 ml bottle",
-          "distanceScore": 0.4943960890483388,
-          "breaches": [
-            {
-              "nutrient": "declaredKcal",
-              "value": 56,
-              "target": 73.2,
-              "tolerance": 15,
-              "absDiff": 17.200000000000003
-            }
-          ],
-          "status": "verified"
-        },
-        {
-          "id": "autres-sources-proteinees-core-power-fairlife",
-          "nameFr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
-          "nameEn": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
-          "distanceScore": 0.4099516446038943,
-          "breaches": [
-            {
-              "nutrient": "declaredKcal",
-              "value": 56,
-              "target": 73.2,
-              "tolerance": 15,
-              "absDiff": 17.200000000000003
+              "absDiff": 76.2439024390244
             }
           ],
           "status": "verified"
@@ -221,14 +173,90 @@
           "id": "noix-graines-roasted-soy-nuts-unsalted",
           "nameFr": "Noix de soya rôties, non salées",
           "nameEn": "Roasted soy nuts, unsalted",
-          "distanceScore": 0.3959262156670599,
+          "distanceScore": 1.0028140297665078,
           "breaches": [
             {
               "nutrient": "proteinG",
               "value": 5.8,
-              "target": 9.4,
+              "target": 9.158536585365857,
               "tolerance": 2,
-              "absDiff": 3.6000000000000005
+              "absDiff": 3.358536585365857
+            },
+            {
+              "nutrient": "fatG",
+              "value": 3.8,
+              "target": 1.7780487804878051,
+              "tolerance": 2,
+              "absDiff": 2.0219512195121947
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "poissons-fruits-mer-mackerel",
+          "nameFr": "Maquereau bleu cuit au four ou grillé",
+          "nameEn": "Atlantic mackerel, baked or broiled",
+          "distanceScore": 0.5486509028392818,
+          "breaches": [
+            {
+              "nutrient": "fatG",
+              "value": 5.3,
+              "target": 1.7780487804878051,
+              "tolerance": 2,
+              "absDiff": 3.5219512195121947
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 79,
+              "target": 57.75609756097561,
+              "tolerance": 15,
+              "absDiff": 21.24390243902439
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "poissons-fruits-mer-caviar",
+          "nameFr": "Caviar noir ou rouge, granuleux",
+          "nameEn": "Black or red granular caviar",
+          "distanceScore": 0.5242833928525974,
+          "breaches": [
+            {
+              "nutrient": "fatG",
+              "value": 5.4,
+              "target": 1.7780487804878051,
+              "tolerance": 2,
+              "absDiff": 3.6219512195121952
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 79,
+              "target": 57.75609756097561,
+              "tolerance": 15,
+              "absDiff": 21.24390243902439
+            }
+          ],
+          "status": "verified"
+        },
+        {
+          "id": "poissons-fruits-mer-oysters",
+          "nameFr": "Huîtres de l’Est d’élevage, crues",
+          "nameEn": "Farmed eastern oysters, raw",
+          "distanceScore": 0.47920384279980033,
+          "breaches": [
+            {
+              "nutrient": "proteinG",
+              "value": 2.3,
+              "target": 9.158536585365857,
+              "tolerance": 2,
+              "absDiff": 6.858536585365857
+            },
+            {
+              "nutrient": "declaredKcal",
+              "value": 27,
+              "target": 57.75609756097561,
+              "tolerance": 15,
+              "absDiff": 30.75609756097561
             }
           ],
           "status": "verified"
@@ -968,15 +996,15 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 93,
+    "MISSING_PREP_STATE": 71,
     "SCOOP_WITHOUT_GRAMS": 5,
-    "KCAL_DIFF_HIGH": 56,
+    "KCAL_DIFF_HIGH": 47,
     "MISSING_GRAMS": 30,
     "AMBIGUOUS_GROUP": 5,
     "GUIDE_VS_CALCULATOR": 2,
-    "LEGACY_SOURCE_ONLY": 109,
+    "LEGACY_SOURCE_ONLY": 83,
     "SUSPECT_CASE": 3,
-    "KCAL_DIFF_MODERATE": 61,
+    "KCAL_DIFF_MODERATE": 53,
     "PORTION_LABEL_MISMATCH_FR": 4,
     "PORTION_LABEL_MISMATCH_EN": 4,
     "FAT_COMPONENTS_EXCEED_TOTAL": 2
@@ -3054,70 +3082,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-caviar",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Caviar",
-      "nameEn": "Caviar",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Caviar",
-      "portionLabelEn": "30 g Caviar",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Caviar"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Caviar"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 44
-      },
-      "declaredKcal": 44,
-      "calculatedKcal": 28,
-      "absDiff": 16,
-      "pctDiff": 57.14285714285714,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 44 vs Atwater 28.0 (Δ 16.0 / 57.1%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "autres-sources-proteinees-hydrolyzed-collagen",
       "displayCategory": "autres_sources_proteinees",
       "calculationGroup": "protein",
@@ -3167,198 +3131,6 @@
           "severity": "ERROR",
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 55 vs Atwater 36.0 (Δ 19.0 / 52.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-crab",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Crabe",
-      "nameEn": "Crab",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Crabe",
-      "portionLabelEn": "45 g Crab",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Crabe"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Crab"
-      },
-      "nutrients": {
-        "proteinG": 12,
-        "carbsG": 3,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 36
-      },
-      "declaredKcal": 36,
-      "calculatedKcal": 69,
-      "absDiff": 33,
-      "pctDiff": 47.82608695652174,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 36 vs Atwater 69.0 (Δ 33.0 / 47.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-shrimp",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Crevette",
-      "nameEn": "Shrimp",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Crevette",
-      "portionLabelEn": "45 g Shrimp",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Crevette"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Shrimp"
-      },
-      "nutrients": {
-        "proteinG": 9,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 4,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 53
-      },
-      "declaredKcal": 53,
-      "calculatedKcal": 72,
-      "absDiff": 19,
-      "pctDiff": 26.38888888888889,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 53 vs Atwater 72.0 (Δ 19.0 / 26.4%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-snail",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Escargot",
-      "nameEn": "Snail",
-      "status": "unverified",
-      "portionLabelFr": "45 g d'Escargot",
-      "portionLabelEn": "45 g Snail",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g d'Escargot"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Snail"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 52
-      },
-      "declaredKcal": 52,
-      "calculatedKcal": 28,
-      "absDiff": 24,
-      "pctDiff": 85.71428571428571,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 52 vs Atwater 28.0 (Δ 24.0 / 85.7%)",
           "resolutionStatus": "open"
         },
         {
@@ -3694,134 +3466,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-mackerel",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Maquereau",
-      "nameEn": "Mackerel",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Maquereau",
-      "portionLabelEn": "30 g Mackerel",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Maquereau"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Mackerel"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 2,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 67
-      },
-      "declaredKcal": 67,
-      "calculatedKcal": 45,
-      "absDiff": 22,
-      "pctDiff": 48.888888888888886,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 67 vs Atwater 45.0 (Δ 22.0 / 48.9%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-mussels",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Moules",
-      "nameEn": "Mussels",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Moules",
-      "portionLabelEn": "45 g Mussels",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Moules"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Mussels"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 5,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 71
-      },
-      "declaredKcal": 71,
-      "calculatedKcal": 89,
-      "absDiff": 18,
-      "pctDiff": 20.224719101123593,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 71 vs Atwater 89.0 (Δ 18.0 / 20.2%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-moose",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -4014,70 +3658,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-atlantic-salmon",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Saumon de l'Atlantique",
-      "nameEn": "Atlantic salmon",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Saumon de l'Atlantique",
-      "portionLabelEn": "30 g Atlantic salmon",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Saumon de l'Atlantique"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Atlantic salmon"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 45
-      },
-      "declaredKcal": 45,
-      "calculatedKcal": 28,
-      "absDiff": 17,
-      "pctDiff": 60.71428571428571,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 45 vs Atwater 28.0 (Δ 17.0 / 60.7%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "autres-sources-proteinees-tempeh",
       "displayCategory": "autres_sources_proteinees",
       "calculationGroup": "protein",
@@ -4191,70 +3771,6 @@
           "severity": "ERROR",
           "code": "KCAL_DIFF_HIGH",
           "message": "Différence calorique élevée: déclaré 63 vs Atwater 80.0 (Δ 17.0 / 21.3%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-turbot",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Turbot",
-      "nameEn": "Turbot",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Turbot",
-      "portionLabelEn": "45 g Turbot",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Turbot"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Turbot"
-      },
-      "nutrients": {
-        "proteinG": 9,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 44
-      },
-      "declaredKcal": 44,
-      "calculatedKcal": 36,
-      "absDiff": 8,
-      "pctDiff": 22.22222222222222,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 44 vs Atwater 36.0 (Δ 8.0 / 22.2%)",
           "resolutionStatus": "open"
         },
         {
@@ -4688,65 +4204,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-canned-sardines",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Sardines en conserve",
-      "nameEn": "Canned sardines",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Sardines en conserve",
-      "portionLabelEn": "30 g Canned sardines",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Sardines en conserve"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Canned sardines"
-      },
-      "nutrients": {
-        "proteinG": 5,
-        "carbsG": 5,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 61
-      },
-      "declaredKcal": 61,
-      "calculatedKcal": 49,
-      "absDiff": 12,
-      "pctDiff": 24.489795918367346,
-      "alerts": [
-        {
-          "severity": "ERROR",
-          "code": "KCAL_DIFF_HIGH",
-          "message": "Différence calorique élevée: déclaré 61 vs Atwater 49.0 (Δ 12.0 / 24.5%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 1,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "ERROR",
-      "canVerify": false
-    },
-    {
       "id": "feculents-slice-bread",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -4949,70 +4406,6 @@
       ],
       "errorCount": 0,
       "warningCount": 4,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-haddock",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Aiglefin",
-      "nameEn": "Haddock",
-      "status": "unverified",
-      "portionLabelFr": "45 g d'Aiglefin",
-      "portionLabelEn": "45 g Haddock",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g d'Aiglefin"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Haddock"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": 44,
-      "absDiff": 6,
-      "pctDiff": 13.636363636363635,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 50 vs Atwater 44.0 (13.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": false
@@ -5543,262 +4936,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-herring",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Hareng",
-      "nameEn": "Herring",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Hareng",
-      "portionLabelEn": "30 g Herring",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Hareng"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Herring"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 55
-      },
-      "declaredKcal": 55,
-      "calculatedKcal": 46,
-      "absDiff": 9,
-      "pctDiff": 19.565217391304348,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 55 vs Atwater 46.0 (19.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-lobster",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Homard",
-      "nameEn": "Lobster",
-      "status": "unverified",
-      "portionLabelFr": "45 g d'Homard",
-      "portionLabelEn": "45 g Lobster",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g d'Homard"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Lobster"
-      },
-      "nutrients": {
-        "proteinG": 9,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 53
-      },
-      "declaredKcal": 53,
-      "calculatedKcal": 45,
-      "absDiff": 8,
-      "pctDiff": 17.77777777777778,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 53 vs Atwater 45.0 (17.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-oysters",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Huîtres",
-      "nameEn": "Oysters",
-      "status": "unverified",
-      "portionLabelFr": "45 g d'Huîtres",
-      "portionLabelEn": "45 g Oysters",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g d'Huîtres"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Oysters"
-      },
-      "nutrients": {
-        "proteinG": 9,
-        "carbsG": 3,
-        "fiberG": null,
-        "fatG": 2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 77
-      },
-      "declaredKcal": 77,
-      "calculatedKcal": 66,
-      "absDiff": 11,
-      "pctDiff": 16.666666666666664,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 77 vs Atwater 66.0 (16.7%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-cod",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Morue",
-      "nameEn": "Cod",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Morue",
-      "portionLabelEn": "45 g Cod",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Morue"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Cod"
-      },
-      "nutrients": {
-        "proteinG": 10,
-        "carbsG": 2,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 66
-      },
-      "declaredKcal": 66,
-      "calculatedKcal": 57,
-      "absDiff": 9,
-      "pctDiff": 15.789473684210526,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 66 vs Atwater 57.0 (15.8%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "feculents-slice-ezekiel-sprouted-bread",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -6068,134 +5205,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-sole",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Sole",
-      "nameEn": "Sole",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Sole",
-      "portionLabelEn": "45 g Sole",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Sole"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Sole"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 61
-      },
-      "declaredKcal": 61,
-      "calculatedKcal": 71,
-      "absDiff": 10,
-      "pctDiff": 14.084507042253522,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 61 vs Atwater 71.0 (14.1%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-tuna",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Thon",
-      "nameEn": "Tuna",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Thon",
-      "portionLabelEn": "45 g Tuna",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Thon"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Tuna"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": 44,
-      "absDiff": 6,
-      "pctDiff": 13.636363636363635,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 50 vs Atwater 44.0 (13.6%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-ground-veal",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -6319,64 +5328,6 @@
       ],
       "errorCount": 0,
       "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-eel",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Anguille",
-      "nameEn": "Eel",
-      "status": "unverified",
-      "portionLabelFr": "30 g d'Anguille",
-      "portionLabelEn": "30 g Eel",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g d'Anguille"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Eel"
-      },
-      "nutrients": {
-        "proteinG": 7,
-        "carbsG": 2,
-        "fiberG": null,
-        "fatG": 5,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 76
-      },
-      "declaredKcal": 76,
-      "calculatedKcal": 81,
-      "absDiff": 5,
-      "pctDiff": 6.172839506172839,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": false
@@ -6667,64 +5618,6 @@
       "calculatedKcal": 81,
       "absDiff": 4,
       "pctDiff": 4.938271604938271,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-pike",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Brochet",
-      "nameEn": "Pike",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Brochet",
-      "portionLabelEn": "45 g Pike",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Brochet"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Pike"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 47
-      },
-      "declaredKcal": 47,
-      "calculatedKcal": 44,
-      "absDiff": 3,
-      "pctDiff": 6.8181818181818175,
       "alerts": [
         {
           "severity": "WARNING",
@@ -7035,64 +5928,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-halibut",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Flétan",
-      "nameEn": "Halibut",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Flétan",
-      "portionLabelEn": "45 g Halibut",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Flétan"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Halibut"
-      },
-      "nutrients": {
-        "proteinG": 10,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 52
-      },
-      "declaredKcal": 52,
-      "calculatedKcal": 49,
-      "absDiff": 3,
-      "pctDiff": 6.122448979591836,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "feculents-rolled-oats-uncooked",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -7378,123 +6213,6 @@
       "calculatedKcal": 66,
       "absDiff": 6,
       "pctDiff": 9.090909090909092,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-canned-clams",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Palourdes en conserve",
-      "nameEn": "Canned clams",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Palourdes en conserve",
-      "portionLabelEn": "45 g Canned clams",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Palourdes en conserve"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Canned clams"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 51
-      },
-      "declaredKcal": 51,
-      "calculatedKcal": 44,
-      "absDiff": 7,
-      "pctDiff": 15.909090909090908,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 51 vs Atwater 44.0 (15.9%)",
-          "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-scallop",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Pétoncle",
-      "nameEn": "Scallop",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Pétoncle",
-      "portionLabelEn": "45 g Scallop",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Pétoncle"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Scallop"
-      },
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 1,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 41
-      },
-      "declaredKcal": 41,
-      "calculatedKcal": 45,
-      "absDiff": 4,
-      "pctDiff": 8.88888888888889,
       "alerts": [
         {
           "severity": "WARNING",
@@ -7864,180 +6582,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-surimi",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Surimi",
-      "nameEn": "Surimi",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Surimi",
-      "portionLabelEn": "30 g Surimi",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Surimi"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Surimi"
-      },
-      "nutrients": {
-        "proteinG": 8,
-        "carbsG": 1,
-        "fiberG": null,
-        "fatG": 2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 57
-      },
-      "declaredKcal": 57,
-      "calculatedKcal": 54,
-      "absDiff": 3,
-      "pctDiff": 5.555555555555555,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-tilapia",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Tilapia",
-      "nameEn": "Tilapia",
-      "status": "unverified",
-      "portionLabelFr": "50 g de Tilapia",
-      "portionLabelEn": "50 g Tilapia",
-      "amount": 50,
-      "unit": "g",
-      "grams": 50,
-      "parsedFr": {
-        "amount": 50,
-        "unit": "g",
-        "grams": 50,
-        "label": "50 g de Tilapia"
-      },
-      "parsedEn": {
-        "amount": 50,
-        "unit": "g",
-        "grams": 50,
-        "label": "50 g Tilapia"
-      },
-      "nutrients": {
-        "proteinG": 10,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 48
-      },
-      "declaredKcal": 48,
-      "calculatedKcal": 49,
-      "absDiff": 1,
-      "pctDiff": 2.0408163265306123,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "poissons-fruits-mer-rainbow-trout",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Truite arc-en-ciel",
-      "nameEn": "Rainbow trout",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Truite arc-en-ciel",
-      "portionLabelEn": "45 g Rainbow trout",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Truite arc-en-ciel"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Rainbow trout"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 47
-      },
-      "declaredKcal": 47,
-      "calculatedKcal": 44,
-      "absDiff": 3,
-      "pctDiff": 6.8181818181818175,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-deli-meats",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -8260,59 +6804,6 @@
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
       "canVerify": true
-    },
-    {
-      "id": "poissons-fruits-mer-canned-anchovies-in-water",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Anchois au naturel",
-      "nameEn": "Canned anchovies in water",
-      "status": "unverified",
-      "portionLabelFr": "30 g d'Anchois au naturel (en conserve)",
-      "portionLabelEn": "30 g Canned anchovies in water",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g d'Anchois au naturel (en conserve)"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Canned anchovies in water"
-      },
-      "nutrients": {
-        "proteinG": 9,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 55
-      },
-      "declaredKcal": 55,
-      "calculatedKcal": 54,
-      "absDiff": 1,
-      "pctDiff": 1.8518518518518516,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
     },
     {
       "id": "legumes-artichoke",
@@ -10308,59 +8799,6 @@
       "canVerify": false
     },
     {
-      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
-      "displayCategory": "poissons_fruits_mer",
-      "calculationGroup": "protein",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Thon en conserve au naturel, égoutté",
-      "nameEn": "Canned tuna in water, drained",
-      "status": "unverified",
-      "portionLabelFr": "45 g de Thon en conserve au naturel, égoutté",
-      "portionLabelEn": "45 g Canned tuna in water, drained",
-      "amount": 45,
-      "unit": "g",
-      "grams": 45,
-      "parsedFr": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g de Thon en conserve au naturel, égoutté"
-      },
-      "parsedEn": {
-        "amount": 45,
-        "unit": "g",
-        "grams": 45,
-        "label": "45 g Canned tuna in water, drained"
-      },
-      "nutrients": {
-        "proteinG": 11,
-        "carbsG": 0,
-        "fiberG": null,
-        "fatG": 1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 50
-      },
-      "declaredKcal": 50,
-      "calculatedKcal": 53,
-      "absDiff": 3,
-      "pctDiff": 5.660377358490567,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 1,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "legumes-tomato-6-6-cm-in-diameter",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -10412,6 +8850,53 @@
       "warningCount": 1,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-haddock",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Aiglefin cuit au four ou grillé",
+      "nameEn": "Haddock, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g d’aiglefin cuit",
+      "portionLabelEn": "45 g cooked haddock",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g d’aiglefin cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked haddock"
+      },
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 41
+      },
+      "declaredKcal": 41,
+      "calculatedKcal": 37.8,
+      "absDiff": 3.200000000000003,
+      "pctDiff": 8.465608465608474,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
       "canVerify": true
     },
     {
@@ -10501,6 +8986,100 @@
       "calculatedKcal": 60.9,
       "absDiff": 5.899999999999999,
       "pctDiff": 9.688013136288996,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-anchovies-in-water",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Anchois européens en conserve dans l’huile d’olive, égouttés",
+      "nameEn": "European anchovies canned in olive oil, drained",
+      "status": "verified",
+      "portionLabelFr": "30 g d’anchois en conserve égouttés",
+      "portionLabelEn": "30 g canned drained anchovies",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g d’anchois en conserve égouttés"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g canned drained anchovies"
+      },
+      "nutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 63
+      },
+      "declaredKcal": 63,
+      "calculatedKcal": 60.89999999999999,
+      "absDiff": 2.1000000000000085,
+      "pctDiff": 3.44827586206898,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-eel",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Anguille cuite au four ou grillée",
+      "nameEn": "Eel, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g d’anguille cuite",
+      "portionLabelEn": "30 g cooked eel",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g d’anguille cuite"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked eel"
+      },
+      "nutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.5,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 2.8,
+        "declaredKcal": 71
+      },
+      "declaredKcal": 71,
+      "calculatedKcal": 68.9,
+      "absDiff": 2.0999999999999943,
+      "pctDiff": 3.047895500725681,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -10743,6 +9322,53 @@
       "calculatedKcal": 74.10000000000001,
       "absDiff": 4.1000000000000085,
       "pctDiff": 5.533063427800281,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-sea-bass",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fish-moderate-fat",
+      "classificationStatus": "approved",
+      "nameFr": "Bar de mer cuit au four ou grillé",
+      "nameEn": "Sea bass, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de bar de mer cuit",
+      "portionLabelEn": "45 g cooked sea bass",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de bar de mer cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked sea bass"
+      },
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 56
+      },
+      "declaredKcal": 56,
+      "calculatedKcal": 53.199999999999996,
+      "absDiff": 2.8000000000000043,
+      "pctDiff": 5.2631578947368505,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -11174,6 +9800,53 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-caviar",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-seafood-specialty",
+      "classificationStatus": "approved",
+      "nameFr": "Caviar noir ou rouge, granuleux",
+      "nameEn": "Black or red granular caviar",
+      "status": "verified",
+      "portionLabelFr": "30 g de caviar",
+      "portionLabelEn": "30 g caviar",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de caviar"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g caviar"
+      },
+      "nutrients": {
+        "proteinG": 7.4,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 5.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 79
+      },
+      "declaredKcal": 79,
+      "calculatedKcal": 83,
+      "absDiff": 4,
+      "pctDiff": 4.819277108433735,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "fruits-cherries-with-pits",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
@@ -11564,6 +10237,100 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-crab",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Crabe des neiges bouilli ou cuit à la vapeur",
+      "nameEn": "Atlantic snow crab, boiled or steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de chair de crabe des neiges cuite",
+      "portionLabelEn": "45 g cooked snow crab meat",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de chair de crabe des neiges cuite"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked snow crab meat"
+      },
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "declaredKcal": 52,
+      "calculatedKcal": 49.099999999999994,
+      "absDiff": 2.9000000000000057,
+      "pctDiff": 5.906313645621194,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-shrimp",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Crevettes bouillies ou cuites à la vapeur",
+      "nameEn": "Shrimp, boiled or steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de crevettes cuites",
+      "portionLabelEn": "45 g cooked shrimp",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de crevettes cuites"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked shrimp"
+      },
+      "nutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0.7,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 54
+      },
+      "declaredKcal": 54,
+      "calculatedKcal": 51.2,
+      "absDiff": 2.799999999999997,
+      "pctDiff": 5.468749999999995,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "legumes-shallot",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -11708,6 +10475,147 @@
       "errorCount": 0,
       "warningCount": 0,
       "resolvedCount": 1,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-snail",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Escargot cru, chair comestible",
+      "nameEn": "Snail, raw edible meat",
+      "status": "verified",
+      "portionLabelFr": "45 g de chair d’escargot crue",
+      "portionLabelEn": "45 g raw snail meat",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de chair d’escargot crue"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g raw snail meat"
+      },
+      "nutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 41
+      },
+      "declaredKcal": 41,
+      "calculatedKcal": 37.8,
+      "absDiff": 3.200000000000003,
+      "pctDiff": 8.465608465608474,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-swordfish",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fish-moderate-fat",
+      "classificationStatus": "approved",
+      "nameFr": "Espadon cuit au four ou grillé",
+      "nameEn": "Swordfish, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g d’espadon cuit",
+      "portionLabelEn": "45 g cooked swordfish",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g d’espadon cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked swordfish"
+      },
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 77
+      },
+      "declaredKcal": 77,
+      "calculatedKcal": 74.8,
+      "absDiff": 2.200000000000003,
+      "pctDiff": 2.941176470588239,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-halibut",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Flétan de l’Atlantique ou du Pacifique cuit au four ou grillé",
+      "nameEn": "Atlantic or Pacific halibut, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de flétan cuit",
+      "portionLabelEn": "45 g cooked halibut",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de flétan cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked halibut"
+      },
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 46.699999999999996,
+      "absDiff": 3.3000000000000043,
+      "pctDiff": 7.066381156316927,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
       "maxSeverity": "OK",
       "canVerify": true
     },
@@ -11892,6 +10800,53 @@
       "calculatedKcal": 56.8,
       "absDiff": 0.20000000000000284,
       "pctDiff": 0.35211267605634305,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-alaska-pollock",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Goberge d’Alaska cuite au four ou grillée",
+      "nameEn": "Alaska pollock, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de goberge d’Alaska cuite",
+      "portionLabelEn": "45 g cooked Alaska pollock",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de goberge d’Alaska cuite"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked Alaska pollock"
+      },
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 46.9,
+      "absDiff": 3.1000000000000014,
+      "pctDiff": 6.6098081023454185,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -12229,6 +11184,53 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-pike",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Grand brochet cuit",
+      "nameEn": "Northern pike, cooked",
+      "status": "verified",
+      "portionLabelFr": "45 g de brochet cuit",
+      "portionLabelEn": "45 g cooked northern pike",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de brochet cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked northern pike"
+      },
+      "nutrients": {
+        "proteinG": 9.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 43
+      },
+      "declaredKcal": 43,
+      "calculatedKcal": 40.7,
+      "absDiff": 2.299999999999997,
+      "pctDiff": 5.6511056511056434,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "noix-graines-homemade-protein-granola",
       "displayCategory": "noix_graines",
       "calculationGroup": "starch",
@@ -12268,6 +11270,100 @@
       "calculatedKcal": 147.3,
       "absDiff": 0.30000000000001137,
       "pctDiff": 0.20366598778004844,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-herring",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Hareng de l’Atlantique cuit au four ou grillé",
+      "nameEn": "Atlantic herring, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g de hareng cuit",
+      "portionLabelEn": "30 g cooked Atlantic herring",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de hareng cuit"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked Atlantic herring"
+      },
+      "nutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 61
+      },
+      "declaredKcal": 61,
+      "calculatedKcal": 59.1,
+      "absDiff": 1.8999999999999986,
+      "pctDiff": 3.2148900169204713,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-lobster",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-shellfish-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Homard d’Amérique bouilli ou cuit à la vapeur",
+      "nameEn": "American lobster, boiled or steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de chair de homard cuite",
+      "portionLabelEn": "45 g cooked lobster meat",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de chair de homard cuite"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked lobster meat"
+      },
+      "nutrients": {
+        "proteinG": 8.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "declaredKcal": 40,
+      "calculatedKcal": 38,
+      "absDiff": 2,
+      "pctDiff": 5.263157894736842,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -12652,6 +11748,53 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-oysters",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk",
+      "classificationStatus": "approved",
+      "nameFr": "Huîtres de l’Est d’élevage, crues",
+      "nameEn": "Farmed eastern oysters, raw",
+      "status": "verified",
+      "portionLabelFr": "45 g d’huîtres crues",
+      "portionLabelEn": "45 g raw farmed eastern oysters",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g d’huîtres crues"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g raw farmed eastern oysters"
+      },
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.5,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 27
+      },
+      "declaredKcal": 27,
+      "calculatedKcal": 25.5,
+      "absDiff": 1.5,
+      "pctDiff": 5.88235294117647,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "matieres-grasses-egg-yolks",
       "displayCategory": "matieres_grasses",
       "calculationGroup": "fat",
@@ -12934,6 +12077,100 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-mahi-mahi",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Mahi-mahi cuit au four ou grillé",
+      "nameEn": "Mahi-mahi, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de mahi-mahi cuit",
+      "portionLabelEn": "45 g cooked mahi-mahi",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de mahi-mahi cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked mahi-mahi"
+      },
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 49
+      },
+      "declaredKcal": 49,
+      "calculatedKcal": 46.4,
+      "absDiff": 2.6000000000000014,
+      "pctDiff": 5.603448275862073,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-mackerel",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Maquereau bleu cuit au four ou grillé",
+      "nameEn": "Atlantic mackerel, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g de maquereau cuit",
+      "portionLabelEn": "30 g cooked Atlantic mackerel",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de maquereau cuit"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked Atlantic mackerel"
+      },
+      "nutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 79
+      },
+      "declaredKcal": 79,
+      "calculatedKcal": 76.5,
+      "absDiff": 2.5,
+      "pctDiff": 3.2679738562091507,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "matieres-grasses-non-hydrogenated-canola-margarine",
       "displayCategory": "matieres_grasses",
       "calculationGroup": "fat",
@@ -13067,6 +12304,100 @@
       "calculatedKcal": 47.2,
       "absDiff": 0.7999999999999972,
       "pctDiff": 1.6949152542372818,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-cod",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Morue de l’Atlantique cuite au four ou grillée",
+      "nameEn": "Atlantic cod, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de morue cuite",
+      "portionLabelEn": "45 g cooked Atlantic cod",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de morue cuite"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked Atlantic cod"
+      },
+      "nutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 47
+      },
+      "declaredKcal": 47,
+      "calculatedKcal": 44.800000000000004,
+      "absDiff": 2.1999999999999957,
+      "pctDiff": 4.910714285714276,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-mussels",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk",
+      "classificationStatus": "approved",
+      "nameFr": "Moules bleues bouillies ou cuites à la vapeur",
+      "nameEn": "Blue mussels, boiled or steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de moules cuites",
+      "portionLabelEn": "45 g cooked blue mussels",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de moules cuites"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked blue mussels"
+      },
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 3.3,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 77
+      },
+      "declaredKcal": 77,
+      "calculatedKcal": 74,
+      "absDiff": 3,
+      "pctDiff": 4.054054054054054,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -13827,6 +13158,100 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-canned-clams",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk",
+      "classificationStatus": "approved",
+      "nameFr": "Palourdes en conserve, solides égouttés",
+      "nameEn": "Canned clams, drained solids",
+      "status": "verified",
+      "portionLabelFr": "45 g de palourdes en conserve égouttées",
+      "portionLabelEn": "45 g canned drained clams",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de palourdes en conserve égouttées"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g canned drained clams"
+      },
+      "nutrients": {
+        "proteinG": 10.9,
+        "carbsG": 2.7,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 64
+      },
+      "declaredKcal": 64,
+      "calculatedKcal": 60.7,
+      "absDiff": 3.299999999999997,
+      "pctDiff": 5.4365733113673755,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-scallop",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Pétoncles cuits à la vapeur",
+      "nameEn": "Bay or sea scallops, steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de pétoncles cuits",
+      "portionLabelEn": "45 g steamed scallops",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de pétoncles cuits"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g steamed scallops"
+      },
+      "nutrients": {
+        "proteinG": 9.2,
+        "carbsG": 2.4,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 50,
+      "absDiff": 0,
+      "pctDiff": 0,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "noix-graines-dehydrated-pine-nuts",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -14015,6 +13440,53 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-sole",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Poisson plat (sole, plie ou flet) cuit au four ou grillé",
+      "nameEn": "Flatfish (sole, flounder or plaice), baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de poisson plat cuit",
+      "portionLabelEn": "45 g cooked flatfish",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de poisson plat cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked flatfish"
+      },
+      "nutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 39
+      },
+      "declaredKcal": 39,
+      "calculatedKcal": 37.5,
+      "absDiff": 1.5,
+      "pctDiff": 4,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "viandes-volaille-chicken-breast",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -14054,6 +13526,53 @@
       "calculatedKcal": 47.1,
       "absDiff": 2.8999999999999986,
       "pctDiff": 6.157112526539275,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-octopus",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-mollusk-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Poulpe bouilli ou cuit à la vapeur",
+      "nameEn": "Common octopus, boiled or steamed",
+      "status": "verified",
+      "portionLabelFr": "45 g de poulpe cuit",
+      "portionLabelEn": "45 g cooked octopus",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de poulpe cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked octopus"
+      },
+      "nutrients": {
+        "proteinG": 13.4,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 74
+      },
+      "declaredKcal": 74,
+      "calculatedKcal": 69.7,
+      "absDiff": 4.299999999999997,
+      "pctDiff": 6.169296987087513,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
@@ -14344,6 +13863,288 @@
       "canVerify": true
     },
     {
+      "id": "poissons-fruits-mer-canned-sardines",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Sardines de l’Atlantique en conserve dans l’huile, égouttées avec arêtes",
+      "nameEn": "Atlantic sardines canned in oil, drained with bone",
+      "status": "verified",
+      "portionLabelFr": "30 g de sardines en conserve égouttées",
+      "portionLabelEn": "30 g canned drained sardines",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de sardines en conserve égouttées"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g canned drained sardines"
+      },
+      "nutrients": {
+        "proteinG": 7.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.4,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 60.2,
+      "absDiff": 1.7999999999999972,
+      "pctDiff": 2.9900332225913573,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-atlantic-salmon",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Saumon de l’Atlantique d’élevage, cuit au four ou grillé",
+      "nameEn": "Farmed Atlantic salmon, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g de saumon de l’Atlantique cuit",
+      "portionLabelEn": "30 g cooked farmed Atlantic salmon",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de saumon de l’Atlantique cuit"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked farmed Atlantic salmon"
+      },
+      "nutrients": {
+        "proteinG": 6.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.4,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 59.7,
+      "absDiff": 2.299999999999997,
+      "pctDiff": 3.8525963149078675,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-smoked-chinook-salmon",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-smoked-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Saumon quinnat fumé",
+      "nameEn": "Smoked Chinook salmon",
+      "status": "verified",
+      "portionLabelFr": "30 g de saumon quinnat fumé",
+      "portionLabelEn": "30 g smoked Chinook salmon",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de saumon quinnat fumé"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g smoked Chinook salmon"
+      },
+      "nutrients": {
+        "proteinG": 5.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 35
+      },
+      "declaredKcal": 35,
+      "calculatedKcal": 33.7,
+      "absDiff": 1.2999999999999972,
+      "pctDiff": 3.857566765578626,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-pink-salmon",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Saumon rose en conserve, égoutté, sans peau ni arêtes",
+      "nameEn": "Canned pink salmon, drained, skinless and boneless",
+      "status": "verified",
+      "portionLabelFr": "45 g de saumon rose en conserve égoutté",
+      "portionLabelEn": "45 g canned drained pink salmon",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de saumon rose en conserve égoutté"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g canned drained pink salmon"
+      },
+      "nutrients": {
+        "proteinG": 11.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 61
+      },
+      "declaredKcal": 61,
+      "calculatedKcal": 61.5,
+      "absDiff": 0.5,
+      "pctDiff": 0.8130081300813009,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-sockeye-salmon",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Saumon sockeye cuit au four ou grillé",
+      "nameEn": "Sockeye salmon, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g de saumon sockeye cuit",
+      "portionLabelEn": "30 g cooked sockeye salmon",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de saumon sockeye cuit"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked sockeye salmon"
+      },
+      "nutrients": {
+        "proteinG": 7.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 47
+      },
+      "declaredKcal": 47,
+      "calculatedKcal": 46.9,
+      "absDiff": 0.10000000000000142,
+      "pctDiff": 0.21321961620469387,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-surimi",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-processed-seafood",
+      "classificationStatus": "approved",
+      "nameFr": "Surimi de poisson",
+      "nameEn": "Fish surimi",
+      "status": "verified",
+      "portionLabelFr": "30 g de surimi",
+      "portionLabelEn": "30 g fish surimi",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de surimi"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g fish surimi"
+      },
+      "nutrients": {
+        "proteinG": 4.6,
+        "carbsG": 2.1,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "declaredKcal": 30,
+      "calculatedKcal": 29.499999999999996,
+      "absDiff": 0.5000000000000036,
+      "pctDiff": 1.6949152542373003,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "noix-graines-tahini",
       "displayCategory": "noix_graines",
       "calculationGroup": "fat",
@@ -14383,6 +14184,335 @@
       "calculatedKcal": 63.8,
       "absDiff": 3.799999999999997,
       "pctDiff": 5.956112852664573,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-tuna",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Thon à nageoires jaunes cuit au four ou grillé",
+      "nameEn": "Yellowfin tuna, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de thon jaune cuit",
+      "portionLabelEn": "45 g cooked yellowfin tuna",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de thon jaune cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked yellowfin tuna"
+      },
+      "nutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 55.1,
+      "absDiff": 3.8999999999999986,
+      "pctDiff": 7.078039927404715,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-white-tuna-water",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Thon blanc en conserve dans l’eau, égoutté, sans sel ajouté",
+      "nameEn": "White tuna canned in water, drained, unsalted",
+      "status": "verified",
+      "portionLabelFr": "45 g de thon blanc en conserve égoutté",
+      "portionLabelEn": "45 g canned drained white tuna",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de thon blanc en conserve égoutté"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g canned drained white tuna"
+      },
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "declaredKcal": 58,
+      "calculatedKcal": 54.1,
+      "absDiff": 3.8999999999999986,
+      "pctDiff": 7.208872458410348,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish-lean",
+      "classificationStatus": "approved",
+      "nameFr": "Thon pâle en conserve dans l’eau, égoutté, sans sel ajouté",
+      "nameEn": "Light tuna canned in water, drained, unsalted",
+      "status": "verified",
+      "portionLabelFr": "45 g de thon pâle en conserve égoutté",
+      "portionLabelEn": "45 g canned drained light tuna",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de thon pâle en conserve égoutté"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g canned drained light tuna"
+      },
+      "nutrients": {
+        "proteinG": 11.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "declaredKcal": 52,
+      "calculatedKcal": 49.6,
+      "absDiff": 2.3999999999999986,
+      "pctDiff": 4.838709677419352,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-light-tuna-oil",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté",
+      "nameEn": "Light tuna canned in oil, drained, unsalted",
+      "status": "verified",
+      "portionLabelFr": "45 g de thon pâle dans l’huile, égoutté",
+      "portionLabelEn": "45 g canned light tuna in oil, drained",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de thon pâle dans l’huile, égoutté"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g canned light tuna in oil, drained"
+      },
+      "nutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 89
+      },
+      "declaredKcal": 89,
+      "calculatedKcal": 85.7,
+      "absDiff": 3.299999999999997,
+      "pctDiff": 3.850641773628935,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-tilapia",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Tilapia cuit au four ou grillé",
+      "nameEn": "Tilapia, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de tilapia cuit",
+      "portionLabelEn": "45 g cooked tilapia",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de tilapia cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked tilapia"
+      },
+      "nutrients": {
+        "proteinG": 11.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "declaredKcal": 58,
+      "calculatedKcal": 58,
+      "absDiff": 0,
+      "pctDiff": 0,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-rainbow-trout",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-fatty-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Truite arc-en-ciel d’élevage cuite au four ou grillée",
+      "nameEn": "Farmed rainbow trout, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "30 g de truite arc-en-ciel cuite",
+      "portionLabelEn": "30 g cooked farmed rainbow trout",
+      "amount": 30,
+      "unit": "g",
+      "grams": 30,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g de truite arc-en-ciel cuite"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "label": "30 g cooked farmed rainbow trout"
+      },
+      "nutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 50
+      },
+      "declaredKcal": 50,
+      "calculatedKcal": 48.2,
+      "absDiff": 1.7999999999999972,
+      "pctDiff": 3.73443983402489,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "poissons-fruits-mer-turbot",
+      "displayCategory": "poissons_fruits_mer",
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lean-fish",
+      "classificationStatus": "approved",
+      "nameFr": "Turbot européen cuit au four ou grillé",
+      "nameEn": "European turbot, baked or broiled",
+      "status": "verified",
+      "portionLabelFr": "45 g de turbot cuit",
+      "portionLabelEn": "45 g cooked European turbot",
+      "amount": 45,
+      "unit": "g",
+      "grams": 45,
+      "parsedFr": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g de turbot cuit"
+      },
+      "parsedEn": {
+        "amount": 45,
+        "unit": "g",
+        "grams": 45,
+        "label": "45 g cooked European turbot"
+      },
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "declaredKcal": 55,
+      "calculatedKcal": 52.5,
+      "absDiff": 2.5,
+      "pctDiff": 4.761904761904762,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,

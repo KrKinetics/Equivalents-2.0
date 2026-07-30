@@ -1,0 +1,293 @@
+{
+  "batchId": "fish-seafood-complete-individual-validation-36-foods",
+  "transactions": [
+    {
+      "id": "poissons-fruits-mer-haddock",
+      "operation": "update",
+      "transactionId": "f7bfa0a8-c9d0-47af-ba16-180c9dbb619c",
+      "expectedRecordId": "3199",
+      "selectedRecordId": "3199",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-eel",
+      "operation": "update",
+      "transactionId": "390c83b3-d38f-4f21-b14e-45a60b365f78",
+      "expectedRecordId": "3005",
+      "selectedRecordId": "3005",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-pike",
+      "operation": "update",
+      "transactionId": "7ceb3b2d-6556-41c1-ba1a-886627a92544",
+      "expectedRecordId": "3037",
+      "selectedRecordId": "3037",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-caviar",
+      "operation": "update",
+      "transactionId": "6aff3fc9-11fd-44ad-a4b3-76d80200a2a7",
+      "expectedRecordId": "2995",
+      "selectedRecordId": "2995",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-crab",
+      "operation": "update",
+      "transactionId": "9c87d781-00f4-4180-a41e-15c5365802ac",
+      "expectedRecordId": "3173",
+      "selectedRecordId": "3173",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-surimi",
+      "operation": "update",
+      "transactionId": "4f06fc59-3354-40e8-a817-97cf54b0f4c2",
+      "expectedRecordId": "3074",
+      "selectedRecordId": "3074",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-shrimp",
+      "operation": "update",
+      "transactionId": "8fc0b956-17ba-4141-ad11-62403524d4a3",
+      "expectedRecordId": "3212",
+      "selectedRecordId": "3212",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-snail",
+      "operation": "update",
+      "transactionId": "913a49fd-0951-4a97-91e6-87d234a31dd4",
+      "expectedRecordId": "5635",
+      "selectedRecordId": "5635",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-herring",
+      "operation": "update",
+      "transactionId": "0cb029fa-e874-4d5b-a318-9f4fc9afc57c",
+      "expectedRecordId": "3015",
+      "selectedRecordId": "3015",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-lobster",
+      "operation": "update",
+      "transactionId": "06989a70-ceea-4720-9e11-7bc74f317174",
+      "expectedRecordId": "3210",
+      "selectedRecordId": "3210",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-oysters",
+      "operation": "update",
+      "transactionId": "60717407-38c0-42b8-b1cf-ff1c46a206f1",
+      "expectedRecordId": "3191",
+      "selectedRecordId": "3191",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-mackerel",
+      "operation": "update",
+      "transactionId": "5882a157-2140-4f6d-b55a-1feda10a6592",
+      "expectedRecordId": "3022",
+      "selectedRecordId": "3022",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-cod",
+      "operation": "update",
+      "transactionId": "7efe4eb3-002d-41be-b987-1425779dbece",
+      "expectedRecordId": "3195",
+      "selectedRecordId": "3195",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-mussels",
+      "operation": "update",
+      "transactionId": "ff200274-11f2-4c27-aa1d-7bf72743a546",
+      "expectedRecordId": "3116",
+      "selectedRecordId": "3116",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-clams",
+      "operation": "update",
+      "transactionId": "ab06c879-e7ae-4f67-ae4d-577503fc0001",
+      "expectedRecordId": "3112",
+      "selectedRecordId": "3112",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-scallop",
+      "operation": "update",
+      "transactionId": "14b4e98d-cdcb-4292-979f-926ccd2e3841",
+      "expectedRecordId": "5634",
+      "selectedRecordId": "5634",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-sole",
+      "operation": "update",
+      "transactionId": "2fc47290-d153-4f0d-b3b4-f02a6f5facb9",
+      "expectedRecordId": "3007",
+      "selectedRecordId": "3007",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-sardines",
+      "operation": "update",
+      "transactionId": "578afe2f-2a43-4ce5-abc4-f69730f05991",
+      "expectedRecordId": "3203",
+      "selectedRecordId": "3203",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-atlantic-salmon",
+      "operation": "update",
+      "transactionId": "e65509fc-4dd1-463c-93ac-8786f63b8caa",
+      "expectedRecordId": "3183",
+      "selectedRecordId": "3183",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-tuna",
+      "operation": "update",
+      "transactionId": "26e70f49-cd03-4f0e-a907-acf903e9545a",
+      "expectedRecordId": "3167",
+      "selectedRecordId": "3167",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "operation": "update",
+      "transactionId": "1c0d8e38-9a86-4ce2-9615-44a8c53c5539",
+      "expectedRecordId": "3131",
+      "selectedRecordId": "3131",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-tilapia",
+      "operation": "update",
+      "transactionId": "f2edf21e-b673-4fe2-9c8e-be8e80300d11",
+      "expectedRecordId": "5967",
+      "selectedRecordId": "5967",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-rainbow-trout",
+      "operation": "update",
+      "transactionId": "ce9c2658-1634-44f5-81fa-bc52ab61aecf",
+      "expectedRecordId": "3187",
+      "selectedRecordId": "3187",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-turbot",
+      "operation": "update",
+      "transactionId": "ea54397a-eab2-477a-a9eb-16d70abcc397",
+      "expectedRecordId": "3168",
+      "selectedRecordId": "3168",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-halibut",
+      "operation": "update",
+      "transactionId": "080e63da-7536-420b-94b5-30ba99d89cf5",
+      "expectedRecordId": "3012",
+      "selectedRecordId": "3012",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-anchovies-in-water",
+      "operation": "update",
+      "transactionId": "53ca6357-534f-444c-a8e9-8d26128a34f3",
+      "expectedRecordId": "2985",
+      "selectedRecordId": "2985",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-sockeye-salmon",
+      "operation": "add",
+      "transactionId": "51912b5e-dac6-48b6-9a1e-efe817cead95",
+      "expectedRecordId": "3053",
+      "selectedRecordId": "3053",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-smoked-chinook-salmon",
+      "operation": "add",
+      "transactionId": "abaf010b-2ac0-43cb-bf5a-0c842bc53822",
+      "expectedRecordId": "3050",
+      "selectedRecordId": "3050",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-pink-salmon",
+      "operation": "add",
+      "transactionId": "eaa1eb43-cd36-4ca7-9d5c-c79b96c1ef20",
+      "expectedRecordId": "7082",
+      "selectedRecordId": "7082",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-white-tuna-water",
+      "operation": "add",
+      "transactionId": "800cf15f-5b9a-490a-8bb2-546747a5de73",
+      "expectedRecordId": "3133",
+      "selectedRecordId": "3133",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-light-tuna-oil",
+      "operation": "add",
+      "transactionId": "2637082c-5fb6-4004-9f65-5cdd4eb70744",
+      "expectedRecordId": "3214",
+      "selectedRecordId": "3214",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-alaska-pollock",
+      "operation": "add",
+      "transactionId": "025a0356-62e0-4229-80a5-81bcf5037f26",
+      "expectedRecordId": "3040",
+      "selectedRecordId": "3040",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-octopus",
+      "operation": "add",
+      "transactionId": "9b925203-641d-4d72-8d45-63db061cc89d",
+      "expectedRecordId": "3176",
+      "selectedRecordId": "3176",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-swordfish",
+      "operation": "add",
+      "transactionId": "031175b3-8ebf-4687-be35-c3e913a00802",
+      "expectedRecordId": "3076",
+      "selectedRecordId": "3076",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-mahi-mahi",
+      "operation": "add",
+      "transactionId": "d20d320f-1676-42ab-a74a-a937a364582d",
+      "expectedRecordId": "3141",
+      "selectedRecordId": "3141",
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-sea-bass",
+      "operation": "add",
+      "transactionId": "145c8b79-baf7-44b2-8e7e-72ee4da5be31",
+      "expectedRecordId": "3057",
+      "selectedRecordId": "3057",
+      "version": 3
+    }
+  ]
+}

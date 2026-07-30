@@ -1,0 +1,699 @@
+{
+  "batchId": "fish-seafood-complete-individual-validation-36-foods",
+  "selected": [
+    {
+      "id": "poissons-fruits-mer-haddock",
+      "operation": "update",
+      "recordId": "3199",
+      "expectedRecordId": "3199",
+      "selectedRecordId": "3199",
+      "transactionId": "f7bfa0a8-c9d0-47af-ba16-180c9dbb619c",
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 41
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-eel",
+      "operation": "update",
+      "recordId": "3005",
+      "expectedRecordId": "3005",
+      "selectedRecordId": "3005",
+      "transactionId": "390c83b3-d38f-4f21-b14e-45a60b365f78",
+      "nutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.5,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 2.8,
+        "declaredKcal": 71
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-pike",
+      "operation": "update",
+      "recordId": "3037",
+      "expectedRecordId": "3037",
+      "selectedRecordId": "3037",
+      "transactionId": "7ceb3b2d-6556-41c1-ba1a-886627a92544",
+      "nutrients": {
+        "proteinG": 9.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 43
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-caviar",
+      "operation": "update",
+      "recordId": "2995",
+      "expectedRecordId": "2995",
+      "selectedRecordId": "2995",
+      "transactionId": "6aff3fc9-11fd-44ad-a4b3-76d80200a2a7",
+      "nutrients": {
+        "proteinG": 7.4,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 5.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 79
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-crab",
+      "operation": "update",
+      "recordId": "3173",
+      "expectedRecordId": "3173",
+      "selectedRecordId": "3173",
+      "transactionId": "9c87d781-00f4-4180-a41e-15c5365802ac",
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-surimi",
+      "operation": "update",
+      "recordId": "3074",
+      "expectedRecordId": "3074",
+      "selectedRecordId": "3074",
+      "transactionId": "4f06fc59-3354-40e8-a817-97cf54b0f4c2",
+      "nutrients": {
+        "proteinG": 4.6,
+        "carbsG": 2.1,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-shrimp",
+      "operation": "update",
+      "recordId": "3212",
+      "expectedRecordId": "3212",
+      "selectedRecordId": "3212",
+      "transactionId": "8fc0b956-17ba-4141-ad11-62403524d4a3",
+      "nutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0.7,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 54
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-snail",
+      "operation": "update",
+      "recordId": "5635",
+      "expectedRecordId": "5635",
+      "selectedRecordId": "5635",
+      "transactionId": "913a49fd-0951-4a97-91e6-87d234a31dd4",
+      "nutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 41
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-herring",
+      "operation": "update",
+      "recordId": "3015",
+      "expectedRecordId": "3015",
+      "selectedRecordId": "3015",
+      "transactionId": "0cb029fa-e874-4d5b-a318-9f4fc9afc57c",
+      "nutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 61
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-lobster",
+      "operation": "update",
+      "recordId": "3210",
+      "expectedRecordId": "3210",
+      "selectedRecordId": "3210",
+      "transactionId": "06989a70-ceea-4720-9e11-7bc74f317174",
+      "nutrients": {
+        "proteinG": 8.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-oysters",
+      "operation": "update",
+      "recordId": "3191",
+      "expectedRecordId": "3191",
+      "selectedRecordId": "3191",
+      "transactionId": "60717407-38c0-42b8-b1cf-ff1c46a206f1",
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.5,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 27
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-mackerel",
+      "operation": "update",
+      "recordId": "3022",
+      "expectedRecordId": "3022",
+      "selectedRecordId": "3022",
+      "transactionId": "5882a157-2140-4f6d-b55a-1feda10a6592",
+      "nutrients": {
+        "proteinG": 7.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 79
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-cod",
+      "operation": "update",
+      "recordId": "3195",
+      "expectedRecordId": "3195",
+      "selectedRecordId": "3195",
+      "transactionId": "7efe4eb3-002d-41be-b987-1425779dbece",
+      "nutrients": {
+        "proteinG": 10.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 47
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-mussels",
+      "operation": "update",
+      "recordId": "3116",
+      "expectedRecordId": "3116",
+      "selectedRecordId": "3116",
+      "transactionId": "ff200274-11f2-4c27-aa1d-7bf72743a546",
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 3.3,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 77
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-clams",
+      "operation": "update",
+      "recordId": "3112",
+      "expectedRecordId": "3112",
+      "selectedRecordId": "3112",
+      "transactionId": "ab06c879-e7ae-4f67-ae4d-577503fc0001",
+      "nutrients": {
+        "proteinG": 10.9,
+        "carbsG": 2.7,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 64
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-scallop",
+      "operation": "update",
+      "recordId": "5634",
+      "expectedRecordId": "5634",
+      "selectedRecordId": "5634",
+      "transactionId": "14b4e98d-cdcb-4292-979f-926ccd2e3841",
+      "nutrients": {
+        "proteinG": 9.2,
+        "carbsG": 2.4,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-sole",
+      "operation": "update",
+      "recordId": "3007",
+      "expectedRecordId": "3007",
+      "selectedRecordId": "3007",
+      "transactionId": "2fc47290-d153-4f0d-b3b4-f02a6f5facb9",
+      "nutrients": {
+        "proteinG": 6.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.1,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 39
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-sardines",
+      "operation": "update",
+      "recordId": "3203",
+      "expectedRecordId": "3203",
+      "selectedRecordId": "3203",
+      "transactionId": "578afe2f-2a43-4ce5-abc4-f69730f05991",
+      "nutrients": {
+        "proteinG": 7.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.4,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 62
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-atlantic-salmon",
+      "operation": "update",
+      "recordId": "3183",
+      "expectedRecordId": "3183",
+      "selectedRecordId": "3183",
+      "transactionId": "e65509fc-4dd1-463c-93ac-8786f63b8caa",
+      "nutrients": {
+        "proteinG": 6.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.4,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 62
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-tuna",
+      "operation": "update",
+      "recordId": "3167",
+      "expectedRecordId": "3167",
+      "selectedRecordId": "3167",
+      "transactionId": "26e70f49-cd03-4f0e-a907-acf903e9545a",
+      "nutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-tuna-in-water-drained",
+      "operation": "update",
+      "recordId": "3131",
+      "expectedRecordId": "3131",
+      "selectedRecordId": "3131",
+      "transactionId": "1c0d8e38-9a86-4ce2-9615-44a8c53c5539",
+      "nutrients": {
+        "proteinG": 11.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 52
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-tilapia",
+      "operation": "update",
+      "recordId": "5967",
+      "expectedRecordId": "5967",
+      "selectedRecordId": "5967",
+      "transactionId": "f2edf21e-b673-4fe2-9c8e-be8e80300d11",
+      "nutrients": {
+        "proteinG": 11.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-rainbow-trout",
+      "operation": "update",
+      "recordId": "3187",
+      "expectedRecordId": "3187",
+      "selectedRecordId": "3187",
+      "transactionId": "ce9c2658-1634-44f5-81fa-bc52ab61aecf",
+      "nutrients": {
+        "proteinG": 7.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-turbot",
+      "operation": "update",
+      "recordId": "3168",
+      "expectedRecordId": "3168",
+      "selectedRecordId": "3168",
+      "transactionId": "ea54397a-eab2-477a-a9eb-16d70abcc397",
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-halibut",
+      "operation": "update",
+      "recordId": "3012",
+      "expectedRecordId": "3012",
+      "selectedRecordId": "3012",
+      "transactionId": "080e63da-7536-420b-94b5-30ba99d89cf5",
+      "nutrients": {
+        "proteinG": 10.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-canned-anchovies-in-water",
+      "operation": "update",
+      "recordId": "2985",
+      "expectedRecordId": "2985",
+      "selectedRecordId": "2985",
+      "transactionId": "53ca6357-534f-444c-a8e9-8d26128a34f3",
+      "nutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 63
+      },
+      "version": 3
+    },
+    {
+      "id": "poissons-fruits-mer-sockeye-salmon",
+      "operation": "add",
+      "recordId": "3053",
+      "expectedRecordId": "3053",
+      "selectedRecordId": "3053",
+      "transactionId": "51912b5e-dac6-48b6-9a1e-efe817cead95",
+      "nutrients": {
+        "proteinG": 7.9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 47
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-smoked-chinook-salmon",
+      "operation": "add",
+      "recordId": "3050",
+      "expectedRecordId": "3050",
+      "selectedRecordId": "3050",
+      "transactionId": "abaf010b-2ac0-43cb-bf5a-0c842bc53822",
+      "nutrients": {
+        "proteinG": 5.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 35
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-pink-salmon",
+      "operation": "add",
+      "recordId": "7082",
+      "expectedRecordId": "7082",
+      "selectedRecordId": "7082",
+      "transactionId": "eaa1eb43-cd36-4ca7-9d5c-c79b96c1ef20",
+      "nutrients": {
+        "proteinG": 11.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 61
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-white-tuna-water",
+      "operation": "add",
+      "recordId": "3133",
+      "expectedRecordId": "3133",
+      "selectedRecordId": "3133",
+      "transactionId": "800cf15f-5b9a-490a-8bb2-546747a5de73",
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 58
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-canned-light-tuna-oil",
+      "operation": "add",
+      "recordId": "3214",
+      "expectedRecordId": "3214",
+      "selectedRecordId": "3214",
+      "transactionId": "2637082c-5fb6-4004-9f65-5cdd4eb70744",
+      "nutrients": {
+        "proteinG": 13.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 89
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-alaska-pollock",
+      "operation": "add",
+      "recordId": "3040",
+      "expectedRecordId": "3040",
+      "selectedRecordId": "3040",
+      "transactionId": "025a0356-62e0-4229-80a5-81bcf5037f26",
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 50
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-octopus",
+      "operation": "add",
+      "recordId": "3176",
+      "expectedRecordId": "3176",
+      "selectedRecordId": "3176",
+      "transactionId": "9b925203-641d-4d72-8d45-63db061cc89d",
+      "nutrients": {
+        "proteinG": 13.4,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 74
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-swordfish",
+      "operation": "add",
+      "recordId": "3076",
+      "expectedRecordId": "3076",
+      "selectedRecordId": "3076",
+      "transactionId": "031175b3-8ebf-4687-be35-c3e913a00802",
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 77
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-mahi-mahi",
+      "operation": "add",
+      "recordId": "3141",
+      "expectedRecordId": "3141",
+      "selectedRecordId": "3141",
+      "transactionId": "d20d320f-1676-42ab-a74a-a937a364582d",
+      "nutrients": {
+        "proteinG": 10.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 49
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "poissons-fruits-mer-sea-bass",
+      "operation": "add",
+      "recordId": "3057",
+      "expectedRecordId": "3057",
+      "selectedRecordId": "3057",
+      "transactionId": "145c8b79-baf7-44b2-8e7e-72ee4da5be31",
+      "nutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 56
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ]
+}
