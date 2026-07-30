@@ -49,7 +49,12 @@ const manifest = {
 };
 await fs.writeFile(path.join(outDir, 'guide-data-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 
-const browser = await puppeteer.launch({ headless: true, protocolTimeout: 180000 });
+// Match generate.js / browser tests: GitHub runners lack a usable Chromium sandbox.
+const browser = await puppeteer.launch({
+  headless: true,
+  protocolTimeout: 180000,
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
 const qa = { generatedAt: manifest.generatedAt, sections: [], overall: 'PASS' };
 try {
   const landscape = await browser.newPage();
