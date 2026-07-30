@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "batchId": "fruits-complete-individual-validation-32-foods",
   "title": "KR Kinetics — Validation individuelle complète des fruits",
-  "status": "approved_for_implementation",
+  "status": "applied",
   "approvedBy": "KR Kinetics",
   "approvedAt": "2026-07-30",
   "purpose": "Vérifier individuellement les 29 fruits restants, remplacer l'entrée de jus générique par un jus d'orange précis et ajouter trois jus 100 % purs, tout en protégeant strictement les 179 autres aliments existants.",

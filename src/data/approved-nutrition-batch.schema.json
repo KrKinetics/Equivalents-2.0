@@ -122,6 +122,7 @@
       "required": ["adapter", "matchKeywordsEn", "mustContainConcepts", "mustNotContainConcepts"],
       "properties": {
         "adapter": { "type": "string", "const": "cnf_2026" },
+        "expectedRecordId": { "type": "string", "minLength": 1 },
         "matchKeywordsEn": { "type": "array", "items": { "type": "string" } },
         "mustContainConcepts": { "type": "array", "items": { "type": "string" } },
         "mustNotContainConcepts": { "type": "array", "items": { "type": "string" } },

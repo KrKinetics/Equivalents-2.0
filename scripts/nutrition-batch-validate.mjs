@@ -1,17 +1,11 @@
 /**
  * Validate an approved nutrition batch JSON.
  * Usage: npm run nutrition:batch:validate -- path/to/batch.json
- *
- * If the batch is already applied and a pre-apply snapshot exists, that
- * snapshot is used so historical lots remain re-validatable.
  */
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { validateApprovedBatch } from '../src/lib/nutrition-batch-engine.mjs';
 import { resolvePaths } from '../src/lib/paths.mjs';
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 function resolveCurrentPayload(paths, batch) {
   const live = JSON.parse(fs.readFileSync(paths.foodDataPath, 'utf8'));
@@ -32,6 +26,14 @@ function main() {
     ? JSON.parse(fs.readFileSync(paths.nutritionPilotConfigPath, 'utf8'))
     : null;
   const result = validateApprovedBatch(batch, current, { pilotConfig });
+  const outDir = path.join(paths.reportsDir, 'batches', batch.batchId);
+  fs.mkdirSync(outDir, { recursive: true });
+  if (result.scopeBaseline) {
+    fs.writeFileSync(
+      path.join(outDir, 'scope-baseline.json'),
+      `${JSON.stringify(result.scopeBaseline, null, 2)}\n`
+    );
+  }
   if (!result.ok) {
     console.error('Batch validation failed:');
     for (const error of result.errors) console.error(` - ${error}`);
@@ -43,10 +45,13 @@ function main() {
       {
         ok: true,
         batchId: batch.batchId,
+        protectedFoodCount: result.scopeBaseline?.protectedFoodCount,
         foods: result.resolved.map((row) => ({
           id: row.entry.id,
           operation: row.entry.operation,
           adapter: row.result.adapter,
+          expectedRecordId: row.result.expectedRecordId,
+          selectedRecordId: row.result.selectedRecordId,
           recordId: row.result.source.recordId,
           nutrients: row.result.nutrients,
         })),

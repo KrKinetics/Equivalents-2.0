@@ -43,7 +43,29 @@ Chaque entrée exige :
 - `classification`
 - soit un `sourcePlan` CNF, soit un `manufacturerLabel`
 
-## 4. Source CNF (aliment générique)
+## 4b. Verrouillage expectedRecordId
+
+Pour tout aliment CNF des lots futurs, renseigner :
+
+```json
+"expectedRecordId": "1498"
+```
+
+Le moteur sélectionne exactement ce record, vérifie mustContain / mustNotContain,
+et échoue avec :
+
+- `EXPECTED_CNF_RECORD_MISSING`
+- `EXPECTED_CNF_RECORD_NOT_FOUND`
+- `EXPECTED_CNF_RECORD_INCOMPATIBLE`
+- `EXPECTED_CNF_RECORD_MISMATCH`
+
+## 4c. Garde-fou de périmètre du lot
+
+```bash
+npm run nutrition:batch:scope -- src/data/approved-batches/mon-lot.json
+```
+
+Produit `scope-baseline.json` et `scope-check-final.json` sous `reports/batches/<batchId>/`.
 
 Exemple minimal :
 

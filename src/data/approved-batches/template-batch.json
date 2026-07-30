@@ -51,6 +51,7 @@
       },
       "sourcePlan": {
         "adapter": "cnf_2026",
+        "expectedRecordId": "RECORD_ID_REQUIRED",
         "matchKeywordsEn": ["example"],
         "mustContainConcepts": ["example"],
         "mustNotContainConcepts": ["frozen"],

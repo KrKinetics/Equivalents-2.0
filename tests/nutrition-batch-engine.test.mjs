@@ -113,7 +113,8 @@ test('batch adds exactly one food and refuses a second add', () => {
   bad.scope.allowedFoodIds.push('fake-second-add-should-fail');
   bad.scope.newFoodCount = 2;
   bad.scope.expectedFinalFoodCount = 209;
-  const result = validateApprovedBatch(bad, payload, { cnfFoods, pilotConfig });
+  const activePilot = { ...pilotConfig, status: 'active' };
+  const result = validateApprovedBatch(bad, payload, { cnfFoods, pilotConfig: activePilot });
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /pendingAllowedAdds|outside pilot|Add not listed/);
 });
@@ -290,6 +291,7 @@ test('future batch using same engine validates without code changes', () => {
   const future = clone(batch);
   future.batchId = 'future-mini-batch';
   future.foods = [clone(batch.foods[0])];
+  future.foods[0].sourcePlan.expectedRecordId = '1705';
   future.scope = {
     existingFoodCount: payload.foods.length,
     newFoodCount: 0,

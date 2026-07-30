@@ -1,0 +1,620 @@
+{
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "dryRun": false,
+  "appliedAt": "2026-07-30T14:44:31.509Z",
+  "applied": [
+    {
+      "id": "fruits-apricots",
+      "operation": "update",
+      "recordId": "1498",
+      "expectedRecordId": "1498",
+      "selectedRecordId": "1498",
+      "transactionId": "0849c99c-96d9-4d71-84fc-b6bb345949d4",
+      "nutrients": {
+        "proteinG": 2,
+        "carbsG": 15.6,
+        "fiberG": 2.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 67
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-pineapple",
+      "operation": "update",
+      "recordId": "1734",
+      "expectedRecordId": "1734",
+      "selectedRecordId": "1734",
+      "transactionId": "536b7328-a970-484b-bb1d-2978b79c0eb3",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 14.4,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 55
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-banana",
+      "operation": "update",
+      "recordId": "1704",
+      "expectedRecordId": "1704",
+      "selectedRecordId": "1704",
+      "transactionId": "4be5e93e-80c4-41bb-a00d-7ac56cadee2e",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 13.7,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "operation": "update",
+      "recordId": "7596",
+      "expectedRecordId": "7596",
+      "selectedRecordId": "7596",
+      "transactionId": "8e2829ce-4c24-4a3d-82bb-da5ae1cba9bc",
+      "nutrients": {
+        "proteinG": 2.9,
+        "carbsG": 15.4,
+        "fiberG": 2.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "operation": "update",
+      "recordId": "1721",
+      "expectedRecordId": "1721",
+      "selectedRecordId": "1721",
+      "transactionId": "c9e39bf0-f996-4185-b406-23e9ff922327",
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 13.5,
+        "fiberG": 1.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 56
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "operation": "update",
+      "recordId": "1531",
+      "expectedRecordId": "1531",
+      "selectedRecordId": "1531",
+      "transactionId": "8c130d9d-6ffd-420f-aba7-a42751662196",
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 15.2,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-clementines",
+      "operation": "update",
+      "recordId": "5956",
+      "expectedRecordId": "5956",
+      "selectedRecordId": "5956",
+      "transactionId": "737076d1-829d-4d49-9650-fc33d650bb06",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-medjool-date",
+      "operation": "update",
+      "recordId": "5401",
+      "expectedRecordId": "5401",
+      "selectedRecordId": "5401",
+      "transactionId": "96f41a02-c6a6-407b-b27d-8a09c2fee021",
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 18,
+        "fiberG": 1.6,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "operation": "update",
+      "recordId": "1700",
+      "expectedRecordId": "1700",
+      "selectedRecordId": "1700",
+      "transactionId": "944b627c-8cf5-4ff2-a540-b506c0246b8c",
+      "nutrients": {
+        "proteinG": 0.2,
+        "carbsG": 14.5,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 54
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-strawberries",
+      "operation": "update",
+      "recordId": "1749",
+      "expectedRecordId": "1749",
+      "selectedRecordId": "1749",
+      "transactionId": "87a8f189-c31b-4235-9830-62e895527611",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 12.3,
+        "fiberG": 3.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-raspberries",
+      "operation": "update",
+      "recordId": "1747",
+      "expectedRecordId": "1747",
+      "selectedRecordId": "1747",
+      "transactionId": "1417a262-3cb9-4ea3-9c6b-81a2d786ad9b",
+      "nutrients": {
+        "proteinG": 1.6,
+        "carbsG": 15.5,
+        "fiberG": 8.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "operation": "update",
+      "recordId": "1619",
+      "expectedRecordId": "1619",
+      "selectedRecordId": "1619",
+      "transactionId": "47f394f1-4150-4a46-80b2-ce605fc5a327",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 13.6,
+        "fiberG": 0.3,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "operation": "update",
+      "recordId": "1585",
+      "expectedRecordId": "1585",
+      "selectedRecordId": "1585",
+      "transactionId": "4e644bac-df29-4829-9495-92976ce938f1",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 14.7,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 61
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-mango",
+      "operation": "update",
+      "recordId": "1603",
+      "expectedRecordId": "1603",
+      "selectedRecordId": "1603",
+      "transactionId": "f683296e-0b6d-43c9-bd8b-9b666aaf5759",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 16.5,
+        "fiberG": 1.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 66
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-watermelon",
+      "operation": "update",
+      "recordId": "1691",
+      "expectedRecordId": "1691",
+      "selectedRecordId": "1691",
+      "transactionId": "061f8376-8982-4660-a651-e0892cf07fc0",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.1,
+        "fiberG": 0.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-blackberries",
+      "operation": "update",
+      "recordId": "1515",
+      "expectedRecordId": "1515",
+      "selectedRecordId": "1515",
+      "transactionId": "93728daa-39de-4766-ba1b-254221971f9e",
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 14.6,
+        "fiberG": 8.1,
+        "fatG": 0.7,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 65
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-nectarine",
+      "operation": "update",
+      "recordId": "1611",
+      "expectedRecordId": "1611",
+      "selectedRecordId": "1611",
+      "transactionId": "ed54c242-a25d-4306-8e43-a7fa67f8d059",
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15,
+        "fiberG": 2.4,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 62
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-orange",
+      "operation": "update",
+      "recordId": "1722",
+      "expectedRecordId": "1722",
+      "selectedRecordId": "1722",
+      "transactionId": "e5bd13a0-5261-4e29-aedc-00852b6217e8",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.4,
+        "fiberG": 2.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-grapefruit",
+      "operation": "update",
+      "recordId": "1714",
+      "expectedRecordId": "1714",
+      "selectedRecordId": "1714",
+      "transactionId": "32de5d17-2ded-47cf-83ae-8621d385e897",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 14.9,
+        "fiberG": 3.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-peach",
+      "operation": "update",
+      "recordId": "1728",
+      "expectedRecordId": "1728",
+      "selectedRecordId": "1728",
+      "transactionId": "94b67b43-73d1-462d-963d-ce9c534a5b76",
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 14.3,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-pear",
+      "operation": "update",
+      "recordId": "1731",
+      "expectedRecordId": "1731",
+      "selectedRecordId": "1731",
+      "transactionId": "1f501514-258a-4938-8bbb-e9e70526edb7",
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 15.2,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-apple",
+      "operation": "update",
+      "recordId": "1696",
+      "expectedRecordId": "1696",
+      "selectedRecordId": "1696",
+      "transactionId": "f3a720fd-cf3a-4169-a3b2-35a727bfb6cc",
+      "nutrients": {
+        "proteinG": 0.3,
+        "carbsG": 15.2,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-pomegranate",
+      "operation": "update",
+      "recordId": "1667",
+      "expectedRecordId": "1667",
+      "selectedRecordId": "1667",
+      "transactionId": "8907c433-69de-4585-a491-77aa787f4c6b",
+      "nutrients": {
+        "proteinG": 1.3,
+        "carbsG": 15,
+        "fiberG": 3.2,
+        "fatG": 0.9,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 66
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-plums",
+      "operation": "update",
+      "recordId": "1740",
+      "expectedRecordId": "1740",
+      "selectedRecordId": "1740",
+      "transactionId": "53baae25-e4df-4523-b815-87e7021f6230",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 14.8,
+        "fiberG": 2.1,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-prunes",
+      "operation": "update",
+      "recordId": "1742",
+      "expectedRecordId": "1742",
+      "selectedRecordId": "1742",
+      "transactionId": "b547b8ad-98a5-4841-ba84-fad4e97dfeec",
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 16,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-raisins",
+      "operation": "update",
+      "recordId": "1745",
+      "expectedRecordId": "1745",
+      "selectedRecordId": "1745",
+      "transactionId": "ca555c7a-f533-4e7a-bba5-07a4328e63e0",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.8,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-large-grapes",
+      "operation": "update",
+      "recordId": "1718",
+      "expectedRecordId": "1718",
+      "selectedRecordId": "1718",
+      "transactionId": "70d14686-85e8-435d-9d84-4840d9134ada",
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.4,
+        "fiberG": 1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "operation": "update",
+      "recordId": "1710",
+      "expectedRecordId": "1710",
+      "selectedRecordId": "1710",
+      "transactionId": "7e730341-5488-4c96-bd90-0b5454e2f6ae",
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 15.8,
+        "fiberG": 1.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "operation": "update",
+      "recordId": "5390",
+      "expectedRecordId": "5390",
+      "selectedRecordId": "5390",
+      "transactionId": "9d7e1baf-4f02-4bf1-b8fb-ef2323c02113",
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 14.9,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 55
+      },
+      "version": 3
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "recordId": "1495",
+      "expectedRecordId": "1495",
+      "selectedRecordId": "1495",
+      "transactionId": "1817d460-f796-4d26-8e3e-9395b8f113b4",
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 14.8,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "recordId": "1657",
+      "expectedRecordId": "1657",
+      "selectedRecordId": "1657",
+      "transactionId": "8abb1a95-7006-429d-87ac-089f78a9e14b",
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 17,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "recordId": "6440",
+      "expectedRecordId": "6440",
+      "selectedRecordId": "6440",
+      "transactionId": "f4ec0864-8764-4aae-9a86-4849f9d904e7",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 12,
+        "fiberG": null,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 51
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ],
+  "dataHash": "e7f1ea29502c652d839921bc3f1594bf5c69568468d7b72f8045eef4e24da2b5",
+  "foodCount": 211
+}

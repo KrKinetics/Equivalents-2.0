@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T13:45:03.517Z",
+  "generatedAt": "2026-07-30T14:44:31.692Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -8,26 +8,26 @@
     "approvedBy": null,
     "previousVersion": null,
     "changeSummary": "Audit refresh (nutrients unchanged)",
-    "totalFoods": 208,
-    "verifiedFoods": 6,
-    "unverifiedFoods": 202,
+    "totalFoods": 211,
+    "verifiedFoods": 38,
+    "unverifiedFoods": 173,
     "blockingErrors": 98,
     "blockingErrorCount": 98,
     "foodsWithBlockingErrors": 93,
-    "warningCount": 510,
-    "foodsWithWarnings": 205,
-    "auditCleanFoods": 3,
-    "dataHash": "a0763bfec13120ecb472d469d91ba77cec342974ff4146aeb30037a60cc56695",
-    "shortHash": "a0763bfec131",
-    "lastAuditedAt": "2026-07-30T13:45:03.506Z",
+    "warningCount": 466,
+    "foodsWithWarnings": 192,
+    "auditCleanFoods": 19,
+    "dataHash": "e7f1ea29502c652d839921bc3f1594bf5c69568468d7b72f8045eef4e24da2b5",
+    "shortHash": "e7f1ea29502c",
+    "lastAuditedAt": "2026-07-30T14:44:31.681Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
-      "verified": 6,
-      "unverified": 202
+      "verified": 38,
+      "unverified": 173
     },
-    "foodsWithWarningsOnly": 112,
+    "foodsWithWarningsOnly": 99,
     "rejectedFoods": 0,
-    "activeFoods": 208,
+    "activeFoods": 211,
     "approvalBlockingErrorCount": 98,
     "activeBlockingErrorCount": 98,
     "rejectedBlockingErrorCount": 0,
@@ -36,11 +36,11 @@
     "rejectedFoodsWithBlockingErrors": 0
   },
   "summary": {
-    "totalFoods": 208,
-    "activeFoods": 208,
+    "totalFoods": 211,
+    "activeFoods": 211,
     "rejectedFoods": 0,
-    "verifiedFoods": 6,
-    "unverifiedFoods": 202,
+    "verifiedFoods": 38,
+    "unverifiedFoods": 173,
     "blockingErrorCount": 98,
     "activeBlockingErrorCount": 98,
     "rejectedBlockingErrorCount": 0,
@@ -48,13 +48,13 @@
     "foodsWithBlockingErrors": 93,
     "activeFoodsWithBlockingErrors": 93,
     "rejectedFoodsWithBlockingErrors": 0,
-    "warningCount": 510,
-    "foodsWithWarnings": 205,
-    "foodsWithWarningsOnly": 112,
-    "auditCleanFoods": 3,
+    "warningCount": 466,
+    "foodsWithWarnings": 192,
+    "foodsWithWarningsOnly": 99,
+    "auditCleanFoods": 19,
     "blockingErrors": 98,
     "foodsWithErrors": 93,
-    "foodsOk": 3
+    "foodsOk": 19
   },
   "groupStatistics": {
     "protein": {
@@ -327,9 +327,7 @@
       "approvalBlockers": [
         "reference_profile_not_approved",
         "dataset_not_approved",
-        "minVerifiedCount_null",
-        "minCoveragePercent_not_met",
-        "active_foods_not_all_verified"
+        "minVerifiedCount_null"
       ],
       "approvalCriteria": {
         "minVerifiedCount": null,
@@ -337,51 +335,51 @@
         "requireAllActiveFoodsVerified": true,
         "requireNoFoodsOutsideTolerance": false
       },
-      "totalFoodsInGroup": 30,
-      "activeFoodCount": 30,
-      "verifiedCount": 1,
+      "totalFoodsInGroup": 33,
+      "activeFoodCount": 33,
+      "verifiedCount": 33,
       "rejectedCount": 0,
-      "pendingCount": 29,
-      "coveragePercent": 3.3333333333333335,
+      "pendingCount": 0,
+      "coveragePercent": 100,
       "proteinG": {
-        "mean": 0.8,
-        "median": 0.8,
-        "min": 0.8,
-        "max": 0.8,
-        "stddev": null,
-        "count": 1
+        "mean": 0.9606060606060606,
+        "median": 0.9,
+        "min": 0,
+        "max": 2.9,
+        "stddev": 0.6143794602785165,
+        "count": 33
       },
       "carbsG": {
-        "mean": 15.9,
-        "median": 15.9,
-        "min": 15.9,
-        "max": 15.9,
-        "stddev": null,
-        "count": 1
+        "mean": 14.999999999999998,
+        "median": 15,
+        "min": 12,
+        "max": 18,
+        "stddev": 1.1618950038622249,
+        "count": 33
       },
       "fiberG": {
-        "mean": 2.8,
-        "median": 2.8,
-        "min": 2.8,
-        "max": 2.8,
-        "stddev": null,
-        "count": 1
+        "mean": 2.2843749999999994,
+        "median": 2.05,
+        "min": 0.3,
+        "max": 8.5,
+        "stddev": 1.8302316749174048,
+        "count": 32
       },
       "fatG": {
-        "mean": 0.4,
-        "median": 0.4,
-        "min": 0.4,
-        "max": 0.4,
-        "stddev": null,
-        "count": 1
+        "mean": 0.29090909090909084,
+        "median": 0.2,
+        "min": 0,
+        "max": 0.9,
+        "stddev": 0.21703058016618926,
+        "count": 33
       },
       "kcal": {
-        "mean": 63,
-        "median": 63,
-        "min": 63,
-        "max": 63,
-        "stddev": null,
-        "count": 1
+        "mean": 60.36363636363637,
+        "median": 60,
+        "min": 51,
+        "max": 70,
+        "stddev": 4.942280482088847,
+        "count": 33
       },
       "referenceProfile": {
         "proteinG": null,
@@ -394,10 +392,42 @@
       "foodsOutsideTolerance": [],
       "furthestFoods": [
         {
-          "id": "fruits-blueberries",
-          "nameFr": "Bleuets frais, crus, cultivés",
-          "nameEn": "Blueberries, fresh, raw, cultivated",
-          "distanceScore": 0,
+          "id": "fruits-raspberries",
+          "nameFr": "Framboises fraîches, crues",
+          "nameEn": "Raspberries, fresh, raw",
+          "distanceScore": 0.694315655858105,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "fruits-blackberries",
+          "nameFr": "Mûres fraîches, crues",
+          "nameEn": "Blackberries, fresh, raw",
+          "distanceScore": 0.6847087906407374,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+          "nameFr": "Jus d'ananas 100 % pur, sans sucre ajouté",
+          "nameEn": "100% pure pineapple juice, no added sugar",
+          "distanceScore": 0.28748050278467435,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "fruits-dried-goji-berries",
+          "nameFr": "Baies de goji séchées",
+          "nameEn": "Goji berries, dried",
+          "distanceScore": 0.27792472613997854,
+          "breaches": [],
+          "status": "verified"
+        },
+        {
+          "id": "fruits-apple-juice-100-pure-no-added-sugar",
+          "nameFr": "Jus de pomme 100 % pur, sans sucre ajouté",
+          "nameEn": "100% pure apple juice, no added sugar",
+          "distanceScore": 0.27275761121840925,
           "breaches": [],
           "status": "verified"
         }
@@ -642,17 +672,20 @@
     }
   },
   "alertCountsByCode": {
-    "MISSING_PREP_STATE": 179,
+    "MISSING_PREP_STATE": 150,
     "SCOOP_WITHOUT_GRAMS": 5,
     "KCAL_DIFF_HIGH": 56,
-    "MISSING_GRAMS": 89,
+    "MISSING_GRAMS": 84,
     "AMBIGUOUS_GROUP": 5,
     "GUIDE_VS_CALCULATOR": 2,
-    "LEGACY_SOURCE_ONLY": 202,
+    "LEGACY_SOURCE_ONLY": 173,
     "SUSPECT_CASE": 3,
     "MISSING_TOTAL_FAT": 34,
     "FIBER_GT_CARBS": 4,
-    "KCAL_DIFF_MODERATE": 29
+    "KCAL_DIFF_MODERATE": 41,
+    "PORTION_LABEL_MISMATCH_FR": 3,
+    "PORTION_LABEL_MISMATCH_EN": 3,
+    "FAT_COMPONENTS_EXCEED_TOTAL": 1
   },
   "decisionsNeeded": [
     {
@@ -7746,68 +7779,82 @@
       "canVerify": false
     },
     {
-      "id": "fruits-dried-goji-berries",
+      "id": "fruits-banana",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Baies de goji séchées",
-      "nameEn": "Dried goji berries",
-      "status": "unverified",
-      "portionLabelFr": "20 g de Baies de goji séchées",
-      "portionLabelEn": "20 g Dried goji berries",
-      "amount": 20,
-      "unit": "g",
-      "grams": 20,
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Banane fraîche, crue",
+      "nameEn": "Banana, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "½ banane moyenne (60 g)",
+      "portionLabelEn": "½ medium banana (60 g)",
+      "amount": 0.5,
+      "unit": "piece",
+      "grams": 60,
       "parsedFr": {
-        "amount": 20,
-        "unit": "g",
-        "grams": 20,
-        "label": "20 g de Baies de goji séchées"
+        "amount": 1,
+        "unit": "portion",
+        "grams": 60,
+        "label": "½ banane moyenne (60 g)"
       },
       "parsedEn": {
-        "amount": 20,
-        "unit": "g",
-        "grams": 20,
-        "label": "20 g Dried goji berries"
+        "amount": 1,
+        "unit": "portion",
+        "grams": 60,
+        "label": "½ medium banana (60 g)"
       },
       "nutrients": {
-        "proteinG": 3,
-        "carbsG": 12,
-        "fiberG": 3,
+        "proteinG": 0.7,
+        "carbsG": 13.7,
+        "fiberG": 1,
         "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 70
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
       },
-      "declaredKcal": 70,
-      "calculatedKcal": 61.8,
-      "absDiff": 8.200000000000003,
-      "pctDiff": 13.268608414239488,
+      "declaredKcal": 53,
+      "calculatedKcal": 59.39999999999999,
+      "absDiff": 6.3999999999999915,
+      "pctDiff": 10.774410774410761,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 60,
+            "label": "½ banane moyenne (60 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 60,
+            "label": "½ medium banana (60 g)"
+          }
         },
         {
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 70 vs Atwater 61.8 (13.3%)",
+          "message": "Différence calorique modérée: déclaré 53 vs Atwater 59.4 (10.8%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
         }
       ],
       "errorCount": 0,
       "warningCount": 3,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
     },
     {
       "id": "legumes-beets",
@@ -8049,70 +8096,6 @@
           "severity": "WARNING",
           "code": "MISSING_GRAMS",
           "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-lightly-sweetened-dried-cranberries",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Canneberges séchées peu sucrées",
-      "nameEn": "Lightly sweetened dried cranberries",
-      "status": "unverified",
-      "portionLabelFr": "30 g de Canneberges séchées peu sucrées",
-      "portionLabelEn": "30 g Lightly sweetened dried cranberries",
-      "amount": 30,
-      "unit": "g",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g de Canneberges séchées peu sucrées"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "g",
-        "grams": 30,
-        "label": "30 g Lightly sweetened dried cranberries"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 15,
-        "fiberG": 2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 68
-      },
-      "declaredKcal": 68,
-      "calculatedKcal": 61.8,
-      "absDiff": 6.200000000000003,
-      "pctDiff": 10.032362459546931,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "KCAL_DIFF_MODERATE",
-          "message": "Différence calorique modérée: déclaré 68 vs Atwater 61.8 (10.0%)",
-          "resolutionStatus": "open"
         },
         {
           "severity": "WARNING",
@@ -8609,132 +8592,6 @@
       "calculatedKcal": 33.8,
       "absDiff": 0.20000000000000284,
       "pctDiff": 0.5917159763313694,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-clementines",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "clémentines",
-      "nameEn": "clementines",
-      "status": "unverified",
-      "portionLabelFr": "2 clémentines",
-      "portionLabelEn": "2 clementines",
-      "amount": 2,
-      "unit": "count",
-      "grams": null,
-      "parsedFr": {
-        "amount": 2,
-        "unit": "count",
-        "grams": null,
-        "label": "2 clémentines"
-      },
-      "parsedEn": {
-        "amount": 2,
-        "unit": "count",
-        "grams": null,
-        "label": "2 clementines"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 14,
-        "fiberG": 3,
-        "fatG": 0.5,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 61
-      },
-      "declaredKcal": 61,
-      "calculatedKcal": 64.5,
-      "absDiff": 3.5,
-      "pctDiff": 5.426356589147287,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-unsweetened-applesauce",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "compote de fruits sans sucre ajouté",
-      "nameEn": "unsweetened applesauce",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de compote de fruits sans sucre ajouté",
-      "portionLabelEn": "125 ml unsweetened applesauce",
-      "amount": 125,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml de compote de fruits sans sucre ajouté"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml unsweetened applesauce"
-      },
-      "nutrients": {
-        "proteinG": 0.2,
-        "carbsG": 19,
-        "fiberG": 3,
-        "fatG": 0.1,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 79
-      },
-      "declaredKcal": 79,
-      "calculatedKcal": 77.7,
-      "absDiff": 1.2999999999999972,
-      "pctDiff": 1.6731016731016692,
       "alerts": [
         {
           "severity": "WARNING",
@@ -9395,69 +9252,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-pure-fruit-juice-no-added-sugar",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "jus de fruits 100 % pur, sans sucre ajouté",
-      "nameEn": "100% pure fruit juice, no added sugar",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de jus de fruits 100 % pur, sans sucre ajouté",
-      "portionLabelEn": "125 ml 100% pure fruit juice, no added sugar",
-      "amount": 125,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml de jus de fruits 100 % pur, sans sucre ajouté"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": null,
-        "label": "125 ml 100% pure fruit juice, no added sugar"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 14,
-        "fiberG": 4,
-        "fatG": 0.6,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 63
-      },
-      "declaredKcal": 63,
-      "calculatedKcal": 65.4,
-      "absDiff": 2.4000000000000057,
-      "pctDiff": 3.6697247706422105,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "legumes-vegetable-juice",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -9571,69 +9365,6 @@
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 66 vs Atwater 57.0 (15.8%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-nectarine",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "nectarine",
-      "nameEn": "nectarine",
-      "status": "unverified",
-      "portionLabelFr": "1 nectarine (ou 250 ml)",
-      "portionLabelEn": "1 nectarine (or 250 ml)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": null,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "1 nectarine (ou 250 ml)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": null,
-        "label": "1 nectarine (or 250 ml)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 16,
-        "fiberG": 1,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 73
-      },
-      "declaredKcal": 73,
-      "calculatedKcal": 70.7,
-      "absDiff": 2.299999999999997,
-      "pctDiff": 3.2531824611032487,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
         },
         {
           "severity": "WARNING",
@@ -9838,6 +9569,84 @@
       "canVerify": false
     },
     {
+      "id": "fruits-grapefruit",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Pamplemousse frais, cru",
+      "nameEn": "Grapefruit, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "½ gros pamplemousse, poids comestible (185 g)",
+      "portionLabelEn": "½ large grapefruit, edible weight (185 g)",
+      "amount": 0.5,
+      "unit": "piece",
+      "grams": 185,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "portion",
+        "grams": 185,
+        "label": "½ gros pamplemousse, poids comestible (185 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "portion",
+        "grams": 185,
+        "label": "½ large grapefruit, edible weight (185 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 14.9,
+        "fiberG": 3.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 66.2,
+      "absDiff": 7.200000000000003,
+      "pctDiff": 10.876132930513599,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 185,
+            "label": "½ gros pamplemousse, poids comestible (185 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 185,
+            "label": "½ large grapefruit, edible weight (185 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.2 (10.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 3,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "legumes-snow-peas",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -9940,69 +9749,6 @@
       "calculatedKcal": 45.8,
       "absDiff": 1.2000000000000028,
       "pctDiff": 2.620087336244548,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "MISSING_GRAMS",
-          "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 3,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-pomegranate",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pomme-grenade",
-      "nameEn": "pomegranate",
-      "status": "unverified",
-      "portionLabelFr": "½ pomme-grenade",
-      "portionLabelEn": "½ pomegranate",
-      "amount": 1,
-      "unit": "portion",
-      "grams": null,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "½ pomme-grenade"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": null,
-        "label": "½ pomegranate"
-      },
-      "nutrients": {
-        "proteinG": 0.8,
-        "carbsG": 13,
-        "fiberG": 1,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 57
-      },
-      "declaredKcal": 57,
-      "calculatedKcal": 57,
-      "absDiff": 0,
-      "pctDiff": 0,
       "alerts": [
         {
           "severity": "WARNING",
@@ -10347,122 +10093,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-apricots",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "abricot",
-      "nameEn": "apricots",
-      "status": "unverified",
-      "portionLabelFr": "250 ml d'abricot (160 g)",
-      "portionLabelEn": "250 ml apricots (160 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 160,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 160,
-        "label": "250 ml d'abricot (160 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 160,
-        "label": "250 ml apricots (160 g)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 18,
-        "fiberG": 3,
-        "fatG": 0.6,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 85
-      },
-      "declaredKcal": 85,
-      "calculatedKcal": 85.4,
-      "absDiff": 0.4000000000000057,
-      "pctDiff": 0.46838407494145856,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-pineapple",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "ananas",
-      "nameEn": "pineapple",
-      "status": "unverified",
-      "portionLabelFr": "175 ml d'ananas (110 g)",
-      "portionLabelEn": "175 ml pineapple (110 g)",
-      "amount": 175,
-      "unit": "ml",
-      "grams": 110,
-      "parsedFr": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml d'ananas (110 g)"
-      },
-      "parsedEn": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml pineapple (110 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 14,
-        "fiberG": 2,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 64
-      },
-      "declaredKcal": 64,
-      "calculatedKcal": 60,
-      "absDiff": 4,
-      "pctDiff": 6.666666666666667,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-eel",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -10560,64 +10190,6 @@
       "calculatedKcal": 101,
       "absDiff": 7,
       "pctDiff": 6.9306930693069315,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-banana",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "banane",
-      "nameEn": "banana",
-      "status": "unverified",
-      "portionLabelFr": "½ banane (60 g)",
-      "portionLabelEn": "½ banana (60 g)",
-      "amount": 1,
-      "unit": "portion",
-      "grams": 60,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": 60,
-        "label": "½ banane (60 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "portion",
-        "grams": 60,
-        "label": "½ banana (60 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 14,
-        "fiberG": 1,
-        "fatG": 0.5,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 63
-      },
-      "declaredKcal": 63,
-      "calculatedKcal": 64.5,
-      "absDiff": 1.5,
-      "pctDiff": 2.3255813953488373,
       "alerts": [
         {
           "severity": "WARNING",
@@ -10927,122 +10499,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-cantaloupe",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "cantaloup",
-      "nameEn": "cantaloupe",
-      "status": "unverified",
-      "portionLabelFr": "175 ml de cantaloup (110 g)",
-      "portionLabelEn": "175 ml cantaloupe (110 g)",
-      "amount": 175,
-      "unit": "ml",
-      "grams": 110,
-      "parsedFr": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml de cantaloup (110 g)"
-      },
-      "parsedEn": {
-        "amount": 175,
-        "unit": "ml",
-        "grams": 110,
-        "label": "175 ml cantaloupe (110 g)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 15.4,
-        "fiberG": 0.6,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 73
-      },
-      "declaredKcal": 73,
-      "calculatedKcal": 72.3,
-      "absDiff": 0.7000000000000028,
-      "pctDiff": 0.9681881051175697,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-cherries-with-pits",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "cerise avec noyau",
-      "nameEn": "cherries with pits",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de cerise avec noyau (110 g)",
-      "portionLabelEn": "250 ml cherries with pits (110 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 110,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 110,
-        "label": "250 ml de cerise avec noyau (110 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 110,
-        "label": "250 ml cherries with pits (110 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 13,
-        "fiberG": 2,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 59
-      },
-      "declaredKcal": 59,
-      "calculatedKcal": 58.7,
-      "absDiff": 0.29999999999999716,
-      "pctDiff": 0.5110732538330445,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "viandes-volaille-chicken-thigh",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -11082,122 +10538,6 @@
       "calculatedKcal": 53,
       "absDiff": 4,
       "pctDiff": 7.547169811320755,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-medjool-date",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "datte Medjool",
-      "nameEn": "Medjool date",
-      "status": "unverified",
-      "portionLabelFr": "1 datte Medjool (24 g)",
-      "portionLabelEn": "1 Medjool date (24 g)",
-      "amount": 1,
-      "unit": "count",
-      "grams": 24,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 24,
-        "label": "1 datte Medjool (24 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 24,
-        "label": "1 Medjool date (24 g)"
-      },
-      "nutrients": {
-        "proteinG": 0,
-        "carbsG": 18,
-        "fiberG": 2,
-        "fatG": 0,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 66
-      },
-      "declaredKcal": 66,
-      "calculatedKcal": 72,
-      "absDiff": 6,
-      "pctDiff": 8.333333333333332,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-deglet-nour-dates",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "Dattes Deglet Nour",
-      "nameEn": "Deglet Nour dates",
-      "status": "unverified",
-      "portionLabelFr": "40 g de Dattes Deglet Nour (3 dattes)",
-      "portionLabelEn": "40 g Deglet Nour dates (3 dates)",
-      "amount": 40,
-      "unit": "g",
-      "grams": 40,
-      "parsedFr": {
-        "amount": 40,
-        "unit": "g",
-        "grams": 40,
-        "label": "40 g de Dattes Deglet Nour (3 dattes)"
-      },
-      "parsedEn": {
-        "amount": 40,
-        "unit": "g",
-        "grams": 40,
-        "label": "40 g Deglet Nour dates (3 dates)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 15,
-        "fiberG": 2,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 70
-      },
-      "declaredKcal": 70,
-      "calculatedKcal": 65.8,
-      "absDiff": 4.200000000000003,
-      "pctDiff": 6.3829787234042605,
       "alerts": [
         {
           "severity": "WARNING",
@@ -11449,122 +10789,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-strawberries",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "fraises",
-      "nameEn": "strawberries",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de fraises (150 g)",
-      "portionLabelEn": "250 ml strawberries (150 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 150,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 150,
-        "label": "250 ml de fraises (150 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 150,
-        "label": "250 ml strawberries (150 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 12,
-        "fiberG": 0.2,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 57
-      },
-      "declaredKcal": 57,
-      "calculatedKcal": 54.7,
-      "absDiff": 2.299999999999997,
-      "pctDiff": 4.204753199268733,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-raspberries",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "framboises",
-      "nameEn": "raspberries",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de framboises (130 g)",
-      "portionLabelEn": "250 ml raspberries (130 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 130,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 130,
-        "label": "250 ml de framboises (130 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 130,
-        "label": "250 ml raspberries (130 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 15,
-        "fiberG": 0,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 70
-      },
-      "declaredKcal": 70,
-      "calculatedKcal": 65.8,
-      "absDiff": 4.200000000000003,
-      "pctDiff": 6.3829787234042605,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "feculents-rice-cakes",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -11604,64 +10828,6 @@
       "calculatedKcal": 68,
       "absDiff": 6,
       "pctDiff": 8.823529411764707,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-large-grapes",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "gros raisins",
-      "nameEn": "large grapes",
-      "status": "unverified",
-      "portionLabelFr": "15 gros raisins (75 g)",
-      "portionLabelEn": "15 large grapes (75 g)",
-      "amount": 15,
-      "unit": "count",
-      "grams": 75,
-      "parsedFr": {
-        "amount": 15,
-        "unit": "count",
-        "grams": 75,
-        "label": "15 gros raisins (75 g)"
-      },
-      "parsedEn": {
-        "amount": 15,
-        "unit": "count",
-        "grams": 75,
-        "label": "15 large grapes (75 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 14,
-        "fiberG": 1,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 65
-      },
-      "declaredKcal": 65,
-      "calculatedKcal": 61.8,
-      "absDiff": 3.200000000000003,
-      "pctDiff": 5.177993527508096,
       "alerts": [
         {
           "severity": "WARNING",
@@ -11742,175 +10908,73 @@
       "id": "fruits-mango",
       "displayCategory": "fruits",
       "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "mangue",
-      "nameEn": "mango",
-      "status": "unverified",
-      "portionLabelFr": "½ mangue (110 g)",
-      "portionLabelEn": "½ mango (110 g)",
-      "amount": 1,
-      "unit": "portion",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Mangue fraîche, crue",
+      "nameEn": "Mango, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "½ mangue, poids comestible (110 g)",
+      "portionLabelEn": "½ mango, edible weight (110 g)",
+      "amount": 0.5,
+      "unit": "piece",
       "grams": 110,
       "parsedFr": {
         "amount": 1,
         "unit": "portion",
         "grams": 110,
-        "label": "½ mangue (110 g)"
+        "label": "½ mangue, poids comestible (110 g)"
       },
       "parsedEn": {
         "amount": 1,
         "unit": "portion",
         "grams": 110,
-        "label": "½ mango (110 g)"
+        "label": "½ mango, edible weight (110 g)"
       },
       "nutrients": {
-        "proteinG": 0.5,
-        "carbsG": 18,
-        "fiberG": 0.7,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 77
+        "proteinG": 0.9,
+        "carbsG": 16.5,
+        "fiberG": 1.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 66
       },
-      "declaredKcal": 77,
-      "calculatedKcal": 76.7,
-      "absDiff": 0.29999999999999716,
-      "pctDiff": 0.3911342894393705,
+      "declaredKcal": 66,
+      "calculatedKcal": 73.19999999999999,
+      "absDiff": 7.199999999999989,
+      "pctDiff": 9.836065573770478,
       "alerts": [
         {
           "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 110,
+            "label": "½ mangue, poids comestible (110 g)"
+          }
         },
         {
           "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 110,
+            "label": "½ mango, edible weight (110 g)"
+          }
         }
       ],
       "errorCount": 0,
       "warningCount": 2,
       "resolvedCount": 0,
       "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-watermelon",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "melon d'eau",
-      "nameEn": "watermelon",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de melon d'eau (170 g)",
-      "portionLabelEn": "250 ml watermelon (170 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 170,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 170,
-        "label": "250 ml de melon d'eau (170 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 170,
-        "label": "250 ml watermelon (170 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 12,
-        "fiberG": 3,
-        "fatG": 0.6,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 58
-      },
-      "declaredKcal": 58,
-      "calculatedKcal": 57.4,
-      "absDiff": 0.6000000000000014,
-      "pctDiff": 1.0452961672473893,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-blackberries",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "mûres",
-      "nameEn": "blackberries",
-      "status": "unverified",
-      "portionLabelFr": "250 ml de mûres (150 g)",
-      "portionLabelEn": "250 ml blackberries (150 g)",
-      "amount": 250,
-      "unit": "ml",
-      "grams": 150,
-      "parsedFr": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 150,
-        "label": "250 ml de mûres (150 g)"
-      },
-      "parsedEn": {
-        "amount": 250,
-        "unit": "ml",
-        "grams": 150,
-        "label": "250 ml blackberries (150 g)"
-      },
-      "nutrients": {
-        "proteinG": 2,
-        "carbsG": 15,
-        "fiberG": 2,
-        "fatG": 0.3,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 73
-      },
-      "declaredKcal": 73,
-      "calculatedKcal": 70.7,
-      "absDiff": 2.299999999999997,
-      "pctDiff": 3.2531824611032487,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
+      "canVerify": true
     },
     {
       "id": "autres-sources-proteinees-fermented-natto",
@@ -12029,64 +11093,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-orange",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "orange",
-      "nameEn": "orange",
-      "status": "unverified",
-      "portionLabelFr": "1 orange (170 g)",
-      "portionLabelEn": "1 orange (170 g)",
-      "amount": 1,
-      "unit": "count",
-      "grams": 170,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 170,
-        "label": "1 orange (170 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 170,
-        "label": "1 orange (170 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 16,
-        "fiberG": 3,
-        "fatG": 0.4,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 69
-      },
-      "declaredKcal": 69,
-      "calculatedKcal": 71.6,
-      "absDiff": 2.5999999999999943,
-      "pctDiff": 3.631284916201109,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "poissons-fruits-mer-canned-clams",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -12132,180 +11138,6 @@
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 51 vs Atwater 44.0 (15.9%)",
           "resolutionStatus": "open"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-grapefruit",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pamplemousse",
-      "nameEn": "grapefruit",
-      "status": "unverified",
-      "portionLabelFr": "1 pamplemousse (250 g)",
-      "portionLabelEn": "1 grapefruit (250 g)",
-      "amount": 1,
-      "unit": "count",
-      "grams": 250,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 250,
-        "label": "1 pamplemousse (250 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 250,
-        "label": "1 grapefruit (250 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 18,
-        "fiberG": 1.4,
-        "fatG": 0.42,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 78
-      },
-      "declaredKcal": 78,
-      "calculatedKcal": 79.78,
-      "absDiff": 1.7800000000000011,
-      "pctDiff": 2.23113562296315,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-peach",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pêche",
-      "nameEn": "peach",
-      "status": "unverified",
-      "portionLabelFr": "1 pêche (100 g)",
-      "portionLabelEn": "1 peach (100 g)",
-      "amount": 1,
-      "unit": "count",
-      "grams": 100,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 100,
-        "label": "1 pêche (100 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 100,
-        "label": "1 peach (100 g)"
-      },
-      "nutrients": {
-        "proteinG": 1.2,
-        "carbsG": 10,
-        "fiberG": 1,
-        "fatG": 0.5,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 46
-      },
-      "declaredKcal": 46,
-      "calculatedKcal": 49.3,
-      "absDiff": 3.299999999999997,
-      "pctDiff": 6.693711967545633,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-small-kiwis",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "petits kiwis",
-      "nameEn": "small kiwis",
-      "status": "unverified",
-      "portionLabelFr": "2 petits kiwis (130 g)",
-      "portionLabelEn": "2 small kiwis (130 g)",
-      "amount": 2,
-      "unit": "count",
-      "grams": 130,
-      "parsedFr": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 130,
-        "label": "2 petits kiwis (130 g)"
-      },
-      "parsedEn": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 130,
-        "label": "2 small kiwis (130 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 16,
-        "fiberG": 6,
-        "fatG": 0.7,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 73
-      },
-      "declaredKcal": 73,
-      "calculatedKcal": 74.3,
-      "absDiff": 1.2999999999999972,
-      "pctDiff": 1.7496635262449494,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
         },
         {
           "severity": "WARNING",
@@ -12378,64 +11210,6 @@
       "canVerify": false
     },
     {
-      "id": "fruits-pear",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "poire",
-      "nameEn": "pear",
-      "status": "unverified",
-      "portionLabelFr": "125 ml de poire (110 g)",
-      "portionLabelEn": "125 ml pear (110 g)",
-      "amount": 125,
-      "unit": "ml",
-      "grams": 110,
-      "parsedFr": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 110,
-        "label": "125 ml de poire (110 g)"
-      },
-      "parsedEn": {
-        "amount": 125,
-        "unit": "ml",
-        "grams": 110,
-        "label": "125 ml pear (110 g)"
-      },
-      "nutrients": {
-        "proteinG": 0.3,
-        "carbsG": 13,
-        "fiberG": 1,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 57
-      },
-      "declaredKcal": 57,
-      "calculatedKcal": 55,
-      "absDiff": 2,
-      "pctDiff": 3.6363636363636362,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
       "id": "legumes-boiled-drained-leek",
       "displayCategory": "legumes",
       "calculationGroup": "vegetable",
@@ -12480,64 +11254,6 @@
           "severity": "WARNING",
           "code": "MISSING_GRAMS",
           "message": "Poids en grammes absent"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-apple",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pomme",
-      "nameEn": "apple",
-      "status": "unverified",
-      "portionLabelFr": "1 pomme (140 g)",
-      "portionLabelEn": "1 apple (140 g)",
-      "amount": 1,
-      "unit": "count",
-      "grams": 140,
-      "parsedFr": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 140,
-        "label": "1 pomme (140 g)"
-      },
-      "parsedEn": {
-        "amount": 1,
-        "unit": "count",
-        "grams": 140,
-        "label": "1 apple (140 g)"
-      },
-      "nutrients": {
-        "proteinG": 0.3,
-        "carbsG": 21,
-        "fiberG": 0,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 90
-      },
-      "declaredKcal": 90,
-      "calculatedKcal": 87,
-      "absDiff": 3,
-      "pctDiff": 3.4482758620689653,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
         },
         {
           "severity": "WARNING",
@@ -12708,180 +11424,6 @@
       "calculatedKcal": 54,
       "absDiff": 3,
       "pctDiff": 5.555555555555555,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-prunes",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "pruneaux",
-      "nameEn": "prunes",
-      "status": "unverified",
-      "portionLabelFr": "3 pruneaux (30 g)",
-      "portionLabelEn": "3 prunes (30 g)",
-      "amount": 3,
-      "unit": "count",
-      "grams": 30,
-      "parsedFr": {
-        "amount": 3,
-        "unit": "count",
-        "grams": 30,
-        "label": "3 pruneaux (30 g)"
-      },
-      "parsedEn": {
-        "amount": 3,
-        "unit": "count",
-        "grams": 30,
-        "label": "3 prunes (30 g)"
-      },
-      "nutrients": {
-        "proteinG": 0.8,
-        "carbsG": 15,
-        "fiberG": 1,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 63
-      },
-      "declaredKcal": 63,
-      "calculatedKcal": 65,
-      "absDiff": 2,
-      "pctDiff": 3.076923076923077,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-plums",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "prunes",
-      "nameEn": "plums",
-      "status": "unverified",
-      "portionLabelFr": "2 prunes (130 g)",
-      "portionLabelEn": "2 plums (130 g)",
-      "amount": 2,
-      "unit": "count",
-      "grams": 130,
-      "parsedFr": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 130,
-        "label": "2 prunes (130 g)"
-      },
-      "parsedEn": {
-        "amount": 2,
-        "unit": "count",
-        "grams": 130,
-        "label": "2 plums (130 g)"
-      },
-      "nutrients": {
-        "proteinG": 1,
-        "carbsG": 18,
-        "fiberG": 2,
-        "fatG": 0.8,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 83
-      },
-      "declaredKcal": 83,
-      "calculatedKcal": 83.2,
-      "absDiff": 0.20000000000000284,
-      "pctDiff": 0.24038461538461878,
-      "alerts": [
-        {
-          "severity": "WARNING",
-          "code": "MISSING_PREP_STATE",
-          "message": "État cru/cuit/égoutté non précisé"
-        },
-        {
-          "severity": "WARNING",
-          "code": "LEGACY_SOURCE_ONLY",
-          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
-        }
-      ],
-      "errorCount": 0,
-      "warningCount": 2,
-      "resolvedCount": 0,
-      "maxSeverity": "WARNING",
-      "canVerify": false
-    },
-    {
-      "id": "fruits-raisins",
-      "displayCategory": "fruits",
-      "calculationGroup": "fruit",
-      "exchangeProfileId": null,
-      "classificationStatus": "pending",
-      "nameFr": "raisins secs",
-      "nameEn": "raisins",
-      "status": "unverified",
-      "portionLabelFr": "30 ml de raisins secs (20 g)",
-      "portionLabelEn": "30 ml raisins (20 g)",
-      "amount": 30,
-      "unit": "ml",
-      "grams": 20,
-      "parsedFr": {
-        "amount": 30,
-        "unit": "ml",
-        "grams": 20,
-        "label": "30 ml de raisins secs (20 g)"
-      },
-      "parsedEn": {
-        "amount": 30,
-        "unit": "ml",
-        "grams": 20,
-        "label": "30 ml raisins (20 g)"
-      },
-      "nutrients": {
-        "proteinG": 0.6,
-        "carbsG": 15,
-        "fiberG": 1,
-        "fatG": 0.2,
-        "saturatedFatG": null,
-        "polyunsaturatedFatG": null,
-        "monounsaturatedFatG": null,
-        "declaredKcal": 62
-      },
-      "declaredKcal": 62,
-      "calculatedKcal": 64.2,
-      "absDiff": 2.200000000000003,
-      "pctDiff": 3.4267912772585714,
       "alerts": [
         {
           "severity": "WARNING",
@@ -13366,6 +11908,60 @@
       "canVerify": false
     },
     {
+      "id": "fruits-apricots",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Abricots frais, crus",
+      "nameEn": "Apricots, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml d'abricots frais tranchés (140 g)",
+      "portionLabelEn": "250 ml sliced fresh apricots (140 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 140,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 140,
+        "label": "250 ml d'abricots frais tranchés (140 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 140,
+        "label": "250 ml sliced fresh apricots (140 g)"
+      },
+      "nutrients": {
+        "proteinG": 2,
+        "carbsG": 15.6,
+        "fiberG": 2.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 67
+      },
+      "declaredKcal": 67,
+      "calculatedKcal": 74.9,
+      "absDiff": 7.900000000000006,
+      "pctDiff": 10.547396528704947,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 67 vs Atwater 74.9 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "poissons-fruits-mer-canned-anchovies-in-water",
       "displayCategory": "poissons_fruits_mer",
       "calculationGroup": "protein",
@@ -13463,6 +12059,276 @@
           "severity": "WARNING",
           "code": "KCAL_DIFF_MODERATE",
           "message": "Différence calorique modérée: déclaré 63 vs Atwater 70.4 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Canneberges séchées sucrées",
+      "nameEn": "Sweetened dried cranberries",
+      "status": "verified",
+      "portionLabelFr": "18 g de canneberges séchées sucrées",
+      "portionLabelEn": "18 g sweetened dried cranberries",
+      "amount": 18,
+      "unit": "g",
+      "grams": 18,
+      "parsedFr": {
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "label": "18 g de canneberges séchées sucrées"
+      },
+      "parsedEn": {
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "label": "18 g sweetened dried cranberries"
+      },
+      "nutrients": {
+        "proteinG": 0,
+        "carbsG": 14.9,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 55
+      },
+      "declaredKcal": 55,
+      "calculatedKcal": 61.4,
+      "absDiff": 6.399999999999999,
+      "pctDiff": 10.42345276872964,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 55 vs Atwater 61.4 (10.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Cantaloup frais, cru",
+      "nameEn": "Cantaloupe, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de cantaloup frais en cubes (165 g)",
+      "portionLabelEn": "250 ml fresh cantaloupe cubes (165 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 165,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 165,
+        "label": "250 ml de cantaloup frais en cubes (165 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 165,
+        "label": "250 ml fresh cantaloupe cubes (165 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 13.5,
+        "fiberG": 1.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 56
+      },
+      "declaredKcal": 56,
+      "calculatedKcal": 62.300000000000004,
+      "absDiff": 6.300000000000004,
+      "pctDiff": 10.112359550561804,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 56 vs Atwater 62.3 (10.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-clementines",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Clémentines fraîches, crues",
+      "nameEn": "Clementines, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "2 petites clémentines, poids comestible (125 g)",
+      "portionLabelEn": "2 small clementines, edible weight (125 g)",
+      "amount": 2,
+      "unit": "count",
+      "grams": 125,
+      "parsedFr": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 125,
+        "label": "2 petites clémentines, poids comestible (125 g)"
+      },
+      "parsedEn": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 125,
+        "label": "2 small clementines, edible weight (125 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 66.2,
+      "absDiff": 7.200000000000003,
+      "pctDiff": 10.876132930513599,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.2 (10.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-medjool-date",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Datte Medjool séchée",
+      "nameEn": "Medjool date, dried",
+      "status": "verified",
+      "portionLabelFr": "1 datte Medjool (24 g)",
+      "portionLabelEn": "1 Medjool date (24 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 24,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "label": "1 datte Medjool (24 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "label": "1 Medjool date (24 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 18,
+        "fiberG": 1.6,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "declaredKcal": 66,
+      "calculatedKcal": 73.6,
+      "absDiff": 7.599999999999994,
+      "pctDiff": 10.326086956521733,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 66 vs Atwater 73.6 (10.3%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Dattes sèches naturelles, petit format",
+      "nameEn": "Natural dried dates, small variety",
+      "status": "verified",
+      "portionLabelFr": "3 petites dattes sèches (21 g)",
+      "portionLabelEn": "3 small dried dates (21 g)",
+      "amount": 3,
+      "unit": "count",
+      "grams": 21,
+      "parsedFr": {
+        "amount": 3,
+        "unit": "count",
+        "grams": 21,
+        "label": "3 petites dattes sèches (21 g)"
+      },
+      "parsedEn": {
+        "amount": 3,
+        "unit": "count",
+        "grams": 21,
+        "label": "3 small dried dates (21 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 15.8,
+        "fiberG": 1.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 66.10000000000001,
+      "absDiff": 7.1000000000000085,
+      "pctDiff": 10.741301059001525,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.1 (10.7%)",
           "resolutionStatus": "open"
         }
       ],
@@ -13632,6 +12498,383 @@
       "canVerify": false
     },
     {
+      "id": "fruits-watermelon",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Melon d'eau frais, cru",
+      "nameEn": "Watermelon, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "300 ml de melon d'eau en cubes (200 g)",
+      "portionLabelEn": "300 ml watermelon cubes (200 g)",
+      "amount": 300,
+      "unit": "ml",
+      "grams": 200,
+      "parsedFr": {
+        "amount": 300,
+        "unit": "ml",
+        "grams": 200,
+        "label": "300 ml de melon d'eau en cubes (200 g)"
+      },
+      "parsedEn": {
+        "amount": 300,
+        "unit": "ml",
+        "grams": 200,
+        "label": "300 ml watermelon cubes (200 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.1,
+        "fiberG": 0.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 67.9,
+      "absDiff": 7.900000000000006,
+      "pctDiff": 11.634756995581744,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 60 vs Atwater 67.9 (11.6%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-blackberries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Mûres fraîches, crues",
+      "nameEn": "Blackberries, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de mûres fraîches (152 g)",
+      "portionLabelEn": "250 ml fresh blackberries (152 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 152,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 152,
+        "label": "250 ml de mûres fraîches (152 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 152,
+        "label": "250 ml fresh blackberries (152 g)"
+      },
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 14.6,
+        "fiberG": 8.1,
+        "fatG": 0.7,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 65
+      },
+      "declaredKcal": 65,
+      "calculatedKcal": 73.1,
+      "absDiff": 8.099999999999994,
+      "pctDiff": 11.080711354309159,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 65 vs Atwater 73.1 (11.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-nectarine",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Nectarine fraîche, crue",
+      "nameEn": "Nectarine, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "1 nectarine moyenne, poids comestible (142 g)",
+      "portionLabelEn": "1 medium nectarine, edible weight (142 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 142,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 142,
+        "label": "1 nectarine moyenne, poids comestible (142 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 142,
+        "label": "1 medium nectarine, edible weight (142 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15,
+        "fiberG": 2.4,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 70.5,
+      "absDiff": 8.5,
+      "pctDiff": 12.056737588652481,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 62 vs Atwater 70.5 (12.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-peach",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Pêche fraîche, crue",
+      "nameEn": "Peach, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "1 pêche moyenne, poids comestible (150 g)",
+      "portionLabelEn": "1 medium peach, edible weight (150 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 150,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 150,
+        "label": "1 pêche moyenne, poids comestible (150 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 150,
+        "label": "1 medium peach, edible weight (150 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 14.3,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 66.4,
+      "absDiff": 7.400000000000006,
+      "pctDiff": 11.144578313253021,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.4 (11.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-pear",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Poire fraîche avec pelure, crue",
+      "nameEn": "Pear, fresh, raw, with skin",
+      "status": "verified",
+      "portionLabelFr": "1 petite poire, poids comestible (100 g)",
+      "portionLabelEn": "1 small pear, edible weight (100 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "label": "1 petite poire, poids comestible (100 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "label": "1 small pear, edible weight (100 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 15.2,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 57
+      },
+      "declaredKcal": 57,
+      "calculatedKcal": 63.3,
+      "absDiff": 6.299999999999997,
+      "pctDiff": 9.952606635071087,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.2) > lipides totaux (0.1)"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-apple",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Pomme fraîche avec pelure, crue",
+      "nameEn": "Apple, fresh, raw, with skin",
+      "status": "verified",
+      "portionLabelFr": "1 petite pomme, poids comestible (110 g)",
+      "portionLabelEn": "1 small apple, edible weight (110 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 110,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 110,
+        "label": "1 petite pomme, poids comestible (110 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 110,
+        "label": "1 small apple, edible weight (110 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.3,
+        "carbsG": 15.2,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 57
+      },
+      "declaredKcal": 57,
+      "calculatedKcal": 63.8,
+      "absDiff": 6.799999999999997,
+      "pctDiff": 10.658307210031344,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 57 vs Atwater 63.8 (10.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-prunes",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Pruneaux séchés, non cuits",
+      "nameEn": "Prunes, dried, uncooked",
+      "status": "verified",
+      "portionLabelFr": "25 g de pruneaux (environ 2 à 3)",
+      "portionLabelEn": "25 g dried prunes (about 2 to 3)",
+      "amount": 25,
+      "unit": "g",
+      "grams": 25,
+      "parsedFr": {
+        "amount": 25,
+        "unit": "g",
+        "grams": 25,
+        "label": "25 g de pruneaux (environ 2 à 3)"
+      },
+      "parsedEn": {
+        "amount": 25,
+        "unit": "g",
+        "grams": 25,
+        "label": "25 g dried prunes (about 2 to 3)"
+      },
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 16,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 66.9,
+      "absDiff": 6.900000000000006,
+      "pctDiff": 10.313901345291487,
+      "alerts": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 60 vs Atwater 66.9 (10.3%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "errorCount": 0,
+      "warningCount": 1,
+      "resolvedCount": 0,
+      "maxSeverity": "WARNING",
+      "canVerify": true
+    },
+    {
       "id": "feculents-cooked-rice",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -13785,6 +13028,617 @@
       "canVerify": true
     },
     {
+      "id": "fruits-pineapple",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Ananas frais, cru",
+      "nameEn": "Pineapple, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "175 ml d'ananas frais en morceaux (110 g)",
+      "portionLabelEn": "175 ml fresh pineapple chunks (110 g)",
+      "amount": 175,
+      "unit": "ml",
+      "grams": 110,
+      "parsedFr": {
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "label": "175 ml d'ananas frais en morceaux (110 g)"
+      },
+      "parsedEn": {
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "label": "175 ml fresh pineapple chunks (110 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 14.4,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 55
+      },
+      "declaredKcal": 55,
+      "calculatedKcal": 60.9,
+      "absDiff": 5.899999999999999,
+      "pctDiff": 9.688013136288996,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-pomegranate",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Arilles de grenade fraîches, crues",
+      "nameEn": "Pomegranate arils, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "125 ml d'arilles de grenade (80 g)",
+      "portionLabelEn": "125 ml pomegranate arils (80 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 80,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 80,
+        "label": "125 ml d'arilles de grenade (80 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 80,
+        "label": "125 ml pomegranate arils (80 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.3,
+        "carbsG": 15,
+        "fiberG": 3.2,
+        "fatG": 0.9,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 66
+      },
+      "declaredKcal": 66,
+      "calculatedKcal": 73.3,
+      "absDiff": 7.299999999999997,
+      "pctDiff": 9.959072305593448,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Baies de goji séchées",
+      "nameEn": "Goji berries, dried",
+      "status": "verified",
+      "portionLabelFr": "20 g de baies de goji séchées",
+      "portionLabelEn": "20 g dried goji berries",
+      "amount": 20,
+      "unit": "g",
+      "grams": 20,
+      "parsedFr": {
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "label": "20 g de baies de goji séchées"
+      },
+      "parsedEn": {
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "label": "20 g dried goji berries"
+      },
+      "nutrients": {
+        "proteinG": 2.9,
+        "carbsG": 15.4,
+        "fiberG": 2.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "declaredKcal": 70,
+      "calculatedKcal": 74.10000000000001,
+      "absDiff": 4.1000000000000085,
+      "pctDiff": 5.533063427800281,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Cerises douces fraîches, crues",
+      "nameEn": "Sweet cherries, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "15 cerises douces, poids comestible sans noyaux (95 g)",
+      "portionLabelEn": "15 sweet cherries, edible weight without pits (95 g)",
+      "amount": 15,
+      "unit": "count",
+      "grams": 95,
+      "parsedFr": {
+        "amount": 15,
+        "unit": "count",
+        "grams": 95,
+        "label": "15 cerises douces, poids comestible sans noyaux (95 g)"
+      },
+      "parsedEn": {
+        "amount": 15,
+        "unit": "count",
+        "grams": 95,
+        "label": "15 sweet cherries, edible weight without pits (95 g)"
+      },
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 15.2,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 66.6,
+      "absDiff": 6.599999999999994,
+      "pctDiff": 9.909909909909901,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Compote de pommes non sucrée",
+      "nameEn": "Unsweetened applesauce",
+      "status": "verified",
+      "portionLabelFr": "125 ml de compote de pommes non sucrée (129 g)",
+      "portionLabelEn": "125 ml unsweetened applesauce (129 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 129,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 129,
+        "label": "125 ml de compote de pommes non sucrée (129 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 129,
+        "label": "125 ml unsweetened applesauce (129 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.2,
+        "carbsG": 14.5,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 54
+      },
+      "declaredKcal": 54,
+      "calculatedKcal": 59.699999999999996,
+      "absDiff": 5.699999999999996,
+      "pctDiff": 9.54773869346733,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-strawberries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Fraises fraîches, crues",
+      "nameEn": "Strawberries, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de fraises fraîches (160 g)",
+      "portionLabelEn": "250 ml fresh strawberries (160 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 160,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "label": "250 ml de fraises fraîches (160 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "label": "250 ml fresh strawberries (160 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 12.3,
+        "fiberG": 3.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 53
+      },
+      "declaredKcal": 53,
+      "calculatedKcal": 58.1,
+      "absDiff": 5.100000000000001,
+      "pctDiff": 8.777969018932877,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-raspberries",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Framboises fraîches, crues",
+      "nameEn": "Raspberries, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "250 ml de framboises fraîches (130 g)",
+      "portionLabelEn": "250 ml fresh raspberries (130 g)",
+      "amount": 250,
+      "unit": "ml",
+      "grams": 130,
+      "parsedFr": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "label": "250 ml de framboises fraîches (130 g)"
+      },
+      "parsedEn": {
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "label": "250 ml fresh raspberries (130 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.6,
+        "carbsG": 15.5,
+        "fiberG": 8.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "declaredKcal": 69,
+      "calculatedKcal": 75.60000000000001,
+      "absDiff": 6.6000000000000085,
+      "pctDiff": 8.73015873015874,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Jus d'ananas 100 % pur, sans sucre ajouté",
+      "nameEn": "100% pure pineapple juice, no added sugar",
+      "status": "verified",
+      "portionLabelFr": "125 ml de jus d'ananas 100 % pur (132 g)",
+      "portionLabelEn": "125 ml 100% pure pineapple juice (132 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 132,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 132,
+        "label": "125 ml de jus d'ananas 100 % pur (132 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 132,
+        "label": "125 ml 100% pure pineapple juice (132 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.5,
+        "carbsG": 17,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 70
+      },
+      "declaredKcal": 70,
+      "calculatedKcal": 71.8,
+      "absDiff": 1.7999999999999972,
+      "pctDiff": 2.506963788300832,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Jus d'orange 100 % pur, sans sucre ajouté",
+      "nameEn": "100% pure orange juice, no added sugar",
+      "status": "verified",
+      "portionLabelFr": "125 ml de jus d'orange 100 % pur (131 g)",
+      "portionLabelEn": "125 ml 100% pure orange juice (131 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 131,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "label": "125 ml de jus d'orange 100 % pur (131 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "label": "125 ml 100% pure orange juice (131 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 13.6,
+        "fiberG": 0.3,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 60.7,
+      "absDiff": 1.7000000000000028,
+      "pctDiff": 2.8006589785832006,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Jus de pamplemousse rose 100 % pur, sans sucre ajouté",
+      "nameEn": "100% pure pink grapefruit juice, no added sugar",
+      "status": "verified",
+      "portionLabelFr": "125 ml de jus de pamplemousse rose 100 % pur (130 g)",
+      "portionLabelEn": "125 ml 100% pure pink grapefruit juice (130 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 130,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 130,
+        "label": "125 ml de jus de pamplemousse rose 100 % pur (130 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 130,
+        "label": "125 ml 100% pure pink grapefruit juice (130 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 12,
+        "fiberG": null,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 51
+      },
+      "declaredKcal": 51,
+      "calculatedKcal": 51.699999999999996,
+      "absDiff": 0.6999999999999957,
+      "pctDiff": 1.3539651837524096,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Jus de pomme 100 % pur, sans sucre ajouté",
+      "nameEn": "100% pure apple juice, no added sugar",
+      "status": "verified",
+      "portionLabelFr": "125 ml de jus de pomme 100 % pur (131 g)",
+      "portionLabelEn": "125 ml 100% pure apple juice (131 g)",
+      "amount": 125,
+      "unit": "ml",
+      "grams": 131,
+      "parsedFr": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "label": "125 ml de jus de pomme 100 % pur (131 g)"
+      },
+      "parsedEn": {
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "label": "125 ml 100% pure apple juice (131 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.1,
+        "carbsG": 14.8,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 61.4,
+      "absDiff": 1.3999999999999986,
+      "pctDiff": 2.280130293159607,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Kiwis verts frais, crus",
+      "nameEn": "Green kiwifruit, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "2 petits kiwis, poids comestible (100 g)",
+      "portionLabelEn": "2 small kiwifruit, edible weight (100 g)",
+      "amount": 2,
+      "unit": "count",
+      "grams": 100,
+      "parsedFr": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 100,
+        "label": "2 petits kiwis, poids comestible (100 g)"
+      },
+      "parsedEn": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 100,
+        "label": "2 small kiwifruit, edible weight (100 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 14.7,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 61
+      },
+      "declaredKcal": 61,
+      "calculatedKcal": 67.69999999999999,
+      "absDiff": 6.699999999999989,
+      "pctDiff": 9.896602658788758,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-orange",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Orange fraîche, crue, variété commerciale",
+      "nameEn": "Orange, fresh, raw, commercial variety",
+      "status": "verified",
+      "portionLabelFr": "1 orange moyenne, poids comestible (131 g)",
+      "portionLabelEn": "1 medium orange, edible weight (131 g)",
+      "amount": 1,
+      "unit": "count",
+      "grams": 131,
+      "parsedFr": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 131,
+        "label": "1 orange moyenne, poids comestible (131 g)"
+      },
+      "parsedEn": {
+        "amount": 1,
+        "unit": "count",
+        "grams": 131,
+        "label": "1 medium orange, edible weight (131 g)"
+      },
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.4,
+        "fiberG": 2.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "declaredKcal": 62,
+      "calculatedKcal": 68.2,
+      "absDiff": 6.200000000000003,
+      "pctDiff": 9.090909090909095,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "viandes-volaille-chicken-breast",
       "displayCategory": "viandes_volaille",
       "calculationGroup": "protein",
@@ -13832,6 +13686,53 @@
       "canVerify": true
     },
     {
+      "id": "fruits-plums",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Prunes fraîches, crues",
+      "nameEn": "Plums, fresh, raw",
+      "status": "verified",
+      "portionLabelFr": "2 prunes moyennes, poids comestible (130 g)",
+      "portionLabelEn": "2 medium plums, edible weight (130 g)",
+      "amount": 2,
+      "unit": "count",
+      "grams": 130,
+      "parsedFr": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "label": "2 prunes moyennes, poids comestible (130 g)"
+      },
+      "parsedEn": {
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "label": "2 medium plums, edible weight (130 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 14.8,
+        "fiberG": 2.1,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 66.4,
+      "absDiff": 6.400000000000006,
+      "pctDiff": 9.638554216867478,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
       "id": "feculents-cooked-quinoa",
       "displayCategory": "feculents",
       "calculationGroup": "starch",
@@ -13871,6 +13772,100 @@
       "calculatedKcal": 89.8,
       "absDiff": 0.20000000000000284,
       "pctDiff": 0.22271714922049313,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-large-grapes",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Raisins rouges ou verts sans pépins, crus",
+      "nameEn": "Red or green seedless grapes, raw",
+      "status": "verified",
+      "portionLabelFr": "17 gros raisins (85 g)",
+      "portionLabelEn": "17 large grapes (85 g)",
+      "amount": 17,
+      "unit": "count",
+      "grams": 85,
+      "parsedFr": {
+        "amount": 17,
+        "unit": "count",
+        "grams": 85,
+        "label": "17 gros raisins (85 g)"
+      },
+      "parsedEn": {
+        "amount": 17,
+        "unit": "count",
+        "grams": 85,
+        "label": "17 large grapes (85 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.4,
+        "fiberG": 1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "declaredKcal": 59,
+      "calculatedKcal": 64.9,
+      "absDiff": 5.900000000000006,
+      "pctDiff": 9.090909090909099,
+      "alerts": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "resolvedCount": 0,
+      "maxSeverity": "OK",
+      "canVerify": true
+    },
+    {
+      "id": "fruits-raisins",
+      "displayCategory": "fruits",
+      "calculationGroup": "fruit",
+      "exchangeProfileId": "fruit-standard",
+      "classificationStatus": "approved",
+      "nameFr": "Raisins secs sans pépins",
+      "nameEn": "Seedless raisins (sultanas)",
+      "status": "verified",
+      "portionLabelFr": "30 ml de raisins secs (20 g)",
+      "portionLabelEn": "30 ml seedless raisins (20 g)",
+      "amount": 30,
+      "unit": "ml",
+      "grams": 20,
+      "parsedFr": {
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "label": "30 ml de raisins secs (20 g)"
+      },
+      "parsedEn": {
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "label": "30 ml seedless raisins (20 g)"
+      },
+      "nutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.8,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "declaredKcal": 60,
+      "calculatedKcal": 66.50000000000001,
+      "absDiff": 6.500000000000014,
+      "pctDiff": 9.774436090225583,
       "alerts": [],
       "errorCount": 0,
       "warningCount": 0,
