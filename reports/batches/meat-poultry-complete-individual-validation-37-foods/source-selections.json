@@ -1,0 +1,718 @@
+{
+  "batchId": "meat-poultry-complete-individual-validation-37-foods",
+  "selected": [
+    {
+      "id": "viandes-volaille-lamb",
+      "operation": "update",
+      "recordId": "3429",
+      "expectedRecordId": "3429",
+      "selectedRecordId": "3429",
+      "transactionId": "3b4d8182-3580-48a4-a393-7efb9985518c",
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-bison",
+      "operation": "update",
+      "recordId": "3572",
+      "expectedRecordId": "3572",
+      "selectedRecordId": "3572",
+      "transactionId": "b62894c2-a429-4f51-b50b-442fa2d87056",
+      "nutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 43
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-beef",
+      "operation": "update",
+      "recordId": "6172",
+      "expectedRecordId": "6172",
+      "selectedRecordId": "6172",
+      "transactionId": "35204981-0849-4d28-9e33-27d2c1f73f2b",
+      "nutrients": {
+        "proteinG": 10.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 74
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-extra-lean-ground-beef",
+      "operation": "update",
+      "recordId": "4998",
+      "expectedRecordId": "4998",
+      "selectedRecordId": "4998",
+      "transactionId": "e7a757bd-f24f-4330-8749-43cdabd0ed35",
+      "nutrients": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 67
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-extra-lean-sirloin-steak",
+      "operation": "update",
+      "recordId": "6146",
+      "expectedRecordId": "6146",
+      "selectedRecordId": "6146",
+      "transactionId": "9fa88604-9a92-44b5-9c4b-96b4f9c6cdd8",
+      "nutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.6,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 52
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-lean-ground-beef",
+      "operation": "update",
+      "recordId": "5009",
+      "expectedRecordId": "5009",
+      "selectedRecordId": "5009",
+      "transactionId": "9613f4c9-b62e-4621-b7f2-f89723dc259a",
+      "nutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.5,
+        "saturatedFatG": 1.8,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 77
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-medium-ground-beef",
+      "operation": "update",
+      "recordId": "4995",
+      "expectedRecordId": "4995",
+      "selectedRecordId": "4995",
+      "transactionId": "fa7c56fd-b41e-47e5-8b9c-7c1c6f152f55",
+      "nutrients": {
+        "proteinG": 8.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 86
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-regular-ground-beef",
+      "operation": "update",
+      "recordId": "5010",
+      "expectedRecordId": "5010",
+      "selectedRecordId": "5010",
+      "transactionId": "efcf8fe2-dde8-4858-a971-492f69ddce80",
+      "nutrients": {
+        "proteinG": 8.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.7,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 97
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-duck",
+      "operation": "update",
+      "recordId": "665",
+      "expectedRecordId": "665",
+      "selectedRecordId": "665",
+      "transactionId": "91c1c87c-0fca-4af2-8ad0-e575d81d82ab",
+      "nutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-caribou",
+      "operation": "update",
+      "recordId": "3578",
+      "expectedRecordId": "3578",
+      "selectedRecordId": "3578",
+      "transactionId": "f18ad5d4-739b-4d94-abd1-8f7f31c1583b",
+      "nutrients": {
+        "proteinG": 9.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.9,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 49
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-horse",
+      "operation": "update",
+      "recordId": "3586",
+      "expectedRecordId": "3586",
+      "selectedRecordId": "3586",
+      "transactionId": "f76a4e8b-b7c6-432a-a4af-d69d1830e290",
+      "nutrients": {
+        "proteinG": 8.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh",
+      "operation": "update",
+      "recordId": "854",
+      "expectedRecordId": "854",
+      "selectedRecordId": "854",
+      "transactionId": "b031b8ee-f225-4ad2-b7c2-1e17ffc21eee",
+      "nutrients": {
+        "proteinG": 7.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-turkey",
+      "operation": "update",
+      "recordId": "691",
+      "expectedRecordId": "691",
+      "selectedRecordId": "691",
+      "transactionId": "425d12c7-8e63-43d4-8f20-261267cc244d",
+      "nutrients": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-veal-cutlet",
+      "operation": "update",
+      "recordId": "3651",
+      "expectedRecordId": "3651",
+      "selectedRecordId": "3651",
+      "transactionId": "3fd0e250-9a84-4e81-9eb7-47d9a56b7d39",
+      "nutrients": {
+        "proteinG": 10.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 54
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-rabbit",
+      "operation": "update",
+      "recordId": "3593",
+      "expectedRecordId": "3593",
+      "selectedRecordId": "3593",
+      "transactionId": "f91e6232-3cc6-45bc-bbfb-e6fad4c2490c",
+      "nutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 59
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-moose",
+      "operation": "update",
+      "recordId": "3588",
+      "expectedRecordId": "3588",
+      "selectedRecordId": "3588",
+      "transactionId": "05d481ef-8d8b-45b5-a87c-c41313b4c451",
+      "nutrients": {
+        "proteinG": 10.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-lean-ground-chicken",
+      "operation": "update",
+      "recordId": "919",
+      "expectedRecordId": "919",
+      "selectedRecordId": "919",
+      "transactionId": "c723f6a4-1392-4b1d-abcc-808671fb9c20",
+      "nutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-pork",
+      "operation": "update",
+      "recordId": "1894",
+      "expectedRecordId": "1894",
+      "selectedRecordId": "1894",
+      "transactionId": "b82cf3d3-7192-4c8a-8ebe-e151bbb044ac",
+      "nutrients": {
+        "proteinG": 5.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.4,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 73
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-pork-tenderloin",
+      "operation": "update",
+      "recordId": "1932",
+      "expectedRecordId": "1932",
+      "selectedRecordId": "1932",
+      "transactionId": "d9589d61-f380-4c68-b905-01f3350c59f2",
+      "nutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 43
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-wild-boar",
+      "operation": "update",
+      "recordId": "3574",
+      "expectedRecordId": "3574",
+      "selectedRecordId": "3574",
+      "transactionId": "25bc7635-5034-451d-873d-a1c5fdab0d0d",
+      "nutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 48
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-sausage",
+      "operation": "update",
+      "recordId": "1175",
+      "expectedRecordId": "1175",
+      "selectedRecordId": "1175",
+      "transactionId": "e86a85a3-8dcb-418c-9b4a-e14e9c82157d",
+      "nutrients": {
+        "proteinG": 2.8,
+        "carbsG": 0.8,
+        "fiberG": 0,
+        "fatG": 3.2,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 44
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-ground-veal",
+      "operation": "update",
+      "recordId": "3562",
+      "expectedRecordId": "3562",
+      "selectedRecordId": "3562",
+      "transactionId": "0f2fa4e3-eb3c-423f-87ce-9cc757eb81fb",
+      "nutrients": {
+        "proteinG": 7.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.9,
+        "declaredKcal": 52
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-deli-meats",
+      "operation": "update",
+      "recordId": "1148",
+      "expectedRecordId": "1148",
+      "selectedRecordId": "1148",
+      "transactionId": "169ee335-9587-41e1-8b5f-b8ba4700d4ac",
+      "nutrients": {
+        "proteinG": 4.4,
+        "carbsG": 1.7,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 37
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-elk",
+      "operation": "update",
+      "recordId": "3582",
+      "expectedRecordId": "3582",
+      "selectedRecordId": "3582",
+      "transactionId": "45b2371d-83ce-4766-bd3a-8471f97f4c2c",
+      "nutrients": {
+        "proteinG": 9.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 44
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-natural-beef-jerky",
+      "operation": "update",
+      "recordId": "4086",
+      "expectedRecordId": "4086",
+      "selectedRecordId": "4086",
+      "transactionId": "89b830a6-fe89-4129-800f-35dba8f65539",
+      "nutrients": {
+        "proteinG": 6.6,
+        "carbsG": 2.2,
+        "fiberG": 0.4,
+        "fatG": 5.1,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 82
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-extra-lean-smoked-turkey",
+      "operation": "update",
+      "recordId": "5598",
+      "expectedRecordId": "5598",
+      "selectedRecordId": "5598",
+      "transactionId": "039a6973-8eff-43a0-b514-8c9cc5a5c630",
+      "nutrients": {
+        "proteinG": 8.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 49
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-canned-chicken-in-water-drained",
+      "operation": "update",
+      "recordId": "5333",
+      "expectedRecordId": "5333",
+      "selectedRecordId": "5333",
+      "transactionId": "ea67aea4-c449-468b-b60d-d6427b778e11",
+      "nutrients": {
+        "proteinG": 7.6,
+        "carbsG": 0.3,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 56
+      },
+      "version": 3
+    },
+    {
+      "id": "viandes-volaille-beef-tenderloin-steak",
+      "operation": "add",
+      "recordId": "6134",
+      "expectedRecordId": "6134",
+      "selectedRecordId": "6134",
+      "transactionId": "ec74f532-17ac-4495-bc1a-267108ece2d1",
+      "nutrients": {
+        "proteinG": 9.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 62
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-beef-ribeye-steak",
+      "operation": "add",
+      "recordId": "6069",
+      "expectedRecordId": "6069",
+      "selectedRecordId": "6069",
+      "transactionId": "a12fcea2-4d87-4fb6-afe0-9dbeb37b6485",
+      "nutrients": {
+        "proteinG": 8.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.6,
+        "saturatedFatG": 2.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 86
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-chicken-drumstick",
+      "operation": "add",
+      "recordId": "848",
+      "expectedRecordId": "848",
+      "selectedRecordId": "848",
+      "transactionId": "c4737ed7-a640-43f0-b4fe-73b0d607a7a7",
+      "nutrients": {
+        "proteinG": 7.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 47
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh-with-skin",
+      "operation": "add",
+      "recordId": "851",
+      "expectedRecordId": "851",
+      "selectedRecordId": "851",
+      "transactionId": "f447a645-e76d-4d38-ad1c-b501a808f0a6",
+      "nutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-ground-turkey",
+      "operation": "add",
+      "recordId": "816",
+      "expectedRecordId": "816",
+      "selectedRecordId": "816",
+      "transactionId": "65f9e6ba-451f-4f33-a95e-77510ad3108f",
+      "nutrients": {
+        "proteinG": 8.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 59
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-pork-centre-chop",
+      "operation": "add",
+      "recordId": "1787",
+      "expectedRecordId": "1787",
+      "selectedRecordId": "1787",
+      "transactionId": "89ae95db-a316-4777-8f7e-7933bd3ec688",
+      "nutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.2,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 54
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-pork-shoulder",
+      "operation": "add",
+      "recordId": "1828",
+      "expectedRecordId": "1828",
+      "selectedRecordId": "1828",
+      "transactionId": "a2df75c3-5c2c-438e-81b0-72e2ac5297eb",
+      "nutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-bacon-cooked",
+      "operation": "add",
+      "recordId": "5405",
+      "expectedRecordId": "5405",
+      "selectedRecordId": "5405",
+      "transactionId": "9fd397d9-cb60-4534-bbfa-644deb5c8695",
+      "nutrients": {
+        "proteinG": 5.4,
+        "carbsG": 0.2,
+        "fiberG": 0,
+        "fatG": 6.5,
+        "saturatedFatG": 2.1,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 82
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-venison",
+      "operation": "add",
+      "recordId": "3580",
+      "expectedRecordId": "3580",
+      "selectedRecordId": "3580",
+      "transactionId": "e2fc4586-a0f7-4c92-aee1-16a3abdbbf6a",
+      "nutrients": {
+        "proteinG": 9.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 47
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "viandes-volaille-turkey-bacon",
+      "operation": "add",
+      "recordId": "5462",
+      "expectedRecordId": "5462",
+      "selectedRecordId": "5462",
+      "transactionId": "bcea55a1-6846-4636-b7cf-5b9478610221",
+      "nutrients": {
+        "proteinG": 8.9,
+        "carbsG": 1.3,
+        "fiberG": 0,
+        "fatG": 7.8,
+        "saturatedFatG": 2.1,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 2.8,
+        "declaredKcal": 110
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ]
+}

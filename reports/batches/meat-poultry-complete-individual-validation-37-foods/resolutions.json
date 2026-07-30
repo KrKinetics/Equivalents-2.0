@@ -1,0 +1,221 @@
+{
+  "batchId": "meat-poultry-complete-individual-validation-37-foods",
+  "foods": [
+    {
+      "id": "viandes-volaille-lamb",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-bison",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-beef",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-extra-lean-ground-beef",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-extra-lean-sirloin-steak",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-lean-ground-beef",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-medium-ground-beef",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-regular-ground-beef",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-duck",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-caribou",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-horse",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-turkey",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-veal-cutlet",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-rabbit",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-moose",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-lean-ground-chicken",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-pork",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-pork-tenderloin",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-wild-boar",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-sausage",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-ground-veal",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-deli-meats",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-elk",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-natural-beef-jerky",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-extra-lean-smoked-turkey",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-canned-chicken-in-water-drained",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-beef-tenderloin-steak",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "viandes-volaille-beef-ribeye-steak",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-chicken-drumstick",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh-with-skin",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-ground-turkey",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-pork-centre-chop",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-pork-shoulder",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-bacon-cooked",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-venison",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "viandes-volaille-turkey-bacon",
+      "resolutions": [],
+      "alertsAfter": []
+    }
+  ]
+}

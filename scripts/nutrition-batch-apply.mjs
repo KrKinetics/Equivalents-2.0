@@ -191,6 +191,7 @@ function main() {
   const nutsSeeds = live.foods.filter((f) => f.displayCategory === 'noix_graines');
   const fats = live.foods.filter((f) => f.displayCategory === 'matieres_grasses');
   const fishSeafood = live.foods.filter((f) => f.displayCategory === 'poissons_fruits_mer');
+  const meatPoultry = live.foods.filter((f) => f.displayCategory === 'viandes_volaille');
   const finalReport = {
     batchId: batch.batchId,
     generatedAt: new Date().toISOString(),
@@ -208,6 +209,8 @@ function main() {
       fatsVerified: fats.filter((f) => f.status === 'verified').length,
       fishSeafoodCount: fishSeafood.length,
       fishSeafoodVerified: fishSeafood.filter((f) => f.status === 'verified').length,
+      meatPoultryCount: meatPoultry.length,
+      meatPoultryVerified: meatPoultry.filter((f) => f.status === 'verified').length,
       totalFoods: live.foods.length,
       totalVerified: live.foods.filter((f) => f.status === 'verified').length,
       protectedUnchanged: result.scopeCheck?.protectedFoodCount ?? null,

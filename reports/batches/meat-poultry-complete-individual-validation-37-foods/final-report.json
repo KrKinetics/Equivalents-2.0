@@ -1,0 +1,2232 @@
+{
+  "batchId": "meat-poultry-complete-individual-validation-37-foods",
+  "generatedAt": "2026-07-30T19:39:34.236Z",
+  "summary": {
+    "updates": 27,
+    "adds": 10,
+    "verifiedInBatch": 37,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "fatsCount": 23,
+    "fatsVerified": 23,
+    "fishSeafoodCount": 36,
+    "fishSeafoodVerified": 36,
+    "meatPoultryCount": 38,
+    "meatPoultryVerified": 38,
+    "totalFoods": 257,
+    "totalVerified": 201,
+    "protectedUnchanged": 220,
+    "protectedFoodsDataHash": "1113e327c57bd727c737a8486a4a2abb89928eb2a2b2b1d214052d97733b1c9b",
+    "dataHash": "f1467f9259ddeef7307405422c8af738882adc4ac22feced8a2f4a909810ee6f"
+  },
+  "foods": [
+    {
+      "id": "viandes-volaille-lamb",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3429",
+      "selectedRecordId": "3429",
+      "cnfDescription": {
+        "en": "Lamb, Canadian, foreshank, lean, cooked",
+        "fr": "Agneau, canadien, jarret, maigre, braisé"
+      },
+      "sourceDescription": {
+        "en": "Lamb, Canadian, foreshank, lean, cooked",
+        "fr": "Agneau, canadien, jarret, maigre, braisé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g d'Agneau (Jarret)",
+        "labelEn": "30 g Lamb (shank)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de jarret d’agneau braisé",
+        "labelEn": "30 g braised lamb foreshank",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "afterNutrients": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "3b4d8182-3580-48a4-a393-7efb9985518c",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-lamb"
+    },
+    {
+      "id": "viandes-volaille-bison",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3572",
+      "selectedRecordId": "3572",
+      "cnfDescription": {
+        "en": "Game meat, bison, roasted",
+        "fr": "Gibier, viande, bison, rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, bison, roasted",
+        "fr": "Gibier, viande, bison, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bison",
+        "labelEn": "30 g Bison",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bison rôti",
+        "labelEn": "30 g roasted bison",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 6,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 43
+      },
+      "afterNutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.7,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 43
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b62894c2-a429-4f51-b50b-442fa2d87056",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-beef",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6172",
+      "selectedRecordId": "6172",
+      "cnfDescription": {
+        "en": "Beef, composite cuts, steak/roast, lean and fat, cooked",
+        "fr": "Boeuf, coupes diverses, bifteck/rôti, maigre et gras, cuit"
+      },
+      "sourceDescription": {
+        "en": "Beef, composite cuts, steak/roast, lean and fat, cooked",
+        "fr": "Boeuf, coupes diverses, bifteck/rôti, maigre et gras, cuit"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf (aloyau)",
+        "labelEn": "30 g Beef (sirloin)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bœuf cuit",
+        "labelEn": "30 g cooked beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 65
+      },
+      "afterNutrients": {
+        "proteinG": 10.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 74
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "35204981-0849-4d28-9e33-27d2c1f73f2b",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-beef-standard"
+    },
+    {
+      "id": "viandes-volaille-extra-lean-ground-beef",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4998",
+      "selectedRecordId": "4998",
+      "cnfDescription": {
+        "en": "Beef, ground, extra lean, crumbled, pan-fried",
+        "fr": "Boeuf, haché, extra maigre, émietté, sauté"
+      },
+      "sourceDescription": {
+        "en": "Beef, ground, extra lean, crumbled, pan-fried",
+        "fr": "Boeuf, haché, extra maigre, émietté, sauté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf haché extra maigre",
+        "labelEn": "30 g Extra-lean ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bœuf haché extra-maigre cuit",
+        "labelEn": "30 g cooked extra-lean ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 47
+      },
+      "afterNutrients": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 67
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e7a757bd-f24f-4330-8749-43cdabd0ed35",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-beef-extra-lean"
+    },
+    {
+      "id": "viandes-volaille-extra-lean-sirloin-steak",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6146",
+      "selectedRecordId": "6146",
+      "cnfDescription": {
+        "en": "Beef, loin, top sirloin steak, boneless, lean, cooked, broiled",
+        "fr": "Boeuf, longe, bifteck de haut de surlonge, désossé, maigre, cuit, grillé"
+      },
+      "sourceDescription": {
+        "en": "Beef, loin, top sirloin steak, boneless, lean, cooked, broiled",
+        "fr": "Boeuf, longe, bifteck de haut de surlonge, désossé, maigre, cuit, grillé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf faux-filet extra-maigre",
+        "labelEn": "30 g Extra-lean sirloin steak",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bifteck de haut de surlonge grillé",
+        "labelEn": "30 g broiled lean top sirloin steak",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.6,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9fa88604-9a92-44b5-9c4b-96b4f9c6cdd8",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-beef-lean-steak"
+    },
+    {
+      "id": "viandes-volaille-lean-ground-beef",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5009",
+      "selectedRecordId": "5009",
+      "cnfDescription": {
+        "en": "Beef, ground, lean, crumbled, pan-fried",
+        "fr": "Boeuf, haché, maigre, émietté, sauté"
+      },
+      "sourceDescription": {
+        "en": "Beef, ground, lean, crumbled, pan-fried",
+        "fr": "Boeuf, haché, maigre, émietté, sauté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf haché maigre *",
+        "labelEn": "30 g Lean ground beef *",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bœuf haché maigre cuit",
+        "labelEn": "30 g cooked lean ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.5,
+        "saturatedFatG": 1.8,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 77
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9613f4c9-b62e-4621-b7f2-f89723dc259a",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-beef-lean"
+    },
+    {
+      "id": "viandes-volaille-medium-ground-beef",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4995",
+      "selectedRecordId": "4995",
+      "cnfDescription": {
+        "en": "Beef, ground, medium, crumbled, pan-fried",
+        "fr": "Boeuf, haché, mi-maigre, émietté, sauté"
+      },
+      "sourceDescription": {
+        "en": "Beef, ground, medium, crumbled, pan-fried",
+        "fr": "Boeuf, haché, mi-maigre, émietté, sauté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf haché mi-maigre *",
+        "labelEn": "30 g Medium ground beef *",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bœuf haché mi-maigre cuit",
+        "labelEn": "30 g cooked medium ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 8.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 86
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "fa7c56fd-b41e-47e5-8b9c-7c1c6f152f55",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-beef-medium"
+    },
+    {
+      "id": "viandes-volaille-regular-ground-beef",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5010",
+      "selectedRecordId": "5010",
+      "cnfDescription": {
+        "en": "Beef, ground, regular, crumbled, not rinsed, pan-fried",
+        "fr": "Boeuf, haché, régulier, émietté, non rinsé, sauté"
+      },
+      "sourceDescription": {
+        "en": "Beef, ground, regular, crumbled, not rinsed, pan-fried",
+        "fr": "Boeuf, haché, régulier, émietté, non rinsé, sauté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Bœuf haché régulier *",
+        "labelEn": "30 g Regular ground beef *",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de bœuf haché régulier cuit",
+        "labelEn": "30 g cooked regular ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 91
+      },
+      "afterNutrients": {
+        "proteinG": 8.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.7,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 97
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "efcf8fe2-dde8-4858-a971-492f69ddce80",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-beef-regular"
+    },
+    {
+      "id": "viandes-volaille-duck",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "665",
+      "selectedRecordId": "665",
+      "cnfDescription": {
+        "en": "Duck, domesticated, meat only, roasted",
+        "fr": "Canard domestiqué, viande seulement, rôtie"
+      },
+      "sourceDescription": {
+        "en": "Duck, domesticated, meat only, roasted",
+        "fr": "Canard domestiqué, viande seulement, rôtie"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Canard",
+        "labelEn": "30 g Duck",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de canard rôti sans peau",
+        "labelEn": "30 g roasted skinless duck meat",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 37
+      },
+      "afterNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "91c1c87c-0fca-4af2-8ad0-e575d81d82ab",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-duck"
+    },
+    {
+      "id": "viandes-volaille-caribou",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3578",
+      "selectedRecordId": "3578",
+      "cnfDescription": {
+        "en": "Game meat, Indigenous, caribou (reindeer), meat, cooked",
+        "fr": "Gibier, viande, autochtone, caribou, (renne), viande, cuite"
+      },
+      "sourceDescription": {
+        "en": "Game meat, Indigenous, caribou (reindeer), meat, cooked",
+        "fr": "Gibier, viande, autochtone, caribou, (renne), viande, cuite"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Caribou",
+        "labelEn": "30 g Caribou",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de caribou cuit",
+        "labelEn": "30 g cooked caribou",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 9.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.9,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 49
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f18ad5d4-739b-4d94-abd1-8f7f31c1583b",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-horse",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3586",
+      "selectedRecordId": "3586",
+      "cnfDescription": {
+        "en": "Game meat, horse, roasted",
+        "fr": "Gibier, viande, cheval, rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, horse, roasted",
+        "fr": "Gibier, viande, cheval, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Cheval",
+        "labelEn": "30 g Horse",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de cheval rôti",
+        "labelEn": "30 g roasted horse",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 8.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f76a4e8b-b7c6-432a-a4af-d69d1830e290",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "854",
+      "selectedRecordId": "854",
+      "cnfDescription": {
+        "en": "Chicken, broiler, thigh, meat, roasted",
+        "fr": "Poulet à griller, haut de cuisse, viande, rôti"
+      },
+      "sourceDescription": {
+        "en": "Chicken, broiler, thigh, meat, roasted",
+        "fr": "Poulet à griller, haut de cuisse, viande, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Cuisse de poulet",
+        "labelEn": "30 g Chicken thigh",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de haut de cuisse de poulet rôti sans peau",
+        "labelEn": "30 g roasted skinless chicken thigh",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 7.4,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b031b8ee-f225-4ad2-b7c2-1e17ffc21eee",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-chicken-dark-meat"
+    },
+    {
+      "id": "viandes-volaille-turkey",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "691",
+      "selectedRecordId": "691",
+      "cnfDescription": {
+        "en": "Turkey, all classes, meat only, roasted",
+        "fr": "Dinde, toutes catégories, viande seulement, rôti"
+      },
+      "sourceDescription": {
+        "en": "Turkey, all classes, meat only, roasted",
+        "fr": "Dinde, toutes catégories, viande seulement, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Dinde",
+        "labelEn": "30 g Turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de dinde rôtie sans peau",
+        "labelEn": "30 g roasted skinless turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 45
+      },
+      "afterNutrients": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "425d12c7-8e63-43d4-8f20-261267cc244d",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-turkey"
+    },
+    {
+      "id": "viandes-volaille-veal-cutlet",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3651",
+      "selectedRecordId": "3651",
+      "cnfDescription": {
+        "en": "Veal, grain-fed, cutlets (inside rop round), pan-fried",
+        "fr": "Veau de grain, escalopes (ronde d'intérieur), sauté"
+      },
+      "sourceDescription": {
+        "en": "Veal, grain-fed, cutlets (inside rop round), pan-fried",
+        "fr": "Veau de grain, escalopes (ronde d'intérieur), sauté"
+      },
+      "beforePortion": {
+        "labelFr": "30 g d'Escalope de veau",
+        "labelEn": "30 g Veal cutlet",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g d’escalope de veau cuite",
+        "labelEn": "30 g cooked veal cutlet",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 10.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "3fd0e250-9a84-4e81-9eb7-47d9a56b7d39",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-veal"
+    },
+    {
+      "id": "viandes-volaille-rabbit",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3593",
+      "selectedRecordId": "3593",
+      "cnfDescription": {
+        "en": "Game meat, rabbit, domestic, composite cuts, roasted",
+        "fr": "Gibier, viande, lapin domestique, coupes diverses, rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, rabbit, domestic, composite cuts, roasted",
+        "fr": "Gibier, viande, lapin domestique, coupes diverses, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Lapin",
+        "labelEn": "30 g Rabbit",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de lapin rôti",
+        "labelEn": "30 g roasted rabbit",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 8.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f91e6232-3cc6-45bc-bbfb-e6fad4c2490c",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-moose",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3588",
+      "selectedRecordId": "3588",
+      "cnfDescription": {
+        "en": "Game meat, Indigenous, moose, roasted",
+        "fr": "Gibier, viande, autochtone, orignal, rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, Indigenous, moose, roasted",
+        "fr": "Gibier, viande, autochtone, orignal, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g d'Orignal",
+        "labelEn": "30 g Moose",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g d’orignal rôti",
+        "labelEn": "30 g roasted moose",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 40
+      },
+      "afterNutrients": {
+        "proteinG": 10.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "05d481ef-8d8b-45b5-a87c-c41313b4c451",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-lean-ground-chicken",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "919",
+      "selectedRecordId": "919",
+      "cnfDescription": {
+        "en": "Chicken, ground, lean, cooked",
+        "fr": "Poulet, haché, maigre, cuit"
+      },
+      "sourceDescription": {
+        "en": "Chicken, ground, lean, cooked",
+        "fr": "Poulet, haché, maigre, cuit"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Poulet haché maigre",
+        "labelEn": "30 g Lean ground chicken",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de poulet haché maigre cuit",
+        "labelEn": "30 g cooked lean ground chicken",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 3.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c723f6a4-1392-4b1d-abcc-808671fb9c20",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-poultry"
+    },
+    {
+      "id": "viandes-volaille-pork",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1894",
+      "selectedRecordId": "1894",
+      "cnfDescription": {
+        "en": "Pork, back ribs, lean and fat, roasted",
+        "fr": "Porc, côtes de dos, maigre et gras, rôties"
+      },
+      "sourceDescription": {
+        "en": "Pork, back ribs, lean and fat, roasted",
+        "fr": "Porc, côtes de dos, maigre et gras, rôties"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Porc (Côtes levées de dos) *",
+        "labelEn": "30 g Pork (back ribs) *",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "20 g de chair de côtes de dos de porc rôties",
+        "labelEn": "20 g roasted pork back ribs",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 5.7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.4,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 73
+      },
+      "formula": "valuePortion = valuePer100g × 20 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b82cf3d3-7192-4c8a-8ebe-e151bbb044ac",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-pork-ribs"
+    },
+    {
+      "id": "viandes-volaille-pork-tenderloin",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1932",
+      "selectedRecordId": "1932",
+      "cnfDescription": {
+        "en": "Pork, loin, tenderloin, lean, roasted",
+        "fr": "Porc, longe, filet, maigre, rôti"
+      },
+      "sourceDescription": {
+        "en": "Pork, loin, tenderloin, lean, roasted",
+        "fr": "Porc, longe, filet, maigre, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Filet de porc",
+        "labelEn": "30 g Pork tenderloin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de filet de porc rôti",
+        "labelEn": "30 g roasted pork tenderloin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 56
+      },
+      "afterNutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.8,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 43
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d9589d61-f380-4c68-b905-01f3350c59f2",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-pork-lean"
+    },
+    {
+      "id": "viandes-volaille-wild-boar",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3574",
+      "selectedRecordId": "3574",
+      "cnfDescription": {
+        "en": "Game meat, boar, wild, roasted",
+        "fr": "Gibier, viande, sanglier, rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, boar, wild, roasted",
+        "fr": "Gibier, viande, sanglier, rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Sanglier",
+        "labelEn": "30 g Wild boar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de sanglier rôti",
+        "labelEn": "30 g roasted wild boar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 48
+      },
+      "afterNutrients": {
+        "proteinG": 8.5,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 48
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "25bc7635-5034-451d-873d-a1c5fdab0d0d",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-sausage",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1175",
+      "selectedRecordId": "1175",
+      "cnfDescription": {
+        "en": "Sausage, Italian, pork, cooked",
+        "fr": "Saucisse, italienne, porc, cuite"
+      },
+      "sourceDescription": {
+        "en": "Sausage, Italian, pork, cooked",
+        "fr": "Saucisse, italienne, porc, cuite"
+      },
+      "beforePortion": {
+        "labelFr": "15 g de Saucisse *",
+        "labelEn": "15 g Sausage *",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 g de saucisse italienne cuite",
+        "labelEn": "15 g cooked Italian sausage",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 2.8,
+        "carbsG": 0.8,
+        "fiberG": 0,
+        "fatG": 3.2,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 44
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e86a85a3-8dcb-418c-9b4a-e14e9c82157d",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-processed-meat-high-fat"
+    },
+    {
+      "id": "viandes-volaille-ground-veal",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3562",
+      "selectedRecordId": "3562",
+      "cnfDescription": {
+        "en": "Veal, ground, broiled",
+        "fr": "Veau, haché, grillé"
+      },
+      "sourceDescription": {
+        "en": "Veal, ground, broiled",
+        "fr": "Veau, haché, grillé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Veau haché",
+        "labelEn": "30 g Ground veal",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de veau haché cuit",
+        "labelEn": "30 g cooked ground veal",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 7.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.9,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "0f2fa4e3-eb3c-423f-87ce-9cc757eb81fb",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-veal"
+    },
+    {
+      "id": "viandes-volaille-deli-meats",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1148",
+      "selectedRecordId": "1148",
+      "cnfDescription": {
+        "en": "Deli-meat, ham, cooked, sliced",
+        "fr": "Charcuterie, jambon, cuit, tranché"
+      },
+      "sourceDescription": {
+        "en": "Deli-meat, ham, cooked, sliced",
+        "fr": "Charcuterie, jambon, cuit, tranché"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Viandes froides (jambon / dinde)",
+        "labelEn": "30 g Deli meats (ham / turkey)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de jambon cuit tranché",
+        "labelEn": "30 g cooked sliced ham",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 4.4,
+        "carbsG": 1.7,
+        "fiberG": 0,
+        "fatG": 1.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 37
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "169ee335-9587-41e1-8b5f-b8ba4700d4ac",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-deli-ham"
+    },
+    {
+      "id": "viandes-volaille-elk",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3582",
+      "selectedRecordId": "3582",
+      "cnfDescription": {
+        "en": "Game meat, elk, roasted",
+        "fr": "Gibier, viande, wapiti (élan), rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, elk, roasted",
+        "fr": "Gibier, viande, wapiti (élan), rôti"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Wapiti",
+        "labelEn": "30 g Elk",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de wapiti rôti",
+        "labelEn": "30 g roasted elk",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 44
+      },
+      "afterNutrients": {
+        "proteinG": 9.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 44
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "45b2371d-83ce-4766-bd3a-8471f97f4c2c",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-natural-beef-jerky",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4086",
+      "selectedRecordId": "4086",
+      "cnfDescription": {
+        "en": "Snacks, beef jerky, chopped and formed",
+        "fr": "Grignotises, jerky de boeuf, haché et formé"
+      },
+      "sourceDescription": {
+        "en": "Snacks, beef jerky, chopped and formed",
+        "fr": "Grignotises, jerky de boeuf, haché et formé"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Jerky de bœuf nature",
+        "labelEn": "30 g Natural beef jerky",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "20 g de jerky de bœuf",
+        "labelEn": "20 g beef jerky",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 6.6,
+        "carbsG": 2.2,
+        "fiberG": 0.4,
+        "fatG": 5.1,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 82
+      },
+      "formula": "valuePortion = valuePer100g × 20 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "89b830a6-fe89-4129-800f-35dba8f65539",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-jerky"
+    },
+    {
+      "id": "viandes-volaille-extra-lean-smoked-turkey",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5598",
+      "selectedRecordId": "5598",
+      "cnfDescription": {
+        "en": "Turkey, light or dark meat, smoked, cooked, skin and bone removed",
+        "fr": "Dindon, viande blanche ou brune, fumée, cuite, désossée, sans peau"
+      },
+      "sourceDescription": {
+        "en": "Turkey, light or dark meat, smoked, cooked, skin and bone removed",
+        "fr": "Dindon, viande blanche ou brune, fumée, cuite, désossée, sans peau"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Dinde fumée extra-maigre",
+        "labelEn": "30 g Extra-lean smoked turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de dinde fumée sans peau",
+        "labelEn": "30 g skinless smoked turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 8.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 49
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "039a6973-8eff-43a0-b514-8c9cc5a5c630",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-smoked-turkey"
+    },
+    {
+      "id": "viandes-volaille-canned-chicken-in-water-drained",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5333",
+      "selectedRecordId": "5333",
+      "cnfDescription": {
+        "en": "Chicken, canned, no broth",
+        "fr": "Poulet, conserve, sans bouillon"
+      },
+      "sourceDescription": {
+        "en": "Chicken, canned, no broth",
+        "fr": "Poulet, conserve, sans bouillon"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Poulet en conserve (au naturel) égoutté",
+        "labelEn": "30 g Canned chicken in water, drained",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "drained",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 g de poulet en conserve égoutté",
+        "labelEn": "30 g drained canned chicken",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 53
+      },
+      "afterNutrients": {
+        "proteinG": 7.6,
+        "carbsG": 0.3,
+        "fiberG": 0,
+        "fatG": 2.4,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 56
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ea67aea4-c449-468b-b60d-d6427b778e11",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-canned-chicken"
+    },
+    {
+      "id": "viandes-volaille-beef-tenderloin-steak",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6134",
+      "selectedRecordId": "6134",
+      "cnfDescription": {
+        "en": "Beef, loin, tenderloin, steak, lean, cooked, broiled",
+        "fr": "Boeuf, longe, filet, bifteck, maigre, cuit, grillé"
+      },
+      "sourceDescription": {
+        "en": "Beef, loin, tenderloin, steak, lean, cooked, broiled",
+        "fr": "Boeuf, longe, filet, bifteck, maigre, cuit, grillé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de filet de bœuf grillé",
+        "labelEn": "30 g broiled beef tenderloin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 9.8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ec74f532-17ac-4495-bc1a-267108ece2d1",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-beef-lean-steak"
+    },
+    {
+      "id": "viandes-volaille-beef-ribeye-steak",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6069",
+      "selectedRecordId": "6069",
+      "cnfDescription": {
+        "en": "Beef, rib, rib eye steak, boneless, lean and fat, 0mm (0) trim, cooked, broiled",
+        "fr": "Boeuf, côte, bifteck de faux-filet, désossé, maigre et gras, 0mm (0) paré, cuit, grillé"
+      },
+      "sourceDescription": {
+        "en": "Beef, rib, rib eye steak, boneless, lean and fat, 0mm (0) trim, cooked, broiled",
+        "fr": "Boeuf, côte, bifteck de faux-filet, désossé, maigre et gras, 0mm (0) paré, cuit, grillé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de faux-filet de bœuf grillé",
+        "labelEn": "30 g broiled beef rib-eye steak",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.6,
+        "saturatedFatG": 2.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 2.7,
+        "declaredKcal": 86
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a12fcea2-4d87-4fb6-afe0-9dbeb37b6485",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-beef-fatty-steak"
+    },
+    {
+      "id": "viandes-volaille-chicken-drumstick",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "848",
+      "selectedRecordId": "848",
+      "cnfDescription": {
+        "en": "Chicken, broiler, drumstick, meat, roasted",
+        "fr": "Poulet à griller, pilon, viande, rôti"
+      },
+      "sourceDescription": {
+        "en": "Chicken, broiler, drumstick, meat, roasted",
+        "fr": "Poulet à griller, pilon, viande, rôti"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de pilon de poulet rôti sans peau",
+        "labelEn": "30 g roasted skinless chicken drumstick",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 7.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 47
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c4737ed7-a640-43f0-b4fe-73b0d607a7a7",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-chicken-dark-meat"
+    },
+    {
+      "id": "viandes-volaille-chicken-thigh-with-skin",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "851",
+      "selectedRecordId": "851",
+      "cnfDescription": {
+        "en": "Chicken, broiler, thigh, meat and skin, roasted",
+        "fr": "Poulet à griller, haut de cuisse, viande et peau, rôti"
+      },
+      "sourceDescription": {
+        "en": "Chicken, broiler, thigh, meat and skin, roasted",
+        "fr": "Poulet à griller, haut de cuisse, viande et peau, rôti"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de haut de cuisse de poulet rôti avec peau",
+        "labelEn": "30 g roasted chicken thigh with skin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 7,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f447a645-e76d-4d38-ad1c-b501a808f0a6",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-chicken-with-skin"
+    },
+    {
+      "id": "viandes-volaille-ground-turkey",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "816",
+      "selectedRecordId": "816",
+      "cnfDescription": {
+        "en": "Turkey, all classes, ground, cooked",
+        "fr": "Dinde, toutes catégories, hachée, cuite"
+      },
+      "sourceDescription": {
+        "en": "Turkey, all classes, ground, cooked",
+        "fr": "Dinde, toutes catégories, hachée, cuite"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de dinde hachée cuite",
+        "labelEn": "30 g cooked ground turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "65f9e6ba-451f-4f33-a95e-77510ad3108f",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-ground-poultry"
+    },
+    {
+      "id": "viandes-volaille-pork-centre-chop",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1787",
+      "selectedRecordId": "1787",
+      "cnfDescription": {
+        "en": "Pork, loin, centre cut (centre chop), bone-in, lean, broiled",
+        "fr": "Porc, longe, milieu (côtelette centre), avec os, maigre, grillé"
+      },
+      "sourceDescription": {
+        "en": "Pork, loin, centre cut (centre chop), bone-in, lean, broiled",
+        "fr": "Porc, longe, milieu (côtelette centre), avec os, maigre, grillé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de côtelette de porc maigre grillée",
+        "labelEn": "30 g broiled lean pork centre-cut chop",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 2.2,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "89ae95db-a316-4777-8f7e-7933bd3ec688",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-pork-lean"
+    },
+    {
+      "id": "viandes-volaille-pork-shoulder",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1828",
+      "selectedRecordId": "1828",
+      "cnfDescription": {
+        "en": "Pork, shoulder, blade portion, bone-in, lean, braised",
+        "fr": "Porc, épaule, palette (soc), avec os, maigre, braisé"
+      },
+      "sourceDescription": {
+        "en": "Pork, shoulder, blade portion, bone-in, lean, braised",
+        "fr": "Porc, épaule, palette (soc), avec os, maigre, braisé"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g d’épaule de porc braisée",
+        "labelEn": "30 g braised lean pork shoulder",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 4,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a2df75c3-5c2c-438e-81b0-72e2ac5297eb",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-pork-standard"
+    },
+    {
+      "id": "viandes-volaille-bacon-cooked",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5405",
+      "selectedRecordId": "5405",
+      "cnfDescription": {
+        "en": "Pork, cured, bacon, cooked, baked",
+        "fr": "Porc, salé, bacon, cuit, au four"
+      },
+      "sourceDescription": {
+        "en": "Pork, cured, bacon, cooked, baked",
+        "fr": "Porc, salé, bacon, cuit, au four"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 g de bacon cuit",
+        "labelEn": "15 g cooked bacon",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 5.4,
+        "carbsG": 0.2,
+        "fiberG": 0,
+        "fatG": 6.5,
+        "saturatedFatG": 2.1,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 82
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9fd397d9-cb60-4534-bbfa-644deb5c8695",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-processed-meat-high-fat"
+    },
+    {
+      "id": "viandes-volaille-venison",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3580",
+      "selectedRecordId": "3580",
+      "cnfDescription": {
+        "en": "Game meat, deer (venison), roasted",
+        "fr": "Gibier, viande, chevreuil (venaison), rôti"
+      },
+      "sourceDescription": {
+        "en": "Game meat, deer (venison), roasted",
+        "fr": "Gibier, viande, chevreuil (venaison), rôti"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de chevreuil rôti",
+        "labelEn": "30 g roasted venison",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 9.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 47
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e2fc4586-a0f7-4c92-aee1-16a3abdbbf6a",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-game-lean"
+    },
+    {
+      "id": "viandes-volaille-turkey-bacon",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5462",
+      "selectedRecordId": "5462",
+      "cnfDescription": {
+        "en": "Turkey, bacon, cooked",
+        "fr": "Bacon, dinde, cuit"
+      },
+      "sourceDescription": {
+        "en": "Turkey, bacon, cooked",
+        "fr": "Bacon, dinde, cuit"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "30 g de bacon de dinde cuit",
+        "labelEn": "30 g cooked turkey bacon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.9,
+        "carbsG": 1.3,
+        "fiberG": 0,
+        "fatG": 7.8,
+        "saturatedFatG": 2.1,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 2.8,
+        "declaredKcal": 110
+      },
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "bcea55a1-6846-4636-b7cf-5b9478610221",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-processed-poultry"
+    }
+  ]
+}

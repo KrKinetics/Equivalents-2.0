@@ -1,0 +1,1707 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "meat-poultry-complete-individual-validation-37-foods",
+  "title": "KR Kinetics — Validation individuelle complète des viandes et volailles",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 27 entrées non vérifiées de la catégorie Viandes et volailles, préciser les coupes et états de préparation et ajouter dix variantes utiles, tout en conservant la poitrine de poulet déjà vérifiée strictement inchangée.",
+  "scope": {
+    "existingFoodCount": 247,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 257,
+    "batchFoodCount": 37,
+    "protectedFoodCount": 220,
+    "allowedFoodIds": [
+      "viandes-volaille-lamb",
+      "viandes-volaille-bison",
+      "viandes-volaille-beef",
+      "viandes-volaille-extra-lean-ground-beef",
+      "viandes-volaille-extra-lean-sirloin-steak",
+      "viandes-volaille-lean-ground-beef",
+      "viandes-volaille-medium-ground-beef",
+      "viandes-volaille-regular-ground-beef",
+      "viandes-volaille-duck",
+      "viandes-volaille-caribou",
+      "viandes-volaille-horse",
+      "viandes-volaille-chicken-thigh",
+      "viandes-volaille-turkey",
+      "viandes-volaille-veal-cutlet",
+      "viandes-volaille-rabbit",
+      "viandes-volaille-moose",
+      "viandes-volaille-lean-ground-chicken",
+      "viandes-volaille-pork",
+      "viandes-volaille-pork-tenderloin",
+      "viandes-volaille-wild-boar",
+      "viandes-volaille-sausage",
+      "viandes-volaille-ground-veal",
+      "viandes-volaille-deli-meats",
+      "viandes-volaille-elk",
+      "viandes-volaille-natural-beef-jerky",
+      "viandes-volaille-extra-lean-smoked-turkey",
+      "viandes-volaille-canned-chicken-in-water-drained",
+      "viandes-volaille-beef-tenderloin-steak",
+      "viandes-volaille-beef-ribeye-steak",
+      "viandes-volaille-chicken-drumstick",
+      "viandes-volaille-chicken-thigh-with-skin",
+      "viandes-volaille-ground-turkey",
+      "viandes-volaille-pork-centre-chop",
+      "viandes-volaille-pork-shoulder",
+      "viandes-volaille-bacon-cooked",
+      "viandes-volaille-venison",
+      "viandes-volaille-turkey-bacon"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "N/A",
+      "rule": "Aucun produit de marque dans ce lot."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s’affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec le record CNF concret."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "viandes-volaille-lamb",
+      "lockedIdentity": {
+        "fr": "Jarret d’agneau canadien maigre, braisé",
+        "en": "Canadian lamb foreshank, lean, braised",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "fat only",
+          "leg"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de jarret d’agneau braisé",
+        "labelEn": "30 g braised lamb foreshank",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3429",
+        "matchKeywordsEn": [
+          "Lamb, Canadian, foreshank, lean, cooked"
+        ],
+        "mustContainConcepts": [
+          "Lamb, Canadian, foreshank, lean, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "fat only",
+          "leg"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3429: Lamb, Canadian, foreshank, lean, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-lamb",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-bison",
+      "lockedIdentity": {
+        "fr": "Bison rôti",
+        "en": "Bison, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "ground"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bison rôti",
+        "labelEn": "30 g roasted bison",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3572",
+        "matchKeywordsEn": [
+          "Game meat, bison, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, bison, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "ground"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3572: Game meat, bison, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-beef",
+      "lockedIdentity": {
+        "fr": "Bœuf, coupes diverses, cuit",
+        "en": "Beef, composite cuts, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "stewing",
+          "ground"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bœuf cuit",
+        "labelEn": "30 g cooked beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6172",
+        "matchKeywordsEn": [
+          "Beef, composite cuts, steak/roast, lean and fat, cooked"
+        ],
+        "mustContainConcepts": [
+          "Beef, composite cuts, steak/roast, lean and fat, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "stewing",
+          "ground"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6172: Beef, composite cuts, steak/roast, lean and fat, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-beef-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-extra-lean-ground-beef",
+      "lockedIdentity": {
+        "fr": "Bœuf haché extra-maigre, émietté et sauté",
+        "en": "Extra-lean ground beef, crumbled and pan-fried",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "patty"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bœuf haché extra-maigre cuit",
+        "labelEn": "30 g cooked extra-lean ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4998",
+        "matchKeywordsEn": [
+          "Beef, ground, extra lean, crumbled, pan-fried"
+        ],
+        "mustContainConcepts": [
+          "Beef, ground, extra lean, crumbled, pan-fried"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "patty"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4998: Beef, ground, extra lean, crumbled, pan-fried."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-beef-extra-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-extra-lean-sirloin-steak",
+      "lockedIdentity": {
+        "fr": "Bifteck de haut de surlonge maigre, grillé",
+        "en": "Top sirloin steak, lean, broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "roast",
+          "lean and fat"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bifteck de haut de surlonge grillé",
+        "labelEn": "30 g broiled lean top sirloin steak",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6146",
+        "matchKeywordsEn": [
+          "Beef, loin, top sirloin steak, boneless, lean, cooked, broiled"
+        ],
+        "mustContainConcepts": [
+          "Beef, loin, top sirloin steak, boneless, lean, cooked, broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "roast",
+          "lean and fat"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6146: Beef, loin, top sirloin steak, boneless, lean, cooked, broiled."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-beef-lean-steak",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-lean-ground-beef",
+      "lockedIdentity": {
+        "fr": "Bœuf haché maigre, émietté et sauté",
+        "en": "Lean ground beef, crumbled and pan-fried",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "patty"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bœuf haché maigre cuit",
+        "labelEn": "30 g cooked lean ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5009",
+        "matchKeywordsEn": [
+          "Beef, ground, lean, crumbled, pan-fried"
+        ],
+        "mustContainConcepts": [
+          "Beef, ground, lean, crumbled, pan-fried"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "patty"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5009: Beef, ground, lean, crumbled, pan-fried."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-beef-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-medium-ground-beef",
+      "lockedIdentity": {
+        "fr": "Bœuf haché mi-maigre, émietté et sauté",
+        "en": "Medium ground beef, crumbled and pan-fried",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "patty"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bœuf haché mi-maigre cuit",
+        "labelEn": "30 g cooked medium ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4995",
+        "matchKeywordsEn": [
+          "Beef, ground, medium, crumbled, pan-fried"
+        ],
+        "mustContainConcepts": [
+          "Beef, ground, medium, crumbled, pan-fried"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "patty"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4995: Beef, ground, medium, crumbled, pan-fried."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-beef-medium",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-regular-ground-beef",
+      "lockedIdentity": {
+        "fr": "Bœuf haché régulier, émietté et sauté, non rincé",
+        "en": "Regular ground beef, crumbled, pan-fried, not rinsed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "rinsed",
+          "patty"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bœuf haché régulier cuit",
+        "labelEn": "30 g cooked regular ground beef",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5010",
+        "matchKeywordsEn": [
+          "Beef, ground, regular, crumbled, not rinsed, pan-fried"
+        ],
+        "mustContainConcepts": [
+          "Beef, ground, regular, crumbled, not rinsed, pan-fried"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "rinsed",
+          "patty"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5010: Beef, ground, regular, crumbled, not rinsed, pan-fried."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-beef-regular",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-duck",
+      "lockedIdentity": {
+        "fr": "Canard domestique, viande seulement, rôti",
+        "en": "Domestic duck, meat only, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "meat and skin",
+          "wild"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de canard rôti sans peau",
+        "labelEn": "30 g roasted skinless duck meat",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "665",
+        "matchKeywordsEn": [
+          "Duck, domesticated, meat only, roasted"
+        ],
+        "mustContainConcepts": [
+          "Duck, domesticated, meat only, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "meat and skin",
+          "wild"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 665: Duck, domesticated, meat only, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-duck",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-caribou",
+      "lockedIdentity": {
+        "fr": "Caribou cuit",
+        "en": "Caribou, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "dried",
+          "organ"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de caribou cuit",
+        "labelEn": "30 g cooked caribou",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3578",
+        "matchKeywordsEn": [
+          "Game meat, Indigenous, caribou (reindeer), meat, cooked"
+        ],
+        "mustContainConcepts": [
+          "Game meat, Indigenous, caribou (reindeer), meat, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "dried",
+          "organ"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3578: Game meat, Indigenous, caribou (reindeer), meat, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-horse",
+      "lockedIdentity": {
+        "fr": "Cheval rôti",
+        "en": "Horse, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de cheval rôti",
+        "labelEn": "30 g roasted horse",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3586",
+        "matchKeywordsEn": [
+          "Game meat, horse, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, horse, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3586: Game meat, horse, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-chicken-thigh",
+      "lockedIdentity": {
+        "fr": "Haut de cuisse de poulet, viande seulement, rôti",
+        "en": "Chicken thigh, meat only, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "meat and skin",
+          "fried",
+          "rotisserie"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de haut de cuisse de poulet rôti sans peau",
+        "labelEn": "30 g roasted skinless chicken thigh",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "854",
+        "matchKeywordsEn": [
+          "Chicken, broiler, thigh, meat, roasted"
+        ],
+        "mustContainConcepts": [
+          "Chicken, broiler, thigh, meat, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "meat and skin",
+          "fried",
+          "rotisserie"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 854: Chicken, broiler, thigh, meat, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-chicken-dark-meat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-turkey",
+      "lockedIdentity": {
+        "fr": "Dinde, viande seulement, rôtie",
+        "en": "Turkey, meat only, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "meat and skin",
+          "deli"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de dinde rôtie sans peau",
+        "labelEn": "30 g roasted skinless turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "691",
+        "matchKeywordsEn": [
+          "Turkey, all classes, meat only, roasted"
+        ],
+        "mustContainConcepts": [
+          "Turkey, all classes, meat only, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "meat and skin",
+          "deli"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 691: Turkey, all classes, meat only, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-turkey",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-veal-cutlet",
+      "lockedIdentity": {
+        "fr": "Escalope de veau de grain, sautée",
+        "en": "Grain-fed veal cutlet, pan-fried",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "breaded",
+          "milk-fed"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g d’escalope de veau cuite",
+        "labelEn": "30 g cooked veal cutlet",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3651",
+        "matchKeywordsEn": [
+          "Veal, grain-fed, cutlets (inside rop round), pan-fried"
+        ],
+        "mustContainConcepts": [
+          "Veal, grain-fed, cutlets (inside rop round), pan-fried"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "breaded",
+          "milk-fed"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3651: Veal, grain-fed, cutlets (inside rop round), pan-fried."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-veal",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-rabbit",
+      "lockedIdentity": {
+        "fr": "Lapin domestique rôti",
+        "en": "Domestic rabbit, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "stewed",
+          "wild"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de lapin rôti",
+        "labelEn": "30 g roasted rabbit",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3593",
+        "matchKeywordsEn": [
+          "Game meat, rabbit, domestic, composite cuts, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, rabbit, domestic, composite cuts, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "stewed",
+          "wild"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3593: Game meat, rabbit, domestic, composite cuts, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-moose",
+      "lockedIdentity": {
+        "fr": "Orignal rôti",
+        "en": "Moose, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "dried",
+          "organ"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g d’orignal rôti",
+        "labelEn": "30 g roasted moose",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3588",
+        "matchKeywordsEn": [
+          "Game meat, Indigenous, moose, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, Indigenous, moose, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "dried",
+          "organ"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3588: Game meat, Indigenous, moose, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-lean-ground-chicken",
+      "lockedIdentity": {
+        "fr": "Poulet haché maigre, cuit",
+        "en": "Lean ground chicken, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de poulet haché maigre cuit",
+        "labelEn": "30 g cooked lean ground chicken",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "919",
+        "matchKeywordsEn": [
+          "Chicken, ground, lean, cooked"
+        ],
+        "mustContainConcepts": [
+          "Chicken, ground, lean, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 919: Chicken, ground, lean, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-poultry",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-pork",
+      "lockedIdentity": {
+        "fr": "Côtes de dos de porc, maigre et gras, rôties",
+        "en": "Pork back ribs, lean and fat, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "sauce",
+          "boneless loin"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "20 g de chair de côtes de dos de porc rôties",
+        "labelEn": "20 g roasted pork back ribs",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1894",
+        "matchKeywordsEn": [
+          "Pork, back ribs, lean and fat, roasted"
+        ],
+        "mustContainConcepts": [
+          "Pork, back ribs, lean and fat, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "sauce",
+          "boneless loin"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1894: Pork, back ribs, lean and fat, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-pork-ribs",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-pork-tenderloin",
+      "lockedIdentity": {
+        "fr": "Filet de porc maigre, rôti",
+        "en": "Pork tenderloin, lean, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "lean and fat",
+          "broiled"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de filet de porc rôti",
+        "labelEn": "30 g roasted pork tenderloin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1932",
+        "matchKeywordsEn": [
+          "Pork, loin, tenderloin, lean, roasted"
+        ],
+        "mustContainConcepts": [
+          "Pork, loin, tenderloin, lean, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "lean and fat",
+          "broiled"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1932: Pork, loin, tenderloin, lean, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-pork-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-wild-boar",
+      "lockedIdentity": {
+        "fr": "Sanglier rôti",
+        "en": "Wild boar, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de sanglier rôti",
+        "labelEn": "30 g roasted wild boar",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3574",
+        "matchKeywordsEn": [
+          "Game meat, boar, wild, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, boar, wild, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3574: Game meat, boar, wild, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-sausage",
+      "lockedIdentity": {
+        "fr": "Saucisse italienne de porc, cuite",
+        "en": "Italian pork sausage, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "smoked",
+          "turkey",
+          "bockwurst"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de saucisse italienne cuite",
+        "labelEn": "15 g cooked Italian sausage",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1175",
+        "matchKeywordsEn": [
+          "Sausage, Italian, pork, cooked"
+        ],
+        "mustContainConcepts": [
+          "Sausage, Italian, pork, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "smoked",
+          "turkey",
+          "bockwurst"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1175: Sausage, Italian, pork, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-processed-meat-high-fat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-ground-veal",
+      "lockedIdentity": {
+        "fr": "Veau haché, grillé",
+        "en": "Ground veal, broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "pan-fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de veau haché cuit",
+        "labelEn": "30 g cooked ground veal",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3562",
+        "matchKeywordsEn": [
+          "Veal, ground, broiled"
+        ],
+        "mustContainConcepts": [
+          "Veal, ground, broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "pan-fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3562: Veal, ground, broiled."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-veal",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-deli-meats",
+      "lockedIdentity": {
+        "fr": "Jambon cuit, tranché",
+        "en": "Cooked sliced ham",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "turkey",
+          "spread",
+          "fat free"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de jambon cuit tranché",
+        "labelEn": "30 g cooked sliced ham",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1148",
+        "matchKeywordsEn": [
+          "Deli-meat, ham, cooked, sliced"
+        ],
+        "mustContainConcepts": [
+          "Deli-meat, ham, cooked, sliced"
+        ],
+        "mustNotContainConcepts": [
+          "turkey",
+          "spread",
+          "fat free"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1148: Deli-meat, ham, cooked, sliced."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-deli-ham",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-elk",
+      "lockedIdentity": {
+        "fr": "Wapiti rôti",
+        "en": "Elk, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "ground"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de wapiti rôti",
+        "labelEn": "30 g roasted elk",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3582",
+        "matchKeywordsEn": [
+          "Game meat, elk, roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, elk, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "ground"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3582: Game meat, elk, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-natural-beef-jerky",
+      "lockedIdentity": {
+        "fr": "Jerky de bœuf haché et formé",
+        "en": "Chopped and formed beef jerky",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sweetened flavour",
+          "turkey jerky"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "20 g de jerky de bœuf",
+        "labelEn": "20 g beef jerky",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4086",
+        "matchKeywordsEn": [
+          "Snacks, beef jerky, chopped and formed"
+        ],
+        "mustContainConcepts": [
+          "Snacks, beef jerky, chopped and formed"
+        ],
+        "mustNotContainConcepts": [
+          "sweetened flavour",
+          "turkey jerky"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4086: Snacks, beef jerky, chopped and formed."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-jerky",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-extra-lean-smoked-turkey",
+      "lockedIdentity": {
+        "fr": "Dinde fumée cuite, sans peau ni os",
+        "en": "Smoked cooked turkey, skin and bone removed",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "with skin",
+          "sausage",
+          "deli sliced"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de dinde fumée sans peau",
+        "labelEn": "30 g skinless smoked turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5598",
+        "matchKeywordsEn": [
+          "Turkey, light or dark meat, smoked, cooked, skin and bone removed"
+        ],
+        "mustContainConcepts": [
+          "Turkey, light or dark meat, smoked, cooked, skin and bone removed"
+        ],
+        "mustNotContainConcepts": [
+          "with skin",
+          "sausage",
+          "deli sliced"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5598: Turkey, light or dark meat, smoked, cooked, skin and bone removed."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-smoked-turkey",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "viandes-volaille-canned-chicken-in-water-drained",
+      "lockedIdentity": {
+        "fr": "Poulet en conserve, sans bouillon",
+        "en": "Canned chicken, no broth",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "with broth",
+          "spread",
+          "soup"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de poulet en conserve égoutté",
+        "labelEn": "30 g drained canned chicken",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5333",
+        "matchKeywordsEn": [
+          "Chicken, canned, no broth"
+        ],
+        "mustContainConcepts": [
+          "Chicken, canned, no broth"
+        ],
+        "mustNotContainConcepts": [
+          "with broth",
+          "spread",
+          "soup"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5333: Chicken, canned, no broth."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-canned-chicken",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-beef-tenderloin-steak",
+      "lockedIdentity": {
+        "fr": "Bifteck de filet de bœuf maigre, grillé",
+        "en": "Beef tenderloin steak, lean, broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "roast",
+          "lean and fat"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de filet de bœuf grillé",
+        "labelEn": "30 g broiled beef tenderloin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6134",
+        "matchKeywordsEn": [
+          "Beef, loin, tenderloin, steak, lean, cooked, broiled"
+        ],
+        "mustContainConcepts": [
+          "Beef, loin, tenderloin, steak, lean, cooked, broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "roast",
+          "lean and fat"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6134: Beef, loin, tenderloin, steak, lean, cooked, broiled."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-beef-lean-steak",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-beef-ribeye-steak",
+      "lockedIdentity": {
+        "fr": "Bifteck de faux-filet de bœuf, maigre et gras, grillé",
+        "en": "Beef rib-eye steak, lean and fat, broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "roast",
+          "lean only"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de faux-filet de bœuf grillé",
+        "labelEn": "30 g broiled beef rib-eye steak",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6069",
+        "matchKeywordsEn": [
+          "Beef, rib, rib eye steak, boneless, lean and fat, 0mm (0) trim, cooked, broiled"
+        ],
+        "mustContainConcepts": [
+          "Beef, rib, rib eye steak, boneless, lean and fat, 0mm (0) trim, cooked, broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "roast",
+          "lean only"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6069: Beef, rib, rib eye steak, boneless, lean and fat, 0mm (0) trim, cooked, broiled."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-beef-fatty-steak",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-chicken-drumstick",
+      "lockedIdentity": {
+        "fr": "Pilon de poulet, viande seulement, rôti",
+        "en": "Chicken drumstick, meat only, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "meat and skin",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de pilon de poulet rôti sans peau",
+        "labelEn": "30 g roasted skinless chicken drumstick",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "848",
+        "matchKeywordsEn": [
+          "Chicken, broiler, drumstick, meat, roasted"
+        ],
+        "mustContainConcepts": [
+          "Chicken, broiler, drumstick, meat, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "meat and skin",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 848: Chicken, broiler, drumstick, meat, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-chicken-dark-meat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-chicken-thigh-with-skin",
+      "lockedIdentity": {
+        "fr": "Haut de cuisse de poulet, viande et peau, rôti",
+        "en": "Chicken thigh, meat and skin, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "meat only",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de haut de cuisse de poulet rôti avec peau",
+        "labelEn": "30 g roasted chicken thigh with skin",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "851",
+        "matchKeywordsEn": [
+          "Chicken, broiler, thigh, meat and skin, roasted"
+        ],
+        "mustContainConcepts": [
+          "Chicken, broiler, thigh, meat and skin, roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "meat only",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 851: Chicken, broiler, thigh, meat and skin, roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-chicken-with-skin",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-ground-turkey",
+      "lockedIdentity": {
+        "fr": "Dinde hachée, cuite",
+        "en": "Ground turkey, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "sausage"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de dinde hachée cuite",
+        "labelEn": "30 g cooked ground turkey",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "816",
+        "matchKeywordsEn": [
+          "Turkey, all classes, ground, cooked"
+        ],
+        "mustContainConcepts": [
+          "Turkey, all classes, ground, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "sausage"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 816: Turkey, all classes, ground, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-ground-poultry",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-pork-centre-chop",
+      "lockedIdentity": {
+        "fr": "Côtelette de porc du centre, maigre, grillée",
+        "en": "Pork centre-cut chop, lean, broiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "lean and fat",
+          "sirloin chop"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de côtelette de porc maigre grillée",
+        "labelEn": "30 g broiled lean pork centre-cut chop",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1787",
+        "matchKeywordsEn": [
+          "Pork, loin, centre cut (centre chop), bone-in, lean, broiled"
+        ],
+        "mustContainConcepts": [
+          "Pork, loin, centre cut (centre chop), bone-in, lean, broiled"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "lean and fat",
+          "sirloin chop"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1787: Pork, loin, centre cut (centre chop), bone-in, lean, broiled."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-pork-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-pork-shoulder",
+      "lockedIdentity": {
+        "fr": "Épaule de porc, palette, maigre, braisée",
+        "en": "Pork shoulder blade, lean, braised",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "lean and fat",
+          "picnic"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g d’épaule de porc braisée",
+        "labelEn": "30 g braised lean pork shoulder",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1828",
+        "matchKeywordsEn": [
+          "Pork, shoulder, blade portion, bone-in, lean, braised"
+        ],
+        "mustContainConcepts": [
+          "Pork, shoulder, blade portion, bone-in, lean, braised"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "lean and fat",
+          "picnic"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1828: Pork, shoulder, blade portion, bone-in, lean, braised."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-pork-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-bacon-cooked",
+      "lockedIdentity": {
+        "fr": "Bacon de porc cuit au four",
+        "en": "Pork bacon, baked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "microwaved",
+          "pan-fried",
+          "back bacon"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de bacon cuit",
+        "labelEn": "15 g cooked bacon",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5405",
+        "matchKeywordsEn": [
+          "Pork, cured, bacon, cooked, baked"
+        ],
+        "mustContainConcepts": [
+          "Pork, cured, bacon, cooked, baked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "microwaved",
+          "pan-fried",
+          "back bacon"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5405: Pork, cured, bacon, cooked, baked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-processed-meat-high-fat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-venison",
+      "lockedIdentity": {
+        "fr": "Chevreuil rôti",
+        "en": "Venison, roasted",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de chevreuil rôti",
+        "labelEn": "30 g roasted venison",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3580",
+        "matchKeywordsEn": [
+          "Game meat, deer (venison), roasted"
+        ],
+        "mustContainConcepts": [
+          "Game meat, deer (venison), roasted"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3580: Game meat, deer (venison), roasted."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-game-lean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "viandes-volaille-turkey-bacon",
+      "lockedIdentity": {
+        "fr": "Bacon de dinde cuit",
+        "en": "Turkey bacon, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "pork bacon",
+          "sausage"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de bacon de dinde cuit",
+        "labelEn": "30 g cooked turkey bacon",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique. Le poids comestible cuit en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5462",
+        "matchKeywordsEn": [
+          "Turkey, bacon, cooked"
+        ],
+        "mustContainConcepts": [
+          "Turkey, bacon, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "pork bacon",
+          "sausage"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5462: Turkey, bacon, cooked."
+      },
+      "classification": {
+        "displayCategory": "viandes_volaille",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-processed-poultry",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 27 entrées existantes non vérifiées sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "L’entrée viandes-volaille-chicken-breast demeure strictement inchangée et verified.",
+    "Les 220 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 257 aliments.",
+    "La catégorie Viandes et volailles contient exactement 38 aliments.",
+    "Les 38 aliments de la catégorie sont verified après application.",
+    "Le nombre total d’aliments verified passe de 164 à 201.",
+    "Chaque entrée possède son propre recordId CNF, sa conversion, son historique et sa transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 37 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}
