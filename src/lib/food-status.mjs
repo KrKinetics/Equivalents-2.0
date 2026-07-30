@@ -35,6 +35,7 @@ export function setFoodStatus(food, status) {
   if (status !== 'verified') {
     food.verification.verifiedAt = null;
     food.verification.verifiedBy = null;
+    food.verification.datasetVersion = null;
   }
   return food;
 }

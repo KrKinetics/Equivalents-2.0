@@ -1,0 +1,61 @@
+name: Nutrition data tests
+
+on:
+  push:
+    branches:
+      - refactor/nutrition-source-of-truth
+      - main
+      - master
+  pull_request:
+
+jobs:
+  nutrition-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check generated schema validator
+        run: npm run schema:check
+
+      - name: Run all tests
+        run: npm run test:all
+
+      - name: Audit nutrition data in sandbox
+        run: |
+          SANDBOX=$(mktemp -d)
+          mkdir -p "$SANDBOX/reports" "$SANDBOX/backups"
+          cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          cp src/data/nutrition-data-version.json "$SANDBOX/nutrition-data-version.json"
+          cp src/data/calculation-groups.json "$SANDBOX/calculation-groups.json"
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          VERSION_DATA_PATH="$SANDBOX/nutrition-data-version.json" \
+          GROUPS_DATA_PATH="$SANDBOX/calculation-groups.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          BACKUPS_DIR="$SANDBOX/backups" \
+          REVIEW_DATA_PATH="$SANDBOX/food-data-review-data.js" \
+          npm run data:audit
+          # Never commit or overwrite production paths from CI
+          git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json || {
+            echo "CI must not modify production nutrition data"
+            exit 1
+          }
+
+      - name: Upload audit reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nutrition-audit-reports
+          path: |
+            reports/
+          if-no-files-found: ignore

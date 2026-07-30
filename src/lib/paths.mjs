@@ -39,5 +39,9 @@ export function resolvePaths(overrides = {}) {
       overrides.releasesDir ||
       process.env.RELEASES_DIR ||
       path.join(root, 'releases', 'data'),
+    auditScriptPath:
+      overrides.auditScriptPath ||
+      process.env.AUDIT_SCRIPT_PATH ||
+      path.join(root, 'scripts', 'audit-food-equivalents.mjs'),
   };
 }

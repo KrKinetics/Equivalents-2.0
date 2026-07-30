@@ -4,6 +4,7 @@
  * Usage: node scripts/generate-schema-validator.mjs
  * Also: npm run schema:generate
  */
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
@@ -19,7 +20,9 @@ const schemaPath = path.join(root, 'src', 'data', 'food-equivalents.schema.json'
 const outDir = path.join(root, 'src', 'generated');
 const outPath = path.join(outDir, 'food-equivalents-validator.mjs');
 
-const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+const schemaRaw = fs.readFileSync(schemaPath, 'utf8');
+const schemaHash = crypto.createHash('sha256').update(schemaRaw).digest('hex');
+const schema = JSON.parse(schemaRaw);
 const ajv = new Ajv2020({
   allErrors: true,
   strict: false,
@@ -46,6 +49,8 @@ const banner = `/**
  * Regenerate with: npm run schema:generate
  * Source: src/data/food-equivalents.schema.json
  */
+export const GENERATED_SCHEMA_HASH = ${JSON.stringify(schemaHash)};
 `;
 fs.writeFileSync(outPath, `${banner}${code}\n`, 'utf8');
 console.log('Wrote', outPath);
+console.log('GENERATED_SCHEMA_HASH', schemaHash);

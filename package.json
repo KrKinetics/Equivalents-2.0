@@ -13,12 +13,13 @@
     "data:apply": "node scripts/apply-food-equivalents.mjs",
     "data:approve": "node scripts/approve-dataset.mjs",
     "schema:generate": "node scripts/generate-schema-validator.mjs",
+    "schema:check": "node scripts/check-schema-validator.mjs",
     "data:report:classification": "node scripts/report-classification.mjs",
     "data:report:prep": "node scripts/report-not-applicable-candidates.mjs",
-    "test": "node --test tests/nutrition-hardening.test.mjs",
+    "test": "npm run schema:check && node --test tests/nutrition-hardening.test.mjs",
     "test:nutrition": "node --test tests/nutrition-hardening.test.mjs",
     "test:browser": "node --test tests/food-data-review.browser.test.mjs",
-    "test:all": "node --test tests/nutrition-hardening.test.mjs tests/food-data-review.browser.test.mjs"
+    "test:all": "npm run schema:check && node --test tests/nutrition-hardening.test.mjs tests/food-data-review.browser.test.mjs"
   },
   "keywords": [],
   "author": "",

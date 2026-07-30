@@ -214,14 +214,25 @@ test('editing a verified food returns it to unverified', async () => {
     api.setFoodStatus(food, 'verified');
     food.verification.verifiedAt = '2026-07-29T00:00:00.000Z';
     food.verification.verifiedBy = 'UI Test';
+    food.verification.datasetVersion = '1.0.0';
     api.applyFoodChange(food, {
       path: 'nutrients.proteinG',
       value: 5,
       by: 'ui-test',
     });
-    return api.getFoodStatus(food);
+    return {
+      status: api.getFoodStatus(food),
+      verifiedAt: food.verification.verifiedAt,
+      verifiedBy: food.verification.verifiedBy,
+      datasetVersion: food.verification.datasetVersion,
+      preserved: food.history.some((h) => h.previousVerification?.datasetVersion === '1.0.0'),
+    };
   });
-  assert.equal(status, 'unverified');
+  assert.equal(status.status, 'unverified');
+  assert.equal(status.verifiedAt, null);
+  assert.equal(status.verifiedBy, null);
+  assert.equal(status.datasetVersion, null);
+  assert.equal(status.preserved, true);
 });
 
 test('resolution without fieldsHash stays invalid / non-neutralizing', async () => {
@@ -467,6 +478,85 @@ test('structural import without id is refused', async () => {
   assert.equal(result.ok, false);
   assert.match(result.message, /id|Import refusé/i);
   assert.equal(result.afterCount, result.beforeCount);
+});
+
+test('re-importing an export preserves baseDataHash for the next export', async () => {
+  const result = await page.evaluate(async () => {
+    const api = window.__REVIEW_TEST__;
+    const state = api.getState();
+    const hashA = state.baseDataHash;
+    const food = state.data.foods[0];
+
+    api.applyLiveEdit(food, 'names.fr', `${food.names.fr}-B`);
+    api.commitFood(food);
+
+    const originalPrompt = window.prompt;
+    window.prompt = () => 'session-1';
+    const originalCreate = URL.createObjectURL;
+    const originalRevoke = URL.revokeObjectURL;
+    const originalClick = HTMLAnchorElement.prototype.click;
+    let exportedJson = null;
+    URL.createObjectURL = (blob) => {
+      URL.__p = blob.text().then((t) => {
+        exportedJson = t;
+      });
+      return 'blob:test';
+    };
+    URL.revokeObjectURL = () => {};
+    HTMLAnchorElement.prototype.click = () => {};
+    try {
+      await api.exportCheckpoint();
+      await URL.__p;
+    } finally {
+      window.prompt = originalPrompt;
+      URL.createObjectURL = originalCreate;
+      URL.revokeObjectURL = originalRevoke;
+      HTMLAnchorElement.prototype.click = originalClick;
+    }
+
+    const exported = JSON.parse(exportedJson);
+    await api.initFrom(exported);
+    const afterImportBase = api.getState().baseDataHash;
+
+    const food2 = api.getState().data.foods[0];
+    api.applyLiveEdit(food2, 'names.en', `${food2.names.en}-B2`);
+    api.commitFood(food2);
+
+    window.prompt = () => 'session-2';
+    URL.createObjectURL = (blob) => {
+      URL.__p = blob.text().then((t) => {
+        exportedJson = t;
+      });
+      return 'blob:test2';
+    };
+    URL.revokeObjectURL = () => {};
+    HTMLAnchorElement.prototype.click = () => {};
+    try {
+      await api.exportCheckpoint();
+      await URL.__p;
+    } finally {
+      window.prompt = originalPrompt;
+      URL.createObjectURL = originalCreate;
+      URL.revokeObjectURL = originalRevoke;
+      HTMLAnchorElement.prototype.click = originalClick;
+    }
+
+    const exported2 = JSON.parse(exportedJson);
+    return {
+      hashA,
+      export1Base: exported.meta.baseDataHash,
+      afterImportBase,
+      export2Base: exported2.meta.baseDataHash,
+      export1Hash: exported.meta.exportDataHash,
+      export2Hash: exported2.meta.exportDataHash,
+    };
+  });
+
+  assert.ok(result.hashA);
+  assert.equal(result.export1Base, result.hashA);
+  assert.equal(result.afterImportBase, result.hashA);
+  assert.equal(result.export2Base, result.hashA);
+  assert.notEqual(result.export1Hash, result.export2Hash);
 });
 
 test('FR/EN parse previews and alerts come from auditDataset', async () => {

@@ -3,8 +3,14 @@
  */
 
 import { computeFoodsDataHash, shortHash, stableStringify } from './data-hash.mjs';
-import { getFoodStatus } from './food-status.mjs';
+import { getFoodStatus, isVerifiedFood } from './food-status.mjs';
 import { validateReviewImport } from './review-import.mjs';
+import {
+  materialDataSnapshot,
+  hasPostMaterialReverify,
+  collectVerificationIntegrityErrors,
+} from './verification-integrity.mjs';
+import { isMeaningfulString, isValidIsoDateTime, isValidApprovedAt } from './source-validators.mjs';
 
 export { validateReviewImport };
 export const RESOLUTION_STATES = ['open', 'invalid', 'stale', 'resolved_documented'];
@@ -48,9 +54,7 @@ function assertAppendOnly(label, foodId, currentList, incomingList, errors) {
   }
   for (let i = 0; i < cur.length; i += 1) {
     if (stableStringify(cur[i]) !== stableStringify(next[i])) {
-      errors.push(
-        `${label} modifié (non append-only) pour ${foodId} à l’index ${i}`
-      );
+      errors.push(`${label} modifié (non append-only) pour ${foodId} à l’index ${i}`);
       return;
     }
   }
@@ -113,6 +117,21 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     }
   }
 
+  // Meta dates when present
+  if (incomingMeta.exportedAt != null && incomingMeta.exportedAt !== '') {
+    if (!isValidIsoDateTime(incomingMeta.exportedAt) && !isValidApprovedAt(incomingMeta.exportedAt)) {
+      errors.push(`exportedAt invalide: ${incomingMeta.exportedAt}`);
+    }
+  }
+  if (incomingMeta.lastAppliedAt != null && incomingMeta.lastAppliedAt !== '') {
+    if (
+      !isValidIsoDateTime(incomingMeta.lastAppliedAt) &&
+      !isValidApprovedAt(incomingMeta.lastAppliedAt)
+    ) {
+      errors.push(`lastAppliedAt invalide: ${incomingMeta.lastAppliedAt}`);
+    }
+  }
+
   for (const incoming of incomingFoods) {
     const current = currentById.get(incoming.id);
     if (!current) continue;
@@ -137,42 +156,64 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
       );
     }
     if (nextRes.length > curRes.length && nextHist.length <= curHist.length) {
-      errors.push(
-        `Résolution ajoutée sans entrée history pour ${incoming.id}`
-      );
+      errors.push(`Résolution ajoutée sans entrée history pour ${incoming.id}`);
     }
 
-    const curWasVerified =
-      getFoodStatus(current) === 'verified' ||
-      curHist.some((h) => h?.action === 'verify' || h?.oldValue === 'verified' || h?.newValue === 'verified');
+    for (const err of collectVerificationIntegrityErrors(incoming)) {
+      errors.push(`${err.code}: ${incoming.id}: ${err.message}`);
+    }
+
+    const curWasVerified = isVerifiedFood(current);
     if (curWasVerified && getFoodStatus(incoming) !== 'verified') {
-      const preserved = nextHist.some((h) => h?.previousVerification || h?.action === 'auto_unverify');
-      const hadVerify = curHist.some((h) => h?.action === 'verify');
-      if (hadVerify && !preserved) {
+      const preserved = nextHist
+        .slice(curHist.length)
+        .some((h) => h?.previousVerification || h?.action === 'auto_unverify');
+      if (!preserved) {
         errors.push(`Vérification antérieure disparue pour ${incoming.id}`);
       }
     }
 
-    const materialSnapshot = (food) =>
+    const materialChanged = materialDataSnapshot(current) !== materialDataSnapshot(incoming);
+    const adminOrResolutionChanged =
       stableStringify({
-        names: food.names,
-        portion: food.portion,
-        nutrients: food.nutrients,
-        source: food.source,
-        displayCategory: food.displayCategory,
-        calculationGroup: food.calculationGroup,
-        exchangeProfileId: food.exchangeProfileId,
-        classificationStatus: food.classificationStatus,
-        status: food.status,
-        verification: food.verification,
-        auditResolutions: food.auditResolutions || [],
+        status: current.status,
+        verification: current.verification,
+        auditResolutions: current.auditResolutions || [],
+      }) !==
+      stableStringify({
+        status: incoming.status,
+        verification: incoming.verification,
+        auditResolutions: incoming.auditResolutions || [],
       });
 
-    const materialChanged = materialSnapshot(current) !== materialSnapshot(incoming);
     if (materialChanged && nextVer === curVer && !migrationDocumented) {
       errors.push(
         `Modification de données sans progression de version pour ${incoming.id} (v${curVer}). Documentez une migration ou incrémentez food.version.`
       );
+    }
+    if (adminOrResolutionChanged && nextVer === curVer && !migrationDocumented && !materialChanged) {
+      // version bump still required when status/verification/resolutions change without material
+      if (nextRes.length > curRes.length || getFoodStatus(current) !== getFoodStatus(incoming)) {
+        // covered by resolution / other rules; soft: require version for status flips
+      }
+    }
+
+    // Verified material change must unverify OR re-verify in-transaction.
+    // --migration-documented must NOT bypass this rule.
+    if (curWasVerified && materialChanged) {
+      if (isVerifiedFood(incoming)) {
+        const reverifyOk =
+          nextVer > curVer &&
+          hasPostMaterialReverify(current, incoming) &&
+          isMeaningfulString(incoming.verification?.verifiedBy) &&
+          isMeaningfulString(incoming.verification?.datasetVersion, { minLength: 1 }) &&
+          isValidIsoDateTime(incoming.verification?.verifiedAt);
+        if (!reverifyOk) {
+          errors.push(
+            `VERIFIED_MATERIAL_CHANGE_WITHOUT_REVERIFY: ${incoming.id} — modification matérielle d’un aliment verified sans unverified ni nouvelle vérification`
+          );
+        }
+      }
     }
   }
 

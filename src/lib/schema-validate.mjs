@@ -8,6 +8,12 @@ import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import { hasStatusMismatch } from './food-status.mjs';
 import { resolvePaths } from './paths.mjs';
+import { collectVerificationIntegrityErrors } from './verification-integrity.mjs';
+import {
+  isValidApprovedAt,
+  isValidIsoDateOnly,
+  isValidIsoDateTime,
+} from './source-validators.mjs';
 
 const require = createRequire(import.meta.url);
 const Ajv2020 = require('ajv/dist/2020.js');
@@ -60,7 +66,21 @@ export function validateFoodEquivalentsPayload(payload, options = {}) {
           keyword: 'statusMismatch',
         });
       }
+      for (const err of collectVerificationIntegrityErrors(food)) {
+        errors.push({
+          path: `foods[${i}]/verification`,
+          message: `${err.code}: ${err.message}`,
+          keyword: err.code,
+        });
+      }
     });
+  }
+
+  if (payload?.meta?.exportedAt) {
+    const v = payload.meta.exportedAt;
+    if (!isValidIsoDateTime(v) && !isValidIsoDateOnly(v) && !isValidApprovedAt(v)) {
+      errors.push({ path: 'meta.exportedAt', message: `exportedAt invalide: ${v}`, keyword: 'format' });
+    }
   }
 
   return { ok: errors.length === 0, errors };

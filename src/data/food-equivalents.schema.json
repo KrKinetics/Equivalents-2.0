@@ -305,6 +305,46 @@
           "type": "array",
           "items": { "$ref": "#/$defs/historyEntry" }
         }
+      },
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": { "status": { "const": "verified" } },
+            "required": ["status"]
+          }
+        },
+        "required": ["verification"]
+      },
+      "then": {
+        "properties": {
+          "status": { "const": "verified" },
+          "verification": {
+            "type": "object",
+            "required": ["status", "verifiedAt", "verifiedBy", "datasetVersion"],
+            "additionalProperties": false,
+            "properties": {
+              "status": { "const": "verified" },
+              "verifiedAt": { "type": "string", "minLength": 10 },
+              "verifiedBy": { "type": "string", "minLength": 2 },
+              "datasetVersion": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "verification": {
+            "type": "object",
+            "required": ["status"],
+            "additionalProperties": false,
+            "properties": {
+              "status": { "enum": ["unverified", "rejected"] },
+              "verifiedAt": { "type": "null" },
+              "verifiedBy": { "type": "null" },
+              "datasetVersion": { "type": "null" }
+            }
+          }
+        }
       }
     }
   }

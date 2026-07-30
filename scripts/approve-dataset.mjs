@@ -88,8 +88,14 @@ function main() {
   const unapprovedGroups = Object.values(groupStatistics).filter((group) => !group.approved);
 
   const reasons = [];
-  if (audited.summary.blockingErrorCount > 0) {
-    reasons.push(`${audited.summary.blockingErrorCount} blocking audit error(s) remain`);
+  if (
+    (audited.summary.activeBlockingErrorCount ?? audited.summary.blockingErrorCount) > 0 ||
+    (audited.summary.structuralBlockingErrorCount ?? 0) > 0
+  ) {
+    reasons.push(
+      `${audited.summary.activeBlockingErrorCount ?? audited.summary.blockingErrorCount} active/structural blocking audit error(s) remain` +
+        ` (rejected non-structural: ${audited.summary.rejectedBlockingErrorCount ?? 0})`
+    );
   }
   if (unverifiedActive.length > 0) {
     reasons.push(

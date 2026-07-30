@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T02:21:45.960Z",
+  "generatedAt": "2026-07-30T02:53:04.532Z",
   "version": {
     "version": "1.0.0",
     "status": "draft",
@@ -19,7 +19,7 @@
     "auditCleanFoods": 0,
     "dataHash": "a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f",
     "shortHash": "a4c4b7faa592",
-    "lastAuditedAt": "2026-07-30T02:21:45.949Z",
+    "lastAuditedAt": "2026-07-30T02:53:04.523Z",
     "lastModifiedAt": "2026-07-30T01:25:20.093Z",
     "foodStatusCounts": {
       "unverified": 207
@@ -28,10 +28,17 @@
   },
   "summary": {
     "totalFoods": 207,
+    "activeFoods": 207,
+    "rejectedFoods": 0,
     "verifiedFoods": 0,
     "unverifiedFoods": 207,
     "blockingErrorCount": 103,
+    "activeBlockingErrorCount": 103,
+    "rejectedBlockingErrorCount": 0,
+    "structuralBlockingErrorCount": 0,
     "foodsWithBlockingErrors": 96,
+    "activeFoodsWithBlockingErrors": 96,
+    "rejectedFoodsWithBlockingErrors": 0,
     "warningCount": 518,
     "foodsWithWarnings": 207,
     "foodsWithWarningsOnly": 111,

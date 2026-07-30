@@ -193,13 +193,32 @@ function initFrom(payload, options = {}) {
     state.lastExportAt = null;
     state.lastExportHash = null;
   }
-  for (const food of foods()) {
-    ensureShapes(food);
-    state.originals.set(food.id, JSON.stringify(food));
-  }
-  // base hash = content loaded into the UI
-  return hashFoods(foods()).then((hash) => {
-    state.baseDataHash = options.baseDataHash || hash;
+  // Hash BEFORE ensureShapes so exportDataHash matches the imported payload bytes/shape.
+  return hashFoods(foods()).then((contentHash) => {
+    const meta = state.data.meta || {};
+    const hasExportMeta = meta.exportDataHash != null || meta.baseDataHash != null;
+    if (hasExportMeta) {
+      if (!meta.exportDataHash) {
+        throw new Error('EXPORT_HASH_MISMATCH: meta.exportDataHash manquant');
+      }
+      if (meta.exportDataHash !== contentHash) {
+        throw new Error(
+          'EXPORT_HASH_MISMATCH: meta.exportDataHash ne correspond pas au hash des foods importés'
+        );
+      }
+      if (!meta.baseDataHash) {
+        throw new Error('EXPORT_HASH_MISMATCH: meta.baseDataHash manquant pour une reprise d’export');
+      }
+      state.baseDataHash = options.baseDataHash || meta.baseDataHash;
+    } else {
+      state.baseDataHash = options.baseDataHash || contentHash;
+    }
+
+    for (const food of foods()) {
+      ensureShapes(food);
+      state.originals.set(food.id, JSON.stringify(food));
+    }
+
     state.sourceDatasetVersion =
       options.sourceDatasetVersion ||
       window.FOOD_AUDIT_SUMMARY?.version?.version ||

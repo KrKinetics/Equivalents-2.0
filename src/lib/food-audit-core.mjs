@@ -12,11 +12,12 @@ import {
   SOURCE_TYPES,
 } from './nutrition-constants.mjs';
 import { parsePortionLabel } from './legacy-portion-parser.mjs';
-import { getFoodStatus, hasStatusMismatch, isVerifiedFood } from './food-status.mjs';
+import { getFoodStatus, hasStatusMismatch, isVerifiedFood, isRejectedFood, isActiveFood } from './food-status.mjs';
 import {
   isMeaningfulString,
   isValidIsoDateOnly,
   isValidIsoDateTime,
+  isValidApprovedAt,
   isValidHttpUrl,
   isValidDoi,
   isValidNutrientsBasis,
@@ -25,6 +26,10 @@ import {
   knownSourceReferenceIds,
 } from './source-validators.mjs';
 import { validateNumericField, NUTRIENT_NUMERIC_FIELDS } from './numeric-validate.mjs';
+import {
+  STRUCTURAL_BLOCKING_CODES,
+  collectVerificationIntegrityErrors,
+} from './verification-integrity.mjs';
 
 export const RESOLVABLE_CODES = new Set([
   'KCAL_DIFF_HIGH',
@@ -48,6 +53,12 @@ export const NON_RESOLVABLE_CODES = new Set([
   'SOURCE_EVIDENCE_MISSING',
   'SOURCE_BASIS_MISSING',
   'SOURCE_URL_OR_RECORD_MISSING',
+  'VERIFICATION_DATE_MISSING',
+  'VERIFICATION_DATE_INVALID',
+  'VERIFICATION_REVIEWER_MISSING',
+  'VERIFICATION_DATASET_VERSION_MISSING',
+  'VERIFICATION_HISTORY_MISSING',
+  'VERIFICATION_HISTORY_MISMATCH',
 ]);
 
 /** Legacy nutrient signatures that still trigger SUSPECT_CASE when name matches. */
@@ -134,14 +145,6 @@ export function resolutionSnapshotHash(code, food) {
     return `portionEn:${p.amount}|${p.unit}|${p.grams}|${p.labelEn}`;
   }
   return `generic:${code}`;
-}
-
-function isValidApprovedAt(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return false;
-  if (isValidIsoDateOnly(raw)) return true;
-  if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return isValidIsoDateOnly(raw.slice(0, 10));
-  return false;
 }
 
 function dedupeAlerts(alerts) {
@@ -565,6 +568,24 @@ export function auditFood(food, idCounts = new Map()) {
     }
   }
 
+  for (const err of collectVerificationIntegrityErrors(food)) {
+    push(alerts, 'ERROR', err.code, err.message);
+  }
+
+  // History / resolution date integrity
+  for (const entry of food.history || []) {
+    const stamp = entry?.timestamp || entry?.at;
+    if (stamp != null && stamp !== '' && !isValidIsoDateTime(stamp) && !isValidIsoDateOnly(stamp)) {
+      push(
+        alerts,
+        'ERROR',
+        'VERIFICATION_DATE_INVALID',
+        `history timestamp/at invalide: ${stamp}`
+      );
+      break;
+    }
+  }
+
   const openErrors = alerts.filter(
     (a) => a.severity === 'ERROR' && a.resolutionStatus !== 'resolved_documented'
   );
@@ -632,14 +653,45 @@ export function auditDataset(foods) {
       String(a.nameFr || '').localeCompare(String(b.nameFr || ''), 'fr')
   );
 
+  const foodById = new Map((foods || []).map((f) => [f.id, f]));
   const blockingErrorCount = items.reduce((a, i) => a + i.errorCount, 0);
   const warningCount = items.reduce((a, i) => a + i.warningCount, 0);
   const foodsWithBlockingErrors = items.filter((i) => i.errorCount > 0).length;
-  // ALL foods with at least one warning (whether or not they also have errors)
   const foodsWithWarnings = items.filter((i) => i.warningCount > 0).length;
   const foodsWithWarningsOnly = items.filter((i) => i.errorCount === 0 && i.warningCount > 0).length;
   const auditCleanFoods = items.filter((i) => i.errorCount === 0 && i.warningCount === 0).length;
+
+  const activeFoods = (foods || []).filter((f) => isActiveFood(f));
+  const rejectedFoods = (foods || []).filter((f) => isRejectedFood(f));
   const verifiedFoods = (foods || []).filter((f) => isVerifiedFood(f)).length;
+  const unverifiedFoods = (foods || []).filter((f) => getFoodStatus(f) === 'unverified').length;
+
+  let structuralBlockingErrorCount = 0;
+  let activeBlockingErrorCount = 0;
+  let rejectedBlockingErrorCount = 0;
+  let activeFoodsWithBlockingErrors = 0;
+  let rejectedFoodsWithBlockingErrors = 0;
+
+  for (const item of items) {
+    const food = foodById.get(item.id);
+    const rejected = food ? isRejectedFood(food) : false;
+    const structuralErrors = item.alerts.filter(
+      (a) => a.severity === 'ERROR' && STRUCTURAL_BLOCKING_CODES.has(a.code)
+    );
+    const allErrors = item.alerts.filter((a) => a.severity === 'ERROR');
+    structuralBlockingErrorCount += structuralErrors.length;
+
+    if (rejected) {
+      const nonStructural = allErrors.filter((a) => !STRUCTURAL_BLOCKING_CODES.has(a.code));
+      rejectedBlockingErrorCount += nonStructural.length;
+      if (allErrors.length > 0) rejectedFoodsWithBlockingErrors += 1;
+      // structural on rejected still counts toward active-blocking gate via structuralBlockingErrorCount
+      activeBlockingErrorCount += structuralErrors.length;
+    } else {
+      activeBlockingErrorCount += allErrors.length;
+      if (allErrors.length > 0) activeFoodsWithBlockingErrors += 1;
+    }
+  }
 
   const alertCountsByCode = {};
   for (const item of items) {
@@ -656,10 +708,17 @@ export function auditDataset(foods) {
   return {
     summary: {
       totalFoods: (foods || []).length,
+      activeFoods: activeFoods.length,
+      rejectedFoods: rejectedFoods.length,
       verifiedFoods,
-      unverifiedFoods: (foods || []).length - verifiedFoods,
+      unverifiedFoods,
       blockingErrorCount,
+      activeBlockingErrorCount,
+      rejectedBlockingErrorCount,
+      structuralBlockingErrorCount,
       foodsWithBlockingErrors,
+      activeFoodsWithBlockingErrors,
+      rejectedFoodsWithBlockingErrors,
       warningCount,
       foodsWithWarnings,
       foodsWithWarningsOnly,

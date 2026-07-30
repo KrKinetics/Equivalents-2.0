@@ -96,13 +96,76 @@ export function knownSourceReferenceIds(food) {
   return [...new Set(ids.filter(Boolean))];
 }
 
-/** ISO-8601 datetime with timezone (e.g. 2026-07-29T12:00:00.000Z). */
+/**
+ * ISO-8601 datetime with timezone (e.g. 2026-07-29T12:00:00.000Z).
+ * Calendar-strict: does not trust Date.parse normalization of impossible dates.
+ */
 export function isValidIsoDateTime(value) {
   if (!isNonEmptyString(value)) return false;
   const raw = value.trim();
-  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/.test(raw)) {
+  const match = raw.match(
+    /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d+)?(Z|[+-]\d{2}:\d{2})$/
+  );
+  if (!match) return false;
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const hour = Number(match[4]);
+  const minute = Number(match[5]);
+  const second = Number(match[6]);
+  const fraction = match[7] || '';
+  const tz = match[8];
+
+  if (month < 1 || month > 12) return false;
+  if (day < 1 || day > 31) return false;
+  if (hour > 23 || minute > 59 || second > 59) return false;
+
+  if (tz !== 'Z') {
+    const tzMatch = tz.match(/^([+-])(\d{2}):(\d{2})$/);
+    if (!tzMatch) return false;
+    const tzHour = Number(tzMatch[2]);
+    const tzMinute = Number(tzMatch[3]);
+    if (tzHour > 23 || tzMinute > 59) return false;
+  }
+
+  // Reconstruct UTC components from the nominal local wall time + offset.
+  let utcMs = Date.UTC(year, month - 1, day, hour, minute, second);
+  if (fraction) {
+    const msPart = Number(`0${fraction}`);
+    if (!Number.isFinite(msPart)) return false;
+    utcMs += Math.round(msPart * 1000);
+  }
+  if (tz !== 'Z') {
+    const sign = tz[0] === '-' ? 1 : -1;
+    const tzHour = Number(tz.slice(1, 3));
+    const tzMinute = Number(tz.slice(4, 6));
+    utcMs += sign * (tzHour * 60 + tzMinute) * 60 * 1000;
+  }
+
+  const dt = new Date(utcMs);
+  if (!Number.isFinite(dt.getTime())) return false;
+
+  // Verify the calendar date of the wall-clock components (before tz shift).
+  const wall = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+  if (
+    wall.getUTCFullYear() !== year ||
+    wall.getUTCMonth() !== month - 1 ||
+    wall.getUTCDate() !== day ||
+    wall.getUTCHours() !== hour ||
+    wall.getUTCMinutes() !== minute ||
+    wall.getUTCSeconds() !== second
+  ) {
     return false;
   }
-  const ms = Date.parse(raw);
-  return Number.isFinite(ms);
+
+  return true;
+}
+
+/** approvedAt: YYYY-MM-DD or full ISO datetime with timezone. */
+export function isValidApprovedAt(value) {
+  if (!isNonEmptyString(value)) return false;
+  const raw = value.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return isValidIsoDateOnly(raw);
+  return isValidIsoDateTime(raw);
 }

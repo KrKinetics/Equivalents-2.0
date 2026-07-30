@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';
 import { backupFile } from '../src/lib/backup.mjs';
-import { writeTwoFilesAtomically } from '../src/lib/atomic-write.mjs';
+import { restoreFile, writeTwoFilesAtomically } from '../src/lib/atomic-write.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
 import { assertApplyGovernance } from '../src/lib/dataset-governance.mjs';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
@@ -29,6 +29,12 @@ const STRUCTURAL_AUDIT_CODES = new Set([
   'INVALID_STATUS',
   'INVALID_NUMERIC_TYPE',
   'NON_FINITE_VALUE',
+  'VERIFICATION_DATE_MISSING',
+  'VERIFICATION_DATE_INVALID',
+  'VERIFICATION_REVIEWER_MISSING',
+  'VERIFICATION_DATASET_VERSION_MISSING',
+  'VERIFICATION_HISTORY_MISSING',
+  'VERIFICATION_HISTORY_MISMATCH',
 ]);
 
 function usage() {
@@ -179,12 +185,20 @@ function main() {
   if (hashChanged) version.lastModifiedAt = now;
   version.totalFoods = incoming.foods.length;
   version.verifiedFoods = incoming.foods.filter((food) => getFoodStatus(food) === 'verified').length;
-  version.unverifiedFoods = version.totalFoods - version.verifiedFoods;
+  version.unverifiedFoods = incoming.foods.filter(
+    (food) => getFoodStatus(food) === 'unverified'
+  ).length;
 
   const targetExisted = fs.existsSync(target);
   const versionExisted = fs.existsSync(versionPath);
   let foodBackup = null;
   let versionBackup = null;
+  let reportBackup = null;
+  let htmlReportBackup = null;
+  const reportPath = path.join(paths.reportsDir, 'food-equivalents-audit.json');
+  const htmlReportPath = path.join(paths.reportsDir, 'food-equivalents-audit.html');
+  const reportExisted = fs.existsSync(reportPath);
+  const htmlReportExisted = fs.existsSync(htmlReportPath);
 
   try {
     if (targetExisted) {
@@ -198,6 +212,12 @@ function main() {
         allowStale ? 'pre-apply-stale' : 'pre-apply'
       );
       console.log('Version backup created:', versionBackup);
+    }
+    if (reportExisted) {
+      reportBackup = backupFile(reportPath, paths.backupsDir, 'pre-apply-report');
+    }
+    if (htmlReportExisted) {
+      htmlReportBackup = backupFile(htmlReportPath, paths.backupsDir, 'pre-apply-report-html');
     }
 
     writeTwoFilesAtomically({
@@ -214,20 +234,24 @@ function main() {
     console.log('Applied:', inputPath, '→', target);
     console.log('dataHash:', shortHash(hash));
 
-    const audit = spawnSync(
-      process.execPath,
-      [path.join(paths.root, 'scripts', 'audit-food-equivalents.mjs')],
-      {
-        stdio: 'inherit',
-        cwd: paths.root,
-        env: process.env,
-      }
-    );
+    const auditScript = paths.auditScriptPath;
+    const audit = spawnSync(process.execPath, [auditScript], {
+      stdio: 'inherit',
+      cwd: paths.root,
+      env: process.env,
+    });
     if (audit.error) throw audit.error;
     if (audit.status !== 0) {
       throw new Error(`Audit failed with exit code ${audit.status ?? 'unknown'}`);
     }
   } catch (error) {
+    restoreFile(foodBackup, target, targetExisted);
+    restoreFile(versionBackup, versionPath, versionExisted);
+    restoreFile(reportBackup, reportPath, reportExisted);
+    restoreFile(htmlReportBackup, htmlReportPath, htmlReportExisted);
+    for (const temp of [`${target}.tmp`, `${versionPath}.tmp`]) {
+      if (fs.existsSync(temp)) fs.unlinkSync(temp);
+    }
     throw error;
   }
 }

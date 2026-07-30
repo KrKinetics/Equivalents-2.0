@@ -4,6 +4,12 @@
  */
 
 import validateSchema from '../generated/food-equivalents-validator.mjs';
+import { collectVerificationIntegrityErrors } from './verification-integrity.mjs';
+import {
+  isValidApprovedAt,
+  isValidIsoDateOnly,
+  isValidIsoDateTime,
+} from './source-validators.mjs';
 
 function schemaErrors() {
   return (validateSchema.errors || []).map((e) => ({
@@ -13,9 +19,19 @@ function schemaErrors() {
   }));
 }
 
+function assertDateField(errors, path, value, label) {
+  if (value == null || value === '') return;
+  if (isValidIsoDateTime(value) || isValidIsoDateOnly(value) || isValidApprovedAt(value)) return;
+  errors.push({
+    path,
+    message: `${label} invalide: ${value}`,
+    keyword: 'format',
+  });
+}
+
 /**
  * Validate review/export payload before UI initFrom.
- * Refuses structural issues, duplicates, and status mismatches.
+ * Refuses structural issues, duplicates, status mismatches, and incomplete verification.
  * Does NOT call ensureShapes / silent normalization.
  *
  * @returns {{ ok: boolean, duplicateIds: string[], errors: Array, message?: string }}
@@ -42,7 +58,9 @@ export function validateReviewImport(payload) {
     };
   }
 
-  // Fast structural / type gates before full schema (clearer messages for common cases)
+  assertDateField(errors, '/meta/exportedAt', payload.meta?.exportedAt, 'exportedAt');
+  assertDateField(errors, '/meta/lastAppliedAt', payload.meta?.lastAppliedAt, 'lastAppliedAt');
+
   payload.foods.forEach((food, index) => {
     const path = `/foods/${index}`;
     if (food == null || typeof food !== 'object' || Array.isArray(food)) {
@@ -83,6 +101,37 @@ export function validateReviewImport(payload) {
         keyword: 'statusMismatch',
       });
     }
+
+    for (const err of collectVerificationIntegrityErrors(food)) {
+      errors.push({
+        path: `${path}/verification`,
+        message: `${err.code}: ${err.message}`,
+        keyword: err.code,
+      });
+    }
+
+    for (const [i, entry] of (food.history || []).entries()) {
+      assertDateField(
+        errors,
+        `${path}/history/${i}/timestamp`,
+        entry?.timestamp || entry?.at,
+        'history timestamp'
+      );
+    }
+    for (const [i, resolution] of (food.auditResolutions || []).entries()) {
+      assertDateField(
+        errors,
+        `${path}/auditResolutions/${i}/approvedAt`,
+        resolution?.approvedAt,
+        'approvedAt'
+      );
+      assertDateField(
+        errors,
+        `${path}/auditResolutions/${i}/createdAt`,
+        resolution?.createdAt,
+        'createdAt'
+      );
+    }
   });
 
   const counts = new Map();
@@ -107,7 +156,6 @@ export function validateReviewImport(payload) {
     for (const err of schemaErrors()) errors.push(err);
   }
 
-  // Deduplicate identical error messages
   const seen = new Set();
   const unique = [];
   for (const err of errors) {

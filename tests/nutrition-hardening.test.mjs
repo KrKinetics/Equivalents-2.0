@@ -34,7 +34,12 @@ import {
 } from '../src/lib/nutrition-constants.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
-import { knownSourceReferenceIds } from '../src/lib/source-validators.mjs';
+import {
+  knownSourceReferenceIds,
+  isValidApprovedAt,
+  isValidIsoDateOnly,
+  isValidIsoDateTime,
+} from '../src/lib/source-validators.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
@@ -109,6 +114,74 @@ function cleanFood(overrides = {}) {
     history: [],
   };
   return Object.assign(food, clone(overrides));
+}
+
+function asVerified(food, meta = {}) {
+  const verifiedAt = meta.verifiedAt || '2026-07-29T00:00:00.000Z';
+  const verifiedBy = meta.verifiedBy || 'Reviewer';
+  const datasetVersion = meta.datasetVersion || '1.0.0';
+  const version = Number.isInteger(food.version) ? food.version : 1;
+  food.status = 'verified';
+  food.verification = {
+    status: 'verified',
+    verifiedAt,
+    verifiedBy,
+    datasetVersion,
+  };
+  food.history = [
+    ...(food.history || []),
+    {
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      path: 'status',
+      oldValue: 'unverified',
+      newValue: 'verified',
+      versionBefore: version,
+      versionAfter: version,
+    },
+    {
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      path: 'verification.status',
+      oldValue: 'unverified',
+      newValue: 'verified',
+      versionBefore: version,
+      versionAfter: version,
+    },
+    {
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      path: 'verification.verifiedAt',
+      oldValue: null,
+      newValue: verifiedAt,
+      versionBefore: version,
+      versionAfter: version,
+    },
+    {
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      path: 'verification.verifiedBy',
+      oldValue: null,
+      newValue: verifiedBy,
+      versionBefore: version,
+      versionAfter: version,
+    },
+    {
+      timestamp: verifiedAt,
+      by: verifiedBy,
+      action: 'verify',
+      path: 'verification.datasetVersion',
+      oldValue: null,
+      newValue: datasetVersion,
+      versionBefore: version,
+      versionAfter: version,
+    },
+  ];
+  return food;
 }
 
 function makeSandbox(name, { copyGroups = false } = {}) {
@@ -544,16 +617,9 @@ test('resolution without fieldsHash does not neutralize KCAL_DIFF_HIGH', () => {
 });
 
 test('material nutrient edit auto-unverifies a verified food', () => {
-  const food = cleanFood({
-    status: 'verified',
-    verification: {
-      status: 'verified',
-      verifiedAt: '2026-07-29T00:00:00.000Z',
-      verifiedBy: 'Reviewer',
-      datasetVersion: '1.0.0',
-    },
-  });
+  const food = asVerified(cleanFood());
   assert.equal(getFoodStatus(food), 'verified');
+  assert.equal(food.verification.datasetVersion, '1.0.0');
   const result = applyFoodChange(food, {
     path: 'nutrients.proteinG',
     value: 5,
@@ -563,10 +629,15 @@ test('material nutrient edit auto-unverifies a verified food', () => {
   assert.equal(result.unverified, true);
   assert.equal(getFoodStatus(food), 'unverified');
   assert.equal(food.nutrients.proteinG, 5);
+  assert.equal(food.verification.verifiedAt, null);
+  assert.equal(food.verification.verifiedBy, null);
+  assert.equal(food.verification.datasetVersion, null);
   assert.ok(food.history.some((h) => h.action === 'auto_unverify'));
   assert.ok(
     food.history.some(
-      (h) => h.previousVerification?.verifiedBy === 'Reviewer'
+      (h) =>
+        h.previousVerification?.verifiedBy === 'Reviewer' &&
+        h.previousVerification?.datasetVersion === '1.0.0'
     )
   );
 });
@@ -854,17 +925,12 @@ test('validateReviewImport refuses structural defects and accepts valid payload'
 
 test('successful data:approve runs only inside sandbox releases dir', () => {
   const sandbox = makeSandbox('approve-ok', { copyGroups: true });
-  const food = cleanFood({
-    id: 'approve-food-1',
-    status: 'verified',
-    classificationStatus: 'approved',
-    verification: {
-      status: 'verified',
-      verifiedAt: '2026-07-29T00:00:00.000Z',
-      verifiedBy: 'Reviewer',
-      datasetVersion: '1.0.0',
-    },
-  });
+  const food = asVerified(
+    cleanFood({
+      id: 'approve-food-1',
+      classificationStatus: 'approved',
+    })
+  );
   const payload = {
     meta: { schemaVersion: 2, totalFoods: 1, notes: [] },
     foods: [food],
@@ -957,6 +1023,358 @@ test('successful data:approve runs only inside sandbox releases dir', () => {
   // Ignore this test file's own uncommitted edits by comparing production paths only
   assert.equal(hashFile(DATA_PATH), beforeHashes.get(DATA_PATH));
   assert.ok(!afterGit.includes('src/data/food-equivalents.json'));
+});
+
+test('verified without metadata is refused by audit, import, apply and approve', () => {
+  const incomplete = cleanFood({
+    id: 'verified-incomplete',
+    status: 'verified',
+    verification: {
+      status: 'verified',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    },
+    history: [],
+  });
+  const audited = auditFood(incomplete);
+  for (const code of [
+    'VERIFICATION_DATE_MISSING',
+    'VERIFICATION_REVIEWER_MISSING',
+    'VERIFICATION_DATASET_VERSION_MISSING',
+    'VERIFICATION_HISTORY_MISSING',
+  ]) {
+    assert.ok(
+      audited.alerts.some((a) => a.code === code),
+      `missing ${code} in ${JSON.stringify(audited.alerts)}`
+    );
+  }
+
+  const payload = {
+    meta: { schemaVersion: 2, totalFoods: 1, notes: [] },
+    foods: [incomplete],
+  };
+  assert.equal(validateReviewImport(payload).ok, false);
+  assert.equal(validateFoodEquivalentsPayload(payload).ok, false);
+
+  const sandbox = makeSandbox('verified-incomplete');
+  const current = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  const incoming = clone(current);
+  incoming.foods[0] = {
+    ...incoming.foods[0],
+    ...incomplete,
+    id: incoming.foods[0].id,
+  };
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const incomingPath = path.join(sandbox.root, 'incoming.json');
+  fs.writeFileSync(incomingPath, JSON.stringify(incoming), 'utf8');
+  const apply = runScript('scripts/apply-food-equivalents.mjs', [incomingPath], sandbox);
+  assert.notEqual(apply.status, 0);
+
+  fs.writeFileSync(sandbox.data, JSON.stringify(payload, null, 2), 'utf8');
+  fs.writeFileSync(
+    sandbox.version,
+    JSON.stringify(
+      {
+        version: '1.0.0',
+        status: 'review',
+        dataHash: computeFoodsDataHash(payload.foods),
+        shortHash: 'abc',
+        createdAt: '2026-07-29T00:00:00.000Z',
+        totalFoods: 1,
+        verifiedFoods: 1,
+        unverifiedFoods: 0,
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
+  const approve = runScript(
+    'scripts/approve-dataset.mjs',
+    ['--by', 'Reviewer', '--bump', 'patch'],
+    sandbox
+  );
+  assert.notEqual(approve.status, 0);
+});
+
+test('verified material change without reverify is refused; with reverify is accepted', () => {
+  const currentFood = asVerified(cleanFood({ id: 'reverify-1', version: 2 }));
+  const current = {
+    foods: [currentFood],
+    meta: { schemaVersion: 2, totalFoods: 1 },
+  };
+
+  const bad = clone(current);
+  bad.foods[0].nutrients.proteinG = 5;
+  bad.foods[0].version = 3;
+  bad.foods[0].history.push({
+    timestamp: '2026-07-29T01:00:00.000Z',
+    by: 'coach',
+    action: 'update',
+    path: 'nutrients.proteinG',
+    oldValue: 4,
+    newValue: 5,
+    versionBefore: 2,
+    versionAfter: 3,
+  });
+  // stays verified — no new verify
+  bad.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  bad.meta.exportDataHash = computeFoodsDataHash(bad.foods);
+  const refused = assertApplyGovernance(current, bad, { migrationDocumented: true });
+  assert.equal(refused.ok, false);
+  assert.ok(refused.errors.some((e) => /VERIFIED_MATERIAL_CHANGE_WITHOUT_REVERIFY/.test(e)));
+
+  const good = clone(bad);
+  const newAt = '2026-07-29T02:00:00.000Z';
+  good.foods[0].version = 4;
+  good.foods[0].verification = {
+    status: 'verified',
+    verifiedAt: newAt,
+    verifiedBy: 'Reviewer-2',
+    datasetVersion: '1.0.1',
+  };
+  good.foods[0].status = 'verified';
+  good.foods[0].history.push(
+    {
+      timestamp: newAt,
+      by: 'Reviewer-2',
+      action: 'verify',
+      path: 'verification.verifiedAt',
+      oldValue: '2026-07-29T00:00:00.000Z',
+      newValue: newAt,
+      versionBefore: 3,
+      versionAfter: 4,
+    },
+    {
+      timestamp: newAt,
+      by: 'Reviewer-2',
+      action: 'verify',
+      path: 'verification.verifiedBy',
+      oldValue: 'Reviewer',
+      newValue: 'Reviewer-2',
+      versionBefore: 3,
+      versionAfter: 4,
+    },
+    {
+      timestamp: newAt,
+      by: 'Reviewer-2',
+      action: 'verify',
+      path: 'verification.datasetVersion',
+      oldValue: '1.0.0',
+      newValue: '1.0.1',
+      versionBefore: 3,
+      versionAfter: 4,
+    }
+  );
+  good.meta.exportDataHash = computeFoodsDataHash(good.foods);
+  const accepted = assertApplyGovernance(current, good, {});
+  assert.equal(accepted.ok, true, JSON.stringify(accepted.errors));
+});
+
+test('impossible calendar dates are refused', () => {
+  assert.equal(isValidIsoDateOnly('2026-02-30'), false);
+  assert.equal(isValidIsoDateTime('2026-02-30T12:00:00.000Z'), false);
+  assert.equal(isValidIsoDateTime('2026-07-29T99:99:99Z'), false);
+  assert.equal(isValidIsoDateTime('not-a-date'), false);
+  assert.equal(isValidApprovedAt('2026-02-30'), false);
+  assert.equal(isValidApprovedAt('2026-02-30T12:00:00.000Z'), false);
+
+  const food = asVerified(cleanFood());
+  food.verification.verifiedAt = '2026-02-30T12:00:00.000Z';
+  food.history = food.history.map((h) =>
+    h.path === 'verification.verifiedAt' ? { ...h, newValue: food.verification.verifiedAt } : h
+  );
+  assert.ok(auditFood(food).alerts.some((a) => a.code === 'VERIFICATION_DATE_INVALID'));
+});
+
+test('export resume preserves baseDataHash across a second session export', () => {
+  const baseFoods = [cleanFood({ id: 'resume-a' })];
+  const hashA = computeFoodsDataHash(baseFoods);
+
+  const sessionB = {
+    meta: {
+      schemaVersion: 2,
+      totalFoods: 1,
+      notes: [],
+      baseDataHash: hashA,
+    },
+    foods: clone(baseFoods),
+  };
+  sessionB.foods[0].names.fr = 'Quinoa modifié';
+  sessionB.foods[0].version = 2;
+  sessionB.foods[0].history.push({
+    timestamp: '2026-07-29T03:00:00.000Z',
+    by: 'coach',
+    action: 'update',
+    path: 'names.fr',
+    oldValue: 'Quinoa cuit',
+    newValue: 'Quinoa modifié',
+    versionBefore: 1,
+    versionAfter: 2,
+  });
+  const hashB = computeFoodsDataHash(sessionB.foods);
+  sessionB.meta.exportDataHash = hashB;
+  sessionB.meta.exportedAt = '2026-07-29T03:00:00.000Z';
+  sessionB.meta.exportedBy = 'coach';
+
+  // Simulate initFrom resume: export hash matches → keep baseDataHash = hash(A)
+  assert.equal(sessionB.meta.exportDataHash, hashB);
+  const resumedBase = sessionB.meta.baseDataHash;
+  assert.equal(resumedBase, hashA);
+
+  const sessionB2 = clone(sessionB);
+  sessionB2.foods[0].names.en = 'Modified quinoa';
+  sessionB2.foods[0].version = 3;
+  sessionB2.foods[0].history.push({
+    timestamp: '2026-07-29T04:00:00.000Z',
+    by: 'coach',
+    action: 'update',
+    path: 'names.en',
+    oldValue: 'Cooked quinoa',
+    newValue: 'Modified quinoa',
+    versionBefore: 2,
+    versionAfter: 3,
+  });
+  sessionB2.meta.baseDataHash = resumedBase;
+  sessionB2.meta.exportDataHash = computeFoodsDataHash(sessionB2.foods);
+  assert.equal(sessionB2.meta.baseDataHash, hashA);
+
+  const current = { foods: baseFoods, meta: { schemaVersion: 2, totalFoods: 1 } };
+  const gate = assertApplyGovernance(current, sessionB2, {});
+  assert.equal(gate.ok, true, JSON.stringify(gate.errors));
+});
+
+test('rejected food with incomplete nutrition does not block approval', () => {
+  const sandbox = makeSandbox('approve-rejected', { copyGroups: true });
+  const verified = asVerified(cleanFood({ id: 'ok-active', classificationStatus: 'approved' }));
+  const rejected = cleanFood({
+    id: 'rejected-incomplete',
+    status: 'rejected',
+    verification: {
+      status: 'rejected',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    },
+    classificationStatus: 'pending',
+    nutrients: {
+      proteinG: null,
+      carbsG: null,
+      fiberG: null,
+      fatG: null,
+      saturatedFatG: null,
+      polyunsaturatedFatG: null,
+      monounsaturatedFatG: null,
+      declaredKcal: null,
+    },
+  });
+  const audited = auditDataset([verified, rejected]);
+  assert.ok(audited.summary.rejectedFoodsWithBlockingErrors >= 1);
+  assert.equal(audited.summary.activeFoodsWithBlockingErrors, 0);
+  assert.equal(audited.summary.activeBlockingErrorCount, 0);
+  assert.equal(audited.summary.unverifiedFoods, 0);
+
+  const payload = {
+    meta: { schemaVersion: 2, totalFoods: 2, notes: [] },
+    foods: [verified, rejected],
+  };
+  const hash = computeFoodsDataHash(payload.foods);
+  fs.writeFileSync(sandbox.data, JSON.stringify(payload, null, 2), 'utf8');
+  fs.writeFileSync(
+    sandbox.version,
+    JSON.stringify(
+      {
+        version: '1.0.0',
+        status: 'review',
+        dataHash: hash,
+        shortHash: hash.slice(0, 12),
+        createdAt: '2026-07-29T00:00:00.000Z',
+        totalFoods: 2,
+        verifiedFoods: 1,
+        unverifiedFoods: 0,
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
+  fs.writeFileSync(
+    sandbox.groups,
+    JSON.stringify(
+      {
+        meta: { schemaVersion: 2 },
+        groups: [
+          {
+            id: 'starch',
+            names: { fr: 'Féculents', en: 'Starches' },
+            referenceProfile: {
+              proteinG: 4,
+              carbsG: 21,
+              fiberG: 2,
+              fatG: 2,
+              kcal: 118,
+            },
+            tolerances: { proteinG: 2, carbsG: 4, fatG: 2, kcal: 15 },
+            approvalCriteria: {
+              minVerifiedCount: 1,
+              minCoveragePercent: 100,
+              requireAllActiveFoodsVerified: true,
+              requireNoFoodsOutsideTolerance: false,
+            },
+            approved: true,
+          },
+        ],
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
+  const result = runScript(
+    'scripts/approve-dataset.mjs',
+    ['--by', 'Sandbox Reviewer', '--bump', 'patch'],
+    sandbox
+  );
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});
+
+test('data:apply rolls back food and version when post-apply audit fails', () => {
+  const sandbox = makeSandbox('apply-rollback');
+  const beforeFood = hashFile(sandbox.data);
+  const beforeVersion = hashFile(sandbox.version);
+  const incoming = clone(JSON.parse(fs.readFileSync(sandbox.data, 'utf8')));
+  incoming.foods[0].names.fr = `${incoming.foods[0].names.fr} rollback-test`;
+  incoming.foods[0].version = (incoming.foods[0].version || 1) + 1;
+  incoming.foods[0].history = [
+    ...(incoming.foods[0].history || []),
+    {
+      timestamp: '2026-07-29T05:00:00.000Z',
+      by: 'test',
+      action: 'update',
+      path: 'names.fr',
+      oldValue: 'x',
+      newValue: incoming.foods[0].names.fr,
+      versionBefore: incoming.foods[0].version - 1,
+      versionAfter: incoming.foods[0].version,
+    },
+  ];
+  incoming.meta.baseDataHash = computeFoodsDataHash(
+    JSON.parse(fs.readFileSync(sandbox.data, 'utf8')).foods
+  );
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const incomingPath = path.join(sandbox.root, 'incoming-rollback.json');
+  fs.writeFileSync(incomingPath, JSON.stringify(incoming), 'utf8');
+
+  const failingAudit = path.join(sandbox.root, 'failing-audit.mjs');
+  fs.writeFileSync(failingAudit, 'process.exit(1);\n', 'utf8');
+  sandbox.env.AUDIT_SCRIPT_PATH = failingAudit;
+
+  const result = runScript('scripts/apply-food-equivalents.mjs', [incomingPath], sandbox);
+  assert.notEqual(result.status, 0);
+  assert.equal(hashFile(sandbox.data), beforeFood);
+  assert.equal(hashFile(sandbox.version), beforeVersion);
 });
 
 test('production files retain their exact before-suite hashes', () => {
