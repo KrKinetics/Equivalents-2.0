@@ -1,0 +1,1587 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "title": "KR Kinetics — Validation individuelle complète des féculents",
+  "status": "approved_for_implementation",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 22 entrées non vérifiées de la catégorie Féculents, séparer les aliments combinés ou ambigus et ajouter dix variantes utiles. Le quinoa déjà vérifié et les 254 autres aliments existants demeurent strictement inchangés. Ce lot clôt la validation nutritionnelle complète de la banque.",
+  "scope": {
+    "existingFoodCount": 277,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 287,
+    "batchFoodCount": 32,
+    "protectedFoodCount": 255,
+    "expectedFinalVerifiedCount": 287,
+    "allowedFoodIds": [
+      "feculents-bagel",
+      "feculents-plain-oatmeal-uncooked",
+      "feculents-rolled-oats-uncooked",
+      "feculents-cooked-legumes",
+      "feculents-boiled-drained-corn",
+      "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "feculents-cooked-barley",
+      "feculents-10-2-cm-wheat-pita",
+      "feculents-cooked-pasta",
+      "feculents-mashed-potato-with-milk",
+      "feculents-medium-sweet-potato",
+      "feculents-cooked-buckwheat",
+      "feculents-cooked-rice",
+      "feculents-jerusalem-artichoke",
+      "feculents-slice-bread",
+      "feculents-slice-sprouted-bread",
+      "feculents-lightly-sweetened-breakfast-cereal",
+      "feculents-cooked-couscous",
+      "feculents-rice-cakes",
+      "feculents-rolled-oats",
+      "feculents-cooked-beluga-lentils",
+      "feculents-slice-ezekiel-sprouted-bread",
+      "feculents-cooked-brown-rice",
+      "feculents-cooked-whole-wheat-pasta",
+      "feculents-boiled-potato",
+      "feculents-corn-tortilla",
+      "feculents-flour-tortilla",
+      "feculents-hamburger-hot-dog-bun",
+      "feculents-cooked-black-beans",
+      "feculents-cooked-bulgur",
+      "feculents-cooked-millet",
+      "feculents-rye-bread"
+    ],
+    "protectedVerifiedFoodIds": [
+      "feculents-cooked-quinoa"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Les 31 aliments génériques utilisent le record CNF exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g."
+    },
+    "manufacturerFoods": {
+      "preferredSource": "Official manufacturer SmartLabel",
+      "rule": "Le pain Ezekiel 4:9 utilise uniquement la page produit Food For Life et le SmartLabel officiel correspondant au produit Original."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète de la source.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Un zéro déclaré demeure 0; une valeur non déclarée demeure null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle seulement; la source concrète demeure authoritative."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "feculents-bagel",
+      "lockedIdentity": {
+        "fr": "Bagel nature",
+        "en": "Plain bagel",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "egg",
+          "cinnamon-raisin",
+          "whole wheat"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "½ bagel nature moyen (34,5 g)",
+        "labelEn": "½ medium plain bagel (34.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 34.5
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3671",
+        "matchKeywordsEn": [
+          "Bagel, plain (with onion, poppy seed and/or sesame seed)"
+        ],
+        "mustContainConcepts": [
+          "Bagel, plain (with onion, poppy seed and/or sesame seed)"
+        ],
+        "mustNotContainConcepts": [
+          "toasted",
+          "egg",
+          "cinnamon-raisin",
+          "whole wheat"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3671: Bagel, plain (with onion, poppy seed and/or sesame seed)."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-bagel",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-plain-oatmeal-uncooked",
+      "lockedIdentity": {
+        "fr": "Gruau instantané nature, sec",
+        "en": "Plain instant oatmeal, dry",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "prepared",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 sachet de gruau instantané nature, sec (28 g)",
+        "labelEn": "1 packet plain instant oatmeal, dry (28 g)",
+        "amount": 28,
+        "unit": "g",
+        "grams": 28
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1413",
+        "matchKeywordsEn": [
+          "Cereal, hot, oats (oatmeal), instant: regular, dry"
+        ],
+        "mustContainConcepts": [
+          "Cereal, hot, oats (oatmeal), instant: regular, dry"
+        ],
+        "mustNotContainConcepts": [
+          "prepared",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1413: Cereal, hot, oats (oatmeal), instant: regular, dry."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-oatmeal-instant-dry",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-rolled-oats-uncooked",
+      "lockedIdentity": {
+        "fr": "Avoine sèche",
+        "en": "Dry oats",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "prepared",
+          "instant flavoured",
+          "granola"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "35 g d’avoine sèche",
+        "labelEn": "35 g dry oats",
+        "amount": 35,
+        "unit": "g",
+        "grams": 35
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4421",
+        "matchKeywordsEn": [
+          "Grains, oats, dry"
+        ],
+        "mustContainConcepts": [
+          "Grains, oats, dry"
+        ],
+        "mustNotContainConcepts": [
+          "prepared",
+          "instant flavoured",
+          "granola"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4421: Grains, oats, dry."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-oats-dry",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-legumes",
+      "lockedIdentity": {
+        "fr": "Pois chiches mûrs, bouillis",
+        "en": "Mature chickpeas, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "canned",
+          "dry",
+          "hummus",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de pois chiches bouillis",
+        "labelEn": "100 g boiled chickpeas",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3390",
+        "matchKeywordsEn": [
+          "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled"
+        ],
+        "mustContainConcepts": [
+          "Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dry",
+          "hummus",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3390: Chickpeas (garbanzo beans, bengal gram), mature seeds, boiled."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-legume-chickpea",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-boiled-drained-corn",
+      "lockedIdentity": {
+        "fr": "Maïs jaune sucré, bouilli et égoutté",
+        "en": "Yellow sweet corn, boiled and drained",
+        "preparationState": "cooked",
+        "exclusions": [
+          "frozen",
+          "white corn",
+          "salt added",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de maïs jaune bouilli et égoutté",
+        "labelEn": "75 g boiled drained yellow corn",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2068",
+        "matchKeywordsEn": [
+          "Corn, sweet, yellow, on or off the cob, boiled, drained"
+        ],
+        "mustContainConcepts": [
+          "Corn, sweet, yellow, on or off the cob, boiled, drained"
+        ],
+        "mustNotContainConcepts": [
+          "frozen",
+          "white corn",
+          "salt added",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2068: Corn, sweet, yellow, on or off the cob, boiled, drained."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-corn",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "lockedIdentity": {
+        "fr": "Muffin anglais nature",
+        "en": "Plain English muffin",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "multigrain",
+          "raisin-cinnamon",
+          "hamburger",
+          "hot dog"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "½ muffin anglais nature (28,5 g)",
+        "labelEn": "½ plain English muffin (28.5 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 28.5
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3900",
+        "matchKeywordsEn": [
+          "English muffin, plain (also sourdough)"
+        ],
+        "mustContainConcepts": [
+          "English muffin, plain (also sourdough)"
+        ],
+        "mustNotContainConcepts": [
+          "toasted",
+          "multigrain",
+          "raisin-cinnamon",
+          "hamburger",
+          "hot dog"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3900: English muffin, plain (also sourdough)."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-english-muffin",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-barley",
+      "lockedIdentity": {
+        "fr": "Orge perlé cuit",
+        "en": "Cooked pearled barley",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "malt",
+          "flour"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g d’orge perlé cuit",
+        "labelEn": "75 g cooked pearled barley",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4486",
+        "matchKeywordsEn": [
+          "Grains, barley, pearled, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, barley, pearled, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "malt",
+          "flour"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4486: Grains, barley, pearled, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain-barley",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-10-2-cm-wheat-pita",
+      "lockedIdentity": {
+        "fr": "Petit pain pita de blé entier",
+        "en": "Small whole-wheat pita",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "white",
+          "Greek style",
+          "fruit",
+          "cracker"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 petit pita de blé entier (32 g)",
+        "labelEn": "1 small whole-wheat pita (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3709",
+        "matchKeywordsEn": [
+          "Bread, pita, whole wheat"
+        ],
+        "mustContainConcepts": [
+          "Bread, pita, whole wheat"
+        ],
+        "mustNotContainConcepts": [
+          "white",
+          "Greek style",
+          "fruit",
+          "cracker"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3709: Bread, pita, whole wheat."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-pita-whole-wheat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-pasta",
+      "lockedIdentity": {
+        "fr": "Pâtes enrichies cuites, macaroni ou spaghetti",
+        "en": "Cooked enriched pasta, macaroni or spaghetti",
+        "preparationState": "cooked",
+        "exclusions": [
+          "whole wheat",
+          "egg noodles",
+          "corn pasta",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de pâtes enrichies cuites",
+        "labelEn": "75 g cooked enriched pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4464",
+        "matchKeywordsEn": [
+          "Pasta (macaroni, spaghetti), enriched, cooked"
+        ],
+        "mustContainConcepts": [
+          "Pasta (macaroni, spaghetti), enriched, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "whole wheat",
+          "egg noodles",
+          "corn pasta",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4464: Pasta (macaroni, spaghetti), enriched, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-pasta-enriched",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-mashed-potato-with-milk",
+      "lockedIdentity": {
+        "fr": "Purée de pommes de terre maison préparée avec lait 2 %",
+        "en": "Homemade mashed potato prepared with 2% milk",
+        "preparationState": "cooked",
+        "exclusions": [
+          "butter",
+          "margarine",
+          "dehydrated",
+          "ready-to-eat"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de purée de pommes de terre avec lait 2 % (111 g)",
+        "labelEn": "125 ml mashed potato with 2% milk (111 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 110.95
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5278",
+        "matchKeywordsEn": [
+          "Potato, mashed, homemade, prepared with 2% M.F. milk"
+        ],
+        "mustContainConcepts": [
+          "Potato, mashed, homemade, prepared with 2% M.F. milk"
+        ],
+        "mustNotContainConcepts": [
+          "butter",
+          "margarine",
+          "dehydrated",
+          "ready-to-eat"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5278: Potato, mashed, homemade, prepared with 2% M.F. milk."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-potato-mashed-milk",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-medium-sweet-potato",
+      "lockedIdentity": {
+        "fr": "Patate douce cuite au four, pelée",
+        "en": "Baked sweet potato, skin removed",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "boiled",
+          "canned",
+          "candied"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de patate douce cuite au four",
+        "labelEn": "75 g baked sweet potato",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2241",
+        "matchKeywordsEn": [
+          "Sweet potato, baked, skin removed after baking"
+        ],
+        "mustContainConcepts": [
+          "Sweet potato, baked, skin removed after baking"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "boiled",
+          "canned",
+          "candied"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2241: Sweet potato, baked, skin removed after baking."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-sweet-potato",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-buckwheat",
+      "lockedIdentity": {
+        "fr": "Gruau de sarrasin rôti, cuit",
+        "en": "Roasted buckwheat groats, cooked",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "flour",
+          "pancake"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de gruau de sarrasin cuit",
+        "labelEn": "75 g cooked buckwheat groats",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4413",
+        "matchKeywordsEn": [
+          "Grains, buckwheat groats, roasted, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, buckwheat groats, roasted, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "flour",
+          "pancake"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4413: Grains, buckwheat groats, roasted, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain-buckwheat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-rice",
+      "lockedIdentity": {
+        "fr": "Riz blanc à grain moyen, cuit",
+        "en": "Cooked medium-grain white rice",
+        "preparationState": "cooked",
+        "exclusions": [
+          "brown",
+          "glutinous",
+          "parboiled",
+          "instant",
+          "seasoned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de riz blanc cuit",
+        "labelEn": "100 g cooked white rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4475",
+        "matchKeywordsEn": [
+          "Grains, rice, white, medium-grain, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, rice, white, medium-grain, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "brown",
+          "glutinous",
+          "parboiled",
+          "instant",
+          "seasoned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4475: Grains, rice, white, medium-grain, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-rice-white",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-jerusalem-artichoke",
+      "lockedIdentity": {
+        "fr": "Topinambour cru",
+        "en": "Raw Jerusalem artichoke",
+        "preparationState": "raw",
+        "exclusions": [
+          "cooked",
+          "pickled",
+          "artichoke heart"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "85 g de topinambour cru",
+        "labelEn": "85 g raw Jerusalem artichoke",
+        "amount": 85,
+        "unit": "g",
+        "grams": 85
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2100",
+        "matchKeywordsEn": [
+          "Jerusalem artichoke (sunchoke), raw"
+        ],
+        "mustContainConcepts": [
+          "Jerusalem artichoke (sunchoke), raw"
+        ],
+        "mustNotContainConcepts": [
+          "cooked",
+          "pickled",
+          "artichoke heart"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2100: Jerusalem artichoke (sunchoke), raw."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-root-jerusalem-artichoke",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-slice-bread",
+      "lockedIdentity": {
+        "fr": "Pain de blé entier commercial",
+        "en": "Commercial whole-wheat bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "white",
+          "toasted",
+          "60% whole wheat",
+          "sprouted"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tranche de pain de blé entier (36 g)",
+        "labelEn": "1 slice whole-wheat bread (36 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 36
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4067",
+        "matchKeywordsEn": [
+          "Bread, whole wheat, commercial"
+        ],
+        "mustContainConcepts": [
+          "Bread, whole wheat, commercial"
+        ],
+        "mustNotContainConcepts": [
+          "white",
+          "toasted",
+          "60% whole wheat",
+          "sprouted"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4067: Bread, whole wheat, commercial."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-whole-wheat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-slice-sprouted-bread",
+      "lockedIdentity": {
+        "fr": "Pain de blé germé commercial",
+        "en": "Commercial sprouted-wheat bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "Ezekiel",
+          "gluten-free"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tranche de pain de blé germé (38 g)",
+        "labelEn": "1 slice sprouted-wheat bread (38 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 38
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7282",
+        "matchKeywordsEn": [
+          "Bread, sprouted wheat, commercial"
+        ],
+        "mustContainConcepts": [
+          "Bread, sprouted wheat, commercial"
+        ],
+        "mustNotContainConcepts": [
+          "toasted",
+          "Ezekiel",
+          "gluten-free"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7282: Bread, sprouted wheat, commercial."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-sprouted-generic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "lockedIdentity": {
+        "fr": "Céréales Cheerios originales",
+        "en": "Original Cheerios cereal",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "Honey Nut",
+          "Apple Cinnamon",
+          "multigrain",
+          "oat clusters"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 g de Cheerios originales",
+        "labelEn": "30 g Original Cheerios",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1475",
+        "matchKeywordsEn": [
+          "Cereal, ready to eat, Cheerios, General Mills"
+        ],
+        "mustContainConcepts": [
+          "Cereal, ready to eat, Cheerios, General Mills"
+        ],
+        "mustNotContainConcepts": [
+          "Honey Nut",
+          "Apple Cinnamon",
+          "multigrain",
+          "oat clusters"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1475: Cereal, ready to eat, Cheerios, General Mills."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-breakfast-cereal-cheerios",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-couscous",
+      "lockedIdentity": {
+        "fr": "Couscous cuit",
+        "en": "Cooked couscous",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de couscous cuit",
+        "labelEn": "75 g cooked couscous",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4490",
+        "matchKeywordsEn": [
+          "Grains, couscous, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, couscous, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4490: Grains, couscous, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain-couscous",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-rice-cakes",
+      "lockedIdentity": {
+        "fr": "Galettes de riz brun nature, sans sel",
+        "en": "Plain unsalted brown-rice cakes",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "salted",
+          "buckwheat",
+          "sesame",
+          "multigrain",
+          "mini"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 galettes de riz brun (18 g)",
+        "labelEn": "2 brown-rice cakes (18 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 18
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4387",
+        "matchKeywordsEn": [
+          "Snacks, rice cakes, brown rice, plain, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Snacks, rice cakes, brown rice, plain, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "salted",
+          "buckwheat",
+          "sesame",
+          "multigrain",
+          "mini"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4387: Snacks, rice cakes, brown rice, plain, unsalted."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-rice-cake",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-rolled-oats",
+      "lockedIdentity": {
+        "fr": "Gruau instantané nature, préparé",
+        "en": "Plain instant oatmeal, prepared",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "175 ml de gruau nature préparé (173 g)",
+        "labelEn": "175 ml prepared plain oatmeal (173 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 173.076
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1414",
+        "matchKeywordsEn": [
+          "Cereal, hot, oats (oatmeal), instant: regular, prepared"
+        ],
+        "mustContainConcepts": [
+          "Cereal, hot, oats (oatmeal), instant: regular, prepared"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "apple cinnamon",
+          "maple brown sugar",
+          "raisins"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1414: Cereal, hot, oats (oatmeal), instant: regular, prepared."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-oatmeal-prepared",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-cooked-beluga-lentils",
+      "lockedIdentity": {
+        "fr": "Lentilles mûres, bouillies",
+        "en": "Mature lentils, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "pink lentils",
+          "sprouted",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de lentilles bouillies",
+        "labelEn": "100 g boiled lentils",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3393",
+        "matchKeywordsEn": [
+          "Lentils, mature seeds, boiled"
+        ],
+        "mustContainConcepts": [
+          "Lentils, mature seeds, boiled"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "pink lentils",
+          "sprouted",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3393: Lentils, mature seeds, boiled."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-legume-lentil",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "lockedIdentity": {
+        "fr": "Pain Food For Life Ezekiel 4:9 Original, grains entiers germés",
+        "en": "Food For Life Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+        "preparationState": "ready_to_eat",
+        "brand": "Food For Life",
+        "marketNote": "Produit exact Food For Life Ezekiel 4:9 Original. La page produit et le SmartLabel officiel doivent être conservés."
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tranche de pain Ezekiel 4:9 Original (34 g)",
+        "labelEn": "1 slice Ezekiel 4:9 Original bread (34 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 34
+      },
+      "portionDecision": "La portion canonique correspond exactement à la portion officielle du fabricant : une tranche de 34 g.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_smartlabel",
+        "url": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+        "productUrl": "https://www.foodforlife.com/product/breads/ezekiel-49-sprouted-whole-grain-bread",
+        "accessedAt": "2026-07-30",
+        "brand": "Food For Life",
+        "productName": "Ezekiel 4:9 Original Sprouted Whole Grain Bread",
+        "market": "North America",
+        "labelServing": {
+          "amount": 1,
+          "unit": "slice",
+          "grams": 34
+        },
+        "labelNutrients": {
+          "declaredKcal": 80,
+          "proteinG": 5,
+          "carbsG": 15,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 80.0,
+          "proteinG": 5.0,
+          "carbsG": 15.0,
+          "fiberG": 3.0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": 0.0,
+          "monounsaturatedFatG": 0.0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 80,
+          "proteinG": 5.0,
+          "carbsG": 15.0,
+          "fiberG": 3.0,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-ezekiel-original",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-cooked-brown-rice",
+      "lockedIdentity": {
+        "fr": "Riz brun à grain moyen, cuit",
+        "en": "Cooked medium-grain brown rice",
+        "preparationState": "cooked",
+        "exclusions": [
+          "white rice",
+          "dry",
+          "long-grain",
+          "seasoned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de riz brun cuit",
+        "labelEn": "100 g cooked brown rice",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4423",
+        "matchKeywordsEn": [
+          "Grains, rice, brown, medium-grain, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, rice, brown, medium-grain, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "white rice",
+          "dry",
+          "long-grain",
+          "seasoned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4423: Grains, rice, brown, medium-grain, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-rice-brown",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "lockedIdentity": {
+        "fr": "Pâtes de blé entier cuites",
+        "en": "Cooked whole-wheat pasta",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "enriched white pasta",
+          "mixed dish"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de pâtes de blé entier cuites",
+        "labelEn": "75 g cooked whole-wheat pasta",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4517",
+        "matchKeywordsEn": [
+          "Pasta, (spaghetti, macaroni), whole wheat, cooked"
+        ],
+        "mustContainConcepts": [
+          "Pasta, (spaghetti, macaroni), whole wheat, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "enriched white pasta",
+          "mixed dish"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4517: Pasta, (spaghetti, macaroni), whole wheat, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-pasta-whole-wheat",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-boiled-potato",
+      "lockedIdentity": {
+        "fr": "Pomme de terre bouillie sans pelure",
+        "en": "Boiled potato without skin",
+        "preparationState": "cooked",
+        "exclusions": [
+          "with skin",
+          "fried",
+          "mashed",
+          "salt added"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de pomme de terre bouillie sans pelure",
+        "labelEn": "100 g boiled skinless potato",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "2422",
+        "matchKeywordsEn": [
+          "Potato, boiled without skin, flesh"
+        ],
+        "mustContainConcepts": [
+          "Potato, boiled without skin, flesh"
+        ],
+        "mustNotContainConcepts": [
+          "with skin",
+          "fried",
+          "mashed",
+          "salt added"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 2422: Potato, boiled without skin, flesh."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-potato-boiled",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-corn-tortilla",
+      "lockedIdentity": {
+        "fr": "Tortilla de maïs sans sel",
+        "en": "Unsalted corn tortilla",
+        "preparationState": "ready_to_cook",
+        "exclusions": [
+          "salted",
+          "chips",
+          "flour",
+          "fried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tortilla de maïs moyenne (25 g)",
+        "labelEn": "1 medium corn tortilla (25 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 25
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4048",
+        "matchKeywordsEn": [
+          "Tortilla, ready-to-bake / fry, corn, unsalted"
+        ],
+        "mustContainConcepts": [
+          "Tortilla, ready-to-bake / fry, corn, unsalted"
+        ],
+        "mustNotContainConcepts": [
+          "salted",
+          "chips",
+          "flour",
+          "fried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4048: Tortilla, ready-to-bake / fry, corn, unsalted."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-tortilla-corn",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-flour-tortilla",
+      "lockedIdentity": {
+        "fr": "Tortilla de farine nature",
+        "en": "Plain flour tortilla",
+        "preparationState": "ready_to_cook",
+        "exclusions": [
+          "corn",
+          "cheese",
+          "whole wheat",
+          "chips"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 petite tortilla de farine (32 g)",
+        "labelEn": "1 small flour tortilla (32 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 32
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4049",
+        "matchKeywordsEn": [
+          "Tortilla, ready-to-bake / fry, flour, plain"
+        ],
+        "mustContainConcepts": [
+          "Tortilla, ready-to-bake / fry, flour, plain"
+        ],
+        "mustNotContainConcepts": [
+          "corn",
+          "cheese",
+          "whole wheat",
+          "chips"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4049: Tortilla, ready-to-bake / fry, flour, plain."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-tortilla-flour",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-hamburger-hot-dog-bun",
+      "lockedIdentity": {
+        "fr": "Pain nature à hamburger ou à hot-dog",
+        "en": "Plain hamburger or hot-dog bun",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "multigrain",
+          "calorie-reduced",
+          "whole wheat",
+          "sandwich"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 pain nature à hamburger ou hot-dog (44 g)",
+        "labelEn": "1 plain hamburger or hot-dog bun (44 g)",
+        "amount": 1,
+        "unit": "piece",
+        "grams": 44
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3985",
+        "matchKeywordsEn": [
+          "Roll, hamburger / hot dog, plain"
+        ],
+        "mustContainConcepts": [
+          "Roll, hamburger / hot dog, plain"
+        ],
+        "mustNotContainConcepts": [
+          "multigrain",
+          "calorie-reduced",
+          "whole wheat",
+          "sandwich"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3985: Roll, hamburger / hot dog, plain."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-bun",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-cooked-black-beans",
+      "lockedIdentity": {
+        "fr": "Haricots noirs mûrs, bouillis",
+        "en": "Mature black beans, boiled",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "canned",
+          "salt added",
+          "flour"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de haricots noirs bouillis",
+        "labelEn": "100 g boiled black beans",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3377",
+        "matchKeywordsEn": [
+          "Beans, black, mature seeds, boiled"
+        ],
+        "mustContainConcepts": [
+          "Beans, black, mature seeds, boiled"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "canned",
+          "salt added",
+          "flour"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3377: Beans, black, mature seeds, boiled."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-legume-black-bean",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-cooked-bulgur",
+      "lockedIdentity": {
+        "fr": "Bulgur cuit",
+        "en": "Cooked bulgur",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de bulgur cuit",
+        "labelEn": "75 g cooked bulgur",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4489",
+        "matchKeywordsEn": [
+          "Grains, bulgur, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, bulgur, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "seasoned",
+          "mixed dish"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4489: Grains, bulgur, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain-bulgur",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-cooked-millet",
+      "lockedIdentity": {
+        "fr": "Millet cuit",
+        "en": "Cooked millet",
+        "preparationState": "cooked",
+        "exclusions": [
+          "dry",
+          "flour",
+          "mixed dish"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "75 g de millet cuit",
+        "labelEn": "75 g cooked millet",
+        "amount": 75,
+        "unit": "g",
+        "grams": 75
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4492",
+        "matchKeywordsEn": [
+          "Grains, millet, cooked"
+        ],
+        "mustContainConcepts": [
+          "Grains, millet, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "dry",
+          "flour",
+          "mixed dish"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4492: Grains, millet, cooked."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-cooked-grain-millet",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "feculents-rye-bread",
+      "lockedIdentity": {
+        "fr": "Pain de seigle",
+        "en": "Rye bread",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "toasted",
+          "crispbread",
+          "pumpernickel",
+          "roll"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 tranche de pain de seigle (27 g)",
+        "labelEn": "1 slice rye bread (27 g)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": 27
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence glucidique pratique. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4065",
+        "matchKeywordsEn": [
+          "Bread, rye"
+        ],
+        "mustContainConcepts": [
+          "Bread, rye"
+        ],
+        "mustNotContainConcepts": [
+          "toasted",
+          "crispbread",
+          "pumpernickel",
+          "roll"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4065: Bread, rye."
+      },
+      "classification": {
+        "displayCategory": "feculents",
+        "calculationGroup": "starch",
+        "exchangeProfileId": "starch-bread-rye",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 22 entrées existantes non vérifiées sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "Le quinoa déjà verified demeure byte-for-byte inchangé.",
+    "Les 255 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 287 aliments.",
+    "La catégorie Féculents contient exactement 33 aliments.",
+    "Les 33 féculents sont verified après application.",
+    "Les 287 aliments de la banque sont verified.",
+    "Aucun aliment unverified ne demeure.",
+    "Les 31 aliments CNF possèdent leur propre expectedRecordId.",
+    "Le pain Ezekiel possède une preuve fabricant officielle distincte.",
+    "Aucune ERROR ouverte ne demeure.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, navigateur et GitHub Actions réussissent.",
+    "Un rapport final de fermeture de l’écosystème nutritionnel est produit."
+  ]
+}
