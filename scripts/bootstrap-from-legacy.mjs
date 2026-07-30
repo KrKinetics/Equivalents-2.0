@@ -9,15 +9,11 @@
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
 import vm from 'vm';
 import { backupFile } from '../src/lib/backup.mjs';
 import { shortName, parsePortion, num } from '../src/lib/legacy-portion-parser.mjs';
+import { resolvePaths } from '../src/lib/paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
-const OUT_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
-const BACKUPS = path.join(ROOT, 'backups');
 const require = createRequire(import.meta.url);
 
 const SECTION_MAP = {
@@ -83,8 +79,8 @@ function emptySource() {
   };
 }
 
-function loadLegacyData() {
-  const src = fs.readFileSync(path.join(ROOT, 'generate.js'), 'utf8');
+function loadLegacyData(root) {
+  const src = fs.readFileSync(path.join(root, 'generate.js'), 'utf8');
   const start = src.indexOf('const DATA = {');
   if (start < 0) throw new Error('DATA object not found in generate.js');
   const endMarker = '\nfunction hasLipidGroups';
@@ -92,7 +88,7 @@ function loadLegacyData() {
   if (end < 0) throw new Error('Could not locate end of DATA in generate.js');
   const objectLiteral = src.slice(start + 'const DATA = '.length, end).trim().replace(/;$/, '');
   const DATA = vm.runInNewContext(`(${objectLiteral})`, {}, { timeout: 5000 });
-  const I18N = require(path.join(ROOT, 'i18n.js'));
+  const I18N = require(path.join(root, 'i18n.js'));
   return { DATA, FOODS: I18N.FOODS };
 }
 
@@ -123,11 +119,13 @@ function loadPreviousIdMap(filePath) {
 }
 
 function main() {
+  const paths = resolvePaths();
+  const outPath = paths.foodDataPath;
   const force = process.argv.includes('--force');
-  const count = existingFoodCount(OUT_PATH);
+  const count = existingFoodCount(outPath);
   if (count > 0 && !force) {
     console.error(
-      `Refusing to overwrite ${OUT_PATH} (${count} foods).\n` +
+      `Refusing to overwrite ${outPath} (${count} foods).\n` +
         `Bootstrap is a ONE-TIME legacy import.\n` +
         `Use --force only after intentional backup (auto-created), or use data:apply for corrections.`
     );
@@ -135,12 +133,12 @@ function main() {
   }
 
   if (count > 0 && force) {
-    const backupPath = backupFile(OUT_PATH, BACKUPS, 'pre-bootstrap-force');
+    const backupPath = backupFile(outPath, paths.backupsDir, 'pre-bootstrap-force');
     console.log('Backup created:', backupPath);
   }
 
-  const previousIds = loadPreviousIdMap(OUT_PATH);
-  const { DATA, FOODS } = loadLegacyData();
+  const previousIds = loadPreviousIdMap(outPath);
+  const { DATA, FOODS } = loadLegacyData(paths.root);
   const foods = [];
   const usedIds = new Set();
   const importNotes = [];
@@ -187,9 +185,6 @@ function main() {
           amount: portion.amount,
           unit: portion.unit,
           grams: portion.grams,
-          amountEn: portion.amountEn,
-          unitEn: portion.unitEn,
-          gramsEn: portion.gramsEn,
           preparationState: portion.preparationState,
           brandSpecific: portion.brandSpecific,
           brand: portion.brand,
@@ -243,9 +238,9 @@ function main() {
     foods,
   };
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
-  fs.writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2), 'utf8');
-  console.log(`Bootstrapped ${foods.length} foods → ${OUT_PATH}`);
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, JSON.stringify(payload, null, 2), 'utf8');
+  console.log(`Bootstrapped ${foods.length} foods → ${outPath}`);
   if (importNotes.length) console.log('Import notes:', importNotes);
 }
 

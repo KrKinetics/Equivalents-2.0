@@ -89,9 +89,15 @@ export function shortName(label, lang = 'fr') {
   // Leading unicode fraction alone (½ banane)
   s = s.replace(/^[½⅓¼¾⅔⅙⅛]\s*/u, '');
 
+  // "1 10.2 cm ... wheat pita" — leading count before a dimension number
+  s = s.replace(/^\d+\s+(?=\d+[.,]?\d*)/, '');
+
   // Leading count ONLY when not part of a percentage (100%, 0%, 1-2%)
-  // Negative lookahead: digit(s) optional -digit then %
-  s = s.replace(/^\d+(?![%\d]|-\d+%)(?:[.,]\d+)?(?!\s*%|-)\s+(?=[A-Za-zÀ-ÿ«])/u, '');
+  // or a physical dimension (10.2 cm), and when followed by a letter (incl. œ)
+  s = s.replace(
+    /^(?!\d+(?:[.,]\d+)?\s*(?:cm|in)\b)\d+(?![%\d]|-\d+%)(?:[.,]\d+)?(?!\s*%|-)\s+(?=[\p{L}«])/iu,
+    ''
+  );
 
   s = s.replace(/\s+/g, ' ').trim();
 

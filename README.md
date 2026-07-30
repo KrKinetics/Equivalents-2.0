@@ -11,6 +11,12 @@ Branche de travail actuelle : `refactor/nutrition-source-of-truth`.
 - Guide PDF final **non reconnecté** à la nouvelle source
 - Calculateur / `MOYENNES` **non modifiés**
 - Dataset status : `draft` tant que des erreurs bloquantes existent
+- Compteurs d’audit (sémantique) :
+  - `foodsWithBlockingErrors` = aliments avec ≥1 ERROR ouverte
+  - `foodsWithWarnings` = aliments avec ≥1 WARNING (même s’ils ont aussi une ERROR)
+  - `foodsWithWarningsOnly` = WARNING sans ERROR
+  - `auditCleanFoods` = aucune ERROR et aucun WARNING
+  - `blockingErrorCount` = nombre total d’alertes ERROR (pas le nombre d’aliments)
 
 ## Architecture
 
@@ -18,17 +24,18 @@ Branche de travail actuelle : `refactor/nutrition-source-of-truth`.
 |--------|------|
 | `generate.js` / `i18n.js` | Générateur PDF **legacy** (toujours la source visuelle actuelle) |
 | `src/data/food-equivalents.json` | **Source de vérité** des aliments |
-| `src/data/food-equivalents.schema.json` | Schéma formel |
-| `src/data/calculation-groups.json` | Groupes de calcul + profils de référence (non approuvés) |
+| `src/data/food-equivalents.schema.json` | Schéma formel (validé via Ajv) |
+| `src/data/calculation-groups.json` | Groupes + `approvalCriteria` (minVerifiedCount null = non approuvé) |
 | `src/data/category-mapping.json` | Catégories visibles ↔ groupes |
 | `src/data/nutrition-data-version.json` | Version / hash / statut dataset |
 | `src/lib/legacy-portion-parser.mjs` | Parseur de portions / noms |
 | `src/lib/food-audit-core.mjs` | Moteur d’audit unique (Node + UI) |
+| `src/lib/food-status.mjs` | Statut canonique `verification.status` |
 | `src/lib/group-statistics.mjs` | Statistiques de dispersion (pas d’auto-approbation) |
-| `src/lib/schema-validate.mjs` | Validation avant `data:apply` |
+| `src/lib/schema-validate.mjs` | Validation Ajv avant `data:apply` |
 | `tools/food-data-review.html` | Interface coach de révision |
 | `reports/` | Rapports d’audit / classification |
-| `backups/` | Sauvegardes horodatées |
+| `backups/` | Sauvegardes horodatées (jamais utilisées par `npm test`) |
 
 ### Trois niveaux de classification
 
@@ -43,17 +50,21 @@ Branche de travail actuelle : `refactor/nutrition-source-of-truth`.
 npm run data:bootstrap
 npm run data:bootstrap -- --force
 
-# Audit lecture seule (ne modifie JAMAIS les nutriments)
+# Audit lecture seule des nutriments (met à jour rapports + version meta/hash)
 npm run data:audit
 
 # Appliquer un JSON exporté depuis l’UI de révision
 npm run data:apply -- chemin/vers/food-equivalents.corrected.json
+npm run data:apply -- --dry-run chemin/vers/food-equivalents.corrected.json
+
+# Approbation explicite du dataset (refusée tant que les données ne sont pas prêtes)
+npm run data:approve -- --by "Nom"
 
 # Rapports d’aide à la décision
 npm run data:report:classification
 npm run data:report:prep
 
-# Tests
+# Tests isolés (ne modifient pas les fichiers de production)
 npm test
 
 # Génération PDF legacy (inchangée)

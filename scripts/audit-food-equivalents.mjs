@@ -4,17 +4,11 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
 import { calculateAllGroupStatistics } from '../src/lib/group-statistics.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
-const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
-const GROUPS_PATH = path.join(ROOT, 'src', 'data', 'calculation-groups.json');
-const VERSION_PATH = path.join(ROOT, 'src', 'data', 'nutrition-data-version.json');
-const REPORTS_DIR = path.join(ROOT, 'reports');
+import { getFoodStatus, isVerifiedFood } from '../src/lib/food-status.mjs';
+import { resolvePaths } from '../src/lib/paths.mjs';
 
 function esc(s) {
   return String(s ?? '')
@@ -121,17 +115,26 @@ document.querySelectorAll('th[data-k]').forEach(th=>th.addEventListener('click',
 }
 
 function main() {
-  if (!fs.existsSync(DATA_PATH)) {
+  const paths = resolvePaths();
+  const {
+    foodDataPath,
+    groupsPath,
+    versionDataPath,
+    reportsDir,
+    reviewDataPath,
+  } = paths;
+  if (!fs.existsSync(foodDataPath)) {
     console.error('Missing food-equivalents.json — run npm run data:bootstrap once (or --force after backup).');
     process.exit(1);
   }
-  fs.mkdirSync(REPORTS_DIR, { recursive: true });
+  fs.mkdirSync(reportsDir, { recursive: true });
+  fs.mkdirSync(path.dirname(reviewDataPath), { recursive: true });
 
   // Read-only on nutrients: we only rewrite reports + version metadata counters/hash
-  const rawBefore = fs.readFileSync(DATA_PATH, 'utf8');
+  const rawBefore = fs.readFileSync(foodDataPath, 'utf8');
   const payload = JSON.parse(rawBefore);
   const foodsSnapshot = JSON.stringify(payload.foods.map((f) => f.nutrients));
-  const groupsDoc = JSON.parse(fs.readFileSync(GROUPS_PATH, 'utf8'));
+  const groupsDoc = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
 
   let version = {
     version: '1.0.0',
@@ -140,39 +143,57 @@ function main() {
     approvedAt: null,
     approvedBy: null,
   };
-  if (fs.existsSync(VERSION_PATH)) {
-    version = { ...version, ...JSON.parse(fs.readFileSync(VERSION_PATH, 'utf8')) };
+  if (fs.existsSync(versionDataPath)) {
+    version = { ...version, ...JSON.parse(fs.readFileSync(versionDataPath, 'utf8')) };
   }
 
   const audited = auditDataset(payload.foods);
-  const groupStats = calculateAllGroupStatistics(payload.foods, groupsDoc, version);
   const hash = computeFoodsDataHash(payload.foods);
+  const oldHash = version.dataHash;
+  const hashChanged = oldHash !== hash;
 
   const previousStatus = version.status;
+  if (previousStatus === 'approved' && hashChanged) {
+    version.status = 'review';
+    version.approvedAt = null;
+    version.approvedBy = null;
+  }
   if (audited.summary.blockingErrorCount > 0) {
     version.status = 'draft';
-  } else if (previousStatus === 'approved') {
-    version.status = 'approved';
-  } else {
+  } else if (version.status !== 'approved') {
     version.status = 'review';
   }
+  if (version.status !== 'approved') {
+    version.approvedAt = null;
+    version.approvedBy = null;
+  }
 
+  const verifiedFoods = payload.foods.filter((food) => isVerifiedFood(food)).length;
+  const foodStatusCounts = payload.foods.reduce((counts, food) => {
+    const status = getFoodStatus(food);
+    counts[status] = (counts[status] || 0) + 1;
+    return counts;
+  }, {});
   version.totalFoods = audited.summary.totalFoods;
-  version.verifiedFoods = audited.summary.verifiedFoods;
-  version.unverifiedFoods = audited.summary.unverifiedFoods;
+  version.verifiedFoods = verifiedFoods;
+  version.unverifiedFoods = version.totalFoods - verifiedFoods;
+  version.foodStatusCounts = foodStatusCounts;
   version.blockingErrorCount = audited.summary.blockingErrorCount;
   version.foodsWithBlockingErrors = audited.summary.foodsWithBlockingErrors;
   version.warningCount = audited.summary.warningCount;
   version.foodsWithWarnings = audited.summary.foodsWithWarnings;
+  version.foodsWithWarningsOnly = audited.summary.foodsWithWarningsOnly;
   version.auditCleanFoods = audited.summary.auditCleanFoods;
   version.blockingErrors = audited.summary.blockingErrorCount; // legacy alias
   version.dataHash = hash;
   version.shortHash = shortHash(hash);
   version.lastAuditedAt = new Date().toISOString();
-  if (!version.lastModifiedAt) version.lastModifiedAt = version.lastAuditedAt;
+  if (hashChanged) version.lastModifiedAt = version.lastAuditedAt;
   if (!version.changeSummary) version.changeSummary = 'Audit refresh (nutrients unchanged)';
 
-  fs.writeFileSync(VERSION_PATH, JSON.stringify(version, null, 2), 'utf8');
+  fs.mkdirSync(path.dirname(versionDataPath), { recursive: true });
+  fs.writeFileSync(versionDataPath, JSON.stringify(version, null, 2), 'utf8');
+  const groupStats = calculateAllGroupStatistics(payload.foods, groupsDoc, version);
 
   const decisionsNeeded = [
     {
@@ -219,7 +240,7 @@ function main() {
     items: audited.items,
   };
 
-  fs.writeFileSync(path.join(REPORTS_DIR, 'food-equivalents-audit.json'), JSON.stringify(report, null, 2));
+  fs.writeFileSync(path.join(reportsDir, 'food-equivalents-audit.json'), JSON.stringify(report, null, 2));
   const csvHeader = [
     'severity','errorCount','warningCount','id','displayCategory','calculationGroup','nameFr','nameEn','status',
     'proteinG','carbsG','fiberG','fatG','declaredKcal','calculatedKcal','absDiff','pctDiff','alerts',
@@ -235,18 +256,20 @@ function main() {
       ].map(csvEscape).join(',')
     );
   }
-  fs.writeFileSync(path.join(REPORTS_DIR, 'food-equivalents-audit.csv'), csvLines.join('\n'));
-  fs.writeFileSync(path.join(REPORTS_DIR, 'food-equivalents-audit.html'), buildHtml(report));
+  fs.writeFileSync(path.join(reportsDir, 'food-equivalents-audit.csv'), csvLines.join('\n'));
+  fs.writeFileSync(path.join(reportsDir, 'food-equivalents-audit.html'), buildHtml(report));
 
   // Ensure nutrients untouched
-  const rawAfterFoods = JSON.stringify(JSON.parse(fs.readFileSync(DATA_PATH, 'utf8')).foods.map((f) => f.nutrients));
+  const rawAfterFoods = JSON.stringify(
+    JSON.parse(fs.readFileSync(foodDataPath, 'utf8')).foods.map((f) => f.nutrients)
+  );
   if (rawAfterFoods !== foodsSnapshot) {
     console.error('FATAL: audit mutated nutrients — aborting integrity');
     process.exit(99);
   }
 
   fs.writeFileSync(
-    path.join(ROOT, 'tools', 'food-data-review-data.js'),
+    reviewDataPath,
     `window.FOOD_EQUIVALENTS_DATA = ${JSON.stringify(payload)};\n` +
       `window.FOOD_AUDIT_SUMMARY = ${JSON.stringify({
         summary: report.summary,

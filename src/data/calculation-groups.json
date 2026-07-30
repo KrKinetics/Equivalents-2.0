@@ -1,7 +1,7 @@
 {
   "meta": {
-    "schemaVersion": 1,
-    "note": "referenceProfile values must be approved after audit. Do not treat null as zero."
+    "schemaVersion": 2,
+    "note": "referenceProfile values must be approved after audit. Do not treat null as zero. minVerifiedCount null blocks group approval."
   },
   "displayCategoryToCalculationGroup": {
     "noix_graines": "fat",
@@ -14,6 +14,12 @@
     "produits_laitiers": "dairy",
     "autres_sources_proteinees": "per_food"
   },
+  "defaultApprovalCriteria": {
+    "minVerifiedCount": null,
+    "minCoveragePercent": 100,
+    "requireAllActiveFoodsVerified": true,
+    "requireNoFoodsOutsideTolerance": false
+  },
   "groups": [
     {
       "id": "protein",
@@ -25,11 +31,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -43,11 +50,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -61,11 +69,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -79,11 +88,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -97,11 +107,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -115,11 +126,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     },
@@ -133,11 +145,12 @@
         "fatG": null,
         "kcal": null
       },
-      "tolerances": {
-        "proteinG": 2,
-        "carbsG": 4,
-        "fatG": 2,
-        "kcal": 15
+      "tolerances": { "proteinG": 2, "carbsG": 4, "fatG": 2, "kcal": 15 },
+      "approvalCriteria": {
+        "minVerifiedCount": null,
+        "minCoveragePercent": 100,
+        "requireAllActiveFoodsVerified": true,
+        "requireNoFoodsOutsideTolerance": false
       },
       "approved": false
     }

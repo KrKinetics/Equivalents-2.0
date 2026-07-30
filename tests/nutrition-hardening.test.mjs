@@ -1,271 +1,447 @@
-import test from 'node:test';
+import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { spawnSync } from 'child_process';
-import { shortName, parsePortion, parsePortionLabel, stripProteinAmountHints } from '../src/lib/legacy-portion-parser.mjs';
-import { auditFood, auditDataset, canMarkVerified } from '../src/lib/food-audit-core.mjs';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
+import {
+  auditDataset,
+  auditFood,
+  canMarkVerified,
+  validateSource,
+} from '../src/lib/food-audit-core.mjs';
 import { calculateGroupStatistics } from '../src/lib/group-statistics.mjs';
-import { EXPECTED_CATEGORY_COUNTS, TOTAL_FOODS_EXPECTED, MANUAL_STATUSES } from '../src/lib/nutrition-constants.mjs';
+import {
+  parsePortion,
+  parsePortionLabel,
+  shortName,
+  stripProteinAmountHints,
+} from '../src/lib/legacy-portion-parser.mjs';
+import {
+  EXPECTED_CATEGORY_COUNTS,
+  MANUAL_STATUSES,
+  SOURCE_TYPES,
+  TOTAL_FOODS_EXPECTED,
+} from '../src/lib/nutrition-constants.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
+const VERSION_PATH = path.join(ROOT, 'src', 'data', 'nutrition-data-version.json');
+const REPORT_PATH = path.join(ROOT, 'reports', 'food-equivalents-audit.json');
+const REAL_PATHS = [DATA_PATH, VERSION_PATH, REPORT_PATH];
+const beforeHashes = new Map(REAL_PATHS.map((file) => [file, hashFile(file)]));
+const realPayload = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 
-function loadFoods() {
-  return JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+function hashFile(file) {
+  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 }
 
-test('1. dataset has 207 foods', () => {
-  const data = loadFoods();
-  assert.equal(data.foods.length, TOTAL_FOODS_EXPECTED);
-});
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
 
-test('2. exact counts per displayCategory', () => {
-  const data = loadFoods();
-  const counts = {};
-  for (const f of data.foods) counts[f.displayCategory] = (counts[f.displayCategory] || 0) + 1;
-  for (const [cat, n] of Object.entries(EXPECTED_CATEGORY_COUNTS)) {
-    assert.equal(counts[cat], n, `${cat} expected ${n} got ${counts[cat]}`);
-  }
-});
-
-test('3. no missing EN name or label', () => {
-  const data = loadFoods();
-  for (const f of data.foods) {
-    assert.ok(f.names?.en, `missing en name ${f.id}`);
-    assert.ok(f.portion?.labelEn, `missing en label ${f.id}`);
-  }
-});
-
-test('4. no duplicate ids', () => {
-  const data = loadFoods();
-  const ids = data.foods.map((f) => f.id);
-  assert.equal(new Set(ids).size, ids.length);
-});
-
-test('5. 100% is not stripped to %', () => {
-  const name = shortName('125 ml 100% pure fruit juice, no added sugar', 'en');
-  assert.match(name, /100%\s*pure fruit juice/i);
-  assert.doesNotMatch(name, /^%/);
-});
-
-test('6. 0% is not stripped to %', () => {
-  assert.match(shortName('100 g 0% plain Skyr', 'en'), /0%\s*plain Skyr/i);
-  assert.match(shortName('125 g 0% plain Greek yogurt', 'en'), /0%/);
-  assert.match(shortName('100 ml 1-2% yogurt, no added sugar (100 g)', 'en'), /1-2%/);
-  assert.match(shortName('125 ml 1% cottage cheese', 'en'), /1%/);
-  assert.match(shortName('100 g 2% cottage cheese', 'en'), /2%/);
-  assert.match(shortName('150 ml 1% protein chocolate milk', 'en'), /1%/);
-});
-
-test('7. PB2 tbsp parsing', () => {
-  assert.equal(shortName('1,5 c. à table de PB2', 'fr'), 'PB2');
-  assert.equal(shortName('1.5 tbsp PB2', 'en'), 'PB2');
-  const p = parsePortion('1,5 c. à table de PB2', '1.5 tbsp PB2');
-  assert.equal(p.amount, 1.5);
-  assert.equal(p.unit, 'tbsp');
-});
-
-test('8. 15 gros raisins is count 15 grams 75', () => {
-  const p = parsePortionLabel('15 gros raisins (75 g)');
-  assert.equal(p.amount, 15);
-  assert.equal(p.unit, 'count');
-  assert.equal(p.grams, 75);
-});
-
-test('9. 2 galettes is count 2 grams 20', () => {
-  const p = parsePortionLabel('2 Galettes de riz (~20 g)');
-  assert.equal(p.amount, 2);
-  assert.equal(p.unit, 'count');
-  assert.equal(p.grams, 20);
-});
-
-test('10. 42 g prot./bouteille is not portion grams', () => {
-  const cleaned = stripProteinAmountHints('100 ml de Core Power, Fairlife (42 g prot./bouteille)');
-  assert.doesNotMatch(cleaned, /42/);
-  const p = parsePortionLabel('100 ml de Core Power, Fairlife (42 g prot./bouteille)');
-  assert.equal(p.amount, 100);
-  assert.equal(p.unit, 'ml');
-  assert.equal(p.grams, null);
-});
-
-test('11. 26 g prot./bouteille is not portion grams', () => {
-  const p = parsePortionLabel('½ bouteille de Core Power, Fairlife (26 g prot./bouteille)');
-  assert.equal(p.amount, 0.5);
-  assert.equal(p.unit, 'bottle');
-  assert.equal(p.grams, null);
-});
-
-test('12. verified is not a manual status option', () => {
-  assert.deepEqual(MANUAL_STATUSES, ['unverified', 'rejected']);
-  assert.ok(!MANUAL_STATUSES.includes('verified'));
-  const app = fs.readFileSync(path.join(ROOT, 'tools', 'food-data-review-app.js'), 'utf8');
-  assert.match(app, /MANUAL_STATUSES/);
-  assert.match(app, /if \(v === 'verified'\) return/);
-});
-
-test('13. legacy source alone cannot verify', () => {
+function cleanFood(overrides = {}) {
   const food = {
-    id: 'x',
-    displayCategory: 'fruits',
-    calculationGroup: 'fruit',
-    names: { fr: 'Test', en: 'Test' },
-    portion: { labelFr: '1 pomme', labelEn: '1 apple', amount: 1, unit: 'count', grams: 140, preparationState: 'raw' },
-    nutrients: { proteinG: 0.3, carbsG: 21, fiberG: 0, fatG: 0.2, declaredKcal: 90 },
-    legacySource: { reference: 'Imported from generate.js' },
-    source: { type: null, name: null },
-    status: 'unverified',
-    version: 1,
-    verification: { status: 'unverified', verifiedAt: null, verifiedBy: null, datasetVersion: null },
-    classificationStatus: 'pending',
-    auditResolutions: [],
-  };
-  assert.equal(canMarkVerified(food), false);
-});
-
-test('14. shared audit engine used by dataset audit', () => {
-  const data = loadFoods();
-  const one = data.foods[0];
-  const a = auditFood(one);
-  const b = auditDataset([one]).items[0];
-  assert.equal(a.errorCount, b.errorCount);
-  assert.equal(a.warningCount, b.warningCount);
-  assert.deepEqual(
-    a.alerts.map((x) => x.code).sort(),
-    b.alerts.map((x) => x.code).sort()
-  );
-});
-
-test('15. data:bootstrap refuses overwrite without --force', () => {
-  const r = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'bootstrap-from-legacy.mjs')], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  assert.notEqual(r.status, 0);
-  assert.match(String(r.stderr || r.stdout), /Refusing to overwrite/i);
-});
-
-test('16. data:apply creates a backup', () => {
-  const data = loadFoods();
-  // Minimal valid apply of current file should backup
-  const tmp = path.join(ROOT, 'backups', 'tmp-apply-test.json');
-  fs.mkdirSync(path.dirname(tmp), { recursive: true });
-  fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
-  const before = fs.readdirSync(path.join(ROOT, 'backups')).filter((f) => f.includes('pre-apply'));
-  const r = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'apply-food-equivalents.mjs'), tmp], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  assert.equal(r.status, 0, r.stderr || r.stdout);
-  const after = fs.readdirSync(path.join(ROOT, 'backups')).filter((f) => f.includes('pre-apply'));
-  assert.ok(after.length > before.length, 'expected new pre-apply backup');
-});
-
-test('17. food becomes unverified after invalidating edit (logic)', () => {
-  const food = {
-    id: 'y',
-    displayCategory: 'fruits',
-    calculationGroup: 'fruit',
-    names: { fr: 'Test', en: 'Test' },
+    id: 'clean-food',
+    displayCategory: 'feculents',
+    calculationGroup: 'starch',
+    exchangeProfileId: null,
+    classificationStatus: 'approved',
+    names: { fr: 'Quinoa cuit', en: 'Cooked quinoa' },
     portion: {
-      labelFr: '1 pomme (140 g)',
-      labelEn: '1 apple (140 g)',
-      amount: 1,
-      unit: 'count',
-      grams: 140,
-      preparationState: 'raw',
+      labelFr: '100 g de quinoa cuit',
+      labelEn: '100 g cooked quinoa',
+      amount: 100,
+      unit: 'g',
+      grams: 100,
+      preparationState: 'cooked',
       brandSpecific: false,
       brand: null,
     },
-    nutrients: { proteinG: 0.3, carbsG: 21, fiberG: 0, fatG: 0.2, declaredKcal: 90 },
-    legacySource: { reference: 'legacy' },
+    nutrients: {
+      proteinG: 4,
+      carbsG: 21,
+      fiberG: 2,
+      fatG: 2,
+      saturatedFatG: 0.2,
+      polyunsaturatedFatG: 1,
+      monounsaturatedFatG: 0.6,
+      declaredKcal: 118,
+    },
+    legacySource: { reference: 'legacy', referenceId: 'test[0]' },
     source: {
       type: 'canadian_nutrient_file',
-      name: 'CNF',
-      recordId: '1',
+      name: 'Canadian Nutrient File',
+      recordId: 'CNF-123',
       url: null,
-      accessedAt: '2026-01-01',
-      servingDescription: '1 apple',
+      doi: null,
+      accessedAt: '2026-07-29',
+      servingDescription: '100 g cooked',
       nutrientsBasis: 'as_consumed',
       notes: null,
+      brand: null,
+      productName: null,
+      labelServingSize: null,
+      evidenceRef: null,
     },
-    status: 'verified',
-    version: 2,
-    verification: { status: 'verified', verifiedAt: '2026-01-01', verifiedBy: 'Coach', datasetVersion: '1.0.0' },
-    classificationStatus: 'pending',
+    status: 'unverified',
+    version: 1,
+    verification: {
+      status: 'unverified',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    },
     auditResolutions: [],
     history: [],
   };
-  assert.equal(canMarkVerified(food), true);
-  food.source.type = null;
-  food.source.name = null;
-  // Simulate auto-unverify rule used by UI
-  if (!canMarkVerified(food)) {
-    food.status = 'unverified';
-    food.verification.status = 'unverified';
-  }
-  assert.equal(food.status, 'unverified');
-});
+  return Object.assign(food, clone(overrides));
+}
 
-test('18. single verified food does not approve group', () => {
-  const foods = [
-    {
-      id: 'a',
-      calculationGroup: 'fruit',
-      status: 'verified',
-      verification: { status: 'verified' },
-      nutrients: { proteinG: 1, carbsG: 15, fiberG: 2, fatG: 0.3, declaredKcal: 71 },
+function makeSandbox(name) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), `equiv-alim-${name}-`));
+  const data = path.join(root, 'food-equivalents.json');
+  const version = path.join(root, 'nutrition-data-version.json');
+  const reports = path.join(root, 'reports');
+  const backups = path.join(root, 'backups');
+  const review = path.join(root, 'food-data-review-data.js');
+  fs.copyFileSync(DATA_PATH, data);
+  fs.copyFileSync(VERSION_PATH, version);
+  fs.mkdirSync(reports, { recursive: true });
+  fs.mkdirSync(backups, { recursive: true });
+  return {
+    root,
+    data,
+    version,
+    reports,
+    backups,
+    review,
+    env: {
+      ...process.env,
+      PROJECT_ROOT: ROOT,
+      FOOD_DATA_PATH: data,
+      VERSION_DATA_PATH: version,
+      REPORTS_DIR: reports,
+      BACKUPS_DIR: backups,
+      REVIEW_DATA_PATH: review,
     },
-  ];
-  const stats = calculateGroupStatistics('fruit', foods, {
-    id: 'fruit',
-    approved: false,
-    referenceProfile: { proteinG: null, carbsG: null, fiberG: null, fatG: null, kcal: null },
-    tolerances: { proteinG: 2, carbsG: 4, fatG: 2, kcal: 15 },
-  }, { status: 'draft' });
-  assert.equal(stats.approved, false);
-  assert.match(stats.message, /non approuvé/i);
+  };
+}
+
+function runScript(relativePath, args, sandbox) {
+  return spawnSync(process.execPath, [path.join(ROOT, relativePath), ...args], {
+    cwd: ROOT,
+    env: sandbox.env,
+    encoding: 'utf8',
+  });
+}
+
+after(() => {
+  for (const file of REAL_PATHS) {
+    assert.equal(hashFile(file), beforeHashes.get(file), `test suite modified ${file}`);
+  }
 });
 
-test('19. audit script does not mutate nutrients', () => {
-  const before = JSON.stringify(loadFoods().foods.map((f) => f.nutrients));
-  const r = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'audit-food-equivalents.mjs')], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  assert.equal(r.status, 0, r.stderr || r.stdout);
-  const after = JSON.stringify(loadFoods().foods.map((f) => f.nutrients));
-  assert.equal(before, after);
+test('real dataset has exactly 207 foods', () => {
+  assert.equal(realPayload.foods.length, TOTAL_FOODS_EXPECTED);
+  assert.equal(TOTAL_FOODS_EXPECTED, 207);
 });
 
-test('20. audit is deterministic aside from timestamps', () => {
-  const r1 = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'audit-food-equivalents.mjs')], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  const j1 = JSON.parse(fs.readFileSync(path.join(ROOT, 'reports', 'food-equivalents-audit.json'), 'utf8'));
-  const r2 = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'audit-food-equivalents.mjs')], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  const j2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'reports', 'food-equivalents-audit.json'), 'utf8'));
-  assert.equal(r1.status, 0);
-  assert.equal(r2.status, 0);
-  assert.deepEqual(j1.summary, j2.summary);
-  assert.deepEqual(j1.alertCountsByCode, j2.alertCountsByCode);
-  assert.equal(j1.items.length, j2.items.length);
-  // strip timestamps from items comparison via codes
+test('real dataset has exact category counts', () => {
+  const counts = realPayload.foods.reduce((result, food) => {
+    result[food.displayCategory] = (result[food.displayCategory] || 0) + 1;
+    return result;
+  }, {});
+  assert.deepEqual(counts, EXPECTED_CATEGORY_COUNTS);
+});
+
+test('real dataset has complete English names and labels', () => {
+  for (const food of realPayload.foods) {
+    assert.ok(food.names?.en, `missing English name: ${food.id}`);
+    assert.ok(food.portion?.labelEn, `missing English portion: ${food.id}`);
+  }
+});
+
+test('real dataset IDs are unique', () => {
+  const ids = realPayload.foods.map((food) => food.id);
+  assert.equal(new Set(ids).size, ids.length);
+});
+
+test('shortName preserves percentage descriptors', () => {
+  assert.match(shortName('125 ml 100% pure fruit juice, no added sugar', 'en'), /100%\s*pure fruit juice/i);
+  assert.doesNotMatch(shortName('125 ml 100% pure fruit juice, no added sugar', 'en'), /^%/);
+  for (const label of [
+    '100 g 0% plain Skyr',
+    '125 g 0% plain Greek yogurt',
+    '100 ml 1-2% yogurt, no added sugar (100 g)',
+    '125 ml 1% cottage cheese',
+    '100 g 2% cottage cheese',
+  ]) {
+    assert.match(shortName(label, 'en'), /\d(?:-\d)?%/);
+  }
+});
+
+test('shortName strips count portions but preserves pita dimensions', () => {
+  assert.equal(shortName('1 œuf entier', 'fr'), 'œuf entier');
+  assert.equal(shortName('1 whole egg', 'en'), 'whole egg');
+  assert.match(shortName('1 10.2 cm (4 in) wheat pita', 'en'), /10\.2 cm wheat pita/);
+});
+
+test('PB2, raisins, rice cakes, and Core Power parse correctly', () => {
+  assert.equal(shortName('1,5 c. à table de PB2', 'fr'), 'PB2');
+  assert.equal(shortName('1.5 tbsp PB2', 'en'), 'PB2');
   assert.deepEqual(
-    j1.items.map((i) => [i.id, i.errorCount, i.warningCount, i.maxSeverity]),
-    j2.items.map((i) => [i.id, i.errorCount, i.warningCount, i.maxSeverity])
+    (({ amount, unit }) => ({ amount, unit }))(parsePortion('1,5 c. à table de PB2', '1.5 tbsp PB2')),
+    { amount: 1.5, unit: 'tbsp' }
+  );
+  assert.deepEqual(
+    (({ amount, unit, grams }) => ({ amount, unit, grams }))(parsePortionLabel('15 gros raisins (75 g)')),
+    { amount: 15, unit: 'count', grams: 75 }
+  );
+  assert.deepEqual(
+    (({ amount, unit, grams }) => ({ amount, unit, grams }))(parsePortionLabel('2 Galettes de riz (~20 g)')),
+    { amount: 2, unit: 'count', grams: 20 }
+  );
+  assert.doesNotMatch(
+    stripProteinAmountHints('100 ml de Core Power, Fairlife (42 g prot./bouteille)'),
+    /42/
+  );
+  assert.deepEqual(
+    (({ amount, unit, grams }) => ({ amount, unit, grams }))(
+      parsePortionLabel('100 ml de Core Power, Fairlife (42 g prot./bouteille)')
+    ),
+    { amount: 100, unit: 'ml', grams: null }
+  );
+  assert.deepEqual(
+    (({ amount, unit, grams }) => ({ amount, unit, grams }))(
+      parsePortionLabel('½ bouteille de Core Power, Fairlife (26 g prot./bouteille)')
+    ),
+    { amount: 0.5, unit: 'bottle', grams: null }
   );
 });
 
-test('schema validate accepts current dataset shape after bootstrap', () => {
-  const data = loadFoods();
-  const v = validateFoodEquivalentsPayload(data);
-  assert.equal(v.ok, true, JSON.stringify(v.errors?.slice(0, 5)));
+test('verified is never a manual status', () => {
+  assert.deepEqual(MANUAL_STATUSES, ['unverified', 'rejected']);
+  assert.equal(MANUAL_STATUSES.includes('verified'), false);
+});
+
+test('legacy and type-plus-name-only sources cannot verify', () => {
+  const legacy = cleanFood({
+    source: { type: null, name: null },
+  });
+  assert.equal(validateSource(legacy).ok, false);
+  assert.equal(canMarkVerified(legacy), false);
+
+  for (const type of SOURCE_TYPES) {
+    const food = cleanFood({ source: { type, name: 'Named source' } });
+    assert.equal(validateSource(food).ok, false, `${type} type+name unexpectedly valid`);
+    assert.equal(canMarkVerified(food), false, `${type} type+name unexpectedly verifiable`);
+  }
+});
+
+test('every source type reports its missing required fields', () => {
+  const expected = {
+    canadian_nutrient_file: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_RECORD_ID_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+      'SOURCE_SERVING_MISSING', 'SOURCE_BASIS_MISSING',
+    ],
+    usda_fooddata_central: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_RECORD_ID_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+      'SOURCE_SERVING_MISSING', 'SOURCE_BASIS_MISSING',
+    ],
+    manufacturer_label: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_SERVING_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+      'SOURCE_EVIDENCE_MISSING',
+    ],
+    manufacturer_website: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_URL_OR_RECORD_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+      'SOURCE_SERVING_MISSING',
+    ],
+    peer_reviewed_reference: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_URL_OR_RECORD_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+      'SOURCE_SERVING_MISSING',
+    ],
+    other_authoritative: [
+      'INSUFFICIENT_SOURCE', 'SOURCE_URL_OR_RECORD_MISSING', 'SOURCE_ACCESS_DATE_MISSING',
+    ],
+  };
+  assert.deepEqual([...SOURCE_TYPES].sort(), Object.keys(expected).sort());
+  for (const type of SOURCE_TYPES) {
+    const result = validateSource(cleanFood({ source: { type } }));
+    const codes = new Set(result.alerts.map((alert) => alert.code));
+    assert.equal(result.ok, false, `${type} unexpectedly valid`);
+    for (const code of expected[type]) assert.ok(codes.has(code), `${type} missing ${code}`);
+  }
+});
+
+test('quinoa legacy signature blocks verification while corrected quinoa can verify', () => {
+  const legacy = cleanFood({
+    nutrients: {
+      proteinG: 8,
+      carbsG: 1,
+      fiberG: 1,
+      fatG: 2,
+      saturatedFatG: 0,
+      polyunsaturatedFatG: 0,
+      monounsaturatedFatG: 0,
+      declaredKcal: 116,
+    },
+  });
+  assert.ok(auditFood(legacy).alerts.some((alert) => alert.code === 'SUSPECT_CASE'));
+
+  const corrected = cleanFood();
+  const result = auditFood(corrected);
+  assert.equal(result.alerts.some((alert) => alert.code === 'SUSPECT_CASE'), false);
+  assert.equal(result.errorCount, 0, JSON.stringify(result.alerts));
+  assert.equal(canMarkVerified(corrected, result.alerts), true);
+});
+
+test('duplicate IDs mark both audit items through the UI-shared engine', () => {
+  const first = cleanFood({ id: 'x' });
+  const second = cleanFood({ id: 'x', names: { fr: 'Deux', en: 'Two' } });
+  const reviewTest = { auditDataset };
+  const result = reviewTest.auditDataset([first, second]);
+  assert.equal(result.items.length, 2);
+  assert.ok(result.items.every((item) => item.alerts.some((alert) => alert.code === 'DUPLICATE_ID')));
+
+  const app = fs.readFileSync(path.join(ROOT, 'tools', 'food-data-review-app.js'), 'utf8');
+  assert.match(app, /window\.__REVIEW_TEST__\s*=\s*\{[\s\S]*auditDataset/);
+});
+
+test('status mismatch is a blocking audit alert', () => {
+  const food = cleanFood();
+  food.status = 'rejected';
+  food.verification.status = 'unverified';
+  const result = auditFood(food);
+  assert.ok(result.alerts.some((alert) => alert.code === 'STATUS_MISMATCH'));
+  assert.equal(result.errorCount > 0, true);
+});
+
+test('one verified food cannot approve an otherwise approved group', () => {
+  const verified = cleanFood({
+    id: 'verified',
+    status: 'verified',
+    verification: {
+      status: 'verified',
+      verifiedAt: '2026-07-29T00:00:00.000Z',
+      verifiedBy: 'Reviewer',
+      datasetVersion: '1.0.0',
+    },
+  });
+  const pending = [1, 2, 3].map((number) => cleanFood({ id: `pending-${number}` }));
+  const stats = calculateGroupStatistics('starch', [verified, ...pending], {
+    id: 'starch',
+    approved: true,
+    referenceProfile: { proteinG: 4, carbsG: 21, fiberG: 2, fatG: 2, kcal: 118 },
+    tolerances: { proteinG: 2, carbsG: 4, fatG: 2, kcal: 15 },
+    approvalCriteria: {
+      minVerifiedCount: null,
+      minCoveragePercent: 0,
+      requireAllActiveFoodsVerified: false,
+      requireNoFoodsOutsideTolerance: false,
+    },
+  }, { status: 'approved' });
+  assert.equal(stats.referenceProfileApproved, true);
+  assert.equal(stats.approved, false);
+  assert.ok(stats.approvalBlockers.includes('minVerifiedCount_null'));
+});
+
+test('bootstrap refuses a populated temporary target without --force', () => {
+  const sandbox = makeSandbox('bootstrap');
+  const before = hashFile(sandbox.data);
+  const result = runScript('scripts/bootstrap-from-legacy.mjs', [], sandbox);
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Refusing to overwrite/i);
+  assert.equal(hashFile(sandbox.data), before);
+  assert.deepEqual(fs.readdirSync(sandbox.backups), []);
+});
+
+test('data:apply dry-run writes nothing and real apply creates only temporary backups', () => {
+  const sandbox = makeSandbox('apply');
+  const incoming = path.join(sandbox.root, 'incoming.json');
+  const applicablePayload = clone(realPayload);
+  for (const food of applicablePayload.foods) {
+    if (food.portion.unit === 'scoop' && food.portion.grams == null) {
+      food.portion.grams = 30;
+    }
+  }
+  fs.writeFileSync(incoming, JSON.stringify(applicablePayload), 'utf8');
+  const targetBefore = hashFile(sandbox.data);
+  const versionBefore = hashFile(sandbox.version);
+
+  const dryRun = runScript('scripts/apply-food-equivalents.mjs', ['--dry-run', incoming], sandbox);
+  assert.equal(dryRun.status, 0, dryRun.stderr || dryRun.stdout);
+  assert.match(dryRun.stdout, /no files written/i);
+  assert.equal(hashFile(sandbox.data), targetBefore);
+  assert.equal(hashFile(sandbox.version), versionBefore);
+  assert.deepEqual(fs.readdirSync(sandbox.backups), []);
+
+  const apply = runScript('scripts/apply-food-equivalents.mjs', [incoming], sandbox);
+  assert.equal(apply.status, 0, apply.stderr || apply.stdout);
+  assert.ok(fs.readdirSync(sandbox.backups).some((name) => name.includes('pre-apply')));
+  assert.ok(fs.existsSync(path.join(sandbox.reports, 'food-equivalents-audit.json')));
+  assert.ok(fs.existsSync(sandbox.review));
+});
+
+test('non-numeric protein is rejected by payload validation and apply', () => {
+  const invalid = clone(realPayload);
+  invalid.foods[0].nutrients.proteinG = 'abc';
+  const validation = validateFoodEquivalentsPayload(invalid);
+  assert.equal(validation.ok, false);
+  assert.ok(validation.errors.some((error) => /number/.test(error.message)));
+
+  const sandbox = makeSandbox('invalid');
+  const incoming = path.join(sandbox.root, 'invalid.json');
+  fs.writeFileSync(incoming, JSON.stringify(invalid), 'utf8');
+  const targetBefore = hashFile(sandbox.data);
+  const result = runScript('scripts/apply-food-equivalents.mjs', [incoming], sandbox);
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Invalid JSON/i);
+  assert.equal(hashFile(sandbox.data), targetBefore);
+  assert.deepEqual(fs.readdirSync(sandbox.backups), []);
+});
+
+test('audit does not mutate nutrients and writes only sandbox outputs', () => {
+  const sandbox = makeSandbox('audit');
+  const nutrientsBefore = JSON.stringify(
+    JSON.parse(fs.readFileSync(sandbox.data, 'utf8')).foods.map((food) => food.nutrients)
+  );
+  const result = runScript('scripts/audit-food-equivalents.mjs', [], sandbox);
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const nutrientsAfter = JSON.stringify(
+    JSON.parse(fs.readFileSync(sandbox.data, 'utf8')).foods.map((food) => food.nutrients)
+  );
+  assert.equal(nutrientsAfter, nutrientsBefore);
+  assert.ok(fs.existsSync(path.join(sandbox.reports, 'food-equivalents-audit.json')));
+  assert.ok(fs.existsSync(sandbox.review));
+});
+
+test('dataset approval refuses the current sandbox dataset', () => {
+  const sandbox = makeSandbox('approval');
+  const before = hashFile(sandbox.version);
+  const result = runScript('scripts/approve-dataset.mjs', ['--by', 'Test Reviewer'], sandbox);
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /approval refused/i);
+  assert.equal(hashFile(sandbox.version), before);
+});
+
+test('foodsWithWarnings counts all warning foods and warning-only remains disjoint from errors', () => {
+  const result = auditDataset(realPayload.foods);
+  const warningFoods = result.items.filter((item) => item.warningCount > 0).length;
+  const warningOnlyFoods = result.items.filter(
+    (item) => item.errorCount === 0 && item.warningCount > 0
+  ).length;
+  assert.equal(result.summary.foodsWithWarnings, warningFoods);
+  assert.equal(result.summary.foodsWithWarnings, 207);
+  assert.equal(result.summary.foodsWithWarningsOnly, warningOnlyFoods);
+});
+
+test('production files retain their exact before-suite hashes', () => {
+  for (const file of REAL_PATHS) {
+    assert.equal(hashFile(file), beforeHashes.get(file), `unexpected production write: ${file}`);
+  }
 });

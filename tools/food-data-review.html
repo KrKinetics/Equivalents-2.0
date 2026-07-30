@@ -43,10 +43,13 @@
     .alert-list .W { color:var(--warn); }
     .empty { color:var(--muted); padding:40px; text-align:center; }
     .banner { background:#3a2a00; color:#ffd166; padding:8px 18px; font-size:12px; }
+    .muted, .preview { color:var(--muted); font-size:12px; margin-top:10px; }
+    .preview { display:grid; gap:4px; margin-bottom:12px; }
+    .verified-note { grid-column:1/-1; color:var(--ok); font-size:12px; }
   </style>
 </head>
 <body>
-  <div class="banner">Ouvrir via un serveur local à la racine du projet (ex. <code>npx --yes serve .</code>) pour charger le moteur d’audit partagé. Ne jamais choisir <code>verified</code> dans le menu — seul le bouton « Marquer verified » est autorisé.</div>
+  <div class="banner">Les changements restent dans ce navigateur jusqu’à l’export. Utilisez « Exporter un point de sauvegarde » régulièrement avant de fermer, actualiser ou importer un autre fichier. <code>verified</code> est disponible uniquement via le bouton de validation.</div>
   <header>
     <div>
       <h1>Révision interne — données alimentaires KR Kinetics</h1>
@@ -54,7 +57,7 @@
     </div>
     <div class="actions">
       <label class="file-btn">Importer JSON<input id="importFile" type="file" accept="application/json,.json" hidden /></label>
-      <button type="button" id="btnExport">Exporter JSON corrigé</button>
+      <button type="button" id="btnExport">Exporter un point de sauvegarde</button>
       <button type="button" id="btnReject">Rejeter</button>
       <button type="button" id="btnVerify" class="primary">Marquer verified</button>
     </div>

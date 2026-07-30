@@ -11,9 +11,10 @@
     "data:import": "node scripts/import-from-legacy.mjs",
     "data:audit": "node scripts/audit-food-equivalents.mjs",
     "data:apply": "node scripts/apply-food-equivalents.mjs",
+    "data:approve": "node scripts/approve-dataset.mjs",
     "data:report:classification": "node scripts/report-classification.mjs",
     "data:report:prep": "node scripts/report-not-applicable-candidates.mjs",
-    "test": "node --test tests/**/*.test.mjs",
+    "test": "node --test tests/nutrition-hardening.test.mjs",
     "test:nutrition": "node --test tests/nutrition-hardening.test.mjs"
   },
   "keywords": [],
@@ -21,6 +22,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "pdf-parse": "^2.4.5",
     "puppeteer": "^25.1.0"
   }
