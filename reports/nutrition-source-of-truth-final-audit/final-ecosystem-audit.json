@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-07-30T22:24:43.279Z",
+  "ok": true,
+  "summary": {
+    "totalFoods": 287,
+    "expectedTotalFoods": 287,
+    "verifiedFoods": 287,
+    "unverifiedFoods": 0,
+    "openErrorFoods": 0,
+    "categoryCounts": {
+      "noix_graines": 32,
+      "matieres_grasses": 23,
+      "legumes": 36,
+      "fruits": 33,
+      "poissons_fruits_mer": 36,
+      "viandes_volaille": 38,
+      "autres_sources_proteinees": 27,
+      "feculents": 33,
+      "produits_laitiers": 29
+    },
+    "expectedCategoryCounts": {
+      "noix_graines": 32,
+      "matieres_grasses": 23,
+      "legumes": 36,
+      "fruits": 33,
+      "poissons_fruits_mer": 36,
+      "viandes_volaille": 38,
+      "autres_sources_proteinees": 27,
+      "feculents": 33,
+      "produits_laitiers": 29
+    },
+    "dataHash": "8492cde87e61b1425f27eea11edbd02abd5dd4e3624f98e0a3c860bea42e47c6",
+    "datasetAudit": {
+      "foodsWithBlockingErrors": 0,
+      "blockingErrorCount": 0,
+      "foodsWithWarnings": 86
+    }
+  },
+  "failures": [],
+  "notes": [
+    "1 CNF recordId(s) shared by multiple food cards (documented; not automatically a failure)"
+  ],
+  "forbiddenPaths": {
+    "ok": true,
+    "notes": "No calculator / PDF guide / MOYENNES files dirty in working tree",
+    "files": []
+  },
+  "missingSource": [],
+  "missingVerifyTx": [],
+  "missingCnfRecord": [],
+  "missingManufacturerEvidence": [],
+  "missingRequiredGrams": [],
+  "duplicateIds": [],
+  "duplicateIdentities": [],
+  "duplicateSourceRecords": [
+    {
+      "recordId": "2371",
+      "foodIds": [
+        "legumes-yellow-or-green-beans",
+        "legumes-yellow-snap-beans"
+      ]
+    }
+  ],
+  "openErrors": []
+}

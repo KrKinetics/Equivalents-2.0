@@ -50,6 +50,7 @@ export const PREPARATION_STATES = [
   'canned',
   'dry_uncooked',
   'ready_to_eat',
+  'ready_to_cook',
   'not_applicable',
   'unknown',
 ];
@@ -86,10 +87,10 @@ export const EXPECTED_CATEGORY_COUNTS = {
   poissons_fruits_mer: 36,
   viandes_volaille: 38,
   autres_sources_proteinees: 27,
-  feculents: 23,
+  feculents: 33,
   produits_laitiers: 29,
 };
 
-export const TOTAL_FOODS_EXPECTED = 277;
+export const TOTAL_FOODS_EXPECTED = 287;
 
 export const DATASET_STATUSES = ['draft', 'review', 'approved'];

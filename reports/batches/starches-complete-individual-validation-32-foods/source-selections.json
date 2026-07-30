@@ -1,0 +1,655 @@
+{
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "selected": [
+    {
+      "id": "feculents-bagel",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3671",
+      "expectedRecordId": "3671",
+      "selectedRecordId": "3671",
+      "transactionId": "1fc5abae-0a50-44ed-bbc7-cae58bd65e1c",
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.1,
+        "fiberG": 0.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 91
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "1413",
+      "expectedRecordId": "1413",
+      "selectedRecordId": "1413",
+      "transactionId": "622902a9-cf1a-449b-b949-93b06d0f4880",
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 18.9,
+        "fiberG": 2.8,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 107
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4421",
+      "expectedRecordId": "4421",
+      "selectedRecordId": "4421",
+      "transactionId": "8156f015-3903-4b10-afb6-beac87d14b3c",
+      "nutrients": {
+        "proteinG": 5.9,
+        "carbsG": 23.2,
+        "fiberG": 3.7,
+        "fatG": 2.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 136
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-legumes",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3390",
+      "expectedRecordId": "3390",
+      "selectedRecordId": "3390",
+      "transactionId": "52c226b5-be35-4b6e-b320-94323c0b66ea",
+      "nutrients": {
+        "proteinG": 8.9,
+        "carbsG": 27.4,
+        "fiberG": 4.6,
+        "fatG": 2.6,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 164
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "2068",
+      "expectedRecordId": "2068",
+      "selectedRecordId": "2068",
+      "transactionId": "13fdbf6b-98f9-4eb5-a452-733d39fcd901",
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 15.7,
+        "fiberG": 1.8,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 72
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3900",
+      "expectedRecordId": "3900",
+      "selectedRecordId": "3900",
+      "transactionId": "f69a276b-28a8-498b-9504-e1b55bc74111",
+      "nutrients": {
+        "proteinG": 2.7,
+        "carbsG": 12.8,
+        "fiberG": 0.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 67
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-barley",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4486",
+      "expectedRecordId": "4486",
+      "selectedRecordId": "4486",
+      "transactionId": "e274403d-9958-4993-89e9-acf870f83f9e",
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 21.2,
+        "fiberG": 1.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 92
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3709",
+      "expectedRecordId": "3709",
+      "selectedRecordId": "3709",
+      "transactionId": "622355a1-5a6d-43e3-8b14-b3ca27c06041",
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 17.7,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 85
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4464",
+      "expectedRecordId": "4464",
+      "selectedRecordId": "4464",
+      "transactionId": "8c1ef084-e2b1-40e3-9dd8-4167930f9f30",
+      "nutrients": {
+        "proteinG": 4.4,
+        "carbsG": 23.1,
+        "fiberG": 1.4,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 119
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-mashed-potato-with-milk",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "5278",
+      "expectedRecordId": "5278",
+      "selectedRecordId": "5278",
+      "transactionId": "34062317-8539-45b1-a237-67e7352cf165",
+      "nutrients": {
+        "proteinG": 2.1,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 90
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "2241",
+      "expectedRecordId": "2241",
+      "selectedRecordId": "2241",
+      "transactionId": "ce8d45bc-e64b-4613-9c60-9a8e7bcf0004",
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15.5,
+        "fiberG": 2.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 68
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-buckwheat",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4413",
+      "expectedRecordId": "4413",
+      "selectedRecordId": "4413",
+      "transactionId": "f3fc1f15-c4a7-433f-9a5a-0014a86a1a16",
+      "nutrients": {
+        "proteinG": 2.5,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-rice",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4475",
+      "expectedRecordId": "4475",
+      "selectedRecordId": "4475",
+      "transactionId": "2f06892b-54f6-4c0b-8bfc-958ae251ea86",
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 28.6,
+        "fiberG": null,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 130
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "2100",
+      "expectedRecordId": "2100",
+      "selectedRecordId": "2100",
+      "transactionId": "28069725-26e4-4e8e-b61d-f12fb9cde38f",
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 14.8,
+        "fiberG": 1.4,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-slice-bread",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4067",
+      "expectedRecordId": "4067",
+      "selectedRecordId": "4067",
+      "transactionId": "c8aed27a-6665-4c4f-8a90-cbf7cedbedf4",
+      "nutrients": {
+        "proteinG": 3.9,
+        "carbsG": 16.4,
+        "fiberG": 2.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 93
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7282",
+      "expectedRecordId": "7282",
+      "selectedRecordId": "7282",
+      "transactionId": "70e09e96-ade6-40d7-be6f-86e2297428ca",
+      "nutrients": {
+        "proteinG": 5.1,
+        "carbsG": 16.6,
+        "fiberG": 3.3,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 100
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "1475",
+      "expectedRecordId": "1475",
+      "selectedRecordId": "1475",
+      "transactionId": "1e8d8e46-61bc-4fdf-b0df-be4bb0e7dde3",
+      "nutrients": {
+        "proteinG": 3.9,
+        "carbsG": 21.8,
+        "fiberG": 3.3,
+        "fatG": 1.9,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 119
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4490",
+      "expectedRecordId": "4490",
+      "selectedRecordId": "4490",
+      "transactionId": "890a58e9-5b32-40e0-a795-fd6df481d621",
+      "nutrients": {
+        "proteinG": 2.8,
+        "carbsG": 17.4,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 84
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-rice-cakes",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "4387",
+      "expectedRecordId": "4387",
+      "selectedRecordId": "4387",
+      "transactionId": "61b641c7-839f-4f3d-ad8a-e2c32ec7899a",
+      "nutrients": {
+        "proteinG": 1.5,
+        "carbsG": 14.7,
+        "fiberG": 0.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 70
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-rolled-oats",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "1414",
+      "expectedRecordId": "1414",
+      "selectedRecordId": "1414",
+      "transactionId": "c5529e43-7f87-4984-8a4e-c0e4379bbaab",
+      "nutrients": {
+        "proteinG": 4.5,
+        "carbsG": 23.4,
+        "fiberG": 3.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 133
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-beluga-lentils",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "3393",
+      "expectedRecordId": "3393",
+      "selectedRecordId": "3393",
+      "transactionId": "f4c6175b-3735-4ed5-b34e-022ac106a896",
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 20.1,
+        "fiberG": 4.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 116
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://smartlabel.labelinsight.com/product/6348532/nutrition",
+      "transactionId": "5142e787-c022-47b2-a981-bf7d19f637ff",
+      "nutrients": {
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 80
+      },
+      "version": 3
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4423",
+      "expectedRecordId": "4423",
+      "selectedRecordId": "4423",
+      "transactionId": "8e0b2340-2a77-4bcf-bb48-720ee53c6cbe",
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 23.5,
+        "fiberG": 1.9,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 112
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4517",
+      "expectedRecordId": "4517",
+      "selectedRecordId": "4517",
+      "transactionId": "8e44f8bd-ec92-4e75-b01f-1932950f7378",
+      "nutrients": {
+        "proteinG": 4.5,
+        "carbsG": 22.6,
+        "fiberG": 2.4,
+        "fatG": 1.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 112
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "2422",
+      "expectedRecordId": "2422",
+      "selectedRecordId": "2422",
+      "transactionId": "a297bc36-663c-4603-a9be-2dbbb3dd077b",
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 86
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4048",
+      "expectedRecordId": "4048",
+      "selectedRecordId": "4048",
+      "transactionId": "dc6c6e5e-d35f-481a-ba70-d4c631880a69",
+      "nutrients": {
+        "proteinG": 1.1,
+        "carbsG": 11.3,
+        "fiberG": 1.1,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 56
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4049",
+      "expectedRecordId": "4049",
+      "selectedRecordId": "4049",
+      "transactionId": "22c378f8-eeb6-4b4d-be7b-a7f68a779d3f",
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 16.8,
+        "fiberG": 1.3,
+        "fatG": 2.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 104
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "3985",
+      "expectedRecordId": "3985",
+      "selectedRecordId": "3985",
+      "transactionId": "43225ea4-7b35-4f8c-90be-922bafbd223e",
+      "nutrients": {
+        "proteinG": 4.3,
+        "carbsG": 22.1,
+        "fiberG": 0.8,
+        "fatG": 1.7,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 123
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "3377",
+      "expectedRecordId": "3377",
+      "selectedRecordId": "3377",
+      "transactionId": "a79518fc-b617-449e-a309-d23cdd0fa6ad",
+      "nutrients": {
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 7,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 132
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-cooked-bulgur",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4489",
+      "expectedRecordId": "4489",
+      "selectedRecordId": "4489",
+      "transactionId": "1a40ed8b-cc29-4842-b3f5-a17d6eed2be6",
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 13.9,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4492",
+      "expectedRecordId": "4492",
+      "selectedRecordId": "4492",
+      "transactionId": "3abf836d-b0ac-4d26-b8c9-6b75fcfe4c88",
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 17.8,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 89
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "feculents-rye-bread",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4065",
+      "expectedRecordId": "4065",
+      "selectedRecordId": "4065",
+      "transactionId": "5434e3bb-ce11-45a4-a1cb-ef7e3ee1e99a",
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 13.2,
+        "fiberG": 1.1,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 68
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ]
+}

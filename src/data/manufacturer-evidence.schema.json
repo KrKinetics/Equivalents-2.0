@@ -26,6 +26,8 @@
     "flavor": { "type": "string", "minLength": 1 },
     "market": { "type": "string", "minLength": 1 },
     "officialUrl": { "type": "string", "format": "uri" },
+    "productUrl": { "type": ["string", "null"], "format": "uri" },
+    "smartLabelUrl": { "type": ["string", "null"], "format": "uri" },
     "accessedAt": { "type": "string", "minLength": 8 },
     "labelServing": {
       "type": "object",

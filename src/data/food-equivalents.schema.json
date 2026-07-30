@@ -214,6 +214,7 @@
                     "canned",
                     "dry_uncooked",
                     "ready_to_eat",
+                    "ready_to_cook",
                     "not_applicable",
                     "unknown"
                   ]

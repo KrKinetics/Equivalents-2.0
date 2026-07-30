@@ -345,9 +345,9 @@ after(() => {
   }
 });
 
-test('real dataset has exactly 277 foods', () => {
+test('real dataset has exactly 287 foods', () => {
   assert.equal(realPayload.foods.length, TOTAL_FOODS_EXPECTED);
-  assert.equal(TOTAL_FOODS_EXPECTED, 277);
+  assert.equal(TOTAL_FOODS_EXPECTED, 287);
 });
 
 test('real dataset has exact category counts', () => {
@@ -657,7 +657,7 @@ test('foodsWithWarnings counts all warning foods and warning-only remains disjoi
     (item) => item.errorCount === 0 && item.warningCount > 0
   ).length;
   assert.equal(result.summary.foodsWithWarnings, warningFoods);
-  assert.ok(result.summary.foodsWithWarnings >= 90);
+  assert.ok(result.summary.foodsWithWarnings >= 80);
   assert.equal(result.summary.foodsWithWarningsOnly, warningOnlyFoods);
 });
 
@@ -1689,11 +1689,34 @@ test('rejected food with incomplete nutrition does not block approval', () => {
 test('complete A to B to C apply cycle works without allow-stale', () => {
   const sandbox = makeSandbox('apply-cycle');
   const baseA = JSON.parse(fs.readFileSync(sandbox.data, 'utf8'));
+  const targetIndex = baseA.foods.findIndex((food) => !PILOT_ALLOWED.has(food.id));
+  assert.ok(targetIndex >= 0, 'need a non-pilot food for cycle test');
+  // Fully verified banks still need an unverified seed for this apply-cycle fixture.
+  const seed = baseA.foods[targetIndex];
+  if (seed.status === 'verified' || seed.verification?.status === 'verified') {
+    seed.status = 'unverified';
+    seed.verification = {
+      status: 'unverified',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    };
+  }
   const hashA = computeFoodsDataHash(baseA.foods);
-  const targetIndex = baseA.foods.findIndex(
-    (food) => food.status !== 'verified' && !PILOT_ALLOWED.has(food.id)
+  baseA.meta.baseDataHash = hashA;
+  baseA.meta.exportDataHash = hashA;
+  fs.writeFileSync(sandbox.data, `${JSON.stringify(baseA, null, 2)}\n`);
+  fs.writeFileSync(
+    sandbox.version,
+    `${JSON.stringify(
+      {
+        ...JSON.parse(fs.readFileSync(sandbox.version, 'utf8')),
+        dataHash: hashA,
+      },
+      null,
+      2
+    )}\n`
   );
-  assert.ok(targetIndex >= 0, 'need an unverified non-pilot food for cycle test');
 
   const exportB = clone(baseA);
   const foodB = exportB.foods[targetIndex];

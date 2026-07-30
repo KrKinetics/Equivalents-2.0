@@ -107,6 +107,7 @@ node scripts/write-fairlife-evidence.mjs
 node scripts/write-now-mct-evidence.mjs
 node scripts/write-other-protein-manufacturer-evidence.mjs
 node scripts/write-dairy-manufacturer-evidence.mjs
+node scripts/write-starches-manufacturer-evidence.mjs
 ```
 
 Schéma : `src/data/manufacturer-evidence.schema.json`
@@ -174,6 +175,15 @@ Conserver :
 - les rapports dans `reports/batches/<batchId>/`
 
 Marquer éventuellement `status: applied` dans le JSON du lot.
+
+## 13. Audit final de fermeture
+
+```bash
+npm run nutrition:final-audit
+```
+
+Produit `reports/nutrition-source-of-truth-final-audit/` et échoue si la
+banque n’est pas entièrement verified sans ERROR ouverte.
 
 ---
 

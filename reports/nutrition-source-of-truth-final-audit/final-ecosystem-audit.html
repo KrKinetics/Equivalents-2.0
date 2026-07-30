@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Audit final — source of truth nutritionnelle</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem; color: #1a1a1a; }
+    .ok { color: #0a7a32; }
+    .fail { color: #a11; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
+    code { font-family: ui-monospace, Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <h1>Audit final — validation nutritionnelle globale</h1>
+  <p class="ok"><strong>VERT</strong> — généré 2026-07-30T22:24:43.279Z</p>
+  <ul>
+    <li>Aliments: 287 / 287</li>
+    <li>Verified: 287</li>
+    <li>Unverified: 0</li>
+    <li>ERROR ouvertes: 0</li>
+    <li>dataHash: <code>8492cde87e61b1425f27eea11edbd02abd5dd4e3624f98e0a3c860bea42e47c6</code></li>
+  </ul>
+  <h2>Échecs</h2>
+  <p class="ok">Aucun échec.</p>
+  <h2>Comptes par catégorie</h2>
+  <table>
+    <thead><tr><th>Catégorie</th><th>Actuel</th><th>Attendu</th></tr></thead>
+    <tbody>
+      <tr><td>noix_graines</td><td>32</td><td>32</td></tr><tr><td>matieres_grasses</td><td>23</td><td>23</td></tr><tr><td>legumes</td><td>36</td><td>36</td></tr><tr><td>fruits</td><td>33</td><td>33</td></tr><tr><td>poissons_fruits_mer</td><td>36</td><td>36</td></tr><tr><td>viandes_volaille</td><td>38</td><td>38</td></tr><tr><td>autres_sources_proteinees</td><td>27</td><td>27</td></tr><tr><td>feculents</td><td>33</td><td>33</td></tr><tr><td>produits_laitiers</td><td>29</td><td>29</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

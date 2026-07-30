@@ -174,6 +174,11 @@ function buildCnfSource(record, accessedAt) {
 
 function buildManufacturerSource(label, identity, undeclaredNutrients = []) {
   const brand = identity.brand || label.brand || null;
+  const noteParts = [
+    identity.marketNote || null,
+    label.productUrl ? `Product page: ${label.productUrl}` : null,
+    label.market || null,
+  ].filter(Boolean);
   return {
     type: 'manufacturer_website',
     name: brand || label.productName || 'manufacturer',
@@ -183,7 +188,7 @@ function buildManufacturerSource(label, identity, undeclaredNutrients = []) {
     accessedAt: label.accessedAt,
     servingDescription: `${label.labelServing.amount} ${label.labelServing.unit} label serving`,
     nutrientsBasis: 'as_consumed',
-    notes: identity.marketNote || label.market || null,
+    notes: noteParts.length ? noteParts.join(' | ') : null,
     brand,
     productName: label.productName || identity.en,
     labelServingSize: `${label.labelServing.amount} ${label.labelServing.unit}`,

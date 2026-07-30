@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 255,
+  "protectedFoodsDataHash": "f2347ab671518e64bfa04785ae9e36400f84a9c9b131bcef0de1b7460539c789",
+  "foodCount": 287,
+  "checkedAt": "2026-07-30T22:23:28.729Z",
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}

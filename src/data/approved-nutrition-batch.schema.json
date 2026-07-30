@@ -61,6 +61,10 @@
           "type": "array",
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
+        },
+        "expectedFinalVerifiedCount": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -162,6 +166,7 @@
       "properties": {
         "sourceType": { "type": "string", "minLength": 1 },
         "url": { "type": "string", "minLength": 1 },
+        "productUrl": { "type": "string", "minLength": 1 },
         "accessedAt": { "type": "string", "minLength": 8 },
         "brand": { "type": "string" },
         "productName": { "type": "string" },

@@ -1,0 +1,1084 @@
+{
+  "batchId": "starches-complete-individual-validation-32-foods",
+  "foods": [
+    {
+      "id": "feculents-bagel",
+      "formula": "valuePortion = valuePer100g × 34.5 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 264,
+        "protein_g": 10.56,
+        "carbohydrate_g": 52.38,
+        "fibre_g": 1.6,
+        "total_fat_g": 1.32,
+        "saturated_fat_g": 0.36,
+        "polyunsaturated_fat_g": 0.526,
+        "monounsaturated_fat_g": 0.39
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 91.08,
+        "proteinG": 3.6431999999999998,
+        "carbsG": 18.071099999999998,
+        "fiberG": 0.5519999999999999,
+        "fatG": 0.45539999999999997,
+        "saturatedFatG": 0.12419999999999999,
+        "polyunsaturatedFatG": 0.18147,
+        "monounsaturatedFatG": 0.13455
+      },
+      "storedRounded": {
+        "declaredKcal": 91,
+        "proteinG": 3.6,
+        "carbsG": 18.1,
+        "fiberG": 0.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-plain-oatmeal-uncooked",
+      "formula": "valuePortion = valuePer100g × 28 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 382,
+        "protein_g": 12.98,
+        "carbohydrate_g": 67.53,
+        "fibre_g": 10.1,
+        "total_fat_g": 6.68,
+        "saturated_fat_g": 1.161,
+        "polyunsaturated_fat_g": 2.458,
+        "monounsaturated_fat_g": 2.031
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 106.96000000000001,
+        "proteinG": 3.6344000000000003,
+        "carbsG": 18.908400000000004,
+        "fiberG": 2.8280000000000003,
+        "fatG": 1.8704,
+        "saturatedFatG": 0.32508000000000004,
+        "polyunsaturatedFatG": 0.6882400000000001,
+        "monounsaturatedFatG": 0.5686800000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 107,
+        "proteinG": 3.6,
+        "carbsG": 18.9,
+        "fiberG": 2.8,
+        "fatG": 1.9,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.6
+      }
+    },
+    {
+      "id": "feculents-rolled-oats-uncooked",
+      "formula": "valuePortion = valuePer100g × 35 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 389,
+        "protein_g": 16.89,
+        "carbohydrate_g": 66.27,
+        "fibre_g": 10.6,
+        "total_fat_g": 6.9,
+        "saturated_fat_g": 1.217,
+        "polyunsaturated_fat_g": 2.535,
+        "monounsaturated_fat_g": 2.178
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 136.14999999999998,
+        "proteinG": 5.9115,
+        "carbsG": 23.194499999999998,
+        "fiberG": 3.7099999999999995,
+        "fatG": 2.415,
+        "saturatedFatG": 0.42595,
+        "polyunsaturatedFatG": 0.88725,
+        "monounsaturatedFatG": 0.7623
+      },
+      "storedRounded": {
+        "declaredKcal": 136,
+        "proteinG": 5.9,
+        "carbsG": 23.2,
+        "fiberG": 3.7,
+        "fatG": 2.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.8
+      }
+    },
+    {
+      "id": "feculents-cooked-legumes",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 164,
+        "protein_g": 8.86,
+        "carbohydrate_g": 27.42,
+        "fibre_g": 4.56,
+        "total_fat_g": 2.59,
+        "saturated_fat_g": 0.269,
+        "polyunsaturated_fat_g": 1.156,
+        "monounsaturated_fat_g": 0.583
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 164,
+        "proteinG": 8.86,
+        "carbsG": 27.42,
+        "fiberG": 4.56,
+        "fatG": 2.59,
+        "saturatedFatG": 0.269,
+        "polyunsaturatedFatG": 1.156,
+        "monounsaturatedFatG": 0.583
+      },
+      "storedRounded": {
+        "declaredKcal": 164,
+        "proteinG": 8.9,
+        "carbsG": 27.4,
+        "fiberG": 4.6,
+        "fatG": 2.6,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 0.6
+      }
+    },
+    {
+      "id": "feculents-boiled-drained-corn",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 96,
+        "protein_g": 3.41,
+        "carbohydrate_g": 20.98,
+        "fibre_g": 2.4,
+        "total_fat_g": 1.5,
+        "saturated_fat_g": 0.197,
+        "polyunsaturated_fat_g": 0.603,
+        "monounsaturated_fat_g": 0.374
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 72,
+        "proteinG": 2.5575,
+        "carbsG": 15.735,
+        "fiberG": 1.7999999999999998,
+        "fatG": 1.125,
+        "saturatedFatG": 0.14775,
+        "polyunsaturatedFatG": 0.45225,
+        "monounsaturatedFatG": 0.28049999999999997
+      },
+      "storedRounded": {
+        "declaredKcal": 72,
+        "proteinG": 2.6,
+        "carbsG": 15.7,
+        "fiberG": 1.8,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.3
+      }
+    },
+    {
+      "id": "feculents-english-muffin-hot-dog-or-hamburger-bun",
+      "formula": "valuePortion = valuePer100g × 28.5 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 235.153536542,
+        "protein_g": 9.410310206,
+        "carbohydrate_g": 44.91857393,
+        "fibre_g": 2.683600698,
+        "total_fat_g": 1.982,
+        "saturated_fat_g": 0.633361276,
+        "polyunsaturated_fat_g": 1.019751849,
+        "monounsaturated_fat_g": 0.330562842
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 67.01875791447,
+        "proteinG": 2.6819384087099998,
+        "carbsG": 12.801793570049998,
+        "fiberG": 0.7648261989299999,
+        "fatG": 0.56487,
+        "saturatedFatG": 0.18050796366,
+        "polyunsaturatedFatG": 0.29062927696499996,
+        "monounsaturatedFatG": 0.09421040996999999
+      },
+      "storedRounded": {
+        "declaredKcal": 67,
+        "proteinG": 2.7,
+        "carbsG": 12.8,
+        "fiberG": 0.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-cooked-barley",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 123,
+        "protein_g": 2.26,
+        "carbohydrate_g": 28.22,
+        "fibre_g": 2.46,
+        "total_fat_g": 0.44,
+        "saturated_fat_g": 0.093,
+        "polyunsaturated_fat_g": 0.214,
+        "monounsaturated_fat_g": 0.057
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 92.25,
+        "proteinG": 1.6949999999999998,
+        "carbsG": 21.165,
+        "fiberG": 1.845,
+        "fatG": 0.33,
+        "saturatedFatG": 0.06975,
+        "polyunsaturatedFatG": 0.1605,
+        "monounsaturatedFatG": 0.04275
+      },
+      "storedRounded": {
+        "declaredKcal": 92,
+        "proteinG": 1.7,
+        "carbsG": 21.2,
+        "fiberG": 1.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-10-2-cm-wheat-pita",
+      "formula": "valuePortion = valuePer100g × 32 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 265.047744144,
+        "protein_g": 11.343911194,
+        "carbohydrate_g": 55.187174696,
+        "fibre_g": 6.273486849,
+        "total_fat_g": 1.726,
+        "saturated_fat_g": 0.42511929,
+        "polyunsaturated_fat_g": 0.820334857,
+        "monounsaturated_fat_g": 0.46736028
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 84.81527812607999,
+        "proteinG": 3.63005158208,
+        "carbsG": 17.65989590272,
+        "fiberG": 2.00751579168,
+        "fatG": 0.55232,
+        "saturatedFatG": 0.1360381728,
+        "polyunsaturatedFatG": 0.26250715424,
+        "monounsaturatedFatG": 0.1495552896
+      },
+      "storedRounded": {
+        "declaredKcal": 85,
+        "proteinG": 3.6,
+        "carbsG": 17.7,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-cooked-pasta",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 158,
+        "protein_g": 5.8,
+        "carbohydrate_g": 30.86,
+        "fibre_g": 1.8,
+        "total_fat_g": 0.93,
+        "saturated_fat_g": 0.176,
+        "polyunsaturated_fat_g": 0.326,
+        "monounsaturated_fat_g": 0.131
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 118.5,
+        "proteinG": 4.35,
+        "carbsG": 23.145,
+        "fiberG": 1.35,
+        "fatG": 0.6975,
+        "saturatedFatG": 0.132,
+        "polyunsaturatedFatG": 0.2445,
+        "monounsaturatedFatG": 0.09825
+      },
+      "storedRounded": {
+        "declaredKcal": 119,
+        "proteinG": 4.4,
+        "carbsG": 23.1,
+        "fiberG": 1.4,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-mashed-potato-with-milk",
+      "formula": "valuePortion = valuePer100g × 110.95 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 81,
+        "protein_g": 1.891,
+        "carbohydrate_g": 18.071,
+        "fibre_g": 1.224,
+        "total_fat_g": 0.325,
+        "saturated_fat_g": 0.101,
+        "polyunsaturated_fat_g": 0.04,
+        "monounsaturated_fat_g": 0.042
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 89.86949999999999,
+        "proteinG": 2.0980645,
+        "carbsG": 20.0497745,
+        "fiberG": 1.3580279999999998,
+        "fatG": 0.3605875,
+        "saturatedFatG": 0.1120595,
+        "polyunsaturatedFatG": 0.044379999999999996,
+        "monounsaturatedFatG": 0.046599
+      },
+      "storedRounded": {
+        "declaredKcal": 90,
+        "proteinG": 2.1,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-medium-sweet-potato",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 90,
+        "protein_g": 2.01,
+        "carbohydrate_g": 20.71,
+        "fibre_g": 3.3,
+        "total_fat_g": 0.15,
+        "saturated_fat_g": 0.052,
+        "polyunsaturated_fat_g": 0.092,
+        "monounsaturated_fat_g": 0.002
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 67.5,
+        "proteinG": 1.5074999999999998,
+        "carbsG": 15.5325,
+        "fiberG": 2.4749999999999996,
+        "fatG": 0.11249999999999999,
+        "saturatedFatG": 0.039,
+        "polyunsaturatedFatG": 0.069,
+        "monounsaturatedFatG": 0.0015
+      },
+      "storedRounded": {
+        "declaredKcal": 68,
+        "proteinG": 1.5,
+        "carbsG": 15.5,
+        "fiberG": 2.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-cooked-buckwheat",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 92,
+        "protein_g": 3.38,
+        "carbohydrate_g": 19.94,
+        "fibre_g": 2.7,
+        "total_fat_g": 0.62,
+        "saturated_fat_g": 0.134,
+        "polyunsaturated_fat_g": 0.188,
+        "monounsaturated_fat_g": 0.188
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 69,
+        "proteinG": 2.535,
+        "carbsG": 14.955000000000002,
+        "fiberG": 2.0250000000000004,
+        "fatG": 0.46499999999999997,
+        "saturatedFatG": 0.1005,
+        "polyunsaturatedFatG": 0.14100000000000001,
+        "monounsaturatedFatG": 0.14100000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 69,
+        "proteinG": 2.5,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-cooked-rice",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 130,
+        "protein_g": 2.38,
+        "carbohydrate_g": 28.59,
+        "fibre_g": null,
+        "total_fat_g": 0.21,
+        "saturated_fat_g": 0.057,
+        "polyunsaturated_fat_g": 0.056,
+        "monounsaturated_fat_g": 0.065
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 130,
+        "proteinG": 2.38,
+        "carbsG": 28.59,
+        "fiberG": null,
+        "fatG": 0.21,
+        "saturatedFatG": 0.057,
+        "polyunsaturatedFatG": 0.056,
+        "monounsaturatedFatG": 0.065
+      },
+      "storedRounded": {
+        "declaredKcal": 130,
+        "proteinG": 2.4,
+        "carbsG": 28.6,
+        "fiberG": null,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-jerusalem-artichoke",
+      "formula": "valuePortion = valuePer100g × 85 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 73,
+        "protein_g": 2,
+        "carbohydrate_g": 17.44,
+        "fibre_g": 1.6,
+        "total_fat_g": 0.01,
+        "saturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.001,
+        "monounsaturated_fat_g": 0.004
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.05,
+        "proteinG": 1.7,
+        "carbsG": 14.824,
+        "fiberG": 1.36,
+        "fatG": 0.0085,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.00085,
+        "monounsaturatedFatG": 0.0034
+      },
+      "storedRounded": {
+        "declaredKcal": 62,
+        "proteinG": 1.7,
+        "carbsG": 14.8,
+        "fiberG": 1.4,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-slice-bread",
+      "formula": "valuePortion = valuePer100g × 36 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 257,
+        "protein_g": 10.7,
+        "carbohydrate_g": 45.64,
+        "fibre_g": 6.28,
+        "total_fat_g": 3.03,
+        "saturated_fat_g": 0.785,
+        "polyunsaturated_fat_g": 1.489,
+        "monounsaturated_fat_g": 0.62
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 92.52,
+        "proteinG": 3.8519999999999994,
+        "carbsG": 16.4304,
+        "fiberG": 2.2608,
+        "fatG": 1.0908,
+        "saturatedFatG": 0.2826,
+        "polyunsaturatedFatG": 0.5360400000000001,
+        "monounsaturatedFatG": 0.22319999999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 93,
+        "proteinG": 3.9,
+        "carbsG": 16.4,
+        "fiberG": 2.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2
+      }
+    },
+    {
+      "id": "feculents-slice-sprouted-bread",
+      "formula": "valuePortion = valuePer100g × 38 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 264,
+        "protein_g": 13.36,
+        "carbohydrate_g": 43.69,
+        "fibre_g": 8.75,
+        "total_fat_g": 3.57,
+        "saturated_fat_g": 0.61,
+        "polyunsaturated_fat_g": 1.925,
+        "monounsaturated_fat_g": 0.877
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 100.32000000000001,
+        "proteinG": 5.0767999999999995,
+        "carbsG": 16.6022,
+        "fiberG": 3.325,
+        "fatG": 1.3566,
+        "saturatedFatG": 0.2318,
+        "polyunsaturatedFatG": 0.7315,
+        "monounsaturatedFatG": 0.33326
+      },
+      "storedRounded": {
+        "declaredKcal": 100,
+        "proteinG": 5.1,
+        "carbsG": 16.6,
+        "fiberG": 3.3,
+        "fatG": 1.4,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.3
+      }
+    },
+    {
+      "id": "feculents-lightly-sweetened-breakfast-cereal",
+      "formula": "valuePortion = valuePer100g × 30 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 397,
+        "protein_g": 12.88,
+        "carbohydrate_g": 72.73,
+        "fibre_g": 10.87,
+        "total_fat_g": 6.35,
+        "saturated_fat_g": 1.31,
+        "polyunsaturated_fat_g": 2.29,
+        "monounsaturated_fat_g": 2.22
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 119.1,
+        "proteinG": 3.864,
+        "carbsG": 21.819,
+        "fiberG": 3.2609999999999997,
+        "fatG": 1.9049999999999998,
+        "saturatedFatG": 0.393,
+        "polyunsaturatedFatG": 0.6869999999999999,
+        "monounsaturatedFatG": 0.666
+      },
+      "storedRounded": {
+        "declaredKcal": 119,
+        "proteinG": 3.9,
+        "carbsG": 21.8,
+        "fiberG": 3.3,
+        "fatG": 1.9,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 0.7
+      }
+    },
+    {
+      "id": "feculents-cooked-couscous",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 112,
+        "protein_g": 3.79,
+        "carbohydrate_g": 23.22,
+        "fibre_g": 0.89,
+        "total_fat_g": 0.16,
+        "saturated_fat_g": 0.029,
+        "polyunsaturated_fat_g": 0.064,
+        "monounsaturated_fat_g": 0.022
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 84,
+        "proteinG": 2.8425000000000002,
+        "carbsG": 17.415,
+        "fiberG": 0.6675,
+        "fatG": 0.12,
+        "saturatedFatG": 0.021750000000000002,
+        "polyunsaturatedFatG": 0.048,
+        "monounsaturatedFatG": 0.0165
+      },
+      "storedRounded": {
+        "declaredKcal": 84,
+        "proteinG": 2.8,
+        "carbsG": 17.4,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-rice-cakes",
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 387,
+        "protein_g": 8.2,
+        "carbohydrate_g": 81.5,
+        "fibre_g": 4.2,
+        "total_fat_g": 2.8,
+        "saturated_fat_g": 0.57,
+        "polyunsaturated_fat_g": 0.99,
+        "monounsaturated_fat_g": 1.03
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 69.66,
+        "proteinG": 1.4759999999999998,
+        "carbsG": 14.67,
+        "fiberG": 0.756,
+        "fatG": 0.504,
+        "saturatedFatG": 0.10259999999999998,
+        "polyunsaturatedFatG": 0.1782,
+        "monounsaturatedFatG": 0.1854
+      },
+      "storedRounded": {
+        "declaredKcal": 70,
+        "proteinG": 1.5,
+        "carbsG": 14.7,
+        "fiberG": 0.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2
+      }
+    },
+    {
+      "id": "feculents-rolled-oats",
+      "formula": "valuePortion = valuePer100g × 173.076 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 77,
+        "protein_g": 2.6017,
+        "carbohydrate_g": 13.5356,
+        "fibre_g": 2.0244,
+        "total_fat_g": 1.3389,
+        "saturated_fat_g": 0.2327,
+        "polyunsaturated_fat_g": 0.4927,
+        "monounsaturated_fat_g": 0.4071
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 133.26852,
+        "proteinG": 4.5029182919999995,
+        "carbsG": 23.426875056,
+        "fiberG": 3.503750544,
+        "fatG": 2.3173145639999997,
+        "saturatedFatG": 0.40274785199999996,
+        "polyunsaturatedFatG": 0.852745452,
+        "monounsaturatedFatG": 0.704592396
+      },
+      "storedRounded": {
+        "declaredKcal": 133,
+        "proteinG": 4.5,
+        "carbsG": 23.4,
+        "fiberG": 3.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 0.7
+      }
+    },
+    {
+      "id": "feculents-cooked-beluga-lentils",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 116,
+        "protein_g": 9.02,
+        "carbohydrate_g": 20.13,
+        "fibre_g": 4.25,
+        "total_fat_g": 0.38,
+        "saturated_fat_g": 0.053,
+        "polyunsaturated_fat_g": 0.175,
+        "monounsaturated_fat_g": 0.064
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 116,
+        "proteinG": 9.02,
+        "carbsG": 20.13,
+        "fiberG": 4.25,
+        "fatG": 0.38,
+        "saturatedFatG": 0.053,
+        "polyunsaturatedFatG": 0.175,
+        "monounsaturatedFatG": 0.064
+      },
+      "storedRounded": {
+        "declaredKcal": 116,
+        "proteinG": 9,
+        "carbsG": 20.1,
+        "fiberG": 4.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-slice-ezekiel-sprouted-bread",
+      "formula": "valueCanonical = valueLabel × 1 / 1",
+      "sourcePer100g": null,
+      "derivedUnrounded": {
+        "declaredKcal": 80,
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      },
+      "storedRounded": {
+        "declaredKcal": 80,
+        "proteinG": 5,
+        "carbsG": 15,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-cooked-brown-rice",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 112,
+        "protein_g": 2.32,
+        "carbohydrate_g": 23.51,
+        "fibre_g": 1.91,
+        "total_fat_g": 0.83,
+        "saturated_fat_g": 0.165,
+        "polyunsaturated_fat_g": 0.296,
+        "monounsaturated_fat_g": 0.3
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 112,
+        "proteinG": 2.32,
+        "carbsG": 23.51,
+        "fiberG": 1.91,
+        "fatG": 0.83,
+        "saturatedFatG": 0.165,
+        "polyunsaturatedFatG": 0.296,
+        "monounsaturatedFatG": 0.3
+      },
+      "storedRounded": {
+        "declaredKcal": 112,
+        "proteinG": 2.3,
+        "carbsG": 23.5,
+        "fiberG": 1.9,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.3
+      }
+    },
+    {
+      "id": "feculents-cooked-whole-wheat-pasta",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 149,
+        "protein_g": 5.99,
+        "carbohydrate_g": 30.07,
+        "fibre_g": 3.23,
+        "total_fat_g": 1.71,
+        "saturated_fat_g": 0.243,
+        "polyunsaturated_fat_g": 0.574,
+        "monounsaturated_fat_g": 0.176
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 111.75,
+        "proteinG": 4.4925,
+        "carbsG": 22.552500000000002,
+        "fiberG": 2.4225,
+        "fatG": 1.2825,
+        "saturatedFatG": 0.18225,
+        "polyunsaturatedFatG": 0.4305,
+        "monounsaturatedFatG": 0.132
+      },
+      "storedRounded": {
+        "declaredKcal": 112,
+        "proteinG": 4.5,
+        "carbsG": 22.6,
+        "fiberG": 2.4,
+        "fatG": 1.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-boiled-potato",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 86,
+        "protein_g": 1.71,
+        "carbohydrate_g": 20.01,
+        "fibre_g": 1.4,
+        "total_fat_g": 0.1,
+        "saturated_fat_g": 0.026,
+        "polyunsaturated_fat_g": 0.043,
+        "monounsaturated_fat_g": 0.002
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 86,
+        "proteinG": 1.71,
+        "carbsG": 20.01,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0.026,
+        "polyunsaturatedFatG": 0.043,
+        "monounsaturatedFatG": 0.002
+      },
+      "storedRounded": {
+        "declaredKcal": 86,
+        "proteinG": 1.7,
+        "carbsG": 20,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-corn-tortilla",
+      "formula": "valuePortion = valuePer100g × 25 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 222,
+        "protein_g": 4.566433769,
+        "carbohydrate_g": 45.031476421,
+        "fibre_g": 4.422439509,
+        "total_fat_g": 2.202,
+        "saturated_fat_g": 0.398853663,
+        "polyunsaturated_fat_g": 1.160564605,
+        "monounsaturated_fat_g": 0.57102744
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 55.5,
+        "proteinG": 1.14160844225,
+        "carbsG": 11.25786910525,
+        "fiberG": 1.10560987725,
+        "fatG": 0.5505,
+        "saturatedFatG": 0.09971341575,
+        "polyunsaturatedFatG": 0.29014115125,
+        "monounsaturatedFatG": 0.14275686
+      },
+      "storedRounded": {
+        "declaredKcal": 56,
+        "proteinG": 1.1,
+        "carbsG": 11.3,
+        "fiberG": 1.1,
+        "fatG": 0.6,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-flour-tortilla",
+      "formula": "valuePortion = valuePer100g × 32 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 325,
+        "protein_g": 8.014189846,
+        "carbohydrate_g": 52.381839449,
+        "fibre_g": 4.161043818,
+        "total_fat_g": 6.99,
+        "saturated_fat_g": 2.182373038,
+        "polyunsaturated_fat_g": 2.624999392,
+        "monounsaturated_fat_g": 2.229216542
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 104,
+        "proteinG": 2.5645407507200004,
+        "carbsG": 16.76218862368,
+        "fiberG": 1.3315340217599998,
+        "fatG": 2.2368,
+        "saturatedFatG": 0.6983593721600001,
+        "polyunsaturatedFatG": 0.83999980544,
+        "monounsaturatedFatG": 0.7133492934400001
+      },
+      "storedRounded": {
+        "declaredKcal": 104,
+        "proteinG": 2.6,
+        "carbsG": 16.8,
+        "fiberG": 1.3,
+        "fatG": 2.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.7
+      }
+    },
+    {
+      "id": "feculents-hamburger-hot-dog-bun",
+      "formula": "valuePortion = valuePer100g × 44 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 279,
+        "protein_g": 9.77,
+        "carbohydrate_g": 50.12,
+        "fibre_g": 1.8,
+        "total_fat_g": 3.91,
+        "saturated_fat_g": 0.842,
+        "polyunsaturated_fat_g": 1.78,
+        "monounsaturated_fat_g": 0.748
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 122.76,
+        "proteinG": 4.2988,
+        "carbsG": 22.052799999999998,
+        "fiberG": 0.792,
+        "fatG": 1.7204000000000002,
+        "saturatedFatG": 0.37048,
+        "polyunsaturatedFatG": 0.7832,
+        "monounsaturatedFatG": 0.32912
+      },
+      "storedRounded": {
+        "declaredKcal": 123,
+        "proteinG": 4.3,
+        "carbsG": 22.1,
+        "fiberG": 0.8,
+        "fatG": 1.7,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 0.8,
+        "monounsaturatedFatG": 0.3
+      }
+    },
+    {
+      "id": "feculents-cooked-black-beans",
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 132,
+        "protein_g": 8.86,
+        "carbohydrate_g": 23.71,
+        "fibre_g": 6.97,
+        "total_fat_g": 0.54,
+        "saturated_fat_g": 0.139,
+        "polyunsaturated_fat_g": 0.231,
+        "monounsaturated_fat_g": 0.047
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 132,
+        "proteinG": 8.86,
+        "carbsG": 23.71,
+        "fiberG": 6.97,
+        "fatG": 0.54,
+        "saturatedFatG": 0.139,
+        "polyunsaturatedFatG": 0.231,
+        "monounsaturatedFatG": 0.047
+      },
+      "storedRounded": {
+        "declaredKcal": 132,
+        "proteinG": 8.9,
+        "carbsG": 23.7,
+        "fiberG": 7,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-cooked-bulgur",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 83,
+        "protein_g": 3.08,
+        "carbohydrate_g": 18.58,
+        "fibre_g": 2.85,
+        "total_fat_g": 0.24,
+        "saturated_fat_g": 0.042,
+        "polyunsaturated_fat_g": 0.098,
+        "monounsaturated_fat_g": 0.031
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.25,
+        "proteinG": 2.31,
+        "carbsG": 13.934999999999999,
+        "fiberG": 2.1375,
+        "fatG": 0.18,
+        "saturatedFatG": 0.0315,
+        "polyunsaturatedFatG": 0.07350000000000001,
+        "monounsaturatedFatG": 0.02325
+      },
+      "storedRounded": {
+        "declaredKcal": 62,
+        "proteinG": 2.3,
+        "carbsG": 13.9,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "feculents-cooked-millet",
+      "formula": "valuePortion = valuePer100g × 75 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 119,
+        "protein_g": 3.51,
+        "carbohydrate_g": 23.67,
+        "fibre_g": 2.93,
+        "total_fat_g": 1,
+        "saturated_fat_g": 0.172,
+        "polyunsaturated_fat_g": 0.508,
+        "monounsaturated_fat_g": 0.184
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 89.25,
+        "proteinG": 2.6325,
+        "carbsG": 17.7525,
+        "fiberG": 2.1975000000000002,
+        "fatG": 0.75,
+        "saturatedFatG": 0.129,
+        "polyunsaturatedFatG": 0.381,
+        "monounsaturatedFatG": 0.138
+      },
+      "storedRounded": {
+        "declaredKcal": 89,
+        "proteinG": 2.6,
+        "carbsG": 17.8,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "feculents-rye-bread",
+      "formula": "valuePortion = valuePer100g × 27 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 251,
+        "protein_g": 9.04,
+        "carbohydrate_g": 48.78,
+        "fibre_g": 4.14,
+        "total_fat_g": 1.99,
+        "saturated_fat_g": 0.499,
+        "polyunsaturated_fat_g": 0.898,
+        "monounsaturated_fat_g": 0.502
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 67.77000000000001,
+        "proteinG": 2.4408,
+        "carbsG": 13.1706,
+        "fiberG": 1.1178,
+        "fatG": 0.5373,
+        "saturatedFatG": 0.13473000000000002,
+        "polyunsaturatedFatG": 0.24246,
+        "monounsaturatedFatG": 0.13554000000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 68,
+        "proteinG": 2.4,
+        "carbsG": 13.2,
+        "fiberG": 1.1,
+        "fatG": 0.5,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1
+      }
+    }
+  ]
+}
