@@ -1,12 +1,15 @@
 {
   "name": "equiv-alim-pdf",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "KR Kinetics food equivalents guide + nutrition data source of truth",
+  "main": "generate.js",
   "scripts": {
     "generate": "node generate.js",
     "generate:mobile": "node generate.js --mobile",
-    "generate:landscape": "node generate.js --landscape"
+    "generate:landscape": "node generate.js --landscape",
+    "data:import": "node scripts/import-from-legacy.mjs",
+    "data:audit": "node scripts/audit-food-equivalents.mjs",
+    "data:rebuild": "node scripts/import-from-legacy.mjs && node scripts/audit-food-equivalents.mjs"
   },
   "keywords": [],
   "author": "",

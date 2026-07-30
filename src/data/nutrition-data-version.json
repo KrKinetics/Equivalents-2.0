@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "status": "draft",
+  "createdAt": "2026-07-30T00:24:40.917Z",
+  "approvedAt": null,
+  "approvedBy": null,
+  "totalFoods": 207,
+  "verifiedFoods": 0,
+  "unverifiedFoods": 207,
+  "blockingErrors": 105
+}

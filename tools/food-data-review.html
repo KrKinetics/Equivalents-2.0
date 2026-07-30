@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Révision données alimentaires — KR Kinetics (interne)</title>
+  <style>
+    :root {
+      --bg: #0e1116;
+      --panel: #161b22;
+      --panel2: #1c2330;
+      --text: #e6edf3;
+      --muted: #9da7b3;
+      --line: #2d3643;
+      --accent: #c9a227;
+      --err: #ff6b6b;
+      --warn: #ffd166;
+      --ok: #3fb950;
+      --dirty: #79c0ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    header h1 { margin: 0; font-size: 16px; font-weight: 650; }
+    header .meta { color: var(--muted); font-size: 12px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    button, .file-btn {
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    button.primary { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 700; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .layout { display: grid; grid-template-columns: 360px 1fr; min-height: 0; }
+    aside {
+      border-right: 1px solid var(--line);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 0;
+      background: var(--panel);
+    }
+    .filters { padding: 12px; display: grid; gap: 8px; border-bottom: 1px solid var(--line); }
+    .filters input, .filters select, main input, main select, main textarea {
+      width: 100%;
+      background: #0f141c;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+    }
+    .list { overflow: auto; }
+    .item {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+    }
+    .item:hover { background: #1a212c; }
+    .item.active { background: #222b38; border-left: 3px solid var(--accent); }
+    .item .t1 { font-size: 13px; font-weight: 600; }
+    .item .t2 { color: var(--muted); font-size: 11px; margin-top: 2px; }
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      margin-right: 4px;
+    }
+    .badge.err { color: var(--err); border-color: var(--err); }
+    .badge.warn { color: var(--warn); border-color: var(--warn); }
+    .badge.ok { color: var(--ok); border-color: var(--ok); }
+    .badge.dirty { color: var(--dirty); border-color: var(--dirty); }
+    main { overflow: auto; padding: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .field.changed input, .field.changed select, .field.changed textarea {
+      outline: 1px solid var(--dirty);
+      background: #102033;
+    }
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .section h2 { margin: 0 0 12px; font-size: 14px; }
+    .kcal-box {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .kcal-box strong { color: var(--accent); }
+    .alert-list { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; }
+    .alert-list .E { color: var(--err); }
+    .alert-list .W { color: var(--warn); }
+    .empty { color: var(--muted); padding: 40px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Révision interne — données alimentaires KR Kinetics</h1>
+      <div class="meta" id="headerMeta">Chargement…</div>
+    </div>
+    <div class="actions">
+      <label class="file-btn">Importer JSON<input id="importFile" type="file" accept="application/json,.json" hidden /></label>
+      <button id="btnExport">Exporter JSON corrigé</button>
+      <button id="btnReject">Rejeter</button>
+      <button id="btnVerify" class="primary">Marquer verified</button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="filters">
+        <input id="search" placeholder="Rechercher…" />
+        <select id="filterCat"><option value="">Toutes catégories</option></select>
+        <select id="filterErr">
+          <option value="">Toutes alertes</option>
+          <option value="ERROR">Avec ERROR</option>
+          <option value="WARNING">WARNING seulement</option>
+          <option value="DIRTY">Modifiés</option>
+          <option value="OK">Sans alerte</option>
+        </select>
+        <select id="filterStatus">
+          <option value="">Tous statuts</option>
+          <option value="unverified">unverified</option>
+          <option value="verified">verified</option>
+          <option value="rejected">rejected</option>
+        </select>
+      </div>
+      <div class="list" id="list"></div>
+    </aside>
+    <main id="main"><div class="empty">Sélectionnez un aliment</div></main>
+  </div>
+
+  <script src="./food-data-review-data.js"></script>
+  <script>
+    const state = {
+      data: null,
+      selectedId: null,
+      dirty: new Set(),
+      originals: new Map(),
+    };
+
+    function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
+
+    function calculatedKcal(n) {
+      if ([n.proteinG, n.carbsG, n.fatG].some(v => v == null || !Number.isFinite(Number(v)))) return null;
+      return Number(n.proteinG) * 4 + Number(n.carbsG) * 4 + Number(n.fatG) * 9;
+    }
+
+    function auditQuick(food) {
+      const alerts = [];
+      const n = food.nutrients || {};
+      const p = food.portion || {};
+      if (!food.names?.fr || !food.names?.en) alerts.push(['ERROR', 'Langues incomplètes']);
+      if (!p.labelFr || !p.labelEn || p.amount == null || !p.unit) alerts.push(['ERROR', 'Portion incomplète']);
+      if (n.fatG == null) alerts.push(['ERROR', 'Lipides totaux absents']);
+      if (n.proteinG == null || n.carbsG == null || n.declaredKcal == null) alerts.push(['ERROR', 'Nutriment obligatoire manquant']);
+      if (String(p.unit).toLowerCase() === 'scoop' && (p.grams == null || p.grams === '')) alerts.push(['ERROR', 'Scoop sans grammes']);
+      const calc = calculatedKcal(n);
+      if (calc != null && n.declaredKcal != null) {
+        const abs = Math.abs(n.declaredKcal - calc);
+        const pct = calc === 0 ? 100 : abs / Math.abs(calc) * 100;
+        if (abs > 15 || pct > 20) alerts.push(['ERROR', `Δ kcal élevée (${abs.toFixed(1)} / ${pct.toFixed(1)}%)`]);
+        else if (pct >= 10) alerts.push(['WARNING', `Δ kcal modérée (${pct.toFixed(1)}%)`]);
+      }
+      if (p.grams == null || p.grams === '') alerts.push(['WARNING', 'Grammes absents']);
+      if (!p.preparationState) alerts.push(['WARNING', 'État de préparation absent']);
+      return alerts;
+    }
+
+    function canVerify(food) {
+      const alerts = auditQuick(food);
+      const blocking = alerts.some(a => a[0] === 'ERROR');
+      const src = food.source || {};
+      return !blocking && !!src.reference && !!src.dateVerified && !!src.verifiedBy && food.nutrients?.fatG != null && food.names?.fr && food.names?.en;
+    }
+
+    function foods() { return state.data?.foods || []; }
+
+    function selected() {
+      return foods().find(f => f.id === state.selectedId) || null;
+    }
+
+    function initFrom(payload) {
+      state.data = deepClone(payload);
+      state.dirty.clear();
+      state.originals.clear();
+      for (const f of state.data.foods) state.originals.set(f.id, JSON.stringify(f));
+      const cats = [...new Set(state.data.foods.map(f => f.displayCategory))].sort();
+      const sel = document.getElementById('filterCat');
+      sel.innerHTML = '<option value="">Toutes catégories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+      document.getElementById('headerMeta').textContent =
+        `${state.data.foods.length} aliments · import ${state.data.meta?.importedAt || '—'} · modifications locales non écrites sur disque tant que non exportées`;
+      renderList();
+      if (state.selectedId) renderEditor();
+    }
+
+    function renderList() {
+      const q = document.getElementById('search').value.toLowerCase();
+      const cat = document.getElementById('filterCat').value;
+      const err = document.getElementById('filterErr').value;
+      const status = document.getElementById('filterStatus').value;
+      const box = document.getElementById('list');
+      box.innerHTML = '';
+      for (const f of foods()) {
+        const alerts = auditQuick(f);
+        const hasE = alerts.some(a => a[0] === 'ERROR');
+        const hasW = alerts.some(a => a[0] === 'WARNING');
+        const dirty = state.dirty.has(f.id);
+        if (q && !`${f.names.fr} ${f.names.en} ${f.id}`.toLowerCase().includes(q)) continue;
+        if (cat && f.displayCategory !== cat) continue;
+        if (status && f.status !== status) continue;
+        if (err === 'ERROR' && !hasE) continue;
+        if (err === 'WARNING' && (hasE || !hasW)) continue;
+        if (err === 'OK' && (hasE || hasW)) continue;
+        if (err === 'DIRTY' && !dirty) continue;
+        const el = document.createElement('div');
+        el.className = 'item' + (f.id === state.selectedId ? ' active' : '');
+        el.innerHTML = `
+          <div class="t1">${f.names.fr || f.id}</div>
+          <div class="t2">${f.displayCategory} · ${f.calculationGroup} · ${f.status}</div>
+          <div style="margin-top:6px">
+            ${hasE ? '<span class="badge err">ERROR</span>' : hasW ? '<span class="badge warn">WARNING</span>' : '<span class="badge ok">OK</span>'}
+            ${dirty ? '<span class="badge dirty">modifié</span>' : ''}
+          </div>`;
+        el.onclick = () => { state.selectedId = f.id; renderList(); renderEditor(); };
+        box.appendChild(el);
+      }
+    }
+
+    function markDirty(food) {
+      const orig = state.originals.get(food.id);
+      if (JSON.stringify(food) !== orig) state.dirty.add(food.id);
+      else state.dirty.delete(food.id);
+    }
+
+    function field(label, value, onChange, type = 'text') {
+      const wrap = document.createElement('div');
+      wrap.className = 'field';
+      const lab = document.createElement('label');
+      lab.textContent = label;
+      let input;
+      if (type === 'textarea') {
+        input = document.createElement('textarea');
+        input.rows = 3;
+      } else if (type === 'select-status') {
+        input = document.createElement('select');
+        ['unverified', 'verified', 'rejected'].forEach(s => {
+          const o = document.createElement('option');
+          o.value = s; o.textContent = s; input.appendChild(o);
+        });
+      } else if (type === 'select-group') {
+        input = document.createElement('select');
+        ['protein', 'starch', 'vegetable', 'fruit', 'dairy', 'fat', 'whey'].forEach(s => {
+          const o = document.createElement('option');
+          o.value = s; o.textContent = s; input.appendChild(o);
+        });
+      } else {
+        input = document.createElement('input');
+        input.type = type;
+      }
+      input.value = value == null ? '' : value;
+      input.addEventListener('input', () => {
+        onChange(input.value === '' ? null : (type === 'number' ? Number(input.value) : input.value));
+        wrap.classList.add('changed');
+        markDirty(selected());
+        renderList();
+        refreshKcal();
+      });
+      wrap.append(lab, input);
+      return wrap;
+    }
+
+    function refreshKcal() {
+      const f = selected();
+      if (!f) return;
+      const el = document.getElementById('kcalInfo');
+      if (!el) return;
+      const calc = calculatedKcal(f.nutrients);
+      const declared = f.nutrients.declaredKcal;
+      const abs = calc != null && declared != null ? Math.abs(declared - calc) : null;
+      el.innerHTML = `
+        <div>Déclarées: <strong>${declared ?? '—'}</strong></div>
+        <div>Atwater 4-4-9: <strong>${calc == null ? '—' : calc.toFixed(1)}</strong></div>
+        <div>Δ: <strong>${abs == null ? '—' : abs.toFixed(1)}</strong></div>
+        <div>Peut être verified: <strong>${canVerify(f) ? 'oui' : 'non'}</strong></div>`;
+    }
+
+    function renderEditor() {
+      const f = selected();
+      const main = document.getElementById('main');
+      if (!f) { main.innerHTML = '<div class="empty">Sélectionnez un aliment</div>'; return; }
+      main.innerHTML = '';
+
+      const alerts = auditQuick(f);
+      const top = document.createElement('div');
+      top.className = 'section';
+      top.innerHTML = `<h2>${f.names.fr || f.id}</h2>
+        <div class="kcal-box" id="kcalInfo"></div>
+        <ul class="alert-list" style="margin-top:12px">${alerts.map(a => `<li class="${a[0][0]}">[${a[0]}] ${a[1]}</li>`).join('') || '<li>Aucune alerte locale</li>'}</ul>`;
+      main.appendChild(top);
+
+      const identity = document.createElement('div');
+      identity.className = 'section';
+      identity.innerHTML = '<h2>Identité</h2>';
+      const g1 = document.createElement('div'); g1.className = 'grid';
+      g1.append(
+        field('ID (lecture seule)', f.id, () => {}, 'text'),
+        field('Statut', f.status, v => { f.status = v; }, 'select-status'),
+        field('Nom FR', f.names.fr, v => { f.names.fr = v; }),
+        field('Nom EN', f.names.en, v => { f.names.en = v; }),
+        field('Catégorie visible', f.displayCategory, v => { f.displayCategory = v; }),
+        field('Groupe calcul', f.calculationGroup, v => { f.calculationGroup = v; }, 'select-group'),
+      );
+      g1.querySelector('input').disabled = true;
+      identity.appendChild(g1);
+      main.appendChild(identity);
+
+      const portion = document.createElement('div');
+      portion.className = 'section';
+      portion.innerHTML = '<h2>Portion</h2>';
+      const g2 = document.createElement('div'); g2.className = 'grid';
+      g2.append(
+        field('Label FR', f.portion.labelFr, v => { f.portion.labelFr = v; }),
+        field('Label EN', f.portion.labelEn, v => { f.portion.labelEn = v; }),
+        field('Quantité', f.portion.amount, v => { f.portion.amount = v; }, 'number'),
+        field('Unité', f.portion.unit, v => { f.portion.unit = v; }),
+        field('Grammes', f.portion.grams, v => { f.portion.grams = v; }, 'number'),
+        field('État préparation', f.portion.preparationState, v => { f.portion.preparationState = v; }),
+        field('Marque', f.portion.brand, v => { f.portion.brand = v; }),
+      );
+      portion.appendChild(g2);
+      main.appendChild(portion);
+
+      const nutrients = document.createElement('div');
+      nutrients.className = 'section';
+      nutrients.innerHTML = '<h2>Nutriments</h2>';
+      const g3 = document.createElement('div'); g3.className = 'grid';
+      g3.append(
+        field('Protéines (g)', f.nutrients.proteinG, v => { f.nutrients.proteinG = v; }, 'number'),
+        field('Glucides (g)', f.nutrients.carbsG, v => { f.nutrients.carbsG = v; }, 'number'),
+        field('Fibres (g)', f.nutrients.fiberG, v => { f.nutrients.fiberG = v; }, 'number'),
+        field('Lipides totaux (g)', f.nutrients.fatG, v => { f.nutrients.fatG = v; }, 'number'),
+        field('Saturés (g)', f.nutrients.saturatedFatG, v => { f.nutrients.saturatedFatG = v; }, 'number'),
+        field('Poly (g)', f.nutrients.polyunsaturatedFatG, v => { f.nutrients.polyunsaturatedFatG = v; }, 'number'),
+        field('Mono (g)', f.nutrients.monounsaturatedFatG, v => { f.nutrients.monounsaturatedFatG = v; }, 'number'),
+        field('Calories déclarées', f.nutrients.declaredKcal, v => { f.nutrients.declaredKcal = v; }, 'number'),
+      );
+      nutrients.appendChild(g3);
+      main.appendChild(nutrients);
+
+      const source = document.createElement('div');
+      source.className = 'section';
+      source.innerHTML = '<h2>Source & validation</h2>';
+      const g4 = document.createElement('div'); g4.className = 'grid';
+      g4.append(
+        field('Source / référence', f.source.reference, v => { f.source.reference = v; }, 'textarea'),
+        field('Reference ID', f.source.referenceId, v => { f.source.referenceId = v; }),
+        field('Date vérification', f.source.dateVerified, v => { f.source.dateVerified = v; }, 'date'),
+        field('Validé par', f.source.verifiedBy, v => { f.source.verifiedBy = v; }),
+        field('Notes', f.source.notes, v => { f.source.notes = v; }, 'textarea'),
+      );
+      source.appendChild(g4);
+      main.appendChild(source);
+
+      refreshKcal();
+      document.getElementById('btnVerify').disabled = !canVerify(f);
+    }
+
+    document.getElementById('search').oninput = renderList;
+    document.getElementById('filterCat').onchange = renderList;
+    document.getElementById('filterErr').onchange = renderList;
+    document.getElementById('filterStatus').onchange = renderList;
+
+    document.getElementById('btnExport').onclick = () => {
+      const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'food-equivalents.corrected.json';
+      a.click();
+    };
+
+    document.getElementById('importFile').onchange = async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const text = await file.text();
+      initFrom(JSON.parse(text));
+    };
+
+    document.getElementById('btnReject').onclick = () => {
+      const f = selected();
+      if (!f) return;
+      f.status = 'rejected';
+      markDirty(f);
+      renderList();
+      renderEditor();
+    };
+
+    document.getElementById('btnVerify').onclick = () => {
+      const f = selected();
+      if (!f) return;
+      if (!canVerify(f)) {
+        alert('Impossible: source, date, validateur, portion complète, lipides totaux, deux langues et aucune ERROR bloquante sont requis.');
+        return;
+      }
+      f.status = 'verified';
+      markDirty(f);
+      renderList();
+      renderEditor();
+    };
+
+    if (window.FOOD_EQUIVALENTS_DATA) initFrom(window.FOOD_EQUIVALENTS_DATA);
+    else {
+      document.getElementById('headerMeta').textContent =
+        'Aucune donnée embarquée. Lancez node scripts/import-from-legacy.mjs puis node scripts/audit-food-equivalents.mjs, ou importez un JSON.';
+    }
+  </script>
+</body>
+</html>

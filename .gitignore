@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Temporary extraction and verification artifacts
+_xlsx_tmp/
+_plan.zip
+extract-output.txt
+page2.png/
+page3.png/
+screenshots/
+verify-*/
+
+# Client and generated documents kept local by default
+*.xlsx
+Plan_*.pdf
+Equivalents-alimentaires-*.pdf
+
+# Environment and OS files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

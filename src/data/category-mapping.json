@@ -1,0 +1,81 @@
+{
+  "displayCategories": [
+    {
+      "id": "noix_graines",
+      "legacyKey": "noix",
+      "names": { "fr": "Noix & graines", "en": "Nuts & Seeds" },
+      "defaultCalculationGroup": "fat"
+    },
+    {
+      "id": "matieres_grasses",
+      "legacyKey": "matiereGrasse",
+      "names": { "fr": "Matières grasses", "en": "Fats" },
+      "defaultCalculationGroup": "fat"
+    },
+    {
+      "id": "legumes",
+      "legacyKey": "legumes",
+      "names": { "fr": "Légumes", "en": "Vegetables" },
+      "defaultCalculationGroup": "vegetable"
+    },
+    {
+      "id": "fruits",
+      "legacyKey": "fruits",
+      "names": { "fr": "Fruits", "en": "Fruits" },
+      "defaultCalculationGroup": "fruit"
+    },
+    {
+      "id": "poissons_fruits_mer",
+      "legacyKey": "poissons",
+      "names": { "fr": "Poissons & fruits de mer", "en": "Fish & Seafood" },
+      "defaultCalculationGroup": "protein"
+    },
+    {
+      "id": "viandes_volaille",
+      "legacyKey": "viandes",
+      "names": { "fr": "Viandes & volaille", "en": "Meats & Poultry" },
+      "defaultCalculationGroup": "protein"
+    },
+    {
+      "id": "autres_sources_proteinees",
+      "legacyKey": "autresProteines",
+      "names": { "fr": "Autres sources protéinées", "en": "Other Protein Sources" },
+      "defaultCalculationGroup": "per_food",
+      "note": "calculationGroup assigned per food (protein vs whey)"
+    },
+    {
+      "id": "feculents",
+      "legacyKey": "feculents",
+      "names": { "fr": "Féculents", "en": "Starches" },
+      "defaultCalculationGroup": "starch"
+    },
+    {
+      "id": "produits_laitiers",
+      "legacyKey": "laitier",
+      "names": { "fr": "Produits laitiers", "en": "Dairy Products" },
+      "defaultCalculationGroup": "dairy"
+    }
+  ],
+  "calculatorLegacyMoyennes": {
+    "path": "C:/Users/ROOTS Laptop/Projects/calculateur-nutritionnel/src/lib/constants.ts",
+    "MOYENNES": {
+      "pro": { "p": 9, "g": 0, "l": 2 },
+      "fec": { "p": 3, "g": 18, "l": 1 },
+      "leg": { "p": 2, "g": 7, "l": 0 },
+      "fru": { "p": 1, "g": 15, "l": 2 },
+      "lai": { "p": 7, "g": 10, "l": 2 },
+      "lip": { "p": 1, "g": 2, "l": 6 },
+      "whey": { "p": 22, "g": 2, "l": 2 }
+    },
+    "mappingToCalculationGroup": {
+      "pro": "protein",
+      "fec": "starch",
+      "leg": "vegetable",
+      "fru": "fruit",
+      "lai": "dairy",
+      "lip": "fat",
+      "whey": "whey"
+    },
+    "note": "NOT modified in this phase. Captured for audit comparison only."
+  }
+}

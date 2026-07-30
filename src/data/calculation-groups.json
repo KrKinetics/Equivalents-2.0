@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "note": "referenceProfile values must be approved after audit. Do not treat null as zero."
+  },
+  "displayCategoryToCalculationGroup": {
+    "noix_graines": "fat",
+    "matieres_grasses": "fat",
+    "legumes": "vegetable",
+    "fruits": "fruit",
+    "poissons_fruits_mer": "protein",
+    "viandes_volaille": "protein",
+    "feculents": "starch",
+    "produits_laitiers": "dairy",
+    "autres_sources_proteinees": "per_food"
+  },
+  "groups": [
+    {
+      "id": "protein",
+      "names": { "fr": "Protéines", "en": "Protein" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "starch",
+      "names": { "fr": "Féculents", "en": "Starches" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "vegetable",
+      "names": { "fr": "Légumes", "en": "Vegetables" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "fruit",
+      "names": { "fr": "Fruits", "en": "Fruits" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "dairy",
+      "names": { "fr": "Produits laitiers", "en": "Dairy" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "fat",
+      "names": { "fr": "Matières grasses", "en": "Fats" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    },
+    {
+      "id": "whey",
+      "names": { "fr": "Protéines en poudre / whey", "en": "Powdered protein / whey" },
+      "referenceProfile": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "kcal": null
+      },
+      "tolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fatG": 2,
+        "kcal": 15
+      },
+      "approved": false
+    }
+  ]
+}
