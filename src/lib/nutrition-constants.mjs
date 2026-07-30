@@ -78,7 +78,7 @@ export const EXPECTED_CATEGORY_COUNTS = {
   noix_graines: 22,
   matieres_grasses: 13,
   legumes: 30,
-  fruits: 30,
+  fruits: 33,
   poissons_fruits_mer: 26,
   viandes_volaille: 28,
   autres_sources_proteinees: 17,
@@ -86,6 +86,6 @@ export const EXPECTED_CATEGORY_COUNTS = {
   produits_laitiers: 19,
 };
 
-export const TOTAL_FOODS_EXPECTED = 208;
+export const TOTAL_FOODS_EXPECTED = 211;
 
 export const DATASET_STATUSES = ['draft', 'review', 'approved'];

@@ -1,0 +1,1788 @@
+{
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "generatedAt": "2026-07-30T14:44:31.810Z",
+  "summary": {
+    "updates": 29,
+    "adds": 3,
+    "verifiedInBatch": 32,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "totalFoods": 211,
+    "totalVerified": 38,
+    "protectedUnchanged": 179,
+    "protectedFoodsDataHash": "3a82e9dc7ffeda6ef8d6030acf23ae8b89c0da215e452e2c1fe89ac4281edb29",
+    "dataHash": "e7f1ea29502c652d839921bc3f1594bf5c69568468d7b72f8045eef4e24da2b5"
+  },
+  "foods": [
+    {
+      "id": "fruits-apricots",
+      "operation": "update",
+      "expectedRecordId": "1498",
+      "selectedRecordId": "1498",
+      "cnfDescription": {
+        "en": "Apricot, raw",
+        "fr": "Abricot, cru"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml d'abricot (160 g)",
+        "labelEn": "250 ml apricots (160 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml d'abricots frais tranchés (140 g)",
+        "labelEn": "250 ml sliced fresh apricots (140 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 140,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 18,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 2,
+        "carbsG": 15.6,
+        "fiberG": 2.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 67
+      },
+      "formula": "valuePortion = valuePer100g × 140 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "0849c99c-96d9-4d71-84fc-b6bb345949d4",
+      "version": 3
+    },
+    {
+      "id": "fruits-pineapple",
+      "operation": "update",
+      "expectedRecordId": "1734",
+      "selectedRecordId": "1734",
+      "cnfDescription": {
+        "en": "Pineapple, raw",
+        "fr": "Ananas, cru"
+      },
+      "beforePortion": {
+        "labelFr": "175 ml d'ananas (110 g)",
+        "labelEn": "175 ml pineapple (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "175 ml d'ananas frais en morceaux (110 g)",
+        "labelEn": "175 ml fresh pineapple chunks (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 14.4,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 55
+      },
+      "formula": "valuePortion = valuePer100g × 110 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "536b7328-a970-484b-bb1d-2978b79c0eb3",
+      "version": 3
+    },
+    {
+      "id": "fruits-banana",
+      "operation": "update",
+      "expectedRecordId": "1704",
+      "selectedRecordId": "1704",
+      "cnfDescription": {
+        "en": "Banana, raw",
+        "fr": "Banane, crue"
+      },
+      "beforePortion": {
+        "labelFr": "½ banane (60 g)",
+        "labelEn": "½ banana (60 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 60,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ banane moyenne (60 g)",
+        "labelEn": "½ medium banana (60 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 60,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 13.7,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 60 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "4be5e93e-80c4-41bb-a00d-7ac56cadee2e",
+      "version": 3
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "operation": "update",
+      "expectedRecordId": "7596",
+      "selectedRecordId": "7596",
+      "cnfDescription": {
+        "en": "Goji berries, dried",
+        "fr": "Baies de Goji, séchées"
+      },
+      "beforePortion": {
+        "labelFr": "20 g de Baies de goji séchées",
+        "labelEn": "20 g Dried goji berries",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "20 g de baies de goji séchées",
+        "labelEn": "20 g dried goji berries",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 12,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 2.9,
+        "carbsG": 15.4,
+        "fiberG": 2.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 20 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8e2829ce-4c24-4a3d-82bb-da5ae1cba9bc",
+      "version": 3
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "operation": "update",
+      "expectedRecordId": "1721",
+      "selectedRecordId": "1721",
+      "cnfDescription": {
+        "en": "Melon, cantaloupe, raw",
+        "fr": "Melon, cantaloup, cru"
+      },
+      "beforePortion": {
+        "labelFr": "175 ml de cantaloup (110 g)",
+        "labelEn": "175 ml cantaloupe (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de cantaloup frais en cubes (165 g)",
+        "labelEn": "250 ml fresh cantaloupe cubes (165 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 165,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 15.4,
+        "fiberG": 0.6,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 13.5,
+        "fiberG": 1.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 56
+      },
+      "formula": "valuePortion = valuePer100g × 165 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c9e39bf0-f996-4185-b406-23e9ff922327",
+      "version": 3
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "operation": "update",
+      "expectedRecordId": "1531",
+      "selectedRecordId": "1531",
+      "cnfDescription": {
+        "en": "Cherry, sweet, raw",
+        "fr": "Cerise sucrée (guigne), crue"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de cerise avec noyau (110 g)",
+        "labelEn": "250 ml cherries with pits (110 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 cerises douces, poids comestible sans noyaux (95 g)",
+        "labelEn": "15 sweet cherries, edible weight without pits (95 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 95,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 13,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 15.2,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 95 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8c130d9d-6ffd-420f-aba7-a42751662196",
+      "version": 3
+    },
+    {
+      "id": "fruits-clementines",
+      "operation": "update",
+      "expectedRecordId": "5956",
+      "selectedRecordId": "5956",
+      "cnfDescription": {
+        "en": "Clementine, raw",
+        "fr": "Clémentine, crue"
+      },
+      "beforePortion": {
+        "labelFr": "2 clémentines",
+        "labelEn": "2 clementines",
+        "amount": 2,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 petites clémentines, poids comestible (125 g)",
+        "labelEn": "2 small clementines, edible weight (125 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 125,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 125 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "737076d1-829d-4d49-9650-fc33d650bb06",
+      "version": 3
+    },
+    {
+      "id": "fruits-medjool-date",
+      "operation": "update",
+      "expectedRecordId": "5401",
+      "selectedRecordId": "5401",
+      "cnfDescription": {
+        "en": "Date, medjool",
+        "fr": "Datte, variété Medjool"
+      },
+      "beforePortion": {
+        "labelFr": "1 datte Medjool (24 g)",
+        "labelEn": "1 Medjool date (24 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 datte Medjool (24 g)",
+        "labelEn": "1 Medjool date (24 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 18,
+        "fiberG": 1.6,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "formula": "valuePortion = valuePer100g × 24 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "96f41a02-c6a6-407b-b27d-8a09c2fee021",
+      "version": 3
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "operation": "update",
+      "expectedRecordId": "1700",
+      "selectedRecordId": "1700",
+      "cnfDescription": {
+        "en": "Applesauce, canned, unsweetened",
+        "fr": "Pomme, purée (compote), conserve, non sucrée"
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de compote de fruits sans sucre ajouté",
+        "labelEn": "125 ml unsweetened applesauce",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de compote de pommes non sucrée (129 g)",
+        "labelEn": "125 ml unsweetened applesauce (129 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 129,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.2,
+        "carbsG": 19,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 79
+      },
+      "afterNutrients": {
+        "proteinG": 0.2,
+        "carbsG": 14.5,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 129 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "944b627c-8cf5-4ff2-a540-b506c0246b8c",
+      "version": 3
+    },
+    {
+      "id": "fruits-strawberries",
+      "operation": "update",
+      "expectedRecordId": "1749",
+      "selectedRecordId": "1749",
+      "cnfDescription": {
+        "en": "Strawberry, raw",
+        "fr": "Fraise, crue"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de fraises (150 g)",
+        "labelEn": "250 ml strawberries (150 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de fraises fraîches (160 g)",
+        "labelEn": "250 ml fresh strawberries (160 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 12,
+        "fiberG": 0.2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 12.3,
+        "fiberG": 3.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 160 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "87a8f189-c31b-4235-9830-62e895527611",
+      "version": 3
+    },
+    {
+      "id": "fruits-raspberries",
+      "operation": "update",
+      "expectedRecordId": "1747",
+      "selectedRecordId": "1747",
+      "cnfDescription": {
+        "en": "Raspberry, raw",
+        "fr": "Framboise, crue"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de framboises (130 g)",
+        "labelEn": "250 ml raspberries (130 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de framboises fraîches (130 g)",
+        "labelEn": "250 ml fresh raspberries (130 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 1.6,
+        "carbsG": 15.5,
+        "fiberG": 8.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "formula": "valuePortion = valuePer100g × 130 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1417a262-3cb9-4ea3-9c6b-81a2d786ad9b",
+      "version": 3
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "operation": "update",
+      "expectedRecordId": "1619",
+      "selectedRecordId": "1619",
+      "cnfDescription": {
+        "en": "Orange juice, raw",
+        "fr": "Orange, jus, frais"
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de jus de fruits 100 % pur, sans sucre ajouté",
+        "labelEn": "125 ml 100% pure fruit juice, no added sugar",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de jus d'orange 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure orange juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 4,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 13.6,
+        "fiberG": 0.3,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 131 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "47f394f1-4150-4a46-80b2-ce605fc5a327",
+      "version": 3
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "operation": "update",
+      "expectedRecordId": "1585",
+      "selectedRecordId": "1585",
+      "cnfDescription": {
+        "en": "Kiwi fruit, raw",
+        "fr": "Kiwi, cru"
+      },
+      "beforePortion": {
+        "labelFr": "2 petits kiwis (130 g)",
+        "labelEn": "2 small kiwis (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 petits kiwis, poids comestible (100 g)",
+        "labelEn": "2 small kiwifruit, edible weight (100 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 6,
+        "fatG": 0.7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 14.7,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 61
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "4e644bac-df29-4829-9495-92976ce938f1",
+      "version": 3
+    },
+    {
+      "id": "fruits-mango",
+      "operation": "update",
+      "expectedRecordId": "1603",
+      "selectedRecordId": "1603",
+      "cnfDescription": {
+        "en": "Mango, raw",
+        "fr": "Mangue, crue"
+      },
+      "beforePortion": {
+        "labelFr": "½ mangue (110 g)",
+        "labelEn": "½ mango (110 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ mangue, poids comestible (110 g)",
+        "labelEn": "½ mango, edible weight (110 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 18,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 16.5,
+        "fiberG": 1.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 66
+      },
+      "formula": "valuePortion = valuePer100g × 110 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f683296e-0b6d-43c9-bd8b-9b666aaf5759",
+      "version": 3
+    },
+    {
+      "id": "fruits-watermelon",
+      "operation": "update",
+      "expectedRecordId": "1691",
+      "selectedRecordId": "1691",
+      "cnfDescription": {
+        "en": "Watermelon, raw",
+        "fr": "Melon d'eau (pasteque), cru"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de melon d'eau (170 g)",
+        "labelEn": "250 ml watermelon (170 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 170,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "300 ml de melon d'eau en cubes (200 g)",
+        "labelEn": "300 ml watermelon cubes (200 g)",
+        "amount": 300,
+        "unit": "ml",
+        "grams": 200,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 12,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.1,
+        "fiberG": 0.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 200 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "061f8376-8982-4660-a651-e0892cf07fc0",
+      "version": 3
+    },
+    {
+      "id": "fruits-blackberries",
+      "operation": "update",
+      "expectedRecordId": "1515",
+      "selectedRecordId": "1515",
+      "cnfDescription": {
+        "en": "Blackberry, raw",
+        "fr": "Mûre, crue"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de mûres (150 g)",
+        "labelEn": "250 ml blackberries (150 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de mûres fraîches (152 g)",
+        "labelEn": "250 ml fresh blackberries (152 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 152,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 14.6,
+        "fiberG": 8.1,
+        "fatG": 0.7,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 65
+      },
+      "formula": "valuePortion = valuePer100g × 152 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "93728daa-39de-4766-ba1b-254221971f9e",
+      "version": 3
+    },
+    {
+      "id": "fruits-nectarine",
+      "operation": "update",
+      "expectedRecordId": "1611",
+      "selectedRecordId": "1611",
+      "cnfDescription": {
+        "en": "Nectarine, raw",
+        "fr": "Nectarine, crue"
+      },
+      "beforePortion": {
+        "labelFr": "1 nectarine (ou 250 ml)",
+        "labelEn": "1 nectarine (or 250 ml)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 nectarine moyenne, poids comestible (142 g)",
+        "labelEn": "1 medium nectarine, edible weight (142 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 142,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15,
+        "fiberG": 2.4,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 142 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ed54c242-a25d-4306-8e43-a7fa67f8d059",
+      "version": 3
+    },
+    {
+      "id": "fruits-orange",
+      "operation": "update",
+      "expectedRecordId": "1722",
+      "selectedRecordId": "1722",
+      "cnfDescription": {
+        "en": "Orange, all commercial varieties, raw",
+        "fr": "Orange, toutes variétés commerciales, crue"
+      },
+      "beforePortion": {
+        "labelFr": "1 orange (170 g)",
+        "labelEn": "1 orange (170 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 170,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 orange moyenne, poids comestible (131 g)",
+        "labelEn": "1 medium orange, edible weight (131 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 131,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 3,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.4,
+        "fiberG": 2.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 131 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e5bd13a0-5261-4e29-aedc-00852b6217e8",
+      "version": 3
+    },
+    {
+      "id": "fruits-grapefruit",
+      "operation": "update",
+      "expectedRecordId": "1714",
+      "selectedRecordId": "1714",
+      "cnfDescription": {
+        "en": "Grapefruit, pink, red or white, all areas, raw",
+        "fr": "Pamplemousse, rose, rouge ou blanc, toutes régions, cru"
+      },
+      "beforePortion": {
+        "labelFr": "1 pamplemousse (250 g)",
+        "labelEn": "1 grapefruit (250 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 250,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ gros pamplemousse, poids comestible (185 g)",
+        "labelEn": "½ large grapefruit, edible weight (185 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 185,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 18,
+        "fiberG": 1.4,
+        "fatG": 0.42,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 78
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 14.9,
+        "fiberG": 3.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 185 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "32de5d17-2ded-47cf-83ae-8621d385e897",
+      "version": 3
+    },
+    {
+      "id": "fruits-peach",
+      "operation": "update",
+      "expectedRecordId": "1728",
+      "selectedRecordId": "1728",
+      "cnfDescription": {
+        "en": "Peach, raw",
+        "fr": "Pêche, crue"
+      },
+      "beforePortion": {
+        "labelFr": "1 pêche (100 g)",
+        "labelEn": "1 peach (100 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 pêche moyenne, poids comestible (150 g)",
+        "labelEn": "1 medium peach, edible weight (150 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 150,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 10,
+        "fiberG": 1,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 46
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 14.3,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 150 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "94b67b43-73d1-462d-963d-ce9c534a5b76",
+      "version": 3
+    },
+    {
+      "id": "fruits-pear",
+      "operation": "update",
+      "expectedRecordId": "1731",
+      "selectedRecordId": "1731",
+      "cnfDescription": {
+        "en": "Pear, raw, with skin",
+        "fr": "Poire, crue, avec pelure"
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de poire (110 g)",
+        "labelEn": "125 ml pear (110 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petite poire, poids comestible (100 g)",
+        "labelEn": "1 small pear, edible weight (100 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 15.2,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1f501514-258a-4938-8bbb-e9e70526edb7",
+      "version": 3
+    },
+    {
+      "id": "fruits-apple",
+      "operation": "update",
+      "expectedRecordId": "1696",
+      "selectedRecordId": "1696",
+      "cnfDescription": {
+        "en": "Apple, raw, with skin",
+        "fr": "Pomme, crue, avec pelure"
+      },
+      "beforePortion": {
+        "labelFr": "1 pomme (140 g)",
+        "labelEn": "1 apple (140 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 140,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petite pomme, poids comestible (110 g)",
+        "labelEn": "1 small apple, edible weight (110 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 21,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "afterNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 15.2,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 110 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f3a720fd-cf3a-4169-a3b2-35a727bfb6cc",
+      "version": 3
+    },
+    {
+      "id": "fruits-pomegranate",
+      "operation": "update",
+      "expectedRecordId": "1667",
+      "selectedRecordId": "1667",
+      "cnfDescription": {
+        "en": "Pomegranate, raw",
+        "fr": "Grenade, crue"
+      },
+      "beforePortion": {
+        "labelFr": "½ pomme-grenade",
+        "labelEn": "½ pomegranate",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml d'arilles de grenade (80 g)",
+        "labelEn": "125 ml pomegranate arils (80 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 80,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.3,
+        "carbsG": 15,
+        "fiberG": 3.2,
+        "fatG": 0.9,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 66
+      },
+      "formula": "valuePortion = valuePer100g × 80 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8907c433-69de-4585-a491-77aa787f4c6b",
+      "version": 3
+    },
+    {
+      "id": "fruits-plums",
+      "operation": "update",
+      "expectedRecordId": "1740",
+      "selectedRecordId": "1740",
+      "cnfDescription": {
+        "en": "Plum, raw",
+        "fr": "Prune, crue"
+      },
+      "beforePortion": {
+        "labelFr": "2 prunes (130 g)",
+        "labelEn": "2 plums (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 prunes moyennes, poids comestible (130 g)",
+        "labelEn": "2 medium plums, edible weight (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0.8,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 83
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 14.8,
+        "fiberG": 2.1,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 130 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "53baae25-e4df-4523-b815-87e7021f6230",
+      "version": 3
+    },
+    {
+      "id": "fruits-prunes",
+      "operation": "update",
+      "expectedRecordId": "1742",
+      "selectedRecordId": "1742",
+      "cnfDescription": {
+        "en": "Prune, dried, uncooked",
+        "fr": "Pruneau, séché, non cuit"
+      },
+      "beforePortion": {
+        "labelFr": "3 pruneaux (30 g)",
+        "labelEn": "3 prunes (30 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "25 g de pruneaux (environ 2 à 3)",
+        "labelEn": "25 g dried prunes (about 2 to 3)",
+        "amount": 25,
+        "unit": "g",
+        "grams": 25,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 16,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 25 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b547b8ad-98a5-4841-ba84-fad4e97dfeec",
+      "version": 3
+    },
+    {
+      "id": "fruits-raisins",
+      "operation": "update",
+      "expectedRecordId": "1745",
+      "selectedRecordId": "1745",
+      "cnfDescription": {
+        "en": "Raisin, seedless (sultana)",
+        "fr": "Raisin sec, sans pépin (sultana)"
+      },
+      "beforePortion": {
+        "labelFr": "30 ml de raisins secs (20 g)",
+        "labelEn": "30 ml raisins (20 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 ml de raisins secs (20 g)",
+        "labelEn": "30 ml seedless raisins (20 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.8,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 20 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ca555c7a-f533-4e7a-bba5-07a4328e63e0",
+      "version": 3
+    },
+    {
+      "id": "fruits-large-grapes",
+      "operation": "update",
+      "expectedRecordId": "1718",
+      "selectedRecordId": "1718",
+      "cnfDescription": {
+        "en": "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw",
+        "fr": "Raisin, rouge ou vert (Type Européen, comme Thompson sans graines), peau adhérente, cru"
+      },
+      "beforePortion": {
+        "labelFr": "15 gros raisins (75 g)",
+        "labelEn": "15 large grapes (75 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 75,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "17 gros raisins (85 g)",
+        "labelEn": "17 large grapes (85 g)",
+        "amount": 17,
+        "unit": "count",
+        "grams": 85,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 65
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.4,
+        "fiberG": 1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 85 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "70d14686-85e8-435d-9d84-4840d9134ada",
+      "version": 3
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "operation": "update",
+      "expectedRecordId": "1710",
+      "selectedRecordId": "1710",
+      "cnfDescription": {
+        "en": "Date, domestic, natural and dry",
+        "fr": "Datte, domestique, naturelle et séchée"
+      },
+      "beforePortion": {
+        "labelFr": "40 g de Dattes Deglet Nour (3 dattes)",
+        "labelEn": "40 g Deglet Nour dates (3 dates)",
+        "amount": 40,
+        "unit": "g",
+        "grams": 40,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "3 petites dattes sèches (21 g)",
+        "labelEn": "3 small dried dates (21 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 21,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 15.8,
+        "fiberG": 1.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 21 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7e730341-5488-4c96-bd90-0b5454e2f6ae",
+      "version": 3
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "operation": "update",
+      "expectedRecordId": "5390",
+      "selectedRecordId": "5390",
+      "cnfDescription": {
+        "en": "Cranberry, dried, sweetened",
+        "fr": "Canneberge, séchée, sucrée"
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Canneberges séchées peu sucrées",
+        "labelEn": "30 g Lightly sweetened dried cranberries",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "18 g de canneberges séchées sucrées",
+        "labelEn": "18 g sweetened dried cranberries",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 68
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 14.9,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 55
+      },
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9d7e1baf-4f02-4bf1-b8fb-ef2323c02113",
+      "version": 3
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "expectedRecordId": "1495",
+      "selectedRecordId": "1495",
+      "cnfDescription": {
+        "en": "Apple juice, canned or bottled, without added vitamin C",
+        "fr": "Pomme, jus, conserve ou bouteille, sans vitamine C ajoutée"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus de pomme 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure apple juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 14.8,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 131 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1817d460-f796-4d26-8e3e-9395b8f113b4",
+      "version": 3
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "expectedRecordId": "1657",
+      "selectedRecordId": "1657",
+      "cnfDescription": {
+        "en": "Pineapple juice, canned, added vitamin C",
+        "fr": "Ananas, jus, conserve, vitamine C ajoutée"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus d'ananas 100 % pur (132 g)",
+        "labelEn": "125 ml 100% pure pineapple juice (132 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 132,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 17,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 70
+      },
+      "formula": "valuePortion = valuePer100g × 132 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8abb1a95-7006-429d-87ac-089f78a9e14b",
+      "version": 3
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "expectedRecordId": "6440",
+      "selectedRecordId": "6440",
+      "cnfDescription": {
+        "en": "Grapefruit juice, pink, raw",
+        "fr": "Pamplemousse rose, jus, frais"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus de pamplemousse rose 100 % pur (130 g)",
+        "labelEn": "125 ml 100% pure pink grapefruit juice (130 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 12,
+        "fiberG": null,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 51
+      },
+      "formula": "valuePortion = valuePer100g × 130 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f4ec0864-8764-4aae-9a86-4849f9d904e7",
+      "version": 3
+    }
+  ]
+}

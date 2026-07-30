@@ -4,11 +4,11 @@
  * Usage: node scripts/generate-schema-validator.mjs
  * Also: npm run schema:generate
  */
-import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
+import { computeSchemaHash, normalizeSchemaText } from './schema-hash.mjs';
 
 const require = createRequire(import.meta.url);
 const Ajv2020 = require('ajv/dist/2020.js');
@@ -53,8 +53,9 @@ for (const target of TARGETS) {
   const schemaPath = path.join(root, target.schemaRel);
   const outPath = path.join(root, target.outRel);
   const schemaRaw = fs.readFileSync(schemaPath, 'utf8');
-  const schemaHash = crypto.createHash('sha256').update(schemaRaw).digest('hex');
-  const schema = JSON.parse(schemaRaw);
+  const schemaText = normalizeSchemaText(schemaRaw);
+  const schemaHash = computeSchemaHash(schemaText);
+  const schema = JSON.parse(schemaText);
   const ajv = new Ajv2020({
     allErrors: true,
     strict: false,

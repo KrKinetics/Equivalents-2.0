@@ -1,0 +1,5587 @@
+{
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "generatedAt": "2026-07-30T14:40:01.482Z",
+  "foods": [
+    {
+      "id": "fruits-apricots",
+      "operation": "update",
+      "identity": {
+        "fr": "Abricots frais, crus",
+        "en": "Apricots, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened",
+          "cooked"
+        ]
+      },
+      "expectedRecordId": "1498",
+      "selectedRecordId": "1498",
+      "recordId": "1498",
+      "cnfDescription": {
+        "en": "Apricot, raw",
+        "fr": "Abricot, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1498",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Apricot, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Abricot, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1498"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 140 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 48,
+          "protein_g": 1.4,
+          "carbohydrate_g": 11.12,
+          "fibre_g": 2,
+          "total_fat_g": 0.39,
+          "saturated_fat_g": 0.027,
+          "polyunsaturated_fat_g": 0.077,
+          "monounsaturated_fat_g": 0.17
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 67.19999999999999,
+          "proteinG": 1.9599999999999997,
+          "carbsG": 15.567999999999998,
+          "fiberG": 2.8,
+          "fatG": 0.5459999999999999,
+          "saturatedFatG": 0.0378,
+          "polyunsaturatedFatG": 0.10779999999999999,
+          "monounsaturatedFatG": 0.238
+        },
+        "storedRounded": {
+          "declaredKcal": 67,
+          "proteinG": 2,
+          "carbsG": 15.6,
+          "fiberG": 2.8,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1498",
+        "selectedRecordId": "1498",
+        "selected": {
+          "recordId": "1498",
+          "descriptionEn": "Apricot, raw",
+          "descriptionFr": "Abricot, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 48,
+            "protein_g": 1.4,
+            "carbohydrate_g": 11.12,
+            "fibre_g": 2,
+            "total_fat_g": 0.39,
+            "saturated_fat_g": 0.027,
+            "polyunsaturated_fat_g": 0.077,
+            "monounsaturated_fat_g": 0.17
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1498",
+            "descriptionEn": "Apricot, raw",
+            "descriptionFr": "Abricot, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 48,
+              "protein_g": 1.4,
+              "carbohydrate_g": 11.12,
+              "fibre_g": 2,
+              "total_fat_g": 0.39,
+              "saturated_fat_g": 0.027,
+              "polyunsaturated_fat_g": 0.077,
+              "monounsaturated_fat_g": 0.17
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1498: Apricot, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 18,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "afterNutrients": {
+        "proteinG": 2,
+        "carbsG": 15.6,
+        "fiberG": 2.8,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 67
+      },
+      "beforePortion": {
+        "labelFr": "250 ml d'abricot (160 g)",
+        "labelEn": "250 ml apricots (160 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml d'abricots frais tranchés (140 g)",
+        "labelEn": "250 ml sliced fresh apricots (140 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 140,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 67 vs Atwater 74.9 (10.5%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-pineapple",
+      "operation": "update",
+      "identity": {
+        "fr": "Ananas frais, cru",
+        "en": "Pineapple, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "juice"
+        ]
+      },
+      "expectedRecordId": "1734",
+      "selectedRecordId": "1734",
+      "recordId": "1734",
+      "cnfDescription": {
+        "en": "Pineapple, raw",
+        "fr": "Ananas, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1734",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pineapple, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Ananas, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1734"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 110 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 50,
+          "protein_g": 0.54,
+          "carbohydrate_g": 13.12,
+          "fibre_g": 1.4,
+          "total_fat_g": 0.12,
+          "saturated_fat_g": 0.009,
+          "polyunsaturated_fat_g": 0.04,
+          "monounsaturated_fat_g": 0.013
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.00000000000001,
+          "proteinG": 0.5940000000000001,
+          "carbsG": 14.432,
+          "fiberG": 1.54,
+          "fatG": 0.132,
+          "saturatedFatG": 0.0099,
+          "polyunsaturatedFatG": 0.044000000000000004,
+          "monounsaturatedFatG": 0.0143
+        },
+        "storedRounded": {
+          "declaredKcal": 55,
+          "proteinG": 0.6,
+          "carbsG": 14.4,
+          "fiberG": 1.5,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1734",
+        "selectedRecordId": "1734",
+        "selected": {
+          "recordId": "1734",
+          "descriptionEn": "Pineapple, raw",
+          "descriptionFr": "Ananas, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 50,
+            "protein_g": 0.54,
+            "carbohydrate_g": 13.12,
+            "fibre_g": 1.4,
+            "total_fat_g": 0.12,
+            "saturated_fat_g": 0.009,
+            "polyunsaturated_fat_g": 0.04,
+            "monounsaturated_fat_g": 0.013
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1734",
+            "descriptionEn": "Pineapple, raw",
+            "descriptionFr": "Ananas, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 50,
+              "protein_g": 0.54,
+              "carbohydrate_g": 13.12,
+              "fibre_g": 1.4,
+              "total_fat_g": 0.12,
+              "saturated_fat_g": 0.009,
+              "polyunsaturated_fat_g": 0.04,
+              "monounsaturated_fat_g": 0.013
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1734: Pineapple, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 64
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 14.4,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 55
+      },
+      "beforePortion": {
+        "labelFr": "175 ml d'ananas (110 g)",
+        "labelEn": "175 ml pineapple (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "175 ml d'ananas frais en morceaux (110 g)",
+        "labelEn": "175 ml fresh pineapple chunks (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-banana",
+      "operation": "update",
+      "identity": {
+        "fr": "Banane fraîche, crue",
+        "en": "Banana, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "dehydrated",
+          "powder",
+          "chips",
+          "cooked",
+          "pepper"
+        ]
+      },
+      "expectedRecordId": "1704",
+      "selectedRecordId": "1704",
+      "recordId": "1704",
+      "cnfDescription": {
+        "en": "Banana, raw",
+        "fr": "Banane, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1704",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Banana, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Banane, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1704"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 60 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 89,
+          "protein_g": 1.09,
+          "carbohydrate_g": 22.84,
+          "fibre_g": 1.74,
+          "total_fat_g": 0.33,
+          "saturated_fat_g": 0.112,
+          "polyunsaturated_fat_g": 0.073,
+          "monounsaturated_fat_g": 0.032
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 53.4,
+          "proteinG": 0.654,
+          "carbsG": 13.703999999999999,
+          "fiberG": 1.044,
+          "fatG": 0.198,
+          "saturatedFatG": 0.0672,
+          "polyunsaturatedFatG": 0.0438,
+          "monounsaturatedFatG": 0.0192
+        },
+        "storedRounded": {
+          "declaredKcal": 53,
+          "proteinG": 0.7,
+          "carbsG": 13.7,
+          "fiberG": 1,
+          "fatG": 0.2,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1704",
+        "selectedRecordId": "1704",
+        "selected": {
+          "recordId": "1704",
+          "descriptionEn": "Banana, raw",
+          "descriptionFr": "Banane, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 89,
+            "protein_g": 1.09,
+            "carbohydrate_g": 22.84,
+            "fibre_g": 1.74,
+            "total_fat_g": 0.33,
+            "saturated_fat_g": 0.112,
+            "polyunsaturated_fat_g": 0.073,
+            "monounsaturated_fat_g": 0.032
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1704",
+            "descriptionEn": "Banana, raw",
+            "descriptionFr": "Banane, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 89,
+              "protein_g": 1.09,
+              "carbohydrate_g": 22.84,
+              "fibre_g": 1.74,
+              "total_fat_g": 0.33,
+              "saturated_fat_g": 0.112,
+              "polyunsaturated_fat_g": 0.073,
+              "monounsaturated_fat_g": 0.032
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1704: Banana, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 13.7,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
+      },
+      "beforePortion": {
+        "labelFr": "½ banane (60 g)",
+        "labelEn": "½ banana (60 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 60,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ banane moyenne (60 g)",
+        "labelEn": "½ medium banana (60 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 60,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 60,
+            "label": "½ banane moyenne (60 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 60,
+            "label": "½ medium banana (60 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 53 vs Atwater 59.4 (10.8%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "operation": "update",
+      "identity": {
+        "fr": "Baies de goji séchées",
+        "en": "Goji berries, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "juice",
+          "fresh"
+        ]
+      },
+      "expectedRecordId": "7596",
+      "selectedRecordId": "7596",
+      "recordId": "7596",
+      "cnfDescription": {
+        "en": "Goji berries, dried",
+        "fr": "Baies de Goji, séchées"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7596",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Goji berries, dried)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Baies de Goji, séchées",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7596"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 20 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 349,
+          "protein_g": 14.26,
+          "carbohydrate_g": 77.06,
+          "fibre_g": 13,
+          "total_fat_g": 0.39,
+          "saturated_fat_g": 0,
+          "polyunsaturated_fat_g": null,
+          "monounsaturated_fat_g": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 69.8,
+          "proteinG": 2.8520000000000003,
+          "carbsG": 15.412,
+          "fiberG": 2.6,
+          "fatG": 0.07800000000000001,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 70,
+          "proteinG": 2.9,
+          "carbsG": 15.4,
+          "fiberG": 2.6,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7596",
+        "selectedRecordId": "7596",
+        "selected": {
+          "recordId": "7596",
+          "descriptionEn": "Goji berries, dried",
+          "descriptionFr": "Baies de Goji, séchées",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 349,
+            "protein_g": 14.26,
+            "carbohydrate_g": 77.06,
+            "fibre_g": 13,
+            "total_fat_g": 0.39,
+            "saturated_fat_g": 0,
+            "polyunsaturated_fat_g": null,
+            "monounsaturated_fat_g": null
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7596",
+            "descriptionEn": "Goji berries, dried",
+            "descriptionFr": "Baies de Goji, séchées",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 349,
+              "protein_g": 14.26,
+              "carbohydrate_g": 77.06,
+              "fibre_g": 13,
+              "total_fat_g": 0.39,
+              "saturated_fat_g": 0,
+              "polyunsaturated_fat_g": null,
+              "monounsaturated_fat_g": null
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7596: Goji berries, dried.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 12,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 2.9,
+        "carbsG": 15.4,
+        "fiberG": 2.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "beforePortion": {
+        "labelFr": "20 g de Baies de goji séchées",
+        "labelEn": "20 g Dried goji berries",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "20 g de baies de goji séchées",
+        "labelEn": "20 g dried goji berries",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 70 vs Atwater 61.8 (13.3%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "operation": "update",
+      "identity": {
+        "fr": "Cantaloup frais, cru",
+        "en": "Cantaloupe, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "sweetened",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "1721",
+      "selectedRecordId": "1721",
+      "recordId": "1721",
+      "cnfDescription": {
+        "en": "Melon, cantaloupe, raw",
+        "fr": "Melon, cantaloup, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1721",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Melon, cantaloupe, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Melon, cantaloup, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1721"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 165 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 34,
+          "protein_g": 0.84,
+          "carbohydrate_g": 8.16,
+          "fibre_g": 0.69,
+          "total_fat_g": 0.19,
+          "saturated_fat_g": 0.051,
+          "polyunsaturated_fat_g": 0.081,
+          "monounsaturated_fat_g": 0.003
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 56.099999999999994,
+          "proteinG": 1.386,
+          "carbsG": 13.463999999999999,
+          "fiberG": 1.1384999999999998,
+          "fatG": 0.3135,
+          "saturatedFatG": 0.08414999999999999,
+          "polyunsaturatedFatG": 0.13365,
+          "monounsaturatedFatG": 0.0049499999999999995
+        },
+        "storedRounded": {
+          "declaredKcal": 56,
+          "proteinG": 1.4,
+          "carbsG": 13.5,
+          "fiberG": 1.1,
+          "fatG": 0.3,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1721",
+        "selectedRecordId": "1721",
+        "selected": {
+          "recordId": "1721",
+          "descriptionEn": "Melon, cantaloupe, raw",
+          "descriptionFr": "Melon, cantaloup, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 34,
+            "protein_g": 0.84,
+            "carbohydrate_g": 8.16,
+            "fibre_g": 0.69,
+            "total_fat_g": 0.19,
+            "saturated_fat_g": 0.051,
+            "polyunsaturated_fat_g": 0.081,
+            "monounsaturated_fat_g": 0.003
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1721",
+            "descriptionEn": "Melon, cantaloupe, raw",
+            "descriptionFr": "Melon, cantaloup, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 34,
+              "protein_g": 0.84,
+              "carbohydrate_g": 8.16,
+              "fibre_g": 0.69,
+              "total_fat_g": 0.19,
+              "saturated_fat_g": 0.051,
+              "polyunsaturated_fat_g": 0.081,
+              "monounsaturated_fat_g": 0.003
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1721: Melon, cantaloupe, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 15.4,
+        "fiberG": 0.6,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 13.5,
+        "fiberG": 1.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 56
+      },
+      "beforePortion": {
+        "labelFr": "175 ml de cantaloup (110 g)",
+        "labelEn": "175 ml cantaloupe (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de cantaloup frais en cubes (165 g)",
+        "labelEn": "250 ml fresh cantaloupe cubes (165 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 165,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 56 vs Atwater 62.3 (10.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "operation": "update",
+      "identity": {
+        "fr": "Cerises douces fraîches, crues",
+        "en": "Sweet cherries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "sour",
+          "canned",
+          "frozen",
+          "sweetened",
+          "dried"
+        ]
+      },
+      "expectedRecordId": "1531",
+      "selectedRecordId": "1531",
+      "recordId": "1531",
+      "cnfDescription": {
+        "en": "Cherry, sweet, raw",
+        "fr": "Cerise sucrée (guigne), crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1531",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cherry, sweet, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Cerise sucrée (guigne), crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1531"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 95 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 63,
+          "protein_g": 1.06,
+          "carbohydrate_g": 16.01,
+          "fibre_g": 2.1,
+          "total_fat_g": 0.2,
+          "saturated_fat_g": 0.038,
+          "polyunsaturated_fat_g": 0.052,
+          "monounsaturated_fat_g": 0.047
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.849999999999994,
+          "proteinG": 1.007,
+          "carbsG": 15.2095,
+          "fiberG": 1.9949999999999999,
+          "fatG": 0.19,
+          "saturatedFatG": 0.0361,
+          "polyunsaturatedFatG": 0.04939999999999999,
+          "monounsaturatedFatG": 0.044649999999999995
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 1,
+          "carbsG": 15.2,
+          "fiberG": 2,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1531",
+        "selectedRecordId": "1531",
+        "selected": {
+          "recordId": "1531",
+          "descriptionEn": "Cherry, sweet, raw",
+          "descriptionFr": "Cerise sucrée (guigne), crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 63,
+            "protein_g": 1.06,
+            "carbohydrate_g": 16.01,
+            "fibre_g": 2.1,
+            "total_fat_g": 0.2,
+            "saturated_fat_g": 0.038,
+            "polyunsaturated_fat_g": 0.052,
+            "monounsaturated_fat_g": 0.047
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1531",
+            "descriptionEn": "Cherry, sweet, raw",
+            "descriptionFr": "Cerise sucrée (guigne), crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 63,
+              "protein_g": 1.06,
+              "carbohydrate_g": 16.01,
+              "fibre_g": 2.1,
+              "total_fat_g": 0.2,
+              "saturated_fat_g": 0.038,
+              "polyunsaturated_fat_g": 0.052,
+              "monounsaturated_fat_g": 0.047
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1531: Cherry, sweet, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 13,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 15.2,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de cerise avec noyau (110 g)",
+        "labelEn": "250 ml cherries with pits (110 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 cerises douces, poids comestible sans noyaux (95 g)",
+        "labelEn": "15 sweet cherries, edible weight without pits (95 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 95,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-clementines",
+      "operation": "update",
+      "identity": {
+        "fr": "Clémentines fraîches, crues",
+        "en": "Clementines, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "5956",
+      "selectedRecordId": "5956",
+      "recordId": "5956",
+      "cnfDescription": {
+        "en": "Clementine, raw",
+        "fr": "Clémentine, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5956",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Clementine, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Clémentine, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5956"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 47,
+          "protein_g": 0.85,
+          "carbohydrate_g": 12.02,
+          "fibre_g": 1.7,
+          "total_fat_g": 0.15,
+          "saturated_fat_g": 0,
+          "polyunsaturated_fat_g": null,
+          "monounsaturated_fat_g": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 58.75,
+          "proteinG": 1.0625,
+          "carbsG": 15.024999999999999,
+          "fiberG": 2.125,
+          "fatG": 0.1875,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 1.1,
+          "carbsG": 15,
+          "fiberG": 2.1,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": {
+        "expectedRecordId": "5956",
+        "selectedRecordId": "5956",
+        "selected": {
+          "recordId": "5956",
+          "descriptionEn": "Clementine, raw",
+          "descriptionFr": "Clémentine, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 47,
+            "protein_g": 0.85,
+            "carbohydrate_g": 12.02,
+            "fibre_g": 1.7,
+            "total_fat_g": 0.15,
+            "saturated_fat_g": 0,
+            "polyunsaturated_fat_g": null,
+            "monounsaturated_fat_g": null
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5956",
+            "descriptionEn": "Clementine, raw",
+            "descriptionFr": "Clémentine, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 47,
+              "protein_g": 0.85,
+              "carbohydrate_g": 12.02,
+              "fibre_g": 1.7,
+              "total_fat_g": 0.15,
+              "saturated_fat_g": 0,
+              "polyunsaturated_fat_g": null,
+              "monounsaturated_fat_g": null
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 5956: Clementine, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "2 clémentines",
+        "labelEn": "2 clementines",
+        "amount": 2,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 petites clémentines, poids comestible (125 g)",
+        "labelEn": "2 small clementines, edible weight (125 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 125,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.2 (10.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-medjool-date",
+      "operation": "update",
+      "identity": {
+        "fr": "Datte Medjool séchée",
+        "en": "Medjool date, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "syrup",
+          "paste"
+        ]
+      },
+      "expectedRecordId": "5401",
+      "selectedRecordId": "5401",
+      "recordId": "5401",
+      "cnfDescription": {
+        "en": "Date, medjool",
+        "fr": "Datte, variété Medjool"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5401",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Date, medjool)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Datte, variété Medjool",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5401"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 24 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 277,
+          "protein_g": 1.81,
+          "carbohydrate_g": 74.97,
+          "fibre_g": 6.7,
+          "total_fat_g": 0.15,
+          "saturated_fat_g": 0,
+          "polyunsaturated_fat_g": null,
+          "monounsaturated_fat_g": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 66.48,
+          "proteinG": 0.4344,
+          "carbsG": 17.9928,
+          "fiberG": 1.6079999999999999,
+          "fatG": 0.036,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 66,
+          "proteinG": 0.4,
+          "carbsG": 18,
+          "fiberG": 1.6,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": {
+        "expectedRecordId": "5401",
+        "selectedRecordId": "5401",
+        "selected": {
+          "recordId": "5401",
+          "descriptionEn": "Date, medjool",
+          "descriptionFr": "Datte, variété Medjool",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 277,
+            "protein_g": 1.81,
+            "carbohydrate_g": 74.97,
+            "fibre_g": 6.7,
+            "total_fat_g": 0.15,
+            "saturated_fat_g": 0,
+            "polyunsaturated_fat_g": null,
+            "monounsaturated_fat_g": null
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5401",
+            "descriptionEn": "Date, medjool",
+            "descriptionFr": "Datte, variété Medjool",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 277,
+              "protein_g": 1.81,
+              "carbohydrate_g": 74.97,
+              "fibre_g": 6.7,
+              "total_fat_g": 0.15,
+              "saturated_fat_g": 0,
+              "polyunsaturated_fat_g": null,
+              "monounsaturated_fat_g": null
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 5401: Date, medjool.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 18,
+        "fiberG": 1.6,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "beforePortion": {
+        "labelFr": "1 datte Medjool (24 g)",
+        "labelEn": "1 Medjool date (24 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 datte Medjool (24 g)",
+        "labelEn": "1 Medjool date (24 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 24,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 66 vs Atwater 73.6 (10.3%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "operation": "update",
+      "identity": {
+        "fr": "Compote de pommes non sucrée",
+        "en": "Unsweetened applesauce",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sweetened",
+          "babyfood"
+        ]
+      },
+      "expectedRecordId": "1700",
+      "selectedRecordId": "1700",
+      "recordId": "1700",
+      "cnfDescription": {
+        "en": "Applesauce, canned, unsweetened",
+        "fr": "Pomme, purée (compote), conserve, non sucrée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1700",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Applesauce, canned, unsweetened)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pomme, purée (compote), conserve, non sucrée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1700"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 129 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 42,
+          "protein_g": 0.17,
+          "carbohydrate_g": 11.27,
+          "fibre_g": 1.1,
+          "total_fat_g": 0.1,
+          "saturated_fat_g": 0.008,
+          "polyunsaturated_fat_g": 0.014,
+          "monounsaturated_fat_g": 0.002
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 54.18,
+          "proteinG": 0.21930000000000002,
+          "carbsG": 14.5383,
+          "fiberG": 1.4190000000000003,
+          "fatG": 0.129,
+          "saturatedFatG": 0.010320000000000001,
+          "polyunsaturatedFatG": 0.01806,
+          "monounsaturatedFatG": 0.0025800000000000003
+        },
+        "storedRounded": {
+          "declaredKcal": 54,
+          "proteinG": 0.2,
+          "carbsG": 14.5,
+          "fiberG": 1.4,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1700",
+        "selectedRecordId": "1700",
+        "selected": {
+          "recordId": "1700",
+          "descriptionEn": "Applesauce, canned, unsweetened",
+          "descriptionFr": "Pomme, purée (compote), conserve, non sucrée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 42,
+            "protein_g": 0.17,
+            "carbohydrate_g": 11.27,
+            "fibre_g": 1.1,
+            "total_fat_g": 0.1,
+            "saturated_fat_g": 0.008,
+            "polyunsaturated_fat_g": 0.014,
+            "monounsaturated_fat_g": 0.002
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1700",
+            "descriptionEn": "Applesauce, canned, unsweetened",
+            "descriptionFr": "Pomme, purée (compote), conserve, non sucrée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 42,
+              "protein_g": 0.17,
+              "carbohydrate_g": 11.27,
+              "fibre_g": 1.1,
+              "total_fat_g": 0.1,
+              "saturated_fat_g": 0.008,
+              "polyunsaturated_fat_g": 0.014,
+              "monounsaturated_fat_g": 0.002
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1700: Applesauce, canned, unsweetened.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.2,
+        "carbsG": 19,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 79
+      },
+      "afterNutrients": {
+        "proteinG": 0.2,
+        "carbsG": 14.5,
+        "fiberG": 1.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 54
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de compote de fruits sans sucre ajouté",
+        "labelEn": "125 ml unsweetened applesauce",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de compote de pommes non sucrée (129 g)",
+        "labelEn": "125 ml unsweetened applesauce (129 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 129,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-strawberries",
+      "operation": "update",
+      "identity": {
+        "fr": "Fraises fraîches, crues",
+        "en": "Strawberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "sweetened",
+          "canned",
+          "guava"
+        ]
+      },
+      "expectedRecordId": "1749",
+      "selectedRecordId": "1749",
+      "recordId": "1749",
+      "cnfDescription": {
+        "en": "Strawberry, raw",
+        "fr": "Fraise, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1749",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Strawberry, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fraise, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1749"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 160 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 33,
+          "protein_g": 0.67,
+          "carbohydrate_g": 7.68,
+          "fibre_g": 2.24,
+          "total_fat_g": 0.3,
+          "saturated_fat_g": 0.015,
+          "polyunsaturated_fat_g": 0.155,
+          "monounsaturated_fat_g": 0.043
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 52.800000000000004,
+          "proteinG": 1.072,
+          "carbsG": 12.288,
+          "fiberG": 3.5840000000000005,
+          "fatG": 0.48,
+          "saturatedFatG": 0.024,
+          "polyunsaturatedFatG": 0.248,
+          "monounsaturatedFatG": 0.0688
+        },
+        "storedRounded": {
+          "declaredKcal": 53,
+          "proteinG": 1.1,
+          "carbsG": 12.3,
+          "fiberG": 3.6,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1749",
+        "selectedRecordId": "1749",
+        "selected": {
+          "recordId": "1749",
+          "descriptionEn": "Strawberry, raw",
+          "descriptionFr": "Fraise, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 33,
+            "protein_g": 0.67,
+            "carbohydrate_g": 7.68,
+            "fibre_g": 2.24,
+            "total_fat_g": 0.3,
+            "saturated_fat_g": 0.015,
+            "polyunsaturated_fat_g": 0.155,
+            "monounsaturated_fat_g": 0.043
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1749",
+            "descriptionEn": "Strawberry, raw",
+            "descriptionFr": "Fraise, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 33,
+              "protein_g": 0.67,
+              "carbohydrate_g": 7.68,
+              "fibre_g": 2.24,
+              "total_fat_g": 0.3,
+              "saturated_fat_g": 0.015,
+              "polyunsaturated_fat_g": 0.155,
+              "monounsaturated_fat_g": 0.043
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1749: Strawberry, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 12,
+        "fiberG": 0.2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 12.3,
+        "fiberG": 3.6,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 53
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de fraises (150 g)",
+        "labelEn": "250 ml strawberries (150 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de fraises fraîches (160 g)",
+        "labelEn": "250 ml fresh strawberries (160 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-raspberries",
+      "operation": "update",
+      "identity": {
+        "fr": "Framboises fraîches, crues",
+        "en": "Raspberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "puree"
+        ]
+      },
+      "expectedRecordId": "1747",
+      "selectedRecordId": "1747",
+      "recordId": "1747",
+      "cnfDescription": {
+        "en": "Raspberry, raw",
+        "fr": "Framboise, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1747",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Raspberry, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Framboise, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1747"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 130 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 53,
+          "protein_g": 1.2,
+          "carbohydrate_g": 11.94,
+          "fibre_g": 6.5,
+          "total_fat_g": 0.65,
+          "saturated_fat_g": 0.019,
+          "polyunsaturated_fat_g": 0.375,
+          "monounsaturated_fat_g": 0.064
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 68.9,
+          "proteinG": 1.56,
+          "carbsG": 15.522,
+          "fiberG": 8.450000000000001,
+          "fatG": 0.8450000000000001,
+          "saturatedFatG": 0.0247,
+          "polyunsaturatedFatG": 0.48750000000000004,
+          "monounsaturatedFatG": 0.08320000000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 69,
+          "proteinG": 1.6,
+          "carbsG": 15.5,
+          "fiberG": 8.5,
+          "fatG": 0.8,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.5,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1747",
+        "selectedRecordId": "1747",
+        "selected": {
+          "recordId": "1747",
+          "descriptionEn": "Raspberry, raw",
+          "descriptionFr": "Framboise, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 53,
+            "protein_g": 1.2,
+            "carbohydrate_g": 11.94,
+            "fibre_g": 6.5,
+            "total_fat_g": 0.65,
+            "saturated_fat_g": 0.019,
+            "polyunsaturated_fat_g": 0.375,
+            "monounsaturated_fat_g": 0.064
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1747",
+            "descriptionEn": "Raspberry, raw",
+            "descriptionFr": "Framboise, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 53,
+              "protein_g": 1.2,
+              "carbohydrate_g": 11.94,
+              "fibre_g": 6.5,
+              "total_fat_g": 0.65,
+              "saturated_fat_g": 0.019,
+              "polyunsaturated_fat_g": 0.375,
+              "monounsaturated_fat_g": 0.064
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1747: Raspberry, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 1.6,
+        "carbsG": 15.5,
+        "fiberG": 8.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 69
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de framboises (130 g)",
+        "labelEn": "250 ml raspberries (130 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de framboises fraîches (130 g)",
+        "labelEn": "250 ml fresh raspberries (130 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "operation": "update",
+      "identity": {
+        "fr": "Jus d'orange 100 % pur, sans sucre ajouté",
+        "en": "100% pure orange juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "expectedRecordId": "1619",
+      "selectedRecordId": "1619",
+      "recordId": "1619",
+      "cnfDescription": {
+        "en": "Orange juice, raw",
+        "fr": "Orange, jus, frais"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1619",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Orange juice, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Orange, jus, frais",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1619"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 131 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 45,
+          "protein_g": 0.7,
+          "carbohydrate_g": 10.4,
+          "fibre_g": 0.2,
+          "total_fat_g": 0.2,
+          "saturated_fat_g": 0.024,
+          "polyunsaturated_fat_g": 0.04,
+          "monounsaturated_fat_g": 0.036
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 58.95,
+          "proteinG": 0.9169999999999999,
+          "carbsG": 13.624,
+          "fiberG": 0.262,
+          "fatG": 0.262,
+          "saturatedFatG": 0.03144,
+          "polyunsaturatedFatG": 0.0524,
+          "monounsaturatedFatG": 0.04716
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 0.9,
+          "carbsG": 13.6,
+          "fiberG": 0.3,
+          "fatG": 0.3,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1619",
+        "selectedRecordId": "1619",
+        "selected": {
+          "recordId": "1619",
+          "descriptionEn": "Orange juice, raw",
+          "descriptionFr": "Orange, jus, frais",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 45,
+            "protein_g": 0.7,
+            "carbohydrate_g": 10.4,
+            "fibre_g": 0.2,
+            "total_fat_g": 0.2,
+            "saturated_fat_g": 0.024,
+            "polyunsaturated_fat_g": 0.04,
+            "monounsaturated_fat_g": 0.036
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1619",
+            "descriptionEn": "Orange juice, raw",
+            "descriptionFr": "Orange, jus, frais",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 45,
+              "protein_g": 0.7,
+              "carbohydrate_g": 10.4,
+              "fibre_g": 0.2,
+              "total_fat_g": 0.2,
+              "saturated_fat_g": 0.024,
+              "polyunsaturated_fat_g": 0.04,
+              "monounsaturated_fat_g": 0.036
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1619: Orange juice, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 4,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 13.6,
+        "fiberG": 0.3,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de jus de fruits 100 % pur, sans sucre ajouté",
+        "labelEn": "125 ml 100% pure fruit juice, no added sugar",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de jus d'orange 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure orange juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "operation": "update",
+      "identity": {
+        "fr": "Kiwis verts frais, crus",
+        "en": "Green kiwifruit, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "golden",
+          "juice",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "1585",
+      "selectedRecordId": "1585",
+      "recordId": "1585",
+      "cnfDescription": {
+        "en": "Kiwi fruit, raw",
+        "fr": "Kiwi, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1585",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Kiwi fruit, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Kiwi, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1585"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 61,
+          "protein_g": 1.14,
+          "carbohydrate_g": 14.66,
+          "fibre_g": 3,
+          "total_fat_g": 0.52,
+          "saturated_fat_g": 0.029,
+          "polyunsaturated_fat_g": 0.287,
+          "monounsaturated_fat_g": 0.047
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 61,
+          "proteinG": 1.14,
+          "carbsG": 14.66,
+          "fiberG": 3,
+          "fatG": 0.52,
+          "saturatedFatG": 0.029,
+          "polyunsaturatedFatG": 0.287,
+          "monounsaturatedFatG": 0.047
+        },
+        "storedRounded": {
+          "declaredKcal": 61,
+          "proteinG": 1.1,
+          "carbsG": 14.7,
+          "fiberG": 3,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1585",
+        "selectedRecordId": "1585",
+        "selected": {
+          "recordId": "1585",
+          "descriptionEn": "Kiwi fruit, raw",
+          "descriptionFr": "Kiwi, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 61,
+            "protein_g": 1.14,
+            "carbohydrate_g": 14.66,
+            "fibre_g": 3,
+            "total_fat_g": 0.52,
+            "saturated_fat_g": 0.029,
+            "polyunsaturated_fat_g": 0.287,
+            "monounsaturated_fat_g": 0.047
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1585",
+            "descriptionEn": "Kiwi fruit, raw",
+            "descriptionFr": "Kiwi, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 61,
+              "protein_g": 1.14,
+              "carbohydrate_g": 14.66,
+              "fibre_g": 3,
+              "total_fat_g": 0.52,
+              "saturated_fat_g": 0.029,
+              "polyunsaturated_fat_g": 0.287,
+              "monounsaturated_fat_g": 0.047
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1585: Kiwi fruit, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 6,
+        "fatG": 0.7,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 14.7,
+        "fiberG": 3,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 61
+      },
+      "beforePortion": {
+        "labelFr": "2 petits kiwis (130 g)",
+        "labelEn": "2 small kiwis (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 petits kiwis, poids comestible (100 g)",
+        "labelEn": "2 small kiwifruit, edible weight (100 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-mango",
+      "operation": "update",
+      "identity": {
+        "fr": "Mangue fraîche, crue",
+        "en": "Mango, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "dried",
+          "sweetened",
+          "nectar",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "1603",
+      "selectedRecordId": "1603",
+      "recordId": "1603",
+      "cnfDescription": {
+        "en": "Mango, raw",
+        "fr": "Mangue, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1603",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Mango, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Mangue, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1603"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 110 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 60,
+          "protein_g": 0.82,
+          "carbohydrate_g": 14.98,
+          "fibre_g": 1.6,
+          "total_fat_g": 0.38,
+          "saturated_fat_g": 0.092,
+          "polyunsaturated_fat_g": 0.071,
+          "monounsaturated_fat_g": 0.14
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 66,
+          "proteinG": 0.902,
+          "carbsG": 16.478,
+          "fiberG": 1.7600000000000002,
+          "fatG": 0.41800000000000004,
+          "saturatedFatG": 0.10120000000000001,
+          "polyunsaturatedFatG": 0.0781,
+          "monounsaturatedFatG": 0.15400000000000003
+        },
+        "storedRounded": {
+          "declaredKcal": 66,
+          "proteinG": 0.9,
+          "carbsG": 16.5,
+          "fiberG": 1.8,
+          "fatG": 0.4,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1603",
+        "selectedRecordId": "1603",
+        "selected": {
+          "recordId": "1603",
+          "descriptionEn": "Mango, raw",
+          "descriptionFr": "Mangue, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 60,
+            "protein_g": 0.82,
+            "carbohydrate_g": 14.98,
+            "fibre_g": 1.6,
+            "total_fat_g": 0.38,
+            "saturated_fat_g": 0.092,
+            "polyunsaturated_fat_g": 0.071,
+            "monounsaturated_fat_g": 0.14
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1603",
+            "descriptionEn": "Mango, raw",
+            "descriptionFr": "Mangue, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 60,
+              "protein_g": 0.82,
+              "carbohydrate_g": 14.98,
+              "fibre_g": 1.6,
+              "total_fat_g": 0.38,
+              "saturated_fat_g": 0.092,
+              "polyunsaturated_fat_g": 0.071,
+              "monounsaturated_fat_g": 0.14
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1603: Mango, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 18,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 16.5,
+        "fiberG": 1.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 66
+      },
+      "beforePortion": {
+        "labelFr": "½ mangue (110 g)",
+        "labelEn": "½ mango (110 g)",
+        "amount": 1,
+        "unit": "portion",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ mangue, poids comestible (110 g)",
+        "labelEn": "½ mango, edible weight (110 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 110,
+            "label": "½ mangue, poids comestible (110 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 110,
+            "label": "½ mango, edible weight (110 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-watermelon",
+      "operation": "update",
+      "identity": {
+        "fr": "Melon d'eau frais, cru",
+        "en": "Watermelon, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "seeds"
+        ]
+      },
+      "expectedRecordId": "1691",
+      "selectedRecordId": "1691",
+      "recordId": "1691",
+      "cnfDescription": {
+        "en": "Watermelon, raw",
+        "fr": "Melon d'eau (pasteque), cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1691",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Watermelon, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Melon d'eau (pasteque), cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1691"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 200 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 30,
+          "protein_g": 0.61,
+          "carbohydrate_g": 7.55,
+          "fibre_g": 0.4,
+          "total_fat_g": 0.15,
+          "saturated_fat_g": 0.016,
+          "polyunsaturated_fat_g": 0.05,
+          "monounsaturated_fat_g": 0.037
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60,
+          "proteinG": 1.22,
+          "carbsG": 15.1,
+          "fiberG": 0.8,
+          "fatG": 0.3,
+          "saturatedFatG": 0.032,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.074
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 1.2,
+          "carbsG": 15.1,
+          "fiberG": 0.8,
+          "fatG": 0.3,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1691",
+        "selectedRecordId": "1691",
+        "selected": {
+          "recordId": "1691",
+          "descriptionEn": "Watermelon, raw",
+          "descriptionFr": "Melon d'eau (pasteque), cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 30,
+            "protein_g": 0.61,
+            "carbohydrate_g": 7.55,
+            "fibre_g": 0.4,
+            "total_fat_g": 0.15,
+            "saturated_fat_g": 0.016,
+            "polyunsaturated_fat_g": 0.05,
+            "monounsaturated_fat_g": 0.037
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1691",
+            "descriptionEn": "Watermelon, raw",
+            "descriptionFr": "Melon d'eau (pasteque), cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 30,
+              "protein_g": 0.61,
+              "carbohydrate_g": 7.55,
+              "fibre_g": 0.4,
+              "total_fat_g": 0.15,
+              "saturated_fat_g": 0.016,
+              "polyunsaturated_fat_g": 0.05,
+              "monounsaturated_fat_g": 0.037
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1691: Watermelon, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 12,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.1,
+        "fiberG": 0.8,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de melon d'eau (170 g)",
+        "labelEn": "250 ml watermelon (170 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 170,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "300 ml de melon d'eau en cubes (200 g)",
+        "labelEn": "300 ml watermelon cubes (200 g)",
+        "amount": 300,
+        "unit": "ml",
+        "grams": 200,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 60 vs Atwater 67.9 (11.6%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-blackberries",
+      "operation": "update",
+      "identity": {
+        "fr": "Mûres fraîches, crues",
+        "en": "Blackberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "wild",
+          "frozen",
+          "canned",
+          "juice"
+        ]
+      },
+      "expectedRecordId": "1515",
+      "selectedRecordId": "1515",
+      "recordId": "1515",
+      "cnfDescription": {
+        "en": "Blackberry, raw",
+        "fr": "Mûre, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1515",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Blackberry, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Mûre, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1515"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 152 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 43,
+          "protein_g": 1.39,
+          "carbohydrate_g": 9.61,
+          "fibre_g": 5.3,
+          "total_fat_g": 0.49,
+          "saturated_fat_g": 0.014,
+          "polyunsaturated_fat_g": 0.28,
+          "monounsaturated_fat_g": 0.047
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 65.36,
+          "proteinG": 2.1128,
+          "carbsG": 14.607199999999999,
+          "fiberG": 8.056,
+          "fatG": 0.7448,
+          "saturatedFatG": 0.02128,
+          "polyunsaturatedFatG": 0.42560000000000003,
+          "monounsaturatedFatG": 0.07144
+        },
+        "storedRounded": {
+          "declaredKcal": 65,
+          "proteinG": 2.1,
+          "carbsG": 14.6,
+          "fiberG": 8.1,
+          "fatG": 0.7,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.4,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1515",
+        "selectedRecordId": "1515",
+        "selected": {
+          "recordId": "1515",
+          "descriptionEn": "Blackberry, raw",
+          "descriptionFr": "Mûre, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 43,
+            "protein_g": 1.39,
+            "carbohydrate_g": 9.61,
+            "fibre_g": 5.3,
+            "total_fat_g": 0.49,
+            "saturated_fat_g": 0.014,
+            "polyunsaturated_fat_g": 0.28,
+            "monounsaturated_fat_g": 0.047
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1515",
+            "descriptionEn": "Blackberry, raw",
+            "descriptionFr": "Mûre, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 43,
+              "protein_g": 1.39,
+              "carbohydrate_g": 9.61,
+              "fibre_g": 5.3,
+              "total_fat_g": 0.49,
+              "saturated_fat_g": 0.014,
+              "polyunsaturated_fat_g": 0.28,
+              "monounsaturated_fat_g": 0.047
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1515: Blackberry, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 14.6,
+        "fiberG": 8.1,
+        "fatG": 0.7,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 65
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de mûres (150 g)",
+        "labelEn": "250 ml blackberries (150 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de mûres fraîches (152 g)",
+        "labelEn": "250 ml fresh blackberries (152 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 152,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 65 vs Atwater 73.1 (11.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-nectarine",
+      "operation": "update",
+      "identity": {
+        "fr": "Nectarine fraîche, crue",
+        "en": "Nectarine, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried"
+        ]
+      },
+      "expectedRecordId": "1611",
+      "selectedRecordId": "1611",
+      "recordId": "1611",
+      "cnfDescription": {
+        "en": "Nectarine, raw",
+        "fr": "Nectarine, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1611",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Nectarine, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Nectarine, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1611"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 142 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 44,
+          "protein_g": 1.06,
+          "carbohydrate_g": 10.55,
+          "fibre_g": 1.7,
+          "total_fat_g": 0.32,
+          "saturated_fat_g": 0.025,
+          "polyunsaturated_fat_g": 0.113,
+          "monounsaturated_fat_g": 0.088
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 62.48,
+          "proteinG": 1.5052,
+          "carbsG": 14.981,
+          "fiberG": 2.4139999999999997,
+          "fatG": 0.45439999999999997,
+          "saturatedFatG": 0.0355,
+          "polyunsaturatedFatG": 0.16046,
+          "monounsaturatedFatG": 0.12495999999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 62,
+          "proteinG": 1.5,
+          "carbsG": 15,
+          "fiberG": 2.4,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1611",
+        "selectedRecordId": "1611",
+        "selected": {
+          "recordId": "1611",
+          "descriptionEn": "Nectarine, raw",
+          "descriptionFr": "Nectarine, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 44,
+            "protein_g": 1.06,
+            "carbohydrate_g": 10.55,
+            "fibre_g": 1.7,
+            "total_fat_g": 0.32,
+            "saturated_fat_g": 0.025,
+            "polyunsaturated_fat_g": 0.113,
+            "monounsaturated_fat_g": 0.088
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1611",
+            "descriptionEn": "Nectarine, raw",
+            "descriptionFr": "Nectarine, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 44,
+              "protein_g": 1.06,
+              "carbohydrate_g": 10.55,
+              "fibre_g": 1.7,
+              "total_fat_g": 0.32,
+              "saturated_fat_g": 0.025,
+              "polyunsaturated_fat_g": 0.113,
+              "monounsaturated_fat_g": 0.088
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1611: Nectarine, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 1,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 15,
+        "fiberG": 2.4,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 62
+      },
+      "beforePortion": {
+        "labelFr": "1 nectarine (ou 250 ml)",
+        "labelEn": "1 nectarine (or 250 ml)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 nectarine moyenne, poids comestible (142 g)",
+        "labelEn": "1 medium nectarine, edible weight (142 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 142,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 62 vs Atwater 70.5 (12.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-orange",
+      "operation": "update",
+      "identity": {
+        "fr": "Orange fraîche, crue, variété commerciale",
+        "en": "Orange, fresh, raw, commercial variety",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "peel",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "1722",
+      "selectedRecordId": "1722",
+      "recordId": "1722",
+      "cnfDescription": {
+        "en": "Orange, all commercial varieties, raw",
+        "fr": "Orange, toutes variétés commerciales, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1722",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Orange, all commercial varieties, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Orange, toutes variétés commerciales, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1722"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 131 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 47,
+          "protein_g": 0.94,
+          "carbohydrate_g": 11.75,
+          "fibre_g": 1.79,
+          "total_fat_g": 0.12,
+          "saturated_fat_g": 0.015,
+          "polyunsaturated_fat_g": 0.025,
+          "monounsaturated_fat_g": 0.023
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 61.57,
+          "proteinG": 1.2314,
+          "carbsG": 15.3925,
+          "fiberG": 2.3449,
+          "fatG": 0.1572,
+          "saturatedFatG": 0.01965,
+          "polyunsaturatedFatG": 0.03275,
+          "monounsaturatedFatG": 0.03013
+        },
+        "storedRounded": {
+          "declaredKcal": 62,
+          "proteinG": 1.2,
+          "carbsG": 15.4,
+          "fiberG": 2.3,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1722",
+        "selectedRecordId": "1722",
+        "selected": {
+          "recordId": "1722",
+          "descriptionEn": "Orange, all commercial varieties, raw",
+          "descriptionFr": "Orange, toutes variétés commerciales, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 30,
+          "per100g": {
+            "energy_kcal": 47,
+            "protein_g": 0.94,
+            "carbohydrate_g": 11.75,
+            "fibre_g": 1.79,
+            "total_fat_g": 0.12,
+            "saturated_fat_g": 0.015,
+            "polyunsaturated_fat_g": 0.025,
+            "monounsaturated_fat_g": 0.023
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1722",
+            "descriptionEn": "Orange, all commercial varieties, raw",
+            "descriptionFr": "Orange, toutes variétés commerciales, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 30,
+            "per100g": {
+              "energy_kcal": 47,
+              "protein_g": 0.94,
+              "carbohydrate_g": 11.75,
+              "fibre_g": 1.79,
+              "total_fat_g": 0.12,
+              "saturated_fat_g": 0.015,
+              "polyunsaturated_fat_g": 0.025,
+              "monounsaturated_fat_g": 0.023
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1722: Orange, all commercial varieties, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 16,
+        "fiberG": 3,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 15.4,
+        "fiberG": 2.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 62
+      },
+      "beforePortion": {
+        "labelFr": "1 orange (170 g)",
+        "labelEn": "1 orange (170 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 170,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 orange moyenne, poids comestible (131 g)",
+        "labelEn": "1 medium orange, edible weight (131 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 131,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-grapefruit",
+      "operation": "update",
+      "identity": {
+        "fr": "Pamplemousse frais, cru",
+        "en": "Grapefruit, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "canned",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "1714",
+      "selectedRecordId": "1714",
+      "recordId": "1714",
+      "cnfDescription": {
+        "en": "Grapefruit, pink, red or white, all areas, raw",
+        "fr": "Pamplemousse, rose, rouge ou blanc, toutes régions, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1714",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grapefruit, pink, red or white, all areas, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pamplemousse, rose, rouge ou blanc, toutes régions, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1714"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 185 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 32,
+          "protein_g": 0.63,
+          "carbohydrate_g": 8.08,
+          "fibre_g": 1.77,
+          "total_fat_g": 0.1,
+          "saturated_fat_g": 0.014,
+          "polyunsaturated_fat_g": 0.024,
+          "monounsaturated_fat_g": 0.013
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.2,
+          "proteinG": 1.1655,
+          "carbsG": 14.948,
+          "fiberG": 3.2745,
+          "fatG": 0.18500000000000003,
+          "saturatedFatG": 0.025900000000000003,
+          "polyunsaturatedFatG": 0.0444,
+          "monounsaturatedFatG": 0.02405
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 1.2,
+          "carbsG": 14.9,
+          "fiberG": 3.3,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1714",
+        "selectedRecordId": "1714",
+        "selected": {
+          "recordId": "1714",
+          "descriptionEn": "Grapefruit, pink, red or white, all areas, raw",
+          "descriptionFr": "Pamplemousse, rose, rouge ou blanc, toutes régions, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 67,
+          "per100g": {
+            "energy_kcal": 32,
+            "protein_g": 0.63,
+            "carbohydrate_g": 8.08,
+            "fibre_g": 1.77,
+            "total_fat_g": 0.1,
+            "saturated_fat_g": 0.014,
+            "polyunsaturated_fat_g": 0.024,
+            "monounsaturated_fat_g": 0.013
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1714",
+            "descriptionEn": "Grapefruit, pink, red or white, all areas, raw",
+            "descriptionFr": "Pamplemousse, rose, rouge ou blanc, toutes régions, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 67,
+            "per100g": {
+              "energy_kcal": 32,
+              "protein_g": 0.63,
+              "carbohydrate_g": 8.08,
+              "fibre_g": 1.77,
+              "total_fat_g": 0.1,
+              "saturated_fat_g": 0.014,
+              "polyunsaturated_fat_g": 0.024,
+              "monounsaturated_fat_g": 0.013
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1714: Grapefruit, pink, red or white, all areas, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 18,
+        "fiberG": 1.4,
+        "fatG": 0.42,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 78
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 14.9,
+        "fiberG": 3.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "1 pamplemousse (250 g)",
+        "labelEn": "1 grapefruit (250 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 250,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ gros pamplemousse, poids comestible (185 g)",
+        "labelEn": "½ large grapefruit, edible weight (185 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 185,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 185,
+            "label": "½ gros pamplemousse, poids comestible (185 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(1≠0.5), unit(portion≠piece)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 1,
+            "unit": "portion",
+            "grams": 185,
+            "label": "½ large grapefruit, edible weight (185 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.2 (10.9%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-peach",
+      "operation": "update",
+      "identity": {
+        "fr": "Pêche fraîche, crue",
+        "en": "Peach, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "1728",
+      "selectedRecordId": "1728",
+      "recordId": "1728",
+      "cnfDescription": {
+        "en": "Peach, raw",
+        "fr": "Pêche, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1728",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Peach, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pêche, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1728"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 150 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 39,
+          "protein_g": 0.91,
+          "carbohydrate_g": 9.54,
+          "fibre_g": 1.93,
+          "total_fat_g": 0.25,
+          "saturated_fat_g": 0.019,
+          "polyunsaturated_fat_g": 0.086,
+          "monounsaturated_fat_g": 0.067
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 58.5,
+          "proteinG": 1.365,
+          "carbsG": 14.309999999999999,
+          "fiberG": 2.895,
+          "fatG": 0.375,
+          "saturatedFatG": 0.028499999999999998,
+          "polyunsaturatedFatG": 0.129,
+          "monounsaturatedFatG": 0.1005
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 1.4,
+          "carbsG": 14.3,
+          "fiberG": 2.9,
+          "fatG": 0.4,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1728",
+        "selectedRecordId": "1728",
+        "selected": {
+          "recordId": "1728",
+          "descriptionEn": "Peach, raw",
+          "descriptionFr": "Pêche, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 39,
+            "protein_g": 0.91,
+            "carbohydrate_g": 9.54,
+            "fibre_g": 1.93,
+            "total_fat_g": 0.25,
+            "saturated_fat_g": 0.019,
+            "polyunsaturated_fat_g": 0.086,
+            "monounsaturated_fat_g": 0.067
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1728",
+            "descriptionEn": "Peach, raw",
+            "descriptionFr": "Pêche, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 39,
+              "protein_g": 0.91,
+              "carbohydrate_g": 9.54,
+              "fibre_g": 1.93,
+              "total_fat_g": 0.25,
+              "saturated_fat_g": 0.019,
+              "polyunsaturated_fat_g": 0.086,
+              "monounsaturated_fat_g": 0.067
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1728: Peach, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 10,
+        "fiberG": 1,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 46
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 14.3,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "1 pêche (100 g)",
+        "labelEn": "1 peach (100 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 pêche moyenne, poids comestible (150 g)",
+        "labelEn": "1 medium peach, edible weight (150 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 150,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.4 (11.1%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-pear",
+      "operation": "update",
+      "identity": {
+        "fr": "Poire fraîche avec pelure, crue",
+        "en": "Pear, fresh, raw, with skin",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "nectar",
+          "asian"
+        ]
+      },
+      "expectedRecordId": "1731",
+      "selectedRecordId": "1731",
+      "recordId": "1731",
+      "cnfDescription": {
+        "en": "Pear, raw, with skin",
+        "fr": "Poire, crue, avec pelure"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1731",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pear, raw, with skin)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Poire, crue, avec pelure",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1731"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 57,
+          "protein_g": 0.36,
+          "carbohydrate_g": 15.23,
+          "fibre_g": 3,
+          "total_fat_g": 0.14,
+          "saturated_fat_g": 0.022,
+          "polyunsaturated_fat_g": 0.094,
+          "monounsaturated_fat_g": 0.084
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 57,
+          "proteinG": 0.36,
+          "carbsG": 15.23,
+          "fiberG": 3,
+          "fatG": 0.14,
+          "saturatedFatG": 0.022,
+          "polyunsaturatedFatG": 0.094,
+          "monounsaturatedFatG": 0.084
+        },
+        "storedRounded": {
+          "declaredKcal": 57,
+          "proteinG": 0.4,
+          "carbsG": 15.2,
+          "fiberG": 3,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1731",
+        "selectedRecordId": "1731",
+        "selected": {
+          "recordId": "1731",
+          "descriptionEn": "Pear, raw, with skin",
+          "descriptionFr": "Poire, crue, avec pelure",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 57,
+            "protein_g": 0.36,
+            "carbohydrate_g": 15.23,
+            "fibre_g": 3,
+            "total_fat_g": 0.14,
+            "saturated_fat_g": 0.022,
+            "polyunsaturated_fat_g": 0.094,
+            "monounsaturated_fat_g": 0.084
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1731",
+            "descriptionEn": "Pear, raw, with skin",
+            "descriptionFr": "Poire, crue, avec pelure",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 57,
+              "protein_g": 0.36,
+              "carbohydrate_g": 15.23,
+              "fibre_g": 3,
+              "total_fat_g": 0.14,
+              "saturated_fat_g": 0.022,
+              "polyunsaturated_fat_g": 0.094,
+              "monounsaturated_fat_g": 0.084
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1731: Pear, raw, with skin.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 15.2,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 57
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de poire (110 g)",
+        "labelEn": "125 ml pear (110 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 110,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petite poire, poids comestible (100 g)",
+        "labelEn": "1 small pear, edible weight (100 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 100,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.2) > lipides totaux (0.1)"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-apple",
+      "operation": "update",
+      "identity": {
+        "fr": "Pomme fraîche avec pelure, crue",
+        "en": "Apple, fresh, raw, with skin",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "cooked",
+          "without skin",
+          "dried",
+          "frozen"
+        ]
+      },
+      "expectedRecordId": "1696",
+      "selectedRecordId": "1696",
+      "recordId": "1696",
+      "cnfDescription": {
+        "en": "Apple, raw, with skin",
+        "fr": "Pomme, crue, avec pelure"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1696",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Apple, raw, with skin)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pomme, crue, avec pelure",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1696"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 110 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 52,
+          "protein_g": 0.26,
+          "carbohydrate_g": 13.81,
+          "fibre_g": 1.9,
+          "total_fat_g": 0.17,
+          "saturated_fat_g": 0.028,
+          "polyunsaturated_fat_g": 0.051,
+          "monounsaturated_fat_g": 0.007
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 57.2,
+          "proteinG": 0.28600000000000003,
+          "carbsG": 15.191000000000003,
+          "fiberG": 2.09,
+          "fatG": 0.18700000000000003,
+          "saturatedFatG": 0.030800000000000004,
+          "polyunsaturatedFatG": 0.056100000000000004,
+          "monounsaturatedFatG": 0.007700000000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 57,
+          "proteinG": 0.3,
+          "carbsG": 15.2,
+          "fiberG": 2.1,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1696",
+        "selectedRecordId": "1696",
+        "selected": {
+          "recordId": "1696",
+          "descriptionEn": "Apple, raw, with skin",
+          "descriptionFr": "Pomme, crue, avec pelure",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 52,
+            "protein_g": 0.26,
+            "carbohydrate_g": 13.81,
+            "fibre_g": 1.9,
+            "total_fat_g": 0.17,
+            "saturated_fat_g": 0.028,
+            "polyunsaturated_fat_g": 0.051,
+            "monounsaturated_fat_g": 0.007
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1696",
+            "descriptionEn": "Apple, raw, with skin",
+            "descriptionFr": "Pomme, crue, avec pelure",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 52,
+              "protein_g": 0.26,
+              "carbohydrate_g": 13.81,
+              "fibre_g": 1.9,
+              "total_fat_g": 0.17,
+              "saturated_fat_g": 0.028,
+              "polyunsaturated_fat_g": 0.051,
+              "monounsaturated_fat_g": 0.007
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1696: Apple, raw, with skin.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 21,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "afterNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 15.2,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 57
+      },
+      "beforePortion": {
+        "labelFr": "1 pomme (140 g)",
+        "labelEn": "1 apple (140 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 140,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 petite pomme, poids comestible (110 g)",
+        "labelEn": "1 small apple, edible weight (110 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 110,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 57 vs Atwater 63.8 (10.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-pomegranate",
+      "operation": "update",
+      "identity": {
+        "fr": "Arilles de grenade fraîches, crues",
+        "en": "Pomegranate arils, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice"
+        ]
+      },
+      "expectedRecordId": "1667",
+      "selectedRecordId": "1667",
+      "recordId": "1667",
+      "cnfDescription": {
+        "en": "Pomegranate, raw",
+        "fr": "Grenade, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1667",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pomegranate, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Grenade, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1667"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 80 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 83,
+          "protein_g": 1.67,
+          "carbohydrate_g": 18.7,
+          "fibre_g": 4,
+          "total_fat_g": 1.17,
+          "saturated_fat_g": 0.12,
+          "polyunsaturated_fat_g": 0.079,
+          "monounsaturated_fat_g": 0.093
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 66.4,
+          "proteinG": 1.336,
+          "carbsG": 14.96,
+          "fiberG": 3.2,
+          "fatG": 0.9359999999999999,
+          "saturatedFatG": 0.096,
+          "polyunsaturatedFatG": 0.0632,
+          "monounsaturatedFatG": 0.07440000000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 66,
+          "proteinG": 1.3,
+          "carbsG": 15,
+          "fiberG": 3.2,
+          "fatG": 0.9,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1667",
+        "selectedRecordId": "1667",
+        "selected": {
+          "recordId": "1667",
+          "descriptionEn": "Pomegranate, raw",
+          "descriptionFr": "Grenade, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 83,
+            "protein_g": 1.67,
+            "carbohydrate_g": 18.7,
+            "fibre_g": 4,
+            "total_fat_g": 1.17,
+            "saturated_fat_g": 0.12,
+            "polyunsaturated_fat_g": 0.079,
+            "monounsaturated_fat_g": 0.093
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1667",
+            "descriptionEn": "Pomegranate, raw",
+            "descriptionFr": "Grenade, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 83,
+              "protein_g": 1.67,
+              "carbohydrate_g": 18.7,
+              "fibre_g": 4,
+              "total_fat_g": 1.17,
+              "saturated_fat_g": 0.12,
+              "polyunsaturated_fat_g": 0.079,
+              "monounsaturated_fat_g": 0.093
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1667: Pomegranate, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 13,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 1.3,
+        "carbsG": 15,
+        "fiberG": 3.2,
+        "fatG": 0.9,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 66
+      },
+      "beforePortion": {
+        "labelFr": "½ pomme-grenade",
+        "labelEn": "½ pomegranate",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml d'arilles de grenade (80 g)",
+        "labelEn": "125 ml pomegranate arils (80 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 80,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-plums",
+      "operation": "update",
+      "identity": {
+        "fr": "Prunes fraîches, crues",
+        "en": "Plums, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "java",
+          "natalplum"
+        ]
+      },
+      "expectedRecordId": "1740",
+      "selectedRecordId": "1740",
+      "recordId": "1740",
+      "cnfDescription": {
+        "en": "Plum, raw",
+        "fr": "Prune, crue"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1740",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plum, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Prune, crue",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1740"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 130 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 46,
+          "protein_g": 0.7,
+          "carbohydrate_g": 11.42,
+          "fibre_g": 1.6,
+          "total_fat_g": 0.28,
+          "saturated_fat_g": 0.017,
+          "polyunsaturated_fat_g": 0.044,
+          "monounsaturated_fat_g": 0.134
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.800000000000004,
+          "proteinG": 0.9099999999999999,
+          "carbsG": 14.846,
+          "fiberG": 2.08,
+          "fatG": 0.36400000000000005,
+          "saturatedFatG": 0.0221,
+          "polyunsaturatedFatG": 0.0572,
+          "monounsaturatedFatG": 0.17420000000000002
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 0.9,
+          "carbsG": 14.8,
+          "fiberG": 2.1,
+          "fatG": 0.4,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1740",
+        "selectedRecordId": "1740",
+        "selected": {
+          "recordId": "1740",
+          "descriptionEn": "Plum, raw",
+          "descriptionFr": "Prune, crue",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 73,
+          "per100g": {
+            "energy_kcal": 46,
+            "protein_g": 0.7,
+            "carbohydrate_g": 11.42,
+            "fibre_g": 1.6,
+            "total_fat_g": 0.28,
+            "saturated_fat_g": 0.017,
+            "polyunsaturated_fat_g": 0.044,
+            "monounsaturated_fat_g": 0.134
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1740",
+            "descriptionEn": "Plum, raw",
+            "descriptionFr": "Prune, crue",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 73,
+            "per100g": {
+              "energy_kcal": 46,
+              "protein_g": 0.7,
+              "carbohydrate_g": 11.42,
+              "fibre_g": 1.6,
+              "total_fat_g": 0.28,
+              "saturated_fat_g": 0.017,
+              "polyunsaturated_fat_g": 0.044,
+              "monounsaturated_fat_g": 0.134
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1740: Plum, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0.8,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 83
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 14.8,
+        "fiberG": 2.1,
+        "fatG": 0.4,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "2 prunes (130 g)",
+        "labelEn": "2 plums (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 prunes moyennes, poids comestible (130 g)",
+        "labelEn": "2 medium plums, edible weight (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-prunes",
+      "operation": "update",
+      "identity": {
+        "fr": "Pruneaux séchés, non cuits",
+        "en": "Prunes, dried, uncooked",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "cooked",
+          "juice",
+          "puree",
+          "canned"
+        ]
+      },
+      "expectedRecordId": "1742",
+      "selectedRecordId": "1742",
+      "recordId": "1742",
+      "cnfDescription": {
+        "en": "Prune, dried, uncooked",
+        "fr": "Pruneau, séché, non cuit"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1742",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Prune, dried, uncooked)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pruneau, séché, non cuit",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1742"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 25 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 241,
+          "protein_g": 2.18,
+          "carbohydrate_g": 63.88,
+          "fibre_g": 7.23,
+          "total_fat_g": 0.38,
+          "saturated_fat_g": 0.088,
+          "polyunsaturated_fat_g": 0.062,
+          "monounsaturated_fat_g": 0.053
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60.25,
+          "proteinG": 0.545,
+          "carbsG": 15.97,
+          "fiberG": 1.8075,
+          "fatG": 0.095,
+          "saturatedFatG": 0.022,
+          "polyunsaturatedFatG": 0.0155,
+          "monounsaturatedFatG": 0.01325
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 0.5,
+          "carbsG": 16,
+          "fiberG": 1.8,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1742",
+        "selectedRecordId": "1742",
+        "selected": {
+          "recordId": "1742",
+          "descriptionEn": "Prune, dried, uncooked",
+          "descriptionFr": "Pruneau, séché, non cuit",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 241,
+            "protein_g": 2.18,
+            "carbohydrate_g": 63.88,
+            "fibre_g": 7.23,
+            "total_fat_g": 0.38,
+            "saturated_fat_g": 0.088,
+            "polyunsaturated_fat_g": 0.062,
+            "monounsaturated_fat_g": 0.053
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1742",
+            "descriptionEn": "Prune, dried, uncooked",
+            "descriptionFr": "Pruneau, séché, non cuit",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 241,
+              "protein_g": 2.18,
+              "carbohydrate_g": 63.88,
+              "fibre_g": 7.23,
+              "total_fat_g": 0.38,
+              "saturated_fat_g": 0.088,
+              "polyunsaturated_fat_g": 0.062,
+              "monounsaturated_fat_g": 0.053
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1742: Prune, dried, uncooked.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 16,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "3 pruneaux (30 g)",
+        "labelEn": "3 prunes (30 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "25 g de pruneaux (environ 2 à 3)",
+        "labelEn": "25 g dried prunes (about 2 to 3)",
+        "amount": 25,
+        "unit": "g",
+        "grams": 25,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 60 vs Atwater 66.9 (10.3%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-raisins",
+      "operation": "update",
+      "identity": {
+        "fr": "Raisins secs sans pépins",
+        "en": "Seedless raisins (sultanas)",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "golden",
+          "seeded",
+          "cereal"
+        ]
+      },
+      "expectedRecordId": "1745",
+      "selectedRecordId": "1745",
+      "recordId": "1745",
+      "cnfDescription": {
+        "en": "Raisin, seedless (sultana)",
+        "fr": "Raisin sec, sans pépin (sultana)"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1745",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Raisin, seedless (sultana))",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Raisin sec, sans pépin (sultana)",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1745"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 20 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 299,
+          "protein_g": 3.07,
+          "carbohydrate_g": 79.18,
+          "fibre_g": 3.61,
+          "total_fat_g": 0.46,
+          "saturated_fat_g": 0.058,
+          "polyunsaturated_fat_g": 0.037,
+          "monounsaturated_fat_g": 0.051
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.800000000000004,
+          "proteinG": 0.614,
+          "carbsG": 15.836000000000002,
+          "fiberG": 0.722,
+          "fatG": 0.09200000000000001,
+          "saturatedFatG": 0.011600000000000001,
+          "polyunsaturatedFatG": 0.0074,
+          "monounsaturatedFatG": 0.0102
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 0.6,
+          "carbsG": 15.8,
+          "fiberG": 0.7,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1745",
+        "selectedRecordId": "1745",
+        "selected": {
+          "recordId": "1745",
+          "descriptionEn": "Raisin, seedless (sultana)",
+          "descriptionFr": "Raisin sec, sans pépin (sultana)",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 299,
+            "protein_g": 3.07,
+            "carbohydrate_g": 79.18,
+            "fibre_g": 3.61,
+            "total_fat_g": 0.46,
+            "saturated_fat_g": 0.058,
+            "polyunsaturated_fat_g": 0.037,
+            "monounsaturated_fat_g": 0.051
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1745",
+            "descriptionEn": "Raisin, seedless (sultana)",
+            "descriptionFr": "Raisin sec, sans pépin (sultana)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 299,
+              "protein_g": 3.07,
+              "carbohydrate_g": 79.18,
+              "fibre_g": 3.61,
+              "total_fat_g": 0.46,
+              "saturated_fat_g": 0.058,
+              "polyunsaturated_fat_g": 0.037,
+              "monounsaturated_fat_g": 0.051
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1745: Raisin, seedless (sultana).",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.8,
+        "fiberG": 0.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "30 ml de raisins secs (20 g)",
+        "labelEn": "30 ml raisins (20 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 ml de raisins secs (20 g)",
+        "labelEn": "30 ml seedless raisins (20 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-large-grapes",
+      "operation": "update",
+      "identity": {
+        "fr": "Raisins rouges ou verts sans pépins, crus",
+        "en": "Red or green seedless grapes, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "dried",
+          "slip skin"
+        ]
+      },
+      "expectedRecordId": "1718",
+      "selectedRecordId": "1718",
+      "recordId": "1718",
+      "cnfDescription": {
+        "en": "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw",
+        "fr": "Raisin, rouge ou vert (Type Européen, comme Thompson sans graines), peau adhérente, cru"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1718",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grape, red or green (European type, such as Thompson seedless), adherent skin, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Raisin, rouge ou vert (Type Européen, comme Thompson sans graines), peau adhérente, cru",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1718"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 85 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 69,
+          "protein_g": 0.72,
+          "carbohydrate_g": 18.1,
+          "fibre_g": 1.2,
+          "total_fat_g": 0.16,
+          "saturated_fat_g": 0.054,
+          "polyunsaturated_fat_g": 0.048,
+          "monounsaturated_fat_g": 0.007
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 58.65,
+          "proteinG": 0.612,
+          "carbsG": 15.385000000000002,
+          "fiberG": 1.02,
+          "fatG": 0.136,
+          "saturatedFatG": 0.045899999999999996,
+          "polyunsaturatedFatG": 0.0408,
+          "monounsaturatedFatG": 0.0059499999999999996
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 0.6,
+          "carbsG": 15.4,
+          "fiberG": 1,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1718",
+        "selectedRecordId": "1718",
+        "selected": {
+          "recordId": "1718",
+          "descriptionEn": "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw",
+          "descriptionFr": "Raisin, rouge ou vert (Type Européen, comme Thompson sans graines), peau adhérente, cru",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 62,
+          "per100g": {
+            "energy_kcal": 69,
+            "protein_g": 0.72,
+            "carbohydrate_g": 18.1,
+            "fibre_g": 1.2,
+            "total_fat_g": 0.16,
+            "saturated_fat_g": 0.054,
+            "polyunsaturated_fat_g": 0.048,
+            "monounsaturated_fat_g": 0.007
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1718",
+            "descriptionEn": "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw",
+            "descriptionFr": "Raisin, rouge ou vert (Type Européen, comme Thompson sans graines), peau adhérente, cru",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 62,
+            "per100g": {
+              "energy_kcal": 69,
+              "protein_g": 0.72,
+              "carbohydrate_g": 18.1,
+              "fibre_g": 1.2,
+              "total_fat_g": 0.16,
+              "saturated_fat_g": 0.054,
+              "polyunsaturated_fat_g": 0.048,
+              "monounsaturated_fat_g": 0.007
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1718: Grape, red or green (European type, such as Thompson seedless), adherent skin, raw.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 14,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 65
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 15.4,
+        "fiberG": 1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "15 gros raisins (75 g)",
+        "labelEn": "15 large grapes (75 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 75,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "17 gros raisins (85 g)",
+        "labelEn": "17 large grapes (85 g)",
+        "amount": 17,
+        "unit": "count",
+        "grams": 85,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "operation": "update",
+      "identity": {
+        "fr": "Dattes sèches naturelles, petit format",
+        "en": "Natural dried dates, small variety",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "medjool",
+          "paste",
+          "syrup"
+        ]
+      },
+      "expectedRecordId": "1710",
+      "selectedRecordId": "1710",
+      "recordId": "1710",
+      "cnfDescription": {
+        "en": "Date, domestic, natural and dry",
+        "fr": "Datte, domestique, naturelle et séchée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1710",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Date, domestic, natural and dry)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Datte, domestique, naturelle et séchée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1710"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 21 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 282,
+          "protein_g": 2.45,
+          "carbohydrate_g": 75.03,
+          "fibre_g": 8,
+          "total_fat_g": 0.39,
+          "saturated_fat_g": 0.032,
+          "polyunsaturated_fat_g": 0.019,
+          "monounsaturated_fat_g": 0.036
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 59.22,
+          "proteinG": 0.5145000000000001,
+          "carbsG": 15.7563,
+          "fiberG": 1.68,
+          "fatG": 0.0819,
+          "saturatedFatG": 0.00672,
+          "polyunsaturatedFatG": 0.00399,
+          "monounsaturatedFatG": 0.007559999999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 59,
+          "proteinG": 0.5,
+          "carbsG": 15.8,
+          "fiberG": 1.7,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1710",
+        "selectedRecordId": "1710",
+        "selected": {
+          "recordId": "1710",
+          "descriptionEn": "Date, domestic, natural and dry",
+          "descriptionFr": "Datte, domestique, naturelle et séchée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 282,
+            "protein_g": 2.45,
+            "carbohydrate_g": 75.03,
+            "fibre_g": 8,
+            "total_fat_g": 0.39,
+            "saturated_fat_g": 0.032,
+            "polyunsaturated_fat_g": 0.019,
+            "monounsaturated_fat_g": 0.036
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1710",
+            "descriptionEn": "Date, domestic, natural and dry",
+            "descriptionFr": "Datte, domestique, naturelle et séchée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 282,
+              "protein_g": 2.45,
+              "carbohydrate_g": 75.03,
+              "fibre_g": 8,
+              "total_fat_g": 0.39,
+              "saturated_fat_g": 0.032,
+              "polyunsaturated_fat_g": 0.019,
+              "monounsaturated_fat_g": 0.036
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1710: Date, domestic, natural and dry.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 15.8,
+        "fiberG": 1.7,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "beforePortion": {
+        "labelFr": "40 g de Dattes Deglet Nour (3 dattes)",
+        "labelEn": "40 g Deglet Nour dates (3 dates)",
+        "amount": 40,
+        "unit": "g",
+        "grams": 40,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "3 petites dattes sèches (21 g)",
+        "labelEn": "3 small dried dates (21 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 21,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 59 vs Atwater 66.1 (10.7%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "operation": "update",
+      "identity": {
+        "fr": "Canneberges séchées sucrées",
+        "en": "Sweetened dried cranberries",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "juice",
+          "raw",
+          "cheese"
+        ]
+      },
+      "expectedRecordId": "5390",
+      "selectedRecordId": "5390",
+      "recordId": "5390",
+      "cnfDescription": {
+        "en": "Cranberry, dried, sweetened",
+        "fr": "Canneberge, séchée, sucrée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "5390",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cranberry, dried, sweetened)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Canneberge, séchée, sucrée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:5390"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 18 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 308,
+          "protein_g": 0.17,
+          "carbohydrate_g": 82.8,
+          "fibre_g": 5.3,
+          "total_fat_g": 1.09,
+          "saturated_fat_g": 0.088,
+          "polyunsaturated_fat_g": 0.182,
+          "monounsaturated_fat_g": 0.298
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 55.44,
+          "proteinG": 0.030600000000000002,
+          "carbsG": 14.903999999999998,
+          "fiberG": 0.954,
+          "fatG": 0.1962,
+          "saturatedFatG": 0.01584,
+          "polyunsaturatedFatG": 0.03276,
+          "monounsaturatedFatG": 0.05363999999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 55,
+          "proteinG": 0,
+          "carbsG": 14.9,
+          "fiberG": 1,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "5390",
+        "selectedRecordId": "5390",
+        "selected": {
+          "recordId": "5390",
+          "descriptionEn": "Cranberry, dried, sweetened",
+          "descriptionFr": "Canneberge, séchée, sucrée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 308,
+            "protein_g": 0.17,
+            "carbohydrate_g": 82.8,
+            "fibre_g": 5.3,
+            "total_fat_g": 1.09,
+            "saturated_fat_g": 0.088,
+            "polyunsaturated_fat_g": 0.182,
+            "monounsaturated_fat_g": 0.298
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "5390",
+            "descriptionEn": "Cranberry, dried, sweetened",
+            "descriptionFr": "Canneberge, séchée, sucrée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 308,
+              "protein_g": 0.17,
+              "carbohydrate_g": 82.8,
+              "fibre_g": 5.3,
+              "total_fat_g": 1.09,
+              "saturated_fat_g": 0.088,
+              "polyunsaturated_fat_g": 0.182,
+              "monounsaturated_fat_g": 0.298
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 5390: Cranberry, dried, sweetened.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 68
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 14.9,
+        "fiberG": 1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 55
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Canneberges séchées peu sucrées",
+        "labelEn": "30 g Lightly sweetened dried cranberries",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "18 g de canneberges séchées sucrées",
+        "labelEn": "18 g sweetened dried cranberries",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 68 vs Atwater 61.8 (10.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 55 vs Atwater 61.4 (10.4%)",
+          "resolutionStatus": "open"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "identity": {
+        "fr": "Jus de pomme 100 % pur, sans sucre ajouté",
+        "en": "100% pure apple juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate",
+          "babyfood"
+        ]
+      },
+      "expectedRecordId": "1495",
+      "selectedRecordId": "1495",
+      "recordId": "1495",
+      "cnfDescription": {
+        "en": "Apple juice, canned or bottled, without added vitamin C",
+        "fr": "Pomme, jus, conserve ou bouteille, sans vitamine C ajoutée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1495",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Apple juice, canned or bottled, without added vitamin C)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pomme, jus, conserve ou bouteille, sans vitamine C ajoutée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1495"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 131 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 46,
+          "protein_g": 0.1,
+          "carbohydrate_g": 11.3,
+          "fibre_g": 0.2,
+          "total_fat_g": 0.13,
+          "saturated_fat_g": 0.022,
+          "polyunsaturated_fat_g": 0.039,
+          "monounsaturated_fat_g": 0.006
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60.260000000000005,
+          "proteinG": 0.131,
+          "carbsG": 14.803,
+          "fiberG": 0.262,
+          "fatG": 0.1703,
+          "saturatedFatG": 0.02882,
+          "polyunsaturatedFatG": 0.05109,
+          "monounsaturatedFatG": 0.00786
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 0.1,
+          "carbsG": 14.8,
+          "fiberG": 0.3,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1495",
+        "selectedRecordId": "1495",
+        "selected": {
+          "recordId": "1495",
+          "descriptionEn": "Apple juice, canned or bottled, without added vitamin C",
+          "descriptionFr": "Pomme, jus, conserve ou bouteille, sans vitamine C ajoutée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 66,
+          "per100g": {
+            "energy_kcal": 46,
+            "protein_g": 0.1,
+            "carbohydrate_g": 11.3,
+            "fibre_g": 0.2,
+            "total_fat_g": 0.13,
+            "saturated_fat_g": 0.022,
+            "polyunsaturated_fat_g": 0.039,
+            "monounsaturated_fat_g": 0.006
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1495",
+            "descriptionEn": "Apple juice, canned or bottled, without added vitamin C",
+            "descriptionFr": "Pomme, jus, conserve ou bouteille, sans vitamine C ajoutée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 66,
+            "per100g": {
+              "energy_kcal": 46,
+              "protein_g": 0.1,
+              "carbohydrate_g": 11.3,
+              "fibre_g": 0.2,
+              "total_fat_g": 0.13,
+              "saturated_fat_g": 0.022,
+              "polyunsaturated_fat_g": 0.039,
+              "monounsaturated_fat_g": 0.006
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1495: Apple juice, canned or bottled, without added vitamin C.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 14.8,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus de pomme 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure apple juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "identity": {
+        "fr": "Jus d'ananas 100 % pur, sans sucre ajouté",
+        "en": "100% pure pineapple juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "expectedRecordId": "1657",
+      "selectedRecordId": "1657",
+      "recordId": "1657",
+      "cnfDescription": {
+        "en": "Pineapple juice, canned, added vitamin C",
+        "fr": "Ananas, jus, conserve, vitamine C ajoutée"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "1657",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Pineapple juice, canned, added vitamin C)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Ananas, jus, conserve, vitamine C ajoutée",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:1657"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 132 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 53,
+          "protein_g": 0.36,
+          "carbohydrate_g": 12.87,
+          "fibre_g": 0.2,
+          "total_fat_g": 0.12,
+          "saturated_fat_g": 0.008,
+          "polyunsaturated_fat_g": 0.042,
+          "monounsaturated_fat_g": 0.014
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 69.96000000000001,
+          "proteinG": 0.4752,
+          "carbsG": 16.9884,
+          "fiberG": 0.264,
+          "fatG": 0.1584,
+          "saturatedFatG": 0.01056,
+          "polyunsaturatedFatG": 0.05544,
+          "monounsaturatedFatG": 0.01848
+        },
+        "storedRounded": {
+          "declaredKcal": 70,
+          "proteinG": 0.5,
+          "carbsG": 17,
+          "fiberG": 0.3,
+          "fatG": 0.2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "1657",
+        "selectedRecordId": "1657",
+        "selected": {
+          "recordId": "1657",
+          "descriptionEn": "Pineapple juice, canned, added vitamin C",
+          "descriptionFr": "Ananas, jus, conserve, vitamine C ajoutée",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 53,
+            "protein_g": 0.36,
+            "carbohydrate_g": 12.87,
+            "fibre_g": 0.2,
+            "total_fat_g": 0.12,
+            "saturated_fat_g": 0.008,
+            "polyunsaturated_fat_g": 0.042,
+            "monounsaturated_fat_g": 0.014
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "1657",
+            "descriptionEn": "Pineapple juice, canned, added vitamin C",
+            "descriptionFr": "Ananas, jus, conserve, vitamine C ajoutée",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 53,
+              "protein_g": 0.36,
+              "carbohydrate_g": 12.87,
+              "fibre_g": 0.2,
+              "total_fat_g": 0.12,
+              "saturated_fat_g": 0.008,
+              "polyunsaturated_fat_g": 0.042,
+              "monounsaturated_fat_g": 0.014
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 1657: Pineapple juice, canned, added vitamin C.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 17,
+        "fiberG": 0.3,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 70
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus d'ananas 100 % pur (132 g)",
+        "labelEn": "125 ml 100% pure pineapple juice (132 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 132,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "identity": {
+        "fr": "Jus de pamplemousse rose 100 % pur, sans sucre ajouté",
+        "en": "100% pure pink grapefruit juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "expectedRecordId": "6440",
+      "selectedRecordId": "6440",
+      "recordId": "6440",
+      "cnfDescription": {
+        "en": "Grapefruit juice, pink, raw",
+        "fr": "Pamplemousse rose, jus, frais"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6440",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Grapefruit juice, pink, raw)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Pamplemousse rose, jus, frais",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6440"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 130 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 39,
+          "protein_g": 0.5,
+          "carbohydrate_g": 9.2,
+          "fibre_g": null,
+          "total_fat_g": 0.1,
+          "saturated_fat_g": 0.014,
+          "polyunsaturated_fat_g": 0.024,
+          "monounsaturated_fat_g": 0.013
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 50.7,
+          "proteinG": 0.65,
+          "carbsG": 11.959999999999999,
+          "fiberG": null,
+          "fatG": 0.13,
+          "saturatedFatG": 0.0182,
+          "polyunsaturatedFatG": 0.031200000000000002,
+          "monounsaturatedFatG": 0.0169
+        },
+        "storedRounded": {
+          "declaredKcal": 51,
+          "proteinG": 0.7,
+          "carbsG": 12,
+          "fiberG": null,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6440",
+        "selectedRecordId": "6440",
+        "selected": {
+          "recordId": "6440",
+          "descriptionEn": "Grapefruit juice, pink, raw",
+          "descriptionFr": "Pamplemousse rose, jus, frais",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 71,
+          "per100g": {
+            "energy_kcal": 39,
+            "protein_g": 0.5,
+            "carbohydrate_g": 9.2,
+            "fibre_g": null,
+            "total_fat_g": 0.1,
+            "saturated_fat_g": 0.014,
+            "polyunsaturated_fat_g": 0.024,
+            "monounsaturated_fat_g": 0.013
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6440",
+            "descriptionEn": "Grapefruit juice, pink, raw",
+            "descriptionFr": "Pamplemousse rose, jus, frais",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 71,
+            "per100g": {
+              "energy_kcal": 39,
+              "protein_g": 0.5,
+              "carbohydrate_g": 9.2,
+              "fibre_g": null,
+              "total_fat_g": 0.1,
+              "saturated_fat_g": 0.014,
+              "polyunsaturated_fat_g": 0.024,
+              "monounsaturated_fat_g": 0.013
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6440: Grapefruit juice, pink, raw.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 12,
+        "fiberG": null,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 51
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de jus de pamplemousse rose 100 % pur (130 g)",
+        "labelEn": "125 ml 100% pure pink grapefruit juice (130 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 130,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 179,
+  "protectedFoodsDataHash": "3a82e9dc7ffeda6ef8d6030acf23ae8b89c0da215e452e2c1fe89ac4281edb29",
+  "foodCount": 211,
+  "checkedAt": "2026-07-30T14:44:49.404Z",
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}

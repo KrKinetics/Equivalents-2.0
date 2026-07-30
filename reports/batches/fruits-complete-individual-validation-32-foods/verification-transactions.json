@@ -1,0 +1,261 @@
+{
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "transactions": [
+    {
+      "id": "fruits-apricots",
+      "operation": "update",
+      "transactionId": "0849c99c-96d9-4d71-84fc-b6bb345949d4",
+      "expectedRecordId": "1498",
+      "selectedRecordId": "1498",
+      "version": 3
+    },
+    {
+      "id": "fruits-pineapple",
+      "operation": "update",
+      "transactionId": "536b7328-a970-484b-bb1d-2978b79c0eb3",
+      "expectedRecordId": "1734",
+      "selectedRecordId": "1734",
+      "version": 3
+    },
+    {
+      "id": "fruits-banana",
+      "operation": "update",
+      "transactionId": "4be5e93e-80c4-41bb-a00d-7ac56cadee2e",
+      "expectedRecordId": "1704",
+      "selectedRecordId": "1704",
+      "version": 3
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "operation": "update",
+      "transactionId": "8e2829ce-4c24-4a3d-82bb-da5ae1cba9bc",
+      "expectedRecordId": "7596",
+      "selectedRecordId": "7596",
+      "version": 3
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "operation": "update",
+      "transactionId": "c9e39bf0-f996-4185-b406-23e9ff922327",
+      "expectedRecordId": "1721",
+      "selectedRecordId": "1721",
+      "version": 3
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "operation": "update",
+      "transactionId": "8c130d9d-6ffd-420f-aba7-a42751662196",
+      "expectedRecordId": "1531",
+      "selectedRecordId": "1531",
+      "version": 3
+    },
+    {
+      "id": "fruits-clementines",
+      "operation": "update",
+      "transactionId": "737076d1-829d-4d49-9650-fc33d650bb06",
+      "expectedRecordId": "5956",
+      "selectedRecordId": "5956",
+      "version": 3
+    },
+    {
+      "id": "fruits-medjool-date",
+      "operation": "update",
+      "transactionId": "96f41a02-c6a6-407b-b27d-8a09c2fee021",
+      "expectedRecordId": "5401",
+      "selectedRecordId": "5401",
+      "version": 3
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "operation": "update",
+      "transactionId": "944b627c-8cf5-4ff2-a540-b506c0246b8c",
+      "expectedRecordId": "1700",
+      "selectedRecordId": "1700",
+      "version": 3
+    },
+    {
+      "id": "fruits-strawberries",
+      "operation": "update",
+      "transactionId": "87a8f189-c31b-4235-9830-62e895527611",
+      "expectedRecordId": "1749",
+      "selectedRecordId": "1749",
+      "version": 3
+    },
+    {
+      "id": "fruits-raspberries",
+      "operation": "update",
+      "transactionId": "1417a262-3cb9-4ea3-9c6b-81a2d786ad9b",
+      "expectedRecordId": "1747",
+      "selectedRecordId": "1747",
+      "version": 3
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "operation": "update",
+      "transactionId": "47f394f1-4150-4a46-80b2-ce605fc5a327",
+      "expectedRecordId": "1619",
+      "selectedRecordId": "1619",
+      "version": 3
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "operation": "update",
+      "transactionId": "4e644bac-df29-4829-9495-92976ce938f1",
+      "expectedRecordId": "1585",
+      "selectedRecordId": "1585",
+      "version": 3
+    },
+    {
+      "id": "fruits-mango",
+      "operation": "update",
+      "transactionId": "f683296e-0b6d-43c9-bd8b-9b666aaf5759",
+      "expectedRecordId": "1603",
+      "selectedRecordId": "1603",
+      "version": 3
+    },
+    {
+      "id": "fruits-watermelon",
+      "operation": "update",
+      "transactionId": "061f8376-8982-4660-a651-e0892cf07fc0",
+      "expectedRecordId": "1691",
+      "selectedRecordId": "1691",
+      "version": 3
+    },
+    {
+      "id": "fruits-blackberries",
+      "operation": "update",
+      "transactionId": "93728daa-39de-4766-ba1b-254221971f9e",
+      "expectedRecordId": "1515",
+      "selectedRecordId": "1515",
+      "version": 3
+    },
+    {
+      "id": "fruits-nectarine",
+      "operation": "update",
+      "transactionId": "ed54c242-a25d-4306-8e43-a7fa67f8d059",
+      "expectedRecordId": "1611",
+      "selectedRecordId": "1611",
+      "version": 3
+    },
+    {
+      "id": "fruits-orange",
+      "operation": "update",
+      "transactionId": "e5bd13a0-5261-4e29-aedc-00852b6217e8",
+      "expectedRecordId": "1722",
+      "selectedRecordId": "1722",
+      "version": 3
+    },
+    {
+      "id": "fruits-grapefruit",
+      "operation": "update",
+      "transactionId": "32de5d17-2ded-47cf-83ae-8621d385e897",
+      "expectedRecordId": "1714",
+      "selectedRecordId": "1714",
+      "version": 3
+    },
+    {
+      "id": "fruits-peach",
+      "operation": "update",
+      "transactionId": "94b67b43-73d1-462d-963d-ce9c534a5b76",
+      "expectedRecordId": "1728",
+      "selectedRecordId": "1728",
+      "version": 3
+    },
+    {
+      "id": "fruits-pear",
+      "operation": "update",
+      "transactionId": "1f501514-258a-4938-8bbb-e9e70526edb7",
+      "expectedRecordId": "1731",
+      "selectedRecordId": "1731",
+      "version": 3
+    },
+    {
+      "id": "fruits-apple",
+      "operation": "update",
+      "transactionId": "f3a720fd-cf3a-4169-a3b2-35a727bfb6cc",
+      "expectedRecordId": "1696",
+      "selectedRecordId": "1696",
+      "version": 3
+    },
+    {
+      "id": "fruits-pomegranate",
+      "operation": "update",
+      "transactionId": "8907c433-69de-4585-a491-77aa787f4c6b",
+      "expectedRecordId": "1667",
+      "selectedRecordId": "1667",
+      "version": 3
+    },
+    {
+      "id": "fruits-plums",
+      "operation": "update",
+      "transactionId": "53baae25-e4df-4523-b815-87e7021f6230",
+      "expectedRecordId": "1740",
+      "selectedRecordId": "1740",
+      "version": 3
+    },
+    {
+      "id": "fruits-prunes",
+      "operation": "update",
+      "transactionId": "b547b8ad-98a5-4841-ba84-fad4e97dfeec",
+      "expectedRecordId": "1742",
+      "selectedRecordId": "1742",
+      "version": 3
+    },
+    {
+      "id": "fruits-raisins",
+      "operation": "update",
+      "transactionId": "ca555c7a-f533-4e7a-bba5-07a4328e63e0",
+      "expectedRecordId": "1745",
+      "selectedRecordId": "1745",
+      "version": 3
+    },
+    {
+      "id": "fruits-large-grapes",
+      "operation": "update",
+      "transactionId": "70d14686-85e8-435d-9d84-4840d9134ada",
+      "expectedRecordId": "1718",
+      "selectedRecordId": "1718",
+      "version": 3
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "operation": "update",
+      "transactionId": "7e730341-5488-4c96-bd90-0b5454e2f6ae",
+      "expectedRecordId": "1710",
+      "selectedRecordId": "1710",
+      "version": 3
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "operation": "update",
+      "transactionId": "9d7e1baf-4f02-4bf1-b8fb-ef2323c02113",
+      "expectedRecordId": "5390",
+      "selectedRecordId": "5390",
+      "version": 3
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "transactionId": "1817d460-f796-4d26-8e3e-9395b8f113b4",
+      "expectedRecordId": "1495",
+      "selectedRecordId": "1495",
+      "version": 3
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "transactionId": "8abb1a95-7006-429d-87ac-089f78a9e14b",
+      "expectedRecordId": "1657",
+      "selectedRecordId": "1657",
+      "version": 3
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "operation": "add",
+      "transactionId": "f4ec0864-8764-4aae-9a86-4849f9d904e7",
+      "expectedRecordId": "6440",
+      "selectedRecordId": "6440",
+      "version": 3
+    }
+  ]
+}

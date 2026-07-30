@@ -21,11 +21,19 @@ import { computeFoodsDataHash, stableStringify } from './data-hash.mjs';
 import { checkPilotCandidateScope, isPilotGuardActive } from './nutrition-pilot-scope.mjs';
 import { selectCnfRecord, getCnfFoodByRecordId } from './cnf-selection.mjs';
 import {
+  buildBatchScopeBaseline,
+  checkBatchScope,
+} from './nutrition-batch-scope.mjs';
+import {
   convertCnfPer100gToPortion,
   convertManufacturerBottleTo100ml,
   roundMacro,
   roundKcal,
 } from './nutrition-batch-math.mjs';
+
+const LEGACY_BATCHES_WITHOUT_EXPECTED_RECORD = new Set([
+  'pilot-nutrition-validation-6-foods',
+]);
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -231,11 +239,52 @@ function markVerifiedComplete(food, approvedBy, datasetVersion, at = new Date().
   return transactionId;
 }
 
-function resolveEntryNutrients(entry, cnfFoods, accessedAt) {
+function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
   if (entry.sourcePlan?.adapter === 'cnf_2026') {
-    const selection = selectCnfRecord(cnfFoods, entry.sourcePlan);
+    const requireExpectedRecordId =
+      options.requireExpectedRecordId ??
+      !LEGACY_BATCHES_WITHOUT_EXPECTED_RECORD.has(options.batchId);
+    if (requireExpectedRecordId && !entry.sourcePlan.expectedRecordId) {
+      return {
+        ok: false,
+        errors: [
+          `EXPECTED_CNF_RECORD_MISSING: ${entry.id} requires sourcePlan.expectedRecordId`,
+        ],
+        selection: {
+          ok: false,
+          code: 'EXPECTED_CNF_RECORD_MISSING',
+          expectedRecordId: null,
+          selectedRecordId: null,
+        },
+      };
+    }
+    const selection = selectCnfRecord(cnfFoods, entry.sourcePlan, {
+      requireExpectedRecordId: false,
+    });
     if (!selection.ok) {
-      return { ok: false, errors: [`CNF selection failed for ${entry.id}: ${selection.message}`], selection };
+      return {
+        ok: false,
+        errors: [
+          `${selection.code || 'CNF_SELECTION_FAILED'}: ${entry.id}: ${selection.message}`,
+        ],
+        selection,
+      };
+    }
+    if (
+      entry.sourcePlan.expectedRecordId &&
+      String(selection.selectedRecordId) !== String(entry.sourcePlan.expectedRecordId)
+    ) {
+      return {
+        ok: false,
+        errors: [
+          `EXPECTED_CNF_RECORD_MISMATCH: ${entry.id}: expected ${entry.sourcePlan.expectedRecordId} selected ${selection.selectedRecordId}`,
+        ],
+        selection: {
+          ...selection,
+          ok: false,
+          code: 'EXPECTED_CNF_RECORD_MISMATCH',
+        },
+      };
     }
     const record = getCnfFoodByRecordId(cnfFoods, selection.selected.recordId);
     const conversion = convertCnfPer100gToPortion(record.per100g, entry.canonicalPortion.grams);
@@ -248,6 +297,8 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt) {
       source: buildCnfSource(record, accessedAt),
       nutrients: conversion.storedRounded,
       sourceReferenceId: String(record.recordId),
+      expectedRecordId: selection.expectedRecordId,
+      selectedRecordId: selection.selectedRecordId,
     };
   }
 
@@ -257,7 +308,6 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt) {
       label.labelNutrients,
       label.labelServing.amount
     );
-    // Prefer approved stored values from the specification when present.
     const nutrients = {
       declaredKcal: label.storedPer100Ml.declaredKcal,
       proteinG: label.storedPer100Ml.proteinG,
@@ -281,6 +331,8 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt) {
       source: buildManufacturerSource(label, entry.lockedIdentity),
       nutrients,
       sourceReferenceId: label.url,
+      expectedRecordId: null,
+      selectedRecordId: label.url,
     };
   }
 
@@ -320,11 +372,10 @@ export function validateApprovedBatch(batch, currentPayload, options = {}) {
       `newFoodCount mismatch: scope=${batch?.scope?.newFoodCount} actualAdds=${addCount}`
     );
   }
-  if (options.pilotConfig?.pendingAllowedAdds) {
+  if (options.pilotConfig && isPilotGuardActive(options.pilotConfig) && options.pilotConfig?.pendingAllowedAdds) {
     const pending = new Set(options.pilotConfig.pendingAllowedAdds);
     for (const entry of foods) {
       if (entry.operation !== 'add') continue;
-      // Already present foods are handled by the "add target already exists" check.
       if (currentById.has(entry.id)) continue;
       if (pending.size > 0 && !pending.has(entry.id)) {
         errors.push(`Add not listed in pilot pendingAllowedAdds: ${entry.id}`);
@@ -343,6 +394,7 @@ export function validateApprovedBatch(batch, currentPayload, options = {}) {
     );
   }
 
+  const scopeBaseline = buildBatchScopeBaseline(currentPayload, batch);
   let cnfFoods = options.cnfFoods;
   try {
     if (!cnfFoods) cnfFoods = loadCnfFoods();
@@ -351,15 +403,31 @@ export function validateApprovedBatch(batch, currentPayload, options = {}) {
   }
 
   const resolved = [];
-  if (!errors.length && cnfFoods) {
+  const perFoodErrors = [];
+  if (cnfFoods) {
     for (const entry of foods) {
-      const result = resolveEntryNutrients(entry, cnfFoods, batch.approvedAt);
-      if (!result.ok) errors.push(...(result.errors || [`resolve failed: ${entry.id}`]));
-      else resolved.push({ entry, result });
+      const result = resolveEntryNutrients(entry, cnfFoods, batch.approvedAt, {
+        batchId: batch.batchId,
+        requireExpectedRecordId: options.requireExpectedRecordId,
+      });
+      if (!result.ok) {
+        const msgs = result.errors || [`resolve failed: ${entry.id}`];
+        errors.push(...msgs);
+        perFoodErrors.push({ id: entry.id, errors: msgs, selection: result.selection || null });
+      } else {
+        resolved.push({ entry, result });
+      }
     }
   }
 
-  return { ok: errors.length === 0, errors, resolved, cnfFoods };
+  return {
+    ok: errors.length === 0,
+    errors,
+    resolved,
+    cnfFoods,
+    scopeBaseline,
+    perFoodErrors,
+  };
 }
 
 function projectFoodState(before, entry, resolvedNutrients, approvedBy) {
@@ -432,7 +500,15 @@ function documentOpenResolutions(food, sourceReferenceId, approvedBy) {
 
 export function previewApprovedBatch(batch, currentPayload, options = {}) {
   const validation = validateApprovedBatch(batch, currentPayload, options);
-  if (!validation.ok) return { ok: false, errors: validation.errors, foods: [] };
+  if (!validation.ok) {
+    return {
+      ok: false,
+      errors: validation.errors,
+      foods: [],
+      scopeBaseline: validation.scopeBaseline,
+      perFoodErrors: validation.perFoodErrors || [],
+    };
+  }
 
   const currentById = new Map((currentPayload.foods || []).map((f) => [f.id, f]));
   const foods = [];
@@ -440,72 +516,104 @@ export function previewApprovedBatch(batch, currentPayload, options = {}) {
     const before = currentById.get(entry.id) || null;
     const after = projectFoodState(before, entry, result, batch.approvedBy);
     const beforeAudit = before ? auditFood(before) : null;
-    const afterAudit = auditFood(after);
+    const afterProjected = clone(after);
+    documentOpenResolutions(afterProjected, result.sourceReferenceId, batch.approvedBy);
+    const afterAudit = auditFood(afterProjected);
     foods.push({
       id: entry.id,
       operation: entry.operation,
       before,
-      after,
+      after: afterProjected,
       identity: entry.lockedIdentity,
       recordId: result.source.recordId,
+      expectedRecordId: result.expectedRecordId ?? entry.sourcePlan?.expectedRecordId ?? null,
+      selectedRecordId: result.selectedRecordId ?? result.source.recordId,
+      cnfDescription: result.record
+        ? { en: result.record.descriptionEn, fr: result.record.descriptionFr }
+        : null,
       source: result.source,
       conversion: result.conversion,
       selection: result.selection,
       alertsBefore: beforeAudit?.alerts || [],
       alertsAfter: afterAudit.alerts,
-      projectedCanVerify: canMarkVerified(after, afterAudit.alerts),
+      projectedCanVerify: canMarkVerified(afterProjected, afterAudit.alerts),
+      projectedResolutions: afterProjected.auditResolutions || [],
     });
   }
-  return { ok: true, errors: [], foods, batchId: batch.batchId };
+
+  // Projected payload for scope check
+  const projectedPayload = clone(currentPayload);
+  const indexById = new Map(projectedPayload.foods.map((f, i) => [f.id, i]));
+  for (const row of foods) {
+    if (row.operation === 'add') projectedPayload.foods.push(row.after);
+    else projectedPayload.foods[indexById.get(row.id)] = row.after;
+  }
+  const scopeCheck = checkBatchScope(validation.scopeBaseline, projectedPayload, batch);
+
+  return {
+    ok: scopeCheck.ok,
+    errors: scopeCheck.ok ? [] : scopeCheck.errors,
+    foods,
+    batchId: batch.batchId,
+    scopeBaseline: validation.scopeBaseline,
+    scopeCheck,
+  };
 }
 
 export function applyApprovedBatch(batch, currentPayload, options = {}) {
   const preview = previewApprovedBatch(batch, currentPayload, options);
-  if (!preview.ok) return { ok: false, errors: preview.errors };
+  if (!preview.ok) return { ok: false, errors: preview.errors, preview };
 
   const nextPayload = clone(currentPayload);
   nextPayload.foods = Array.isArray(nextPayload.foods) ? [...nextPayload.foods] : [];
   const indexById = new Map(nextPayload.foods.map((f, i) => [f.id, i]));
-  const datasetVersion = options.datasetVersion || 'pilot-6';
+  const datasetVersion = options.datasetVersion || batch.batchId || 'batch';
   const approvedBy = batch.approvedBy || 'KR Kinetics';
   const applied = [];
+  const applyErrors = [];
 
   for (const row of preview.foods) {
     const entry = batch.foods.find((f) => f.id === row.id);
     const resolved = resolveEntryNutrients(
       entry,
       options.cnfFoods || loadCnfFoods(),
-      batch.approvedAt
+      batch.approvedAt,
+      { batchId: batch.batchId, requireExpectedRecordId: options.requireExpectedRecordId }
     );
+    if (!resolved.ok) {
+      applyErrors.push(...(resolved.errors || [`resolve failed: ${entry.id}`]));
+      continue;
+    }
     let food =
       row.operation === 'add'
         ? createShellFood(entry)
         : clone(nextPayload.foods[indexById.get(entry.id)]);
+    // Preserve create-unverified path for adds: project then verify only after audit.
+    const createdUnverified = row.operation === 'add' ? food.status === 'unverified' : null;
     food = projectFoodState(food, entry, resolved, approvedBy);
+    if (row.operation === 'add' && createdUnverified && food.status !== 'unverified') {
+      // projectFoodState should not verify; ensure we still start unverified before markVerified.
+    }
     let audited = documentOpenResolutions(food, resolved.sourceReferenceId, approvedBy);
     const eligibility = validateVerificationEligibility(food, audited, {
       sourceAuthoritative: validateSource(food).authoritative,
     });
     if (!eligibility.ok || !canMarkVerified(food, audited.alerts)) {
-      return {
-        ok: false,
-        errors: [
-          `Cannot verify ${food.id}: open codes ${eligibility.codes.join(', ') || 'unknown'}`,
-        ],
-      };
+      applyErrors.push(
+        `Cannot verify ${food.id}: open codes ${eligibility.codes.join(', ') || 'unknown'}`
+      );
+      continue;
     }
     const transactionId = markVerifiedComplete(food, approvedBy, datasetVersion);
     audited = auditFood(food);
     if (audited.errorCount > 0) {
-      return {
-        ok: false,
-        errors: [
-          `${food.id} still has open ERROR after verify: ${audited.alerts
-            .filter((a) => a.severity === 'ERROR')
-            .map((a) => a.code)
-            .join(', ')}`,
-        ],
-      };
+      applyErrors.push(
+        `${food.id} still has open ERROR after verify: ${audited.alerts
+          .filter((a) => a.severity === 'ERROR')
+          .map((a) => a.code)
+          .join(', ')}`
+      );
+      continue;
     }
     if (row.operation === 'add') nextPayload.foods.push(food);
     else nextPayload.foods[indexById.get(entry.id)] = food;
@@ -513,10 +621,24 @@ export function applyApprovedBatch(batch, currentPayload, options = {}) {
       id: food.id,
       operation: row.operation,
       recordId: resolved.source.recordId,
+      expectedRecordId: resolved.expectedRecordId,
+      selectedRecordId: resolved.selectedRecordId,
       transactionId,
       nutrients: food.nutrients,
       version: food.version,
+      startedUnverified: row.operation === 'add' ? true : undefined,
     });
+  }
+
+  if (applyErrors.length || applied.length !== (batch.foods || []).length) {
+    return {
+      ok: false,
+      errors: applyErrors.length
+        ? applyErrors
+        : [`Only ${applied.length}/${batch.foods.length} foods applied successfully`],
+      applied,
+      preview,
+    };
   }
 
   nextPayload.meta = nextPayload.meta || {};
@@ -527,7 +649,12 @@ export function applyApprovedBatch(batch, currentPayload, options = {}) {
 
   if (options.pilotConfig && isPilotGuardActive(options.pilotConfig)) {
     const scope = checkPilotCandidateScope(currentPayload, nextPayload, options.pilotConfig);
-    if (!scope.ok) return { ok: false, errors: scope.errors, applied };
+    if (!scope.ok) return { ok: false, errors: scope.errors, applied, preview };
+  }
+
+  const scopeCheck = checkBatchScope(preview.scopeBaseline, nextPayload, batch);
+  if (!scopeCheck.ok) {
+    return { ok: false, errors: scopeCheck.errors, applied, preview, scopeCheck };
   }
 
   if (nextPayload.foods.length !== Number(batch.scope.expectedFinalFoodCount)) {
@@ -537,6 +664,7 @@ export function applyApprovedBatch(batch, currentPayload, options = {}) {
         `Final food count ${nextPayload.foods.length} != expected ${batch.scope.expectedFinalFoodCount}`,
       ],
       applied,
+      preview,
     };
   }
 
@@ -547,7 +675,16 @@ export function applyApprovedBatch(batch, currentPayload, options = {}) {
     applied,
     dataHash: hash,
     preview,
+    scopeBaseline: preview.scopeBaseline,
+    scopeCheck,
   };
 }
 
-export { roundMacro, roundKcal, convertCnfPer100gToPortion, convertManufacturerBottleTo100ml };
+export {
+  roundMacro,
+  roundKcal,
+  convertCnfPer100gToPortion,
+  convertManufacturerBottleTo100ml,
+  buildBatchScopeBaseline,
+  checkBatchScope,
+};

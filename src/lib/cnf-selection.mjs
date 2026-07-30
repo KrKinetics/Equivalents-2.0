@@ -2,6 +2,13 @@
  * Deterministic CNF record selection for approved nutrition batches.
  */
 
+export const CNF_SELECTION_ERROR_CODES = Object.freeze({
+  EXPECTED_CNF_RECORD_MISSING: 'EXPECTED_CNF_RECORD_MISSING',
+  EXPECTED_CNF_RECORD_NOT_FOUND: 'EXPECTED_CNF_RECORD_NOT_FOUND',
+  EXPECTED_CNF_RECORD_INCOMPATIBLE: 'EXPECTED_CNF_RECORD_INCOMPATIBLE',
+  EXPECTED_CNF_RECORD_MISMATCH: 'EXPECTED_CNF_RECORD_MISMATCH',
+});
+
 function normalizeText(value) {
   return String(value || '')
     .toLowerCase()
@@ -10,7 +17,7 @@ function normalizeText(value) {
     .trim();
 }
 
-function containsConcept(haystack, concept) {
+export function containsConcept(haystack, concept) {
   const text = normalizeText(haystack);
   const needle = normalizeText(concept);
   if (!needle) return true;
@@ -37,7 +44,7 @@ function containsConcept(haystack, concept) {
   return false;
 }
 
-function excludesConcept(haystack, concept) {
+export function excludesConcept(haystack, concept) {
   const text = normalizeText(haystack);
   const needle = normalizeText(concept);
   if (!needle) return false;
@@ -73,7 +80,6 @@ function scoreCandidate(food, sourcePlan) {
   for (const concept of sourcePlan.mustContainConcepts || []) {
     if (containsConcept(hay, concept)) score += 25;
   }
-  // Prefer shorter / more specific generic descriptions
   score += Math.max(0, 40 - normalizeText(en).split(' ').length);
   if (/\b(homemade|commercial|frozen|babyfood|deli|fast foods|candies|cereal|muffin|pie|butter|paste|meal)\b/i.test(en)) {
     score -= 40;
@@ -85,8 +91,8 @@ function scoreCandidate(food, sourcePlan) {
   return score;
 }
 
-export function selectCnfRecord(normalizedFoods, sourcePlan, options = {}) {
-  const foods = Array.isArray(normalizedFoods) ? normalizedFoods : [];
+function evaluateCompatibility(food, sourcePlan) {
+  const hay = `${food.descriptionEn || ''} ${food.descriptionFr || ''}`;
   const requiredConcepts = [...(sourcePlan.mustContainConcepts || [])];
   const excludedConcepts = [
     ...(sourcePlan.mustNotContainConcepts || []),
@@ -98,18 +104,28 @@ export function selectCnfRecord(normalizedFoods, sourcePlan, options = {}) {
     'butter',
     'paste',
   ];
+  const missing = requiredConcepts.filter((concept) => !containsConcept(hay, concept));
+  const excludedBy = excludedConcepts.filter((concept) => excludesConcept(hay, concept));
+  return {
+    compatible: missing.length === 0 && excludedBy.length === 0,
+    missing,
+    excludedBy,
+    hay,
+  };
+}
+
+function heuristicSelect(normalizedFoods, sourcePlan, options = {}) {
+  const foods = Array.isArray(normalizedFoods) ? normalizedFoods : [];
   const candidates = [];
   for (const food of foods) {
-    const hay = `${food.descriptionEn || ''} ${food.descriptionFr || ''}`;
-    const missing = requiredConcepts.filter((concept) => !containsConcept(hay, concept));
-    const excludedBy = excludedConcepts.filter((concept) => excludesConcept(hay, concept));
-    if (missing.length || excludedBy.length) {
+    const compatibility = evaluateCompatibility(food, sourcePlan);
+    if (!compatibility.compatible) {
       candidates.push({
         recordId: food.recordId,
         descriptionEn: food.descriptionEn,
         compatible: false,
-        missing,
-        excludedBy,
+        missing: compatibility.missing,
+        excludedBy: compatibility.excludedBy,
         score: -1,
       });
       continue;
@@ -139,7 +155,10 @@ export function selectCnfRecord(normalizedFoods, sourcePlan, options = {}) {
     return {
       ok: false,
       selected: null,
+      expectedRecordId: sourcePlan.expectedRecordId || null,
+      selectedRecordId: null,
       candidates: candidates.sort((a, b) => Number(b.compatible) - Number(a.compatible)),
+      code: null,
       message: 'Aucun enregistrement CNF compatible',
     };
   }
@@ -152,8 +171,106 @@ export function selectCnfRecord(normalizedFoods, sourcePlan, options = {}) {
   return {
     ok: true,
     selected,
+    expectedRecordId: sourcePlan.expectedRecordId || null,
+    selectedRecordId: String(selected.recordId),
     candidates: compatible.slice(0, 20),
     allRejectedSample: candidates.filter((c) => !c.compatible).slice(0, 10),
+    code: null,
+    message: sourcePlan.ambiguityRule || null,
+  };
+}
+
+/**
+ * Select a CNF record.
+ * When expectedRecordId is present, that record is locked and verified.
+ */
+export function selectCnfRecord(normalizedFoods, sourcePlan, options = {}) {
+  const expected = sourcePlan?.expectedRecordId;
+  if (expected == null || expected === '') {
+    if (options.requireExpectedRecordId) {
+      return {
+        ok: false,
+        selected: null,
+        expectedRecordId: null,
+        selectedRecordId: null,
+        candidates: [],
+        code: CNF_SELECTION_ERROR_CODES.EXPECTED_CNF_RECORD_MISSING,
+        message: 'expectedRecordId is required for this batch',
+      };
+    }
+    return heuristicSelect(normalizedFoods, sourcePlan, options);
+  }
+
+  const expectedId = String(expected);
+  const record = getCnfFoodByRecordId(normalizedFoods, expectedId);
+  if (!record) {
+    return {
+      ok: false,
+      selected: null,
+      expectedRecordId: expectedId,
+      selectedRecordId: null,
+      candidates: [],
+      code: CNF_SELECTION_ERROR_CODES.EXPECTED_CNF_RECORD_NOT_FOUND,
+      message: `CNF record ${expectedId} not found`,
+    };
+  }
+
+  const compatibility = evaluateCompatibility(record, sourcePlan);
+  if (!compatibility.compatible) {
+    return {
+      ok: false,
+      selected: null,
+      expectedRecordId: expectedId,
+      selectedRecordId: expectedId,
+      candidates: [
+        {
+          recordId: record.recordId,
+          descriptionEn: record.descriptionEn,
+          compatible: false,
+          missing: compatibility.missing,
+          excludedBy: compatibility.excludedBy,
+          score: -1,
+        },
+      ],
+      code: CNF_SELECTION_ERROR_CODES.EXPECTED_CNF_RECORD_INCOMPATIBLE,
+      message: `CNF record ${expectedId} incompatible with locked identity (${[
+        ...compatibility.missing.map((m) => `missing:${m}`),
+        ...compatibility.excludedBy.map((e) => `excluded:${e}`),
+      ].join(', ')})`,
+    };
+  }
+
+  const selected = {
+    recordId: record.recordId,
+    descriptionEn: record.descriptionEn,
+    descriptionFr: record.descriptionFr,
+    compatible: true,
+    missing: [],
+    excludedBy: [],
+    score: scoreCandidate(record, sourcePlan),
+    per100g: record.per100g,
+  };
+
+  // Locked selection must never silently drift to another record.
+  if (String(selected.recordId) !== expectedId) {
+    return {
+      ok: false,
+      selected: null,
+      expectedRecordId: expectedId,
+      selectedRecordId: String(selected.recordId),
+      candidates: [selected],
+      code: CNF_SELECTION_ERROR_CODES.EXPECTED_CNF_RECORD_MISMATCH,
+      message: `Expected CNF record ${expectedId} but selected ${selected.recordId}`,
+    };
+  }
+
+  return {
+    ok: true,
+    selected,
+    expectedRecordId: expectedId,
+    selectedRecordId: expectedId,
+    candidates: [selected],
+    code: null,
     message: sourcePlan.ambiguityRule || null,
   };
 }

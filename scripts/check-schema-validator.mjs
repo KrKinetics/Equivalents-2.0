@@ -3,11 +3,11 @@
  *
  * Usage: npm run schema:check
  */
-import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL } from 'url';
 import { fileURLToPath } from 'url';
+import { computeSchemaHash } from './schema-hash.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -28,7 +28,8 @@ let failed = false;
 for (const check of CHECKS) {
   const schemaPath = path.join(root, check.schemaRel);
   const validatorPath = path.join(root, check.validatorRel);
-  const schemaHash = crypto.createHash('sha256').update(fs.readFileSync(schemaPath)).digest('hex');
+  const schemaText = fs.readFileSync(schemaPath, 'utf8');
+  const schemaHash = computeSchemaHash(schemaText);
   if (!fs.existsSync(validatorPath)) {
     console.error(`schema:check failed: missing ${check.validatorRel} — run npm run schema:generate`);
     failed = true;

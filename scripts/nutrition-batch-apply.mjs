@@ -155,6 +155,97 @@ function main() {
       2
     )}\n`
   );
+
+  if (result.scopeBaseline) {
+    fs.writeFileSync(
+      path.join(outDir, 'scope-baseline.json'),
+      `${JSON.stringify(result.scopeBaseline, null, 2)}\n`
+    );
+  }
+  if (result.scopeCheck) {
+    fs.writeFileSync(
+      path.join(outDir, 'scope-check-final.json'),
+      `${JSON.stringify(result.scopeCheck, null, 2)}\n`
+    );
+  }
+
+  const verificationTransactions = {
+    batchId: batch.batchId,
+    transactions: result.applied.map((row) => ({
+      id: row.id,
+      operation: row.operation,
+      transactionId: row.transactionId,
+      expectedRecordId: row.expectedRecordId,
+      selectedRecordId: row.selectedRecordId,
+      version: row.version,
+    })),
+  };
+  fs.writeFileSync(
+    path.join(outDir, 'verification-transactions.json'),
+    `${JSON.stringify(verificationTransactions, null, 2)}\n`
+  );
+
+  const live = result.payload;
+  const fruits = live.foods.filter((f) => f.displayCategory === 'fruits');
+  const finalReport = {
+    batchId: batch.batchId,
+    generatedAt: new Date().toISOString(),
+    summary: {
+      updates: result.applied.filter((a) => a.operation === 'update').length,
+      adds: result.applied.filter((a) => a.operation === 'add').length,
+      verifiedInBatch: result.applied.length,
+      fruitCount: fruits.length,
+      fruitsVerified: fruits.filter((f) => f.status === 'verified').length,
+      totalFoods: live.foods.length,
+      totalVerified: live.foods.filter((f) => f.status === 'verified').length,
+      protectedUnchanged: result.scopeCheck?.protectedFoodCount ?? null,
+      protectedFoodsDataHash: result.scopeCheck?.protectedFoodsDataHash ?? null,
+      dataHash: result.dataHash,
+    },
+    foods: result.applied.map((row) => {
+      const previewRow = result.preview.foods.find((f) => f.id === row.id);
+      const food = live.foods.find((f) => f.id === row.id);
+      return {
+        id: row.id,
+        operation: row.operation,
+        expectedRecordId: row.expectedRecordId,
+        selectedRecordId: row.selectedRecordId,
+        cnfDescription: previewRow?.cnfDescription || null,
+        beforePortion: previewRow?.before?.portion || null,
+        afterPortion: food.portion,
+        beforeNutrients: previewRow?.before?.nutrients || null,
+        afterNutrients: food.nutrients,
+        formula: previewRow?.conversion?.formula || null,
+        errorsBefore: (previewRow?.alertsBefore || [])
+          .filter((a) => a.severity === 'ERROR')
+          .map((a) => a.code),
+        errorsAfter: [],
+        resolutions: food.auditResolutions || [],
+        status: food.status,
+        transactionId: row.transactionId,
+        version: food.version,
+      };
+    }),
+  };
+  fs.writeFileSync(path.join(outDir, 'final-report.json'), `${JSON.stringify(finalReport, null, 2)}\n`);
+  const rowsHtml = finalReport.foods
+    .map(
+      (f) =>
+        `<tr><td>${f.id}</td><td>${f.expectedRecordId}</td><td>${f.selectedRecordId}</td><td>${f.status}</td><td>${f.transactionId}</td><td>${f.version}</td></tr>`
+    )
+    .join('');
+  fs.writeFileSync(
+    path.join(outDir, 'final-report.html'),
+    `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Final ${batch.batchId}</title>
+<style>body{font:14px/1.4 system-ui;margin:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px;text-align:left}</style>
+</head><body>
+<h1>Rapport final — ${batch.batchId}</h1>
+<pre>${JSON.stringify(finalReport.summary, null, 2)}</pre>
+<table><thead><tr><th>ID</th><th>expected</th><th>selected</th><th>status</th><th>tx</th><th>version</th></tr></thead>
+<tbody>${rowsHtml}</tbody></table>
+</body></html>`,
+    'utf8'
+  );
 }
 
 try {

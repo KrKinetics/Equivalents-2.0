@@ -345,9 +345,9 @@ after(() => {
   }
 });
 
-test('real dataset has exactly 208 foods', () => {
+test('real dataset has exactly 211 foods', () => {
   assert.equal(realPayload.foods.length, TOTAL_FOODS_EXPECTED);
-  assert.equal(TOTAL_FOODS_EXPECTED, 208);
+  assert.equal(TOTAL_FOODS_EXPECTED, 211);
 });
 
 test('real dataset has exact category counts', () => {
@@ -657,7 +657,7 @@ test('foodsWithWarnings counts all warning foods and warning-only remains disjoi
     (item) => item.errorCount === 0 && item.warningCount > 0
   ).length;
   assert.equal(result.summary.foodsWithWarnings, warningFoods);
-  assert.ok(result.summary.foodsWithWarnings >= 200);
+  assert.ok(result.summary.foodsWithWarnings >= 180);
   assert.equal(result.summary.foodsWithWarningsOnly, warningOnlyFoods);
 });
 
@@ -1847,6 +1847,17 @@ function firstProtectedFood(payload) {
   return payload.foods.find((food) => !PILOT_ALLOWED.has(food.id));
 }
 
+function writeActivePilotConfig(sandbox) {
+  const activeConfigPath = path.join(sandbox.root, 'nutrition-pilot-config-active.json');
+  fs.writeFileSync(
+    activeConfigPath,
+    `${JSON.stringify({ ...PILOT_CONFIG, status: 'active' }, null, 2)}\n`,
+    'utf8'
+  );
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = activeConfigPath;
+  return activeConfigPath;
+}
+
 test('pilot:check succeeds on the current unchanged base', () => {
   const result = runScript('scripts/check-nutrition-pilot-scope.mjs', [], {
     env: {
@@ -1861,7 +1872,7 @@ test('pilot:check succeeds on the current unchanged base', () => {
 
 test('pilot:check accepts candidate edits to fruits-blueberries', () => {
   const sandbox = makeSandbox('pilot-blueberries');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = payload.foods.find((item) => item.id === 'fruits-blueberries');
     food.names.fr = 'Bleuets (pilote)';
@@ -1877,7 +1888,7 @@ test('pilot:check accepts candidate edits to fruits-blueberries', () => {
 
 test('pilot:check accepts candidate edits to noix-graines-almonds', () => {
   const sandbox = makeSandbox('pilot-almonds');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = payload.foods.find((item) => item.id === 'noix-graines-almonds');
     food.nutrients.fatG = 4;
@@ -1893,7 +1904,7 @@ test('pilot:check accepts candidate edits to noix-graines-almonds', () => {
 
 test('pilot:check refuses a seventh-food nutrient change', () => {
   const sandbox = makeSandbox('pilot-seventh');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = firstProtectedFood(payload);
     food.nutrients.proteinG = Number(food.nutrients.proteinG || 0) + 1;
@@ -1909,7 +1920,7 @@ test('pilot:check refuses a seventh-food nutrient change', () => {
 
 test('pilot:check refuses protected name-only change', () => {
   const sandbox = makeSandbox('pilot-name');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = firstProtectedFood(payload);
     food.names.fr = `${food.names.fr} modifié`;
@@ -1925,7 +1936,7 @@ test('pilot:check refuses protected name-only change', () => {
 
 test('pilot:check refuses protected source-only change', () => {
   const sandbox = makeSandbox('pilot-source');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = firstProtectedFood(payload);
     food.source = {
@@ -1946,7 +1957,7 @@ test('pilot:check refuses protected source-only change', () => {
 
 test('pilot:check refuses protected status-only change', () => {
   const sandbox = makeSandbox('pilot-status');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const food = firstProtectedFood(payload);
     food.status = 'rejected';
@@ -1969,7 +1980,7 @@ test('pilot:check refuses protected status-only change', () => {
 
 test('pilot:check refuses protected food deletion', () => {
   const sandbox = makeSandbox('pilot-delete');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     const protectedId = firstProtectedFood(payload).id;
     payload.foods = payload.foods.filter((food) => food.id !== protectedId);
@@ -1985,7 +1996,7 @@ test('pilot:check refuses protected food deletion', () => {
 
 test('pilot:check accepts allowed vanilla add when absent', () => {
   const sandbox = makeSandbox('pilot-vanilla-add');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const vanillaId = 'autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g';
   const candidatePath = writeCandidate(sandbox, (payload) => {
     if (payload.foods.some((f) => f.id === vanillaId)) return;
@@ -2001,7 +2012,7 @@ test('pilot:check accepts allowed vanilla add when absent', () => {
 
 test('pilot:check refuses adding a new food', () => {
   const sandbox = makeSandbox('pilot-add');
-  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  writeActivePilotConfig(sandbox);
   const candidatePath = writeCandidate(sandbox, (payload) => {
     payload.foods.push(cleanFood({ id: 'pilot-extra-food-should-fail' }));
   });

@@ -1,6 +1,8 @@
 {
   "pilotId": "nutrition-validation-6-foods",
-  "status": "active",
+  "status": "completed",
+  "completedAt": "2026-07-30",
+  "completedBy": "KR Kinetics",
   "allowedFoodIds": [
     "fruits-blueberries",
     "noix-graines-almonds",

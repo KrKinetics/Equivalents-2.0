@@ -1,0 +1,285 @@
+{
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "foods": [
+    {
+      "id": "fruits-apricots",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-pineapple",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-banana",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-dried-goji-berries",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-cantaloupe",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-cherries-with-pits",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-clementines",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-medjool-date",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-unsweetened-applesauce",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-strawberries",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-raspberries",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-small-kiwis",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-mango",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-watermelon",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-blackberries",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-nectarine",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-orange",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-grapefruit",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-peach",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-pear",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "fruits-apple",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-pomegranate",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-plums",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-prunes",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-raisins",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-large-grapes",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-deglet-nour-dates",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "resolutions": [],
+      "alertsAfter": []
+    }
+  ]
+}
