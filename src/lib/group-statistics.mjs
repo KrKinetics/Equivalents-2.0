@@ -5,32 +5,32 @@
 import { getFoodStatus, isActiveFood, isRejectedFood, isVerifiedFood } from './food-status.mjs';
 import { auditFood } from './food-audit-core.mjs';
 
-function mean(values) {
+export function mean(values) {
   if (!values.length) return null;
   return values.reduce((a, b) => a + b, 0) / values.length;
 }
 
-function median(values) {
+export function median(values) {
   if (!values.length) return null;
   const sorted = [...values].sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
   return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
 }
 
-function stddev(values) {
+export function stddev(values) {
   if (values.length < 2) return null;
   const m = mean(values);
   const variance = values.reduce((acc, v) => acc + (v - m) ** 2, 0) / (values.length - 1);
   return Math.sqrt(variance);
 }
 
-function nutrientSeries(foods, key) {
+export function nutrientSeries(foods, key) {
   return foods
     .map((f) => f.nutrients?.[key])
     .filter((v) => typeof v === 'number' && Number.isFinite(v));
 }
 
-function summarize(values) {
+export function summarize(values) {
   if (!values.length) {
     return { mean: null, median: null, min: null, max: null, stddev: null, count: 0 };
   }
@@ -44,7 +44,7 @@ function summarize(values) {
   };
 }
 
-function distanceFromProfile(food, profile, tolerances) {
+export function distanceFromProfile(food, profile, tolerances) {
   const keys = [
     ['proteinG', 'proteinG'],
     ['carbsG', 'carbsG'],
