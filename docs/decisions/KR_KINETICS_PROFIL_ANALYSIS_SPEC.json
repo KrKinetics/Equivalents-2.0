@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "KR Kinetics — Equivalents 2.0",
+  "phase": "exchange-profile-decision-and-source-of-truth-guide-preview",
+  "approvedAt": "2026-07-30",
+  "baseBranch": "refactor/nutrition-source-of-truth",
+  "workBranch": "analysis/exchange-profiles-and-guide-preview",
+  "datasetBaseline": {
+    "totalFoods": 287,
+    "verifiedFoods": 287,
+    "unverifiedFoods": 0,
+    "openBlockingErrors": 0,
+    "datasetStatus": "review",
+    "categoryCounts": {
+      "noix_graines": 32,
+      "matieres_grasses": 23,
+      "legumes": 36,
+      "fruits": 33,
+      "poissons_fruits_mer": 36,
+      "viandes_volaille": 38,
+      "autres_sources_proteinees": 27,
+      "feculents": 33,
+      "produits_laitiers": 29
+    }
+  },
+  "legacyCalculatorReferences": {
+    "source": "src/data/category-mapping.json -> calculatorLegacyMoyennes",
+    "values": {
+      "protein": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fatG": 2
+      },
+      "starch": {
+        "proteinG": 3,
+        "carbsG": 18,
+        "fatG": 1
+      },
+      "vegetable": {
+        "proteinG": 2,
+        "carbsG": 7,
+        "fatG": 0
+      },
+      "fruit": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fatG": 2
+      },
+      "dairy": {
+        "proteinG": 7,
+        "carbsG": 10,
+        "fatG": 2
+      },
+      "fat": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fatG": 6
+      },
+      "whey": {
+        "proteinG": 22,
+        "carbsG": 2,
+        "fatG": 2
+      }
+    },
+    "policy": "Diagnostic comparison only. Do not overwrite MOYENNES or approve profiles automatically."
+  },
+  "requiredAnalysisLevels": [
+    "calculationGroup",
+    "displayCategory",
+    "exchangeProfileId"
+  ],
+  "requiredStatistics": [
+    "count",
+    "verifiedCount",
+    "nullCoverageByNutrient",
+    "mean",
+    "median",
+    "p25",
+    "p75",
+    "min",
+    "max",
+    "standardDeviation",
+    "medianAbsoluteDeviation",
+    "legacyReferenceDelta",
+    "foodsOutsideLegacyTolerance",
+    "representativeFoodMedoid",
+    "fiveFurthestFoods"
+  ],
+  "candidateProfileMethods": [
+    {
+      "id": "legacy_compatibility",
+      "description": "Conserve les cibles historiques du calculateur comme règle d’affaires, sans les appeler moyennes statistiques."
+    },
+    {
+      "id": "median_verified",
+      "description": "Utilise les médianes des aliments vérifiés."
+    },
+    {
+      "id": "medoid_verified",
+      "description": "Utilise le profil de l’aliment réel le plus central afin d’éviter un profil synthétique impossible."
+    },
+    {
+      "id": "exchange_profile_rollup",
+      "description": "Approuve des profils fins par exchangeProfileId, puis définit un pont explicite vers les groupes du calculateur."
+    }
+  ],
+  "guidePreviewPolicy": {
+    "source": "src/data/food-equivalents.json",
+    "mustUseAllFoods": true,
+    "expectedFoodCount": 287,
+    "mustNotUseHardcodedLegacyRows": true,
+    "mustNotUseI18nFoodArraysForFoodNames": true,
+    "categoryMetadataMayRemainInI18n": true,
+    "averageRows": "Omit unless backed by an explicitly approved profile. Never reuse legacy averages silently.",
+    "watermark": "APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS",
+    "outputs": [
+      "reports/guide-preview/kr-kinetics-landscape-fr.html",
+      "reports/guide-preview/kr-kinetics-landscape-en.html",
+      "reports/guide-preview/kr-kinetics-mobile-bilingual.html",
+      "reports/guide-preview/kr-kinetics-landscape-fr.pdf",
+      "reports/guide-preview/kr-kinetics-mobile-bilingual.pdf"
+    ]
+  },
+  "forbiddenChanges": [
+    "calculateur-nutritionnel",
+    "MOYENNES",
+    "src/data/food-equivalents.json",
+    "src/data/nutrition-data-version.json approval state",
+    "releases/data",
+    "nutrient values",
+    "food identities",
+    "food portions",
+    "food classifications",
+    "main branch"
+  ],
+  "requiredReports": [
+    "reports/exchange-profile-decision/overview.html",
+    "reports/exchange-profile-decision/overview.json",
+    "reports/exchange-profile-decision/group-statistics.csv",
+    "reports/exchange-profile-decision/category-statistics.csv",
+    "reports/exchange-profile-decision/exchange-profile-statistics.csv",
+    "reports/exchange-profile-decision/legacy-comparison.csv",
+    "reports/exchange-profile-decision/outliers.csv",
+    "reports/exchange-profile-decision/profile-candidates.json",
+    "reports/exchange-profile-decision/DECISIONS_REQUIRED.md",
+    "reports/guide-preview/guide-data-manifest.json",
+    "reports/guide-preview/visual-qa.json"
+  ],
+  "exitCriteria": [
+    "All 287 verified foods are represented in the analysis.",
+    "Every exchangeProfileId is counted and analyzed.",
+    "No production nutrition data changed.",
+    "No calculator or MOYENNES file changed.",
+    "The preview guide renders all 287 foods from the source-of-truth dataset.",
+    "No legacy hardcoded food row is used by the preview adapter.",
+    "All automated tests pass.",
+    "GitHub Actions passes.",
+    "A single decision document presents exact options without automatically choosing one."
+  ]
+}
