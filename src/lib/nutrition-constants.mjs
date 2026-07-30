@@ -35,6 +35,10 @@ export const PORTION_UNITS = [
   'oz',
   'scoop',
   'portion',
+  'wrap',
+  'wraps',
+  'bar',
+  'bars',
 ];
 
 export const PREPARATION_STATES = [
@@ -81,11 +85,11 @@ export const EXPECTED_CATEGORY_COUNTS = {
   fruits: 33,
   poissons_fruits_mer: 36,
   viandes_volaille: 38,
-  autres_sources_proteinees: 17,
+  autres_sources_proteinees: 27,
   feculents: 23,
   produits_laitiers: 19,
 };
 
-export const TOTAL_FOODS_EXPECTED = 257;
+export const TOTAL_FOODS_EXPECTED = 267;
 
 export const DATASET_STATUSES = ['draft', 'review', 'approved'];

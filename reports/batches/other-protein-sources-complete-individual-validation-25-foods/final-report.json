@@ -1,0 +1,1710 @@
+{
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "generatedAt": "2026-07-30T20:21:46.206Z",
+  "summary": {
+    "updates": 15,
+    "adds": 10,
+    "verifiedInBatch": 25,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "fatsCount": 23,
+    "fatsVerified": 23,
+    "fishSeafoodCount": 36,
+    "fishSeafoodVerified": 36,
+    "meatPoultryCount": 38,
+    "meatPoultryVerified": 38,
+    "otherProteinCount": 27,
+    "otherProteinVerified": 27,
+    "cnfSources": 12,
+    "manufacturerSources": 13,
+    "totalFoods": 267,
+    "totalVerified": 226,
+    "protectedUnchanged": 242,
+    "protectedFoodsDataHash": "add27b2719966438ca78f481bc9c67cecc7e81d527dc322864e50d90b4ea92a1",
+    "dataHash": "b2f21687998f1dccb306ae83568cde8abff148e06142079714e27cfa5c7bb86d"
+  },
+  "foods": [
+    {
+      "id": "autres-sources-proteinees-egg-whites",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6605",
+      "selectedRecordId": "6605",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Egg, chicken, white, fresh or frozen, cooked",
+        "fr": "Oeuf, poule, blanc, frais ou congelé, cuit"
+      },
+      "sourceDescription": {
+        "en": "Egg, chicken, white, fresh or frozen, cooked",
+        "fr": "Oeuf, poule, blanc, frais ou congelé, cuit"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "3 Blancs d'œuf (ou ¼ tasse)",
+        "labelEn": "3 Egg whites (or ¼ cup)",
+        "amount": 0.25,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de blancs d’œufs cuits (environ 3 blancs)",
+        "labelEn": "100 g cooked egg whites (about 3 whites)",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 36
+      },
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 48
+      },
+      "formula": "valuePortion = valuePer100g × 100 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH",
+        "SUSPECT_CASE"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "543f2992-f8b9-4571-b046-e318df678607",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-egg-white-cooked"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7231",
+      "selectedRecordId": "7231",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Beverage, protein powder, whey based, powder",
+        "fr": "Boisson, poudre protéinée à base de lactosérum"
+      },
+      "sourceDescription": {
+        "en": "Beverage, protein powder, whey based, powder",
+        "fr": "Boisson, poudre protéinée à base de lactosérum"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "½ scoop de Lactosérum (Whey)",
+        "labelEn": "½ scoop Whey protein",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 g de poudre protéinée à base de lactosérum",
+        "labelEn": "15 g whey-based protein powder",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 11.7,
+        "carbsG": 0.9,
+        "fiberG": 0.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 53
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "SCOOP_WITHOUT_GRAMS",
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7d3afa31-e957-47c4-b4dd-556ff1c69910",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-whey-generic"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7232",
+      "selectedRecordId": "7232",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Plant-based beverage, protein powder, soy based, powder",
+        "fr": "Boisson à base de plantes, poudre protéinée à base de soya"
+      },
+      "sourceDescription": {
+        "en": "Plant-based beverage, protein powder, soy based, powder",
+        "fr": "Boisson à base de plantes, poudre protéinée à base de soya"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "½ scoop de Protéine végétale (pois / riz)",
+        "labelEn": "½ scoop Plant protein (pea / rice)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "20 g de poudre protéinée végétale à base de soya",
+        "labelEn": "20 g soy-based plant protein powder",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 11.1,
+        "carbsG": 5.8,
+        "fiberG": 1.3,
+        "fatG": 1.1,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 78
+      },
+      "formula": "valuePortion = valuePer100g × 20 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "SCOOP_WITHOUT_GRAMS"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f955674d-b3e9-400f-975f-fe9ae0a1c6a4",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-plant-soy-generic"
+    },
+    {
+      "id": "autres-sources-proteinees-tempeh",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3321",
+      "selectedRecordId": "3321",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Soybean, fermented products, tempeh (tempe)",
+        "fr": "Soya, produits fermenté, tempeh (tempe)"
+      },
+      "sourceDescription": {
+        "en": "Soybean, fermented products, tempeh (tempe)",
+        "fr": "Soya, produits fermenté, tempeh (tempe)"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "50 g de Tempeh",
+        "labelEn": "50 g Tempeh",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "50 g de tempeh fermenté",
+        "labelEn": "50 g fermented tempeh",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 74
+      },
+      "afterNutrients": {
+        "proteinG": 10.1,
+        "carbsG": 3.8,
+        "fiberG": null,
+        "fatG": 5.4,
+        "saturatedFatG": 1.3,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 96
+      },
+      "formula": "valuePortion = valuePer100g × 50 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "42824d5a-50f9-4e22-9300-2cf1818a0f49",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-tempeh"
+    },
+    {
+      "id": "autres-sources-proteinees-firm-tofu",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3418",
+      "selectedRecordId": "3418",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Tofu, regular, medium firm or firm (prepared with calcium sulphate)",
+        "fr": "Tofu, régulier, mi-ferme ou ferme (préparé avec sulfate de calcium)"
+      },
+      "sourceDescription": {
+        "en": "Tofu, regular, medium firm or firm (prepared with calcium sulphate)",
+        "fr": "Tofu, régulier, mi-ferme ou ferme (préparé avec sulfate de calcium)"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "100 g de Tofu ferme",
+        "labelEn": "100 g Firm tofu",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de tofu ferme",
+        "labelEn": "125 g firm tofu",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 7.5,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 63
+      },
+      "afterNutrients": {
+        "proteinG": 10.1,
+        "carbsG": 2.3,
+        "fiberG": 0.4,
+        "fatG": 6,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 3.4,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 95
+      },
+      "formula": "valuePortion = valuePer100g × 125 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e46937f5-00ef-49c6-812e-6f17bd5128b0",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-tofu-firm"
+    },
+    {
+      "id": "autres-sources-proteinees-fermented-natto",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3320",
+      "selectedRecordId": "3320",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Soybean, fermented products, natto",
+        "fr": "Soya, produits fermentés, natto"
+      },
+      "sourceDescription": {
+        "en": "Soybean, fermented products, natto",
+        "fr": "Soya, produits fermentés, natto"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "100 g de Natto fermenté",
+        "labelEn": "100 g Fermented natto",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "50 g de natto fermenté",
+        "labelEn": "50 g fermented natto",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 3,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "afterNutrients": {
+        "proteinG": 9.7,
+        "carbsG": 6.3,
+        "fiberG": 2.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 106
+      },
+      "formula": "valuePortion = valuePer100g × 50 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "95f8cf61-ddb1-43bb-acc3-15c96fa67a64",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-natto"
+    },
+    {
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7228",
+      "selectedRecordId": "7228",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Beverage, protein drink, ready-to-drink, Muscle MLK, chocolate",
+        "fr": "Boisson, boisson protéinée, prête-à-boire, Muscle MLK, chocolat"
+      },
+      "sourceDescription": {
+        "en": "Beverage, protein drink, ready-to-drink, Muscle MLK, chocolate",
+        "fr": "Boisson, boisson protéinée, prête-à-boire, Muscle MLK, chocolat"
+      },
+      "labelServing": null,
+      "beforePortion": {
+        "labelFr": "150 ml de Boisson protéinée RTD",
+        "labelEn": "150 ml Ready-to-drink protein shake",
+        "amount": 150,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "170 ml de boisson protéinée Muscle Milk chocolat (170 g)",
+        "labelEn": "170 ml Muscle Milk chocolate protein beverage (170 g)",
+        "amount": 170,
+        "unit": "ml",
+        "grams": 170,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 3.9,
+        "fiberG": 0.8,
+        "fatG": 3.7,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 2.5,
+        "declaredKcal": 88
+      },
+      "formula": "valuePortion = valuePer100g × 170 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "10ce1c8c-6d22-48c6-9896-0c34e505adce",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-rtd-muscle-milk"
+    },
+    {
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "manufacturerReference": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "brand": "PB2 Foods",
+      "productName": "PB2 Original Powdered Peanut Butter",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "PB2 Original Powdered Peanut Butter",
+        "fr": "PB2 Original en poudre"
+      },
+      "labelServing": {
+        "amount": 2,
+        "unit": "tbsp",
+        "grams": 13
+      },
+      "beforePortion": {
+        "labelFr": "1,5 c. à table de PB2",
+        "labelEn": "1.5 tbsp PB2",
+        "amount": 1.5,
+        "unit": "tbsp",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "PB2"
+      },
+      "afterPortion": {
+        "labelFr": "3 c. à table de PB2 Original en poudre (19,5 g)",
+        "labelEn": "3 tbsp PB2 Original powder (19.5 g)",
+        "amount": 3,
+        "unit": "tbsp",
+        "grams": 19.5,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "PB2 Foods"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 78
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 7.5,
+        "fiberG": 1.5,
+        "fatG": 2.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "formula": "valueCanonical = valueLabel × 3 / 2",
+      "declaredZeroNutrients": [
+        "saturatedFatG"
+      ],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6daca3a3-56b0-44c0-868a-1c89d964f889",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-powdered-peanut"
+    },
+    {
+      "id": "autres-sources-proteinees-seitan",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "manufacturerReference": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "brand": "GUSTA",
+      "productName": "Classico Seitan Roast",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Classico Seitan Roast",
+        "fr": "Rôti de seitan GUSTA Classico"
+      },
+      "labelServing": {
+        "amount": 50,
+        "unit": "g",
+        "grams": 50
+      },
+      "beforePortion": {
+        "labelFr": "50 g de Seitan",
+        "labelEn": "50 g Seitan",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "50 g de rôti de seitan GUSTA Classico",
+        "labelEn": "50 g GUSTA Classico seitan roast",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "GUSTA"
+      },
+      "beforeNutrients": {
+        "proteinG": 12,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "afterNutrients": {
+        "proteinG": 12,
+        "carbsG": 4,
+        "fiberG": 1,
+        "fatG": 6,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 120
+      },
+      "formula": "valueCanonical = valueLabel × 50 / 50",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ab1b7572-d9f7-41a9-842d-1fc2d92fca33",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-seitan-branded"
+    },
+    {
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "manufacturerReference": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "brand": "Egglife Foods",
+      "productName": "Original Egg White Wraps",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Original Egg White Wraps",
+        "fr": "Wraps de blancs d’œufs Egglife Original"
+      },
+      "labelServing": {
+        "amount": 2,
+        "unit": "wraps",
+        "grams": 57
+      },
+      "beforePortion": {
+        "labelFr": "1 Wrap Egglife",
+        "labelEn": "1 Egglife wrap",
+        "amount": 1,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Egglife"
+      },
+      "afterPortion": {
+        "labelFr": "2 wraps Egglife Original (57 g)",
+        "labelEn": "2 Egglife Original wraps (57 g)",
+        "amount": 2,
+        "unit": "wraps",
+        "grams": 57,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Egglife Foods"
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 11,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "formula": "valueCanonical = valueLabel × 2 / 2",
+      "declaredZeroNutrients": [
+        "fiberG",
+        "saturatedFatG"
+      ],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "69c0c4c3-970f-4b9e-b209-9699c122c030",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-egg-white-wrap"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "manufacturerReference": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "brand": "Optimum Nutrition",
+      "productName": "Gold Standard 100% Casein — Chocolate Peanut Butter",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Gold Standard 100% Casein — Chocolate Peanut Butter",
+        "fr": "Caséine micellaire Optimum Nutrition Gold Standard, chocolat-arachide"
+      },
+      "labelServing": {
+        "amount": 34,
+        "unit": "g",
+        "grams": 34
+      },
+      "beforePortion": {
+        "labelFr": "½ scoop de Caséine micellaire",
+        "labelEn": "½ scoop Micellar casein",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "17 g de caséine Gold Standard (½ portion)",
+        "labelEn": "17 g Gold Standard casein (½ serving)",
+        "amount": 17,
+        "unit": "g",
+        "grams": 17,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "Optimum Nutrition"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 12,
+        "carbsG": 2,
+        "fiberG": 0.5,
+        "fatG": 0.5,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "formula": "valueCanonical = valueLabel × 17 / 34",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [
+        "SCOOP_WITHOUT_GRAMS"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f545af84-82c4-418a-9010-a5ffa1b555a5",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-casein-micellar"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "manufacturerReference": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "brand": "Dymatize",
+      "productName": "ISO100 Gourmet Vanilla",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "ISO100 Gourmet Vanilla",
+        "fr": "Isolat de lactosérum Dymatize ISO100, vanille gourmet"
+      },
+      "labelServing": {
+        "amount": 30,
+        "unit": "g",
+        "grams": 30
+      },
+      "beforePortion": {
+        "labelFr": "½ scoop d'Isolat de whey",
+        "labelEn": "½ scoop Whey isolate",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 g d’isolat Dymatize ISO100 (½ portion)",
+        "labelEn": "15 g Dymatize ISO100 isolate (½ serving)",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "Dymatize"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 12.5,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "formula": "valueCanonical = valueLabel × 15 / 30",
+      "declaredZeroNutrients": [
+        "fiberG",
+        "saturatedFatG"
+      ],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [
+        "SCOOP_WITHOUT_GRAMS",
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e2b5b23c-865d-46ff-90ec-b6451fbca9c1",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-whey-isolate"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://musclemedsrx.com/products/carnivor",
+      "manufacturerReference": "https://musclemedsrx.com/products/carnivor",
+      "brand": "MuscleMeds",
+      "productName": "Carnivor Beef Protein Isolate — Chocolate",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Carnivor Beef Protein Isolate — Chocolate",
+        "fr": "Isolat de protéine de bœuf MuscleMeds Carnivor chocolat"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "scoop",
+        "grams": 33.9
+      },
+      "beforePortion": {
+        "labelFr": "½ scoop de Protéine de bœuf (isolate)",
+        "labelEn": "½ scoop Beef protein isolate",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ scoop de Carnivor chocolat (17 g)",
+        "labelEn": "½ scoop Carnivor chocolate (17 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 16.95,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "MuscleMeds"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 1,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 11.5,
+        "carbsG": 3,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 60
+      },
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "declaredZeroNutrients": [
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "SCOOP_WITHOUT_GRAMS"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f6cd61cf-7041-4034-b4a8-e2d8b0fb130a",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-beef-isolate"
+    },
+    {
+      "id": "autres-sources-proteinees-performance-protein-bar",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "manufacturerReference": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "brand": "Quest Nutrition",
+      "productName": "Chocolate Brownie Protein Bar",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Chocolate Brownie Protein Bar",
+        "fr": "Barre protéinée Quest Chocolate Brownie"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "bar",
+        "grams": 60
+      },
+      "beforePortion": {
+        "labelFr": "35 g de Barre protéinée performance",
+        "labelEn": "35 g Performance protein bar",
+        "amount": 35,
+        "unit": "g",
+        "grams": 35,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "½ barre Quest Chocolate Brownie (30 g)",
+        "labelEn": "½ Quest Chocolate Brownie bar (30 g)",
+        "amount": 0.5,
+        "unit": "bar",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Quest Nutrition"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 12,
+        "fiberG": 7.5,
+        "fatG": 3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+          "fieldsHash": "kcal:10|12|3|85",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T20:21:45.091Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative https://www.questnutrition.com/products/chocolate-brownie-protein-bar"
+        }
+      ],
+      "status": "verified",
+      "transactionId": "50e53f00-b743-49d2-80dc-16d155870b5f",
+      "version": 4,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-bar-high-fibre"
+    },
+    {
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "manufacturerReference": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "brand": "Vital Proteins",
+      "productName": "Collagen Peptides — Unflavored",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Collagen Peptides — Unflavored",
+        "fr": "Peptides de collagène Vital Proteins, sans saveur"
+      },
+      "labelServing": {
+        "amount": 2,
+        "unit": "scoops",
+        "grams": 20
+      },
+      "beforePortion": {
+        "labelFr": "15 g de Collagène hydrolysé (peptides)",
+        "labelEn": "15 g Hydrolyzed collagen (peptides)",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 scoop de peptides de collagène Vital Proteins (10 g)",
+        "labelEn": "1 scoop Vital Proteins Collagen Peptides (10 g)",
+        "amount": 1,
+        "unit": "scoop",
+        "grams": 10,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "Vital Proteins"
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 35
+      },
+      "formula": "valueCanonical = valueLabel × 1 / 2",
+      "declaredZeroNutrients": [
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "undeclaredNutrients": [],
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "931c639b-bc6c-4474-ab79-5a2216358fd8",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-collagen-incomplete"
+    },
+    {
+      "id": "autres-sources-proteinees-extra-firm-tofu",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3404",
+      "selectedRecordId": "3404",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Tofu, regular, firm or extra firm (prepared with magnesium chloride and calcium sulphate or calcium chloride)",
+        "fr": "Tofu, régulier, ferme ou extra ferme (préparé avec chlorure de magnésium et sulfate de calcium ou chlorure de calcium)"
+      },
+      "sourceDescription": {
+        "en": "Tofu, regular, firm or extra firm (prepared with magnesium chloride and calcium sulphate or calcium chloride)",
+        "fr": "Tofu, régulier, ferme ou extra ferme (préparé avec chlorure de magnésium et sulfate de calcium ou chlorure de calcium)"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 g de tofu ferme ou extra-ferme",
+        "labelEn": "125 g firm or extra-firm tofu",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 11.3,
+        "carbsG": 3.6,
+        "fiberG": 1.1,
+        "fatG": 5.2,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 98
+      },
+      "formula": "valuePortion = valuePer100g × 125 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b6fcd115-352c-4c1c-8003-72df2538e861",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-tofu-extra-firm"
+    },
+    {
+      "id": "autres-sources-proteinees-silken-firm-tofu",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4911",
+      "selectedRecordId": "4911",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Tofu, silken, firm, shelf stable",
+        "fr": "Tofu, soyeux, ferme, à longue durée de conservation"
+      },
+      "sourceDescription": {
+        "en": "Tofu, silken, firm, shelf stable",
+        "fr": "Tofu, soyeux, ferme, à longue durée de conservation"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "150 g de tofu soyeux ferme",
+        "labelEn": "150 g firm silken tofu",
+        "amount": 150,
+        "unit": "g",
+        "grams": 150,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.4,
+        "carbsG": 3.6,
+        "fiberG": 0.2,
+        "fatG": 4.1,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 93
+      },
+      "formula": "valuePortion = valuePer100g × 150 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "0e13d371-813e-4d55-8ee4-a036dfc1bd83",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-tofu-silken-firm"
+    },
+    {
+      "id": "autres-sources-proteinees-cooked-tempeh",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "4986",
+      "selectedRecordId": "4986",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Soybean, fermented products, Tempeh (tempe), cooked",
+        "fr": "Soya, produits fermentés, tempeh (tempe), cuit"
+      },
+      "sourceDescription": {
+        "en": "Soybean, fermented products, Tempeh (tempe), cooked",
+        "fr": "Soya, produits fermentés, tempeh (tempe), cuit"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "50 g de tempeh cuit",
+        "labelEn": "50 g cooked tempeh",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 3.8,
+        "fiberG": null,
+        "fatG": 5.7,
+        "saturatedFatG": 1.7,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 98
+      },
+      "formula": "valuePortion = valuePer100g × 50 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "906881ca-7cfd-4abf-9897-9c189290d15e",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-tempeh-cooked"
+    },
+    {
+      "id": "autres-sources-proteinees-soy-protein-isolate",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "3328",
+      "selectedRecordId": "3328",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Soy protein isolate (prepared with sodium)",
+        "fr": "Soya, isolat de protéines (préparé avec sodium)"
+      },
+      "sourceDescription": {
+        "en": "Soy protein isolate (prepared with sodium)",
+        "fr": "Soya, isolat de protéines (préparé avec sodium)"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "12 g d’isolat de protéine de soya",
+        "labelEn": "12 g soy protein isolate",
+        "amount": 12,
+        "unit": "g",
+        "grams": 12,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 40
+      },
+      "formula": "valuePortion = valuePer100g × 12 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "f41d61d3-5a79-4f97-8b20-e74403489a6e",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-soy-isolate"
+    },
+    {
+      "id": "autres-sources-proteinees-egg-substitute-powder",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6421",
+      "selectedRecordId": "6421",
+      "manufacturerReference": null,
+      "brand": null,
+      "productName": null,
+      "cnfDescription": {
+        "en": "Egg substitute, powder",
+        "fr": "Oeuf, succédané, poudre"
+      },
+      "sourceDescription": {
+        "en": "Egg substitute, powder",
+        "fr": "Oeuf, succédané, poudre"
+      },
+      "labelServing": null,
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "18 g de substitut d’œuf en poudre",
+        "labelEn": "18 g powdered egg substitute",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 3.9,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 80
+      },
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "966191c8-c196-4197-a6fe-cec0676e3470",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-egg-substitute-powder"
+    },
+    {
+      "id": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "operation": "add",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "manufacturerReference": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "brand": "Burnbrae Farms",
+      "productName": "Naturegg Simply Egg Whites Free Run",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Naturegg Simply Egg Whites Free Run",
+        "fr": "Blancs d’œufs liquides Naturegg Simply Egg Whites Free Run"
+      },
+      "labelServing": {
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de blancs d’œufs liquides Naturegg (⅓ tasse)",
+        "labelEn": "100 g Naturegg liquid egg whites (⅓ cup)",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Burnbrae Farms"
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "formula": "valueCanonical = valueLabel × 100 / 100",
+      "declaredZeroNutrients": [
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "aa2eb8ca-d816-429d-b7ce-1d6c7a5b1f63",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-liquid-egg-white"
+    },
+    {
+      "id": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "operation": "add",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "manufacturerReference": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "brand": "NOW Foods",
+      "productName": "Pea Protein — Vanilla Toffee",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Pea Protein — Vanilla Toffee",
+        "fr": "Protéine de pois NOW Sports, vanille caramel"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "scoop",
+        "grams": 41
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "½ scoop de protéine de pois NOW (20,5 g)",
+        "labelEn": "½ scoop NOW pea protein (20.5 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 20.5,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "NOW Foods"
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 12.5,
+        "carbsG": 3,
+        "fiberG": 1,
+        "fatG": 1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "declaredZeroNutrients": [
+        "saturatedFatG"
+      ],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9058575b-fb77-440c-a9eb-6569261ac6ac",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-pea-isolate"
+    },
+    {
+      "id": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "operation": "add",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "manufacturerReference": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "brand": "NOW Foods",
+      "productName": "Sprouted Brown Rice Protein Powder",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Sprouted Brown Rice Protein Powder",
+        "fr": "Protéine de riz brun germé NOW Sports"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "tbsp",
+        "grams": 5
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "3 c. à table de protéine de riz brun germé NOW (15 g)",
+        "labelEn": "3 tbsp NOW sprouted brown rice protein (15 g)",
+        "amount": 3,
+        "unit": "tbsp",
+        "grams": 15,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "NOW Foods"
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 12,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 45
+      },
+      "formula": "valueCanonical = valueLabel × 3 / 1",
+      "declaredZeroNutrients": [
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "497e139f-a4b2-4309-8c87-325390672505",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-rice"
+    },
+    {
+      "id": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "operation": "add",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "manufacturerReference": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "brand": "Premier Protein",
+      "productName": "Chocolate Peanut Butter Protein Shake",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Chocolate Peanut Butter Protein Shake",
+        "fr": "Boisson Premier Protein chocolat-arachide"
+      },
+      "labelServing": {
+        "amount": 325,
+        "unit": "ml"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 ml de Premier Protein chocolat-arachide",
+        "labelEn": "100 ml Premier Protein chocolate peanut butter shake",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Premier Protein"
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 9.2,
+        "carbsG": 1.8,
+        "fiberG": 0.6,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 49
+      },
+      "formula": "valueCanonical = valueLabel × 100 / 325",
+      "declaredZeroNutrients": [],
+      "undeclaredNutrients": [],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "035aba63-b5e2-470e-a8d3-0178988549e2",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-rtd-premier"
+    },
+    {
+      "id": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "operation": "add",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "manufacturerReference": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "brand": "Optimum Nutrition",
+      "productName": "Platinum Hydrowhey — Supercharged Strawberry",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "Platinum Hydrowhey — Supercharged Strawberry",
+        "fr": "Hydrolysat de lactosérum Optimum Nutrition Platinum Hydrowhey, fraise"
+      },
+      "labelServing": {
+        "amount": 1,
+        "unit": "scoop",
+        "grams": 40
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "½ scoop de Platinum Hydrowhey fraise (20 g)",
+        "labelEn": "½ scoop Platinum Hydrowhey strawberry (20 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 20,
+        "preparationState": "dry_uncooked",
+        "brandSpecific": true,
+        "brand": "Optimum Nutrition"
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 15,
+        "carbsG": 1.5,
+        "fiberG": 0,
+        "fatG": 0.5,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1553c0fc-39c1-441f-af30-d9419aff69f2",
+      "version": 3,
+      "calculationGroup": "protein",
+      "exchangeProfileId": "protein-whey-hydrolysate"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "generatedAt": "2026-07-30T20:09:27.716Z",
+  "count": 13,
+  "evidences": [
+    {
+      "foodId": "autres-sources-proteinees-5-tbsp-pb2",
+      "evidencePath": "src/sources/manufacturer/pb2-original-powdered-peanut-butter.json",
+      "evidenceId": "pb2-original-powdered-peanut-butter",
+      "brand": "PB2 Foods",
+      "product": "PB2 Original Powdered Peanut Butter",
+      "officialUrl": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "formula": "valueCanonical = valueLabel × 3 / 2",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "saturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/pb2-original-powdered-peanut-butter.html",
+        "snapshotSha256": "24b968c575a2061c9a90127909162009b0b95b4cbb8d71962df0c523b87086e2",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "cd92e218b140caaa9baf6116ba973297f36838b8f5609b834a59f19fa081dd94"
+    },
+    {
+      "foodId": "autres-sources-proteinees-seitan",
+      "evidencePath": "src/sources/manufacturer/gusta-classico-seitan-roast.json",
+      "evidenceId": "gusta-classico-seitan-roast",
+      "brand": "GUSTA",
+      "product": "Classico Seitan Roast",
+      "officialUrl": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "formula": "valueCanonical = valueLabel × 50 / 50",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": null,
+        "snapshotPath": null,
+        "snapshotSha256": null,
+        "notes": "Network unavailable or fetch failed (fetch failed); approved specification values used without network comparison."
+      },
+      "evidenceHash": "16c33fc221de98d0d510b2351242322e802b573344baf52f4185feb14b0e9019"
+    },
+    {
+      "foodId": "autres-sources-proteinees-egglife-wrap",
+      "evidencePath": "src/sources/manufacturer/egglife-original-egg-white-wraps.json",
+      "evidenceId": "egglife-original-egg-white-wraps",
+      "brand": "Egglife Foods",
+      "product": "Original Egg White Wraps",
+      "officialUrl": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "formula": "valueCanonical = valueLabel × 2 / 2",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG",
+        "saturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/egglife-original-egg-white-wraps.html",
+        "snapshotSha256": "b80b33cc91b35f65636892cccbe75aba72ccb9c056c93e903aab0830519e95d8",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "a217b4f01f4088c6b4141a3831f1d636affe6df05b5d3ed66a773c9014dadaf0"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-micellar-casein",
+      "evidencePath": "src/sources/manufacturer/optimum-gold-standard-casein-chocolate-peanut-butter.json",
+      "evidenceId": "optimum-gold-standard-casein-chocolate-peanut-butter",
+      "brand": "Optimum Nutrition",
+      "product": "Gold Standard 100% Casein — Chocolate Peanut Butter",
+      "officialUrl": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "formula": "valueCanonical = valueLabel × 17 / 34",
+      "undeclaredNutrients": [
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/optimum-gold-standard-casein-chocolate-peanut-butter.html",
+        "snapshotSha256": "fe1df50daee4976e222b7c3bd0796dc3b5a143727a4f748cbf26b983a67c68c8",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "185db8725d64e116dceae601898106a2080d349df5b88fcac4e3794eb3e434b5"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-whey-isolate",
+      "evidencePath": "src/sources/manufacturer/dymatize-iso100-gourmet-vanilla.json",
+      "evidenceId": "dymatize-iso100-gourmet-vanilla",
+      "brand": "Dymatize",
+      "product": "ISO100 Gourmet Vanilla",
+      "officialUrl": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "formula": "valueCanonical = valueLabel × 15 / 30",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG",
+        "saturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/dymatize-iso100-gourmet-vanilla.html",
+        "snapshotSha256": "23eec4b2380d37e1d491c04c9dc0cce05c448d7032544da2da6b19f24785c653",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "76507be009abbfa65974aa9b2452f8b536ac1bfb01ab79aa51e31d372e696d1d"
+    },
+    {
+      "foodId": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "evidencePath": "src/sources/manufacturer/musclemeds-carnivor-chocolate.json",
+      "evidenceId": "musclemeds-carnivor-chocolate",
+      "brand": "MuscleMeds",
+      "product": "Carnivor Beef Protein Isolate — Chocolate",
+      "officialUrl": "https://musclemedsrx.com/products/carnivor",
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "undeclaredNutrients": [],
+      "declaredZeroNutrients": [
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/musclemeds-carnivor-chocolate.html",
+        "snapshotSha256": "4020018c839cb53240d0edbdca709456faa00c751fbb1644e01455adc6f4fb4b",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "e4657b63d6f8721f405228fe37d0a478a9ef74716e9889d219fd366161ace01f"
+    },
+    {
+      "foodId": "autres-sources-proteinees-performance-protein-bar",
+      "evidencePath": "src/sources/manufacturer/quest-chocolate-brownie-protein-bar.json",
+      "evidenceId": "quest-chocolate-brownie-protein-bar",
+      "brand": "Quest Nutrition",
+      "product": "Chocolate Brownie Protein Bar",
+      "officialUrl": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/quest-chocolate-brownie-protein-bar.html",
+        "snapshotSha256": "b4461c079ccaf18d297fd6c1b3d620f7d0f6b691fe51a12c11a4baf565560df1",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "288d2cc5330c0f221c049a818b37c4e04397544b4d69d9a62ed8a1c3be564be6"
+    },
+    {
+      "foodId": "autres-sources-proteinees-hydrolyzed-collagen",
+      "evidencePath": "src/sources/manufacturer/vital-proteins-collagen-peptides-unflavored.json",
+      "evidenceId": "vital-proteins-collagen-peptides-unflavored",
+      "brand": "Vital Proteins",
+      "product": "Collagen Peptides — Unflavored",
+      "officialUrl": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "formula": "valueCanonical = valueLabel × 1 / 2",
+      "undeclaredNutrients": [],
+      "declaredZeroNutrients": [
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/vital-proteins-collagen-peptides-unflavored.html",
+        "snapshotSha256": "95b57f7ce92dcdd708aedf29ad21e542e7ce03449cbe835beb296783050c2330",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "b07fbd8927f68e78d31bb800e09258596276223ef08b8b10ced6934a7000b63d"
+    },
+    {
+      "foodId": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "evidencePath": "src/sources/manufacturer/burnbrae-naturegg-simply-egg-whites-free-run.json",
+      "evidenceId": "burnbrae-naturegg-simply-egg-whites-free-run",
+      "brand": "Burnbrae Farms",
+      "product": "Naturegg Simply Egg Whites Free Run",
+      "officialUrl": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "formula": "valueCanonical = valueLabel × 100 / 100",
+      "undeclaredNutrients": [],
+      "declaredZeroNutrients": [
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": null,
+        "snapshotPath": null,
+        "snapshotSha256": null,
+        "notes": "HTTP 403; network comparison not completed. Approved specification values used."
+      },
+      "evidenceHash": "ca0a4ec50346a280da86759163ba497babd6d8f1aa907d3c7d6f3bcbf1aaa76a"
+    },
+    {
+      "foodId": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "evidencePath": "src/sources/manufacturer/now-pea-protein-vanilla-toffee.json",
+      "evidenceId": "now-pea-protein-vanilla-toffee",
+      "brand": "NOW Foods",
+      "product": "Pea Protein — Vanilla Toffee",
+      "officialUrl": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "saturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": null,
+        "snapshotPath": null,
+        "snapshotSha256": null,
+        "notes": "HTTP 403; network comparison not completed. Approved specification values used."
+      },
+      "evidenceHash": "651a4d2dc9df52d26761b04e45e56078f745e34c943ad5c5202a70e28872e39f"
+    },
+    {
+      "foodId": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "evidencePath": "src/sources/manufacturer/now-sprouted-brown-rice-protein.json",
+      "evidenceId": "now-sprouted-brown-rice-protein",
+      "brand": "NOW Foods",
+      "product": "Sprouted Brown Rice Protein Powder",
+      "officialUrl": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "formula": "valueCanonical = valueLabel × 3 / 1",
+      "undeclaredNutrients": [],
+      "declaredZeroNutrients": [
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/now-sprouted-brown-rice-protein.html",
+        "snapshotSha256": "35a19a35aeefb91deacf14511cf17efb22e8b34322e97462462223734f7969e4",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "c0bedcee590d01f5479ef24dcef009ec3a41ca1d9655e86663cd3c7b96b71824"
+    },
+    {
+      "foodId": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "evidencePath": "src/sources/manufacturer/premier-protein-chocolate-peanut-butter.json",
+      "evidenceId": "premier-protein-chocolate-peanut-butter",
+      "brand": "Premier Protein",
+      "product": "Chocolate Peanut Butter Protein Shake",
+      "officialUrl": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "formula": "valueCanonical = valueLabel × 100 / 325",
+      "undeclaredNutrients": [],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/premier-protein-chocolate-peanut-butter.html",
+        "snapshotSha256": "33784f393995fa7c5c10b01c7cec0435b84e6af3c586d691ad1b348a6ca953de",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "89fc5e2c22c14c00e07e83737e8ff2b5f170e2836b51d325d554590dc3d0cafc"
+    },
+    {
+      "foodId": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "evidencePath": "src/sources/manufacturer/optimum-platinum-hydrowhey-supercharged-strawberry.json",
+      "evidenceId": "optimum-platinum-hydrowhey-supercharged-strawberry",
+      "brand": "Optimum Nutrition",
+      "product": "Platinum Hydrowhey — Supercharged Strawberry",
+      "officialUrl": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "formula": "valueCanonical = valueLabel × 0.5 / 1",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/optimum-platinum-hydrowhey-supercharged-strawberry.html",
+        "snapshotSha256": "5eb11f234368c494989fc8c70cee7a9cb17586a3acdcb0622964a7e5f71ae210",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "3ad8e1143fb5f7462acc434680df49a2dfd0f74bfe06f0127c409f50af932b2e"
+    }
+  ]
+}

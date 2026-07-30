@@ -1,0 +1,213 @@
+{
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "foods": [
+    {
+      "id": "autres-sources-proteinees-egg-whites",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "GUIDE_VS_CALCULATOR",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-tempeh",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-firm-tofu",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-fermented-natto",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-seitan",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "INVALID_UNIT",
+          "severity": "ERROR"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "GUIDE_VS_CALCULATOR",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-performance-protein-bar",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+          "fieldsHash": "kcal:10|12|3|85",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T20:09:57.047Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative https://www.questnutrition.com/products/chocolate-brownie-protein-bar"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "INVALID_UNIT",
+          "severity": "ERROR"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-extra-firm-tofu",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-silken-firm-tofu",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-cooked-tempeh",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-soy-protein-isolate",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_MODERATE",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-egg-substitute-powder",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "MISSING_GRAMS",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "GUIDE_VS_CALCULATOR",
+          "severity": "WARNING"
+        }
+      ]
+    }
+  ]
+}

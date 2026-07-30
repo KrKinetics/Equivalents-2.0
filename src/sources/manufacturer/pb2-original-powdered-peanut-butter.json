@@ -1,0 +1,80 @@
+{
+  "evidenceId": "pb2-original-powdered-peanut-butter",
+  "brand": "PB2 Foods",
+  "product": "PB2 Original Powdered Peanut Butter",
+  "flavor": "Original",
+  "market": "North America",
+  "officialUrl": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 2,
+    "unit": "tbsp",
+    "grams": 13
+  },
+  "originalLabelValues": {
+    "declaredKcal": 60,
+    "proteinG": 6,
+    "carbsG": 5,
+    "fiberG": 1,
+    "fatG": 1.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 3 / 2",
+    "targetBasis": "3 tbsp",
+    "method": "same_unit",
+    "factor": 1.5,
+    "labelAmount": 2,
+    "canonicalAmount": 3,
+    "labelUnit": "tbsp",
+    "canonicalUnit": "tbsp",
+    "labelGrams": 13,
+    "canonicalGrams": 19.5
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 90,
+    "proteinG": 9,
+    "carbsG": 7.5,
+    "fiberG": 1.5,
+    "fatG": 2.25,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 90,
+    "proteinG": 9,
+    "carbsG": 7.5,
+    "fiberG": 1.5,
+    "fatG": 2.3,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "saturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 3,
+    "unit": "tbsp",
+    "grams": 19.5,
+    "labelFr": "3 c. à table de PB2 Original en poudre (19,5 g)",
+    "labelEn": "3 tbsp PB2 Original powder (19.5 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/pb2-original-powdered-peanut-butter.html",
+    "snapshotSha256": "24b968c575a2061c9a90127909162009b0b95b4cbb8d71962df0c523b87086e2",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-5-tbsp-pb2",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "cd92e218b140caaa9baf6116ba973297f36838b8f5609b834a59f19fa081dd94"
+}

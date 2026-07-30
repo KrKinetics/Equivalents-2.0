@@ -1,0 +1,1505 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "title": "KR Kinetics — Validation individuelle complète des autres sources protéinées",
+  "status": "applied",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 15 entrées non vérifiées de la catégorie Autres sources protéinées, remplacer les entrées génériques ou ambiguës par des identités exactes et ajouter dix variantes utiles, tout en conservant les deux produits fairlife Core Power Elite déjà vérifiés strictement inchangés.",
+  "scope": {
+    "existingFoodCount": 257,
+    "newFoodCount": 10,
+    "expectedFinalFoodCount": 267,
+    "batchFoodCount": 25,
+    "protectedFoodCount": 242,
+    "allowedFoodIds": [
+      "autres-sources-proteinees-egg-whites",
+      "autres-sources-proteinees-scoop-whey-protein",
+      "autres-sources-proteinees-scoop-plant-protein",
+      "autres-sources-proteinees-tempeh",
+      "autres-sources-proteinees-firm-tofu",
+      "autres-sources-proteinees-fermented-natto",
+      "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "autres-sources-proteinees-5-tbsp-pb2",
+      "autres-sources-proteinees-seitan",
+      "autres-sources-proteinees-egglife-wrap",
+      "autres-sources-proteinees-scoop-micellar-casein",
+      "autres-sources-proteinees-scoop-whey-isolate",
+      "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "autres-sources-proteinees-performance-protein-bar",
+      "autres-sources-proteinees-hydrolyzed-collagen",
+      "autres-sources-proteinees-extra-firm-tofu",
+      "autres-sources-proteinees-silken-firm-tofu",
+      "autres-sources-proteinees-cooked-tempeh",
+      "autres-sources-proteinees-soy-protein-isolate",
+      "autres-sources-proteinees-egg-substitute-powder",
+      "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "autres-sources-proteinees-optimum-hydrowhey-strawberry"
+    ],
+    "protectedVerifiedFoodIds": [
+      "autres-sources-proteinees-core-power-fairlife",
+      "autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Les 12 aliments génériques utilisent le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique."
+    },
+    "manufacturerFoods": {
+      "preferredSource": "Official manufacturer nutrition page or approved official-label snapshot",
+      "rule": "Les 13 produits de marque utilisent leur propre étiquette officielle. Aucune donnée d’un produit voisin, d’une autre saveur ou d’une ancienne formule ne peut être substituée."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète de la source.",
+    "derivedValues": "Conserver la précision complète dans derivedUnroundedForCanonicalPortion.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l’entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur explicitement déclarée à zéro demeure 0. Un nutriment non déclaré par une étiquette demeure null et ne doit jamais devenir un faux zéro.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement. Les calories déclarées par le fabricant ou le CNF demeurent la référence lorsque la différence est légitime."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-egg-whites",
+      "lockedIdentity": {
+        "fr": "Blancs d’œufs de poule cuits",
+        "en": "Cooked chicken egg whites",
+        "preparationState": "cooked",
+        "exclusions": [
+          "raw",
+          "dried",
+          "egg substitute",
+          "whole egg"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de blancs d’œufs cuits (environ 3 blancs)",
+        "labelEn": "100 g cooked egg whites (about 3 whites)",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6605",
+        "matchKeywordsEn": [
+          "Egg, chicken, white, fresh or frozen, cooked"
+        ],
+        "mustContainConcepts": [
+          "Egg, chicken, white, fresh or frozen, cooked"
+        ],
+        "mustNotContainConcepts": [
+          "raw",
+          "dried",
+          "egg substitute",
+          "whole egg"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6605: Egg, chicken, white, fresh or frozen, cooked."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-egg-white-cooked",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "lockedIdentity": {
+        "fr": "Poudre protéinée à base de lactosérum, profil CNF",
+        "en": "Whey-based protein powder, CNF profile",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "ready-to-drink",
+          "isolate only",
+          "plant based"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g de poudre protéinée à base de lactosérum",
+        "labelEn": "15 g whey-based protein powder",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7231",
+        "matchKeywordsEn": [
+          "Beverage, protein powder, whey based, powder"
+        ],
+        "mustContainConcepts": [
+          "Beverage, protein powder, whey based, powder"
+        ],
+        "mustNotContainConcepts": [
+          "ready-to-drink",
+          "isolate only",
+          "plant based"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7231: Beverage, protein powder, whey based, powder."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-whey-generic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "lockedIdentity": {
+        "fr": "Poudre protéinée végétale à base de soya, profil CNF",
+        "en": "Soy-based plant protein powder, CNF profile",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "whey",
+          "pea only",
+          "rice only",
+          "ready-to-drink"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "20 g de poudre protéinée végétale à base de soya",
+        "labelEn": "20 g soy-based plant protein powder",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7232",
+        "matchKeywordsEn": [
+          "Plant-based beverage, protein powder, soy based, powder"
+        ],
+        "mustContainConcepts": [
+          "Plant-based beverage, protein powder, soy based, powder"
+        ],
+        "mustNotContainConcepts": [
+          "whey",
+          "pea only",
+          "rice only",
+          "ready-to-drink"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7232: Plant-based beverage, protein powder, soy based, powder."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-plant-soy-generic",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-tempeh",
+      "lockedIdentity": {
+        "fr": "Tempeh fermenté",
+        "en": "Fermented tempeh",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "cooked",
+          "fried",
+          "tempeh burger"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "50 g de tempeh fermenté",
+        "labelEn": "50 g fermented tempeh",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3321",
+        "matchKeywordsEn": [
+          "Soybean, fermented products, tempeh (tempe)"
+        ],
+        "mustContainConcepts": [
+          "Soybean, fermented products, tempeh (tempe)"
+        ],
+        "mustNotContainConcepts": [
+          "cooked",
+          "fried",
+          "tempeh burger"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3321: Soybean, fermented products, tempeh (tempe)."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-tempeh",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-firm-tofu",
+      "lockedIdentity": {
+        "fr": "Tofu régulier ferme préparé avec sulfate de calcium",
+        "en": "Regular firm tofu prepared with calcium sulphate",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "silken",
+          "extra firm",
+          "fried",
+          "fermented"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 g de tofu ferme",
+        "labelEn": "125 g firm tofu",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3418",
+        "matchKeywordsEn": [
+          "Tofu, regular, medium firm or firm (prepared with calcium sulphate)"
+        ],
+        "mustContainConcepts": [
+          "Tofu, regular, medium firm or firm (prepared with calcium sulphate)"
+        ],
+        "mustNotContainConcepts": [
+          "silken",
+          "extra firm",
+          "fried",
+          "fermented"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3418: Tofu, regular, medium firm or firm (prepared with calcium sulphate)."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-tofu-firm",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-fermented-natto",
+      "lockedIdentity": {
+        "fr": "Natto de soya fermenté",
+        "en": "Fermented soybean natto",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "tempeh",
+          "miso",
+          "soy sauce"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "50 g de natto fermenté",
+        "labelEn": "50 g fermented natto",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3320",
+        "matchKeywordsEn": [
+          "Soybean, fermented products, natto"
+        ],
+        "mustContainConcepts": [
+          "Soybean, fermented products, natto"
+        ],
+        "mustNotContainConcepts": [
+          "tempeh",
+          "miso",
+          "soy sauce"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3320: Soybean, fermented products, natto."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-natto",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "lockedIdentity": {
+        "fr": "Boisson protéinée Muscle Milk chocolat, prête à boire",
+        "en": "Muscle Milk chocolate ready-to-drink protein beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "powder",
+          "vanilla",
+          "fairlife",
+          "premier protein"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "170 ml de boisson protéinée Muscle Milk chocolat (170 g)",
+        "labelEn": "170 ml Muscle Milk chocolate protein beverage (170 g)",
+        "amount": 170,
+        "unit": "ml",
+        "grams": 170
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7228",
+        "matchKeywordsEn": [
+          "Beverage, protein drink, ready-to-drink, Muscle MLK, chocolate"
+        ],
+        "mustContainConcepts": [
+          "Beverage, protein drink, ready-to-drink, Muscle MLK, chocolate"
+        ],
+        "mustNotContainConcepts": [
+          "powder",
+          "vanilla",
+          "fairlife",
+          "premier protein"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7228: Beverage, protein drink, ready-to-drink, Muscle MLK, chocolate."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-rtd-muscle-milk",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "lockedIdentity": {
+        "fr": "PB2 Original en poudre",
+        "en": "PB2 Original powdered peanut butter",
+        "preparationState": "dry_uncooked",
+        "brand": "PB2 Foods",
+        "marketNote": "Produit précis; ne pas confondre avec un beurre d’arachide traditionnel."
+      },
+      "canonicalPortion": {
+        "labelFr": "3 c. à table de PB2 Original en poudre (19,5 g)",
+        "labelEn": "3 tbsp PB2 Original powder (19.5 g)",
+        "amount": 3,
+        "unit": "tbsp",
+        "grams": 19.5
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+        "accessedAt": "2026-07-30",
+        "brand": "PB2 Foods",
+        "productName": "PB2 Original Powdered Peanut Butter",
+        "market": "North America",
+        "labelServing": {
+          "amount": 2,
+          "unit": "tbsp",
+          "grams": 13
+        },
+        "labelNutrients": {
+          "declaredKcal": 60,
+          "proteinG": 6,
+          "carbsG": 5,
+          "fiberG": 1,
+          "fatG": 1.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 90.0,
+          "proteinG": 9.0,
+          "carbsG": 7.5,
+          "fiberG": 1.5,
+          "fatG": 2.25,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 90,
+          "proteinG": 9.0,
+          "carbsG": 7.5,
+          "fiberG": 1.5,
+          "fatG": 2.3,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-powdered-peanut",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-seitan",
+      "lockedIdentity": {
+        "fr": "Rôti de seitan GUSTA Classico",
+        "en": "GUSTA Classico seitan roast",
+        "preparationState": "ready_to_eat",
+        "brand": "GUSTA"
+      },
+      "canonicalPortion": {
+        "labelFr": "50 g de rôti de seitan GUSTA Classico",
+        "labelEn": "50 g GUSTA Classico seitan roast",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+        "accessedAt": "2026-07-30",
+        "brand": "GUSTA",
+        "productName": "Classico Seitan Roast",
+        "market": "Canada",
+        "labelServing": {
+          "amount": 50,
+          "unit": "g",
+          "grams": 50
+        },
+        "labelNutrients": {
+          "declaredKcal": 120,
+          "proteinG": 12,
+          "carbsG": 4,
+          "fiberG": 1,
+          "fatG": 6,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 120.0,
+          "proteinG": 12.0,
+          "carbsG": 4.0,
+          "fiberG": 1.0,
+          "fatG": 6.0,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 120,
+          "proteinG": 12.0,
+          "carbsG": 4.0,
+          "fiberG": 1.0,
+          "fatG": 6.0,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-seitan-branded",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "lockedIdentity": {
+        "fr": "Wraps de blancs d’œufs Egglife Original",
+        "en": "Egglife Original egg white wraps",
+        "preparationState": "ready_to_eat",
+        "brand": "Egglife Foods"
+      },
+      "canonicalPortion": {
+        "labelFr": "2 wraps Egglife Original (57 g)",
+        "labelEn": "2 Egglife Original wraps (57 g)",
+        "amount": 2,
+        "unit": "wraps",
+        "grams": 57
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+        "accessedAt": "2026-07-30",
+        "brand": "Egglife Foods",
+        "productName": "Original Egg White Wraps",
+        "market": "North America",
+        "labelServing": {
+          "amount": 2,
+          "unit": "wraps",
+          "grams": 57
+        },
+        "labelNutrients": {
+          "declaredKcal": 50,
+          "proteinG": 11,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 50.0,
+          "proteinG": 11.0,
+          "carbsG": 1.0,
+          "fiberG": 0.0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 50,
+          "proteinG": 11.0,
+          "carbsG": 1.0,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-egg-white-wrap",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "lockedIdentity": {
+        "fr": "Caséine micellaire Optimum Nutrition Gold Standard, chocolat-arachide",
+        "en": "Optimum Nutrition Gold Standard micellar casein, chocolate peanut butter",
+        "preparationState": "dry_uncooked",
+        "brand": "Optimum Nutrition"
+      },
+      "canonicalPortion": {
+        "labelFr": "17 g de caséine Gold Standard (½ portion)",
+        "labelEn": "17 g Gold Standard casein (½ serving)",
+        "amount": 17,
+        "unit": "g",
+        "grams": 17
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+        "accessedAt": "2026-07-30",
+        "brand": "Optimum Nutrition",
+        "productName": "Gold Standard 100% Casein — Chocolate Peanut Butter",
+        "market": "United States",
+        "labelServing": {
+          "amount": 34,
+          "unit": "g",
+          "grams": 34
+        },
+        "labelNutrients": {
+          "declaredKcal": 120,
+          "proteinG": 24,
+          "carbsG": 4,
+          "fiberG": 1,
+          "fatG": 1,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 60.0,
+          "proteinG": 12.0,
+          "carbsG": 2.0,
+          "fiberG": 0.5,
+          "fatG": 0.5,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 60,
+          "proteinG": 12.0,
+          "carbsG": 2.0,
+          "fiberG": 0.5,
+          "fatG": 0.5,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-casein-micellar",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "lockedIdentity": {
+        "fr": "Isolat de lactosérum Dymatize ISO100, vanille gourmet",
+        "en": "Dymatize ISO100 whey isolate, gourmet vanilla",
+        "preparationState": "dry_uncooked",
+        "brand": "Dymatize"
+      },
+      "canonicalPortion": {
+        "labelFr": "15 g d’isolat Dymatize ISO100 (½ portion)",
+        "labelEn": "15 g Dymatize ISO100 isolate (½ serving)",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://dymatize.com/products/iso100-gourmet-vanilla",
+        "accessedAt": "2026-07-30",
+        "brand": "Dymatize",
+        "productName": "ISO100 Gourmet Vanilla",
+        "market": "United States",
+        "labelServing": {
+          "amount": 30,
+          "unit": "g",
+          "grams": 30
+        },
+        "labelNutrients": {
+          "declaredKcal": 110,
+          "proteinG": 25,
+          "carbsG": 2,
+          "fiberG": 0,
+          "fatG": 1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 55.0,
+          "proteinG": 12.5,
+          "carbsG": 1.0,
+          "fiberG": 0.0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 55,
+          "proteinG": 12.5,
+          "carbsG": 1.0,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-whey-isolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "lockedIdentity": {
+        "fr": "Isolat de protéine de bœuf MuscleMeds Carnivor chocolat",
+        "en": "MuscleMeds Carnivor chocolate beef protein isolate",
+        "preparationState": "dry_uncooked",
+        "brand": "MuscleMeds"
+      },
+      "canonicalPortion": {
+        "labelFr": "½ scoop de Carnivor chocolat (17 g)",
+        "labelEn": "½ scoop Carnivor chocolate (17 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 16.95
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://musclemedsrx.com/products/carnivor",
+        "accessedAt": "2026-07-30",
+        "brand": "MuscleMeds",
+        "productName": "Carnivor Beef Protein Isolate — Chocolate",
+        "market": "North America",
+        "labelServing": {
+          "amount": 1,
+          "unit": "scoop",
+          "grams": 33.9
+        },
+        "labelNutrients": {
+          "declaredKcal": 120,
+          "proteinG": 23,
+          "carbsG": 6,
+          "fiberG": 1,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 60.0,
+          "proteinG": 11.5,
+          "carbsG": 3.0,
+          "fiberG": 0.5,
+          "fatG": 0.0,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": 0.0,
+          "monounsaturatedFatG": 0.0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 60,
+          "proteinG": 11.5,
+          "carbsG": 3.0,
+          "fiberG": 0.5,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-beef-isolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-performance-protein-bar",
+      "lockedIdentity": {
+        "fr": "Barre protéinée Quest Chocolate Brownie",
+        "en": "Quest Chocolate Brownie protein bar",
+        "preparationState": "ready_to_eat",
+        "brand": "Quest Nutrition",
+        "marketNote": "Profil mixte protéine, glucides, fibres et lipides; ne pas traiter comme une poudre pure."
+      },
+      "canonicalPortion": {
+        "labelFr": "½ barre Quest Chocolate Brownie (30 g)",
+        "labelEn": "½ Quest Chocolate Brownie bar (30 g)",
+        "amount": 0.5,
+        "unit": "bar",
+        "grams": 30
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+        "accessedAt": "2026-07-30",
+        "brand": "Quest Nutrition",
+        "productName": "Chocolate Brownie Protein Bar",
+        "market": "North America",
+        "labelServing": {
+          "amount": 1,
+          "unit": "bar",
+          "grams": 60
+        },
+        "labelNutrients": {
+          "declaredKcal": 170,
+          "proteinG": 20,
+          "carbsG": 24,
+          "fiberG": 15,
+          "fatG": 6,
+          "saturatedFatG": 1,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 85.0,
+          "proteinG": 10.0,
+          "carbsG": 12.0,
+          "fiberG": 7.5,
+          "fatG": 3.0,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 85,
+          "proteinG": 10.0,
+          "carbsG": 12.0,
+          "fiberG": 7.5,
+          "fatG": 3.0,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-bar-high-fibre",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "lockedIdentity": {
+        "fr": "Peptides de collagène Vital Proteins, sans saveur",
+        "en": "Vital Proteins Collagen Peptides, unflavored",
+        "preparationState": "dry_uncooked",
+        "brand": "Vital Proteins",
+        "marketNote": "Le collagène demeure dans la catégorie pour la planification, mais son profil est explicitement distinct d’une protéine complète."
+      },
+      "canonicalPortion": {
+        "labelFr": "1 scoop de peptides de collagène Vital Proteins (10 g)",
+        "labelEn": "1 scoop Vital Proteins Collagen Peptides (10 g)",
+        "amount": 1,
+        "unit": "scoop",
+        "grams": 10
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+        "accessedAt": "2026-07-30",
+        "brand": "Vital Proteins",
+        "productName": "Collagen Peptides — Unflavored",
+        "market": "North America",
+        "labelServing": {
+          "amount": 2,
+          "unit": "scoops",
+          "grams": 20
+        },
+        "labelNutrients": {
+          "declaredKcal": 70,
+          "proteinG": 18,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 35.0,
+          "proteinG": 9.0,
+          "carbsG": 0.0,
+          "fiberG": 0.0,
+          "fatG": 0.0,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": 0.0,
+          "monounsaturatedFatG": 0.0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 35,
+          "proteinG": 9.0,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-collagen-incomplete",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-extra-firm-tofu",
+      "lockedIdentity": {
+        "fr": "Tofu régulier ferme ou extra-ferme",
+        "en": "Regular firm or extra-firm tofu",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "silken",
+          "fried",
+          "fermented"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 g de tofu ferme ou extra-ferme",
+        "labelEn": "125 g firm or extra-firm tofu",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3404",
+        "matchKeywordsEn": [
+          "Tofu, regular, firm or extra firm (prepared with magnesium chloride and calcium sulphate or calcium chloride)"
+        ],
+        "mustContainConcepts": [
+          "Tofu, regular, firm or extra firm (prepared with magnesium chloride and calcium sulphate or calcium chloride)"
+        ],
+        "mustNotContainConcepts": [
+          "silken",
+          "fried",
+          "fermented"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3404: Tofu, regular, firm or extra firm (prepared with magnesium chloride and calcium sulphate or calcium chloride)."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-tofu-extra-firm",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-silken-firm-tofu",
+      "lockedIdentity": {
+        "fr": "Tofu soyeux ferme, longue conservation",
+        "en": "Shelf-stable firm silken tofu",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular tofu",
+          "fried",
+          "soft silken"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "150 g de tofu soyeux ferme",
+        "labelEn": "150 g firm silken tofu",
+        "amount": 150,
+        "unit": "g",
+        "grams": 150
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4911",
+        "matchKeywordsEn": [
+          "Tofu, silken, firm, shelf stable"
+        ],
+        "mustContainConcepts": [
+          "Tofu, silken, firm, shelf stable"
+        ],
+        "mustNotContainConcepts": [
+          "regular tofu",
+          "fried",
+          "soft silken"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4911: Tofu, silken, firm, shelf stable."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-tofu-silken-firm",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-cooked-tempeh",
+      "lockedIdentity": {
+        "fr": "Tempeh cuit",
+        "en": "Cooked tempeh",
+        "preparationState": "cooked",
+        "exclusions": [
+          "uncooked",
+          "fried with sauce",
+          "tempeh burger"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "50 g de tempeh cuit",
+        "labelEn": "50 g cooked tempeh",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "4986",
+        "matchKeywordsEn": [
+          "Soybean, fermented products, Tempeh (tempe), cooked"
+        ],
+        "mustContainConcepts": [
+          "Soybean, fermented products, Tempeh (tempe), cooked"
+        ],
+        "mustNotContainConcepts": [
+          "uncooked",
+          "fried with sauce",
+          "tempeh burger"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 4986: Soybean, fermented products, Tempeh (tempe), cooked."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-tempeh-cooked",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-soy-protein-isolate",
+      "lockedIdentity": {
+        "fr": "Isolat de protéine de soya préparé avec sodium",
+        "en": "Soy protein isolate prepared with sodium",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "tofu",
+          "soy flour",
+          "soy concentrate"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "12 g d’isolat de protéine de soya",
+        "labelEn": "12 g soy protein isolate",
+        "amount": 12,
+        "unit": "g",
+        "grams": 12
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "3328",
+        "matchKeywordsEn": [
+          "Soy protein isolate (prepared with sodium)"
+        ],
+        "mustContainConcepts": [
+          "Soy protein isolate (prepared with sodium)"
+        ],
+        "mustNotContainConcepts": [
+          "tofu",
+          "soy flour",
+          "soy concentrate"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 3328: Soy protein isolate (prepared with sodium)."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-soy-isolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-egg-substitute-powder",
+      "lockedIdentity": {
+        "fr": "Substitut d’œuf en poudre",
+        "en": "Powdered egg substitute",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "liquid egg whites",
+          "whole egg",
+          "egg yolk"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "18 g de substitut d’œuf en poudre",
+        "labelEn": "18 g powdered egg substitute",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18
+      },
+      "portionDecision": "Portion approuvée individuellement pour fournir une quantité pratique de protéines. Le poids en grammes demeure la base canonique du calcul.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6421",
+        "matchKeywordsEn": [
+          "Egg substitute, powder"
+        ],
+        "mustContainConcepts": [
+          "Egg substitute, powder"
+        ],
+        "mustNotContainConcepts": [
+          "liquid egg whites",
+          "whole egg",
+          "egg yolk"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6421: Egg substitute, powder."
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-egg-substitute-powder",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "lockedIdentity": {
+        "fr": "Blancs d’œufs liquides Naturegg Simply Egg Whites Free Run",
+        "en": "Naturegg Simply Egg Whites Free Run liquid egg whites",
+        "preparationState": "ready_to_eat",
+        "brand": "Burnbrae Farms"
+      },
+      "canonicalPortion": {
+        "labelFr": "100 g de blancs d’œufs liquides Naturegg (⅓ tasse)",
+        "labelEn": "100 g Naturegg liquid egg whites (⅓ cup)",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+        "accessedAt": "2026-07-30",
+        "brand": "Burnbrae Farms",
+        "productName": "Naturegg Simply Egg Whites Free Run",
+        "market": "Canada",
+        "labelServing": {
+          "amount": 100,
+          "unit": "g",
+          "grams": 100
+        },
+        "labelNutrients": {
+          "declaredKcal": 45,
+          "proteinG": 10,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 45.0,
+          "proteinG": 10.0,
+          "carbsG": 1.0,
+          "fiberG": 0.0,
+          "fatG": 0.0,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": 0.0,
+          "monounsaturatedFatG": 0.0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 45,
+          "proteinG": 10.0,
+          "carbsG": 1.0,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-liquid-egg-white",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "lockedIdentity": {
+        "fr": "Protéine de pois NOW Sports, vanille caramel",
+        "en": "NOW Sports pea protein, vanilla toffee",
+        "preparationState": "dry_uncooked",
+        "brand": "NOW Foods"
+      },
+      "canonicalPortion": {
+        "labelFr": "½ scoop de protéine de pois NOW (20,5 g)",
+        "labelEn": "½ scoop NOW pea protein (20.5 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 20.5
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+        "accessedAt": "2026-07-30",
+        "brand": "NOW Foods",
+        "productName": "Pea Protein — Vanilla Toffee",
+        "market": "North America",
+        "labelServing": {
+          "amount": 1,
+          "unit": "scoop",
+          "grams": 41
+        },
+        "labelNutrients": {
+          "declaredKcal": 140,
+          "proteinG": 25,
+          "carbsG": 6,
+          "fiberG": 2,
+          "fatG": 2,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 70.0,
+          "proteinG": 12.5,
+          "carbsG": 3.0,
+          "fiberG": 1.0,
+          "fatG": 1.0,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 70,
+          "proteinG": 12.5,
+          "carbsG": 3.0,
+          "fiberG": 1.0,
+          "fatG": 1.0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-pea-isolate",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "lockedIdentity": {
+        "fr": "Protéine de riz brun germé NOW Sports",
+        "en": "NOW Sports sprouted brown rice protein",
+        "preparationState": "dry_uncooked",
+        "brand": "NOW Foods"
+      },
+      "canonicalPortion": {
+        "labelFr": "3 c. à table de protéine de riz brun germé NOW (15 g)",
+        "labelEn": "3 tbsp NOW sprouted brown rice protein (15 g)",
+        "amount": 3,
+        "unit": "tbsp",
+        "grams": 15
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+        "accessedAt": "2026-07-30",
+        "brand": "NOW Foods",
+        "productName": "Sprouted Brown Rice Protein Powder",
+        "market": "North America",
+        "labelServing": {
+          "amount": 1,
+          "unit": "tbsp",
+          "grams": 5
+        },
+        "labelNutrients": {
+          "declaredKcal": 15,
+          "proteinG": 4,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 45.0,
+          "proteinG": 12.0,
+          "carbsG": 0.0,
+          "fiberG": 0.0,
+          "fatG": 0.0,
+          "saturatedFatG": 0.0,
+          "polyunsaturatedFatG": 0.0,
+          "monounsaturatedFatG": 0.0
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 45,
+          "proteinG": 12.0,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 0,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-rice",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "lockedIdentity": {
+        "fr": "Boisson Premier Protein chocolat-arachide",
+        "en": "Premier Protein chocolate peanut butter shake",
+        "preparationState": "ready_to_eat",
+        "brand": "Premier Protein"
+      },
+      "canonicalPortion": {
+        "labelFr": "100 ml de Premier Protein chocolat-arachide",
+        "labelEn": "100 ml Premier Protein chocolate peanut butter shake",
+        "amount": 100,
+        "unit": "ml",
+        "grams": null
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+        "accessedAt": "2026-07-30",
+        "brand": "Premier Protein",
+        "productName": "Chocolate Peanut Butter Protein Shake",
+        "market": "Canada",
+        "labelServing": {
+          "amount": 325,
+          "unit": "ml"
+        },
+        "labelNutrients": {
+          "declaredKcal": 160,
+          "proteinG": 30,
+          "carbsG": 6,
+          "fiberG": 2,
+          "fatG": 3,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1,
+          "monounsaturatedFatG": 0.5
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 49.23076923076923,
+          "proteinG": 9.230769230769232,
+          "carbsG": 1.8461538461538463,
+          "fiberG": 0.6153846153846154,
+          "fatG": 0.9230769230769231,
+          "saturatedFatG": 0.15384615384615385,
+          "polyunsaturatedFatG": 0.3076923076923077,
+          "monounsaturatedFatG": 0.15384615384615385
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 49,
+          "proteinG": 9.2,
+          "carbsG": 1.8,
+          "fiberG": 0.6,
+          "fatG": 0.9,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 0.2
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-rtd-premier",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "lockedIdentity": {
+        "fr": "Hydrolysat de lactosérum Optimum Nutrition Platinum Hydrowhey, fraise",
+        "en": "Optimum Nutrition Platinum Hydrowhey, strawberry",
+        "preparationState": "dry_uncooked",
+        "brand": "Optimum Nutrition"
+      },
+      "canonicalPortion": {
+        "labelFr": "½ scoop de Platinum Hydrowhey fraise (20 g)",
+        "labelEn": "½ scoop Platinum Hydrowhey strawberry (20 g)",
+        "amount": 0.5,
+        "unit": "scoop",
+        "grams": 20
+      },
+      "portionDecision": "Portion canonique dérivée mathématiquement de la portion officielle du fabricant. Les nutriments non déclarés par l’étiquette demeurent null et ne sont jamais transformés en faux zéros.",
+      "manufacturerLabel": {
+        "sourceType": "manufacturer_website",
+        "url": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+        "accessedAt": "2026-07-30",
+        "brand": "Optimum Nutrition",
+        "productName": "Platinum Hydrowhey — Supercharged Strawberry",
+        "market": "United States",
+        "labelServing": {
+          "amount": 1,
+          "unit": "scoop",
+          "grams": 40
+        },
+        "labelNutrients": {
+          "declaredKcal": 140,
+          "proteinG": 30,
+          "carbsG": 3,
+          "fiberG": 0,
+          "fatG": 1,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnroundedForCanonicalPortion": {
+          "declaredKcal": 70.0,
+          "proteinG": 15.0,
+          "carbsG": 1.5,
+          "fiberG": 0.0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.25,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedForCanonicalPortion": {
+          "declaredKcal": 70,
+          "proteinG": 15.0,
+          "carbsG": 1.5,
+          "fiberG": 0,
+          "fatG": 0.5,
+          "saturatedFatG": 0.3,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "classification": {
+        "displayCategory": "autres_sources_proteinees",
+        "calculationGroup": "protein",
+        "exchangeProfileId": "protein-whey-hydrolysate",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 15 entrées existantes non vérifiées sont revues individuellement.",
+    "Dix variantes utiles sont ajoutées et vérifiées individuellement.",
+    "Les deux produits fairlife Core Power Elite déjà verified demeurent strictement inchangés.",
+    "Les 242 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 267 aliments.",
+    "La catégorie Autres sources protéinées contient exactement 27 aliments.",
+    "Les 27 aliments de la catégorie sont verified après application.",
+    "Le nombre total d’aliments verified passe de 201 à 226.",
+    "Les 12 aliments CNF possèdent leur propre expectedRecordId et conversion.",
+    "Les 13 produits de marque possèdent leur propre preuve fabricant, conversion et URL officielle.",
+    "Les nutriments non déclarés par les fabricants demeurent null.",
+    "Aucune ERROR ouverte ne demeure sur les 25 aliments traités.",
+    "Le dry-run, l’application, l’audit, le contrôle de périmètre, les tests Node, navigateur et GitHub Actions réussissent."
+  ]
+}

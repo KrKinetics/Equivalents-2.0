@@ -1,0 +1,81 @@
+{
+  "evidenceId": "dymatize-iso100-gourmet-vanilla",
+  "brand": "Dymatize",
+  "product": "ISO100 Gourmet Vanilla",
+  "flavor": "Gourmet Vanilla",
+  "market": "United States",
+  "officialUrl": "https://dymatize.com/products/iso100-gourmet-vanilla",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 30,
+    "unit": "g",
+    "grams": 30
+  },
+  "originalLabelValues": {
+    "declaredKcal": 110,
+    "proteinG": 25,
+    "carbsG": 2,
+    "fiberG": 0,
+    "fatG": 1,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 15 / 30",
+    "targetBasis": "15 g",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 30,
+    "canonicalAmount": 15,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 30,
+    "canonicalGrams": 15
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 55,
+    "proteinG": 12.5,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 55,
+    "proteinG": 12.5,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 0.5,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG",
+    "saturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 15,
+    "unit": "g",
+    "grams": 15,
+    "labelFr": "15 g d’isolat Dymatize ISO100 (½ portion)",
+    "labelEn": "15 g Dymatize ISO100 isolate (½ serving)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/dymatize-iso100-gourmet-vanilla.html",
+    "snapshotSha256": "23eec4b2380d37e1d491c04c9dc0cce05c448d7032544da2da6b19f24785c653",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-scoop-whey-isolate",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "76507be009abbfa65974aa9b2452f8b536ac1bfb01ab79aa51e31d372e696d1d"
+}

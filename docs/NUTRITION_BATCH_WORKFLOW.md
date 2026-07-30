@@ -85,20 +85,30 @@ Conversion :
 
 ## 5. Source fabricant (produit de marque)
 
-Fournir `manufacturerLabel` avec URL, date, portion d’étiquette, valeurs originales,
-`derivedUnroundedPer100Ml` et `storedPer100Ml` approuvés.
+Fournir `manufacturerLabel` avec URL, date, `labelServing` (amount/unit et grams optionnels),
+valeurs originales, puis soit :
+
+- `derivedUnroundedForCanonicalPortion` + `storedForCanonicalPortion` (poudres, barres, wraps, liquides), ou
+- `derivedUnroundedPer100Ml` + `storedPer100Ml` (bouteilles RTD historiques Fairlife).
+
+Conversion canonique (ordre strict) :
+
+1. même unité normalisée (`g`, `ml`, `scoop`, `tbsp`, `wrap`, `bar`, pluriels inclus) → ratio des amounts;
+2. sinon ratio des grammes si les deux poids sont disponibles;
+3. sinon échec explicite (`MANUFACTURER_CONVERSION_UNSUPPORTED`).
+
+`null` = nutriment non déclaré; `0` = zéro réellement déclaré. Ne jamais convertir `null` en `0`
+(`MANUFACTURER_UNKNOWN_COERCED_TO_ZERO`).
 
 Créer une preuve :
 
 ```bash
 node scripts/write-fairlife-evidence.mjs
+node scripts/write-now-mct-evidence.mjs
+node scripts/write-other-protein-manufacturer-evidence.mjs
 ```
 
 Schéma : `src/data/manufacturer-evidence.schema.json`
-
-Conversion :
-
-`valeurPar100ml = valeurBouteille × 100 / 414`
 
 ## 6. Valider
 

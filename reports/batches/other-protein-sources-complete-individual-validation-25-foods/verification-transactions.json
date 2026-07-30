@@ -1,0 +1,205 @@
+{
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "transactions": [
+    {
+      "id": "autres-sources-proteinees-egg-whites",
+      "operation": "update",
+      "transactionId": "543f2992-f8b9-4571-b046-e318df678607",
+      "expectedRecordId": "6605",
+      "selectedRecordId": "6605",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "operation": "update",
+      "transactionId": "7d3afa31-e957-47c4-b4dd-556ff1c69910",
+      "expectedRecordId": "7231",
+      "selectedRecordId": "7231",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "operation": "update",
+      "transactionId": "f955674d-b3e9-400f-975f-fe9ae0a1c6a4",
+      "expectedRecordId": "7232",
+      "selectedRecordId": "7232",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-tempeh",
+      "operation": "update",
+      "transactionId": "42824d5a-50f9-4e22-9300-2cf1818a0f49",
+      "expectedRecordId": "3321",
+      "selectedRecordId": "3321",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-firm-tofu",
+      "operation": "update",
+      "transactionId": "e46937f5-00ef-49c6-812e-6f17bd5128b0",
+      "expectedRecordId": "3418",
+      "selectedRecordId": "3418",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-fermented-natto",
+      "operation": "update",
+      "transactionId": "95f8cf61-ddb1-43bb-acc3-15c96fa67a64",
+      "expectedRecordId": "3320",
+      "selectedRecordId": "3320",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "operation": "update",
+      "transactionId": "10ce1c8c-6d22-48c6-9896-0c34e505adce",
+      "expectedRecordId": "7228",
+      "selectedRecordId": "7228",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "operation": "update",
+      "transactionId": "6daca3a3-56b0-44c0-868a-1c89d964f889",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.pb2foods.com/products/pb2-original-powdered-peanut-butter-peanut-butter-powder",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-seitan",
+      "operation": "update",
+      "transactionId": "ab1b7572-d9f7-41a9-842d-1fc2d92fca33",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://staging.gustafoods.com/en/products/seitan-roasts-cured-sausages/classico/",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "operation": "update",
+      "transactionId": "69c0c4c3-970f-4b9e-b209-9699c122c030",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.egglifefoods.com/product/egg-white-wraps-original",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "operation": "update",
+      "transactionId": "f545af84-82c4-418a-9010-a5ffa1b555a5",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "operation": "update",
+      "transactionId": "e2b5b23c-865d-46ff-90ec-b6451fbca9c1",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://dymatize.com/products/iso100-gourmet-vanilla",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "operation": "update",
+      "transactionId": "f6cd61cf-7041-4034-b4a8-e2d8b0fb130a",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://musclemedsrx.com/products/carnivor",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-performance-protein-bar",
+      "operation": "update",
+      "transactionId": "50e53f00-b743-49d2-80dc-16d155870b5f",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.questnutrition.com/products/chocolate-brownie-protein-bar",
+      "version": 4
+    },
+    {
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "operation": "update",
+      "transactionId": "931c639b-bc6c-4474-ab79-5a2216358fd8",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.vitalproteins.com/products/vp-collagen-peptides",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-extra-firm-tofu",
+      "operation": "add",
+      "transactionId": "b6fcd115-352c-4c1c-8003-72df2538e861",
+      "expectedRecordId": "3404",
+      "selectedRecordId": "3404",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-silken-firm-tofu",
+      "operation": "add",
+      "transactionId": "0e13d371-813e-4d55-8ee4-a036dfc1bd83",
+      "expectedRecordId": "4911",
+      "selectedRecordId": "4911",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-cooked-tempeh",
+      "operation": "add",
+      "transactionId": "906881ca-7cfd-4abf-9897-9c189290d15e",
+      "expectedRecordId": "4986",
+      "selectedRecordId": "4986",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-soy-protein-isolate",
+      "operation": "add",
+      "transactionId": "f41d61d3-5a79-4f97-8b20-e74403489a6e",
+      "expectedRecordId": "3328",
+      "selectedRecordId": "3328",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-egg-substitute-powder",
+      "operation": "add",
+      "transactionId": "966191c8-c196-4197-a6fe-cec0676e3470",
+      "expectedRecordId": "6421",
+      "selectedRecordId": "6421",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-liquid-egg-whites-burnbrae",
+      "operation": "add",
+      "transactionId": "aa2eb8ca-d816-429d-b7ce-1d6c7a5b1f63",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.burnbraefarms.com/en/products/simply-egg-whites/naturegg-simply-egg-whites-free",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+      "operation": "add",
+      "transactionId": "9058575b-fb77-440c-a9eb-6569261ac6ac",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-now-sprouted-brown-rice-protein",
+      "operation": "add",
+      "transactionId": "497e139f-a4b2-4309-8c87-325390672505",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/sprouted-brown-rice-protein-powder",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+      "operation": "add",
+      "transactionId": "035aba63-b5e2-470e-a8d3-0178988549e2",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+      "version": 3
+    },
+    {
+      "id": "autres-sources-proteinees-optimum-hydrowhey-strawberry",
+      "operation": "add",
+      "transactionId": "1553c0fc-39c1-441f-af30-d9419aff69f2",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.optimumnutrition.com/en-us/products/platinum-hydrowhey-hydrolyzed-whey-protein-powder",
+      "version": 3
+    }
+  ]
+}

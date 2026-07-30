@@ -33,7 +33,8 @@
       "required": ["amount", "unit"],
       "properties": {
         "amount": { "type": "number", "exclusiveMinimum": 0 },
-        "unit": { "type": "string", "minLength": 1 }
+        "unit": { "type": "string", "minLength": 1 },
+        "grams": { "type": ["number", "null"], "minimum": 0 }
       }
     },
     "originalLabelValues": {
@@ -48,11 +49,11 @@
         "saturatedFatG"
       ],
       "properties": {
-        "declaredKcal": { "type": "number" },
-        "proteinG": { "type": "number" },
-        "carbsG": { "type": "number" },
+        "declaredKcal": { "type": ["number", "null"] },
+        "proteinG": { "type": ["number", "null"] },
+        "carbsG": { "type": ["number", "null"] },
         "fiberG": { "type": ["number", "null"] },
-        "fatG": { "type": "number" },
+        "fatG": { "type": ["number", "null"] },
         "saturatedFatG": { "type": ["number", "null"] },
         "polyunsaturatedFatG": { "type": ["number", "null"] },
         "monounsaturatedFatG": { "type": ["number", "null"] }
@@ -65,11 +66,41 @@
       "properties": {
         "formula": { "type": "string", "minLength": 1 },
         "targetBasis": { "type": "string", "minLength": 1 },
+        "method": {
+          "type": "string",
+          "enum": ["same_unit", "grams_ratio", "amount_ratio", "per_100_ml"]
+        },
+        "factor": { "type": "number" },
+        "labelAmount": { "type": "number" },
+        "canonicalAmount": { "type": "number" },
+        "labelUnit": { "type": ["string", "null"] },
+        "canonicalUnit": { "type": ["string", "null"] },
+        "labelGrams": { "type": ["number", "null"] },
+        "canonicalGrams": { "type": ["number", "null"] },
         "bottleMl": { "type": "number" }
       }
     },
     "derivedUnrounded": { "type": "object" },
     "storedRounded": { "type": "object" },
+    "undeclaredNutrients": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "declaredZeroNutrients": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "canonicalPortion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amount": { "type": "number" },
+        "unit": { "type": "string" },
+        "grams": { "type": ["number", "null"] },
+        "labelFr": { "type": "string" },
+        "labelEn": { "type": "string" }
+      }
+    },
     "networkComparison": {
       "type": "object",
       "additionalProperties": false,

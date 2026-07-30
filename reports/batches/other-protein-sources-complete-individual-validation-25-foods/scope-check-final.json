@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 242,
+  "protectedFoodsDataHash": "add27b2719966438ca78f481bc9c67cecc7e81d527dc322864e50d90b4ea92a1",
+  "foodCount": 267,
+  "checkedAt": "2026-07-30T20:22:20.593Z",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}

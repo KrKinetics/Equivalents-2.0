@@ -1,0 +1,79 @@
+{
+  "evidenceId": "optimum-gold-standard-casein-chocolate-peanut-butter",
+  "brand": "Optimum Nutrition",
+  "product": "Gold Standard 100% Casein — Chocolate Peanut Butter",
+  "flavor": "Chocolate Peanut Butter",
+  "market": "United States",
+  "officialUrl": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-casein-protein-powder",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 34,
+    "unit": "g",
+    "grams": 34
+  },
+  "originalLabelValues": {
+    "declaredKcal": 120,
+    "proteinG": 24,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 1,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 17 / 34",
+    "targetBasis": "17 g",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 34,
+    "canonicalAmount": 17,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 34,
+    "canonicalGrams": 17
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 60,
+    "proteinG": 12,
+    "carbsG": 2,
+    "fiberG": 0.5,
+    "fatG": 0.5,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 60,
+    "proteinG": 12,
+    "carbsG": 2,
+    "fiberG": 0.5,
+    "fatG": 0.5,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 17,
+    "unit": "g",
+    "grams": 17,
+    "labelFr": "17 g de caséine Gold Standard (½ portion)",
+    "labelEn": "17 g Gold Standard casein (½ serving)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/optimum-gold-standard-casein-chocolate-peanut-butter.html",
+    "snapshotSha256": "fe1df50daee4976e222b7c3bd0796dc3b5a143727a4f748cbf26b983a67c68c8",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-scoop-micellar-casein",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "185db8725d64e116dceae601898106a2080d349df5b88fcac4e3794eb3e434b5"
+}

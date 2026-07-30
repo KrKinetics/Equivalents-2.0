@@ -1,0 +1,80 @@
+{
+  "evidenceId": "now-pea-protein-vanilla-toffee",
+  "brand": "NOW Foods",
+  "product": "Pea Protein — Vanilla Toffee",
+  "flavor": "Vanilla Toffee",
+  "market": "North America",
+  "officialUrl": "https://www.nowfoods.com/products/sports-nutrition/pea-protein-vanilla-toffee-powder",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 1,
+    "unit": "scoop",
+    "grams": 41
+  },
+  "originalLabelValues": {
+    "declaredKcal": 140,
+    "proteinG": 25,
+    "carbsG": 6,
+    "fiberG": 2,
+    "fatG": 2,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 0.5 / 1",
+    "targetBasis": "0.5 scoop",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 1,
+    "canonicalAmount": 0.5,
+    "labelUnit": "scoop",
+    "canonicalUnit": "scoop",
+    "labelGrams": 41,
+    "canonicalGrams": 20.5
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 70,
+    "proteinG": 12.5,
+    "carbsG": 3,
+    "fiberG": 1,
+    "fatG": 1,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 70,
+    "proteinG": 12.5,
+    "carbsG": 3,
+    "fiberG": 1,
+    "fatG": 1,
+    "saturatedFatG": 0,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "saturatedFatG"
+  ],
+  "canonicalPortion": {
+    "amount": 0.5,
+    "unit": "scoop",
+    "grams": 20.5,
+    "labelFr": "½ scoop de protéine de pois NOW (20,5 g)",
+    "labelEn": "½ scoop NOW pea protein (20.5 g)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": null,
+    "snapshotPath": null,
+    "snapshotSha256": null,
+    "notes": "HTTP 403; network comparison not completed. Approved specification values used."
+  },
+  "linkedFoodId": "autres-sources-proteinees-now-pea-protein-vanilla-toffee",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "651a4d2dc9df52d26761b04e45e56078f745e34c943ad5c5202a70e28872e39f"
+}

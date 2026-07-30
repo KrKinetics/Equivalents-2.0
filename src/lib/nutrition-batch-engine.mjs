@@ -28,6 +28,10 @@ import {
   convertCnfPer100gToPortion,
   convertManufacturerBottleTo100ml,
   convertManufacturerLabelToCanonicalPortion,
+  validateManufacturerStoredAgainstConversion,
+  MANUFACTURER_ERROR_CODES,
+  normalizeManufacturerUnit,
+  resolveManufacturerConversionFactor,
   roundMacro,
   roundKcal,
 } from './nutrition-batch-math.mjs';
@@ -307,32 +311,45 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
   if (entry.manufacturerLabel) {
     const label = entry.manufacturerLabel;
     const usesCanonicalPortion = Boolean(label.storedForCanonicalPortion);
-    const conversion = usesCanonicalPortion
-      ? convertManufacturerLabelToCanonicalPortion(
-          label.labelNutrients,
-          label.labelServing.amount,
-          entry.canonicalPortion.amount
-        )
-      : convertManufacturerBottleTo100ml(label.labelNutrients, label.labelServing.amount);
+    let conversion;
+    try {
+      conversion = usesCanonicalPortion
+        ? convertManufacturerLabelToCanonicalPortion(
+            label.labelNutrients,
+            label.labelServing,
+            entry.canonicalPortion
+          )
+        : convertManufacturerBottleTo100ml(label.labelNutrients, label.labelServing.amount);
+    } catch (error) {
+      const code = error.code || MANUFACTURER_ERROR_CODES.MANUFACTURER_CONVERSION_UNSUPPORTED;
+      return {
+        ok: false,
+        errors: [`${code}: ${entry.id}: ${error.message}`],
+        selection: null,
+        selectedRecordId: null,
+        expectedRecordId: null,
+      };
+    }
     const approvedStored = usesCanonicalPortion
       ? label.storedForCanonicalPortion
       : label.storedPer100Ml;
     const nutrients = {
-      declaredKcal: approvedStored.declaredKcal,
-      proteinG: approvedStored.proteinG,
-      carbsG: approvedStored.carbsG,
-      fiberG: approvedStored.fiberG,
-      fatG: approvedStored.fatG,
-      saturatedFatG: approvedStored.saturatedFatG,
+      declaredKcal: approvedStored.declaredKcal ?? null,
+      proteinG: approvedStored.proteinG ?? null,
+      carbsG: approvedStored.carbsG ?? null,
+      fiberG: approvedStored.fiberG ?? null,
+      fatG: approvedStored.fatG ?? null,
+      saturatedFatG: approvedStored.saturatedFatG ?? null,
       polyunsaturatedFatG: approvedStored.polyunsaturatedFatG ?? null,
       monounsaturatedFatG: approvedStored.monounsaturatedFatG ?? null,
     };
-    if (!nutrientsEqual(conversion.storedRounded, nutrients)) {
+    const storedCheck = validateManufacturerStoredAgainstConversion(nutrients, conversion);
+    if (!storedCheck.ok) {
       return {
         ok: false,
-        errors: [
-          `MANUFACTURER_STORED_MISMATCH: ${entry.id}: computed stored values differ from approved manufacturer label`,
-        ],
+        errors: storedCheck.errors.map(
+          (err) => `${err.code}: ${entry.id}: ${err.message}`
+        ),
         selection: null,
         selectedRecordId: null,
         expectedRecordId: null,
@@ -353,6 +370,10 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
       sourceReferenceId: label.url,
       expectedRecordId: null,
       selectedRecordId: label.url,
+      brand: label.brand || null,
+      productName: label.productName || null,
+      undeclaredNutrients: conversion.undeclaredNutrients || [],
+      declaredZeroNutrients: conversion.declaredZeroNutrients || [],
     };
   }
 
@@ -643,6 +664,7 @@ export function applyApprovedBatch(batch, currentPayload, options = {}) {
     applied.push({
       id: food.id,
       operation: row.operation,
+      adapter: resolved.adapter,
       recordId: resolved.source.recordId,
       expectedRecordId: resolved.expectedRecordId,
       selectedRecordId: resolved.selectedRecordId,
@@ -709,6 +731,10 @@ export {
   convertCnfPer100gToPortion,
   convertManufacturerBottleTo100ml,
   convertManufacturerLabelToCanonicalPortion,
+  validateManufacturerStoredAgainstConversion,
+  MANUFACTURER_ERROR_CODES,
+  normalizeManufacturerUnit,
+  resolveManufacturerConversionFactor,
   buildBatchScopeBaseline,
   checkBatchScope,
 };

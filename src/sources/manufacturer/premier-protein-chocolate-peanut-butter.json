@@ -1,0 +1,74 @@
+{
+  "evidenceId": "premier-protein-chocolate-peanut-butter",
+  "brand": "Premier Protein",
+  "product": "Chocolate Peanut Butter Protein Shake",
+  "flavor": "Chocolate Peanut Butter",
+  "market": "Canada",
+  "officialUrl": "https://premierprotein.ca/products/chocolate-peanut-butter-protein-shake",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 325,
+    "unit": "ml"
+  },
+  "originalLabelValues": {
+    "declaredKcal": 160,
+    "proteinG": 30,
+    "carbsG": 6,
+    "fiberG": 2,
+    "fatG": 3,
+    "saturatedFatG": 0.5,
+    "polyunsaturatedFatG": 1,
+    "monounsaturatedFatG": 0.5
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 100 / 325",
+    "targetBasis": "100 ml",
+    "method": "same_unit",
+    "factor": 0.3076923076923077,
+    "labelAmount": 325,
+    "canonicalAmount": 100,
+    "labelUnit": "ml",
+    "canonicalUnit": "ml",
+    "labelGrams": null,
+    "canonicalGrams": null
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 49.23076923076923,
+    "proteinG": 9.230769230769232,
+    "carbsG": 1.8461538461538463,
+    "fiberG": 0.6153846153846154,
+    "fatG": 0.9230769230769231,
+    "saturatedFatG": 0.15384615384615385,
+    "polyunsaturatedFatG": 0.3076923076923077,
+    "monounsaturatedFatG": 0.15384615384615385
+  },
+  "storedRounded": {
+    "declaredKcal": 49,
+    "proteinG": 9.2,
+    "carbsG": 1.8,
+    "fiberG": 0.6,
+    "fatG": 0.9,
+    "saturatedFatG": 0.2,
+    "polyunsaturatedFatG": 0.3,
+    "monounsaturatedFatG": 0.2
+  },
+  "undeclaredNutrients": [],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 100,
+    "unit": "ml",
+    "grams": null,
+    "labelFr": "100 ml de Premier Protein chocolat-arachide",
+    "labelEn": "100 ml Premier Protein chocolate peanut butter shake"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/premier-protein-chocolate-peanut-butter.html",
+    "snapshotSha256": "33784f393995fa7c5c10b01c7cec0435b84e6af3c586d691ad1b348a6ca953de",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "autres-sources-proteinees-premier-protein-chocolate-peanut-butter",
+  "batchId": "other-protein-sources-complete-individual-validation-25-foods",
+  "evidenceHash": "89fc5e2c22c14c00e07e83737e8ff2b5f170e2836b51d325d554590dc3d0cafc"
+}
