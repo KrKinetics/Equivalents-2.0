@@ -7,22 +7,34 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const baseline = JSON.parse(fs.readFileSync(path.join(root, 'tests', 'fixtures', 'analysis-scope-baseline.json'), 'utf8'));
-const hash = (file) => crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');
+
+/** Content hash normalized to LF so Windows checkouts match Linux CI. */
+const hash = (file) => {
+  const text = fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
+  return crypto.createHash('sha256').update(text, 'utf8').digest('hex');
+};
 
 test('forbidden source-of-truth files match the analysis baseline', () => {
-  for (const [file, expected] of Object.entries(baseline)) assert.equal(hash(file), expected, `${file} changed in analysis scope`);
+  for (const [file, expected] of Object.entries(baseline)) {
+    assert.equal(hash(file), expected, `${file} changed in analysis scope`);
+  }
 });
 
 test('calculation groups remain unapproved with null reference values', () => {
   const groups = JSON.parse(fs.readFileSync(path.join(root, 'src', 'data', 'calculation-groups.json'), 'utf8')).groups;
   for (const group of groups) {
     assert.equal(group.approved, false, `${group.id} must remain unapproved`);
-    assert.ok(group.referenceProfile == null || Object.values(group.referenceProfile).every((value) => value == null), `${group.id} reference profile must remain null`);
+    assert.ok(
+      group.referenceProfile == null || Object.values(group.referenceProfile).every((value) => value == null),
+      `${group.id} reference profile must remain null`,
+    );
   }
 });
 
 test('reports never claim final profile approval', () => {
-  const reportDirs = ['reports/exchange-profile-decision', 'reports/guide-preview'].map((dir) => path.join(root, dir)).filter(fs.existsSync);
+  const reportDirs = ['reports/exchange-profile-decision', 'reports/guide-preview']
+    .map((dir) => path.join(root, dir))
+    .filter(fs.existsSync);
   for (const dir of reportDirs) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (!entry.isFile() || !/\.(?:html|md|json)$/i.test(entry.name)) continue;
