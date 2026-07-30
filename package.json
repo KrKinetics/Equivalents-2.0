@@ -24,10 +24,10 @@
     "nutrition:batch:apply": "node scripts/nutrition-batch-apply.mjs",
     "data:report:classification": "node scripts/report-classification.mjs",
     "data:report:prep": "node scripts/report-not-applicable-candidates.mjs",
-    "test": "npm run schema:check && npm run pilot:check && node --test tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs",
-    "test:nutrition": "node --test tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs",
+    "test": "npm run schema:check && npm run pilot:check && node --test tests/schema-hash.test.mjs tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs",
+    "test:nutrition": "node --test tests/schema-hash.test.mjs tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs",
     "test:browser": "node --test tests/food-data-review.browser.test.mjs",
-    "test:all": "npm run schema:check && npm run pilot:check && node --test tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs tests/food-data-review.browser.test.mjs"
+    "test:all": "npm run schema:check && npm run pilot:check && node --test tests/schema-hash.test.mjs tests/nutrition-hardening.test.mjs tests/nutrition-batch-engine.test.mjs tests/nutrition-fruits-batch.test.mjs tests/food-data-review.browser.test.mjs"
   },
   "keywords": [],
   "author": "",
