@@ -1,0 +1,599 @@
+{
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "dryRun": false,
+  "appliedAt": "2026-07-30T21:08:11.356Z",
+  "applied": [
+    {
+      "id": "produits-laitiers-2-yogurt-no-added-sugar",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "6954",
+      "expectedRecordId": "6954",
+      "selectedRecordId": "6954",
+      "transactionId": "71aec78f-92d3-4f51-bb27-f3494a495b2c",
+      "nutrients": {
+        "proteinG": 5.3,
+        "carbsG": 5.6,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7469",
+      "expectedRecordId": "7469",
+      "selectedRecordId": "7469",
+      "transactionId": "d600e25c-b45a-4ce3-a3e9-c2f681eafc31",
+      "nutrients": {
+        "proteinG": 12.1,
+        "carbsG": 5,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 86
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-plain-or-fruit-kefir",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "6999",
+      "expectedRecordId": "6999",
+      "selectedRecordId": "6999",
+      "transactionId": "d253c1d3-d859-49c1-9fa9-040dfa94e172",
+      "nutrients": {
+        "proteinG": 3.6,
+        "carbsG": 3.5,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 44
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-1-2-milk",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "61",
+      "expectedRecordId": "61",
+      "selectedRecordId": "61",
+      "transactionId": "e5048bb9-9807-4922-aa18-3455a97f42f4",
+      "nutrients": {
+        "proteinG": 8.5,
+        "carbsG": 11.3,
+        "fiberG": 0,
+        "fatG": 4.7,
+        "saturatedFatG": 3.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 121
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7802",
+      "expectedRecordId": "7802",
+      "selectedRecordId": "7802",
+      "transactionId": "7a0d84f7-db59-47ff-9d8b-bfd14187d61f",
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 2.2,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 37
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-vanilla-almond-barley-rice-beverage",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7804",
+      "expectedRecordId": "7804",
+      "selectedRecordId": "7804",
+      "transactionId": "04d48708-3fcc-41d2-9fc4-6999b36b03bc",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 5.4,
+        "fiberG": 1,
+        "fatG": 2.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 44
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-soy-beverage",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "6330",
+      "expectedRecordId": "6330",
+      "selectedRecordId": "6330",
+      "transactionId": "b104496c-daa0-4720-b2a6-5c3d61df1f3f",
+      "nutrients": {
+        "proteinG": 6.8,
+        "carbsG": 5.6,
+        "fiberG": 1.5,
+        "fatG": 3.5,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 80
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "107",
+      "expectedRecordId": "107",
+      "selectedRecordId": "107",
+      "transactionId": "c739945a-7d5e-49b0-b360-bd34ee6aa525",
+      "nutrients": {
+        "proteinG": 15.5,
+        "carbsG": 3.4,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-partly-skimmed-ricotta",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "44",
+      "expectedRecordId": "44",
+      "selectedRecordId": "44",
+      "transactionId": "9da4668d-fb58-4119-9720-1ba1d816cf80",
+      "nutrients": {
+        "proteinG": 10.9,
+        "carbsG": 6.8,
+        "fiberG": 0,
+        "fatG": 6.2,
+        "saturatedFatG": 4.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 127
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-light-swiss-cheese-cogruet",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "7766",
+      "expectedRecordId": "7766",
+      "selectedRecordId": "7766",
+      "transactionId": "c19e8988-aadc-4fc1-9087-933bb9a3984d",
+      "nutrients": {
+        "proteinG": 9.6,
+        "carbsG": 2.2,
+        "fiberG": 0,
+        "fatG": 5,
+        "saturatedFatG": 3.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 93
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-le-six-pourcent-cheese",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "160",
+      "expectedRecordId": "160",
+      "selectedRecordId": "160",
+      "transactionId": "81f8291e-2745-4c84-b690-ca05a7da437a",
+      "nutrients": {
+        "proteinG": 6.9,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "version": 4
+    },
+    {
+      "id": "produits-laitiers-plain-greek-yogurt",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "6979",
+      "expectedRecordId": "6979",
+      "selectedRecordId": "6979",
+      "transactionId": "56507816-63d8-4909-bb5c-bbed0a36cb3e",
+      "nutrients": {
+        "proteinG": 13.2,
+        "carbsG": 4,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 73
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese-2",
+      "operation": "update",
+      "adapter": "cnf_2026",
+      "recordId": "120",
+      "expectedRecordId": "120",
+      "selectedRecordId": "120",
+      "transactionId": "00e91423-107c-4b33-a074-6fef96fd4053",
+      "nutrients": {
+        "proteinG": 13.1,
+        "carbsG": 5.9,
+        "fiberG": 0,
+        "fatG": 2.8,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 101
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-plain-skyr",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.siggis.ca/product/plain/",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.siggis.ca/product/plain/",
+      "transactionId": "7813b412-8970-44a5-9126-3f749b3552a6",
+      "nutrients": {
+        "proteinG": 12,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-high-protein-filtered-milk",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "transactionId": "c2924462-5c17-424a-96c0-c94c2fb52651",
+      "nutrients": {
+        "proteinG": 8.1,
+        "carbsG": 3.8,
+        "fiberG": 0,
+        "fatG": 2.8,
+        "saturatedFatG": 1.9,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 75
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-bottle-core-power-fairlife",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "transactionId": "5aa19b55-ac68-4ce8-b0d4-6ee0d1aa9c01",
+      "nutrients": {
+        "proteinG": 13,
+        "carbsG": 4,
+        "fiberG": 1,
+        "fatG": 2.3,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-allegro-9-cheese",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://myallegro.ca/en/products/white",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://myallegro.ca/en/products/white",
+      "transactionId": "1aee452b-6fa1-4d5f-a570-a793dac03752",
+      "nutrients": {
+        "proteinG": 10,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-natrel-plus-2",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "transactionId": "78a429e7-2ec2-488d-8530-06b2fbefdc4e",
+      "nutrients": {
+        "proteinG": 9,
+        "carbsG": 4.5,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 80
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-protein-chocolate-milk",
+      "operation": "update",
+      "adapter": "manufacturer",
+      "recordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "transactionId": "86567b26-5fdf-4497-8ee3-ef435bf92b84",
+      "nutrients": {
+        "proteinG": 10.8,
+        "carbsG": 7.8,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-yogurt-fat-free-plain",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "6948",
+      "expectedRecordId": "6948",
+      "selectedRecordId": "6948",
+      "transactionId": "91d53df3-6402-4953-8e15-2b20e29c39ef",
+      "nutrients": {
+        "proteinG": 5.8,
+        "carbsG": 5.8,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 48
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt-fat-free-fruit",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "6980",
+      "expectedRecordId": "6980",
+      "selectedRecordId": "6980",
+      "transactionId": "dd6ae7e2-7e6b-45e5-8841-97496f1bfbe5",
+      "nutrients": {
+        "proteinG": 10.9,
+        "carbsG": 14.7,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 104
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-kefir-fruit-low-fat",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "7000",
+      "expectedRecordId": "7000",
+      "selectedRecordId": "7000",
+      "transactionId": "5d47863a-7cca-4e9e-bec4-c1aae59013c4",
+      "nutrients": {
+        "proteinG": 3.2,
+        "carbsG": 11.2,
+        "fiberG": 0,
+        "fatG": 1.6,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 71
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-skim-milk",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "114",
+      "expectedRecordId": "114",
+      "selectedRecordId": "114",
+      "transactionId": "f08655e6-fd56-4e84-a24d-b84904b1337e",
+      "nutrients": {
+        "proteinG": 9.3,
+        "carbsG": 11.5,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 85
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-whole-milk",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "113",
+      "expectedRecordId": "113",
+      "selectedRecordId": "113",
+      "transactionId": "7637220b-28cf-4e1a-9fbc-2b3c08d05e76",
+      "nutrients": {
+        "proteinG": 8.5,
+        "carbsG": 11.5,
+        "fiberG": 0,
+        "fatG": 8,
+        "saturatedFatG": 5.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 152
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-oat-quinoa-beverage-unsweetened",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "7808",
+      "expectedRecordId": "7808",
+      "selectedRecordId": "7808",
+      "transactionId": "804177f7-8b62-43d6-bf37-48c8b53d31a0",
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 12.4,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 78
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-rice-beverage-unsweetened",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "4780",
+      "expectedRecordId": "4780",
+      "selectedRecordId": "4780",
+      "transactionId": "7c9c74bf-e83f-4623-a59b-fa670efce134",
+      "nutrients": {
+        "proteinG": 0.4,
+        "carbsG": 26.9,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 125
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-soy-beverage-vanilla",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "6720",
+      "expectedRecordId": "6720",
+      "selectedRecordId": "6720",
+      "transactionId": "d6caa4ed-59f4-4f5a-9f56-6354333439b3",
+      "nutrients": {
+        "proteinG": 6.3,
+        "carbsG": 16.7,
+        "fiberG": 1,
+        "fatG": 3.4,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 122
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-quark-fat-free-plain",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "6995",
+      "expectedRecordId": "6995",
+      "selectedRecordId": "6995",
+      "transactionId": "dd415d14-0f41-4a0b-89a1-a49d371dc465",
+      "nutrients": {
+        "proteinG": 11.2,
+        "carbsG": 3.5,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 64
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "produits-laitiers-goat-milk-whole",
+      "operation": "add",
+      "adapter": "cnf_2026",
+      "recordId": "72",
+      "expectedRecordId": "72",
+      "selectedRecordId": "72",
+      "transactionId": "a110a23d-73e9-4113-83e8-0c9e667d9e15",
+      "nutrients": {
+        "proteinG": 8.3,
+        "carbsG": 10.3,
+        "fiberG": 0,
+        "fatG": 8,
+        "saturatedFatG": 5.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 144
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ],
+  "dataHash": "94188a89b2b27414f460731a1766e6c64ef4f8a59dfce040bae3942dd5dcdf78",
+  "foodCount": 277
+}

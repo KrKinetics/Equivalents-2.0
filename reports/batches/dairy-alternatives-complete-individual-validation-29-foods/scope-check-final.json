@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 248,
+  "protectedFoodsDataHash": "199005050e394dbcbfac09bcd1354fdb44db058f695df40ecf79f64e7ed1ca2e",
+  "foodCount": 277,
+  "checkedAt": "2026-07-30T21:08:27.646Z",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}

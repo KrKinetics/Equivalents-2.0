@@ -307,7 +307,22 @@
             "brand": { "type": ["string", "null"] },
             "productName": { "type": ["string", "null"] },
             "labelServingSize": { "type": ["string", "null"] },
-            "evidenceRef": { "type": ["string", "null"] }
+            "evidenceRef": { "type": ["string", "null"] },
+            "undeclaredNutrients": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "declaredKcal",
+                  "proteinG",
+                  "carbsG",
+                  "fiberG",
+                  "fatG",
+                  "saturatedFatG",
+                  "polyunsaturatedFatG",
+                  "monounsaturatedFatG"
+                ]
+              }
+            }
           }
         },
         "status": { "enum": ["unverified", "verified", "rejected"] },

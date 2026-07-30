@@ -1,0 +1,324 @@
+{
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "foods": [
+    {
+      "id": "produits-laitiers-2-yogurt-no-added-sugar",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-plain-or-fruit-kefir",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-cup-1-2-milk",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-cup-vanilla-almond-barley-rice-beverage",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-cup-soy-beverage",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-partly-skimmed-ricotta",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-light-swiss-cheese-cogruet",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-le-six-pourcent-cheese",
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "160",
+          "fieldsHash": "kcal:6.9|1.2|1.8|60",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T21:05:49.176Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 160"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "severity": "ERROR",
+          "resolutionStatus": "resolved_documented"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-plain-greek-yogurt",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese-2",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-plain-skyr",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "MISSING_REQUIRED",
+          "severity": "ERROR"
+        },
+        {
+          "code": "MISSING_TOTAL_FAT",
+          "severity": "ERROR"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-high-protein-filtered-milk",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-bottle-core-power-fairlife",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-allegro-9-cheese",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-natrel-plus-2",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-protein-chocolate-milk",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-yogurt-fat-free-plain",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt-fat-free-fruit",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "produits-laitiers-kefir-fruit-low-fat",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-skim-milk",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-whole-milk",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-oat-quinoa-beverage-unsweetened",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-rice-beverage-unsweetened",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-soy-beverage-vanilla",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-quark-fat-free-plain",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-goat-milk-whole",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    }
+  ]
+}

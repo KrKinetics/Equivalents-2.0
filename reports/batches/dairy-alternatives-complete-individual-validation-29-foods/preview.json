@@ -1,0 +1,5023 @@
+{
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "generatedAt": "2026-07-30T21:05:49.240Z",
+  "foods": [
+    {
+      "id": "produits-laitiers-2-yogurt-no-added-sugar",
+      "operation": "update",
+      "identity": {
+        "fr": "Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",
+        "en": "Plain low-fat yogurt, 0.5–1.9% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sweetened",
+          "fruit flavoured",
+          "Greek",
+          "lactose reduced"
+        ]
+      },
+      "expectedRecordId": "6954",
+      "selectedRecordId": "6954",
+      "recordId": "6954",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), low fat, 0.5-1.9% M.F., plain",
+        "fr": "Yogourt, faible en gras, 0,5-1,9% M.G., nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6954",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), low fat, 0.5-1.9% M.F., plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, faible en gras, 0,5-1,9% M.G., nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6954"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 42,
+          "protein_g": 4.24,
+          "carbohydrate_g": 4.47,
+          "fibre_g": 0,
+          "total_fat_g": 0.79,
+          "saturated_fat_g": 0.517,
+          "polyunsaturated_fat_g": 0.026,
+          "monounsaturated_fat_g": 0.205
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 52.5,
+          "proteinG": 5.300000000000001,
+          "carbsG": 5.5874999999999995,
+          "fiberG": 0,
+          "fatG": 0.9875,
+          "saturatedFatG": 0.64625,
+          "polyunsaturatedFatG": 0.0325,
+          "monounsaturatedFatG": 0.25625
+        },
+        "storedRounded": {
+          "declaredKcal": 53,
+          "proteinG": 5.3,
+          "carbsG": 5.6,
+          "fiberG": 0,
+          "fatG": 1,
+          "saturatedFatG": 0.6,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6954",
+        "selectedRecordId": "6954",
+        "selected": {
+          "recordId": "6954",
+          "descriptionEn": "Yogourt (yogurt), low fat, 0.5-1.9% M.F., plain",
+          "descriptionFr": "Yogourt, faible en gras, 0,5-1,9% M.G., nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 64,
+          "per100g": {
+            "energy_kcal": 42,
+            "protein_g": 4.24,
+            "carbohydrate_g": 4.47,
+            "fibre_g": 0,
+            "total_fat_g": 0.79,
+            "saturated_fat_g": 0.517,
+            "polyunsaturated_fat_g": 0.026,
+            "monounsaturated_fat_g": 0.205
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6954",
+            "descriptionEn": "Yogourt (yogurt), low fat, 0.5-1.9% M.F., plain",
+            "descriptionFr": "Yogourt, faible en gras, 0,5-1,9% M.G., nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 64,
+            "per100g": {
+              "energy_kcal": 42,
+              "protein_g": 4.24,
+              "carbohydrate_g": 4.47,
+              "fibre_g": 0,
+              "total_fat_g": 0.79,
+              "saturated_fat_g": 0.517,
+              "polyunsaturated_fat_g": 0.026,
+              "monounsaturated_fat_g": 0.205
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6954: Yogourt (yogurt), low fat, 0.5-1.9% M.F., plain.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 6,
+        "carbsG": 6,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 78
+      },
+      "afterNutrients": {
+        "proteinG": 5.3,
+        "carbsG": 5.6,
+        "fiberG": 0,
+        "fatG": 1,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 53
+      },
+      "beforePortion": {
+        "labelFr": "100 ml de Yogourt 1-2 % sans sucre ajouté (100 g)",
+        "labelEn": "100 ml 1-2% yogurt, no added sugar (100 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de yogourt nature faible en gras",
+        "labelEn": "125 g plain low-fat yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "KCAL_DIFF_MODERATE",
+          "message": "Différence calorique modérée: déclaré 78 vs Atwater 66.0 (18.2%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt",
+      "operation": "update",
+      "identity": {
+        "fr": "Yogourt grec nature 2 % M.G.",
+        "en": "Plain Greek yogurt, 2% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "fat free",
+          "fruit flavoured",
+          "rich 8-12%"
+        ]
+      },
+      "expectedRecordId": "7469",
+      "selectedRecordId": "7469",
+      "recordId": "7469",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), Greek style, 2% M.F., plain",
+        "fr": "Yogourt, Grec, 2% M.G., nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7469",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), Greek style, 2% M.F., plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, Grec, 2% M.G., nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7469"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 69,
+          "protein_g": 9.714,
+          "carbohydrate_g": 4,
+          "fibre_g": 0,
+          "total_fat_g": 2,
+          "saturated_fat_g": 1.143,
+          "polyunsaturated_fat_g": 0.114,
+          "monounsaturated_fat_g": 0.457
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 86.25,
+          "proteinG": 12.1425,
+          "carbsG": 5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.42875,
+          "polyunsaturatedFatG": 0.14250000000000002,
+          "monounsaturatedFatG": 0.57125
+        },
+        "storedRounded": {
+          "declaredKcal": 86,
+          "proteinG": 12.1,
+          "carbsG": 5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.4,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7469",
+        "selectedRecordId": "7469",
+        "selected": {
+          "recordId": "7469",
+          "descriptionEn": "Yogourt (yogurt), Greek style, 2% M.F., plain",
+          "descriptionFr": "Yogourt, Grec, 2% M.G., nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 67,
+          "per100g": {
+            "energy_kcal": 69,
+            "protein_g": 9.714,
+            "carbohydrate_g": 4,
+            "fibre_g": 0,
+            "total_fat_g": 2,
+            "saturated_fat_g": 1.143,
+            "polyunsaturated_fat_g": 0.114,
+            "monounsaturated_fat_g": 0.457
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7469",
+            "descriptionEn": "Yogourt (yogurt), Greek style, 2% M.F., plain",
+            "descriptionFr": "Yogourt, Grec, 2% M.G., nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 67,
+            "per100g": {
+              "energy_kcal": 69,
+              "protein_g": 9.714,
+              "carbohydrate_g": 4,
+              "fibre_g": 0,
+              "total_fat_g": 2,
+              "saturated_fat_g": 1.143,
+              "polyunsaturated_fat_g": 0.114,
+              "monounsaturated_fat_g": 0.457
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7469: Yogourt (yogurt), Greek style, 2% M.F., plain.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 67
+      },
+      "afterNutrients": {
+        "proteinG": 12.1,
+        "carbsG": 5,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 86
+      },
+      "beforePortion": {
+        "labelFr": "100 ml de Yogourt grec (100 g)",
+        "labelEn": "100 ml Greek yogurt (100 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de yogourt grec nature 2 %",
+        "labelEn": "125 g plain 2% Greek yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 67 vs Atwater 16.0 (Δ 51.0 / 318.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "ERROR",
+          "code": "SUSPECT_CASE",
+          "message": "Suspect legacy signature: ~67 kcal / 1 g protein / 3 g carbs / 0 g fat",
+          "suspectId": "greek_yogurt"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-plain-or-fruit-kefir",
+      "operation": "update",
+      "identity": {
+        "fr": "Kéfir nature faible en gras",
+        "en": "Plain low-fat kefir",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "fruit flavoured",
+          "2-3.9% M.F."
+        ]
+      },
+      "expectedRecordId": "6999",
+      "selectedRecordId": "6999",
+      "recordId": "6999",
+      "cnfDescription": {
+        "en": "Kefir, plain, low fat (0.5-1.9% M.F.)",
+        "fr": "Kéfir, nature, faible en gras (0,5-1,9% M.G.)"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6999",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Kefir, plain, low fat (0.5-1.9% M.F.))",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Kéfir, nature, faible en gras (0,5-1,9% M.G.)",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6999"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 117.71 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 37,
+          "protein_g": 3.09,
+          "carbohydrate_g": 3,
+          "fibre_g": 0,
+          "total_fat_g": 1.42,
+          "saturated_fat_g": 0.946,
+          "polyunsaturated_fat_g": 0.036,
+          "monounsaturated_fat_g": 0.366
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 43.5527,
+          "proteinG": 3.637239,
+          "carbsG": 3.5313,
+          "fiberG": 0,
+          "fatG": 1.671482,
+          "saturatedFatG": 1.1135366,
+          "polyunsaturatedFatG": 0.0423756,
+          "monounsaturatedFatG": 0.4308186
+        },
+        "storedRounded": {
+          "declaredKcal": 44,
+          "proteinG": 3.6,
+          "carbsG": 3.5,
+          "fiberG": 0,
+          "fatG": 1.7,
+          "saturatedFatG": 1.1,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6999",
+        "selectedRecordId": "6999",
+        "selected": {
+          "recordId": "6999",
+          "descriptionEn": "Kefir, plain, low fat (0.5-1.9% M.F.)",
+          "descriptionFr": "Kéfir, nature, faible en gras (0,5-1,9% M.G.)",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 37,
+            "protein_g": 3.09,
+            "carbohydrate_g": 3,
+            "fibre_g": 0,
+            "total_fat_g": 1.42,
+            "saturated_fat_g": 0.946,
+            "polyunsaturated_fat_g": 0.036,
+            "monounsaturated_fat_g": 0.366
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6999",
+            "descriptionEn": "Kefir, plain, low fat (0.5-1.9% M.F.)",
+            "descriptionFr": "Kéfir, nature, faible en gras (0,5-1,9% M.G.)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 37,
+              "protein_g": 3.09,
+              "carbohydrate_g": 3,
+              "fibre_g": 0,
+              "total_fat_g": 1.42,
+              "saturated_fat_g": 0.946,
+              "polyunsaturated_fat_g": 0.036,
+              "monounsaturated_fat_g": 0.366
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6999: Kefir, plain, low fat (0.5-1.9% M.F.).",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 54
+      },
+      "afterNutrients": {
+        "proteinG": 3.6,
+        "carbsG": 3.5,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 44
+      },
+      "beforePortion": {
+        "labelFr": "100 ml de Kéfir nature ou aux fruits (100 g)",
+        "labelEn": "100 ml Plain or fruit kefir (100 g)",
+        "amount": 100,
+        "unit": "ml",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de kéfir nature faible en gras (118 g)",
+        "labelEn": "125 ml plain low-fat kefir (118 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 117.71,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 54 vs Atwater 12.0 (Δ 42.0 / 350.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(118≠117.71)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 125,
+            "unit": "ml",
+            "grams": 118,
+            "label": "125 ml de kéfir nature faible en gras (118 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(118≠117.71)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 125,
+            "unit": "ml",
+            "grams": 118,
+            "label": "125 ml plain low-fat kefir (118 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cup-1-2-milk",
+      "operation": "update",
+      "identity": {
+        "fr": "Lait 2 % M.G.",
+        "en": "2% partly skimmed milk",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "1%",
+          "skim",
+          "whole",
+          "chocolate"
+        ]
+      },
+      "expectedRecordId": "61",
+      "selectedRecordId": "61",
+      "recordId": "61",
+      "cnfDescription": {
+        "en": "Milk, fluid, partly skimmed, 2% M.F.",
+        "fr": "Lait, partiellement écrémé, liquide, 2% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "61",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Milk, fluid, partly skimmed, 2% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Lait, partiellement écrémé, liquide, 2% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:61"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 257.819 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 47,
+          "protein_g": 3.31,
+          "carbohydrate_g": 4.38,
+          "fibre_g": 0,
+          "total_fat_g": 1.839,
+          "saturated_fat_g": 1.221,
+          "polyunsaturated_fat_g": 0.059,
+          "monounsaturated_fat_g": 0.464
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 121.17493,
+          "proteinG": 8.5338089,
+          "carbsG": 11.2924722,
+          "fiberG": 0,
+          "fatG": 4.7412914100000005,
+          "saturatedFatG": 3.1479699900000004,
+          "polyunsaturatedFatG": 0.15211321,
+          "monounsaturatedFatG": 1.1962801600000001
+        },
+        "storedRounded": {
+          "declaredKcal": 121,
+          "proteinG": 8.5,
+          "carbsG": 11.3,
+          "fiberG": 0,
+          "fatG": 4.7,
+          "saturatedFatG": 3.1,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 1.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "61",
+        "selectedRecordId": "61",
+        "selected": {
+          "recordId": "61",
+          "descriptionEn": "Milk, fluid, partly skimmed, 2% M.F.",
+          "descriptionFr": "Lait, partiellement écrémé, liquide, 2% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 47,
+            "protein_g": 3.31,
+            "carbohydrate_g": 4.38,
+            "fibre_g": 0,
+            "total_fat_g": 1.839,
+            "saturated_fat_g": 1.221,
+            "polyunsaturated_fat_g": 0.059,
+            "monounsaturated_fat_g": 0.464
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "61",
+            "descriptionEn": "Milk, fluid, partly skimmed, 2% M.F.",
+            "descriptionFr": "Lait, partiellement écrémé, liquide, 2% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 47,
+              "protein_g": 3.31,
+              "carbohydrate_g": 4.38,
+              "fibre_g": 0,
+              "total_fat_g": 1.839,
+              "saturated_fat_g": 1.221,
+              "polyunsaturated_fat_g": 0.059,
+              "monounsaturated_fat_g": 0.464
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 61: Milk, fluid, partly skimmed, 2% M.F..",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 89
+      },
+      "afterNutrients": {
+        "proteinG": 8.5,
+        "carbsG": 11.3,
+        "fiberG": 0,
+        "fatG": 4.7,
+        "saturatedFatG": 3.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 121
+      },
+      "beforePortion": {
+        "labelFr": "¾ tasse de Lait 1-2 %",
+        "labelEn": "¾ cup 1-2% milk",
+        "amount": 0.75,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de lait 2 % (258 g)",
+        "labelEn": "250 ml 2% milk (258 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 257.819,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 89 vs Atwater 32.0 (Δ 57.0 / 178.1%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml de lait 2 % (258 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml 2% milk (258 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+      "operation": "update",
+      "identity": {
+        "fr": "Boisson d’amandes nature non sucrée, enrichie",
+        "en": "Plain unsweetened fortified almond beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "barley",
+          "rice",
+          "vanilla",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "7802",
+      "selectedRecordId": "7802",
+      "recordId": "7802",
+      "cnfDescription": {
+        "en": "Plant-based beverage, almond beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+        "fr": "Boisson à base de plantes, amande, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7802",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, almond beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, amande, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7802"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 247.2 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 15,
+          "protein_g": 0.41,
+          "carbohydrate_g": 1.37,
+          "fibre_g": 0.4,
+          "total_fat_g": 0.9,
+          "saturated_fat_g": 0.068,
+          "polyunsaturated_fat_g": 0.228,
+          "monounsaturated_fat_g": 0.568
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 37.08,
+          "proteinG": 1.01352,
+          "carbsG": 3.3866400000000003,
+          "fiberG": 0.9888,
+          "fatG": 2.2248,
+          "saturatedFatG": 0.16809600000000002,
+          "polyunsaturatedFatG": 0.563616,
+          "monounsaturatedFatG": 1.4040959999999998
+        },
+        "storedRounded": {
+          "declaredKcal": 37,
+          "proteinG": 1,
+          "carbsG": 3.4,
+          "fiberG": 1,
+          "fatG": 2.2,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.6,
+          "monounsaturatedFatG": 1.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7802",
+        "selectedRecordId": "7802",
+        "selected": {
+          "recordId": "7802",
+          "descriptionEn": "Plant-based beverage, almond beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, amande, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 62,
+          "per100g": {
+            "energy_kcal": 15,
+            "protein_g": 0.41,
+            "carbohydrate_g": 1.37,
+            "fibre_g": 0.4,
+            "total_fat_g": 0.9,
+            "saturated_fat_g": 0.068,
+            "polyunsaturated_fat_g": 0.228,
+            "monounsaturated_fat_g": 0.568
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7802",
+            "descriptionEn": "Plant-based beverage, almond beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, amande, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 62,
+            "per100g": {
+              "energy_kcal": 15,
+              "protein_g": 0.41,
+              "carbohydrate_g": 1.37,
+              "fibre_g": 0.4,
+              "total_fat_g": 0.9,
+              "saturated_fat_g": 0.068,
+              "polyunsaturated_fat_g": 0.228,
+              "monounsaturated_fat_g": 0.568
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7802: Plant-based beverage, almond beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 13,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 91
+      },
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 2.2,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 1.4,
+        "declaredKcal": 37
+      },
+      "beforePortion": {
+        "labelFr": "1 tasse de Boisson d'amandes / orge / riz nature",
+        "labelEn": "1 cup Plain almond / barley / rice beverage",
+        "amount": 1,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de boisson d’amandes non sucrée (247 g)",
+        "labelEn": "250 ml unsweetened almond beverage (247 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 247.2,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 91 vs Atwater 64.0 (Δ 27.0 / 42.2%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(247≠247.2)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 247,
+            "label": "250 ml de boisson d’amandes non sucrée (247 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(247≠247.2)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 247,
+            "label": "250 ml unsweetened almond beverage (247 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cup-vanilla-almond-barley-rice-beverage",
+      "operation": "update",
+      "identity": {
+        "fr": "Boisson d’amandes à la vanille non sucrée, enrichie",
+        "en": "Unsweetened fortified vanilla almond beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "barley",
+          "rice",
+          "plain",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "7804",
+      "selectedRecordId": "7804",
+      "recordId": "7804",
+      "cnfDescription": {
+        "en": "Plant-based beverage, almond beverage, vanilla, unsweetened, fortified, refrigerated and/or shelf-stable",
+        "fr": "Boisson à base de plantes, amande, vanille, non sucrée, enrichie, réfrigérée et/ou longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7804",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, almond beverage, vanilla, unsweetened, fortified, refrigerated and/or shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, amande, vanille, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7804"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 246.6 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 18,
+          "protein_g": 0.35,
+          "carbohydrate_g": 2.18,
+          "fibre_g": 0.4,
+          "total_fat_g": 0.84,
+          "saturated_fat_g": 0.058,
+          "polyunsaturated_fat_g": 0.21,
+          "monounsaturated_fat_g": 0.533
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 44.388,
+          "proteinG": 0.8630999999999999,
+          "carbsG": 5.3758799999999995,
+          "fiberG": 0.9863999999999999,
+          "fatG": 2.0714399999999995,
+          "saturatedFatG": 0.143028,
+          "polyunsaturatedFatG": 0.5178599999999999,
+          "monounsaturatedFatG": 1.314378
+        },
+        "storedRounded": {
+          "declaredKcal": 44,
+          "proteinG": 0.9,
+          "carbsG": 5.4,
+          "fiberG": 1,
+          "fatG": 2.1,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.5,
+          "monounsaturatedFatG": 1.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7804",
+        "selectedRecordId": "7804",
+        "selected": {
+          "recordId": "7804",
+          "descriptionEn": "Plant-based beverage, almond beverage, vanilla, unsweetened, fortified, refrigerated and/or shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, amande, vanille, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 62,
+          "per100g": {
+            "energy_kcal": 18,
+            "protein_g": 0.35,
+            "carbohydrate_g": 2.18,
+            "fibre_g": 0.4,
+            "total_fat_g": 0.84,
+            "saturated_fat_g": 0.058,
+            "polyunsaturated_fat_g": 0.21,
+            "monounsaturated_fat_g": 0.533
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7804",
+            "descriptionEn": "Plant-based beverage, almond beverage, vanilla, unsweetened, fortified, refrigerated and/or shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, amande, vanille, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 62,
+            "per100g": {
+              "energy_kcal": 18,
+              "protein_g": 0.35,
+              "carbohydrate_g": 2.18,
+              "fibre_g": 0.4,
+              "total_fat_g": 0.84,
+              "saturated_fat_g": 0.058,
+              "polyunsaturated_fat_g": 0.21,
+              "monounsaturated_fat_g": 0.533
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7804: Plant-based beverage, almond beverage, vanilla, unsweetened, fortified, refrigerated and/or shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 67
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 5.4,
+        "fiberG": 1,
+        "fatG": 2.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 44
+      },
+      "beforePortion": {
+        "labelFr": "½ tasse de Boisson d'amandes / orge / riz à la vanille",
+        "labelEn": "½ cup Vanilla almond / barley / rice beverage",
+        "amount": 0.5,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de boisson d’amandes vanille non sucrée (247 g)",
+        "labelEn": "250 ml unsweetened vanilla almond beverage (247 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 246.6,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 67 vs Atwater 52.0 (Δ 15.0 / 28.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(247≠246.6)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 247,
+            "label": "250 ml de boisson d’amandes vanille non sucrée (247 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(247≠246.6)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 247,
+            "label": "250 ml unsweetened vanilla almond beverage (247 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cup-soy-beverage",
+      "operation": "update",
+      "identity": {
+        "fr": "Boisson de soya nature non sucrée, enrichie",
+        "en": "Plain unsweetened fortified soy beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "vanilla",
+          "chocolate",
+          "unfortified",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "6330",
+      "selectedRecordId": "6330",
+      "recordId": "6330",
+      "cnfDescription": {
+        "en": "Plant-based beverage, soy beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+        "fr": "Boisson à base de plantes, soya, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6330",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, soy beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, soya, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6330"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 250.9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 32,
+          "protein_g": 2.73,
+          "carbohydrate_g": 2.25,
+          "fibre_g": 0.6,
+          "total_fat_g": 1.39,
+          "saturated_fat_g": 0.219,
+          "polyunsaturated_fat_g": 0.827,
+          "monounsaturated_fat_g": 0.284
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 80.288,
+          "proteinG": 6.84957,
+          "carbsG": 5.64525,
+          "fiberG": 1.5053999999999998,
+          "fatG": 3.4875099999999994,
+          "saturatedFatG": 0.5494709999999999,
+          "polyunsaturatedFatG": 2.0749429999999998,
+          "monounsaturatedFatG": 0.7125559999999999
+        },
+        "storedRounded": {
+          "declaredKcal": 80,
+          "proteinG": 6.8,
+          "carbsG": 5.6,
+          "fiberG": 1.5,
+          "fatG": 3.5,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 2.1,
+          "monounsaturatedFatG": 0.7
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6330",
+        "selectedRecordId": "6330",
+        "selected": {
+          "recordId": "6330",
+          "descriptionEn": "Plant-based beverage, soy beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, soya, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 62,
+          "per100g": {
+            "energy_kcal": 32,
+            "protein_g": 2.73,
+            "carbohydrate_g": 2.25,
+            "fibre_g": 0.6,
+            "total_fat_g": 1.39,
+            "saturated_fat_g": 0.219,
+            "polyunsaturated_fat_g": 0.827,
+            "monounsaturated_fat_g": 0.284
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6330",
+            "descriptionEn": "Plant-based beverage, soy beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, soya, nature, non sucrée, enrichie, réfrigérée et/ou longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 62,
+            "per100g": {
+              "energy_kcal": 32,
+              "protein_g": 2.73,
+              "carbohydrate_g": 2.25,
+              "fibre_g": 0.6,
+              "total_fat_g": 1.39,
+              "saturated_fat_g": 0.219,
+              "polyunsaturated_fat_g": 0.827,
+              "monounsaturated_fat_g": 0.284
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6330: Plant-based beverage, soy beverage, plain, unsweetened, fortified, refrigerated and/or shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 15,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 88
+      },
+      "afterNutrients": {
+        "proteinG": 6.8,
+        "carbsG": 5.6,
+        "fiberG": 1.5,
+        "fatG": 3.5,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 80
+      },
+      "beforePortion": {
+        "labelFr": "¾ tasse de Boisson de soya",
+        "labelEn": "¾ cup Soy beverage",
+        "amount": 0.75,
+        "unit": "cup",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de boisson de soya non sucrée (251 g)",
+        "labelEn": "250 ml unsweetened soy beverage (251 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 250.9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 88 vs Atwater 64.0 (Δ 24.0 / 37.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(251≠250.9)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 251,
+            "label": "250 ml de boisson de soya non sucrée (251 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(251≠250.9)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 251,
+            "label": "250 ml unsweetened soy beverage (251 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese",
+      "operation": "update",
+      "identity": {
+        "fr": "Fromage cottage 1 % M.G.",
+        "en": "Cottage cheese, 1% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "2%",
+          "4.5%",
+          "dry curd",
+          "with fruit"
+        ]
+      },
+      "expectedRecordId": "107",
+      "selectedRecordId": "107",
+      "recordId": "107",
+      "cnfDescription": {
+        "en": "Cheese, cottage, 1% M.F.",
+        "fr": "Fromage cottage, 1% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "107",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cheese, cottage, 1% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fromage cottage, 1% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:107"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 72,
+          "protein_g": 12.39,
+          "carbohydrate_g": 2.72,
+          "fibre_g": 0,
+          "total_fat_g": 1.02,
+          "saturated_fat_g": 0.645,
+          "polyunsaturated_fat_g": 0.031,
+          "monounsaturated_fat_g": 0.291
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 90,
+          "proteinG": 15.4875,
+          "carbsG": 3.4000000000000004,
+          "fiberG": 0,
+          "fatG": 1.275,
+          "saturatedFatG": 0.80625,
+          "polyunsaturatedFatG": 0.03875,
+          "monounsaturatedFatG": 0.36374999999999996
+        },
+        "storedRounded": {
+          "declaredKcal": 90,
+          "proteinG": 15.5,
+          "carbsG": 3.4,
+          "fiberG": 0,
+          "fatG": 1.3,
+          "saturatedFatG": 0.8,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "107",
+        "selectedRecordId": "107",
+        "selected": {
+          "recordId": "107",
+          "descriptionEn": "Cheese, cottage, 1% M.F.",
+          "descriptionFr": "Fromage cottage, 1% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 72,
+            "protein_g": 12.39,
+            "carbohydrate_g": 2.72,
+            "fibre_g": 0,
+            "total_fat_g": 1.02,
+            "saturated_fat_g": 0.645,
+            "polyunsaturated_fat_g": 0.031,
+            "monounsaturated_fat_g": 0.291
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "107",
+            "descriptionEn": "Cheese, cottage, 1% M.F.",
+            "descriptionFr": "Fromage cottage, 1% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 72,
+              "protein_g": 12.39,
+              "carbohydrate_g": 2.72,
+              "fibre_g": 0,
+              "total_fat_g": 1.02,
+              "saturated_fat_g": 0.645,
+              "polyunsaturated_fat_g": 0.031,
+              "monounsaturated_fat_g": 0.291
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 107: Cheese, cottage, 1% M.F..",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 9,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 83
+      },
+      "afterNutrients": {
+        "proteinG": 15.5,
+        "carbsG": 3.4,
+        "fiberG": 0,
+        "fatG": 1.3,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 90
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de Fromage cottage 1 %",
+        "labelEn": "125 ml 1% cottage cheese",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de fromage cottage 1 %",
+        "labelEn": "125 g cottage cheese 1%",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 83 vs Atwater 48.0 (Δ 35.0 / 72.9%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-partly-skimmed-ricotta",
+      "operation": "update",
+      "identity": {
+        "fr": "Ricotta légère",
+        "en": "Light ricotta cheese",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular ricotta"
+        ]
+      },
+      "expectedRecordId": "44",
+      "selectedRecordId": "44",
+      "recordId": "44",
+      "cnfDescription": {
+        "en": "Cheese, ricotta, light",
+        "fr": "Fromage ricotta, léger"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "44",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cheese, ricotta, light)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fromage ricotta, léger",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:44"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 127,
+          "protein_g": 10.91,
+          "carbohydrate_g": 6.8,
+          "fibre_g": 0,
+          "total_fat_g": 6.176,
+          "saturated_fat_g": 4.202,
+          "polyunsaturated_fat_g": 0.153,
+          "monounsaturated_fat_g": 1.501
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 127,
+          "proteinG": 10.91,
+          "carbsG": 6.8,
+          "fiberG": 0,
+          "fatG": 6.176,
+          "saturatedFatG": 4.202,
+          "polyunsaturatedFatG": 0.153,
+          "monounsaturatedFatG": 1.501
+        },
+        "storedRounded": {
+          "declaredKcal": 127,
+          "proteinG": 10.9,
+          "carbsG": 6.8,
+          "fiberG": 0,
+          "fatG": 6.2,
+          "saturatedFatG": 4.2,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 1.5
+        }
+      },
+      "selection": {
+        "expectedRecordId": "44",
+        "selectedRecordId": "44",
+        "selected": {
+          "recordId": "44",
+          "descriptionEn": "Cheese, ricotta, light",
+          "descriptionFr": "Fromage ricotta, léger",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 127,
+            "protein_g": 10.91,
+            "carbohydrate_g": 6.8,
+            "fibre_g": 0,
+            "total_fat_g": 6.176,
+            "saturated_fat_g": 4.202,
+            "polyunsaturated_fat_g": 0.153,
+            "monounsaturated_fat_g": 1.501
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "44",
+            "descriptionEn": "Cheese, ricotta, light",
+            "descriptionFr": "Fromage ricotta, léger",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 127,
+              "protein_g": 10.91,
+              "carbohydrate_g": 6.8,
+              "fibre_g": 0,
+              "total_fat_g": 6.176,
+              "saturated_fat_g": 4.202,
+              "polyunsaturated_fat_g": 0.153,
+              "monounsaturated_fat_g": 1.501
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 44: Cheese, ricotta, light.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 69
+      },
+      "afterNutrients": {
+        "proteinG": 10.9,
+        "carbsG": 6.8,
+        "fiberG": 0,
+        "fatG": 6.2,
+        "saturatedFatG": 4.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 127
+      },
+      "beforePortion": {
+        "labelFr": "50 g de Ricotta partiellement écrémée",
+        "labelEn": "50 g Partly skimmed ricotta",
+        "amount": 50,
+        "unit": "g",
+        "grams": 50,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "100 g de ricotta légère",
+        "labelEn": "100 g light ricotta",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 69 vs Atwater 54.0 (Δ 15.0 / 27.8%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-light-swiss-cheese-cogruet",
+      "operation": "update",
+      "identity": {
+        "fr": "Fromage suisse léger",
+        "en": "Light Swiss cheese",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular Swiss",
+          "processed cheese"
+        ]
+      },
+      "expectedRecordId": "7766",
+      "selectedRecordId": "7766",
+      "recordId": "7766",
+      "cnfDescription": {
+        "en": "Cheese, swiss, light",
+        "fr": "Fromage swiss, léger"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7766",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cheese, swiss, light)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fromage swiss, léger",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7766"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 311,
+          "protein_g": 32.12,
+          "carbohydrate_g": 7.21,
+          "fibre_g": 0,
+          "total_fat_g": 16.639,
+          "saturated_fat_g": 10.852,
+          "polyunsaturated_fat_g": 0.531,
+          "monounsaturated_fat_g": 4.368
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 93.3,
+          "proteinG": 9.636,
+          "carbsG": 2.163,
+          "fiberG": 0,
+          "fatG": 4.9917,
+          "saturatedFatG": 3.2556,
+          "polyunsaturatedFatG": 0.1593,
+          "monounsaturatedFatG": 1.3104
+        },
+        "storedRounded": {
+          "declaredKcal": 93,
+          "proteinG": 9.6,
+          "carbsG": 2.2,
+          "fiberG": 0,
+          "fatG": 5,
+          "saturatedFatG": 3.3,
+          "polyunsaturatedFatG": 0.2,
+          "monounsaturatedFatG": 1.3
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7766",
+        "selectedRecordId": "7766",
+        "selected": {
+          "recordId": "7766",
+          "descriptionEn": "Cheese, swiss, light",
+          "descriptionFr": "Fromage swiss, léger",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 72,
+          "per100g": {
+            "energy_kcal": 311,
+            "protein_g": 32.12,
+            "carbohydrate_g": 7.21,
+            "fibre_g": 0,
+            "total_fat_g": 16.639,
+            "saturated_fat_g": 10.852,
+            "polyunsaturated_fat_g": 0.531,
+            "monounsaturated_fat_g": 4.368
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7766",
+            "descriptionEn": "Cheese, swiss, light",
+            "descriptionFr": "Fromage swiss, léger",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 72,
+            "per100g": {
+              "energy_kcal": 311,
+              "protein_g": 32.12,
+              "carbohydrate_g": 7.21,
+              "fibre_g": 0,
+              "total_fat_g": 16.639,
+              "saturated_fat_g": 10.852,
+              "polyunsaturated_fat_g": 0.531,
+              "monounsaturated_fat_g": 4.368
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7766: Cheese, swiss, light.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 4,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 9.6,
+        "carbsG": 2.2,
+        "fiberG": 0,
+        "fatG": 5,
+        "saturatedFatG": 3.3,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 93
+      },
+      "beforePortion": {
+        "labelFr": "25 g de Fromage suisse léger COGRUET (1 tranche)",
+        "labelEn": "25 g Light Swiss cheese COGRUET (1 slice)",
+        "amount": 1,
+        "unit": "slice",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "COGRUET"
+      },
+      "afterPortion": {
+        "labelFr": "30 g de fromage suisse léger",
+        "labelEn": "30 g light Swiss cheese",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 59 vs Atwater 20.0 (Δ 39.0 / 195.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-le-six-pourcent-cheese",
+      "operation": "update",
+      "identity": {
+        "fr": "Fromage à teneur réduite en calories, 6 % M.G.",
+        "en": "Calorie-reduced cheese, 6% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "regular cheese",
+          "9% M.F.",
+          "Swiss"
+        ]
+      },
+      "expectedRecordId": "160",
+      "selectedRecordId": "160",
+      "recordId": "160",
+      "cnfDescription": {
+        "en": "Cheese, calorie-reduced, 6% M.F.",
+        "fr": "Fromage, réduit en calories, 6% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "160",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cheese, calorie-reduced, 6% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fromage, réduit en calories, 6% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:160"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 30 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 200,
+          "protein_g": 23,
+          "carbohydrate_g": 4,
+          "fibre_g": 0,
+          "total_fat_g": 6,
+          "saturated_fat_g": null,
+          "polyunsaturated_fat_g": null,
+          "monounsaturated_fat_g": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60,
+          "proteinG": 6.8999999999999995,
+          "carbsG": 1.2,
+          "fiberG": 0,
+          "fatG": 1.7999999999999998,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 6.9,
+          "carbsG": 1.2,
+          "fiberG": 0,
+          "fatG": 1.8,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": {
+        "expectedRecordId": "160",
+        "selectedRecordId": "160",
+        "selected": {
+          "recordId": "160",
+          "descriptionEn": "Cheese, calorie-reduced, 6% M.F.",
+          "descriptionFr": "Fromage, réduit en calories, 6% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 69,
+          "per100g": {
+            "energy_kcal": 200,
+            "protein_g": 23,
+            "carbohydrate_g": 4,
+            "fibre_g": 0,
+            "total_fat_g": 6,
+            "saturated_fat_g": null,
+            "polyunsaturated_fat_g": null,
+            "monounsaturated_fat_g": null
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "160",
+            "descriptionEn": "Cheese, calorie-reduced, 6% M.F.",
+            "descriptionFr": "Fromage, réduit en calories, 6% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 69,
+            "per100g": {
+              "energy_kcal": 200,
+              "protein_g": 23,
+              "carbohydrate_g": 4,
+              "fibre_g": 0,
+              "total_fat_g": 6,
+              "saturated_fat_g": null,
+              "polyunsaturated_fat_g": null,
+              "monounsaturated_fat_g": null
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 160: Cheese, calorie-reduced, 6% M.F..",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 82
+      },
+      "afterNutrients": {
+        "proteinG": 6.9,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "30 g de fromage Le Six pourcent (Bergeron)",
+        "labelEn": "30 g Le Six pourcent cheese (Bergeron)",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Bergeron"
+      },
+      "afterPortion": {
+        "labelFr": "30 g de fromage 6 % M.G.",
+        "labelEn": "30 g 6% M.F. cheese",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 82 vs Atwater 40.0 (Δ 42.0 / 105.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 60 vs Atwater 48.6 (Δ 11.4 / 23.5%)",
+          "resolutionStatus": "resolved_documented"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "160",
+          "fieldsHash": "kcal:6.9|1.2|1.8|60",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T21:05:49.176Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 160"
+        }
+      ]
+    },
+    {
+      "id": "produits-laitiers-plain-greek-yogurt",
+      "operation": "update",
+      "identity": {
+        "fr": "Yogourt grec nature sans gras",
+        "en": "Plain fat-free Greek yogurt",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "2%",
+          "fruit flavoured",
+          "vanilla",
+          "rich"
+        ]
+      },
+      "expectedRecordId": "6979",
+      "selectedRecordId": "6979",
+      "recordId": "6979",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., plain",
+        "fr": "Yogourt, Grec, sans gras, 0-0,5% M.G., nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6979",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, Grec, sans gras, 0-0,5% M.G., nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6979"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 58,
+          "protein_g": 10.53,
+          "carbohydrate_g": 3.21,
+          "fibre_g": 0,
+          "total_fat_g": 0.04,
+          "saturated_fat_g": 0.039,
+          "polyunsaturated_fat_g": 0,
+          "monounsaturated_fat_g": 0
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 72.5,
+          "proteinG": 13.1625,
+          "carbsG": 4.0125,
+          "fiberG": 0,
+          "fatG": 0.05,
+          "saturatedFatG": 0.04875,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "storedRounded": {
+          "declaredKcal": 73,
+          "proteinG": 13.2,
+          "carbsG": 4,
+          "fiberG": 0,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6979",
+        "selectedRecordId": "6979",
+        "selected": {
+          "recordId": "6979",
+          "descriptionEn": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., plain",
+          "descriptionFr": "Yogourt, Grec, sans gras, 0-0,5% M.G., nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 63,
+          "per100g": {
+            "energy_kcal": 58,
+            "protein_g": 10.53,
+            "carbohydrate_g": 3.21,
+            "fibre_g": 0,
+            "total_fat_g": 0.04,
+            "saturated_fat_g": 0.039,
+            "polyunsaturated_fat_g": 0,
+            "monounsaturated_fat_g": 0
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6979",
+            "descriptionEn": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., plain",
+            "descriptionFr": "Yogourt, Grec, sans gras, 0-0,5% M.G., nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 63,
+            "per100g": {
+              "energy_kcal": 58,
+              "protein_g": 10.53,
+              "carbohydrate_g": 3.21,
+              "fibre_g": 0,
+              "total_fat_g": 0.04,
+              "saturated_fat_g": 0.039,
+              "polyunsaturated_fat_g": 0,
+              "monounsaturated_fat_g": 0
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6979: Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., plain.",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 72
+      },
+      "afterNutrients": {
+        "proteinG": 13.2,
+        "carbsG": 4,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 73
+      },
+      "beforePortion": {
+        "labelFr": "125 g de Yaourt grec 0 % nature",
+        "labelEn": "125 g 0% plain Greek yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de yogourt grec nature 0 %",
+        "labelEn": "125 g plain fat-free Greek yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 72 vs Atwater 40.0 (Δ 32.0 / 80.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese-2",
+      "operation": "update",
+      "identity": {
+        "fr": "Fromage cottage 2 % M.G.",
+        "en": "Cottage cheese, 2% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "1%",
+          "4.5%",
+          "dry curd",
+          "with fruit"
+        ]
+      },
+      "expectedRecordId": "120",
+      "selectedRecordId": "120",
+      "recordId": "120",
+      "cnfDescription": {
+        "en": "Cheese, cottage, 2% M.F.",
+        "fr": "Fromage cottage, 2% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "120",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Cheese, cottage, 2% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Fromage cottage, 2% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:120"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 81,
+          "protein_g": 10.45,
+          "carbohydrate_g": 4.76,
+          "fibre_g": 0,
+          "total_fat_g": 2.27,
+          "saturated_fat_g": 1.235,
+          "polyunsaturated_fat_g": 0.083,
+          "monounsaturated_fat_g": 0.516
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 101.25,
+          "proteinG": 13.0625,
+          "carbsG": 5.949999999999999,
+          "fiberG": 0,
+          "fatG": 2.8375,
+          "saturatedFatG": 1.5437500000000002,
+          "polyunsaturatedFatG": 0.10375000000000001,
+          "monounsaturatedFatG": 0.645
+        },
+        "storedRounded": {
+          "declaredKcal": 101,
+          "proteinG": 13.1,
+          "carbsG": 5.9,
+          "fiberG": 0,
+          "fatG": 2.8,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.6
+        }
+      },
+      "selection": {
+        "expectedRecordId": "120",
+        "selectedRecordId": "120",
+        "selected": {
+          "recordId": "120",
+          "descriptionEn": "Cheese, cottage, 2% M.F.",
+          "descriptionFr": "Fromage cottage, 2% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 70,
+          "per100g": {
+            "energy_kcal": 81,
+            "protein_g": 10.45,
+            "carbohydrate_g": 4.76,
+            "fibre_g": 0,
+            "total_fat_g": 2.27,
+            "saturated_fat_g": 1.235,
+            "polyunsaturated_fat_g": 0.083,
+            "monounsaturated_fat_g": 0.516
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "120",
+            "descriptionEn": "Cheese, cottage, 2% M.F.",
+            "descriptionFr": "Fromage cottage, 2% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 70,
+            "per100g": {
+              "energy_kcal": 81,
+              "protein_g": 10.45,
+              "carbohydrate_g": 4.76,
+              "fibre_g": 0,
+              "total_fat_g": 2.27,
+              "saturated_fat_g": 1.235,
+              "polyunsaturated_fat_g": 0.083,
+              "monounsaturated_fat_g": 0.516
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 120: Cheese, cottage, 2% M.F..",
+        "code": null
+      },
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 74
+      },
+      "afterNutrients": {
+        "proteinG": 13.1,
+        "carbsG": 5.9,
+        "fiberG": 0,
+        "fatG": 2.8,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.6,
+        "declaredKcal": 101
+      },
+      "beforePortion": {
+        "labelFr": "100 g de Fromage cottage 2 %",
+        "labelEn": "100 g 2% cottage cheese",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 g de fromage cottage 2 %",
+        "labelEn": "125 g cottage cheese 2%",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 74 vs Atwater 40.0 (Δ 34.0 / 85.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-plain-skyr",
+      "operation": "update",
+      "identity": {
+        "fr": "Skyr siggi’s nature 0 %",
+        "en": "siggi’s Plain 0% Skyr",
+        "preparationState": "ready_to_eat",
+        "brand": "siggi’s",
+        "marketNote": "La page officielle confirme 60 kcal et 12 g de protéines; les autres macronutriments non lisibles demeurent null."
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.siggis.ca/product/plain/",
+      "recordId": "https://www.siggis.ca/product/plain/",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "siggi’s",
+        "recordId": "https://www.siggis.ca/product/plain/",
+        "url": "https://www.siggis.ca/product/plain/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "115 g label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "La page officielle confirme 60 kcal et 12 g de protéines; les autres macronutriments non lisibles demeurent null.",
+        "brand": "siggi’s",
+        "productName": "Plain 0% Skyr",
+        "labelServingSize": "115 g",
+        "evidenceRef": "https://www.siggis.ca/product/plain/"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 115 / 115",
+        "labelNutrients": {
+          "declaredKcal": 60,
+          "proteinG": 12,
+          "carbsG": null,
+          "fiberG": null,
+          "fatG": null,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 60,
+          "proteinG": 12,
+          "carbsG": null,
+          "fiberG": null,
+          "fatG": null,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 60,
+          "proteinG": 12,
+          "carbsG": null,
+          "fiberG": null,
+          "fatG": null,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "carbsG",
+          "fiberG",
+          "fatG",
+          "saturatedFatG",
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [],
+        "labelServingAmount": 115,
+        "canonicalAmount": 115,
+        "labelUnit": "g",
+        "canonicalUnit": "g",
+        "labelGrams": 115,
+        "canonicalGrams": 115,
+        "method": "same_unit",
+        "factor": 1,
+        "approvedStored": {
+          "declaredKcal": 60,
+          "proteinG": 12,
+          "carbsG": null,
+          "fiberG": null,
+          "fatG": null,
+          "saturatedFatG": null,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 11,
+        "carbsG": 4,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 62
+      },
+      "afterNutrients": {
+        "proteinG": 12,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "beforePortion": {
+        "labelFr": "100 g de Skyr 0 % nature",
+        "labelEn": "100 g 0% plain Skyr",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "115 g de skyr siggi’s nature 0 %",
+        "labelEn": "115 g siggi’s Plain 0% Skyr",
+        "amount": 115,
+        "unit": "g",
+        "grams": 115,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "siggi’s"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "ERROR",
+          "code": "MISSING_REQUIRED",
+          "message": "glucides manquante(s)"
+        },
+        {
+          "severity": "ERROR",
+          "code": "MISSING_TOTAL_FAT",
+          "message": "Lipides totaux absents"
+        }
+      ],
+      "projectedCanVerify": false,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-high-protein-filtered-milk",
+      "operation": "update",
+      "identity": {
+        "fr": "Lait ultrafiltré fairlife 2 %",
+        "en": "fairlife 2% Ultra-Filtered Milk",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife"
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "recordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+        "url": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "240 ml label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "North America",
+        "brand": "fairlife",
+        "productName": "2% Reduced Fat Ultra-Filtered Milk",
+        "labelServingSize": "240 ml",
+        "evidenceRef": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 150 / 240",
+        "labelNutrients": {
+          "declaredKcal": 120,
+          "proteinG": 13,
+          "carbsG": 6,
+          "fiberG": 0,
+          "fatG": 4.5,
+          "saturatedFatG": 3,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 75,
+          "proteinG": 8.125,
+          "carbsG": 3.75,
+          "fiberG": 0,
+          "fatG": 2.8125,
+          "saturatedFatG": 1.875,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 75,
+          "proteinG": 8.1,
+          "carbsG": 3.8,
+          "fiberG": 0,
+          "fatG": 2.8,
+          "saturatedFatG": 1.9,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [
+          "fiberG"
+        ],
+        "labelServingAmount": 240,
+        "canonicalAmount": 150,
+        "labelUnit": "ml",
+        "canonicalUnit": "ml",
+        "labelGrams": 240,
+        "canonicalGrams": 150,
+        "method": "same_unit",
+        "factor": 0.625,
+        "approvedStored": {
+          "declaredKcal": 75,
+          "proteinG": 8.1,
+          "carbsG": 3.8,
+          "fiberG": 0,
+          "fatG": 2.8,
+          "saturatedFatG": 1.9,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 4,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 75
+      },
+      "afterNutrients": {
+        "proteinG": 8.1,
+        "carbsG": 3.8,
+        "fiberG": 0,
+        "fatG": 2.8,
+        "saturatedFatG": 1.9,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 75
+      },
+      "beforePortion": {
+        "labelFr": "150 ml de Lait filtré haute protéine (1 %)",
+        "labelEn": "150 ml High-protein filtered milk (1%)",
+        "amount": 150,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "150 ml de lait ultrafiltré fairlife 2 %",
+        "labelEn": "150 ml fairlife 2% ultra-filtered milk",
+        "amount": 150,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 75 vs Atwater 48.0 (Δ 27.0 / 56.3%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-bottle-core-power-fairlife",
+      "operation": "update",
+      "identity": {
+        "fr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+        "en": "fairlife Core Power Chocolate, 26 g protein",
+        "preparationState": "ready_to_eat",
+        "brand": "fairlife",
+        "marketNote": "Entrée conservée dans la catégorie Produits laitiers pour compatibilité du guide legacy."
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "recordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "fairlife",
+        "recordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+        "url": "https://fairlife.com/core-power/chocolate-protein-shake/",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "414 ml label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Entrée conservée dans la catégorie Produits laitiers pour compatibilité du guide legacy.",
+        "brand": "fairlife",
+        "productName": "Core Power Chocolate 26g Protein Shake",
+        "labelServingSize": "414 ml",
+        "evidenceRef": "https://fairlife.com/core-power/chocolate-protein-shake/"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 207 / 414",
+        "labelNutrients": {
+          "declaredKcal": 170,
+          "proteinG": 26,
+          "carbsG": 8,
+          "fiberG": 2,
+          "fatG": 4.5,
+          "saturatedFatG": 3,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 85,
+          "proteinG": 13,
+          "carbsG": 4,
+          "fiberG": 1,
+          "fatG": 2.25,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 85,
+          "proteinG": 13,
+          "carbsG": 4,
+          "fiberG": 1,
+          "fatG": 2.3,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [],
+        "labelServingAmount": 414,
+        "canonicalAmount": 207,
+        "labelUnit": "ml",
+        "canonicalUnit": "ml",
+        "labelGrams": 414,
+        "canonicalGrams": 207,
+        "method": "same_unit",
+        "factor": 0.5,
+        "approvedStored": {
+          "declaredKcal": 85,
+          "proteinG": 13,
+          "carbsG": 4,
+          "fiberG": 1,
+          "fatG": 2.3,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 10,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 60
+      },
+      "afterNutrients": {
+        "proteinG": 13,
+        "carbsG": 4,
+        "fiberG": 1,
+        "fatG": 2.3,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 85
+      },
+      "beforePortion": {
+        "labelFr": "½ bouteille de Core Power, Fairlife (26 g prot./bouteille)",
+        "labelEn": "½ bottle Core Power, Fairlife (26 g prot./bottle)",
+        "amount": 0.5,
+        "unit": "bottle",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Core Power / Fairlife"
+      },
+      "afterPortion": {
+        "labelFr": "½ bouteille de Core Power chocolat (207 ml)",
+        "labelEn": "½ bottle Core Power Chocolate (207 ml)",
+        "amount": 207,
+        "unit": "ml",
+        "grams": 207,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "fairlife"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 60 vs Atwater 48.0 (Δ 12.0 / 25.0%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: amount(0.5≠207), unit(bottle≠ml)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 0.5,
+            "unit": "bottle",
+            "grams": null,
+            "label": "½ bouteille de Core Power chocolat (207 ml)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: amount(0.5≠207), unit(bottle≠ml)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 0.5,
+            "unit": "bottle",
+            "grams": null,
+            "label": "½ bottle Core Power Chocolate (207 ml)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-allegro-9-cheese",
+      "operation": "update",
+      "identity": {
+        "fr": "Fromage Allégro 9 % blanc",
+        "en": "Allégro 9% White cheese",
+        "preparationState": "ready_to_eat",
+        "brand": "Allégro"
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://myallegro.ca/en/products/white",
+      "recordId": "https://myallegro.ca/en/products/white",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "Allégro",
+        "recordId": "https://myallegro.ca/en/products/white",
+        "url": "https://myallegro.ca/en/products/white",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "30 g label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Canada",
+        "brand": "Allégro",
+        "productName": "Allégro 9% White",
+        "labelServingSize": "30 g",
+        "evidenceRef": "https://myallegro.ca/en/products/white"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 30 / 30",
+        "labelNutrients": {
+          "declaredKcal": 70,
+          "proteinG": 10,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 2,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 70,
+          "proteinG": 10,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 2,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 70,
+          "proteinG": 10,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 2,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [
+          "fiberG"
+        ],
+        "labelServingAmount": 30,
+        "canonicalAmount": 30,
+        "labelUnit": "g",
+        "canonicalUnit": "g",
+        "labelGrams": 30,
+        "canonicalGrams": 30,
+        "method": "same_unit",
+        "factor": 1,
+        "approvedStored": {
+          "declaredKcal": 70,
+          "proteinG": 10,
+          "carbsG": 1,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 2,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 8,
+        "carbsG": 5,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 77
+      },
+      "afterNutrients": {
+        "proteinG": 10,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 70
+      },
+      "beforePortion": {
+        "labelFr": "30 g de Fromage Allegro 9 %",
+        "labelEn": "30 g Allegro 9% cheese",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Allegro"
+      },
+      "afterPortion": {
+        "labelFr": "30 g de fromage Allégro 9 % blanc",
+        "labelEn": "30 g Allégro 9% White cheese",
+        "amount": 30,
+        "unit": "g",
+        "grams": 30,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Allégro"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 77 vs Atwater 52.0 (Δ 25.0 / 48.1%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-natrel-plus-2",
+      "operation": "update",
+      "identity": {
+        "fr": "Lait Natrel Plus 2 % sans lactose",
+        "en": "Natrel Plus 2% lactose-free milk",
+        "preparationState": "ready_to_eat",
+        "brand": "Natrel"
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "recordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "Natrel",
+        "recordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+        "url": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "250 ml label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Canada",
+        "brand": "Natrel",
+        "productName": "Natrel Plus 2%",
+        "labelServingSize": "250 ml",
+        "evidenceRef": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 125 / 250",
+        "labelNutrients": {
+          "declaredKcal": 160,
+          "proteinG": 18,
+          "carbsG": 9,
+          "fiberG": 0,
+          "fatG": 5,
+          "saturatedFatG": 3,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 80,
+          "proteinG": 9,
+          "carbsG": 4.5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 80,
+          "proteinG": 9,
+          "carbsG": 4.5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [
+          "fiberG"
+        ],
+        "labelServingAmount": 250,
+        "canonicalAmount": 125,
+        "labelUnit": "ml",
+        "canonicalUnit": "ml",
+        "labelGrams": 250,
+        "canonicalGrams": 125,
+        "method": "same_unit",
+        "factor": 0.5,
+        "approvedStored": {
+          "declaredKcal": 80,
+          "proteinG": 9,
+          "carbsG": 4.5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 2,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 9,
+        "carbsG": 4.5,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 80
+      },
+      "beforePortion": {
+        "labelFr": "125 ml de NATREL PLUS 2 %",
+        "labelEn": "125 ml NATREL PLUS 2%",
+        "amount": 125,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": true,
+        "brand": "Natrel"
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de lait Natrel Plus 2 %",
+        "labelEn": "125 ml Natrel Plus 2% milk",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Natrel"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 66 vs Atwater 28.0 (Δ 38.0 / 135.7%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-protein-chocolate-milk",
+      "operation": "update",
+      "identity": {
+        "fr": "Lait Natrel Plus chocolat 1 % sans lactose",
+        "en": "Natrel Plus Chocolate 1% lactose-free milk",
+        "preparationState": "ready_to_eat",
+        "brand": "Natrel"
+      },
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "recordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "cnfDescription": null,
+      "source": {
+        "type": "manufacturer_website",
+        "name": "Natrel",
+        "recordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+        "url": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "250 ml label serving",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Canada",
+        "brand": "Natrel",
+        "productName": "Natrel Plus Chocolate 1%",
+        "labelServingSize": "250 ml",
+        "evidenceRef": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1"
+      },
+      "conversion": {
+        "ok": true,
+        "formula": "valueCanonical = valueLabel × 150 / 250",
+        "labelNutrients": {
+          "declaredKcal": 150,
+          "proteinG": 18,
+          "carbsG": 13,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "saturatedFatG": 1.5,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 90,
+          "proteinG": 10.799999999999999,
+          "carbsG": 7.8,
+          "fiberG": 0,
+          "fatG": 1.5,
+          "saturatedFatG": 0.8999999999999999,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "storedRounded": {
+          "declaredKcal": 90,
+          "proteinG": 10.8,
+          "carbsG": 7.8,
+          "fiberG": 0,
+          "fatG": 1.5,
+          "saturatedFatG": 0.9,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        },
+        "undeclaredNutrients": [
+          "polyunsaturatedFatG",
+          "monounsaturatedFatG"
+        ],
+        "declaredZeroNutrients": [
+          "fiberG"
+        ],
+        "labelServingAmount": 250,
+        "canonicalAmount": 150,
+        "labelUnit": "ml",
+        "canonicalUnit": "ml",
+        "labelGrams": 250,
+        "canonicalGrams": 150,
+        "method": "same_unit",
+        "factor": 0.6,
+        "approvedStored": {
+          "declaredKcal": 90,
+          "proteinG": 10.8,
+          "carbsG": 7.8,
+          "fiberG": 0,
+          "fatG": 1.5,
+          "saturatedFatG": 0.9,
+          "polyunsaturatedFatG": null,
+          "monounsaturatedFatG": null
+        }
+      },
+      "selection": null,
+      "beforeNutrients": {
+        "proteinG": 7,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 73
+      },
+      "afterNutrients": {
+        "proteinG": 10.8,
+        "carbsG": 7.8,
+        "fiberG": 0,
+        "fatG": 1.5,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 90
+      },
+      "beforePortion": {
+        "labelFr": "150 ml de Lait au chocolat protéiné 1 %",
+        "labelEn": "150 ml 1% protein chocolate milk",
+        "amount": 150,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "150 ml de lait Natrel Plus chocolat 1 %",
+        "labelEn": "150 ml Natrel Plus Chocolate 1% milk",
+        "amount": 150,
+        "unit": "ml",
+        "grams": 150,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "Natrel"
+      },
+      "alertsBefore": [
+        {
+          "severity": "WARNING",
+          "code": "MISSING_PREP_STATE",
+          "message": "État cru/cuit/égoutté non précisé"
+        },
+        {
+          "severity": "ERROR",
+          "code": "KCAL_DIFF_HIGH",
+          "message": "Différence calorique élevée: déclaré 73 vs Atwater 40.0 (Δ 33.0 / 82.5%)",
+          "resolutionStatus": "open"
+        },
+        {
+          "severity": "WARNING",
+          "code": "MISSING_GRAMS",
+          "message": "Poids en grammes absent"
+        },
+        {
+          "severity": "WARNING",
+          "code": "LEGACY_SOURCE_ONLY",
+          "message": "Seule la source legacy du guide est présente — insuffisante pour verified"
+        }
+      ],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-yogurt-fat-free-plain",
+      "operation": "add",
+      "identity": {
+        "fr": "Yogourt nature sans gras, 0 à 0,5 % M.G.",
+        "en": "Plain fat-free yogurt, 0–0.5% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "Greek",
+          "fruit flavoured",
+          "sweetened"
+        ]
+      },
+      "expectedRecordId": "6948",
+      "selectedRecordId": "6948",
+      "recordId": "6948",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), fat free, 0-0.5% M.F., plain",
+        "fr": "Yogourt, sans gras, 0-0,5% M.G., nature"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6948",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), fat free, 0-0.5% M.F., plain)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, sans gras, 0-0,5% M.G., nature",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6948"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 38,
+          "protein_g": 4.64,
+          "carbohydrate_g": 4.67,
+          "fibre_g": 0,
+          "total_fat_g": 0.05,
+          "saturated_fat_g": 0.037,
+          "polyunsaturated_fat_g": 0,
+          "monounsaturated_fat_g": 0.011
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 47.5,
+          "proteinG": 5.8,
+          "carbsG": 5.8375,
+          "fiberG": 0,
+          "fatG": 0.0625,
+          "saturatedFatG": 0.04625,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.013749999999999998
+        },
+        "storedRounded": {
+          "declaredKcal": 48,
+          "proteinG": 5.8,
+          "carbsG": 5.8,
+          "fiberG": 0,
+          "fatG": 0.1,
+          "saturatedFatG": 0,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6948",
+        "selectedRecordId": "6948",
+        "selected": {
+          "recordId": "6948",
+          "descriptionEn": "Yogourt (yogurt), fat free, 0-0.5% M.F., plain",
+          "descriptionFr": "Yogourt, sans gras, 0-0,5% M.G., nature",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 38,
+            "protein_g": 4.64,
+            "carbohydrate_g": 4.67,
+            "fibre_g": 0,
+            "total_fat_g": 0.05,
+            "saturated_fat_g": 0.037,
+            "polyunsaturated_fat_g": 0,
+            "monounsaturated_fat_g": 0.011
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6948",
+            "descriptionEn": "Yogourt (yogurt), fat free, 0-0.5% M.F., plain",
+            "descriptionFr": "Yogourt, sans gras, 0-0,5% M.G., nature",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 38,
+              "protein_g": 4.64,
+              "carbohydrate_g": 4.67,
+              "fibre_g": 0,
+              "total_fat_g": 0.05,
+              "saturated_fat_g": 0.037,
+              "polyunsaturated_fat_g": 0,
+              "monounsaturated_fat_g": 0.011
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6948: Yogourt (yogurt), fat free, 0-0.5% M.F., plain.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 5.8,
+        "carbsG": 5.8,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 48
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 g de yogourt nature sans gras",
+        "labelEn": "125 g plain fat-free yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt-fat-free-fruit",
+      "operation": "add",
+      "identity": {
+        "fr": "Yogourt grec aux fruits sans gras",
+        "en": "Fat-free fruit-flavoured Greek yogurt",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "plain",
+          "vanilla",
+          "2%"
+        ]
+      },
+      "expectedRecordId": "6980",
+      "selectedRecordId": "6980",
+      "recordId": "6980",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., fruit flavoured",
+        "fr": "Yogourt, Grec, sans gras, 0-0,5% M.G., saveur de fruits"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6980",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., fruit flavoured)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, Grec, sans gras, 0-0,5% M.G., saveur de fruits",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6980"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 125 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 83,
+          "protein_g": 8.68,
+          "carbohydrate_g": 11.78,
+          "fibre_g": 0,
+          "total_fat_g": 0.041,
+          "saturated_fat_g": 0.042,
+          "polyunsaturated_fat_g": 0,
+          "monounsaturated_fat_g": 0
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 103.75,
+          "proteinG": 10.85,
+          "carbsG": 14.725,
+          "fiberG": 0,
+          "fatG": 0.051250000000000004,
+          "saturatedFatG": 0.052500000000000005,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        },
+        "storedRounded": {
+          "declaredKcal": 104,
+          "proteinG": 10.9,
+          "carbsG": 14.7,
+          "fiberG": 0,
+          "fatG": 0.1,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6980",
+        "selectedRecordId": "6980",
+        "selected": {
+          "recordId": "6980",
+          "descriptionEn": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., fruit flavoured",
+          "descriptionFr": "Yogourt, Grec, sans gras, 0-0,5% M.G., saveur de fruits",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 62,
+          "per100g": {
+            "energy_kcal": 83,
+            "protein_g": 8.68,
+            "carbohydrate_g": 11.78,
+            "fibre_g": 0,
+            "total_fat_g": 0.041,
+            "saturated_fat_g": 0.042,
+            "polyunsaturated_fat_g": 0,
+            "monounsaturated_fat_g": 0
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6980",
+            "descriptionEn": "Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., fruit flavoured",
+            "descriptionFr": "Yogourt, Grec, sans gras, 0-0,5% M.G., saveur de fruits",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 62,
+            "per100g": {
+              "energy_kcal": 83,
+              "protein_g": 8.68,
+              "carbohydrate_g": 11.78,
+              "fibre_g": 0,
+              "total_fat_g": 0.041,
+              "saturated_fat_g": 0.042,
+              "polyunsaturated_fat_g": 0,
+              "monounsaturated_fat_g": 0
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6980: Yogourt (yogurt), Greek style, fat free, 0-0.5% M.F., fruit flavoured.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 10.9,
+        "carbsG": 14.7,
+        "fiberG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 104
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 g de yogourt grec aux fruits 0 %",
+        "labelEn": "125 g fat-free fruit Greek yogurt",
+        "amount": 125,
+        "unit": "g",
+        "grams": 125,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-kefir-fruit-low-fat",
+      "operation": "add",
+      "identity": {
+        "fr": "Kéfir aux fruits faible en gras",
+        "en": "Low-fat fruit-flavoured kefir",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "plain",
+          "2-3.9% M.F."
+        ]
+      },
+      "expectedRecordId": "7000",
+      "selectedRecordId": "7000",
+      "recordId": "7000",
+      "cnfDescription": {
+        "en": "Kefir, fruit flavoured, low fat (0.5-1.9% M.F.)",
+        "fr": "Kéfir, saveurs de fruits, faible en gras (0,5-1,9% M.G.)"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7000",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Kefir, fruit flavoured, low fat (0.5-1.9% M.F.))",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Kéfir, saveurs de fruits, faible en gras (0,5-1,9% M.G.)",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7000"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 117.71 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 60,
+          "protein_g": 2.71,
+          "carbohydrate_g": 9.51,
+          "fibre_g": 0,
+          "total_fat_g": 1.36,
+          "saturated_fat_g": 0.88,
+          "polyunsaturated_fat_g": 0.057,
+          "monounsaturated_fat_g": 0.362
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 70.626,
+          "proteinG": 3.189941,
+          "carbsG": 11.194221,
+          "fiberG": 0,
+          "fatG": 1.600856,
+          "saturatedFatG": 1.035848,
+          "polyunsaturatedFatG": 0.06709470000000001,
+          "monounsaturatedFatG": 0.4261102
+        },
+        "storedRounded": {
+          "declaredKcal": 71,
+          "proteinG": 3.2,
+          "carbsG": 11.2,
+          "fiberG": 0,
+          "fatG": 1.6,
+          "saturatedFatG": 1,
+          "polyunsaturatedFatG": 0.1,
+          "monounsaturatedFatG": 0.4
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7000",
+        "selectedRecordId": "7000",
+        "selected": {
+          "recordId": "7000",
+          "descriptionEn": "Kefir, fruit flavoured, low fat (0.5-1.9% M.F.)",
+          "descriptionFr": "Kéfir, saveurs de fruits, faible en gras (0,5-1,9% M.G.)",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 64,
+          "per100g": {
+            "energy_kcal": 60,
+            "protein_g": 2.71,
+            "carbohydrate_g": 9.51,
+            "fibre_g": 0,
+            "total_fat_g": 1.36,
+            "saturated_fat_g": 0.88,
+            "polyunsaturated_fat_g": 0.057,
+            "monounsaturated_fat_g": 0.362
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7000",
+            "descriptionEn": "Kefir, fruit flavoured, low fat (0.5-1.9% M.F.)",
+            "descriptionFr": "Kéfir, saveurs de fruits, faible en gras (0,5-1,9% M.G.)",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 64,
+            "per100g": {
+              "energy_kcal": 60,
+              "protein_g": 2.71,
+              "carbohydrate_g": 9.51,
+              "fibre_g": 0,
+              "total_fat_g": 1.36,
+              "saturated_fat_g": 0.88,
+              "polyunsaturated_fat_g": 0.057,
+              "monounsaturated_fat_g": 0.362
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7000: Kefir, fruit flavoured, low fat (0.5-1.9% M.F.).",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 3.2,
+        "carbsG": 11.2,
+        "fiberG": 0,
+        "fatG": 1.6,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 71
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de kéfir aux fruits (118 g)",
+        "labelEn": "125 ml fruit kefir (118 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 117.71,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(118≠117.71)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 125,
+            "unit": "ml",
+            "grams": 118,
+            "label": "125 ml de kéfir aux fruits (118 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(118≠117.71)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 125,
+            "unit": "ml",
+            "grams": 118,
+            "label": "125 ml fruit kefir (118 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-skim-milk",
+      "operation": "add",
+      "identity": {
+        "fr": "Lait écrémé 0,1 % M.G.",
+        "en": "Skim milk, 0.1% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "1%",
+          "2%",
+          "whole",
+          "chocolate"
+        ]
+      },
+      "expectedRecordId": "114",
+      "selectedRecordId": "114",
+      "recordId": "114",
+      "cnfDescription": {
+        "en": "Milk, fluid, skim, 0.1% M.F.",
+        "fr": "Lait, liquide, écrémé, 0.1% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "114",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Milk, fluid, skim, 0.1% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Lait, liquide, écrémé, 0.1% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:114"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 258.876 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 33,
+          "protein_g": 3.6,
+          "carbohydrate_g": 4.46,
+          "fibre_g": 0,
+          "total_fat_g": 0.06,
+          "saturated_fat_g": 0.042,
+          "polyunsaturated_fat_g": 0.002,
+          "monounsaturated_fat_g": 0.014
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 85.42907999999998,
+          "proteinG": 9.319536,
+          "carbsG": 11.545869599999998,
+          "fiberG": 0,
+          "fatG": 0.15532559999999998,
+          "saturatedFatG": 0.10872791999999999,
+          "polyunsaturatedFatG": 0.00517752,
+          "monounsaturatedFatG": 0.03624264
+        },
+        "storedRounded": {
+          "declaredKcal": 85,
+          "proteinG": 9.3,
+          "carbsG": 11.5,
+          "fiberG": 0,
+          "fatG": 0.2,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0
+        }
+      },
+      "selection": {
+        "expectedRecordId": "114",
+        "selectedRecordId": "114",
+        "selected": {
+          "recordId": "114",
+          "descriptionEn": "Milk, fluid, skim, 0.1% M.F.",
+          "descriptionFr": "Lait, liquide, écrémé, 0.1% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 68,
+          "per100g": {
+            "energy_kcal": 33,
+            "protein_g": 3.6,
+            "carbohydrate_g": 4.46,
+            "fibre_g": 0,
+            "total_fat_g": 0.06,
+            "saturated_fat_g": 0.042,
+            "polyunsaturated_fat_g": 0.002,
+            "monounsaturated_fat_g": 0.014
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "114",
+            "descriptionEn": "Milk, fluid, skim, 0.1% M.F.",
+            "descriptionFr": "Lait, liquide, écrémé, 0.1% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 68,
+            "per100g": {
+              "energy_kcal": 33,
+              "protein_g": 3.6,
+              "carbohydrate_g": 4.46,
+              "fibre_g": 0,
+              "total_fat_g": 0.06,
+              "saturated_fat_g": 0.042,
+              "polyunsaturated_fat_g": 0.002,
+              "monounsaturated_fat_g": 0.014
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 114: Milk, fluid, skim, 0.1% M.F..",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 9.3,
+        "carbsG": 11.5,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 85
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de lait écrémé (259 g)",
+        "labelEn": "250 ml skim milk (259 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 258.876,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(259≠258.876)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 259,
+            "label": "250 ml de lait écrémé (259 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(259≠258.876)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 259,
+            "label": "250 ml skim milk (259 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-whole-milk",
+      "operation": "add",
+      "identity": {
+        "fr": "Lait entier homogénéisé 3,25 % M.G.",
+        "en": "Whole homogenized milk, 3.25% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "skim",
+          "1%",
+          "2%",
+          "goat"
+        ]
+      },
+      "expectedRecordId": "113",
+      "selectedRecordId": "113",
+      "recordId": "113",
+      "cnfDescription": {
+        "en": "Milk, fluid, whole, pasteurized, homogenized, 3.25% M.F.",
+        "fr": "Lait, liquide, entier, homogénéisé, pasteurisé, 3.25% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "113",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Milk, fluid, whole, pasteurized, homogenized, 3.25% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Lait, liquide, entier, homogénéisé, pasteurisé, 3.25% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:113"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 257.819 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 59,
+          "protein_g": 3.3,
+          "carbohydrate_g": 4.46,
+          "fibre_g": 0,
+          "total_fat_g": 3.094,
+          "saturated_fat_g": 2.048,
+          "polyunsaturated_fat_g": 0.108,
+          "monounsaturated_fat_g": 0.776
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 152.11321,
+          "proteinG": 8.508027,
+          "carbsG": 11.4987274,
+          "fiberG": 0,
+          "fatG": 7.976919860000001,
+          "saturatedFatG": 5.28013312,
+          "polyunsaturatedFatG": 0.27844452000000003,
+          "monounsaturatedFatG": 2.00067544
+        },
+        "storedRounded": {
+          "declaredKcal": 152,
+          "proteinG": 8.5,
+          "carbsG": 11.5,
+          "fiberG": 0,
+          "fatG": 8,
+          "saturatedFatG": 5.3,
+          "polyunsaturatedFatG": 0.3,
+          "monounsaturatedFatG": 2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "113",
+        "selectedRecordId": "113",
+        "selected": {
+          "recordId": "113",
+          "descriptionEn": "Milk, fluid, whole, pasteurized, homogenized, 3.25% M.F.",
+          "descriptionFr": "Lait, liquide, entier, homogénéisé, pasteurisé, 3.25% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 66,
+          "per100g": {
+            "energy_kcal": 59,
+            "protein_g": 3.3,
+            "carbohydrate_g": 4.46,
+            "fibre_g": 0,
+            "total_fat_g": 3.094,
+            "saturated_fat_g": 2.048,
+            "polyunsaturated_fat_g": 0.108,
+            "monounsaturated_fat_g": 0.776
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "113",
+            "descriptionEn": "Milk, fluid, whole, pasteurized, homogenized, 3.25% M.F.",
+            "descriptionFr": "Lait, liquide, entier, homogénéisé, pasteurisé, 3.25% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 66,
+            "per100g": {
+              "energy_kcal": 59,
+              "protein_g": 3.3,
+              "carbohydrate_g": 4.46,
+              "fibre_g": 0,
+              "total_fat_g": 3.094,
+              "saturated_fat_g": 2.048,
+              "polyunsaturated_fat_g": 0.108,
+              "monounsaturated_fat_g": 0.776
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 113: Milk, fluid, whole, pasteurized, homogenized, 3.25% M.F..",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.5,
+        "carbsG": 11.5,
+        "fiberG": 0,
+        "fatG": 8,
+        "saturatedFatG": 5.3,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 152
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de lait entier 3,25 % (258 g)",
+        "labelEn": "250 ml whole milk 3.25% (258 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 257.819,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml de lait entier 3,25 % (258 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml whole milk 3.25% (258 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-oat-quinoa-beverage-unsweetened",
+      "operation": "add",
+      "identity": {
+        "fr": "Boisson d’avoine et de quinoa non sucrée, enrichie",
+        "en": "Unsweetened fortified oat and quinoa beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sweetened",
+          "almond",
+          "soy",
+          "rice"
+        ]
+      },
+      "expectedRecordId": "7808",
+      "selectedRecordId": "7808",
+      "recordId": "7808",
+      "cnfDescription": {
+        "en": "Plant-based beverage, oat and quinoa beverage, unsweetened, fortified, shelf-stable",
+        "fr": "Boisson à base de plantes, avoine et quinoa, non sucrée, enrichie, longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "7808",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, oat and quinoa beverage, unsweetened, fortified, shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, avoine et quinoa, non sucrée, enrichie, longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:7808"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 250.3 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 31,
+          "protein_g": 0.68,
+          "carbohydrate_g": 4.94,
+          "fibre_g": 0,
+          "total_fat_g": 0.92,
+          "saturated_fat_g": 0.083,
+          "polyunsaturated_fat_g": 0.296,
+          "monounsaturated_fat_g": 0.499
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 77.593,
+          "proteinG": 1.7020400000000002,
+          "carbsG": 12.364820000000002,
+          "fiberG": 0,
+          "fatG": 2.30276,
+          "saturatedFatG": 0.20774900000000002,
+          "polyunsaturatedFatG": 0.740888,
+          "monounsaturatedFatG": 1.2489970000000001
+        },
+        "storedRounded": {
+          "declaredKcal": 78,
+          "proteinG": 1.7,
+          "carbsG": 12.4,
+          "fiberG": 0,
+          "fatG": 2.3,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0.7,
+          "monounsaturatedFatG": 1.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "7808",
+        "selectedRecordId": "7808",
+        "selected": {
+          "recordId": "7808",
+          "descriptionEn": "Plant-based beverage, oat and quinoa beverage, unsweetened, fortified, shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, avoine et quinoa, non sucrée, enrichie, longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 64,
+          "per100g": {
+            "energy_kcal": 31,
+            "protein_g": 0.68,
+            "carbohydrate_g": 4.94,
+            "fibre_g": 0,
+            "total_fat_g": 0.92,
+            "saturated_fat_g": 0.083,
+            "polyunsaturated_fat_g": 0.296,
+            "monounsaturated_fat_g": 0.499
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "7808",
+            "descriptionEn": "Plant-based beverage, oat and quinoa beverage, unsweetened, fortified, shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, avoine et quinoa, non sucrée, enrichie, longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 64,
+            "per100g": {
+              "energy_kcal": 31,
+              "protein_g": 0.68,
+              "carbohydrate_g": 4.94,
+              "fibre_g": 0,
+              "total_fat_g": 0.92,
+              "saturated_fat_g": 0.083,
+              "polyunsaturated_fat_g": 0.296,
+              "monounsaturated_fat_g": 0.499
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 7808: Plant-based beverage, oat and quinoa beverage, unsweetened, fortified, shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.7,
+        "carbsG": 12.4,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 78
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de boisson d’avoine et quinoa (250 g)",
+        "labelEn": "250 ml oat and quinoa beverage (250 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 250.3,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(250≠250.3)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 250,
+            "label": "250 ml de boisson d’avoine et quinoa (250 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(250≠250.3)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 250,
+            "label": "250 ml oat and quinoa beverage (250 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-rice-beverage-unsweetened",
+      "operation": "add",
+      "identity": {
+        "fr": "Boisson de riz nature non sucrée, enrichie",
+        "en": "Plain unsweetened fortified rice beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "vanilla",
+          "chocolate",
+          "almond",
+          "soy"
+        ]
+      },
+      "expectedRecordId": "4780",
+      "selectedRecordId": "4780",
+      "recordId": "4780",
+      "cnfDescription": {
+        "en": "Plant-based beverage, rice beverage, plain, unsweetened, fortified, shelf-stable",
+        "fr": "Boisson à base de plantes, riz, nature, non sucrée, enrichie, longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "4780",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, rice beverage, plain, unsweetened, fortified, shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, riz, nature, non sucrée, enrichie, longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:4780"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 260.7 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 48,
+          "protein_g": 0.17,
+          "carbohydrate_g": 10.3,
+          "fibre_g": 0,
+          "total_fat_g": 0.69,
+          "saturated_fat_g": 0.049,
+          "polyunsaturated_fat_g": 0.195,
+          "monounsaturated_fat_g": 0.415
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 125.136,
+          "proteinG": 0.44319,
+          "carbsG": 26.8521,
+          "fiberG": 0,
+          "fatG": 1.7988299999999997,
+          "saturatedFatG": 0.127743,
+          "polyunsaturatedFatG": 0.508365,
+          "monounsaturatedFatG": 1.081905
+        },
+        "storedRounded": {
+          "declaredKcal": 125,
+          "proteinG": 0.4,
+          "carbsG": 26.9,
+          "fiberG": 0,
+          "fatG": 1.8,
+          "saturatedFatG": 0.1,
+          "polyunsaturatedFatG": 0.5,
+          "monounsaturatedFatG": 1.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "4780",
+        "selectedRecordId": "4780",
+        "selected": {
+          "recordId": "4780",
+          "descriptionEn": "Plant-based beverage, rice beverage, plain, unsweetened, fortified, shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, riz, nature, non sucrée, enrichie, longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 48,
+            "protein_g": 0.17,
+            "carbohydrate_g": 10.3,
+            "fibre_g": 0,
+            "total_fat_g": 0.69,
+            "saturated_fat_g": 0.049,
+            "polyunsaturated_fat_g": 0.195,
+            "monounsaturated_fat_g": 0.415
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "4780",
+            "descriptionEn": "Plant-based beverage, rice beverage, plain, unsweetened, fortified, shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, riz, nature, non sucrée, enrichie, longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 48,
+              "protein_g": 0.17,
+              "carbohydrate_g": 10.3,
+              "fibre_g": 0,
+              "total_fat_g": 0.69,
+              "saturated_fat_g": 0.049,
+              "polyunsaturated_fat_g": 0.195,
+              "monounsaturated_fat_g": 0.415
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 4780: Plant-based beverage, rice beverage, plain, unsweetened, fortified, shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 26.9,
+        "fiberG": 0,
+        "fatG": 1.8,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 125
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de boisson de riz non sucrée (261 g)",
+        "labelEn": "250 ml unsweetened rice beverage (261 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 260.7,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(261≠260.7)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 261,
+            "label": "250 ml de boisson de riz non sucrée (261 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(261≠260.7)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 261,
+            "label": "250 ml unsweetened rice beverage (261 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-soy-beverage-vanilla",
+      "operation": "add",
+      "identity": {
+        "fr": "Boisson de soya à la vanille, enrichie",
+        "en": "Fortified vanilla soy beverage",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "plain",
+          "chocolate",
+          "unfortified"
+        ]
+      },
+      "expectedRecordId": "6720",
+      "selectedRecordId": "6720",
+      "recordId": "6720",
+      "cnfDescription": {
+        "en": "Plant-based beverage, soy beverage, vanilla, fortified, refrigerated and/or shelf-stable",
+        "fr": "Boisson à base de plantes, soya, vanille, enrichie, réfrigérée et/ou longue conservation"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6720",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Plant-based beverage, soy beverage, vanilla, fortified, refrigerated and/or shelf-stable)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Boisson à base de plantes, soya, vanille, enrichie, réfrigérée et/ou longue conservation",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6720"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 253.9 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 48,
+          "protein_g": 2.47,
+          "carbohydrate_g": 6.56,
+          "fibre_g": 0.4,
+          "total_fat_g": 1.35,
+          "saturated_fat_g": 0.181,
+          "polyunsaturated_fat_g": 0.62,
+          "monounsaturated_fat_g": 0.463
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 121.87200000000001,
+          "proteinG": 6.271330000000001,
+          "carbsG": 16.65584,
+          "fiberG": 1.0156,
+          "fatG": 3.4276500000000003,
+          "saturatedFatG": 0.459559,
+          "polyunsaturatedFatG": 1.5741800000000001,
+          "monounsaturatedFatG": 1.1755570000000002
+        },
+        "storedRounded": {
+          "declaredKcal": 122,
+          "proteinG": 6.3,
+          "carbsG": 16.7,
+          "fiberG": 1,
+          "fatG": 3.4,
+          "saturatedFatG": 0.5,
+          "polyunsaturatedFatG": 1.6,
+          "monounsaturatedFatG": 1.2
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6720",
+        "selectedRecordId": "6720",
+        "selected": {
+          "recordId": "6720",
+          "descriptionEn": "Plant-based beverage, soy beverage, vanilla, fortified, refrigerated and/or shelf-stable",
+          "descriptionFr": "Boisson à base de plantes, soya, vanille, enrichie, réfrigérée et/ou longue conservation",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 63,
+          "per100g": {
+            "energy_kcal": 48,
+            "protein_g": 2.47,
+            "carbohydrate_g": 6.56,
+            "fibre_g": 0.4,
+            "total_fat_g": 1.35,
+            "saturated_fat_g": 0.181,
+            "polyunsaturated_fat_g": 0.62,
+            "monounsaturated_fat_g": 0.463
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6720",
+            "descriptionEn": "Plant-based beverage, soy beverage, vanilla, fortified, refrigerated and/or shelf-stable",
+            "descriptionFr": "Boisson à base de plantes, soya, vanille, enrichie, réfrigérée et/ou longue conservation",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 63,
+            "per100g": {
+              "energy_kcal": 48,
+              "protein_g": 2.47,
+              "carbohydrate_g": 6.56,
+              "fibre_g": 0.4,
+              "total_fat_g": 1.35,
+              "saturated_fat_g": 0.181,
+              "polyunsaturated_fat_g": 0.62,
+              "monounsaturated_fat_g": 0.463
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6720: Plant-based beverage, soy beverage, vanilla, fortified, refrigerated and/or shelf-stable.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 6.3,
+        "carbsG": 16.7,
+        "fiberG": 1,
+        "fatG": 3.4,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 122
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de boisson de soya vanille (254 g)",
+        "labelEn": "250 ml vanilla soy beverage (254 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 253.9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(254≠253.9)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 254,
+            "label": "250 ml de boisson de soya vanille (254 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(254≠253.9)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 254,
+            "label": "250 ml vanilla soy beverage (254 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-quark-fat-free-plain",
+      "operation": "add",
+      "identity": {
+        "fr": "Fromage frais de type quark, nature, sans gras et non salé",
+        "en": "Plain unsalted fat-free quark",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "fruit flavoured",
+          "salted",
+          "cream cheese"
+        ]
+      },
+      "expectedRecordId": "6995",
+      "selectedRecordId": "6995",
+      "recordId": "6995",
+      "cnfDescription": {
+        "en": "Yogourt (yogurt), fresh cheese-type (quark), fat free, plain, unsalted",
+        "fr": "Yogourt, fromage frais (quark), sans gras, nature, sans sel ajouté"
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "6995",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Yogourt (yogurt), fresh cheese-type (quark), fat free, plain, unsalted)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Yogourt, fromage frais (quark), sans gras, nature, sans sel ajouté",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:6995"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 100 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 64,
+          "protein_g": 11.23,
+          "carbohydrate_g": 3.49,
+          "fibre_g": 0,
+          "total_fat_g": 0.239,
+          "saturated_fat_g": 0.171,
+          "polyunsaturated_fat_g": 0,
+          "monounsaturated_fat_g": 0.057
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 64,
+          "proteinG": 11.23,
+          "carbsG": 3.49,
+          "fiberG": 0,
+          "fatG": 0.239,
+          "saturatedFatG": 0.171,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.057
+        },
+        "storedRounded": {
+          "declaredKcal": 64,
+          "proteinG": 11.2,
+          "carbsG": 3.5,
+          "fiberG": 0,
+          "fatG": 0.2,
+          "saturatedFatG": 0.2,
+          "polyunsaturatedFatG": 0,
+          "monounsaturatedFatG": 0.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "6995",
+        "selectedRecordId": "6995",
+        "selected": {
+          "recordId": "6995",
+          "descriptionEn": "Yogourt (yogurt), fresh cheese-type (quark), fat free, plain, unsalted",
+          "descriptionFr": "Yogourt, fromage frais (quark), sans gras, nature, sans sel ajouté",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 65,
+          "per100g": {
+            "energy_kcal": 64,
+            "protein_g": 11.23,
+            "carbohydrate_g": 3.49,
+            "fibre_g": 0,
+            "total_fat_g": 0.239,
+            "saturated_fat_g": 0.171,
+            "polyunsaturated_fat_g": 0,
+            "monounsaturated_fat_g": 0.057
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "6995",
+            "descriptionEn": "Yogourt (yogurt), fresh cheese-type (quark), fat free, plain, unsalted",
+            "descriptionFr": "Yogourt, fromage frais (quark), sans gras, nature, sans sel ajouté",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 65,
+            "per100g": {
+              "energy_kcal": 64,
+              "protein_g": 11.23,
+              "carbohydrate_g": 3.49,
+              "fibre_g": 0,
+              "total_fat_g": 0.239,
+              "saturated_fat_g": 0.171,
+              "polyunsaturated_fat_g": 0,
+              "monounsaturated_fat_g": 0.057
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 6995: Yogourt (yogurt), fresh cheese-type (quark), fat free, plain, unsalted.",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 11.2,
+        "carbsG": 3.5,
+        "fiberG": 0,
+        "fatG": 0.2,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 64
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "100 g de quark nature sans gras",
+        "labelEn": "100 g plain fat-free quark",
+        "amount": 100,
+        "unit": "g",
+        "grams": 100,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "FAT_COMPONENTS_EXCEED_TOTAL",
+          "message": "Somme sat+mono+poly (0.30000000000000004) > lipides totaux (0.2)"
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    },
+    {
+      "id": "produits-laitiers-goat-milk-whole",
+      "operation": "add",
+      "identity": {
+        "fr": "Lait de chèvre entier 3,25 % M.G., enrichi",
+        "en": "Fortified whole goat milk, 3.25% M.F.",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "cow milk",
+          "sheep milk",
+          "unfortified"
+        ]
+      },
+      "expectedRecordId": "72",
+      "selectedRecordId": "72",
+      "recordId": "72",
+      "cnfDescription": {
+        "en": "Milk, fluid, goat, whole, vitamin d and folic acid added, 3.25% M.F.",
+        "fr": "Lait, liquide, chèvre, enrichi, entier, 3.25% M.G."
+      },
+      "source": {
+        "type": "canadian_nutrient_file",
+        "name": "Canadian Nutrient File 2026",
+        "recordId": "72",
+        "url": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+        "doi": null,
+        "accessedAt": "2026-07-30",
+        "servingDescription": "100 g as consumed (Milk, fluid, goat, whole, vitamin d and folic acid added, 3.25% M.F.)",
+        "nutrientsBasis": "as_consumed",
+        "notes": "Lait, liquide, chèvre, enrichi, entier, 3.25% M.G.",
+        "brand": null,
+        "productName": null,
+        "labelServingSize": "100 g",
+        "evidenceRef": "CNF-2026:72"
+      },
+      "conversion": {
+        "formula": "valuePortion = valuePer100g × 257.819 / 100",
+        "sourcePer100g": {
+          "energy_kcal": 56,
+          "protein_g": 3.22,
+          "carbohydrate_g": 4,
+          "fibre_g": 0,
+          "total_fat_g": 3.092,
+          "saturated_fat_g": 1.968,
+          "polyunsaturated_fat_g": 0.149,
+          "monounsaturated_fat_g": 0.813
+        },
+        "derivedUnrounded": {
+          "declaredKcal": 144.37864000000002,
+          "proteinG": 8.301771800000001,
+          "carbsG": 10.31276,
+          "fiberG": 0,
+          "fatG": 7.971763480000001,
+          "saturatedFatG": 5.07387792,
+          "polyunsaturatedFatG": 0.38415031,
+          "monounsaturatedFatG": 2.09606847
+        },
+        "storedRounded": {
+          "declaredKcal": 144,
+          "proteinG": 8.3,
+          "carbsG": 10.3,
+          "fiberG": 0,
+          "fatG": 8,
+          "saturatedFatG": 5.1,
+          "polyunsaturatedFatG": 0.4,
+          "monounsaturatedFatG": 2.1
+        }
+      },
+      "selection": {
+        "expectedRecordId": "72",
+        "selectedRecordId": "72",
+        "selected": {
+          "recordId": "72",
+          "descriptionEn": "Milk, fluid, goat, whole, vitamin d and folic acid added, 3.25% M.F.",
+          "descriptionFr": "Lait, liquide, chèvre, enrichi, entier, 3.25% M.G.",
+          "compatible": true,
+          "missing": [],
+          "excludedBy": [],
+          "score": 61,
+          "per100g": {
+            "energy_kcal": 56,
+            "protein_g": 3.22,
+            "carbohydrate_g": 4,
+            "fibre_g": 0,
+            "total_fat_g": 3.092,
+            "saturated_fat_g": 1.968,
+            "polyunsaturated_fat_g": 0.149,
+            "monounsaturated_fat_g": 0.813
+          }
+        },
+        "candidates": [
+          {
+            "recordId": "72",
+            "descriptionEn": "Milk, fluid, goat, whole, vitamin d and folic acid added, 3.25% M.F.",
+            "descriptionFr": "Lait, liquide, chèvre, enrichi, entier, 3.25% M.G.",
+            "compatible": true,
+            "missing": [],
+            "excludedBy": [],
+            "score": 61,
+            "per100g": {
+              "energy_kcal": 56,
+              "protein_g": 3.22,
+              "carbohydrate_g": 4,
+              "fibre_g": 0,
+              "total_fat_g": 3.092,
+              "saturated_fat_g": 1.968,
+              "polyunsaturated_fat_g": 0.149,
+              "monounsaturated_fat_g": 0.813
+            }
+          }
+        ],
+        "message": "Sélection obligatoire du CNF record 72: Milk, fluid, goat, whole, vitamin d and folic acid added, 3.25% M.F..",
+        "code": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 8.3,
+        "carbsG": 10.3,
+        "fiberG": 0,
+        "fatG": 8,
+        "saturatedFatG": 5.1,
+        "polyunsaturatedFatG": 0.4,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 144
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de lait de chèvre entier (258 g)",
+        "labelEn": "250 ml whole goat milk (258 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 257.819,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "alertsBefore": [],
+      "alertsAfter": [
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "message": "Label FR diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml de lait de chèvre entier (258 g)"
+          }
+        },
+        {
+          "severity": "WARNING",
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "message": "Label EN diverge de la portion canonique: grams(258≠257.819)",
+          "resolutionStatus": "open",
+          "parsedPreview": {
+            "amount": 250,
+            "unit": "ml",
+            "grams": 258,
+            "label": "250 ml whole goat milk (258 g)"
+          }
+        }
+      ],
+      "projectedCanVerify": true,
+      "projectedResolutions": []
+    }
+  ]
+}

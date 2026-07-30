@@ -1,0 +1,80 @@
+{
+  "evidenceId": "natrel-plus-chocolate-1",
+  "brand": "Natrel",
+  "product": "Natrel Plus Chocolate 1%",
+  "flavor": "Chocolate 1%",
+  "market": "Canada",
+  "officialUrl": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 250,
+    "unit": "ml",
+    "grams": 250
+  },
+  "originalLabelValues": {
+    "declaredKcal": 150,
+    "proteinG": 18,
+    "carbsG": 13,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 1.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 150 / 250",
+    "targetBasis": "150 ml",
+    "method": "same_unit",
+    "factor": 0.6,
+    "labelAmount": 250,
+    "canonicalAmount": 150,
+    "labelUnit": "ml",
+    "canonicalUnit": "ml",
+    "labelGrams": 250,
+    "canonicalGrams": 150
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 90,
+    "proteinG": 10.799999999999999,
+    "carbsG": 7.8,
+    "fiberG": 0,
+    "fatG": 1.5,
+    "saturatedFatG": 0.8999999999999999,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 90,
+    "proteinG": 10.8,
+    "carbsG": 7.8,
+    "fiberG": 0,
+    "fatG": 1.5,
+    "saturatedFatG": 0.9,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG"
+  ],
+  "canonicalPortion": {
+    "amount": 150,
+    "unit": "ml",
+    "grams": 150,
+    "labelFr": "150 ml de lait Natrel Plus chocolat 1 %",
+    "labelEn": "150 ml Natrel Plus Chocolate 1% milk"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/natrel-plus-chocolate-1.html",
+    "snapshotSha256": "644d7213e468b1780efa9261267840a49b6e3e7fb4eec02c0c445afc09d39e99",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-protein-chocolate-milk",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "4d7e01a8d9751bfc27c983f28a24c5bfbd8d6914d5b87b326a8815b9aa27b234"
+}

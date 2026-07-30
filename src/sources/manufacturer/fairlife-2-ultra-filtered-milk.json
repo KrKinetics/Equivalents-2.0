@@ -1,0 +1,80 @@
+{
+  "evidenceId": "fairlife-2-ultra-filtered-milk",
+  "brand": "fairlife",
+  "product": "2% Reduced Fat Ultra-Filtered Milk",
+  "flavor": "2% Reduced Fat",
+  "market": "North America",
+  "officialUrl": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 240,
+    "unit": "ml",
+    "grams": 240
+  },
+  "originalLabelValues": {
+    "declaredKcal": 120,
+    "proteinG": 13,
+    "carbsG": 6,
+    "fiberG": 0,
+    "fatG": 4.5,
+    "saturatedFatG": 3,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 150 / 240",
+    "targetBasis": "150 ml",
+    "method": "same_unit",
+    "factor": 0.625,
+    "labelAmount": 240,
+    "canonicalAmount": 150,
+    "labelUnit": "ml",
+    "canonicalUnit": "ml",
+    "labelGrams": 240,
+    "canonicalGrams": 150
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 75,
+    "proteinG": 8.125,
+    "carbsG": 3.75,
+    "fiberG": 0,
+    "fatG": 2.8125,
+    "saturatedFatG": 1.875,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 75,
+    "proteinG": 8.1,
+    "carbsG": 3.8,
+    "fiberG": 0,
+    "fatG": 2.8,
+    "saturatedFatG": 1.9,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG"
+  ],
+  "canonicalPortion": {
+    "amount": 150,
+    "unit": "ml",
+    "grams": 150,
+    "labelFr": "150 ml de lait ultrafiltré fairlife 2 %",
+    "labelEn": "150 ml fairlife 2% ultra-filtered milk"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/fairlife-2-ultra-filtered-milk.html",
+    "snapshotSha256": "b7eee42dd9926dcc6ef14365d365519a78998c51bf3a8e77f1dfca257791c7e8",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-high-protein-filtered-milk",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "172df1b2a760bd688917b6e2225b7d9f20d8900660c6c5777974d498941f8c9e"
+}

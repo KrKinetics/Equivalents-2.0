@@ -1,0 +1,78 @@
+{
+  "evidenceId": "fairlife-core-power-chocolate-26g",
+  "brand": "fairlife",
+  "product": "Core Power Chocolate 26g Protein Shake",
+  "flavor": "Chocolate 26g",
+  "market": "North America",
+  "officialUrl": "https://fairlife.com/core-power/chocolate-protein-shake/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 414,
+    "unit": "ml",
+    "grams": 414
+  },
+  "originalLabelValues": {
+    "declaredKcal": 170,
+    "proteinG": 26,
+    "carbsG": 8,
+    "fiberG": 2,
+    "fatG": 4.5,
+    "saturatedFatG": 3,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 207 / 414",
+    "targetBasis": "207 ml",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 414,
+    "canonicalAmount": 207,
+    "labelUnit": "ml",
+    "canonicalUnit": "ml",
+    "labelGrams": 414,
+    "canonicalGrams": 207
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 85,
+    "proteinG": 13,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 2.25,
+    "saturatedFatG": 1.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 85,
+    "proteinG": 13,
+    "carbsG": 4,
+    "fiberG": 1,
+    "fatG": 2.3,
+    "saturatedFatG": 1.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 207,
+    "unit": "ml",
+    "grams": 207,
+    "labelFr": "½ bouteille de Core Power chocolat (207 ml)",
+    "labelEn": "½ bottle Core Power Chocolate (207 ml)"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/fairlife-core-power-chocolate-26g.html",
+    "snapshotSha256": "1386d488a7c34557515c6943f6b529a85c7cae9e49a1378e6621f2d1a360e4af",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-bottle-core-power-fairlife",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "ce1d3059a89c9ff60bb68447809c00ec7cd292855d51d5bfa5aba478b8170d42"
+}

@@ -1,0 +1,80 @@
+{
+  "evidenceId": "allegro-9-white",
+  "brand": "Allégro",
+  "product": "Allégro 9% White",
+  "flavor": "White",
+  "market": "Canada",
+  "officialUrl": "https://myallegro.ca/en/products/white",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 30,
+    "unit": "g",
+    "grams": 30
+  },
+  "originalLabelValues": {
+    "declaredKcal": 70,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 2,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 30 / 30",
+    "targetBasis": "30 g",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 30,
+    "canonicalAmount": 30,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 30,
+    "canonicalGrams": 30
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 70,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 2,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 70,
+    "proteinG": 10,
+    "carbsG": 1,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 2,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG"
+  ],
+  "canonicalPortion": {
+    "amount": 30,
+    "unit": "g",
+    "grams": 30,
+    "labelFr": "30 g de fromage Allégro 9 % blanc",
+    "labelEn": "30 g Allégro 9% White cheese"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/allegro-9-white.html",
+    "snapshotSha256": "4259e2186928c1de460292bca3a8ba3f4aec01b0c7b6492874f096d8fe8cbeb7",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-allegro-9-cheese",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "8dab0e1529755d8922c251220367b779e8e77bc8b8534ae1551756167e48d6de"
+}
