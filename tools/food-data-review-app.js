@@ -16,6 +16,7 @@ import {
   setPath,
 } from '../src/lib/food-change.mjs';
 import { validateReviewImport } from '../src/lib/review-import.mjs';
+import { knownSourceReferenceIds } from '../src/lib/source-validators.mjs';
 import { stableStringify } from '../src/lib/data-hash-lite.mjs';
 import {
   DISPLAY_CATEGORIES,
@@ -349,9 +350,24 @@ function renderResolutionSection(food, item) {
     return section;
   }
 
+  const refs = knownSourceReferenceIds(food);
+  if (!refs.length) {
+    section.insertAdjacentHTML(
+      'beforeend',
+      '<p class="muted">Aucune référence authoritative admissible (recordId, evidenceRef, url ou doi). Complétez la source avant de documenter une résolution.</p>'
+    );
+    return section;
+  }
+
   const form = document.createElement('div');
   form.className = 'grid';
-  const values = { code: codes[0], reason: '', approvedBy: '', approvedAt: '', sourceReferenceId: '' };
+  const values = {
+    code: codes[0],
+    reason: '',
+    approvedBy: '',
+    approvedAt: '',
+    sourceReferenceId: refs[0],
+  };
   const add = (label, key, type = 'text', options = null) => {
     const wrapper = document.createElement('div');
     wrapper.className = 'field';
@@ -365,6 +381,7 @@ function renderResolutionSection(food, item) {
         node.textContent = option;
         input.appendChild(node);
       }
+      input.value = values[key] ?? options[0];
     } else {
       input.type = type;
       if (type === 'textarea') input.rows = 3;
@@ -377,17 +394,22 @@ function renderResolutionSection(food, item) {
   add('Raison', 'reason', 'textarea');
   add('Approuvé par', 'approvedBy');
   add('Date d’approbation', 'approvedAt', 'date');
-  add('ID de référence source', 'sourceReferenceId');
+  add('Référence source authoritative', 'sourceReferenceId', 'select', refs);
   section.appendChild(form);
 
   const save = document.createElement('button');
   save.type = 'button';
   save.textContent = 'Enregistrer la résolution';
   save.style.marginTop = '12px';
+  save.disabled = false;
   save.onclick = () => {
     commitFood(food);
     if (!values.reason.trim() || !values.approvedBy.trim() || !values.approvedAt || !values.sourceReferenceId.trim()) {
       alert('Tous les champs de résolution sont requis (fieldsHash sera calculé automatiquement).');
+      return;
+    }
+    if (!validateSource(food).authoritative) {
+      alert('Une source authoritative complète est requise avant de documenter une résolution.');
       return;
     }
     const resolution = {
@@ -675,6 +697,7 @@ window.__REVIEW_TEST__ = {
   validateSource,
   canMarkVerified,
   applyFoodChange,
+  knownSourceReferenceIds,
   getState: () => state,
   initFrom,
   refreshAudit,

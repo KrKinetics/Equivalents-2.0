@@ -83,6 +83,9 @@ export function looksLikeEvidenceRef(value) {
   return /[\\/.]|evidence|photo|label|scan|pdf|img|proof|ref/i.test(value) || value.trim().length >= 6;
 }
 
+/**
+ * Authoritative source reference IDs only — never legacySource or source.name.
+ */
 export function knownSourceReferenceIds(food) {
   const s = food?.source || {};
   const ids = [];
@@ -90,9 +93,16 @@ export function knownSourceReferenceIds(food) {
   if (isMeaningfulString(s.evidenceRef)) ids.push(String(s.evidenceRef).trim());
   if (isValidHttpUrl(s.url)) ids.push(String(s.url).trim());
   if (isValidDoi(s.doi)) ids.push(String(s.doi).trim());
-  if (isMeaningfulString(s.name)) ids.push(String(s.name).trim());
-  const legacy = food?.legacySource;
-  if (legacy?.referenceId) ids.push(String(legacy.referenceId).trim());
-  if (legacy?.reference) ids.push(String(legacy.reference).trim());
   return [...new Set(ids.filter(Boolean))];
+}
+
+/** ISO-8601 datetime with timezone (e.g. 2026-07-29T12:00:00.000Z). */
+export function isValidIsoDateTime(value) {
+  if (!isNonEmptyString(value)) return false;
+  const raw = value.trim();
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/.test(raw)) {
+    return false;
+  }
+  const ms = Date.parse(raw);
+  return Number.isFinite(ms);
 }

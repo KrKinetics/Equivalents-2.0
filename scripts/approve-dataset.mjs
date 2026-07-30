@@ -2,15 +2,18 @@
  * Approve the audited nutrition dataset when every readiness gate passes.
  * Optionally bumps semver and archives an immutable release under releases/data/.
  */
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { backupFile } from '../src/lib/backup.mjs';
+import { replaceAtomically, restoreFile } from '../src/lib/atomic-write.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
 import { bumpSemver, describeBumpPolicy } from '../src/lib/dataset-governance.mjs';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
 import { isActiveFood, isVerifiedFood } from '../src/lib/food-status.mjs';
 import { calculateAllGroupStatistics } from '../src/lib/group-statistics.mjs';
 import { resolvePaths } from '../src/lib/paths.mjs';
+import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 
 function parseApprovedBy(argv) {
   const equalsArg = argv.find((arg) => arg.startsWith('--by='));
@@ -33,16 +36,8 @@ function parseChangeSummary(argv) {
   return index >= 0 ? String(argv[index + 1] || '').trim() : '';
 }
 
-function replaceAtomically(tempPath, targetPath) {
-  try {
-    fs.renameSync(tempPath, targetPath);
-  } catch (error) {
-    if (!['EEXIST', 'EPERM', 'EACCES'].includes(error.code) || !fs.existsSync(targetPath)) {
-      throw error;
-    }
-    fs.unlinkSync(targetPath);
-    fs.renameSync(tempPath, targetPath);
-  }
+function fileSha256(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
 }
 
 function main() {
@@ -53,7 +48,9 @@ function main() {
   }
   const bump = parseBump(argv);
   if (!['patch', 'minor', 'major'].includes(bump)) {
-    throw new Error(`Invalid --bump ${bump}. Use patch|minor|major.\n${JSON.stringify(describeBumpPolicy(), null, 2)}`);
+    throw new Error(
+      `Invalid --bump ${bump}. Use patch|minor|major.\n${JSON.stringify(describeBumpPolicy(), null, 2)}`
+    );
   }
   const summaryArg = parseChangeSummary(argv);
 
@@ -62,6 +59,16 @@ function main() {
   const groupsDoc = JSON.parse(fs.readFileSync(paths.groupsPath, 'utf8'));
   const version = JSON.parse(fs.readFileSync(paths.versionDataPath, 'utf8'));
   const foods = payload.foods || [];
+
+  const schemaValidation = validateFoodEquivalentsPayload(payload);
+  if (!schemaValidation.ok) {
+    console.error('Dataset approval refused: JSON Schema errors');
+    for (const err of schemaValidation.errors.slice(0, 30)) {
+      console.error(` - ${err.path}: ${err.message}`);
+    }
+    process.exitCode = 1;
+    return;
+  }
 
   const audited = auditDataset(foods);
   const activeFoods = foods.filter((food) => isActiveFood(food));
@@ -144,63 +151,84 @@ function main() {
     bump,
   };
 
-  const releasesDir = path.join(paths.root, 'releases', 'data');
+  // Fresh audit report generated in memory — never archive a stale reports/ file blindly
+  const freshAuditReport = {
+    generatedAt: approvedAt,
+    summary: audited.summary,
+    alertCountsByCode: audited.alertCountsByCode,
+    items: audited.items,
+  };
+
+  const releasesDir = paths.releasesDir;
   fs.mkdirSync(releasesDir, { recursive: true });
   const releaseDir = path.join(releasesDir, nextVersion);
   if (fs.existsSync(releaseDir)) {
     throw new Error(`Release directory already exists: ${releaseDir}`);
   }
 
+  const versionExisted = fs.existsSync(paths.versionDataPath);
   const versionBackup = backupFile(paths.versionDataPath, paths.backupsDir, 'pre-approve');
   const foodBackup = backupFile(paths.foodDataPath, paths.backupsDir, 'pre-approve');
   console.log('Backups:', foodBackup, versionBackup);
 
   const tempVersion = `${paths.versionDataPath}.tmp`;
-  const auditReportPath = path.join(paths.reportsDir, 'food-equivalents-audit.json');
-  let auditReport = null;
-  if (fs.existsSync(auditReportPath)) {
-    auditReport = JSON.parse(fs.readFileSync(auditReportPath, 'utf8'));
-  }
+  const schemaVersion = payload.meta?.schemaVersion ?? 2;
 
   try {
     fs.mkdirSync(releaseDir, { recursive: true });
-    fs.writeFileSync(
-      path.join(releaseDir, 'food-equivalents.json'),
-      JSON.stringify(payload, null, 2),
-      'utf8'
-    );
-    fs.writeFileSync(
-      path.join(releaseDir, 'nutrition-data-version.json'),
-      JSON.stringify(approvedVersion, null, 2),
-      'utf8'
-    );
-    fs.writeFileSync(
-      path.join(releaseDir, 'audit-report.json'),
-      JSON.stringify(auditReport || audited, null, 2),
-      'utf8'
-    );
-    fs.writeFileSync(
-      path.join(releaseDir, 'release-manifest.json'),
-      JSON.stringify(
-        {
-          version: nextVersion,
-          previousVersion,
-          bump,
-          approvedBy,
-          approvedAt,
-          changeSummary,
-          dataHash: hash,
-          shortHash: shortHash(hash),
-          policy: describeBumpPolicy(),
-        },
-        null,
-        2
-      ),
-      'utf8'
-    );
+    const foodArchivePath = path.join(releaseDir, 'food-equivalents.json');
+    const versionArchivePath = path.join(releaseDir, 'nutrition-data-version.json');
+    const auditArchivePath = path.join(releaseDir, 'audit-report.json');
+    const manifestPath = path.join(releaseDir, 'release-manifest.json');
+
+    fs.writeFileSync(foodArchivePath, JSON.stringify(payload, null, 2), 'utf8');
+    fs.writeFileSync(versionArchivePath, JSON.stringify(approvedVersion, null, 2), 'utf8');
+    fs.writeFileSync(auditArchivePath, JSON.stringify(freshAuditReport, null, 2), 'utf8');
+
+    const foodFileHash = fileSha256(foodArchivePath);
+    const versionFileHash = fileSha256(versionArchivePath);
+    const auditFileHash = fileSha256(auditArchivePath);
+
+    const manifest = {
+      version: nextVersion,
+      previousVersion,
+      bump,
+      approvedBy,
+      approvedAt,
+      changeSummary,
+      dataHash: hash,
+      shortHash: shortHash(hash),
+      schemaVersion,
+      generatedAt: approvedAt,
+      fileHashes: {
+        'food-equivalents.json': foodFileHash,
+        'nutrition-data-version.json': versionFileHash,
+        'audit-report.json': auditFileHash,
+      },
+      policy: describeBumpPolicy(),
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
+
+    // Post-write verification
+    const reFood = fileSha256(foodArchivePath);
+    const reVersion = fileSha256(versionArchivePath);
+    const reAudit = fileSha256(auditArchivePath);
+    if (
+      reFood !== foodFileHash ||
+      reVersion !== versionFileHash ||
+      reAudit !== auditFileHash
+    ) {
+      throw new Error('Release archive hash verification failed after write');
+    }
 
     fs.writeFileSync(tempVersion, JSON.stringify(approvedVersion, null, 2), 'utf8');
-    replaceAtomically(tempVersion, paths.versionDataPath);
+    try {
+      replaceAtomically(tempVersion, paths.versionDataPath, versionBackup);
+    } catch (renameError) {
+      restoreFile(versionBackup, paths.versionDataPath, versionExisted);
+      throw renameError;
+    }
+
     console.log(`Dataset approved by ${approvedBy} at ${approvedAt}.`);
     console.log(`Version ${previousVersion} → ${nextVersion} (${bump}).`);
     console.log(`Immutable archive: ${releaseDir}`);
@@ -209,6 +237,7 @@ function main() {
     if (fs.existsSync(releaseDir)) {
       fs.rmSync(releaseDir, { recursive: true, force: true });
     }
+    restoreFile(versionBackup, paths.versionDataPath, versionExisted);
     throw error;
   } finally {
     if (fs.existsSync(tempVersion)) fs.unlinkSync(tempVersion);

@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';
 import { backupFile } from '../src/lib/backup.mjs';
+import { writeTwoFilesAtomically } from '../src/lib/atomic-write.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
 import { assertApplyGovernance } from '../src/lib/dataset-governance.mjs';
 import { auditDataset } from '../src/lib/food-audit-core.mjs';
@@ -26,6 +27,8 @@ const STRUCTURAL_AUDIT_CODES = new Set([
   'INVALID_CATEGORY',
   'INVALID_GROUP',
   'INVALID_STATUS',
+  'INVALID_NUMERIC_TYPE',
+  'NON_FINITE_VALUE',
 ]);
 
 function usage() {
@@ -56,32 +59,6 @@ function parseArgs(argv) {
   return { dryRun, allowStale, staleReason, migrationDocumented, input: positional[0] };
 }
 
-function restoreFile(backupPath, filePath, existedBefore) {
-  if (backupPath) {
-    fs.copyFileSync(backupPath, filePath);
-  } else if (!existedBefore && fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-  }
-}
-
-function replaceAtomically(tempPath, targetPath, backupPath) {
-  try {
-    fs.renameSync(tempPath, targetPath);
-  } catch (error) {
-    if (!['EEXIST', 'EPERM', 'EACCES'].includes(error.code) || !fs.existsSync(targetPath)) {
-      throw error;
-    }
-
-    fs.unlinkSync(targetPath);
-    try {
-      fs.renameSync(tempPath, targetPath);
-    } catch (replaceError) {
-      if (backupPath) fs.copyFileSync(backupPath, targetPath);
-      throw replaceError;
-    }
-  }
-}
-
 function main() {
   const { dryRun, allowStale, staleReason, migrationDocumented, input } = parseArgs(
     process.argv.slice(2)
@@ -89,7 +66,6 @@ function main() {
   const paths = resolvePaths();
   const target = paths.foodDataPath;
   const versionPath = paths.versionDataPath;
-  const tempPath = path.join(path.dirname(target), 'food-equivalents.json.tmp');
   const inputPath = path.resolve(process.cwd(), input);
   if (!fs.existsSync(inputPath)) {
     throw new Error(`File not found: ${inputPath}`);
@@ -107,9 +83,8 @@ function main() {
     throw new Error(`Invalid JSON — apply aborted:\n${details}${remainder}`);
   }
 
-  let current = null;
   if (fs.existsSync(target)) {
-    current = JSON.parse(fs.readFileSync(target, 'utf8'));
+    const current = JSON.parse(fs.readFileSync(target, 'utf8'));
     const curIds = new Set((current.foods || []).map((f) => f.id));
     const newIds = new Set((incoming.foods || []).map((f) => f.id));
     const missingIds = [...curIds].filter((id) => !newIds.has(id));
@@ -126,7 +101,9 @@ function main() {
       console.error('Apply refused (gouvernance):');
       for (const err of governance.errors) console.error(` - ${err}`);
       if (!allowStale) {
-        console.error('Note: --force n’est pas proposé pour un export périmé. Utilisez --allow-stale --reason "…" si nécessaire.');
+        console.error(
+          'Note: --force n’est pas proposé pour un export périmé. Utilisez --allow-stale --reason "…" si nécessaire.'
+        );
       }
       throw new Error(`Apply refused: ${governance.errors.length} governance error(s).`);
     }
@@ -142,9 +119,7 @@ function main() {
   const audited = auditDataset(incoming.foods);
   const structuralAuditErrors = audited.items.flatMap((item) =>
     item.alerts
-      .filter(
-        (alert) => alert.severity === 'ERROR' && STRUCTURAL_AUDIT_CODES.has(alert.code)
-      )
+      .filter((alert) => alert.severity === 'ERROR' && STRUCTURAL_AUDIT_CODES.has(alert.code))
       .map((alert) => ({ id: item.id, code: alert.code, message: alert.message }))
   );
   console.log(
@@ -210,27 +185,31 @@ function main() {
   const versionExisted = fs.existsSync(versionPath);
   let foodBackup = null;
   let versionBackup = null;
-  let backupStarted = false;
 
   try {
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.mkdirSync(path.dirname(versionPath), { recursive: true });
-    fs.writeFileSync(tempPath, JSON.stringify(incoming, null, 2), 'utf8');
-
     if (targetExisted) {
       foodBackup = backupFile(target, paths.backupsDir, allowStale ? 'pre-apply-stale' : 'pre-apply');
-      backupStarted = true;
       console.log('Food backup created:', foodBackup);
     }
     if (versionExisted) {
-      versionBackup = backupFile(versionPath, paths.backupsDir, allowStale ? 'pre-apply-stale' : 'pre-apply');
-      backupStarted = true;
+      versionBackup = backupFile(
+        versionPath,
+        paths.backupsDir,
+        allowStale ? 'pre-apply-stale' : 'pre-apply'
+      );
       console.log('Version backup created:', versionBackup);
     }
-    backupStarted = true;
 
-    replaceAtomically(tempPath, target, foodBackup);
-    fs.writeFileSync(versionPath, JSON.stringify(version, null, 2), 'utf8');
+    writeTwoFilesAtomically({
+      firstTarget: target,
+      firstContent: JSON.stringify(incoming, null, 2),
+      firstBackup: foodBackup,
+      firstExisted: targetExisted,
+      secondTarget: versionPath,
+      secondContent: JSON.stringify(version, null, 2),
+      secondBackup: versionBackup,
+      secondExisted: versionExisted,
+    });
 
     console.log('Applied:', inputPath, '→', target);
     console.log('dataHash:', shortHash(hash));
@@ -249,14 +228,7 @@ function main() {
       throw new Error(`Audit failed with exit code ${audit.status ?? 'unknown'}`);
     }
   } catch (error) {
-    if (backupStarted) {
-      restoreFile(foodBackup, target, targetExisted);
-      restoreFile(versionBackup, versionPath, versionExisted);
-    }
-    if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
     throw error;
-  } finally {
-    if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
   }
 }
 

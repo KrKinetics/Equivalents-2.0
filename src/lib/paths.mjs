@@ -35,5 +35,9 @@ export function resolvePaths(overrides = {}) {
       overrides.reviewDataPath ||
       process.env.REVIEW_DATA_PATH ||
       path.join(root, 'tools', 'food-data-review-data.js'),
+    releasesDir:
+      overrides.releasesDir ||
+      process.env.RELEASES_DIR ||
+      path.join(root, 'releases', 'data'),
   };
 }

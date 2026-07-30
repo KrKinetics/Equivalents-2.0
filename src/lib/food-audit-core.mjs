@@ -16,6 +16,7 @@ import { getFoodStatus, hasStatusMismatch, isVerifiedFood } from './food-status.
 import {
   isMeaningfulString,
   isValidIsoDateOnly,
+  isValidIsoDateTime,
   isValidHttpUrl,
   isValidDoi,
   isValidNutrientsBasis,
@@ -23,6 +24,7 @@ import {
   looksLikeEvidenceRef,
   knownSourceReferenceIds,
 } from './source-validators.mjs';
+import { validateNumericField, NUTRIENT_NUMERIC_FIELDS } from './numeric-validate.mjs';
 
 export const RESOLVABLE_CODES = new Set([
   'KCAL_DIFF_HIGH',
@@ -34,6 +36,8 @@ export const RESOLVABLE_CODES = new Set([
 export const NON_RESOLVABLE_CODES = new Set([
   'MISSING_REQUIRED',
   'NEGATIVE_VALUE',
+  'INVALID_NUMERIC_TYPE',
+  'NON_FINITE_VALUE',
   'DUPLICATE_ID',
   'STATUS_MISMATCH',
   'INSUFFICIENT_SOURCE',
@@ -90,8 +94,8 @@ export function calculatedKcal(nutrients) {
   const p = n.proteinG;
   const c = n.carbsG;
   const f = n.fatG;
-  if ([p, c, f].some((v) => v == null || !Number.isFinite(Number(v)))) return null;
-  return Number(p) * 4 + Number(c) * 4 + Number(f) * 9;
+  if ([p, c, f].some((v) => typeof v !== 'number' || !Number.isFinite(v))) return null;
+  return p * 4 + c * 4 + f * 9;
 }
 
 function fatFromComponents(n) {
@@ -140,6 +144,18 @@ function isValidApprovedAt(value) {
   return false;
 }
 
+function dedupeAlerts(alerts) {
+  const seen = new Set();
+  const out = [];
+  for (const alert of alerts) {
+    const key = `${alert.severity}|${alert.code}|${alert.message}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(alert);
+  }
+  return out;
+}
+
 /** Resolution lifecycle: open | invalid | stale | resolved_documented */
 export function getResolutionState(food, code) {
   const list = food.auditResolutions || [];
@@ -154,6 +170,17 @@ export function getResolutionState(food, code) {
     return { status: 'invalid', resolution: match };
   }
   if (!isValidApprovedAt(match.approvedAt)) {
+    return { status: 'invalid', resolution: match };
+  }
+  if (!isValidIsoDateTime(match.createdAt)) {
+    return { status: 'invalid', resolution: match };
+  }
+  if (!Number.isInteger(match.version) || match.version < 1) {
+    return { status: 'invalid', resolution: match };
+  }
+
+  const sourceResult = validateSource(food);
+  if (!sourceResult.authoritative) {
     return { status: 'invalid', resolution: match };
   }
 
@@ -216,9 +243,11 @@ export function validateSource(food) {
     if (!cond) push(alerts, 'ERROR', code, message);
   };
 
+  const accessDateMessage =
+    'accessedAt doit être une date ISO YYYY-MM-DD valide et non future';
   // Shared field quality checks when values are present
   if (s.accessedAt != null && s.accessedAt !== '') {
-    need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt doit être une date ISO YYYY-MM-DD valide et non future');
+    need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
   }
   if (s.url != null && s.url !== '') {
     need(isValidHttpUrl(s.url), 'SOURCE_URL_OR_RECORD_MISSING', 'url doit être une URI HTTP/HTTPS valide');
@@ -235,7 +264,7 @@ export function validateSource(food) {
     case 'usda_fooddata_central':
       need(isMeaningfulString(s.name), 'INSUFFICIENT_SOURCE', 'source.name requis et significatif');
       need(isMeaningfulString(s.recordId, { minLength: 2 }), 'SOURCE_RECORD_ID_MISSING', 'recordId exploitable requis (pas x/- /test)');
-      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
       need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription doit décrire une portion ou une base en grammes');
       need(isValidNutrientsBasis(s.nutrientsBasis), 'SOURCE_BASIS_MISSING', 'nutrientsBasis enum requis (ne peut pas être null)');
       break;
@@ -244,7 +273,7 @@ export function validateSource(food) {
       need(isMeaningfulString(brand), 'INSUFFICIENT_SOURCE', 'brand significatif requis');
       need(isMeaningfulString(s.productName), 'INSUFFICIENT_SOURCE', 'productName significatif requis');
       need(isMeaningfulString(s.labelServingSize), 'SOURCE_SERVING_MISSING', 'labelServingSize significatif requis');
-      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
       need(looksLikeEvidenceRef(s.evidenceRef), 'SOURCE_EVIDENCE_MISSING', 'evidenceRef (chemin, URL ou id de preuve) requis');
       need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription doit correspondre à la portion d’étiquette');
       break;
@@ -256,7 +285,7 @@ export function validateSource(food) {
         'brand ou productName significatif requis'
       );
       need(isValidHttpUrl(s.url), 'SOURCE_URL_OR_RECORD_MISSING', 'url HTTP/HTTPS valide requise');
-      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
       need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription significatif requis');
       break;
     case 'peer_reviewed_reference':
@@ -266,7 +295,7 @@ export function validateSource(food) {
         'SOURCE_URL_OR_RECORD_MISSING',
         'recordId, DOI ou URL valide requis'
       );
-      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
       need(looksLikeServingDescription(s.servingDescription), 'SOURCE_SERVING_MISSING', 'servingDescription significatif requis');
       break;
     case 'other_authoritative':
@@ -276,7 +305,7 @@ export function validateSource(food) {
         'SOURCE_URL_OR_RECORD_MISSING',
         'URL HTTP/HTTPS ou recordId exploitable requis'
       );
-      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', 'accessedAt ISO YYYY-MM-DD requis');
+      need(isValidIsoDateOnly(s.accessedAt), 'SOURCE_ACCESS_DATE_MISSING', accessDateMessage);
       need(isMeaningfulString(s.notes, { minLength: 10 }), 'INSUFFICIENT_SOURCE', 'notes justifiant le caractère authoritative requises');
       break;
     default:
@@ -305,8 +334,9 @@ export function validateSource(food) {
     );
   }
 
-  const openErrors = alerts.filter((a) => a.severity === 'ERROR');
-  return { ok: openErrors.length === 0, alerts, authoritative: openErrors.length === 0 };
+  const deduped = dedupeAlerts(alerts);
+  const openErrors = deduped.filter((a) => a.severity === 'ERROR');
+  return { ok: openErrors.length === 0, alerts: deduped, authoritative: openErrors.length === 0 };
 }
 
 export function hasAuthoritativeSource(food) {
@@ -344,8 +374,18 @@ export function auditFood(food, idCounts = new Map()) {
   if (!portion.labelFr) push(alerts, 'ERROR', 'MISSING_PORTION_FR', 'Portion française absente');
   if (!portion.labelEn) push(alerts, 'ERROR', 'MISSING_PORTION_EN', 'Portion anglaise absente');
 
-  if (portion.amount == null || !(Number(portion.amount) > 0)) {
+  if (portion.amount == null) {
     push(alerts, 'ERROR', 'MISSING_AMOUNT_UNIT', 'Quantité absente ou non positive');
+  } else {
+    const amountCheck = validateNumericField(portion.amount, {
+      allowNull: false,
+      exclusiveMin: 0,
+      min: null,
+      field: 'portion.amount',
+    });
+    if (!amountCheck.ok) {
+      push(alerts, 'ERROR', amountCheck.code, amountCheck.message);
+    }
   }
   if (!portion.unit) {
     push(alerts, 'ERROR', 'MISSING_AMOUNT_UNIT', 'Unité absente');
@@ -372,26 +412,31 @@ export function auditFood(food, idCounts = new Map()) {
     push(alerts, 'ERROR', 'INVALID_STATUS', `Statut invalide: ${status}`);
   }
 
-  for (const [key, label] of [
-    ['proteinG', 'protéines'],
-    ['carbsG', 'glucides'],
-    ['declaredKcal', 'calories déclarées'],
-  ]) {
-    if (n[key] == null) push(alerts, 'ERROR', 'MISSING_REQUIRED', `${label} manquante(s)`);
-    else if (Number(n[key]) < 0) push(alerts, 'ERROR', 'NEGATIVE_VALUE', `${label} négative(s)`);
+  for (const [key, label] of NUTRIENT_NUMERIC_FIELDS) {
+    const required = key === 'proteinG' || key === 'carbsG' || key === 'declaredKcal';
+    if (n[key] == null) {
+      if (required) push(alerts, 'ERROR', 'MISSING_REQUIRED', `${label} manquante(s)`);
+      else if (key === 'fatG') push(alerts, 'ERROR', 'MISSING_TOTAL_FAT', 'Lipides totaux absents');
+      continue;
+    }
+    const check = validateNumericField(n[key], { allowNull: false, min: 0, field: key });
+    if (!check.ok) push(alerts, 'ERROR', check.code, check.message);
   }
 
-  if (n.fatG == null) push(alerts, 'ERROR', 'MISSING_TOTAL_FAT', 'Lipides totaux absents');
-  else if (Number(n.fatG) < 0) push(alerts, 'ERROR', 'NEGATIVE_VALUE', 'Lipides totaux négatifs');
-
-  if (n.fiberG != null && Number(n.fiberG) < 0) {
-    push(alerts, 'ERROR', 'NEGATIVE_VALUE', 'Fibres négatives');
+  if (portion.grams != null) {
+    const gramsCheck = validateNumericField(portion.grams, {
+      allowNull: false,
+      exclusiveMin: 0,
+      min: null,
+      field: 'portion.grams',
+    });
+    if (!gramsCheck.ok) push(alerts, 'ERROR', gramsCheck.code, gramsCheck.message);
   }
-  if (portion.grams != null && Number(portion.grams) < 0) {
-    push(alerts, 'ERROR', 'NEGATIVE_VALUE', 'Grammes négatifs');
-  }
 
-  if (String(portion.unit).toLowerCase() === 'scoop' && (portion.grams == null || !Number.isFinite(Number(portion.grams)))) {
+  if (
+    String(portion.unit).toLowerCase() === 'scoop' &&
+    (portion.grams == null || typeof portion.grams !== 'number' || !Number.isFinite(portion.grams))
+  ) {
     push(alerts, 'ERROR', 'SCOOP_WITHOUT_GRAMS', 'Scoop utilisé sans poids en grammes');
   }
 
@@ -424,12 +469,12 @@ export function auditFood(food, idCounts = new Map()) {
   }
 
   const calc = calculatedKcal(n);
-  const declared = n.declaredKcal;
+  const declared = typeof n.declaredKcal === 'number' && Number.isFinite(n.declaredKcal) ? n.declaredKcal : null;
   let absDiff = null;
   let pctDiff = null;
   if (calc != null && declared != null) {
-    absDiff = Math.abs(Number(declared) - calc);
-    pctDiff = calc === 0 ? (Number(declared) === 0 ? 0 : 100) : (absDiff / Math.abs(calc)) * 100;
+    absDiff = Math.abs(declared - calc);
+    pctDiff = calc === 0 ? (declared === 0 ? 0 : 100) : (absDiff / Math.abs(calc)) * 100;
     if (absDiff > 15 || pctDiff > 20) {
       const res = getResolutionState(food, 'KCAL_DIFF_HIGH');
       push(
@@ -457,12 +502,12 @@ export function auditFood(food, idCounts = new Map()) {
     push(alerts, 'WARNING', 'MISSING_BRAND', 'Marque nécessaire mais absente');
   }
 
-  if (n.fiberG != null && n.carbsG != null && Number(n.fiberG) > Number(n.carbsG)) {
+  if (n.fiberG != null && n.carbsG != null && typeof n.fiberG === 'number' && typeof n.carbsG === 'number' && n.fiberG > n.carbsG) {
     push(alerts, 'WARNING', 'FIBER_GT_CARBS', 'Fibres supérieures aux glucides');
   }
 
   const fatSum = fatFromComponents(n);
-  if (n.fatG != null && fatSum != null && fatSum > Number(n.fatG) + 0.05) {
+  if (typeof n.fatG === 'number' && fatSum != null && fatSum > n.fatG + 0.05) {
     push(
       alerts,
       'WARNING',
@@ -564,6 +609,8 @@ export function canMarkVerified(food, alerts = null) {
     (a) => a.severity === 'ERROR' && a.resolutionStatus !== 'resolved_documented'
   );
   if (openBlocking) return false;
+  const numericCodes = new Set(['INVALID_NUMERIC_TYPE', 'NON_FINITE_VALUE', 'NEGATIVE_VALUE']);
+  if (resultAlerts.some((a) => a.severity === 'ERROR' && numericCodes.has(a.code))) return false;
   if (!hasAuthoritativeSource(food)) return false;
   if (hasStatusMismatch(food)) return false;
   const portion = food.portion || {};

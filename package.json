@@ -12,6 +12,7 @@
     "data:audit": "node scripts/audit-food-equivalents.mjs",
     "data:apply": "node scripts/apply-food-equivalents.mjs",
     "data:approve": "node scripts/approve-dataset.mjs",
+    "schema:generate": "node scripts/generate-schema-validator.mjs",
     "data:report:classification": "node scripts/report-classification.mjs",
     "data:report:prep": "node scripts/report-not-applicable-candidates.mjs",
     "test": "node --test tests/nutrition-hardening.test.mjs",

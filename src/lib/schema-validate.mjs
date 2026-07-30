@@ -17,10 +17,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 let _validate = null;
 let _schemaPath = null;
+let _schemaMtime = null;
 
 function getValidator(schemaPath) {
   const resolved = schemaPath || resolvePaths().schemaPath;
-  if (_validate && _schemaPath === resolved) return _validate;
+  const mtime = fs.statSync(resolved).mtimeMs;
+  if (_validate && _schemaPath === resolved && _schemaMtime === mtime) return _validate;
   const schema = JSON.parse(fs.readFileSync(resolved, 'utf8'));
   const ajv = new Ajv2020({
     allErrors: true,
@@ -30,6 +32,7 @@ function getValidator(schemaPath) {
   addFormats(ajv);
   _validate = ajv.compile(schema);
   _schemaPath = resolved;
+  _schemaMtime = mtime;
   return _validate;
 }
 

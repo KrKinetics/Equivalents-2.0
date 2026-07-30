@@ -321,50 +321,152 @@ test('stale resolution is displayed as stale', async () => {
   assert.equal(status, 'stale');
 });
 
-test('export clears dirty and a later edit dirties again', async () => {
+test('exportCheckpoint clears dirty and writes correct hashes', async () => {
   const sequence = await page.evaluate(async () => {
     const api = window.__REVIEW_TEST__;
     const state = api.getState();
     const food = state.data.foods[2];
     state.selectedId = food.id;
+    const expectedBase = state.baseDataHash;
+
     api.applyLiveEdit(food, 'names.fr', `${food.names.fr}*`);
     api.commitFood(food);
     const dirtyAfterEdit = state.dirty.size;
-    // Bypass download UI: mimic successful export side-effects
-    const hash = await api.hashFoods(state.data.foods);
-    state.lastExportAt = new Date().toISOString();
-    state.lastExportHash = hash;
-    state.dirty.clear();
-    state.originals.clear();
-    for (const item of state.data.foods) {
-      state.originals.set(item.id, JSON.stringify(item));
+
+    const prompts = [];
+    const originalPrompt = window.prompt;
+    window.prompt = (message, defaultValue) => {
+      prompts.push({ message, defaultValue });
+      return 'browser-test';
+    };
+
+    let blobText = null;
+    let downloadName = null;
+    let objectUrlCreated = false;
+    const originalCreateObjectURL = URL.createObjectURL;
+    const originalRevoke = URL.revokeObjectURL;
+    const originalClick = HTMLAnchorElement.prototype.click;
+
+    URL.createObjectURL = (blob) => {
+      objectUrlCreated = true;
+      URL.__exportReadPromise = Promise.resolve(blob.text()).then((text) => {
+        blobText = text;
+      });
+      return 'blob:review-test-export';
+    };
+    URL.revokeObjectURL = () => {};
+    HTMLAnchorElement.prototype.click = function clickStub() {
+      downloadName = this.download;
+    };
+
+    try {
+      await api.exportCheckpoint();
+      if (URL.__exportReadPromise) await URL.__exportReadPromise;
+    } finally {
+      window.prompt = originalPrompt;
+      URL.createObjectURL = originalCreateObjectURL;
+      URL.revokeObjectURL = originalRevoke;
+      HTMLAnchorElement.prototype.click = originalClick;
+      delete URL.__exportReadPromise;
     }
+
     const dirtyAfterExport = state.dirty.size;
+    const lastExportHash = state.lastExportHash;
+    const expectedExportHash = await api.hashFoods(state.data.foods);
+    const exported = blobText ? JSON.parse(blobText) : null;
+
     api.applyLiveEdit(food, 'names.en', `${food.names.en}*`);
     api.commitFood(food);
     const dirtyAfterSecondEdit = state.dirty.size;
-    return { dirtyAfterEdit, dirtyAfterExport, dirtyAfterSecondEdit };
+
+    return {
+      dirtyAfterEdit,
+      dirtyAfterExport,
+      dirtyAfterSecondEdit,
+      lastExportHash,
+      expectedExportHash,
+      expectedBase,
+      objectUrlCreated,
+      downloadName,
+      prompts,
+      exportBase: exported?.meta?.baseDataHash ?? null,
+      exportHash: exported?.meta?.exportDataHash ?? null,
+      exportedBy: exported?.meta?.exportedBy ?? null,
+    };
   });
+
   assert.equal(sequence.dirtyAfterEdit, 1);
   assert.equal(sequence.dirtyAfterExport, 0);
   assert.equal(sequence.dirtyAfterSecondEdit, 1);
+  assert.ok(sequence.lastExportHash);
+  assert.equal(sequence.lastExportHash, sequence.expectedExportHash);
+  assert.equal(sequence.exportHash, sequence.expectedExportHash);
+  assert.equal(sequence.exportBase, sequence.expectedBase);
+  assert.equal(sequence.exportedBy, 'browser-test');
+  assert.equal(sequence.objectUrlCreated, true);
+  assert.equal(sequence.downloadName, 'food-equivalents.corrected.json');
+  assert.ok(sequence.prompts.length >= 1);
 });
 
-test('beforeunload warns only when dirty', async () => {
+test('beforeunload prevents unload only when dirty', async () => {
   const result = await page.evaluate(() => {
-    const state = window.__REVIEW_TEST__.getState();
-    const fired = [];
-    const handler = (event) => {
-      fired.push(Boolean(event.returnValue !== undefined || event.defaultPrevented));
+    const api = window.__REVIEW_TEST__;
+    const state = api.getState();
+    const food = state.data.foods[0];
+
+    const fire = () => {
+      const event = new Event('beforeunload', { cancelable: true });
+      let returnValue = undefined;
+      Object.defineProperty(event, 'returnValue', {
+        configurable: true,
+        get() {
+          return returnValue;
+        },
+        set(value) {
+          returnValue = value;
+        },
+      });
+      const canceled = !window.dispatchEvent(event);
+      return {
+        prevented: canceled || event.defaultPrevented,
+        returnValueSet: returnValue !== undefined,
+      };
     };
-    // Exercise the same condition the page uses
-    const whenDirty = state.dirty.size > 0;
+
     state.dirty.clear();
-    const whenClean = state.dirty.size > 0;
-    return { whenDirty, whenClean, fired };
+    const clean = fire();
+
+    api.applyLiveEdit(food, 'names.fr', `${food.names.fr}!`);
+    api.commitFood(food);
+    const dirty = fire();
+    state.dirty.clear();
+
+    return { clean, dirty };
   });
-  assert.equal(result.whenDirty, true);
-  assert.equal(result.whenClean, false);
+
+  assert.equal(result.clean.prevented, false);
+  assert.equal(result.clean.returnValueSet, false);
+  assert.equal(result.dirty.prevented || result.dirty.returnValueSet, true);
+});
+
+test('structural import without id is refused', async () => {
+  const result = await page.evaluate(async () => {
+    const api = window.__REVIEW_TEST__;
+    const state = api.getState();
+    const beforeCount = state.data.foods.length;
+    const payload = JSON.parse(JSON.stringify(state.data));
+    delete payload.foods[0].id;
+    const gate = api.validateReviewImport(payload);
+    return {
+      ok: gate.ok,
+      message: gate.message || '',
+      beforeCount,
+      afterCount: api.getState().data.foods.length,
+    };
+  });
+  assert.equal(result.ok, false);
+  assert.match(result.message, /id|Import refusé/i);
+  assert.equal(result.afterCount, result.beforeCount);
 });
 
 test('FR/EN parse previews and alerts come from auditDataset', async () => {

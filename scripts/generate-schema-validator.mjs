@@ -1,0 +1,51 @@
+/**
+ * Generate a browser-safe standalone Ajv validator from food-equivalents.schema.json.
+ *
+ * Usage: node scripts/generate-schema-validator.mjs
+ * Also: npm run schema:generate
+ */
+import fs from 'fs';
+import path from 'path';
+import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
+
+const require = createRequire(import.meta.url);
+const Ajv2020 = require('ajv/dist/2020.js');
+const addFormats = require('ajv-formats');
+const standaloneCode = require('ajv/dist/standalone').default;
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const schemaPath = path.join(root, 'src', 'data', 'food-equivalents.schema.json');
+const outDir = path.join(root, 'src', 'generated');
+const outPath = path.join(outDir, 'food-equivalents-validator.mjs');
+
+const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+const ajv = new Ajv2020({
+  allErrors: true,
+  strict: false,
+  allowUnionTypes: true,
+  code: { source: true, esm: true },
+});
+addFormats(ajv);
+const validate = ajv.compile(schema);
+let code = standaloneCode(ajv, validate);
+
+// Inline ucs2length so the module is browser-safe (no require / Node runtime).
+const ucs2Inline = `function ucs2length(str){const len=str.length;let length=0;let i=0;let c;while(i<len){c=str.charCodeAt(i++);if(c>=0xd800&&c<=0xdbff&&i<len){c=str.charCodeAt(i);if((c&0xfc00)===0xdc00)i++;}length++;}return length;}`;
+code = code.replace(
+  /const func2 = require\(["']ajv\/dist\/runtime\/ucs2length["']\)\.default;/,
+  `${ucs2Inline}\nconst func2 = ucs2length;`
+);
+if (code.includes('require(')) {
+  throw new Error('Generated validator still contains require() — not browser-safe');
+}
+
+fs.mkdirSync(outDir, { recursive: true });
+const banner = `/**
+ * AUTO-GENERATED — do not edit by hand.
+ * Regenerate with: npm run schema:generate
+ * Source: src/data/food-equivalents.schema.json
+ */
+`;
+fs.writeFileSync(outPath, `${banner}${code}\n`, 'utf8');
+console.log('Wrote', outPath);

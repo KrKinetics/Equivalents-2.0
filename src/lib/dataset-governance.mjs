@@ -2,7 +2,7 @@
  * Dataset versioning + apply governance checks (stale export, history, version).
  */
 
-import { computeFoodsDataHash, shortHash } from './data-hash.mjs';
+import { computeFoodsDataHash, shortHash, stableStringify } from './data-hash.mjs';
 import { getFoodStatus } from './food-status.mjs';
 import { validateReviewImport } from './review-import.mjs';
 
@@ -39,6 +39,23 @@ export function describeBumpPolicy() {
   };
 }
 
+function assertAppendOnly(label, foodId, currentList, incomingList, errors) {
+  const cur = Array.isArray(currentList) ? currentList : [];
+  const next = Array.isArray(incomingList) ? incomingList : [];
+  if (next.length < cur.length) {
+    errors.push(`${label} tronqué pour ${foodId}: ${cur.length} → ${next.length}`);
+    return;
+  }
+  for (let i = 0; i < cur.length; i += 1) {
+    if (stableStringify(cur[i]) !== stableStringify(next[i])) {
+      errors.push(
+        `${label} modifié (non append-only) pour ${foodId} à l’index ${i}`
+      );
+      return;
+    }
+  }
+}
+
 /**
  * Governance checks when applying an exported dataset over the current base.
  */
@@ -51,8 +68,22 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
   const currentHash = computeFoodsDataHash(currentFoods);
   const incomingMeta = incomingPayload?.meta || {};
   const baseDataHash = incomingMeta.baseDataHash || null;
+  const exportDataHash = incomingMeta.exportDataHash || null;
+  const actualIncomingHash = computeFoodsDataHash(incomingFoods);
   const allowStale = Boolean(options.allowStale);
   const staleReason = String(options.staleReason || '').trim();
+  const migrationDocumented = Boolean(options.migrationDocumented);
+
+  // EXPORT_HASH_MISMATCH — never bypassed by --allow-stale
+  if (!exportDataHash) {
+    errors.push('EXPORT_HASH_MISMATCH: meta.exportDataHash manquant');
+  } else if (exportDataHash !== actualIncomingHash) {
+    errors.push(
+      `EXPORT_HASH_MISMATCH: meta.exportDataHash=${shortHash(exportDataHash)} ≠ hash des foods entrants=${shortHash(
+        actualIncomingHash
+      )}. Réexportez depuis l’UI ou documentez une migration.`
+    );
+  }
 
   if (!baseDataHash) {
     if (!allowStale) {
@@ -82,8 +113,6 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     }
   }
 
-  let migrationDocumented = Boolean(options.migrationDocumented);
-
   for (const incoming of incomingFoods) {
     const current = currentById.get(incoming.id);
     if (!current) continue;
@@ -96,59 +125,50 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
 
     const curHist = Array.isArray(current.history) ? current.history : [];
     const nextHist = Array.isArray(incoming.history) ? incoming.history : [];
-    if (nextHist.length < curHist.length) {
-      errors.push(`Historique tronqué pour ${incoming.id}: ${curHist.length} → ${nextHist.length}`);
+    assertAppendOnly('Historique', incoming.id, curHist, nextHist, errors);
+
+    const curRes = Array.isArray(current.auditResolutions) ? current.auditResolutions : [];
+    const nextRes = Array.isArray(incoming.auditResolutions) ? incoming.auditResolutions : [];
+    assertAppendOnly('auditResolutions', incoming.id, curRes, nextRes, errors);
+
+    if (nextRes.length > curRes.length && nextVer <= curVer) {
+      errors.push(
+        `Résolution ajoutée sans augmentation de version pour ${incoming.id} (v${curVer})`
+      );
+    }
+    if (nextRes.length > curRes.length && nextHist.length <= curHist.length) {
+      errors.push(
+        `Résolution ajoutée sans entrée history pour ${incoming.id}`
+      );
     }
 
     const curWasVerified =
       getFoodStatus(current) === 'verified' ||
       curHist.some((h) => h?.action === 'verify' || h?.oldValue === 'verified' || h?.newValue === 'verified');
-    const nextHasVerificationTrace =
-      getFoodStatus(incoming) === 'verified' ||
-      (incoming.verification &&
-        (incoming.verification.verifiedAt || incoming.verification.verifiedBy)) ||
-      nextHist.some(
-        (h) =>
-          h?.action === 'verify' ||
-          h?.action === 'auto_unverify' ||
-          h?.previousVerification ||
-          h?.oldValue === 'verified' ||
-          h?.newValue === 'verified'
-      );
-    if (curWasVerified && !nextHasVerificationTrace && getFoodStatus(incoming) !== 'verified') {
-      // Allow if history preserved auto_unverify / previous verification
+    if (curWasVerified && getFoodStatus(incoming) !== 'verified') {
       const preserved = nextHist.some((h) => h?.previousVerification || h?.action === 'auto_unverify');
-      if (!preserved && curHist.some((h) => h?.action === 'verify')) {
+      const hadVerify = curHist.some((h) => h?.action === 'verify');
+      if (hadVerify && !preserved) {
         errors.push(`Vérification antérieure disparue pour ${incoming.id}`);
       }
     }
 
-    const materialChanged =
-      JSON.stringify({
-        names: current.names,
-        portion: current.portion,
-        nutrients: current.nutrients,
-        source: current.source,
-        displayCategory: current.displayCategory,
-        calculationGroup: current.calculationGroup,
-        exchangeProfileId: current.exchangeProfileId,
-        classificationStatus: current.classificationStatus,
-        status: current.status,
-        verification: current.verification,
-      }) !==
-      JSON.stringify({
-        names: incoming.names,
-        portion: incoming.portion,
-        nutrients: incoming.nutrients,
-        source: incoming.source,
-        displayCategory: incoming.displayCategory,
-        calculationGroup: incoming.calculationGroup,
-        exchangeProfileId: incoming.exchangeProfileId,
-        classificationStatus: incoming.classificationStatus,
-        status: incoming.status,
-        verification: incoming.verification,
+    const materialSnapshot = (food) =>
+      stableStringify({
+        names: food.names,
+        portion: food.portion,
+        nutrients: food.nutrients,
+        source: food.source,
+        displayCategory: food.displayCategory,
+        calculationGroup: food.calculationGroup,
+        exchangeProfileId: food.exchangeProfileId,
+        classificationStatus: food.classificationStatus,
+        status: food.status,
+        verification: food.verification,
+        auditResolutions: food.auditResolutions || [],
       });
 
+    const materialChanged = materialSnapshot(current) !== materialSnapshot(incoming);
     if (materialChanged && nextVer === curVer && !migrationDocumented) {
       errors.push(
         `Modification de données sans progression de version pour ${incoming.id} (v${curVer}). Documentez une migration ou incrémentez food.version.`
@@ -162,7 +182,8 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     warnings,
     currentHash,
     baseDataHash,
-    exportDataHash: incomingMeta.exportDataHash || null,
+    exportDataHash,
+    actualIncomingHash,
   };
 }
 
@@ -172,7 +193,6 @@ export async function sha256Hex(text) {
     const digest = await crypto.subtle.digest('SHA-256', data);
     return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
   }
-  // Node fallback
   const nodeCrypto = await import('crypto');
   return nodeCrypto.createHash('sha256').update(text).digest('hex');
 }

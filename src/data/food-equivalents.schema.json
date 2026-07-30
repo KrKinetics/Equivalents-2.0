@@ -97,7 +97,9 @@
         "approvedBy",
         "approvedAt",
         "sourceReferenceId",
-        "fieldsHash"
+        "fieldsHash",
+        "createdAt",
+        "version"
       ],
       "additionalProperties": false,
       "properties": {
@@ -107,7 +109,7 @@
         "approvedAt": { "type": "string", "minLength": 10 },
         "sourceReferenceId": { "type": "string", "minLength": 1 },
         "fieldsHash": { "type": "string", "minLength": 1 },
-        "createdAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string", "minLength": 10 },
         "version": { "type": "integer", "minimum": 1 }
       }
     },

@@ -12,6 +12,7 @@ import {
   auditFood,
   canMarkVerified,
   getResolutionState,
+  resolutionSnapshotHash,
   validateSource,
 } from '../src/lib/food-audit-core.mjs';
 import { applyFoodChange } from '../src/lib/food-change.mjs';
@@ -33,10 +34,12 @@ import {
 } from '../src/lib/nutrition-constants.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
+import { knownSourceReferenceIds } from '../src/lib/source-validators.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
 const VERSION_PATH = path.join(ROOT, 'src', 'data', 'nutrition-data-version.json');
+const GROUPS_PATH = path.join(ROOT, 'src', 'data', 'calculation-groups.json');
 const REPORT_PATH = path.join(ROOT, 'reports', 'food-equivalents-audit.json');
 const REAL_PATHS = [DATA_PATH, VERSION_PATH, REPORT_PATH];
 const beforeHashes = new Map(REAL_PATHS.map((file) => [file, hashFile(file)]));
@@ -108,24 +111,30 @@ function cleanFood(overrides = {}) {
   return Object.assign(food, clone(overrides));
 }
 
-function makeSandbox(name) {
+function makeSandbox(name, { copyGroups = false } = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), `equiv-alim-${name}-`));
   const data = path.join(root, 'food-equivalents.json');
   const version = path.join(root, 'nutrition-data-version.json');
   const reports = path.join(root, 'reports');
   const backups = path.join(root, 'backups');
+  const releases = path.join(root, 'releases');
   const review = path.join(root, 'food-data-review-data.js');
+  const groups = path.join(root, 'calculation-groups.json');
   fs.copyFileSync(DATA_PATH, data);
   fs.copyFileSync(VERSION_PATH, version);
+  if (copyGroups) fs.copyFileSync(GROUPS_PATH, groups);
   fs.mkdirSync(reports, { recursive: true });
   fs.mkdirSync(backups, { recursive: true });
+  fs.mkdirSync(releases, { recursive: true });
   return {
     root,
     data,
     version,
     reports,
     backups,
+    releases,
     review,
+    groups,
     env: {
       ...process.env,
       PROJECT_ROOT: ROOT,
@@ -133,7 +142,9 @@ function makeSandbox(name) {
       VERSION_DATA_PATH: version,
       REPORTS_DIR: reports,
       BACKUPS_DIR: backups,
+      RELEASES_DIR: releases,
       REVIEW_DATA_PATH: review,
+      ...(copyGroups ? { GROUPS_DATA_PATH: groups } : {}),
     },
   };
 }
@@ -605,6 +616,347 @@ test('semver bump policy helpers work', () => {
   assert.equal(bumpSemver('1.0.0', 'patch'), '1.0.1');
   assert.equal(bumpSemver('1.0.0', 'minor'), '1.1.0');
   assert.equal(bumpSemver('1.0.0', 'major'), '2.0.0');
+});
+
+test('knownSourceReferenceIds excludes legacy and source.name', () => {
+  const food = cleanFood({
+    legacySource: { reference: 'Legacy Guide', referenceId: 'noix[0]' },
+    source: {
+      ...cleanFood().source,
+      name: 'Canadian Nutrient File',
+      recordId: 'CNF-123',
+    },
+  });
+  const ids = knownSourceReferenceIds(food);
+  assert.ok(ids.includes('CNF-123'));
+  assert.equal(ids.includes('Canadian Nutrient File'), false);
+  assert.equal(ids.includes('noix[0]'), false);
+  assert.equal(ids.includes('Legacy Guide'), false);
+});
+
+test('legacySource and source.name cannot resolve KCAL_DIFF_HIGH; recordId can', () => {
+  const base = cleanFood({
+    nutrients: {
+      proteinG: 4,
+      carbsG: 21,
+      fiberG: 2,
+      fatG: 2,
+      saturatedFatG: 0.2,
+      polyunsaturatedFatG: 1,
+      monounsaturatedFatG: 0.6,
+      declaredKcal: 500,
+    },
+  });
+  const fieldsHash = resolutionSnapshotHash('KCAL_DIFF_HIGH', base);
+  const common = {
+    code: 'KCAL_DIFF_HIGH',
+    reason: 'documented',
+    approvedBy: 'Reviewer',
+    approvedAt: '2026-07-29',
+    fieldsHash,
+    createdAt: '2026-07-29T12:00:00.000Z',
+    version: 1,
+  };
+
+  const legacyFood = clone(base);
+  legacyFood.auditResolutions = [{ ...common, sourceReferenceId: 'test[0]' }];
+  assert.equal(getResolutionState(legacyFood, 'KCAL_DIFF_HIGH').status, 'invalid');
+
+  const nameFood = clone(base);
+  nameFood.auditResolutions = [{ ...common, sourceReferenceId: 'Canadian Nutrient File' }];
+  assert.equal(getResolutionState(nameFood, 'KCAL_DIFF_HIGH').status, 'invalid');
+
+  const recordFood = clone(base);
+  recordFood.auditResolutions = [{ ...common, sourceReferenceId: 'CNF-123' }];
+  assert.equal(getResolutionState(recordFood, 'KCAL_DIFF_HIGH').status, 'resolved_documented');
+  assert.equal(auditFood(recordFood).errorCount, 0);
+
+  const noCreated = clone(base);
+  noCreated.auditResolutions = [{ ...common, sourceReferenceId: 'CNF-123', createdAt: undefined }];
+  delete noCreated.auditResolutions[0].createdAt;
+  assert.equal(getResolutionState(noCreated, 'KCAL_DIFF_HIGH').status, 'invalid');
+
+  const noVersion = clone(base);
+  noVersion.auditResolutions = [{ ...common, sourceReferenceId: 'CNF-123' }];
+  delete noVersion.auditResolutions[0].version;
+  assert.equal(getResolutionState(noVersion, 'KCAL_DIFF_HIGH').status, 'invalid');
+});
+
+test('numeric validation rejects strings, negatives and non-finite values', () => {
+  const cases = [
+    { path: ['nutrients', 'proteinG'], value: 'abc', code: 'INVALID_NUMERIC_TYPE' },
+    { path: ['nutrients', 'proteinG'], value: '5', code: 'INVALID_NUMERIC_TYPE' },
+    { path: ['nutrients', 'saturatedFatG'], value: -1, code: 'NEGATIVE_VALUE' },
+    { path: ['nutrients', 'polyunsaturatedFatG'], value: -1, code: 'NEGATIVE_VALUE' },
+    { path: ['nutrients', 'monounsaturatedFatG'], value: -1, code: 'NEGATIVE_VALUE' },
+    { path: ['portion', 'amount'], value: '100', code: 'INVALID_NUMERIC_TYPE' },
+    { path: ['portion', 'grams'], value: Infinity, code: 'NON_FINITE_VALUE' },
+  ];
+  for (const { path: fieldPath, value, code } of cases) {
+    const food = cleanFood();
+    let cursor = food;
+    for (let i = 0; i < fieldPath.length - 1; i += 1) cursor = cursor[fieldPath[i]];
+    cursor[fieldPath[fieldPath.length - 1]] = value;
+    const result = auditFood(food);
+    assert.ok(
+      result.alerts.some((a) => a.severity === 'ERROR' && a.code === code),
+      `${fieldPath.join('.')}=${String(value)} expected ${code}, got ${JSON.stringify(result.alerts)}`
+    );
+    if (fieldPath[1] === 'proteinG' && value === 'abc') {
+      assert.equal(canMarkVerified(food, result.alerts), false);
+    }
+  }
+});
+
+test('accessedAt 2026-02-30 produces a single deduped source alert', () => {
+  const food = cleanFood({
+    source: {
+      ...cleanFood().source,
+      accessedAt: '2026-02-30',
+    },
+  });
+  const result = validateSource(food);
+  const accessAlerts = result.alerts.filter((a) => a.code === 'SOURCE_ACCESS_DATE_MISSING');
+  assert.equal(accessAlerts.length, 1);
+});
+
+test('exportDataHash mismatch is refused even with allow-stale', () => {
+  const current = clone(realPayload);
+  const incoming = clone(realPayload);
+  incoming.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  incoming.meta.exportDataHash = 'deadbeef';
+  const refused = assertApplyGovernance(current, incoming, {});
+  assert.equal(refused.ok, false);
+  assert.ok(refused.errors.some((e) => /EXPORT_HASH_MISMATCH/.test(e)));
+
+  const stillRefused = assertApplyGovernance(current, incoming, {
+    allowStale: true,
+    staleReason: 'emergency',
+  });
+  assert.equal(stillRefused.ok, false);
+  assert.ok(stillRefused.errors.some((e) => /EXPORT_HASH_MISMATCH/.test(e)));
+
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+  const ok = assertApplyGovernance(current, incoming, {});
+  assert.equal(ok.ok, true, JSON.stringify(ok.errors));
+});
+
+test('history and auditResolutions are append-only', () => {
+  const currentFood = cleanFood({
+    id: 'hist-1',
+    version: 2,
+    history: [
+      { timestamp: '2026-07-29T00:00:00.000Z', action: 'bootstrap_import', by: 'sys' },
+    ],
+    auditResolutions: [],
+  });
+  const current = { foods: [currentFood], meta: { schemaVersion: 2, totalFoods: 1 } };
+
+  const rewritten = clone(current);
+  rewritten.foods[0].history[0].action = 'tampered';
+  rewritten.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  rewritten.meta.exportDataHash = computeFoodsDataHash(rewritten.foods);
+  assert.equal(assertApplyGovernance(current, rewritten, {}).ok, false);
+
+  const appended = clone(current);
+  appended.foods[0].history.push({
+    timestamp: '2026-07-29T01:00:00.000Z',
+    action: 'update',
+    by: 'coach',
+    path: 'names.fr',
+    oldValue: 'a',
+    newValue: 'b',
+    versionBefore: 2,
+    versionAfter: 3,
+  });
+  appended.foods[0].version = 3;
+  appended.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  appended.meta.exportDataHash = computeFoodsDataHash(appended.foods);
+  assert.equal(assertApplyGovernance(current, appended, {}).ok, true);
+
+  const withRes = clone(current);
+  withRes.foods[0].auditResolutions = [
+    {
+      code: 'KCAL_DIFF_HIGH',
+      reason: 'ok',
+      approvedBy: 'A',
+      approvedAt: '2026-07-29',
+      sourceReferenceId: 'CNF-123',
+      fieldsHash: 'kcal:4|21|2|118',
+      createdAt: '2026-07-29T12:00:00.000Z',
+      version: 1,
+    },
+  ];
+  withRes.foods[0].version = 2;
+  withRes.meta.baseDataHash = computeFoodsDataHash(current.foods);
+  withRes.meta.exportDataHash = computeFoodsDataHash(withRes.foods);
+  assert.equal(assertApplyGovernance(current, withRes, {}).ok, false, 'resolution without version bump');
+
+  const withResOk = clone(withRes);
+  withResOk.foods[0].version = 3;
+  withResOk.foods[0].history.push({
+    timestamp: '2026-07-29T02:00:00.000Z',
+    action: 'document_audit_resolution',
+    by: 'A',
+    path: 'auditResolutions',
+    versionBefore: 2,
+    versionAfter: 3,
+  });
+  withResOk.meta.exportDataHash = computeFoodsDataHash(withResOk.foods);
+  assert.equal(assertApplyGovernance(current, withResOk, {}).ok, true);
+
+  const mutatedRes = clone(withResOk);
+  mutatedRes.foods[0].auditResolutions[0].fieldsHash = 'changed';
+  mutatedRes.meta.baseDataHash = computeFoodsDataHash(withResOk.foods);
+  mutatedRes.meta.exportDataHash = computeFoodsDataHash(mutatedRes.foods);
+  assert.equal(
+    assertApplyGovernance(
+      { foods: withResOk.foods, meta: { schemaVersion: 2, totalFoods: 1 } },
+      mutatedRes,
+      {}
+    ).ok,
+    false
+  );
+});
+
+test('validateReviewImport refuses structural defects and accepts valid payload', () => {
+  assert.equal(
+    validateReviewImport({
+      meta: { schemaVersion: 2, totalFoods: 1 },
+      foods: [{ names: { fr: 'A', en: 'A' } }],
+    }).ok,
+    false
+  );
+  assert.equal(
+    validateReviewImport({
+      meta: { schemaVersion: 2, totalFoods: 1 },
+      foods: [cleanFood({ version: 'abc' })],
+    }).ok,
+    false
+  );
+  const noNutrients = cleanFood();
+  delete noNutrients.nutrients;
+  assert.equal(
+    validateReviewImport({ meta: { schemaVersion: 2, totalFoods: 1 }, foods: [noNutrients] }).ok,
+    false
+  );
+  const mismatch = cleanFood({ status: 'verified', verification: { status: 'unverified' } });
+  assert.equal(
+    validateReviewImport({ meta: { schemaVersion: 2, totalFoods: 1 }, foods: [mismatch] }).ok,
+    false
+  );
+  const valid = {
+    meta: { schemaVersion: 2, totalFoods: 1, notes: [] },
+    foods: [cleanFood({ id: 'valid-1' })],
+  };
+  assert.equal(validateReviewImport(valid).ok, true, JSON.stringify(validateReviewImport(valid)));
+});
+
+test('successful data:approve runs only inside sandbox releases dir', () => {
+  const sandbox = makeSandbox('approve-ok', { copyGroups: true });
+  const food = cleanFood({
+    id: 'approve-food-1',
+    status: 'verified',
+    classificationStatus: 'approved',
+    verification: {
+      status: 'verified',
+      verifiedAt: '2026-07-29T00:00:00.000Z',
+      verifiedBy: 'Reviewer',
+      datasetVersion: '1.0.0',
+    },
+  });
+  const payload = {
+    meta: { schemaVersion: 2, totalFoods: 1, notes: [] },
+    foods: [food],
+  };
+  const hash = computeFoodsDataHash(payload.foods);
+  fs.writeFileSync(sandbox.data, JSON.stringify(payload, null, 2), 'utf8');
+  fs.writeFileSync(
+    sandbox.version,
+    JSON.stringify(
+      {
+        version: '1.0.0',
+        status: 'review',
+        dataHash: hash,
+        shortHash: hash.slice(0, 12),
+        createdAt: '2026-07-29T00:00:00.000Z',
+        approvedAt: null,
+        approvedBy: null,
+        previousVersion: null,
+        changeSummary: 'sandbox ready',
+        totalFoods: 1,
+        verifiedFoods: 1,
+        unverifiedFoods: 0,
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
+  fs.writeFileSync(
+    sandbox.groups,
+    JSON.stringify(
+      {
+        meta: { schemaVersion: 2 },
+        groups: [
+          {
+            id: 'starch',
+            names: { fr: 'Féculents', en: 'Starches' },
+            referenceProfile: {
+              proteinG: 4,
+              carbsG: 21,
+              fiberG: 2,
+              fatG: 2,
+              kcal: 118,
+            },
+            tolerances: { proteinG: 2, carbsG: 4, fatG: 2, kcal: 15 },
+            approvalCriteria: {
+              minVerifiedCount: 1,
+              minCoveragePercent: 100,
+              requireAllActiveFoodsVerified: true,
+              requireNoFoodsOutsideTolerance: false,
+            },
+            approved: true,
+          },
+        ],
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
+
+  const realReleasesBefore = fs.existsSync(path.join(ROOT, 'releases', 'data'))
+    ? fs.readdirSync(path.join(ROOT, 'releases', 'data')).filter((n) => n !== '.gitkeep')
+    : [];
+  const productionBefore = hashFile(DATA_PATH);
+  const result = runScript(
+    'scripts/approve-dataset.mjs',
+    ['--by', 'Sandbox Reviewer', '--bump', 'patch'],
+    sandbox
+  );
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const approvedVersion = JSON.parse(fs.readFileSync(sandbox.version, 'utf8'));
+  assert.equal(approvedVersion.version, '1.0.1');
+  assert.equal(approvedVersion.status, 'approved');
+  const archive = path.join(sandbox.releases, '1.0.1');
+  assert.ok(fs.existsSync(path.join(archive, 'food-equivalents.json')));
+  assert.ok(fs.existsSync(path.join(archive, 'audit-report.json')));
+  assert.ok(fs.existsSync(path.join(archive, 'release-manifest.json')));
+  const manifest = JSON.parse(fs.readFileSync(path.join(archive, 'release-manifest.json'), 'utf8'));
+  assert.equal(manifest.dataHash, hash);
+  assert.ok(manifest.fileHashes['food-equivalents.json']);
+  assert.ok(manifest.fileHashes['audit-report.json']);
+  assert.ok(fs.readdirSync(sandbox.backups).some((n) => n.includes('pre-approve')));
+  assert.equal(hashFile(DATA_PATH), productionBefore);
+  const realReleasesAfter = fs.existsSync(path.join(ROOT, 'releases', 'data'))
+    ? fs.readdirSync(path.join(ROOT, 'releases', 'data')).filter((n) => n !== '.gitkeep')
+    : [];
+  assert.deepEqual(realReleasesAfter, realReleasesBefore);
+  const afterGit = spawnSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' }).stdout;
+  // Ignore this test file's own uncommitted edits by comparing production paths only
+  assert.equal(hashFile(DATA_PATH), beforeHashes.get(DATA_PATH));
+  assert.ok(!afterGit.includes('src/data/food-equivalents.json'));
 });
 
 test('production files retain their exact before-suite hashes', () => {
