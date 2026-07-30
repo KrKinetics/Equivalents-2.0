@@ -1,0 +1,22 @@
+{
+  "pilotId": "nutrition-validation-5-foods",
+  "status": "prepared",
+  "allowedFoodIds": [
+    "fruits-blueberries",
+    "noix-graines-almonds",
+    "feculents-cooked-quinoa",
+    "viandes-volaille-chicken-breast",
+    "autres-sources-proteinees-core-power-fairlife"
+  ],
+  "protectedFoodCount": 202,
+  "hashDefinitions": {
+    "datasetHash": "SHA-256 of stableStringify(all foods sorted by id) via computeFoodsDataHash",
+    "protectedFoodsDataHash": "SHA-256 of stableStringify(full food objects for every non-pilot food, sorted by id) via computeFoodsDataHash",
+    "protectedFoodsNutritionHash": "SHA-256 of stableStringify([{id, portion, nutrients}]) for every non-pilot food, sorted by id"
+  },
+  "baseline": {
+    "datasetHash": "a4c4b7faa59272390028657ec730f869742dc0042af82ab404010fa131eddf0f",
+    "protectedFoodsDataHash": "49499f61945842748210d2c3f7756fbf1be91e4c96a1121ce4999dbb4307c482",
+    "protectedFoodsNutritionHash": "5bfd91596d33146be48264ed3ec01ec39a3aa66ac13fe944307946cb6503f4f6"
+  }
+}

@@ -43,5 +43,9 @@ export function resolvePaths(overrides = {}) {
       overrides.auditScriptPath ||
       process.env.AUDIT_SCRIPT_PATH ||
       path.join(root, 'scripts', 'audit-food-equivalents.mjs'),
+    nutritionPilotConfigPath:
+      overrides.nutritionPilotConfigPath ||
+      process.env.NUTRITION_PILOT_CONFIG_PATH ||
+      path.join(root, 'src', 'data', 'nutrition-pilot-config.json'),
   };
 }

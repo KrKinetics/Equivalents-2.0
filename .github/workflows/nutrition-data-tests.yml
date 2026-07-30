@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - refactor/nutrition-source-of-truth
+      - pilot/nutrition-validation-5-foods
       - main
       - master
   pull_request:
@@ -27,6 +28,9 @@ jobs:
 
       - name: Check generated schema validator
         run: npm run schema:check
+
+      - name: Check nutrition pilot scope
+        run: npm run pilot:check
 
       - name: Run Node tests
         run: npm run test:nutrition

@@ -41,6 +41,10 @@ import {
 } from '../src/lib/verification-integrity.mjs';
 import { validateVerificationEligibility } from '../src/lib/verification-eligibility.mjs';
 import {
+  checkPilotCandidateScope,
+  summarizePilotOpenAlerts,
+} from '../src/lib/nutrition-pilot-scope.mjs';
+import {
   knownSourceReferenceIds,
   isValidApprovedAt,
   isValidIsoDateOnly,
@@ -52,7 +56,11 @@ const DATA_PATH = path.join(ROOT, 'src', 'data', 'food-equivalents.json');
 const VERSION_PATH = path.join(ROOT, 'src', 'data', 'nutrition-data-version.json');
 const GROUPS_PATH = path.join(ROOT, 'src', 'data', 'calculation-groups.json');
 const REPORT_PATH = path.join(ROOT, 'reports', 'food-equivalents-audit.json');
+const PILOT_CONFIG_PATH = path.join(ROOT, 'src', 'data', 'nutrition-pilot-config.json');
+const PILOT_REPORT_PATH = path.join(ROOT, 'reports', 'nutrition-pilot-5-foods.json');
 const REAL_PATHS = [DATA_PATH, VERSION_PATH, REPORT_PATH];
+const PILOT_CONFIG = JSON.parse(fs.readFileSync(PILOT_CONFIG_PATH, 'utf8'));
+const PILOT_ALLOWED = new Set(PILOT_CONFIG.allowedFoodIds);
 const beforeHashes = new Map(REAL_PATHS.map((file) => [file, hashFile(file)]));
 const realPayload = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 
@@ -284,12 +292,20 @@ function makeSandbox(name, { copyGroups = false } = {}) {
   const releases = path.join(root, 'releases');
   const review = path.join(root, 'food-data-review-data.js');
   const groups = path.join(root, 'calculation-groups.json');
+  const pilotConfig = path.join(root, 'nutrition-pilot-config.json');
   fs.copyFileSync(DATA_PATH, data);
   fs.copyFileSync(VERSION_PATH, version);
   if (copyGroups) fs.copyFileSync(GROUPS_PATH, groups);
   fs.mkdirSync(reports, { recursive: true });
   fs.mkdirSync(backups, { recursive: true });
   fs.mkdirSync(releases, { recursive: true });
+  // Sandbox apply/approve tests must not inherit the live prepared pilot guard
+  // unless a test explicitly opts in with the real config.
+  fs.writeFileSync(
+    pilotConfig,
+    JSON.stringify({ ...PILOT_CONFIG, status: 'completed' }, null, 2),
+    'utf8'
+  );
   return {
     root,
     data,
@@ -299,6 +315,7 @@ function makeSandbox(name, { copyGroups = false } = {}) {
     releases,
     review,
     groups,
+    pilotConfig,
     env: {
       ...process.env,
       PROJECT_ROOT: ROOT,
@@ -308,6 +325,7 @@ function makeSandbox(name, { copyGroups = false } = {}) {
       BACKUPS_DIR: backups,
       RELEASES_DIR: releases,
       REVIEW_DATA_PATH: review,
+      NUTRITION_PILOT_CONFIG_PATH: pilotConfig,
       ...(copyGroups ? { GROUPS_DATA_PATH: groups } : {}),
     },
   };
@@ -1814,4 +1832,187 @@ test('production files retain their exact before-suite hashes', () => {
   for (const file of REAL_PATHS) {
     assert.equal(hashFile(file), beforeHashes.get(file), `unexpected production write: ${file}`);
   }
+});
+
+function writeCandidate(sandbox, mutate) {
+  const payload = clone(realPayload);
+  mutate(payload);
+  const candidatePath = path.join(sandbox.root, 'candidate.json');
+  fs.writeFileSync(candidatePath, JSON.stringify(payload, null, 2), 'utf8');
+  return candidatePath;
+}
+
+function firstProtectedFood(payload) {
+  return payload.foods.find((food) => !PILOT_ALLOWED.has(food.id));
+}
+
+test('pilot:check succeeds on the current unchanged base', () => {
+  const result = runScript('scripts/check-nutrition-pilot-scope.mjs', [], {
+    env: {
+      ...process.env,
+      PROJECT_ROOT: ROOT,
+      NUTRITION_PILOT_CONFIG_PATH: PILOT_CONFIG_PATH,
+      FOOD_DATA_PATH: DATA_PATH,
+    },
+  });
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test('pilot:check accepts candidate edits to fruits-blueberries', () => {
+  const sandbox = makeSandbox('pilot-blueberries');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = payload.foods.find((item) => item.id === 'fruits-blueberries');
+    food.names.fr = 'Bleuets (pilote)';
+    food.version += 1;
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test('pilot:check accepts candidate edits to noix-graines-almonds', () => {
+  const sandbox = makeSandbox('pilot-almonds');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = payload.foods.find((item) => item.id === 'noix-graines-almonds');
+    food.nutrients.fatG = 4;
+    food.version += 1;
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test('pilot:check refuses a sixth-food nutrient change', () => {
+  const sandbox = makeSandbox('pilot-sixth');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = firstProtectedFood(payload);
+    food.nutrients.proteinG = Number(food.nutrients.proteinG || 0) + 1;
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Protected food modified/);
+});
+
+test('pilot:check refuses protected name-only change', () => {
+  const sandbox = makeSandbox('pilot-name');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = firstProtectedFood(payload);
+    food.names.fr = `${food.names.fr} modifié`;
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /names/);
+});
+
+test('pilot:check refuses protected source-only change', () => {
+  const sandbox = makeSandbox('pilot-source');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = firstProtectedFood(payload);
+    food.source = {
+      ...(food.source || {}),
+      type: 'canadian_nutrient_file',
+      name: 'Unauthorized edit',
+      recordId: 'SHOULD-FAIL',
+    };
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /source/);
+});
+
+test('pilot:check refuses protected status-only change', () => {
+  const sandbox = makeSandbox('pilot-status');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const food = firstProtectedFood(payload);
+    food.status = 'rejected';
+    food.verification = {
+      ...(food.verification || {}),
+      status: 'rejected',
+      verifiedAt: null,
+      verifiedBy: null,
+      datasetVersion: null,
+    };
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /status/);
+});
+
+test('pilot:check refuses protected food deletion', () => {
+  const sandbox = makeSandbox('pilot-delete');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    const protectedId = firstProtectedFood(payload).id;
+    payload.foods = payload.foods.filter((food) => food.id !== protectedId);
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Protected food removed/);
+});
+
+test('pilot:check refuses adding a new food', () => {
+  const sandbox = makeSandbox('pilot-add');
+  sandbox.env.NUTRITION_PILOT_CONFIG_PATH = PILOT_CONFIG_PATH;
+  const candidatePath = writeCandidate(sandbox, (payload) => {
+    payload.foods.push(cleanFood({ id: 'pilot-extra-food-should-fail' }));
+  });
+  const result = runScript(
+    'scripts/check-nutrition-pilot-scope.mjs',
+    ['--candidate', candidatePath],
+    sandbox
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Food added outside pilot scope/);
+});
+
+test('pilot report totalOpenErrors equals 5 with current data', () => {
+  const report = JSON.parse(fs.readFileSync(PILOT_REPORT_PATH, 'utf8'));
+  const stats = summarizePilotOpenAlerts(report.foods);
+  assert.equal(stats.totalOpenErrors, 5);
+  assert.equal(report.stats.totalOpenErrors, 5);
+  assert.equal(report.stats.foodsWithOpenErrors, 3);
+  assert.equal(report.stats.foodsWithoutOpenErrors, 2);
+  assert.equal(report.stats.totalWarnings, 11);
+  assert.deepEqual(report.stats, stats);
+
+  const html = fs.readFileSync(
+    path.join(ROOT, 'reports', 'nutrition-pilot-5-foods.html'),
+    'utf8'
+  );
+  assert.match(html, /<strong>5<\/strong>ERROR ouvertes au total/);
+
+  const libraryCheck = checkPilotCandidateScope(realPayload, realPayload, PILOT_CONFIG);
+  assert.equal(libraryCheck.ok, true);
 });
