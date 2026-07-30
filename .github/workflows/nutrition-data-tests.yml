@@ -8,6 +8,7 @@ on:
       - pilot/nutrition-validation-6-foods-and-batch-engine
       - batch/fruits-complete-individual-validation
       - batch/vegetables-complete-individual-validation
+      - batch/nuts-seeds-complete-individual-validation
       - main
       - master
   pull_request:
@@ -154,6 +155,40 @@ jobs:
           REPORTS_DIR="$SANDBOX/reports" \
           BACKUPS_DIR="$SANDBOX/backups" \
           npm run nutrition:batch:apply -- --dry-run src/data/approved-batches/vegetables-complete-individual-validation-36-foods.json
+          git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json
+
+      - name: Validate nuts-seeds batch with scope
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-nuts-seeds-validate"
+          mkdir -p "$SANDBOX/reports"
+          if [ -f reports/batches/nuts-seeds-complete-individual-validation-31-foods/pre-apply-payload.json ]; then
+            cp reports/batches/nuts-seeds-complete-individual-validation-31-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          npm run nutrition:batch:validate -- src/data/approved-batches/nuts-seeds-complete-individual-validation-31-foods.json
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          npm run nutrition:batch:scope -- src/data/approved-batches/nuts-seeds-complete-individual-validation-31-foods.json
+
+      - name: Dry-run nuts-seeds batch in sandbox
+        run: |
+          SANDBOX="$GITHUB_WORKSPACE/ci-nuts-seeds-sandbox"
+          rm -rf "$SANDBOX"
+          mkdir -p "$SANDBOX/reports" "$SANDBOX/backups"
+          if [ -f reports/batches/nuts-seeds-complete-individual-validation-31-foods/pre-apply-payload.json ]; then
+            cp reports/batches/nuts-seeds-complete-individual-validation-31-foods/pre-apply-payload.json "$SANDBOX/food-equivalents.json"
+          else
+            cp src/data/food-equivalents.json "$SANDBOX/food-equivalents.json"
+          fi
+          cp src/data/nutrition-data-version.json "$SANDBOX/nutrition-data-version.json"
+          FOOD_DATA_PATH="$SANDBOX/food-equivalents.json" \
+          VERSION_DATA_PATH="$SANDBOX/nutrition-data-version.json" \
+          REPORTS_DIR="$SANDBOX/reports" \
+          BACKUPS_DIR="$SANDBOX/backups" \
+          npm run nutrition:batch:apply -- --dry-run src/data/approved-batches/nuts-seeds-complete-individual-validation-31-foods.json
           git diff --exit-code -- src/data/food-equivalents.json src/data/nutrition-data-version.json
 
       - name: Check nutrition pilot scope

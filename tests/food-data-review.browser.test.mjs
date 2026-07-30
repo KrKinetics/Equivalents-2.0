@@ -88,6 +88,9 @@ function eligibleFixturePayload() {
   payload.foods = [food];
   payload.meta.totalFoods = 1;
   food.id = 'ui-eligible-verify';
+  food.displayCategory = 'feculents';
+  food.calculationGroup = 'starch';
+  food.exchangeProfileId = 'starch-cooked-grain';
   food.names = { fr: 'Quinoa cuit', en: 'Cooked quinoa' };
   food.portion = {
     labelFr: '100 g de quinoa cuit',
@@ -128,6 +131,13 @@ function eligibleFixturePayload() {
   food.version = 1;
   food.history = [];
   food.auditResolutions = [];
+  food.verification = {
+    status: 'unverified',
+    verifiedAt: null,
+    verifiedBy: null,
+    datasetVersion: null,
+  };
+  food.status = 'unverified';
   return payload;
 }
 

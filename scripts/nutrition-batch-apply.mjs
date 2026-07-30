@@ -188,6 +188,7 @@ function main() {
   const live = result.payload;
   const fruits = live.foods.filter((f) => f.displayCategory === 'fruits');
   const vegetables = live.foods.filter((f) => f.displayCategory === 'legumes');
+  const nutsSeeds = live.foods.filter((f) => f.displayCategory === 'noix_graines');
   const finalReport = {
     batchId: batch.batchId,
     generatedAt: new Date().toISOString(),
@@ -199,6 +200,8 @@ function main() {
       fruitsVerified: fruits.filter((f) => f.status === 'verified').length,
       vegetableCount: vegetables.length,
       vegetablesVerified: vegetables.filter((f) => f.status === 'verified').length,
+      nutsSeedsCount: nutsSeeds.length,
+      nutsSeedsVerified: nutsSeeds.filter((f) => f.status === 'verified').length,
       totalFoods: live.foods.length,
       totalVerified: live.foods.filter((f) => f.status === 'verified').length,
       protectedUnchanged: result.scopeCheck?.protectedFoodCount ?? null,
@@ -227,6 +230,7 @@ function main() {
         status: food.status,
         transactionId: row.transactionId,
         version: food.version,
+        calculationGroup: food.calculationGroup ?? null,
         exchangeProfileId: food.exchangeProfileId ?? null,
       };
     }),
@@ -238,8 +242,8 @@ function main() {
         `<tr><td>${f.id}</td><td>${f.expectedRecordId}</td><td>${f.selectedRecordId}</td><td>${escHtml(
           f.cnfDescription?.en || ''
         )}</td><td>${f.status}</td><td>${f.transactionId}</td><td>${f.version}</td><td>${
-          f.exchangeProfileId || ''
-        }</td></tr>`
+          f.calculationGroup || ''
+        }</td><td>${f.exchangeProfileId || ''}</td></tr>`
     )
     .join('');
   fs.writeFileSync(
@@ -249,7 +253,7 @@ function main() {
 </head><body>
 <h1>Rapport final — ${batch.batchId}</h1>
 <pre>${JSON.stringify(finalReport.summary, null, 2)}</pre>
-<table><thead><tr><th>ID</th><th>expected</th><th>selected</th><th>CNF</th><th>status</th><th>tx</th><th>version</th><th>exchange</th></tr></thead>
+<table><thead><tr><th>ID</th><th>expected</th><th>selected</th><th>CNF</th><th>status</th><th>tx</th><th>version</th><th>group</th><th>exchange</th></tr></thead>
 <tbody>${rowsHtml}</tbody></table>
 </body></html>`,
     'utf8'

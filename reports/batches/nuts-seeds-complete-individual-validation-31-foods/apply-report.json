@@ -1,0 +1,608 @@
+{
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods",
+  "dryRun": false,
+  "appliedAt": "2026-07-30T17:58:49.655Z",
+  "applied": [
+    {
+      "id": "noix-graines-peanuts",
+      "operation": "update",
+      "recordId": "3396",
+      "expectedRecordId": "3396",
+      "selectedRecordId": "3396",
+      "transactionId": "5fad3c8e-75c7-434c-922b-271026d78dcb",
+      "nutrients": {
+        "proteinG": 2.6,
+        "carbsG": 1.6,
+        "fiberG": 0.8,
+        "fatG": 4.9,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-peanut-almond-butter",
+      "operation": "update",
+      "recordId": "6289",
+      "expectedRecordId": "6289",
+      "selectedRecordId": "6289",
+      "transactionId": "9170c715-36c7-4620-9972-d49038a7e82d",
+      "nutrients": {
+        "proteinG": 2.5,
+        "carbsG": 2.3,
+        "fiberG": 0.8,
+        "fatG": 5.2,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 61
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-tahini",
+      "operation": "update",
+      "recordId": "2593",
+      "expectedRecordId": "2593",
+      "selectedRecordId": "2593",
+      "transactionId": "9eb4514a-842d-4592-9d46-f1b11d7d77a9",
+      "nutrients": {
+        "proteinG": 1.7,
+        "carbsG": 2.1,
+        "fiberG": 0.9,
+        "fatG": 5.4,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 60
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-hemp-seeds",
+      "operation": "update",
+      "recordId": "7568",
+      "expectedRecordId": "7568",
+      "selectedRecordId": "7568",
+      "transactionId": "901db606-c224-46bd-8ee4-e21d55674d74",
+      "nutrients": {
+        "proteinG": 3.2,
+        "carbsG": 0.9,
+        "fiberG": 0.4,
+        "fatG": 4.9,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 55
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-ground-chia-seeds",
+      "operation": "update",
+      "recordId": "2511",
+      "expectedRecordId": "2511",
+      "selectedRecordId": "2511",
+      "transactionId": "a9c56873-086f-4e07-8a2e-b4c01b5b7493",
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 4.6,
+        "fiberG": 3.8,
+        "fatG": 3.4,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 0.3,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-ground-flax-seeds",
+      "operation": "update",
+      "recordId": "4528",
+      "expectedRecordId": "4528",
+      "selectedRecordId": "4528",
+      "transactionId": "b324f55b-0ca1-41e2-8a9d-cc3a10c67aeb",
+      "nutrients": {
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 1.9,
+        "fatG": 3,
+        "saturatedFatG": 0.3,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 0.5,
+        "declaredKcal": 37
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-roasted-pumpkin-seeds",
+      "operation": "update",
+      "recordId": "2517",
+      "expectedRecordId": "2517",
+      "selectedRecordId": "2517",
+      "transactionId": "2328626d-40d4-4f18-8b22-8ed6a73052db",
+      "nutrients": {
+        "proteinG": 3,
+        "carbsG": 1.5,
+        "fiberG": 0.7,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-dehydrated-pine-nuts",
+      "operation": "update",
+      "recordId": "2586",
+      "expectedRecordId": "2586",
+      "selectedRecordId": "2586",
+      "transactionId": "6b634524-674a-49a9-adc3-089c511d1cf0",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.2,
+        "fiberG": 0.3,
+        "fatG": 6.2,
+        "saturatedFatG": 0.4,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 61
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-sesame-seeds",
+      "operation": "update",
+      "recordId": "2611",
+      "expectedRecordId": "2611",
+      "selectedRecordId": "2611",
+      "transactionId": "b696f272-e3bf-4e9b-8663-acdf4e43c6de",
+      "nutrients": {
+        "proteinG": 1.6,
+        "carbsG": 0.9,
+        "fiberG": 0.9,
+        "fatG": 4.9,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 1.9,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-oil-roasted-sunflower-seeds",
+      "operation": "update",
+      "recordId": "2642",
+      "expectedRecordId": "2642",
+      "selectedRecordId": "2642",
+      "transactionId": "6f83b917-fb0b-4587-ba12-aa8baf8a41f4",
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 4.6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 53
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-hummus",
+      "operation": "update",
+      "recordId": "4870",
+      "expectedRecordId": "4870",
+      "selectedRecordId": "4870",
+      "transactionId": "f6d92991-439a-4504-be76-811527fb8d5a",
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 4.7,
+        "fiberG": 1.7,
+        "fatG": 5.5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 73
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-cashews",
+      "operation": "update",
+      "recordId": "5709",
+      "expectedRecordId": "5709",
+      "selectedRecordId": "5709",
+      "transactionId": "f141758f-c060-49f7-8851-8fb715594d11",
+      "nutrients": {
+        "proteinG": 2.2,
+        "carbsG": 3.6,
+        "fiberG": 0.4,
+        "fatG": 5.3,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 66
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-shredded-coconut",
+      "operation": "update",
+      "recordId": "2559",
+      "expectedRecordId": "2559",
+      "selectedRecordId": "2559",
+      "transactionId": "1a7026da-8787-430c-868e-89c359311792",
+      "nutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 3.2,
+        "saturatedFatG": 2.9,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 33
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-walnuts",
+      "operation": "update",
+      "recordId": "2590",
+      "expectedRecordId": "2590",
+      "selectedRecordId": "2590",
+      "transactionId": "7870299a-deb5-4f4a-8341-00c3cb97c844",
+      "nutrients": {
+        "proteinG": 1.2,
+        "carbsG": 1.1,
+        "fiberG": 0.5,
+        "fatG": 5.2,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 3.8,
+        "monounsaturatedFatG": 0.7,
+        "declaredKcal": 52
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-brazil-nuts",
+      "operation": "update",
+      "recordId": "2544",
+      "expectedRecordId": "2544",
+      "selectedRecordId": "2544",
+      "transactionId": "dc78dd46-8137-4535-95fa-219722ae65d0",
+      "nutrients": {
+        "proteinG": 1.4,
+        "carbsG": 1.2,
+        "fiberG": 0.8,
+        "fatG": 6.7,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 2.4,
+        "monounsaturatedFatG": 2.4,
+        "declaredKcal": 66
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-macadamia-nuts",
+      "operation": "update",
+      "recordId": "2575",
+      "expectedRecordId": "2575",
+      "selectedRecordId": "2575",
+      "transactionId": "65d7703d-893a-46fd-8f34-4955123f15b6",
+      "nutrients": {
+        "proteinG": 0.9,
+        "carbsG": 1.7,
+        "fiberG": 1,
+        "fatG": 9.1,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 7.1,
+        "declaredKcal": 86
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-oil-roasted-pecans",
+      "operation": "update",
+      "recordId": "2584",
+      "expectedRecordId": "2584",
+      "selectedRecordId": "2584",
+      "transactionId": "634c65e0-4ad0-4bb0-b311-593a2e4f5333",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1,
+        "fiberG": 0.8,
+        "fatG": 6,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 1.9,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 57
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-raw-pistachios",
+      "operation": "update",
+      "recordId": "2644",
+      "expectedRecordId": "2644",
+      "selectedRecordId": "2644",
+      "transactionId": "a5d856ea-3fc5-4e8a-9958-c4b00cbcb21e",
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2.4,
+        "fiberG": 0.8,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.3,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 50
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-cup-soybeans-or-edamame",
+      "operation": "update",
+      "recordId": "2209",
+      "expectedRecordId": "2209",
+      "selectedRecordId": "2209",
+      "transactionId": "9e403f45-4b91-4117-94d0-d19d236dcd34",
+      "nutrients": {
+        "proteinG": 11.7,
+        "carbsG": 10.5,
+        "fiberG": 4,
+        "fatG": 6.1,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.9,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 134
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-homemade-protein-granola",
+      "operation": "update",
+      "recordId": "1222",
+      "expectedRecordId": "1222",
+      "selectedRecordId": "1222",
+      "transactionId": "1911e2c1-3c78-44fe-819b-65a837426b06",
+      "nutrients": {
+        "proteinG": 4.5,
+        "carbsG": 15.9,
+        "fiberG": 2.6,
+        "fatG": 7.3,
+        "saturatedFatG": 1.4,
+        "polyunsaturatedFatG": 3.2,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 147
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-natural-cashew-butter",
+      "operation": "update",
+      "recordId": "2548",
+      "expectedRecordId": "2548",
+      "selectedRecordId": "2548",
+      "transactionId": "a6bca76c-c3ac-4640-bb10-955e27fef40d",
+      "nutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3,
+        "fiberG": 0.2,
+        "fatG": 5.4,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 65
+      },
+      "version": 3
+    },
+    {
+      "id": "noix-graines-almond-butter-plain",
+      "operation": "add",
+      "recordId": "2605",
+      "expectedRecordId": "2605",
+      "selectedRecordId": "2605",
+      "transactionId": "be5e2b47-9223-474b-9f34-93f8e90ca3de",
+      "nutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.1,
+        "fiberG": 1.1,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 3.6,
+        "declaredKcal": 68
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-hazelnuts-dried",
+      "operation": "add",
+      "recordId": "2567",
+      "expectedRecordId": "2567",
+      "selectedRecordId": "2567",
+      "transactionId": "f841c932-bbbc-4435-9c54-b90e0d43d223",
+      "nutrients": {
+        "proteinG": 1.8,
+        "carbsG": 2,
+        "fiberG": 1.2,
+        "fatG": 7.3,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5.5,
+        "declaredKcal": 75
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-mixed-nuts-dry-roasted-unsalted",
+      "operation": "add",
+      "recordId": "2577",
+      "expectedRecordId": "2577",
+      "selectedRecordId": "2577",
+      "transactionId": "11d35436-8f41-4e8c-98f3-0259c2036e0e",
+      "nutrients": {
+        "proteinG": 2.9,
+        "carbsG": 3.4,
+        "fiberG": 1,
+        "fatG": 8,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 5.2,
+        "declaredKcal": 91
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-sunflower-seed-butter",
+      "operation": "add",
+      "recordId": "2529",
+      "expectedRecordId": "2529",
+      "selectedRecordId": "2529",
+      "transactionId": "d5230f93-7816-4d20-89bc-18abb992ed84",
+      "nutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.6,
+        "fiberG": 0.6,
+        "fatG": 6.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.1,
+        "monounsaturatedFatG": 4.3,
+        "declaredKcal": 68
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-pecans-dried",
+      "operation": "add",
+      "recordId": "2582",
+      "expectedRecordId": "2582",
+      "selectedRecordId": "2582",
+      "transactionId": "e4ff6a0f-33ae-489f-92d8-bd4fccbfe685",
+      "nutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.1,
+        "fiberG": 0.8,
+        "fatG": 5.8,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.7,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 55
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-pistachios-dry-roasted",
+      "operation": "add",
+      "recordId": "2588",
+      "expectedRecordId": "2588",
+      "selectedRecordId": "2588",
+      "transactionId": "d5911a61-d354-4d6d-bf57-001449728c21",
+      "nutrients": {
+        "proteinG": 1.9,
+        "carbsG": 2.5,
+        "fiberG": 0.9,
+        "fatG": 4.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 1.2,
+        "monounsaturatedFatG": 2.2,
+        "declaredKcal": 51
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-roasted-soy-nuts-unsalted",
+      "operation": "add",
+      "recordId": "2580",
+      "expectedRecordId": "2580",
+      "selectedRecordId": "2580",
+      "transactionId": "af86f7f3-9176-4c5d-860c-9d783f0e4e02",
+      "nutrients": {
+        "proteinG": 5.8,
+        "carbsG": 4.5,
+        "fiberG": 2.7,
+        "fatG": 3.8,
+        "saturatedFatG": 0.6,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 0.8,
+        "declaredKcal": 70
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-roasted-chestnuts",
+      "operation": "add",
+      "recordId": "2594",
+      "expectedRecordId": "2594",
+      "selectedRecordId": "2594",
+      "transactionId": "7d29215d-f2ae-46e6-929b-a352c6518e91",
+      "nutrients": {
+        "proteinG": 1,
+        "carbsG": 15.9,
+        "fiberG": 1.5,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 74
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-peanuts-dry-roasted-unsalted",
+      "operation": "add",
+      "recordId": "3362",
+      "expectedRecordId": "3362",
+      "selectedRecordId": "3362",
+      "transactionId": "f2103ac5-f9ce-4702-b27d-fa24273565f6",
+      "nutrients": {
+        "proteinG": 2.4,
+        "carbsG": 2.1,
+        "fiberG": 0.8,
+        "fatG": 5,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2.6,
+        "declaredKcal": 59
+      },
+      "version": 3,
+      "startedUnverified": true
+    },
+    {
+      "id": "noix-graines-pumpkin-seeds-dried",
+      "operation": "add",
+      "recordId": "2516",
+      "expectedRecordId": "2516",
+      "selectedRecordId": "2516",
+      "transactionId": "2b224670-9387-46b7-a43f-ccfcbe04e825",
+      "nutrients": {
+        "proteinG": 3,
+        "carbsG": 1.1,
+        "fiberG": 0.6,
+        "fatG": 4.9,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 2.1,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 56
+      },
+      "version": 3,
+      "startedUnverified": true
+    }
+  ],
+  "dataHash": "64ea5cf53ad54bdbd449c56d32ffaf28811bb10dcf8ccfd34869739ddd0c181a",
+  "foodCount": 227
+}

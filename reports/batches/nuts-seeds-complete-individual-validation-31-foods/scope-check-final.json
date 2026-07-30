@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 196,
+  "protectedFoodsDataHash": "6282bb9f09779d39a52caa60dbb49979650a977ef5ef4182e59f166d28214066",
+  "foodCount": 227,
+  "checkedAt": "2026-07-30T17:59:12.716Z",
+  "batchId": "nuts-seeds-complete-individual-validation-31-foods"
+}
