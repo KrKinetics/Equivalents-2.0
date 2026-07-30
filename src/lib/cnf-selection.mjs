@@ -72,6 +72,13 @@ export function excludesConcept(haystack, concept) {
     }
     return /\bhydrogenated\b/.test(text);
   }
+  if (needle === 'rinsed') {
+    // "not rinsed" / "non rinsed" / "unrinsed" must not count as rinsed.
+    if (/\b(?:not|non)[- ]?rinsed\b/.test(text) || /\bunrinsed\b/.test(text)) {
+      return false;
+    }
+    return /\brinsed\b/.test(text);
+  }
   return new RegExp(`\\b${needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(text);
 }
 

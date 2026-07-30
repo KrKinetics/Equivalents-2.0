@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "errors": [],
+  "divergences": [],
+  "protectedFoodCount": 220,
+  "protectedFoodsDataHash": "1113e327c57bd727c737a8486a4a2abb89928eb2a2b2b1d214052d97733b1c9b",
+  "foodCount": 257,
+  "checkedAt": "2026-07-30T19:39:47.337Z",
+  "batchId": "meat-poultry-complete-individual-validation-37-foods",
+  "projectedOk": true,
+  "projectionErrors": []
+}
