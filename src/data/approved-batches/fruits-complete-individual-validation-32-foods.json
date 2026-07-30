@@ -1,0 +1,1534 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "fruits-complete-individual-validation-32-foods",
+  "title": "KR Kinetics — Validation individuelle complète des fruits",
+  "status": "approved_for_implementation",
+  "approvedBy": "KR Kinetics",
+  "approvedAt": "2026-07-30",
+  "purpose": "Vérifier individuellement les 29 fruits restants, remplacer l'entrée de jus générique par un jus d'orange précis et ajouter trois jus 100 % purs, tout en protégeant strictement les 179 autres aliments existants.",
+  "scope": {
+    "existingFoodCount": 208,
+    "newFoodCount": 3,
+    "expectedFinalFoodCount": 211,
+    "pilotFoodCount": 32,
+    "protectedFoodCount": 179,
+    "allowedFoodIds": [
+      "fruits-apricots",
+      "fruits-pineapple",
+      "fruits-banana",
+      "fruits-dried-goji-berries",
+      "fruits-cantaloupe",
+      "fruits-cherries-with-pits",
+      "fruits-clementines",
+      "fruits-medjool-date",
+      "fruits-unsweetened-applesauce",
+      "fruits-strawberries",
+      "fruits-raspberries",
+      "fruits-pure-fruit-juice-no-added-sugar",
+      "fruits-small-kiwis",
+      "fruits-mango",
+      "fruits-watermelon",
+      "fruits-blackberries",
+      "fruits-nectarine",
+      "fruits-orange",
+      "fruits-grapefruit",
+      "fruits-peach",
+      "fruits-pear",
+      "fruits-apple",
+      "fruits-pomegranate",
+      "fruits-plums",
+      "fruits-prunes",
+      "fruits-raisins",
+      "fruits-large-grapes",
+      "fruits-deglet-nour-dates",
+      "fruits-lightly-sweetened-dried-cranberries",
+      "fruits-apple-juice-100-pure-no-added-sugar",
+      "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "fruits-grapefruit-juice-100-pure-no-added-sugar"
+    ]
+  },
+  "sourcePolicy": {
+    "genericFoods": {
+      "preferredSource": "Canadian Nutrient File 2026",
+      "publisher": "Health Canada",
+      "datasetId": "1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "portalPage": "https://open.canada.ca/data/en/dataset/1b6139bd-ed7e-4043-bc28-ff00e10f3109",
+      "rule": "Chaque aliment utilise le record CNF 2026 exact inscrit dans sourcePlan.expectedRecordId. Les valeurs sont converties depuis 100 g vers la portion canonique approuvée."
+    },
+    "brandedFoods": {
+      "preferredSource": "Official manufacturer nutrition page",
+      "publisher": "N/A",
+      "rule": "Aucun produit de marque dans ce lot."
+    }
+  },
+  "roundingPolicy": {
+    "sourceValues": "Conserver la précision complète du CNF.",
+    "derivedValues": "Conserver la précision complète dans derivedUnrounded.",
+    "storedMacrosG": "Arrondir à 0,1 g.",
+    "storedKcal": "Arrondir à l'entier le plus proche.",
+    "displayFrench": "Afficher une virgule décimale.",
+    "zeroRule": "Une valeur confirmée inférieure à 0,05 g s'affiche 0 g; une valeur inconnue reste null.",
+    "fourFourNine": "Utiliser 4-4-9 comme contrôle uniquement et documenter toute différence légitime avec le record CNF concret."
+  },
+  "genericFoodNutrientsRequired": [
+    "energy_kcal",
+    "protein_g",
+    "carbohydrate_g",
+    "fibre_g",
+    "total_fat_g",
+    "saturated_fat_g",
+    "polyunsaturated_fat_g",
+    "monounsaturated_fat_g"
+  ],
+  "foods": [
+    {
+      "operation": "update",
+      "id": "fruits-apricots",
+      "lockedIdentity": {
+        "fr": "Abricots frais, crus",
+        "en": "Apricots, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened",
+          "cooked"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml d'abricots frais tranchés (140 g)",
+        "labelEn": "250 ml sliced fresh apricots (140 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 140
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1498",
+        "matchKeywordsEn": [
+          "Apricot, raw"
+        ],
+        "mustContainConcepts": [
+          "Apricot, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened",
+          "cooked"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1498: Apricot, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-pineapple",
+      "lockedIdentity": {
+        "fr": "Ananas frais, cru",
+        "en": "Pineapple, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "juice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "175 ml d'ananas frais en morceaux (110 g)",
+        "labelEn": "175 ml fresh pineapple chunks (110 g)",
+        "amount": 175,
+        "unit": "ml",
+        "grams": 110
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1734",
+        "matchKeywordsEn": [
+          "Pineapple, raw"
+        ],
+        "mustContainConcepts": [
+          "Pineapple, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "juice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1734: Pineapple, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-banana",
+      "lockedIdentity": {
+        "fr": "Banane fraîche, crue",
+        "en": "Banana, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "dehydrated",
+          "powder",
+          "chips",
+          "cooked",
+          "pepper"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "½ banane moyenne (60 g)",
+        "labelEn": "½ medium banana (60 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 60
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1704",
+        "matchKeywordsEn": [
+          "Banana, raw"
+        ],
+        "mustContainConcepts": [
+          "Banana, raw"
+        ],
+        "mustNotContainConcepts": [
+          "dehydrated",
+          "powder",
+          "chips",
+          "cooked",
+          "pepper"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1704: Banana, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-dried-goji-berries",
+      "lockedIdentity": {
+        "fr": "Baies de goji séchées",
+        "en": "Goji berries, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "juice",
+          "fresh"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "20 g de baies de goji séchées",
+        "labelEn": "20 g dried goji berries",
+        "amount": 20,
+        "unit": "g",
+        "grams": 20
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "7596",
+        "matchKeywordsEn": [
+          "Goji berries, dried"
+        ],
+        "mustContainConcepts": [
+          "Goji berries, dried"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "fresh"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 7596: Goji berries, dried."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-cantaloupe",
+      "lockedIdentity": {
+        "fr": "Cantaloup frais, cru",
+        "en": "Cantaloupe, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "sweetened",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de cantaloup frais en cubes (165 g)",
+        "labelEn": "250 ml fresh cantaloupe cubes (165 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 165
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1721",
+        "matchKeywordsEn": [
+          "Melon, cantaloupe, raw"
+        ],
+        "mustContainConcepts": [
+          "Melon, cantaloupe, raw"
+        ],
+        "mustNotContainConcepts": [
+          "frozen",
+          "sweetened",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1721: Melon, cantaloupe, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-cherries-with-pits",
+      "lockedIdentity": {
+        "fr": "Cerises douces fraîches, crues",
+        "en": "Sweet cherries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "sour",
+          "canned",
+          "frozen",
+          "sweetened",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "15 cerises douces, poids comestible sans noyaux (95 g)",
+        "labelEn": "15 sweet cherries, edible weight without pits (95 g)",
+        "amount": 15,
+        "unit": "count",
+        "grams": 95
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1531",
+        "matchKeywordsEn": [
+          "Cherry, sweet, raw"
+        ],
+        "mustContainConcepts": [
+          "Cherry, sweet, raw"
+        ],
+        "mustNotContainConcepts": [
+          "sour",
+          "canned",
+          "frozen",
+          "sweetened",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1531: Cherry, sweet, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-clementines",
+      "lockedIdentity": {
+        "fr": "Clémentines fraîches, crues",
+        "en": "Clementines, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 petites clémentines, poids comestible (125 g)",
+        "labelEn": "2 small clementines, edible weight (125 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 125
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5956",
+        "matchKeywordsEn": [
+          "Clementine, raw"
+        ],
+        "mustContainConcepts": [
+          "Clementine, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5956: Clementine, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-medjool-date",
+      "lockedIdentity": {
+        "fr": "Datte Medjool séchée",
+        "en": "Medjool date, dried",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "syrup",
+          "paste"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 datte Medjool (24 g)",
+        "labelEn": "1 Medjool date (24 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 24
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5401",
+        "matchKeywordsEn": [
+          "Date, medjool"
+        ],
+        "mustContainConcepts": [
+          "Date, medjool"
+        ],
+        "mustNotContainConcepts": [
+          "syrup",
+          "paste"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5401: Date, medjool."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-unsweetened-applesauce",
+      "lockedIdentity": {
+        "fr": "Compote de pommes non sucrée",
+        "en": "Unsweetened applesauce",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "sweetened",
+          "babyfood"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de compote de pommes non sucrée (129 g)",
+        "labelEn": "125 ml unsweetened applesauce (129 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 129
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1700",
+        "matchKeywordsEn": [
+          "Applesauce, canned, unsweetened"
+        ],
+        "mustContainConcepts": [
+          "Applesauce, canned, unsweetened"
+        ],
+        "mustNotContainConcepts": [
+          "sweetened",
+          "babyfood"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1700: Applesauce, canned, unsweetened."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-strawberries",
+      "lockedIdentity": {
+        "fr": "Fraises fraîches, crues",
+        "en": "Strawberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "frozen",
+          "sweetened",
+          "canned",
+          "guava"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de fraises fraîches (160 g)",
+        "labelEn": "250 ml fresh strawberries (160 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 160
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1749",
+        "matchKeywordsEn": [
+          "Strawberry, raw"
+        ],
+        "mustContainConcepts": [
+          "Strawberry, raw"
+        ],
+        "mustNotContainConcepts": [
+          "frozen",
+          "sweetened",
+          "canned",
+          "guava"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1749: Strawberry, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-raspberries",
+      "lockedIdentity": {
+        "fr": "Framboises fraîches, crues",
+        "en": "Raspberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "puree"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de framboises fraîches (130 g)",
+        "labelEn": "250 ml fresh raspberries (130 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 130
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1747",
+        "matchKeywordsEn": [
+          "Raspberry, raw"
+        ],
+        "mustContainConcepts": [
+          "Raspberry, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "frozen",
+          "sweetened",
+          "puree"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1747: Raspberry, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-pure-fruit-juice-no-added-sugar",
+      "lockedIdentity": {
+        "fr": "Jus d'orange 100 % pur, sans sucre ajouté",
+        "en": "100% pure orange juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de jus d'orange 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure orange juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1619",
+        "matchKeywordsEn": [
+          "Orange juice, raw"
+        ],
+        "mustContainConcepts": [
+          "Orange juice, raw"
+        ],
+        "mustNotContainConcepts": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1619: Orange juice, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-small-kiwis",
+      "lockedIdentity": {
+        "fr": "Kiwis verts frais, crus",
+        "en": "Green kiwifruit, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "golden",
+          "juice",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 petits kiwis, poids comestible (100 g)",
+        "labelEn": "2 small kiwifruit, edible weight (100 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1585",
+        "matchKeywordsEn": [
+          "Kiwi fruit, raw"
+        ],
+        "mustContainConcepts": [
+          "Kiwi fruit, raw"
+        ],
+        "mustNotContainConcepts": [
+          "golden",
+          "juice",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1585: Kiwi fruit, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-mango",
+      "lockedIdentity": {
+        "fr": "Mangue fraîche, crue",
+        "en": "Mango, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "dried",
+          "sweetened",
+          "nectar",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "½ mangue, poids comestible (110 g)",
+        "labelEn": "½ mango, edible weight (110 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 110
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1603",
+        "matchKeywordsEn": [
+          "Mango, raw"
+        ],
+        "mustContainConcepts": [
+          "Mango, raw"
+        ],
+        "mustNotContainConcepts": [
+          "dried",
+          "sweetened",
+          "nectar",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1603: Mango, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-watermelon",
+      "lockedIdentity": {
+        "fr": "Melon d'eau frais, cru",
+        "en": "Watermelon, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "seeds"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "300 ml de melon d'eau en cubes (200 g)",
+        "labelEn": "300 ml watermelon cubes (200 g)",
+        "amount": 300,
+        "unit": "ml",
+        "grams": 200
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1691",
+        "matchKeywordsEn": [
+          "Watermelon, raw"
+        ],
+        "mustContainConcepts": [
+          "Watermelon, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "seeds"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1691: Watermelon, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-blackberries",
+      "lockedIdentity": {
+        "fr": "Mûres fraîches, crues",
+        "en": "Blackberries, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "wild",
+          "frozen",
+          "canned",
+          "juice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "250 ml de mûres fraîches (152 g)",
+        "labelEn": "250 ml fresh blackberries (152 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 152
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1515",
+        "matchKeywordsEn": [
+          "Blackberry, raw"
+        ],
+        "mustContainConcepts": [
+          "Blackberry, raw"
+        ],
+        "mustNotContainConcepts": [
+          "wild",
+          "frozen",
+          "canned",
+          "juice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1515: Blackberry, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-nectarine",
+      "lockedIdentity": {
+        "fr": "Nectarine fraîche, crue",
+        "en": "Nectarine, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 nectarine moyenne, poids comestible (142 g)",
+        "labelEn": "1 medium nectarine, edible weight (142 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 142
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1611",
+        "matchKeywordsEn": [
+          "Nectarine, raw"
+        ],
+        "mustContainConcepts": [
+          "Nectarine, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dried"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1611: Nectarine, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-orange",
+      "lockedIdentity": {
+        "fr": "Orange fraîche, crue, variété commerciale",
+        "en": "Orange, fresh, raw, commercial variety",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "peel",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 orange moyenne, poids comestible (131 g)",
+        "labelEn": "1 medium orange, edible weight (131 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 131
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1722",
+        "matchKeywordsEn": [
+          "Orange, all commercial varieties, raw"
+        ],
+        "mustContainConcepts": [
+          "Orange, all commercial varieties, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "peel",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1722: Orange, all commercial varieties, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-grapefruit",
+      "lockedIdentity": {
+        "fr": "Pamplemousse frais, cru",
+        "en": "Grapefruit, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "canned",
+          "sweetened"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "½ gros pamplemousse, poids comestible (185 g)",
+        "labelEn": "½ large grapefruit, edible weight (185 g)",
+        "amount": 0.5,
+        "unit": "piece",
+        "grams": 185
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1714",
+        "matchKeywordsEn": [
+          "Grapefruit, pink, red or white, all areas, raw"
+        ],
+        "mustContainConcepts": [
+          "Grapefruit, pink, red or white, all areas, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "canned",
+          "sweetened"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1714: Grapefruit, pink, red or white, all areas, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-peach",
+      "lockedIdentity": {
+        "fr": "Pêche fraîche, crue",
+        "en": "Peach, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 pêche moyenne, poids comestible (150 g)",
+        "labelEn": "1 medium peach, edible weight (150 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 150
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1728",
+        "matchKeywordsEn": [
+          "Peach, raw"
+        ],
+        "mustContainConcepts": [
+          "Peach, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dried",
+          "frozen",
+          "sweetened"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1728: Peach, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-pear",
+      "lockedIdentity": {
+        "fr": "Poire fraîche avec pelure, crue",
+        "en": "Pear, fresh, raw, with skin",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "nectar",
+          "asian"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 petite poire, poids comestible (100 g)",
+        "labelEn": "1 small pear, edible weight (100 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 100
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1731",
+        "matchKeywordsEn": [
+          "Pear, raw, with skin"
+        ],
+        "mustContainConcepts": [
+          "Pear, raw, with skin"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dried",
+          "nectar",
+          "asian"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1731: Pear, raw, with skin."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-apple",
+      "lockedIdentity": {
+        "fr": "Pomme fraîche avec pelure, crue",
+        "en": "Apple, fresh, raw, with skin",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "cooked",
+          "without skin",
+          "dried",
+          "frozen"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "1 petite pomme, poids comestible (110 g)",
+        "labelEn": "1 small apple, edible weight (110 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 110
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1696",
+        "matchKeywordsEn": [
+          "Apple, raw, with skin"
+        ],
+        "mustContainConcepts": [
+          "Apple, raw, with skin"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "cooked",
+          "without skin",
+          "dried",
+          "frozen"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1696: Apple, raw, with skin."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-pomegranate",
+      "lockedIdentity": {
+        "fr": "Arilles de grenade fraîches, crues",
+        "en": "Pomegranate arils, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml d'arilles de grenade (80 g)",
+        "labelEn": "125 ml pomegranate arils (80 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 80
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1667",
+        "matchKeywordsEn": [
+          "Pomegranate, raw"
+        ],
+        "mustContainConcepts": [
+          "Pomegranate, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1667: Pomegranate, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-plums",
+      "lockedIdentity": {
+        "fr": "Prunes fraîches, crues",
+        "en": "Plums, fresh, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "canned",
+          "dried",
+          "java",
+          "natalplum"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "2 prunes moyennes, poids comestible (130 g)",
+        "labelEn": "2 medium plums, edible weight (130 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 130
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1740",
+        "matchKeywordsEn": [
+          "Plum, raw"
+        ],
+        "mustContainConcepts": [
+          "Plum, raw"
+        ],
+        "mustNotContainConcepts": [
+          "canned",
+          "dried",
+          "java",
+          "natalplum"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1740: Plum, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-prunes",
+      "lockedIdentity": {
+        "fr": "Pruneaux séchés, non cuits",
+        "en": "Prunes, dried, uncooked",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "cooked",
+          "juice",
+          "puree",
+          "canned"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "25 g de pruneaux (environ 2 à 3)",
+        "labelEn": "25 g dried prunes (about 2 to 3)",
+        "amount": 25,
+        "unit": "g",
+        "grams": 25
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1742",
+        "matchKeywordsEn": [
+          "Prune, dried, uncooked"
+        ],
+        "mustContainConcepts": [
+          "Prune, dried, uncooked"
+        ],
+        "mustNotContainConcepts": [
+          "cooked",
+          "juice",
+          "puree",
+          "canned"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1742: Prune, dried, uncooked."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-raisins",
+      "lockedIdentity": {
+        "fr": "Raisins secs sans pépins",
+        "en": "Seedless raisins (sultanas)",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "golden",
+          "seeded",
+          "cereal"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "30 ml de raisins secs (20 g)",
+        "labelEn": "30 ml seedless raisins (20 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 20
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1745",
+        "matchKeywordsEn": [
+          "Raisin, seedless (sultana)"
+        ],
+        "mustContainConcepts": [
+          "Raisin, seedless (sultana)"
+        ],
+        "mustNotContainConcepts": [
+          "golden",
+          "seeded",
+          "cereal"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1745: Raisin, seedless (sultana)."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-large-grapes",
+      "lockedIdentity": {
+        "fr": "Raisins rouges ou verts sans pépins, crus",
+        "en": "Red or green seedless grapes, raw",
+        "preparationState": "raw",
+        "exclusions": [
+          "juice",
+          "dried",
+          "slip skin"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "17 gros raisins (85 g)",
+        "labelEn": "17 large grapes (85 g)",
+        "amount": 17,
+        "unit": "count",
+        "grams": 85
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1718",
+        "matchKeywordsEn": [
+          "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw"
+        ],
+        "mustContainConcepts": [
+          "Grape, red or green (European type, such as Thompson seedless), adherent skin, raw"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "dried",
+          "slip skin"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1718: Grape, red or green (European type, such as Thompson seedless), adherent skin, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-deglet-nour-dates",
+      "lockedIdentity": {
+        "fr": "Dattes sèches naturelles, petit format",
+        "en": "Natural dried dates, small variety",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "medjool",
+          "paste",
+          "syrup"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "3 petites dattes sèches (21 g)",
+        "labelEn": "3 small dried dates (21 g)",
+        "amount": 3,
+        "unit": "count",
+        "grams": 21
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1710",
+        "matchKeywordsEn": [
+          "Date, domestic, natural and dry"
+        ],
+        "mustContainConcepts": [
+          "Date, domestic, natural and dry"
+        ],
+        "mustNotContainConcepts": [
+          "medjool",
+          "paste",
+          "syrup"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1710: Date, domestic, natural and dry."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "update",
+      "id": "fruits-lightly-sweetened-dried-cranberries",
+      "lockedIdentity": {
+        "fr": "Canneberges séchées sucrées",
+        "en": "Sweetened dried cranberries",
+        "preparationState": "dry_uncooked",
+        "exclusions": [
+          "juice",
+          "raw",
+          "cheese"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "18 g de canneberges séchées sucrées",
+        "labelEn": "18 g sweetened dried cranberries",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "5390",
+        "matchKeywordsEn": [
+          "Cranberry, dried, sweetened"
+        ],
+        "mustContainConcepts": [
+          "Cranberry, dried, sweetened"
+        ],
+        "mustNotContainConcepts": [
+          "juice",
+          "raw",
+          "cheese"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 5390: Cranberry, dried, sweetened."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "fruits-apple-juice-100-pure-no-added-sugar",
+      "lockedIdentity": {
+        "fr": "Jus de pomme 100 % pur, sans sucre ajouté",
+        "en": "100% pure apple juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate",
+          "babyfood"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de jus de pomme 100 % pur (131 g)",
+        "labelEn": "125 ml 100% pure apple juice (131 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 131
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1495",
+        "matchKeywordsEn": [
+          "Apple juice, canned or bottled, without added vitamin C"
+        ],
+        "mustContainConcepts": [
+          "Apple juice, canned or bottled, without added vitamin C"
+        ],
+        "mustNotContainConcepts": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate",
+          "babyfood"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1495: Apple juice, canned or bottled, without added vitamin C."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "fruits-pineapple-juice-100-pure-no-added-sugar",
+      "lockedIdentity": {
+        "fr": "Jus d'ananas 100 % pur, sans sucre ajouté",
+        "en": "100% pure pineapple juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de jus d'ananas 100 % pur (132 g)",
+        "labelEn": "125 ml 100% pure pineapple juice (132 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 132
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "1657",
+        "matchKeywordsEn": [
+          "Pineapple juice, canned, added vitamin C"
+        ],
+        "mustContainConcepts": [
+          "Pineapple juice, canned, added vitamin C"
+        ],
+        "mustNotContainConcepts": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 1657: Pineapple juice, canned, added vitamin C."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    },
+    {
+      "operation": "add",
+      "id": "fruits-grapefruit-juice-100-pure-no-added-sugar",
+      "lockedIdentity": {
+        "fr": "Jus de pamplemousse rose 100 % pur, sans sucre ajouté",
+        "en": "100% pure pink grapefruit juice, no added sugar",
+        "preparationState": "ready_to_eat",
+        "exclusions": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ]
+      },
+      "canonicalPortion": {
+        "labelFr": "125 ml de jus de pamplemousse rose 100 % pur (130 g)",
+        "labelEn": "125 ml 100% pure pink grapefruit juice (130 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 130
+      },
+      "portionDecision": "Portion approuvée individuellement pour une équivalence pratique généralement centrée autour de 15 g de glucides.",
+      "sourcePlan": {
+        "adapter": "cnf_2026",
+        "expectedRecordId": "6440",
+        "matchKeywordsEn": [
+          "Grapefruit juice, pink, raw"
+        ],
+        "mustContainConcepts": [
+          "Grapefruit juice, pink, raw"
+        ],
+        "mustNotContainConcepts": [
+          "drink",
+          "cocktail",
+          "sweetened",
+          "concentrate"
+        ],
+        "ambiguityRule": "Sélection obligatoire du CNF record 6440: Grapefruit juice, pink, raw."
+      },
+      "classification": {
+        "displayCategory": "fruits",
+        "calculationGroup": "fruit",
+        "exchangeProfileId": "fruit-standard",
+        "classificationStatus": "approved"
+      }
+    }
+  ],
+  "acceptanceCriteria": [
+    "Les 29 entrées de fruits existantes sont vérifiées individuellement.",
+    "Trois entrées de jus 100 % purs sont ajoutées et vérifiées individuellement.",
+    "Le bleuet déjà vérifié demeure strictement inchangé.",
+    "Les 179 aliments existants hors lot demeurent strictement inchangés.",
+    "La banque finale contient exactement 211 aliments.",
+    "La catégorie Fruits contient exactement 33 aliments.",
+    "Les 33 fruits sont verified après application.",
+    "Le nombre total d'aliments verified passe de 6 à 38.",
+    "Chaque entrée possède son propre recordId CNF, sa conversion, son historique et sa transaction verify.",
+    "Aucune ERROR ouverte ne demeure sur les 32 aliments traités.",
+    "Le dry-run, l'application, l'audit, le contrôle de périmètre, les tests Node, les tests navigateur et GitHub Actions réussissent."
+  ]
+}
