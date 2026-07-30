@@ -4,7 +4,13 @@
  */
 
 import validateSchema from '../generated/food-equivalents-validator.mjs';
+import { auditDataset, validateSource } from './food-audit-core.mjs';
+import { isVerifiedFood } from './food-status.mjs';
 import { collectVerificationIntegrityErrors } from './verification-integrity.mjs';
+import {
+  validateVerificationEligibility,
+  verifiedOpenErrorsMessage,
+} from './verification-eligibility.mjs';
 import {
   isValidApprovedAt,
   isValidIsoDateOnly,
@@ -156,6 +162,28 @@ export function validateReviewImport(payload) {
     for (const err of schemaErrors()) errors.push(err);
   }
 
+  const audit =
+    payload.foods.every(
+      (food) => food && typeof food === 'object' && !Array.isArray(food)
+    )
+      ? auditDataset(payload.foods)
+      : null;
+  if (audit) {
+    for (const food of payload.foods) {
+      if (!isVerifiedFood(food)) continue;
+      const eligibility = validateVerificationEligibility(food, audit.byId[food.id], {
+        sourceAuthoritative: validateSource(food).authoritative,
+      });
+      if (!eligibility.ok) {
+        errors.push({
+          path: `/foods/${food.id}/verification`,
+          message: verifiedOpenErrorsMessage(food, eligibility),
+          keyword: 'VERIFIED_WITH_OPEN_ERRORS',
+        });
+      }
+    }
+  }
+
   const seen = new Set();
   const unique = [];
   for (const err of errors) {
@@ -170,8 +198,8 @@ export function validateReviewImport(payload) {
       duplicateIds.length > 0
         ? `Import refusé: identifiant(s) dupliqué(s): ${duplicateIds.join(', ')}`
         : `Import refusé: ${unique[0].message}${unique.length > 1 ? ` (+${unique.length - 1})` : ''}`;
-    return { ok: false, duplicateIds, errors: unique, message };
+    return { ok: false, duplicateIds, errors: unique, message, audit };
   }
 
-  return { ok: true, duplicateIds: [], errors: [] };
+  return { ok: true, duplicateIds: [], errors: [], audit };
 }

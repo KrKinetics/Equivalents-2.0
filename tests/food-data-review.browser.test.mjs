@@ -82,6 +82,55 @@ function fixturePayload() {
   };
 }
 
+function eligibleFixturePayload() {
+  const payload = fixturePayload();
+  const food = payload.foods[0];
+  payload.foods = [food];
+  payload.meta.totalFoods = 1;
+  food.id = 'ui-eligible-verify';
+  food.names = { fr: 'Quinoa cuit', en: 'Cooked quinoa' };
+  food.portion = {
+    labelFr: '100 g de quinoa cuit',
+    labelEn: '100 g cooked quinoa',
+    amount: 100,
+    unit: 'g',
+    grams: 100,
+    preparationState: 'cooked',
+    brandSpecific: false,
+    brand: null,
+  };
+  food.nutrients = {
+    proteinG: 4,
+    carbsG: 21,
+    fiberG: 2,
+    fatG: 2,
+    saturatedFatG: 0.2,
+    polyunsaturatedFatG: 1,
+    monounsaturatedFatG: 0.6,
+    declaredKcal: 118,
+  };
+  food.source = {
+    type: 'canadian_nutrient_file',
+    name: 'Canadian Nutrient File',
+    recordId: 'CNF-UI-123',
+    url: null,
+    doi: null,
+    accessedAt: '2026-07-29',
+    servingDescription: '100 g cooked',
+    nutrientsBasis: 'as_consumed',
+    notes: null,
+    brand: null,
+    productName: null,
+    labelServingSize: null,
+    evidenceRef: null,
+  };
+  food.classificationStatus = 'approved';
+  food.version = 1;
+  food.history = [];
+  food.auditResolutions = [];
+  return payload;
+}
+
 let serverInfo;
 let browser;
 let page;
@@ -621,4 +670,61 @@ test('FR/EN parse previews and alerts come from auditDataset', async () => {
   assert.equal(result.previewIncludesEn, true);
   assert.equal(result.engineMatches, true);
   assert.ok(result.alertCount >= 0);
+});
+
+test('real verify button creates an exact importable transaction', async () => {
+  await page.evaluate(
+    async (payload) => window.__REVIEW_TEST__.initFrom(payload),
+    eligibleFixturePayload()
+  );
+  await page.click('.item');
+  assert.equal(await page.$eval('#btnVerify', (button) => button.disabled), false);
+
+  page.once('dialog', async (dialog) => {
+    assert.equal(dialog.type(), 'prompt');
+    await dialog.accept('UI Nutrition Reviewer');
+  });
+  await page.click('#btnVerify');
+  await page.waitForFunction(
+    () => window.__REVIEW_TEST__.getState().data.foods[0].status === 'verified'
+  );
+
+  const result = await page.evaluate(() => {
+    const api = window.__REVIEW_TEST__;
+    const food = api.getState().data.foods[0];
+    const transaction = food.history.slice(-5);
+    const expectedOldValues = {
+      status: 'unverified',
+      'verification.status': 'unverified',
+      'verification.verifiedAt': null,
+      'verification.verifiedBy': null,
+      'verification.datasetVersion': null,
+    };
+    const importResult = api.validateReviewImport(api.getState().data);
+    return {
+      transactionLength: transaction.length,
+      transactionIds: [...new Set(transaction.map((entry) => entry.transactionId))],
+      actions: [...new Set(transaction.map((entry) => entry.action))],
+      exactOldValues: transaction.every(
+        (entry) =>
+          Object.hasOwn(expectedOldValues, entry.path) &&
+          Object.is(entry.oldValue, expectedOldValues[entry.path])
+      ),
+      exactNewValues: transaction.every((entry) => {
+        const value = entry.path
+          .split('.')
+          .reduce((current, key) => current?.[key], food);
+        return Object.is(entry.newValue, value);
+      }),
+      importOk: importResult.ok,
+      importErrors: importResult.errors,
+    };
+  });
+
+  assert.equal(result.transactionLength, 5);
+  assert.equal(result.transactionIds.length, 1);
+  assert.deepEqual(result.actions, ['verify']);
+  assert.equal(result.exactOldValues, true);
+  assert.equal(result.exactNewValues, true);
+  assert.equal(result.importOk, true, JSON.stringify(result.importErrors));
 });

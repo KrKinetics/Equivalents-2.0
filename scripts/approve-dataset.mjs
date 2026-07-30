@@ -9,11 +9,15 @@ import { backupFile } from '../src/lib/backup.mjs';
 import { replaceAtomically, restoreFile } from '../src/lib/atomic-write.mjs';
 import { computeFoodsDataHash, shortHash } from '../src/lib/data-hash.mjs';
 import { bumpSemver, describeBumpPolicy } from '../src/lib/dataset-governance.mjs';
-import { auditDataset } from '../src/lib/food-audit-core.mjs';
+import { auditDataset, validateSource } from '../src/lib/food-audit-core.mjs';
 import { isActiveFood, isVerifiedFood } from '../src/lib/food-status.mjs';
 import { calculateAllGroupStatistics } from '../src/lib/group-statistics.mjs';
 import { resolvePaths } from '../src/lib/paths.mjs';
 import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
+import {
+  validateVerificationEligibility,
+  verifiedOpenErrorsMessage,
+} from '../src/lib/verification-eligibility.mjs';
 
 function parseApprovedBy(argv) {
   const equalsArg = argv.find((arg) => arg.startsWith('--by='));
@@ -88,6 +92,14 @@ function main() {
   const unapprovedGroups = Object.values(groupStatistics).filter((group) => !group.approved);
 
   const reasons = [];
+  for (const food of foods.filter((item) => isVerifiedFood(item))) {
+    const eligibility = validateVerificationEligibility(food, audited.byId[food.id], {
+      sourceAuthoritative: validateSource(food).authoritative,
+    });
+    if (!eligibility.ok) {
+      reasons.push(verifiedOpenErrorsMessage(food, eligibility));
+    }
+  }
   if (
     (audited.summary.activeBlockingErrorCount ?? audited.summary.blockingErrorCount) > 0 ||
     (audited.summary.structuralBlockingErrorCount ?? 0) > 0

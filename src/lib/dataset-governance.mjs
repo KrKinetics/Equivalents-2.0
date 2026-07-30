@@ -3,6 +3,7 @@
  */
 
 import { computeFoodsDataHash, shortHash, stableStringify } from './data-hash.mjs';
+import { auditDataset, validateSource } from './food-audit-core.mjs';
 import { getFoodStatus, isVerifiedFood } from './food-status.mjs';
 import { validateReviewImport } from './review-import.mjs';
 import {
@@ -11,7 +12,12 @@ import {
   collectVerificationIntegrityErrors,
   validateMaterialChangeHistory,
   validateVerifyTransaction,
+  validateVerifyTransition,
 } from './verification-integrity.mjs';
+import {
+  validateVerificationEligibility,
+  verifiedOpenErrorsMessage,
+} from './verification-eligibility.mjs';
 import { isMeaningfulString, isValidIsoDateTime, isValidApprovedAt } from './source-validators.mjs';
 
 export { validateReviewImport };
@@ -79,6 +85,18 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
   const allowStale = Boolean(options.allowStale);
   const staleReason = String(options.staleReason || '').trim();
   const migrationDocumented = Boolean(options.migrationDocumented);
+  const incomingAudit = auditDataset(incomingFoods);
+
+  for (const incoming of incomingFoods) {
+    if (!isVerifiedFood(incoming)) continue;
+    const auditItem = incomingAudit.byId[incoming.id];
+    const eligibility = validateVerificationEligibility(incoming, auditItem, {
+      sourceAuthoritative: validateSource(incoming).authoritative,
+    });
+    if (!eligibility.ok) {
+      errors.push(verifiedOpenErrorsMessage(incoming, eligibility));
+    }
+  }
 
   // EXPORT_HASH_MISMATCH — never bypassed by --allow-stale
   if (!exportDataHash) {
@@ -170,9 +188,7 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
         (index) => index >= curHist.length
       );
       if (isNewVerify) {
-        const newVerifyCheck = validateVerifyTransaction(incoming, {
-          requireTransactionId: true,
-        });
+        const newVerifyCheck = validateVerifyTransition(current, incoming);
         if (!newVerifyCheck.ok) {
           errors.push(`${newVerifyCheck.code}: ${incoming.id}: ${newVerifyCheck.message}`);
         }
@@ -227,12 +243,8 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     // --migration-documented must NOT bypass this rule.
     if (curWasVerified && materialChanged) {
       if (isVerifiedFood(incoming)) {
-        const verifyCheck = validateVerifyTransaction(incoming, {
-          requireTransactionId: true,
-        });
         const reverifyOk =
           nextVer > curVer &&
-          verifyCheck.ok &&
           hasPostMaterialReverify(current, incoming) &&
           isMeaningfulString(incoming.verification?.verifiedBy) &&
           isMeaningfulString(incoming.verification?.datasetVersion, { minLength: 1 }) &&
@@ -254,6 +266,7 @@ export function assertApplyGovernance(currentPayload, incomingPayload, options =
     baseDataHash,
     exportDataHash,
     actualIncomingHash,
+    audit: incomingAudit,
   };
 }
 

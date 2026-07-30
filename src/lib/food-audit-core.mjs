@@ -30,6 +30,10 @@ import {
   STRUCTURAL_BLOCKING_CODES,
   collectVerificationIntegrityErrors,
 } from './verification-integrity.mjs';
+import {
+  validateVerificationEligibility,
+  verifiedOpenErrorsMessage,
+} from './verification-eligibility.mjs';
 
 export const RESOLVABLE_CODES = new Set([
   'KCAL_DIFF_HIGH',
@@ -60,6 +64,11 @@ export const NON_RESOLVABLE_CODES = new Set([
   'VERIFICATION_HISTORY_MISSING',
   'VERIFICATION_HISTORY_INCOMPLETE',
   'VERIFICATION_HISTORY_MISMATCH',
+  'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH',
+  'VERIFICATION_TRANSACTION_ID_REUSED',
+  'VERIFICATION_TRANSACTION_NOT_CONTIGUOUS',
+  'VERIFICATION_TRANSACTION_ORDER_INVALID',
+  'VERIFIED_WITH_OPEN_ERRORS',
 ]);
 
 /** Legacy nutrient signatures that still trigger SUSPECT_CASE when name matches. */
@@ -587,6 +596,22 @@ export function auditFood(food, idCounts = new Map()) {
     }
   }
 
+  if (isVerifiedFood(food)) {
+    const eligibility = validateVerificationEligibility(
+      food,
+      { alerts },
+      { sourceAuthoritative: sourceResult.authoritative }
+    );
+    if (!eligibility.ok) {
+      push(
+        alerts,
+        'ERROR',
+        'VERIFIED_WITH_OPEN_ERRORS',
+        verifiedOpenErrorsMessage(food, eligibility)
+      );
+    }
+  }
+
   const openErrors = alerts.filter(
     (a) => a.severity === 'ERROR' && a.resolutionStatus !== 'resolved_documented'
   );
@@ -627,20 +652,11 @@ export function auditFood(food, idCounts = new Map()) {
 
 export function canMarkVerified(food, alerts = null) {
   const resultAlerts = alerts || auditFood(food).alerts;
-  const openBlocking = resultAlerts.some(
-    (a) => a.severity === 'ERROR' && a.resolutionStatus !== 'resolved_documented'
-  );
-  if (openBlocking) return false;
-  const numericCodes = new Set(['INVALID_NUMERIC_TYPE', 'NON_FINITE_VALUE', 'NEGATIVE_VALUE']);
-  if (resultAlerts.some((a) => a.severity === 'ERROR' && numericCodes.has(a.code))) return false;
-  if (!hasAuthoritativeSource(food)) return false;
-  if (hasStatusMismatch(food)) return false;
-  const portion = food.portion || {};
-  const names = food.names || {};
-  if (!names.fr || !names.en) return false;
-  if (!portion.labelFr || !portion.labelEn || portion.amount == null || !portion.unit) return false;
-  if (food.nutrients?.fatG == null) return false;
-  return true;
+  return validateVerificationEligibility(
+    food,
+    { alerts: resultAlerts },
+    { sourceAuthoritative: validateSource(food).authoritative }
+  ).ok;
 }
 
 export function auditDataset(foods) {
@@ -676,10 +692,10 @@ export function auditDataset(foods) {
   for (const item of items) {
     const food = foodById.get(item.id);
     const rejected = food ? isRejectedFood(food) : false;
-    const structuralErrors = item.alerts.filter(
-      (a) => a.severity === 'ERROR' && STRUCTURAL_BLOCKING_CODES.has(a.code)
+    const allErrors = item.alerts.filter(
+      (a) => a.severity === 'ERROR' && a.resolutionStatus !== 'resolved_documented'
     );
-    const allErrors = item.alerts.filter((a) => a.severity === 'ERROR');
+    const structuralErrors = allErrors.filter((a) => STRUCTURAL_BLOCKING_CODES.has(a.code));
     structuralBlockingErrorCount += structuralErrors.length;
 
     if (rejected) {

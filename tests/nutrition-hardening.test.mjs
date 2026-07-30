@@ -36,8 +36,10 @@ import { validateFoodEquivalentsPayload } from '../src/lib/schema-validate.mjs';
 import { getFoodStatus } from '../src/lib/food-status.mjs';
 import {
   diffMaterialData,
+  validateVerifyTransition,
   validateVerifyTransaction,
 } from '../src/lib/verification-integrity.mjs';
+import { validateVerificationEligibility } from '../src/lib/verification-eligibility.mjs';
 import {
   knownSourceReferenceIds,
   isValidApprovedAt,
@@ -118,6 +120,20 @@ function cleanFood(overrides = {}) {
     history: [],
   };
   return Object.assign(food, clone(overrides));
+}
+
+function payloadWithFoods(foods, meta = {}) {
+  const hash = computeFoodsDataHash(foods);
+  return {
+    meta: {
+      schemaVersion: 2,
+      totalFoods: foods.length,
+      baseDataHash: hash,
+      exportDataHash: hash,
+      ...meta,
+    },
+    foods,
+  };
 }
 
 function asVerified(food, meta = {}) {
@@ -233,6 +249,29 @@ function appendVerifyTransaction(food, {
       versionAfter,
     });
   }
+  return food;
+}
+
+function markVerifiedWithTransaction(food, {
+  verifiedAt = '2026-07-29T08:00:00.000Z',
+  verifiedBy = 'Eligibility Reviewer',
+  datasetVersion = '1.0.1',
+  transactionId = `verify-${food.id}-${verifiedAt}`,
+} = {}) {
+  applyFoodChange(food, {
+    patches: [
+      { path: 'status', value: 'verified' },
+      { path: 'verification.status', value: 'verified' },
+      { path: 'verification.verifiedAt', value: verifiedAt },
+      { path: 'verification.verifiedBy', value: verifiedBy },
+      { path: 'verification.datasetVersion', value: datasetVersion },
+    ],
+    by: verifiedBy,
+    action: 'verify',
+    transactionId,
+    administrative: true,
+    at: verifiedAt,
+  });
   return food;
 }
 
@@ -1151,6 +1190,155 @@ test('verified without metadata is refused by audit, import, apply and approve',
   assert.notEqual(approve.status, 0);
 });
 
+test('legacy source plus fabricated complete verify is refused everywhere', () => {
+  const legacy = cleanFood({
+    id: 'legacy-fabricated-verify',
+    source: Object.fromEntries(
+      Object.keys(cleanFood().source).map((key) => [key, null])
+    ),
+  });
+  const beforeAudit = auditFood(legacy);
+  assert.equal(beforeAudit.errorCount, 0);
+  assert.ok(beforeAudit.alerts.some((alert) => alert.code === 'LEGACY_SOURCE_ONLY'));
+
+  const current = payloadWithFoods([clone(legacy)]);
+  const incoming = clone(current);
+  markVerifiedWithTransaction(incoming.foods[0], {
+    transactionId: 'verify-legacy-source',
+  });
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+
+  const audited = auditFood(incoming.foods[0]);
+  assert.ok(audited.alerts.some((alert) => alert.code === 'INSUFFICIENT_SOURCE'));
+  assert.ok(audited.alerts.some((alert) => alert.code === 'VERIFIED_WITH_OPEN_ERRORS'));
+  assert.equal(canMarkVerified(incoming.foods[0], audited.alerts), false);
+  assert.equal(validateReviewImport(incoming).ok, false);
+
+  const governance = assertApplyGovernance(current, incoming);
+  assert.equal(governance.ok, false);
+  assert.match(governance.errors.join('\n'), /VERIFIED_WITH_OPEN_ERRORS.*INSUFFICIENT_SOURCE/);
+
+  const sandbox = makeSandbox('legacy-verify');
+  fs.writeFileSync(sandbox.data, JSON.stringify(current, null, 2), 'utf8');
+  const incomingPath = path.join(sandbox.root, 'incoming.json');
+  fs.writeFileSync(incomingPath, JSON.stringify(incoming, null, 2), 'utf8');
+  const apply = runScript(
+    'scripts/apply-food-equivalents.mjs',
+    ['--dry-run', incomingPath],
+    sandbox
+  );
+  assert.notEqual(apply.status, 0);
+  assert.match(`${apply.stdout}\n${apply.stderr}`, /VERIFIED_WITH_OPEN_ERRORS/);
+});
+
+test('open KCAL_DIFF_HIGH blocks a fabricated complete verify', () => {
+  const food = cleanFood({ id: 'open-kcal-verify' });
+  food.nutrients.declaredKcal = 500;
+  markVerifiedWithTransaction(food, { transactionId: 'verify-open-kcal' });
+  const item = auditFood(food);
+  const eligibility = validateVerificationEligibility(food, item, {
+    sourceAuthoritative: validateSource(food).authoritative,
+  });
+  assert.equal(eligibility.ok, false);
+  assert.ok(eligibility.codes.includes('KCAL_DIFF_HIGH'));
+  assert.ok(item.alerts.some((alert) => alert.code === 'VERIFIED_WITH_OPEN_ERRORS'));
+  assert.equal(validateReviewImport(payloadWithFoods([food])).ok, false);
+});
+
+test('documented current KCAL resolution permits verification when no ERROR remains', () => {
+  const food = cleanFood({ id: 'resolved-kcal-verify' });
+  food.nutrients.declaredKcal = 500;
+  food.auditResolutions.push({
+    code: 'KCAL_DIFF_HIGH',
+    sourceReferenceId: food.source.recordId,
+    fieldsHash: resolutionSnapshotHash('KCAL_DIFF_HIGH', food),
+    approvedAt: '2026-07-29',
+    approvedBy: 'Nutrition Reviewer',
+    createdAt: '2026-07-29T07:00:00.000Z',
+    version: 1,
+    reason: 'Écart confirmé par la source authoritative.',
+  });
+  markVerifiedWithTransaction(food, { transactionId: 'verify-resolved-kcal' });
+  const item = auditFood(food);
+  assert.equal(item.errorCount, 0, JSON.stringify(item.alerts));
+  assert.equal(canMarkVerified(food, item.alerts), true);
+  assert.equal(validateReviewImport(payloadWithFoods([food])).ok, true);
+});
+
+test('verify transition refuses fabricated old status and reviewer values', () => {
+  const currentFood = cleanFood({ id: 'false-old-values' });
+  const incomingStatus = clone(currentFood);
+  markVerifiedWithTransaction(incomingStatus, { transactionId: 'verify-false-status' });
+  incomingStatus.history.find((entry) => entry.path === 'status').oldValue = 'rejected';
+  const statusCheck = validateVerifyTransition(currentFood, incomingStatus);
+  assert.equal(statusCheck.ok, false);
+  assert.equal(statusCheck.code, 'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH');
+
+  const incomingReviewer = clone(currentFood);
+  markVerifiedWithTransaction(incomingReviewer, {
+    transactionId: 'verify-false-reviewer',
+  });
+  incomingReviewer.history.find(
+    (entry) => entry.path === 'verification.verifiedBy'
+  ).oldValue = 'Ancien coach';
+  const reviewerCheck = validateVerifyTransition(currentFood, incomingReviewer);
+  assert.equal(reviewerCheck.ok, false);
+  assert.equal(reviewerCheck.code, 'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH');
+});
+
+test('verify transactionId reuse is refused', () => {
+  const transactionId = 'verify-reused-id';
+  const currentFood = cleanFood({ id: 'reused-verify-id' });
+  markVerifiedWithTransaction(currentFood, { transactionId });
+  applyFoodChange(currentFood, {
+    path: 'nutrients.proteinG',
+    value: 5,
+    by: 'Editor',
+    at: '2026-07-29T09:00:00.000Z',
+  });
+  const incomingFood = clone(currentFood);
+  markVerifiedWithTransaction(incomingFood, {
+    transactionId,
+    verifiedAt: '2026-07-29T10:00:00.000Z',
+  });
+  const validation = validateVerifyTransition(currentFood, incomingFood);
+  assert.equal(validation.ok, false);
+  assert.equal(validation.code, 'VERIFICATION_TRANSACTION_ID_REUSED');
+});
+
+test('non-contiguous verify entries are refused', () => {
+  const food = cleanFood({ id: 'non-contiguous-verify' });
+  markVerifiedWithTransaction(food, { transactionId: 'verify-not-contiguous' });
+  food.history.splice(2, 0, {
+    timestamp: '2026-07-29T08:00:00.000Z',
+    by: 'Editor',
+    action: 'update',
+    path: 'auditResolutions',
+    oldValue: [],
+    newValue: [],
+    versionBefore: 1,
+    versionAfter: 2,
+  });
+  const validation = validateVerifyTransaction(food, { requireTransactionId: true });
+  assert.equal(validation.ok, false);
+  assert.equal(validation.code, 'VERIFICATION_TRANSACTION_NOT_CONTIGUOUS');
+});
+
+test('normal UI-style verify transaction has exact values and is importable/applicable', () => {
+  const currentFood = cleanFood({ id: 'normal-ui-verify' });
+  const current = payloadWithFoods([clone(currentFood)]);
+  const incoming = clone(current);
+  markVerifiedWithTransaction(incoming.foods[0], {
+    transactionId: 'verify-normal-ui',
+  });
+  incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
+
+  const transition = validateVerifyTransition(currentFood, incoming.foods[0]);
+  assert.equal(transition.ok, true, transition.message);
+  assert.equal(validateReviewImport(incoming).ok, true);
+  assert.equal(assertApplyGovernance(current, incoming).ok, true);
+});
+
 test('generic verify history entry is refused', () => {
   const food = asVerified(cleanFood({ id: 'generic-verify' }));
   food.history = [
@@ -1292,6 +1480,9 @@ test('verify transaction timestamp before material modification is refused', () 
   incoming.meta.exportDataHash = computeFoodsDataHash(incoming.foods);
   const result = assertApplyGovernance(current, incoming, {});
   assert.equal(result.ok, false);
+  assert.ok(
+    result.errors.some((error) => /VERIFICATION_TRANSACTION_ORDER_INVALID/.test(error))
+  );
   assert.ok(
     result.errors.some((error) => /VERIFIED_MATERIAL_CHANGE_WITHOUT_REVERIFY/.test(error))
   );

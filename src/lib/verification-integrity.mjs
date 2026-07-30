@@ -26,6 +26,10 @@ export const VERIFICATION_INTEGRITY_CODES = new Set([
   'VERIFICATION_HISTORY_MISSING',
   'VERIFICATION_HISTORY_INCOMPLETE',
   'VERIFICATION_HISTORY_MISMATCH',
+  'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH',
+  'VERIFICATION_TRANSACTION_ID_REUSED',
+  'VERIFICATION_TRANSACTION_NOT_CONTIGUOUS',
+  'VERIFICATION_TRANSACTION_ORDER_INVALID',
 ]);
 
 const VERIFY_PATHS = [
@@ -52,6 +56,17 @@ function valueAtPath(value, path) {
   return String(path)
     .split('.')
     .reduce((current, key) => current?.[key], value);
+}
+
+function setValueAtPath(value, path, next) {
+  const parts = String(path).split('.');
+  let current = value;
+  for (let index = 0; index < parts.length - 1; index += 1) {
+    const key = parts[index];
+    if (!current[key] || typeof current[key] !== 'object') current[key] = {};
+    current = current[key];
+  }
+  current[parts[parts.length - 1]] = structuredClone(next);
 }
 
 function collectLeafDiffs(current, incoming, prefix, output) {
@@ -128,6 +143,28 @@ export function validateVerifyTransaction(food, options = {}) {
     };
   }
 
+  if (batch.transactionId) {
+    const entriesWithId = (food.history || [])
+      .map((entry, index) => ({ entry, index }))
+      .filter(({ entry }) => entry?.transactionId === batch.transactionId);
+    if (entriesWithId.length > VERIFY_PATHS.length) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_ID_REUSED',
+        message: `transactionId réutilisé: ${batch.transactionId}`,
+        transaction: batch,
+      };
+    }
+    if (entriesWithId.some(({ entry }) => entry.action !== 'verify')) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_ORDER_INVALID',
+        message: 'Une transaction verify contient une entrée d’une autre action',
+        transaction: batch,
+      };
+    }
+  }
+
   const paths = new Map();
   for (const entry of batch.entries) {
     if (paths.has(entry.path)) {
@@ -157,6 +194,22 @@ export function validateVerifyTransaction(food, options = {}) {
       message: 'transactionId requis pour une nouvelle transaction verify',
       transaction: batch,
     };
+  }
+
+  if (batch.transactionId || options.requireTransactionId) {
+    const firstIndex = Math.min(...batch.indexes);
+    const lastIndex = Math.max(...batch.indexes);
+    if (
+      batch.indexes.length !== VERIFY_PATHS.length ||
+      lastIndex - firstIndex + 1 !== VERIFY_PATHS.length
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_NOT_CONTIGUOUS',
+        message: 'Les cinq entrées verify doivent être contiguës dans history',
+        transaction: batch,
+      };
+    }
   }
 
   const first = batch.entries[0];
@@ -209,6 +262,268 @@ export function validateVerifyTransaction(food, options = {}) {
   }
 
   return { ok: true, code: null, message: null, transaction: batch };
+}
+
+/**
+ * Validate a newly appended verification transaction against the exact state
+ * reconstructed immediately before that transaction.
+ */
+export function validateVerifyTransition(currentFood, incomingFood) {
+  const basic = validateVerifyTransaction(incomingFood, {
+    requireTransactionId: true,
+  });
+  if (!basic.ok) return basic;
+
+  const transaction = basic.transaction;
+  const currentHistory = Array.isArray(currentFood?.history) ? currentFood.history : [];
+  const incomingHistory = Array.isArray(incomingFood?.history) ? incomingFood.history : [];
+  const firstIndex = Math.min(...transaction.indexes);
+  const lastIndex = Math.max(...transaction.indexes);
+
+  if (currentHistory.some((entry) => entry?.transactionId === transaction.transactionId)) {
+    return {
+      ok: false,
+      code: 'VERIFICATION_TRANSACTION_ID_REUSED',
+      message: `transactionId déjà présent dans l’historique: ${transaction.transactionId}`,
+      transaction,
+    };
+  }
+  if (firstIndex < currentHistory.length) {
+    return {
+      ok: false,
+      code: 'VERIFICATION_TRANSACTION_ID_REUSED',
+      message: 'La dernière transaction verify n’est pas une nouvelle transaction',
+      transaction,
+    };
+  }
+
+  // Validate every verify transaction appended since currentFood, not only the
+  // active/latest one. This prevents hiding a fabricated transaction behind a
+  // later valid transaction in the same import.
+  const replayed = structuredClone(currentFood);
+  const existingTransactionIds = new Set(
+    currentHistory.map((entry) => entry?.transactionId).filter(Boolean)
+  );
+  const seenNewTransactionIds = new Set();
+  let latestMaterialTimestamp = null;
+  for (let index = currentHistory.length; index < incomingHistory.length; index += 1) {
+    const entry = incomingHistory[index];
+    if (entry?.action !== 'verify') {
+      if (entry?.action === 'auto_unverify') {
+        replayed.status = 'unverified';
+        replayed.verification = {
+          ...(replayed.verification || {}),
+          status: 'unverified',
+          verifiedAt: null,
+          verifiedBy: null,
+          datasetVersion: null,
+        };
+      } else if (entry?.path) {
+        setValueAtPath(replayed, entry.path, entry.newValue);
+      }
+      if (
+        entry?.action === 'auto_unverify' ||
+        MATERIAL_FIELDS.includes(String(entry?.path || '').split('.')[0])
+      ) {
+        latestMaterialTimestamp = entry.timestamp || entry.at || latestMaterialTimestamp;
+      }
+      if (Number.isInteger(entry?.versionAfter)) replayed.version = entry.versionAfter;
+      continue;
+    }
+
+    const transactionId = entry.transactionId;
+    if (!transactionId) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_HISTORY_INCOMPLETE',
+        message: 'transactionId requis pour toute nouvelle transaction verify',
+        transaction,
+      };
+    }
+    if (
+      existingTransactionIds.has(transactionId) ||
+      seenNewTransactionIds.has(transactionId)
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_ID_REUSED',
+        message: `transactionId réutilisé: ${transactionId}`,
+        transaction,
+      };
+    }
+
+    const entriesWithId = incomingHistory
+      .map((candidate, candidateIndex) => ({ entry: candidate, index: candidateIndex }))
+      .filter(({ entry: candidate }) => candidate?.transactionId === transactionId);
+    const contiguous = incomingHistory.slice(index, index + VERIFY_PATHS.length);
+    if (
+      entriesWithId.length !== VERIFY_PATHS.length ||
+      contiguous.length !== VERIFY_PATHS.length ||
+      contiguous.some(
+        (candidate) =>
+          candidate?.action !== 'verify' || candidate.transactionId !== transactionId
+      )
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_NOT_CONTIGUOUS',
+        message: 'Les cinq entrées d’une nouvelle transaction verify doivent être contiguës',
+        transaction,
+      };
+    }
+
+    const paths = new Map();
+    for (const candidate of contiguous) paths.set(candidate.path, candidate);
+    if (
+      paths.size !== VERIFY_PATHS.length ||
+      VERIFY_PATHS.some((path) => !paths.has(path))
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_HISTORY_INCOMPLETE',
+        message: 'Une nouvelle transaction verify doit contenir exactement les cinq chemins',
+        transaction,
+      };
+    }
+
+    const first = contiguous[0];
+    const timestamp = first.timestamp || first.at || null;
+    const sameMetadata = contiguous.every(
+      (candidate) =>
+        (candidate.timestamp || candidate.at || null) === timestamp &&
+        candidate.by === first.by &&
+        candidate.versionBefore === first.versionBefore &&
+        candidate.versionAfter === first.versionAfter
+    );
+    if (
+      !sameMetadata ||
+      !Number.isInteger(first.versionBefore) ||
+      !Number.isInteger(first.versionAfter) ||
+      first.versionBefore !== replayed.version ||
+      first.versionAfter <= first.versionBefore
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_HISTORY_MISMATCH',
+        message: 'Métadonnées ou versions incohérentes dans la transaction verify',
+        transaction,
+      };
+    }
+    if (
+      paths.get('status').newValue !== 'verified' ||
+      paths.get('verification.status').newValue !== 'verified' ||
+      paths.get('verification.verifiedAt').newValue !== timestamp ||
+      !isMeaningfulString(paths.get('verification.verifiedBy').newValue) ||
+      paths.get('verification.verifiedBy').newValue !== first.by ||
+      !isMeaningfulString(paths.get('verification.datasetVersion').newValue)
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_HISTORY_MISMATCH',
+        message: 'La transaction verify ne produit pas des métadonnées verified valides',
+        transaction,
+      };
+    }
+    if (
+      latestMaterialTimestamp &&
+      Date.parse(timestamp) < Date.parse(latestMaterialTimestamp)
+    ) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_TRANSACTION_ORDER_INVALID',
+        message: 'La transaction verify précède une modification ou auto-invalidation',
+        transaction,
+      };
+    }
+
+    for (const path of VERIFY_PATHS) {
+      const candidate = paths.get(path);
+      if (!sameValue(candidate.oldValue, valueAtPath(replayed, path))) {
+        return {
+          ok: false,
+          code: 'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH',
+          message: `${path}: oldValue ne correspond pas à l’état rejoué avant verify`,
+          transaction,
+        };
+      }
+      setValueAtPath(replayed, path, candidate.newValue);
+    }
+    replayed.version = first.versionAfter;
+    seenNewTransactionIds.add(transactionId);
+    index += VERIFY_PATHS.length - 1;
+  }
+
+  const reconstructed = structuredClone(currentFood);
+  const relevantBefore = [];
+  for (let index = currentHistory.length; index < firstIndex; index += 1) {
+    const entry = incomingHistory[index];
+    if (!entry) continue;
+    relevantBefore.push(entry);
+    if (entry.action === 'auto_unverify') {
+      reconstructed.status = 'unverified';
+      reconstructed.verification = {
+        ...(reconstructed.verification || {}),
+        status: 'unverified',
+        verifiedAt: null,
+        verifiedBy: null,
+        datasetVersion: null,
+      };
+    } else if (entry.path) {
+      setValueAtPath(reconstructed, entry.path, entry.newValue);
+    }
+  }
+
+  const paths = new Map(transaction.entries.map((entry) => [entry.path, entry]));
+  for (const path of VERIFY_PATHS) {
+    const actualOldValue = valueAtPath(reconstructed, path);
+    if (!sameValue(paths.get(path).oldValue, actualOldValue)) {
+      return {
+        ok: false,
+        code: 'VERIFICATION_HISTORY_OLD_VALUE_MISMATCH',
+        message: `${path}: oldValue ne correspond pas à l’état réel avant verify`,
+        transaction,
+      };
+    }
+  }
+
+  const materialOrInvalidation = (entry) => {
+    const root = String(entry?.path || '').split('.')[0];
+    return entry?.action === 'auto_unverify' || MATERIAL_FIELDS.includes(root);
+  };
+  const invalidAfterOrInside = incomingHistory
+    .slice(firstIndex, incomingHistory.length)
+    .some((entry, relativeIndex) => {
+      const absoluteIndex = firstIndex + relativeIndex;
+      return absoluteIndex > lastIndex && materialOrInvalidation(entry);
+    });
+  if (invalidAfterOrInside) {
+    return {
+      ok: false,
+      code: 'VERIFICATION_TRANSACTION_ORDER_INVALID',
+      message: 'La transaction verify doit suivre toute modification et auto-invalidation',
+      transaction,
+    };
+  }
+
+  const latestPriorTimestamp = relevantBefore
+    .filter(materialOrInvalidation)
+    .map((entry) => entry.timestamp || entry.at)
+    .filter(Boolean)
+    .sort()
+    .at(-1);
+  if (
+    latestPriorTimestamp &&
+    Date.parse(transaction.timestamp) < Date.parse(latestPriorTimestamp)
+  ) {
+    return {
+      ok: false,
+      code: 'VERIFICATION_TRANSACTION_ORDER_INVALID',
+      message: 'Le timestamp verify précède une modification ou auto-invalidation',
+      transaction,
+    };
+  }
+
+  return { ok: true, code: null, message: null, transaction, reconstructed };
 }
 
 export function validateMaterialChangeHistory(current, incoming) {
@@ -323,9 +638,7 @@ export function collectVerificationIntegrityErrors(food) {
 export function hasPostMaterialReverify(current, incoming) {
   const historyValidation = validateMaterialChangeHistory(current, incoming);
   if (!historyValidation.ok || !historyValidation.differences.length) return false;
-  const transactionValidation = validateVerifyTransaction(incoming, {
-    requireTransactionId: true,
-  });
+  const transactionValidation = validateVerifyTransition(current, incoming);
   if (!transactionValidation.ok) return false;
   const transaction = transactionValidation.transaction;
   if (Math.min(...transaction.indexes) <= historyValidation.latestIndex) return false;

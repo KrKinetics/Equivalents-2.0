@@ -89,6 +89,7 @@ function main() {
     throw new Error(`Invalid JSON — apply aborted:\n${details}${remainder}`);
   }
 
+  let governedAudit = null;
   if (fs.existsSync(target)) {
     const current = JSON.parse(fs.readFileSync(target, 'utf8'));
     const curIds = new Set((current.foods || []).map((f) => f.id));
@@ -103,6 +104,7 @@ function main() {
       staleReason,
       migrationDocumented,
     });
+    governedAudit = governance.audit;
     if (!governance.ok) {
       console.error('Apply refused (gouvernance):');
       for (const err of governance.errors) console.error(` - ${err}`);
@@ -122,7 +124,7 @@ function main() {
     }
   }
 
-  const audited = auditDataset(incoming.foods);
+  const audited = governedAudit || auditDataset(incoming.foods);
   const structuralAuditErrors = audited.items.flatMap((item) =>
     item.alerts
       .filter((alert) => alert.severity === 'ERROR' && STRUCTURAL_AUDIT_CODES.has(alert.code))
