@@ -1,0 +1,82 @@
+{
+  "evidenceId": "siggis-plain-0-skyr",
+  "brand": "siggi’s",
+  "product": "Plain 0% Skyr",
+  "flavor": "Plain 0%",
+  "market": "Canada",
+  "officialUrl": "https://www.siggis.ca/product/plain/",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 115,
+    "unit": "g",
+    "grams": 115
+  },
+  "originalLabelValues": {
+    "declaredKcal": 60,
+    "proteinG": 12,
+    "carbsG": null,
+    "fiberG": null,
+    "fatG": null,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 115 / 115",
+    "targetBasis": "115 g",
+    "method": "same_unit",
+    "factor": 1,
+    "labelAmount": 115,
+    "canonicalAmount": 115,
+    "labelUnit": "g",
+    "canonicalUnit": "g",
+    "labelGrams": 115,
+    "canonicalGrams": 115
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 60,
+    "proteinG": 12,
+    "carbsG": null,
+    "fiberG": null,
+    "fatG": null,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 60,
+    "proteinG": 12,
+    "carbsG": null,
+    "fiberG": null,
+    "fatG": null,
+    "saturatedFatG": null,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "carbsG",
+    "fiberG",
+    "fatG",
+    "saturatedFatG",
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [],
+  "canonicalPortion": {
+    "amount": 115,
+    "unit": "g",
+    "grams": 115,
+    "labelFr": "115 g de skyr siggi’s nature 0 %",
+    "labelEn": "115 g siggi’s Plain 0% Skyr"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/siggis-plain-0-skyr.html",
+    "snapshotSha256": "ed77d957ad0a972bddf5e5fed4d4484c6b909bf5c45685b4ba074e3db8183153",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-plain-skyr",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "a7d68ce49b8c18a4c76376efe560d4a41f13bcc31c34cb81fcd7706fd4a3f3ad"
+}

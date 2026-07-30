@@ -1,0 +1,80 @@
+{
+  "evidenceId": "natrel-plus-2",
+  "brand": "Natrel",
+  "product": "Natrel Plus 2%",
+  "flavor": "2%",
+  "market": "Canada",
+  "officialUrl": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+  "accessedAt": "2026-07-30",
+  "labelServing": {
+    "amount": 250,
+    "unit": "ml",
+    "grams": 250
+  },
+  "originalLabelValues": {
+    "declaredKcal": 160,
+    "proteinG": 18,
+    "carbsG": 9,
+    "fiberG": 0,
+    "fatG": 5,
+    "saturatedFatG": 3,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "conversion": {
+    "formula": "valueCanonical = valueLabel × 125 / 250",
+    "targetBasis": "125 ml",
+    "method": "same_unit",
+    "factor": 0.5,
+    "labelAmount": 250,
+    "canonicalAmount": 125,
+    "labelUnit": "ml",
+    "canonicalUnit": "ml",
+    "labelGrams": 250,
+    "canonicalGrams": 125
+  },
+  "derivedUnrounded": {
+    "declaredKcal": 80,
+    "proteinG": 9,
+    "carbsG": 4.5,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 1.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "storedRounded": {
+    "declaredKcal": 80,
+    "proteinG": 9,
+    "carbsG": 4.5,
+    "fiberG": 0,
+    "fatG": 2.5,
+    "saturatedFatG": 1.5,
+    "polyunsaturatedFatG": null,
+    "monounsaturatedFatG": null
+  },
+  "undeclaredNutrients": [
+    "polyunsaturatedFatG",
+    "monounsaturatedFatG"
+  ],
+  "declaredZeroNutrients": [
+    "fiberG"
+  ],
+  "canonicalPortion": {
+    "amount": 125,
+    "unit": "ml",
+    "grams": 125,
+    "labelFr": "125 ml de lait Natrel Plus 2 %",
+    "labelEn": "125 ml Natrel Plus 2% milk"
+  },
+  "networkComparison": {
+    "attempted": true,
+    "matched": true,
+    "snapshotPath": "src/sources/snapshots/natrel-plus-2.html",
+    "snapshotSha256": "9f45a0a718642f2b3674d287f882328b622ff9151802daf80347433a168c5578",
+    "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+  },
+  "linkedFoodId": "produits-laitiers-natrel-plus-2",
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "evidenceHash": "bd3826b3fd274b8579abeaf0446f1cbceae1d22a875d7b6d7d19071b4ed96060"
+}

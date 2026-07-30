@@ -195,6 +195,7 @@ function main() {
   const otherProtein = live.foods.filter(
     (f) => f.displayCategory === 'autres_sources_proteinees'
   );
+  const dairy = live.foods.filter((f) => f.displayCategory === 'produits_laitiers');
   const manufacturerApplied = result.applied.filter((a) => a.adapter === 'manufacturer');
   const cnfApplied = result.applied.filter((a) => a.adapter === 'cnf_2026');
   const finalReport = {
@@ -218,6 +219,8 @@ function main() {
       meatPoultryVerified: meatPoultry.filter((f) => f.status === 'verified').length,
       otherProteinCount: otherProtein.length,
       otherProteinVerified: otherProtein.filter((f) => f.status === 'verified').length,
+      dairyCount: dairy.length,
+      dairyVerified: dairy.filter((f) => f.status === 'verified').length,
       cnfSources: cnfApplied.length,
       manufacturerSources: manufacturerApplied.length,
       totalFoods: live.foods.length,

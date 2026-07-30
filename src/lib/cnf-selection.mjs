@@ -44,10 +44,35 @@ export function containsConcept(haystack, concept) {
   return false;
 }
 
+function excludesPercentageConcept(haystack, concept) {
+  // Preserve digits/dots/% so "1%" does not match "0.1%" after normalization.
+  const text = String(haystack || '')
+    .toLowerCase()
+    .replace(/,/g, '.');
+  const cleaned = String(concept || '')
+    .toLowerCase()
+    .replace(/\s+/g, '')
+    .replace(/%/g, '');
+  if (!cleaned) return false;
+  if (cleaned.includes('-')) {
+    const pattern = cleaned
+      .split('-')
+      .map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      .join('\\s*-\\s*');
+    return new RegExp(`(?<![\\d.])${pattern}\\s*%`).test(text);
+  }
+  const escaped = cleaned.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![\\d.])${escaped}\\s*%`).test(text);
+}
+
 export function excludesConcept(haystack, concept) {
+  const rawConcept = String(concept || '');
   const text = normalizeText(haystack);
   const needle = normalizeText(concept);
   if (!needle) return false;
+  if (/%/.test(rawConcept)) {
+    return excludesPercentageConcept(haystack, rawConcept);
+  }
   if (needle === 'skin') {
     return /\bskin\b/.test(text) || /\bmeat and skin\b/.test(text);
   }

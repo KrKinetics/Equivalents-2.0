@@ -87,9 +87,9 @@ export const EXPECTED_CATEGORY_COUNTS = {
   viandes_volaille: 38,
   autres_sources_proteinees: 27,
   feculents: 23,
-  produits_laitiers: 19,
+  produits_laitiers: 29,
 };
 
-export const TOTAL_FOODS_EXPECTED = 267;
+export const TOTAL_FOODS_EXPECTED = 277;
 
 export const DATASET_STATUSES = ['draft', 'review', 'approved'];

@@ -106,6 +106,7 @@ Créer une preuve :
 node scripts/write-fairlife-evidence.mjs
 node scripts/write-now-mct-evidence.mjs
 node scripts/write-other-protein-manufacturer-evidence.mjs
+node scripts/write-dairy-manufacturer-evidence.mjs
 ```
 
 Schéma : `src/data/manufacturer-evidence.schema.json`

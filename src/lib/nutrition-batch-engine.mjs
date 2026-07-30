@@ -172,7 +172,7 @@ function buildCnfSource(record, accessedAt) {
   };
 }
 
-function buildManufacturerSource(label, identity) {
+function buildManufacturerSource(label, identity, undeclaredNutrients = []) {
   const brand = identity.brand || label.brand || null;
   return {
     type: 'manufacturer_website',
@@ -188,6 +188,7 @@ function buildManufacturerSource(label, identity) {
     productName: label.productName || identity.en,
     labelServingSize: `${label.labelServing.amount} ${label.labelServing.unit}`,
     evidenceRef: label.url,
+    undeclaredNutrients: Array.isArray(undeclaredNutrients) ? [...undeclaredNutrients] : [],
   };
 }
 
@@ -355,6 +356,7 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
         expectedRecordId: null,
       };
     }
+    const undeclaredNutrients = conversion.undeclaredNutrients || [];
     return {
       ok: true,
       adapter: 'manufacturer',
@@ -365,14 +367,14 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
         storedRounded: nutrients,
         approvedStored,
       },
-      source: buildManufacturerSource(label, entry.lockedIdentity),
+      source: buildManufacturerSource(label, entry.lockedIdentity, undeclaredNutrients),
       nutrients,
       sourceReferenceId: label.url,
       expectedRecordId: null,
       selectedRecordId: label.url,
       brand: label.brand || null,
       productName: label.productName || null,
-      undeclaredNutrients: conversion.undeclaredNutrients || [],
+      undeclaredNutrients,
       declaredZeroNutrients: conversion.declaredZeroNutrients || [],
     };
   }

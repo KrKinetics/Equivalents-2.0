@@ -366,6 +366,7 @@ export function auditFood(food, idCounts = new Map()) {
   const n = food.nutrients || {};
   const portion = food.portion || {};
   const names = food.names || {};
+  const source = food.source || {};
   const status = getFoodStatus(food);
 
   if (!food.id) push(alerts, 'ERROR', 'MISSING_ID', 'Identifiant manquant');
@@ -425,9 +426,25 @@ export function auditFood(food, idCounts = new Map()) {
     push(alerts, 'ERROR', 'INVALID_STATUS', `Statut invalide: ${status}`);
   }
 
+  const manufacturerUndeclared = new Set(
+    (source?.type === 'manufacturer_website' || source?.type === 'manufacturer_label') &&
+      Array.isArray(source?.undeclaredNutrients)
+      ? source.undeclaredNutrients
+      : []
+  );
+
   for (const [key, label] of NUTRIENT_NUMERIC_FIELDS) {
     const required = key === 'proteinG' || key === 'carbsG' || key === 'declaredKcal';
     if (n[key] == null) {
+      if (manufacturerUndeclared.has(key)) {
+        push(
+          alerts,
+          'WARNING',
+          'UNDECLARED_MANUFACTURER_NUTRIENT',
+          `${label} non déclaré(e) sur l’étiquette fabricant (conservé null)`
+        );
+        continue;
+      }
       if (required) push(alerts, 'ERROR', 'MISSING_REQUIRED', `${label} manquante(s)`);
       else if (key === 'fatG') push(alerts, 'ERROR', 'MISSING_TOTAL_FAT', 'Lipides totaux absents');
       continue;

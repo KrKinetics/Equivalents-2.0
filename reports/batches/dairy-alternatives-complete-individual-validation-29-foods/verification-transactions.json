@@ -1,0 +1,237 @@
+{
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "transactions": [
+    {
+      "id": "produits-laitiers-2-yogurt-no-added-sugar",
+      "operation": "update",
+      "transactionId": "71aec78f-92d3-4f51-bb27-f3494a495b2c",
+      "expectedRecordId": "6954",
+      "selectedRecordId": "6954",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt",
+      "operation": "update",
+      "transactionId": "d600e25c-b45a-4ce3-a3e9-c2f681eafc31",
+      "expectedRecordId": "7469",
+      "selectedRecordId": "7469",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-plain-or-fruit-kefir",
+      "operation": "update",
+      "transactionId": "d253c1d3-d859-49c1-9fa9-040dfa94e172",
+      "expectedRecordId": "6999",
+      "selectedRecordId": "6999",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-1-2-milk",
+      "operation": "update",
+      "transactionId": "e5048bb9-9807-4922-aa18-3455a97f42f4",
+      "expectedRecordId": "61",
+      "selectedRecordId": "61",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+      "operation": "update",
+      "transactionId": "7a0d84f7-db59-47ff-9d8b-bfd14187d61f",
+      "expectedRecordId": "7802",
+      "selectedRecordId": "7802",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-vanilla-almond-barley-rice-beverage",
+      "operation": "update",
+      "transactionId": "04d48708-3fcc-41d2-9fc4-6999b36b03bc",
+      "expectedRecordId": "7804",
+      "selectedRecordId": "7804",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cup-soy-beverage",
+      "operation": "update",
+      "transactionId": "b104496c-daa0-4720-b2a6-5c3d61df1f3f",
+      "expectedRecordId": "6330",
+      "selectedRecordId": "6330",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese",
+      "operation": "update",
+      "transactionId": "c739945a-7d5e-49b0-b360-bd34ee6aa525",
+      "expectedRecordId": "107",
+      "selectedRecordId": "107",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-partly-skimmed-ricotta",
+      "operation": "update",
+      "transactionId": "9da4668d-fb58-4119-9720-1ba1d816cf80",
+      "expectedRecordId": "44",
+      "selectedRecordId": "44",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-light-swiss-cheese-cogruet",
+      "operation": "update",
+      "transactionId": "c19e8988-aadc-4fc1-9087-933bb9a3984d",
+      "expectedRecordId": "7766",
+      "selectedRecordId": "7766",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-le-six-pourcent-cheese",
+      "operation": "update",
+      "transactionId": "81f8291e-2745-4c84-b690-ca05a7da437a",
+      "expectedRecordId": "160",
+      "selectedRecordId": "160",
+      "version": 4
+    },
+    {
+      "id": "produits-laitiers-plain-greek-yogurt",
+      "operation": "update",
+      "transactionId": "56507816-63d8-4909-bb5c-bbed0a36cb3e",
+      "expectedRecordId": "6979",
+      "selectedRecordId": "6979",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-cottage-cheese-2",
+      "operation": "update",
+      "transactionId": "00e91423-107c-4b33-a074-6fef96fd4053",
+      "expectedRecordId": "120",
+      "selectedRecordId": "120",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-plain-skyr",
+      "operation": "update",
+      "transactionId": "7813b412-8970-44a5-9126-3f749b3552a6",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.siggis.ca/product/plain/",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-high-protein-filtered-milk",
+      "operation": "update",
+      "transactionId": "c2924462-5c17-424a-96c0-c94c2fb52651",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-bottle-core-power-fairlife",
+      "operation": "update",
+      "transactionId": "5aa19b55-ac68-4ce8-b0d4-6ee0d1aa9c01",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-allegro-9-cheese",
+      "operation": "update",
+      "transactionId": "1aee452b-6fa1-4d5f-a570-a793dac03752",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://myallegro.ca/en/products/white",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-natrel-plus-2",
+      "operation": "update",
+      "transactionId": "78a429e7-2ec2-488d-8530-06b2fbefdc4e",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-protein-chocolate-milk",
+      "operation": "update",
+      "transactionId": "86567b26-5fdf-4497-8ee3-ef435bf92b84",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-yogurt-fat-free-plain",
+      "operation": "add",
+      "transactionId": "91d53df3-6402-4953-8e15-2b20e29c39ef",
+      "expectedRecordId": "6948",
+      "selectedRecordId": "6948",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-greek-yogurt-fat-free-fruit",
+      "operation": "add",
+      "transactionId": "dd6ae7e2-7e6b-45e5-8841-97496f1bfbe5",
+      "expectedRecordId": "6980",
+      "selectedRecordId": "6980",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-kefir-fruit-low-fat",
+      "operation": "add",
+      "transactionId": "5d47863a-7cca-4e9e-bec4-c1aae59013c4",
+      "expectedRecordId": "7000",
+      "selectedRecordId": "7000",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-skim-milk",
+      "operation": "add",
+      "transactionId": "f08655e6-fd56-4e84-a24d-b84904b1337e",
+      "expectedRecordId": "114",
+      "selectedRecordId": "114",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-whole-milk",
+      "operation": "add",
+      "transactionId": "7637220b-28cf-4e1a-9fbc-2b3c08d05e76",
+      "expectedRecordId": "113",
+      "selectedRecordId": "113",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-oat-quinoa-beverage-unsweetened",
+      "operation": "add",
+      "transactionId": "804177f7-8b62-43d6-bf37-48c8b53d31a0",
+      "expectedRecordId": "7808",
+      "selectedRecordId": "7808",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-rice-beverage-unsweetened",
+      "operation": "add",
+      "transactionId": "7c9c74bf-e83f-4623-a59b-fa670efce134",
+      "expectedRecordId": "4780",
+      "selectedRecordId": "4780",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-soy-beverage-vanilla",
+      "operation": "add",
+      "transactionId": "d6caa4ed-59f4-4f5a-9f56-6354333439b3",
+      "expectedRecordId": "6720",
+      "selectedRecordId": "6720",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-quark-fat-free-plain",
+      "operation": "add",
+      "transactionId": "dd415d14-0f41-4a0b-89a1-a49d371dc465",
+      "expectedRecordId": "6995",
+      "selectedRecordId": "6995",
+      "version": 3
+    },
+    {
+      "id": "produits-laitiers-goat-milk-whole",
+      "operation": "add",
+      "transactionId": "a110a23d-73e9-4113-83e8-0c9e667d9e15",
+      "expectedRecordId": "72",
+      "selectedRecordId": "72",
+      "version": 3
+    }
+  ]
+}

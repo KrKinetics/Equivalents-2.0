@@ -1,0 +1,151 @@
+{
+  "batchId": "dairy-alternatives-complete-individual-validation-29-foods",
+  "generatedAt": "2026-07-30T21:04:59.005Z",
+  "count": 6,
+  "evidences": [
+    {
+      "foodId": "produits-laitiers-plain-skyr",
+      "evidencePath": "src/sources/manufacturer/siggis-plain-0-skyr.json",
+      "evidenceId": "siggis-plain-0-skyr",
+      "brand": "siggi’s",
+      "product": "Plain 0% Skyr",
+      "officialUrl": "https://www.siggis.ca/product/plain/",
+      "formula": "valueCanonical = valueLabel × 115 / 115",
+      "undeclaredNutrients": [
+        "carbsG",
+        "fiberG",
+        "fatG",
+        "saturatedFatG",
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/siggis-plain-0-skyr.html",
+        "snapshotSha256": "ed77d957ad0a972bddf5e5fed4d4484c6b909bf5c45685b4ba074e3db8183153",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "a7d68ce49b8c18a4c76376efe560d4a41f13bcc31c34cb81fcd7706fd4a3f3ad"
+    },
+    {
+      "foodId": "produits-laitiers-high-protein-filtered-milk",
+      "evidencePath": "src/sources/manufacturer/fairlife-2-ultra-filtered-milk.json",
+      "evidenceId": "fairlife-2-ultra-filtered-milk",
+      "brand": "fairlife",
+      "product": "2% Reduced Fat Ultra-Filtered Milk",
+      "officialUrl": "https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/",
+      "formula": "valueCanonical = valueLabel × 150 / 240",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/fairlife-2-ultra-filtered-milk.html",
+        "snapshotSha256": "b7eee42dd9926dcc6ef14365d365519a78998c51bf3a8e77f1dfca257791c7e8",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "172df1b2a760bd688917b6e2225b7d9f20d8900660c6c5777974d498941f8c9e"
+    },
+    {
+      "foodId": "produits-laitiers-bottle-core-power-fairlife",
+      "evidencePath": "src/sources/manufacturer/fairlife-core-power-chocolate-26g.json",
+      "evidenceId": "fairlife-core-power-chocolate-26g",
+      "brand": "fairlife",
+      "product": "Core Power Chocolate 26g Protein Shake",
+      "officialUrl": "https://fairlife.com/core-power/chocolate-protein-shake/",
+      "formula": "valueCanonical = valueLabel × 207 / 414",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/fairlife-core-power-chocolate-26g.html",
+        "snapshotSha256": "1386d488a7c34557515c6943f6b529a85c7cae9e49a1378e6621f2d1a360e4af",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "ce1d3059a89c9ff60bb68447809c00ec7cd292855d51d5bfa5aba478b8170d42"
+    },
+    {
+      "foodId": "produits-laitiers-allegro-9-cheese",
+      "evidencePath": "src/sources/manufacturer/allegro-9-white.json",
+      "evidenceId": "allegro-9-white",
+      "brand": "Allégro",
+      "product": "Allégro 9% White",
+      "officialUrl": "https://myallegro.ca/en/products/white",
+      "formula": "valueCanonical = valueLabel × 30 / 30",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/allegro-9-white.html",
+        "snapshotSha256": "4259e2186928c1de460292bca3a8ba3f4aec01b0c7b6492874f096d8fe8cbeb7",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "8dab0e1529755d8922c251220367b779e8e77bc8b8534ae1551756167e48d6de"
+    },
+    {
+      "foodId": "produits-laitiers-natrel-plus-2",
+      "evidencePath": "src/sources/manufacturer/natrel-plus-2.json",
+      "evidenceId": "natrel-plus-2",
+      "brand": "Natrel",
+      "product": "Natrel Plus 2%",
+      "officialUrl": "https://www.natrel.ca/en/products/natrel-plus/natrel-plus-2",
+      "formula": "valueCanonical = valueLabel × 125 / 250",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/natrel-plus-2.html",
+        "snapshotSha256": "9f45a0a718642f2b3674d287f882328b622ff9151802daf80347433a168c5578",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "bd3826b3fd274b8579abeaf0446f1cbceae1d22a875d7b6d7d19071b4ed96060"
+    },
+    {
+      "foodId": "produits-laitiers-protein-chocolate-milk",
+      "evidencePath": "src/sources/manufacturer/natrel-plus-chocolate-1.json",
+      "evidenceId": "natrel-plus-chocolate-1",
+      "brand": "Natrel",
+      "product": "Natrel Plus Chocolate 1%",
+      "officialUrl": "https://www.natrel.ca/en/products/flavoured-milk-natrel-plus/natrel-plus-chocolate-1",
+      "formula": "valueCanonical = valueLabel × 150 / 250",
+      "undeclaredNutrients": [
+        "polyunsaturatedFatG",
+        "monounsaturatedFatG"
+      ],
+      "declaredZeroNutrients": [
+        "fiberG"
+      ],
+      "networkComparison": {
+        "attempted": true,
+        "matched": true,
+        "snapshotPath": "src/sources/snapshots/natrel-plus-chocolate-1.html",
+        "snapshotSha256": "644d7213e468b1780efa9261267840a49b6e3e7fb4eec02c0c445afc09d39e99",
+        "notes": "Snapshot archived when accessible. Numeric page extraction is heuristic; approved batch values remain authoritative."
+      },
+      "evidenceHash": "4d7e01a8d9751bfc27c983f28a24c5bfbd8d6914d5b87b326a8815b9aa27b234"
+    }
+  ]
+}
