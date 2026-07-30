@@ -57,7 +57,8 @@
     }
   ],
   "calculatorLegacyMoyennes": {
-    "path": "C:/Users/ROOTS Laptop/Projects/calculateur-nutritionnel/src/lib/constants.ts",
+    "path": "../calculateur-nutritionnel/src/lib/constants.ts",
+    "note": "Sibling project reference only. MOYENNES are NOT modified in this repository during the source-of-truth hardening phase.",
     "MOYENNES": {
       "pro": { "p": 9, "g": 0, "l": 2 },
       "fec": { "p": 3, "g": 18, "l": 1 },
@@ -75,7 +76,6 @@
       "lai": "dairy",
       "lip": "fat",
       "whey": "whey"
-    },
-    "note": "NOT modified in this phase. Captured for audit comparison only."
+    }
   }
 }

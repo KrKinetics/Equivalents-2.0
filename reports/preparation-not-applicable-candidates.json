@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-07-30T01:02:05.665Z",
+  "missingPrepStateTotal": 183,
+  "candidateCount": 21,
+  "note": "Ne pas supprimer automatiquement les WARNING existants. Chaque changement doit être approuvé manuellement.",
+  "candidates": [
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "nameFr": "carré de Chocolat noir > 70 %",
+      "labelFr": "1 carré de Chocolat noir > 70 %",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "packaged_ready_food",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "nameFr": "Huile végétale",
+      "labelFr": "7,5 ml d'Huile végétale (arachide, canola, olive)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "nameFr": "Huile de coco vierge",
+      "labelFr": "7,5 ml d'Huile de coco vierge",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "nameFr": "Huile MCT",
+      "labelFr": "7,5 ml d'Huile MCT",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "nameFr": "Margarine non hydrogénée ou de beurre",
+      "labelFr": "7,5 ml de Margarine non hydrogénée ou de beurre",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "nameFr": "mayonnaise",
+      "labelFr": "7,5 ml de mayonnaise",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "nameFr": "Olives de 1,6 × 2 cm",
+      "labelFr": "16 Olives de 1,6 × 2 cm",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "packaged_ready_food",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "nameFr": "vinaigrette à base d'huile végétale",
+      "labelFr": "10 ml de vinaigrette à base d'huile végétale",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "nameFr": "Huile de poisson",
+      "labelFr": "10 ml d'Huile de poisson (EPA / DHA)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "oil_or_fat_condiment",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-5-tbsp-pb2",
+      "nameFr": "PB2",
+      "labelFr": "1,5 c. à table de PB2",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-protein",
+      "nameFr": "Lactosérum",
+      "labelFr": "½ scoop de Lactosérum (Whey)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-plant-protein",
+      "nameFr": "Protéine végétale",
+      "labelFr": "½ scoop de Protéine végétale (pois / riz)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-core-power-fairlife",
+      "nameFr": "Core Power, Fairlife",
+      "labelFr": "100 ml de Core Power, Fairlife (42 g prot./bouteille)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "ready_to_consume_packaged",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-egglife-wrap",
+      "nameFr": "Wrap Egglife",
+      "labelFr": "1 Wrap Egglife",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "ready_to_consume_packaged",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-micellar-casein",
+      "nameFr": "Caséine micellaire",
+      "labelFr": "½ scoop de Caséine micellaire",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-whey-isolate",
+      "nameFr": "Isolat de whey",
+      "labelFr": "½ scoop d'Isolat de whey",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-scoop-beef-protein-isolate",
+      "nameFr": "Protéine de bœuf",
+      "labelFr": "½ scoop de Protéine de bœuf (isolate)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-hydrolyzed-collagen",
+      "nameFr": "Collagène hydrolysé",
+      "labelFr": "15 g de Collagène hydrolysé (peptides)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "powder_or_supplement",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "autres-sources-proteinees-ready-to-drink-protein-shake",
+      "nameFr": "Boisson protéinée RTD",
+      "labelFr": "150 ml de Boisson protéinée RTD",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "ready_to_consume_packaged",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "produits-laitiers-bottle-core-power-fairlife",
+      "nameFr": "Core Power, Fairlife",
+      "labelFr": "½ bouteille de Core Power, Fairlife (26 g prot./bouteille)",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "ready_to_consume_packaged",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    },
+    {
+      "id": "produits-laitiers-protein-chocolate-milk",
+      "nameFr": "Lait au chocolat protéiné 1 %",
+      "labelFr": "150 ml de Lait au chocolat protéiné 1 %",
+      "suggestedPreparationState": "not_applicable",
+      "reason": "packaged_ready_food",
+      "note": "Suggestion seulement — approbation manuelle requise"
+    }
+  ]
+}

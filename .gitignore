@@ -21,3 +21,7 @@ Equivalents-alimentaires-*.pdf
 !.env.example
 .DS_Store
 Thumbs.db
+
+# Local apply test artifacts
+backups/tmp-apply-test.json
+backups/

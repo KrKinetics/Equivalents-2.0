@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://krkinetics.local/schemas/food-equivalents.schema.json",
+  "title": "KR Kinetics Food Equivalents Dataset",
+  "type": "object",
+  "required": ["meta", "foods"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["schemaVersion", "totalFoods"],
+      "properties": {
+        "schemaVersion": { "type": "integer", "minimum": 1 },
+        "importedAt": { "type": ["string", "null"] },
+        "totalFoods": { "type": "integer", "minimum": 0 },
+        "importPolicy": { "type": "string" },
+        "notes": { "type": "array" }
+      }
+    },
+    "foods": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/food" }
+    }
+  },
+  "$defs": {
+    "food": {
+      "type": "object",
+      "required": [
+        "id",
+        "displayCategory",
+        "calculationGroup",
+        "names",
+        "portion",
+        "nutrients",
+        "status",
+        "version",
+        "source",
+        "legacySource",
+        "verification",
+        "classificationStatus"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "displayCategory": {
+          "enum": [
+            "noix_graines",
+            "matieres_grasses",
+            "legumes",
+            "fruits",
+            "poissons_fruits_mer",
+            "viandes_volaille",
+            "autres_sources_proteinees",
+            "feculents",
+            "produits_laitiers"
+          ]
+        },
+        "calculationGroup": {
+          "enum": ["protein", "starch", "vegetable", "fruit", "dairy", "fat", "whey"]
+        },
+        "exchangeProfileId": { "type": ["string", "null"] },
+        "classificationStatus": {
+          "enum": ["pending", "approved", "rejected"]
+        },
+        "names": {
+          "type": "object",
+          "required": ["fr", "en"],
+          "properties": {
+            "fr": { "type": "string", "minLength": 1 },
+            "en": { "type": "string", "minLength": 1 }
+          }
+        },
+        "portion": {
+          "type": "object",
+          "required": ["labelFr", "labelEn", "amount", "unit"],
+          "properties": {
+            "labelFr": { "type": "string", "minLength": 1 },
+            "labelEn": { "type": "string", "minLength": 1 },
+            "amount": { "type": "number", "exclusiveMinimum": 0 },
+            "unit": {
+              "enum": ["bottle", "slice", "piece", "count", "cup", "tbsp", "tsp", "ml", "g", "oz", "scoop", "portion"]
+            },
+            "grams": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+            "preparationState": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "enum": [
+                    "raw",
+                    "cooked",
+                    "drained",
+                    "prepared",
+                    "frozen",
+                    "canned",
+                    "dry_uncooked",
+                    "ready_to_eat",
+                    "not_applicable",
+                    "unknown"
+                  ]
+                }
+              ]
+            },
+            "brandSpecific": { "type": "boolean" },
+            "brand": { "type": ["string", "null"] }
+          }
+        },
+        "nutrients": {
+          "type": "object",
+          "required": ["proteinG", "carbsG", "declaredKcal"],
+          "properties": {
+            "proteinG": { "type": ["number", "null"] },
+            "carbsG": { "type": ["number", "null"] },
+            "fiberG": { "type": ["number", "null"] },
+            "fatG": { "type": ["number", "null"] },
+            "saturatedFatG": { "type": ["number", "null"] },
+            "polyunsaturatedFatG": { "type": ["number", "null"] },
+            "monounsaturatedFatG": { "type": ["number", "null"] },
+            "declaredKcal": { "type": ["number", "null"] }
+          }
+        },
+        "legacySource": { "type": ["object", "null"] },
+        "source": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "enum": [
+                    "canadian_nutrient_file",
+                    "usda_fooddata_central",
+                    "manufacturer_label",
+                    "manufacturer_website",
+                    "peer_reviewed_reference",
+                    "other_authoritative"
+                  ]
+                }
+              ]
+            },
+            "name": { "type": ["string", "null"] },
+            "recordId": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"] },
+            "accessedAt": { "type": ["string", "null"] },
+            "servingDescription": { "type": ["string", "null"] },
+            "nutrientsBasis": { "type": ["string", "null"] },
+            "notes": { "type": ["string", "null"] },
+            "brand": { "type": ["string", "null"] },
+            "productName": { "type": ["string", "null"] },
+            "labelServingSize": { "type": ["string", "null"] },
+            "evidenceRef": { "type": ["string", "null"] }
+          }
+        },
+        "status": { "enum": ["unverified", "verified", "rejected"] },
+        "version": { "type": "integer", "minimum": 1 },
+        "verification": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": { "enum": ["unverified", "verified", "rejected"] },
+            "verifiedAt": { "type": ["string", "null"] },
+            "verifiedBy": { "type": ["string", "null"] },
+            "datasetVersion": { "type": ["string", "null"] }
+          }
+        },
+        "auditResolutions": { "type": "array" },
+        "history": { "type": "array" }
+      }
+    }
+  }
+}
