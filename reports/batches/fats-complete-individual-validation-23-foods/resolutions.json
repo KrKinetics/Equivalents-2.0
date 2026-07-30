@@ -1,0 +1,131 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "foods": [
+    {
+      "id": "matieres-grasses-avocado",
+      "resolutions": [],
+      "alertsAfter": [
+        {
+          "code": "PORTION_LABEL_MISMATCH_FR",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        },
+        {
+          "code": "PORTION_LABEL_MISMATCH_EN",
+          "severity": "WARNING",
+          "resolutionStatus": "open"
+        }
+      ]
+    },
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-whole-egg",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-egg-yolks",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-mozzarella-cheese",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-cream-cheese-plain",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-canola-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-peanut-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-avocado-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-unsalted-butter",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-green-olives",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "resolutions": [],
+      "alertsAfter": []
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "resolutions": [],
+      "alertsAfter": []
+    }
+  ]
+}

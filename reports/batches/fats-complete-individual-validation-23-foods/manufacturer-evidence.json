@@ -1,0 +1,62 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "generatedAt": "2026-07-30T18:26:16.823Z",
+  "evidence": {
+    "evidenceId": "now-foods-matieres-grasses-mct-oil",
+    "brand": "NOW Foods",
+    "product": "MCT Oil Liquid",
+    "flavor": "unflavored",
+    "market": "North America",
+    "officialUrl": "https://www.nowfoods.com/products/sports-nutrition/mct-oil-liquid-plastic-bottle",
+    "accessedAt": "2026-07-30",
+    "labelServing": {
+      "amount": 15,
+      "unit": "ml"
+    },
+    "originalLabelValues": {
+      "declaredKcal": 130,
+      "proteinG": 0,
+      "carbsG": 0,
+      "fiberG": 0,
+      "fatG": 14,
+      "saturatedFatG": 14,
+      "polyunsaturatedFatG": 0,
+      "monounsaturatedFatG": 0
+    },
+    "conversion": {
+      "formula": "valueCanonical = valueLabel × 7.5 / 15",
+      "targetBasis": "7.5 ml",
+      "bottleMl": 15
+    },
+    "derivedUnrounded": {
+      "declaredKcal": 65,
+      "proteinG": 0,
+      "carbsG": 0,
+      "fiberG": 0,
+      "fatG": 7,
+      "saturatedFatG": 7,
+      "polyunsaturatedFatG": 0,
+      "monounsaturatedFatG": 0
+    },
+    "storedRounded": {
+      "declaredKcal": 65,
+      "proteinG": 0,
+      "carbsG": 0,
+      "fiberG": 0,
+      "fatG": 7,
+      "saturatedFatG": 7,
+      "polyunsaturatedFatG": 0,
+      "monounsaturatedFatG": 0
+    },
+    "networkComparison": {
+      "attempted": true,
+      "matched": null,
+      "snapshotPath": null,
+      "snapshotSha256": null,
+      "notes": "HTTP 403; network comparison not completed. Approved specification values used."
+    },
+    "linkedFoodId": "matieres-grasses-mct-oil",
+    "batchId": "fats-complete-individual-validation-23-foods",
+    "evidenceHash": "a6cb349b2461ee0682d1e872426269b16b89f1ab4118ae38632ea2011f3b7cf9"
+  }
+}

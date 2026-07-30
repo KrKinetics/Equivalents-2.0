@@ -27,6 +27,7 @@ import {
 import {
   convertCnfPer100gToPortion,
   convertManufacturerBottleTo100ml,
+  convertManufacturerLabelToCanonicalPortion,
   roundMacro,
   roundKcal,
 } from './nutrition-batch-math.mjs';
@@ -168,18 +169,19 @@ function buildCnfSource(record, accessedAt) {
 }
 
 function buildManufacturerSource(label, identity) {
+  const brand = identity.brand || label.brand || null;
   return {
     type: 'manufacturer_website',
-    name: identity.brand || 'fairlife',
+    name: brand || label.productName || 'manufacturer',
     recordId: label.url,
     url: label.url,
     doi: null,
     accessedAt: label.accessedAt,
-    servingDescription: `${label.labelServing.amount} ${label.labelServing.unit} bottle`,
+    servingDescription: `${label.labelServing.amount} ${label.labelServing.unit} label serving`,
     nutrientsBasis: 'as_consumed',
-    notes: identity.marketNote || null,
-    brand: identity.brand || 'fairlife',
-    productName: identity.en,
+    notes: identity.marketNote || label.market || null,
+    brand,
+    productName: label.productName || identity.en,
     labelServingSize: `${label.labelServing.amount} ${label.labelServing.unit}`,
     evidenceRef: label.url,
   };
@@ -304,20 +306,38 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
 
   if (entry.manufacturerLabel) {
     const label = entry.manufacturerLabel;
-    const conversion = convertManufacturerBottleTo100ml(
-      label.labelNutrients,
-      label.labelServing.amount
-    );
+    const usesCanonicalPortion = Boolean(label.storedForCanonicalPortion);
+    const conversion = usesCanonicalPortion
+      ? convertManufacturerLabelToCanonicalPortion(
+          label.labelNutrients,
+          label.labelServing.amount,
+          entry.canonicalPortion.amount
+        )
+      : convertManufacturerBottleTo100ml(label.labelNutrients, label.labelServing.amount);
+    const approvedStored = usesCanonicalPortion
+      ? label.storedForCanonicalPortion
+      : label.storedPer100Ml;
     const nutrients = {
-      declaredKcal: label.storedPer100Ml.declaredKcal,
-      proteinG: label.storedPer100Ml.proteinG,
-      carbsG: label.storedPer100Ml.carbsG,
-      fiberG: label.storedPer100Ml.fiberG,
-      fatG: label.storedPer100Ml.fatG,
-      saturatedFatG: label.storedPer100Ml.saturatedFatG,
-      polyunsaturatedFatG: label.storedPer100Ml.polyunsaturatedFatG ?? null,
-      monounsaturatedFatG: label.storedPer100Ml.monounsaturatedFatG ?? null,
+      declaredKcal: approvedStored.declaredKcal,
+      proteinG: approvedStored.proteinG,
+      carbsG: approvedStored.carbsG,
+      fiberG: approvedStored.fiberG,
+      fatG: approvedStored.fatG,
+      saturatedFatG: approvedStored.saturatedFatG,
+      polyunsaturatedFatG: approvedStored.polyunsaturatedFatG ?? null,
+      monounsaturatedFatG: approvedStored.monounsaturatedFatG ?? null,
     };
+    if (!nutrientsEqual(conversion.storedRounded, nutrients)) {
+      return {
+        ok: false,
+        errors: [
+          `MANUFACTURER_STORED_MISMATCH: ${entry.id}: computed stored values differ from approved manufacturer label`,
+        ],
+        selection: null,
+        selectedRecordId: null,
+        expectedRecordId: null,
+      };
+    }
     return {
       ok: true,
       adapter: 'manufacturer',
@@ -326,7 +346,7 @@ function resolveEntryNutrients(entry, cnfFoods, accessedAt, options = {}) {
       conversion: {
         ...conversion,
         storedRounded: nutrients,
-        approvedStored: label.storedPer100Ml,
+        approvedStored,
       },
       source: buildManufacturerSource(label, entry.lockedIdentity),
       nutrients,
@@ -447,7 +467,10 @@ function projectFoodState(before, entry, resolvedNutrients, approvedBy) {
     },
     {
       path: 'portion.brand',
-      value: entry.lockedIdentity.brand || (entry.manufacturerLabel ? 'fairlife' : null),
+      value:
+        entry.lockedIdentity.brand ||
+        entry.manufacturerLabel?.brand ||
+        null,
     },
     { path: 'displayCategory', value: entry.classification.displayCategory },
     { path: 'calculationGroup', value: entry.classification.calculationGroup },
@@ -685,6 +708,7 @@ export {
   roundKcal,
   convertCnfPer100gToPortion,
   convertManufacturerBottleTo100ml,
+  convertManufacturerLabelToCanonicalPortion,
   buildBatchScopeBaseline,
   checkBatchScope,
 };

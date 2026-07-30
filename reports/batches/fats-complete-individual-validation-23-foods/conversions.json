@@ -1,0 +1,778 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "foods": [
+    {
+      "id": "matieres-grasses-avocado",
+      "formula": "valuePortion = valuePer100g × 34 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 160,
+        "protein_g": 2,
+        "carbohydrate_g": 8.53,
+        "fibre_g": 6.7,
+        "total_fat_g": 14.66,
+        "saturated_fat_g": 2.126,
+        "polyunsaturated_fat_g": 1.816,
+        "monounsaturated_fat_g": 9.799
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 54.400000000000006,
+        "proteinG": 0.68,
+        "carbsG": 2.9002,
+        "fiberG": 2.278,
+        "fatG": 4.984400000000001,
+        "saturatedFatG": 0.72284,
+        "polyunsaturatedFatG": 0.6174400000000001,
+        "monounsaturatedFatG": 3.33166
+      },
+      "storedRounded": {
+        "declaredKcal": 54,
+        "proteinG": 0.7,
+        "carbsG": 2.9,
+        "fiberG": 2.3,
+        "fatG": 5,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 3.3
+      }
+    },
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 599,
+        "protein_g": 7.79,
+        "carbohydrate_g": 45.9,
+        "fibre_g": 10.9,
+        "total_fat_g": 42.63,
+        "saturated_fat_g": 24.48,
+        "polyunsaturated_fat_g": 1.25,
+        "monounsaturated_fat_g": 12.78
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 59.900000000000006,
+        "proteinG": 0.779,
+        "carbsG": 4.59,
+        "fiberG": 1.09,
+        "fatG": 4.263000000000001,
+        "saturatedFatG": 2.4480000000000004,
+        "polyunsaturatedFatG": 0.125,
+        "monounsaturatedFatG": 1.278
+      },
+      "storedRounded": {
+        "declaredKcal": 60,
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 1.1,
+        "fatG": 4.3,
+        "saturatedFatG": 2.4,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3
+      }
+    },
+    {
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 418,
+        "protein_g": 23.29,
+        "carbohydrate_g": 10.27,
+        "fibre_g": 0,
+        "total_fat_g": 31.756,
+        "saturated_fat_g": 20.626,
+        "polyunsaturated_fat_g": 1.258,
+        "monounsaturated_fat_g": 8.165
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.699999999999996,
+        "proteinG": 3.4934999999999996,
+        "carbsG": 1.5405,
+        "fiberG": 0,
+        "fatG": 4.7634,
+        "saturatedFatG": 3.0939,
+        "polyunsaturatedFatG": 0.1887,
+        "monounsaturatedFatG": 1.2247499999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 63,
+        "proteinG": 3.5,
+        "carbsG": 1.5,
+        "fiberG": 0,
+        "fatG": 4.8,
+        "saturatedFatG": 3.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2
+      }
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "formula": "valuePortion = valuePer100g × 6.8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 885,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 100,
+        "saturated_fat_g": 13.808,
+        "polyunsaturated_fat_g": 10.523,
+        "monounsaturated_fat_g": 72.961
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 60.18000000000001,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.800000000000001,
+        "saturatedFatG": 0.938944,
+        "polyunsaturatedFatG": 0.715564,
+        "monounsaturatedFatG": 4.961348
+      },
+      "storedRounded": {
+        "declaredKcal": 60,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 5
+      }
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "formula": "valuePortion = valuePer100g × 6.9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 892,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 99.06,
+        "saturated_fat_g": 82.475,
+        "polyunsaturated_fat_g": 1.702,
+        "monounsaturated_fat_g": 6.332
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 61.548,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.835140000000001,
+        "saturatedFatG": 5.690775,
+        "polyunsaturatedFatG": 0.117438,
+        "monounsaturatedFatG": 0.436908
+      },
+      "storedRounded": {
+        "declaredKcal": 62,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 5.7,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.4
+      }
+    },
+    {
+      "id": "matieres-grasses-whole-egg",
+      "formula": "valuePortion = valuePer100g × 50 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 141,
+        "protein_g": 11.8,
+        "carbohydrate_g": 1.85,
+        "fibre_g": 0,
+        "total_fat_g": 10.012,
+        "saturated_fat_g": 3.043,
+        "polyunsaturated_fat_g": 1.446,
+        "monounsaturated_fat_g": 4.182
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 70.5,
+        "proteinG": 5.9,
+        "carbsG": 0.925,
+        "fiberG": 0,
+        "fatG": 5.006,
+        "saturatedFatG": 1.5215,
+        "polyunsaturatedFatG": 0.723,
+        "monounsaturatedFatG": 2.091
+      },
+      "storedRounded": {
+        "declaredKcal": 71,
+        "proteinG": 5.9,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 5,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.1
+      }
+    },
+    {
+      "id": "matieres-grasses-egg-yolks",
+      "formula": "valuePortion = valuePer100g × 17 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 351,
+        "protein_g": 15.896,
+        "carbohydrate_g": 3.363,
+        "fibre_g": 0,
+        "total_fat_g": 32.679,
+        "saturated_fat_g": 9.932,
+        "polyunsaturated_fat_g": 5.253,
+        "monounsaturated_fat_g": 13.651
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 59.67,
+        "proteinG": 2.7023200000000003,
+        "carbsG": 0.57171,
+        "fiberG": 0,
+        "fatG": 5.55543,
+        "saturatedFatG": 1.6884400000000002,
+        "polyunsaturatedFatG": 0.8930100000000001,
+        "monounsaturatedFatG": 2.3206700000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 60,
+        "proteinG": 2.7,
+        "carbsG": 0.6,
+        "fiberG": 0,
+        "fatG": 5.6,
+        "saturatedFatG": 1.7,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.3
+      }
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 717,
+        "protein_g": 0.85,
+        "carbohydrate_g": 0.06,
+        "fibre_g": 0,
+        "total_fat_g": 81.11,
+        "saturated_fat_g": 51.368,
+        "polyunsaturated_fat_g": 3.043,
+        "monounsaturated_fat_g": 21.021
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 51.62400000000001,
+        "proteinG": 0.061200000000000004,
+        "carbsG": 0.00432,
+        "fiberG": 0,
+        "fatG": 5.83992,
+        "saturatedFatG": 3.6984960000000004,
+        "polyunsaturatedFatG": 0.21909600000000004,
+        "monounsaturatedFatG": 1.5135120000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 52,
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.7,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.5
+      }
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "formula": "valuePortion = valuePer100g × 7 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 680,
+        "protein_g": 0.96,
+        "carbohydrate_g": 0.57,
+        "fibre_g": 0,
+        "total_fat_g": 74.85,
+        "saturated_fat_g": 11.703,
+        "polyunsaturated_fat_g": 44.69,
+        "monounsaturated_fat_g": 16.843
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 47.6,
+        "proteinG": 0.06720000000000001,
+        "carbsG": 0.0399,
+        "fiberG": 0,
+        "fatG": 5.2395000000000005,
+        "saturatedFatG": 0.81921,
+        "polyunsaturatedFatG": 3.1283000000000003,
+        "monounsaturatedFatG": 1.1790100000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 48,
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.2,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.2
+      }
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "formula": "valuePortion = valuePer100g × 51 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 116,
+        "protein_g": 0.84,
+        "carbohydrate_g": 6.04,
+        "fibre_g": 1.6,
+        "total_fat_g": 10.9,
+        "saturated_fat_g": 2.279,
+        "polyunsaturated_fat_g": 0.629,
+        "monounsaturated_fat_g": 7.652
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 59.160000000000004,
+        "proteinG": 0.4284,
+        "carbsG": 3.0804,
+        "fiberG": 0.8160000000000001,
+        "fatG": 5.559,
+        "saturatedFatG": 1.16229,
+        "polyunsaturatedFatG": 0.32079,
+        "monounsaturatedFatG": 3.90252
+      },
+      "storedRounded": {
+        "declaredKcal": 59,
+        "proteinG": 0.4,
+        "carbsG": 3.1,
+        "fiberG": 0.8,
+        "fatG": 5.6,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 3.9
+      }
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "formula": "valuePortion = valuePer100g × 10.6 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 449,
+        "protein_g": 0,
+        "carbohydrate_g": 2.5,
+        "fibre_g": 0,
+        "total_fat_g": 50.1,
+        "saturated_fat_g": 9.1,
+        "polyunsaturated_fat_g": 24.1,
+        "monounsaturated_fat_g": 14.8
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 47.594,
+        "proteinG": 0,
+        "carbsG": 0.265,
+        "fiberG": 0,
+        "fatG": 5.3106,
+        "saturatedFatG": 0.9645999999999999,
+        "polyunsaturatedFatG": 2.5546,
+        "monounsaturatedFatG": 1.5688
+      },
+      "storedRounded": {
+        "declaredKcal": 48,
+        "proteinG": 0,
+        "carbsG": 0.3,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 1.6
+      }
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "formula": "valuePortion = valuePer100g × 6.9 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 902,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 100,
+        "saturated_fat_g": 22.608,
+        "polyunsaturated_fat_g": 22.541,
+        "monounsaturated_fat_g": 46.711
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.23800000000001,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.9,
+        "saturatedFatG": 1.5599520000000002,
+        "polyunsaturatedFatG": 1.5553290000000002,
+        "monounsaturatedFatG": 3.223059
+      },
+      "storedRounded": {
+        "declaredKcal": 62,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.9,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 3.2
+      }
+    },
+    {
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 579,
+        "protein_g": 6.12,
+        "carbohydrate_g": 52.42,
+        "fibre_g": 8,
+        "total_fat_g": 38.31,
+        "saturated_fat_g": 22.03,
+        "polyunsaturated_fat_g": 1.22,
+        "monounsaturated_fat_g": 11.52
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 57.900000000000006,
+        "proteinG": 0.6120000000000001,
+        "carbsG": 5.242000000000001,
+        "fiberG": 0.8,
+        "fatG": 3.8310000000000004,
+        "saturatedFatG": 2.2030000000000003,
+        "polyunsaturatedFatG": 0.122,
+        "monounsaturatedFatG": 1.152
+      },
+      "storedRounded": {
+        "declaredKcal": 58,
+        "proteinG": 0.6,
+        "carbsG": 5.2,
+        "fiberG": 0.8,
+        "fatG": 3.8,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.2
+      }
+    },
+    {
+      "id": "matieres-grasses-mozzarella-cheese",
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 319,
+        "protein_g": 21.6,
+        "carbohydrate_g": 2.47,
+        "fibre_g": 0,
+        "total_fat_g": 24.64,
+        "saturated_fat_g": 15.561,
+        "polyunsaturated_fat_g": 0.778,
+        "monounsaturated_fat_g": 7.027
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 57.419999999999995,
+        "proteinG": 3.888,
+        "carbsG": 0.4446,
+        "fiberG": 0,
+        "fatG": 4.4352,
+        "saturatedFatG": 2.80098,
+        "polyunsaturatedFatG": 0.14004,
+        "monounsaturatedFatG": 1.2648599999999999
+      },
+      "storedRounded": {
+        "declaredKcal": 57,
+        "proteinG": 3.9,
+        "carbsG": 0.4,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3
+      }
+    },
+    {
+      "id": "matieres-grasses-cream-cheese-plain",
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 310,
+        "protein_g": 6.59,
+        "carbohydrate_g": 8.3,
+        "fibre_g": 0,
+        "total_fat_g": 28.461,
+        "saturated_fat_g": 18.451,
+        "polyunsaturated_fat_g": 1.247,
+        "monounsaturated_fat_g": 7.22
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 46.5,
+        "proteinG": 0.9884999999999999,
+        "carbsG": 1.245,
+        "fiberG": 0,
+        "fatG": 4.26915,
+        "saturatedFatG": 2.76765,
+        "polyunsaturatedFatG": 0.18705000000000002,
+        "monounsaturatedFatG": 1.083
+      },
+      "storedRounded": {
+        "declaredKcal": 47,
+        "proteinG": 1,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 4.3,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.1
+      }
+    },
+    {
+      "id": "matieres-grasses-canola-oil",
+      "formula": "valuePortion = valuePer100g × 7.1 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 885,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 100,
+        "saturated_fat_g": 7.365,
+        "polyunsaturated_fat_g": 28.142,
+        "monounsaturated_fat_g": 63.276
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.834999999999994,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.522915,
+        "polyunsaturatedFatG": 1.9980819999999997,
+        "monounsaturatedFatG": 4.492596
+      },
+      "storedRounded": {
+        "declaredKcal": 63,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 4.5
+      }
+    },
+    {
+      "id": "matieres-grasses-peanut-oil",
+      "formula": "valuePortion = valuePer100g × 6.8 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 885,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 100,
+        "saturated_fat_g": 16.9,
+        "polyunsaturated_fat_g": 32,
+        "monounsaturated_fat_g": 46.2
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 60.18000000000001,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.800000000000001,
+        "saturatedFatG": 1.1492,
+        "polyunsaturatedFatG": 2.176,
+        "monounsaturatedFatG": 3.1416000000000004
+      },
+      "storedRounded": {
+        "declaredKcal": 60,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 3.1
+      }
+    },
+    {
+      "id": "matieres-grasses-avocado-oil",
+      "formula": "valuePortion = valuePer100g × 7.1 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 885,
+        "protein_g": 0,
+        "carbohydrate_g": 0,
+        "fibre_g": 0,
+        "total_fat_g": 100,
+        "saturated_fat_g": 11.56,
+        "polyunsaturated_fat_g": 13.486,
+        "monounsaturated_fat_g": 70.554
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 62.834999999999994,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.8207599999999999,
+        "polyunsaturatedFatG": 0.957506,
+        "monounsaturatedFatG": 5.009334
+      },
+      "storedRounded": {
+        "declaredKcal": 63,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5
+      }
+    },
+    {
+      "id": "matieres-grasses-unsalted-butter",
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 717,
+        "protein_g": 0.85,
+        "carbohydrate_g": 0.06,
+        "fibre_g": 0,
+        "total_fat_g": 81.11,
+        "saturated_fat_g": 50.489,
+        "polyunsaturated_fat_g": 3.01,
+        "monounsaturated_fat_g": 23.43
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 51.62400000000001,
+        "proteinG": 0.061200000000000004,
+        "carbsG": 0.00432,
+        "fiberG": 0,
+        "fatG": 5.83992,
+        "saturatedFatG": 3.6352080000000004,
+        "polyunsaturatedFatG": 0.21672000000000002,
+        "monounsaturatedFatG": 1.6869600000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 52,
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.6,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.7
+      }
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 716,
+        "protein_g": 0.22,
+        "carbohydrate_g": 0.64,
+        "fibre_g": 0,
+        "total_fat_g": 80.65,
+        "saturated_fat_g": 11.09,
+        "polyunsaturated_fat_g": 20.14,
+        "monounsaturated_fat_g": 39.648
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 51.55200000000001,
+        "proteinG": 0.015840000000000003,
+        "carbsG": 0.04608,
+        "fiberG": 0,
+        "fatG": 5.806800000000001,
+        "saturatedFatG": 0.7984800000000001,
+        "polyunsaturatedFatG": 1.4500800000000003,
+        "monounsaturatedFatG": 2.8546560000000007
+      },
+      "storedRounded": {
+        "declaredKcal": 52,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 2.9
+      }
+    },
+    {
+      "id": "matieres-grasses-green-olives",
+      "formula": "valuePortion = valuePer100g × 40 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 146,
+        "protein_g": 1.03,
+        "carbohydrate_g": 3.84,
+        "fibre_g": 3.3,
+        "total_fat_g": 15.32,
+        "saturated_fat_g": 2.029,
+        "polyunsaturated_fat_g": 1.307,
+        "monounsaturated_fat_g": 11.314
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 58.400000000000006,
+        "proteinG": 0.41200000000000003,
+        "carbsG": 1.536,
+        "fiberG": 1.32,
+        "fatG": 6.128,
+        "saturatedFatG": 0.8116,
+        "polyunsaturatedFatG": 0.5228,
+        "monounsaturatedFatG": 4.5256
+      },
+      "storedRounded": {
+        "declaredKcal": 58,
+        "proteinG": 0.4,
+        "carbsG": 1.5,
+        "fiberG": 1.3,
+        "fatG": 6.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 4.5
+      }
+    },
+    {
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "formula": "valuePortion = valuePer100g × 21 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 238,
+        "protein_g": 0.37,
+        "carbohydrate_g": 9.23,
+        "fibre_g": 0,
+        "total_fat_g": 22.22,
+        "saturated_fat_g": 3.446,
+        "polyunsaturated_fat_g": 12.993,
+        "monounsaturated_fat_g": 5.01
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 49.98,
+        "proteinG": 0.07769999999999999,
+        "carbsG": 1.9383,
+        "fiberG": 0,
+        "fatG": 4.6662,
+        "saturatedFatG": 0.72366,
+        "polyunsaturatedFatG": 2.72853,
+        "monounsaturatedFatG": 1.0520999999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 50,
+        "proteinG": 0.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 4.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.1
+      }
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "formula": "valueCanonical = valueLabel × 7.5 / 15",
+      "sourcePer100g": null,
+      "derivedUnrounded": {
+        "declaredKcal": 65,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7,
+        "saturatedFatG": 7,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      },
+      "storedRounded": {
+        "declaredKcal": 65,
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7,
+        "saturatedFatG": 7,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    }
+  ]
+}

@@ -189,6 +189,7 @@ function main() {
   const fruits = live.foods.filter((f) => f.displayCategory === 'fruits');
   const vegetables = live.foods.filter((f) => f.displayCategory === 'legumes');
   const nutsSeeds = live.foods.filter((f) => f.displayCategory === 'noix_graines');
+  const fats = live.foods.filter((f) => f.displayCategory === 'matieres_grasses');
   const finalReport = {
     batchId: batch.batchId,
     generatedAt: new Date().toISOString(),
@@ -202,6 +203,8 @@ function main() {
       vegetablesVerified: vegetables.filter((f) => f.status === 'verified').length,
       nutsSeedsCount: nutsSeeds.length,
       nutsSeedsVerified: nutsSeeds.filter((f) => f.status === 'verified').length,
+      fatsCount: fats.length,
+      fatsVerified: fats.filter((f) => f.status === 'verified').length,
       totalFoods: live.foods.length,
       totalVerified: live.foods.filter((f) => f.status === 'verified').length,
       protectedUnchanged: result.scopeCheck?.protectedFoodCount ?? null,
@@ -214,9 +217,15 @@ function main() {
       return {
         id: row.id,
         operation: row.operation,
+        sourceType: food.source?.type || null,
         expectedRecordId: row.expectedRecordId,
         selectedRecordId: row.selectedRecordId,
         cnfDescription: previewRow?.cnfDescription || null,
+        sourceDescription:
+          previewRow?.cnfDescription ||
+          (food.source?.productName
+            ? { en: food.source.productName, fr: food.names?.fr || null }
+            : null),
         beforePortion: previewRow?.before?.portion || null,
         afterPortion: food.portion,
         beforeNutrients: previewRow?.before?.nutrients || null,

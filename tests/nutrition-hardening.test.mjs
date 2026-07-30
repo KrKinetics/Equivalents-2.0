@@ -345,9 +345,9 @@ after(() => {
   }
 });
 
-test('real dataset has exactly 227 foods', () => {
+test('real dataset has exactly 237 foods', () => {
   assert.equal(realPayload.foods.length, TOTAL_FOODS_EXPECTED);
-  assert.equal(TOTAL_FOODS_EXPECTED, 227);
+  assert.equal(TOTAL_FOODS_EXPECTED, 237);
 });
 
 test('real dataset has exact category counts', () => {

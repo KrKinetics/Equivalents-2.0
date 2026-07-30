@@ -1,0 +1,1339 @@
+{
+  "batchId": "fats-complete-individual-validation-23-foods",
+  "generatedAt": "2026-07-30T18:25:55.593Z",
+  "summary": {
+    "updates": 13,
+    "adds": 10,
+    "verifiedInBatch": 23,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "nutsSeedsCount": 32,
+    "nutsSeedsVerified": 32,
+    "fatsCount": 23,
+    "fatsVerified": 23,
+    "totalFoods": 237,
+    "totalVerified": 128,
+    "protectedUnchanged": 214,
+    "protectedFoodsDataHash": "9e4893bfae4f308b47e1b3ae539ae118fb708cbbb080a029374aef1f95219cf5",
+    "dataHash": "b19ecd292ef347aaa227147fc9749e0a8a2fab04f6e01445b0b1dac99177b5bc"
+  },
+  "foods": [
+    {
+      "id": "matieres-grasses-avocado",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1511",
+      "selectedRecordId": "1511",
+      "cnfDescription": {
+        "en": "Avocado, raw, all commercial varieties",
+        "fr": "Avocat, cru, toutes variétés commerciales"
+      },
+      "sourceDescription": {
+        "en": "Avocado, raw, all commercial varieties",
+        "fr": "Avocat, cru, toutes variétés commerciales"
+      },
+      "beforePortion": {
+        "labelFr": "⅙ d'avocat",
+        "labelEn": "⅙ avocado",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "⅙ d’un avocat moyen (34 g)",
+        "labelEn": "⅙ medium avocado (34 g)",
+        "amount": 0.16666666666666666,
+        "unit": "piece",
+        "grams": 34,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 2.9,
+        "fiberG": 2.3,
+        "fatG": 5,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 0.6,
+        "monounsaturatedFatG": 3.3,
+        "declaredKcal": 54
+      },
+      "formula": "valuePortion = valuePer100g × 34 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1151160f-c677-48b3-9dd2-3654295074eb",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-avocado"
+    },
+    {
+      "id": "matieres-grasses-square-dark-chocolate-70",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6672",
+      "selectedRecordId": "6672",
+      "cnfDescription": {
+        "en": "Candies, chocolate, dark, 70-85% cocoa solids",
+        "fr": "Bonbons, chocolat noir, 70-85% solides de cacao"
+      },
+      "sourceDescription": {
+        "en": "Candies, chocolate, dark, 70-85% cocoa solids",
+        "fr": "Bonbons, chocolat noir, 70-85% solides de cacao"
+      },
+      "beforePortion": {
+        "labelFr": "1 carré de Chocolat noir > 70 %",
+        "labelEn": "1 square Dark chocolate > 70%",
+        "amount": 1,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 carré de chocolat noir (10 g)",
+        "labelEn": "1 square dark chocolate (10 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 1,
+        "fatG": null,
+        "saturatedFatG": 3,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 61
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 1.1,
+        "fatG": 4.3,
+        "saturatedFatG": 2.4,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "5bb8b6e4-16f1-41c6-8687-2c0c4a8c9e00",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-chocolate"
+    },
+    {
+      "id": "matieres-grasses-cheddar-mozzarella-cream-cheese",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "119",
+      "selectedRecordId": "119",
+      "cnfDescription": {
+        "en": "Cheese, cheddar, mild",
+        "fr": "Fromage cheddar, doux"
+      },
+      "sourceDescription": {
+        "en": "Cheese, cheddar, mild",
+        "fr": "Fromage cheddar, doux"
+      },
+      "beforePortion": {
+        "labelFr": "15 g de fromage cheddar / mozzarella / Philadelphia",
+        "labelEn": "15 g Cheddar / mozzarella / cream cheese",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 g de fromage cheddar doux",
+        "labelEn": "15 g mild cheddar cheese",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 1,
+        "declaredKcal": 44
+      },
+      "afterNutrients": {
+        "proteinG": 3.5,
+        "carbsG": 1.5,
+        "fiberG": 0,
+        "fatG": 4.8,
+        "saturatedFatG": 3.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 63
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1407875a-eef1-4c43-b6c9-1d224236edad",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese"
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "422",
+      "selectedRecordId": "422",
+      "cnfDescription": {
+        "en": "Vegetable oil, olive",
+        "fr": "Huile végétale, olive"
+      },
+      "sourceDescription": {
+        "en": "Vegetable oil, olive",
+        "fr": "Huile végétale, olive"
+      },
+      "beforePortion": {
+        "labelFr": "7,5 ml d'Huile végétale (arachide, canola, olive)",
+        "labelEn": "7.5 ml Vegetable oil (peanut, canola, olive)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile d’olive (6,8 g)",
+        "labelEn": "7.5 ml olive oil (6.8 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 0.9,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 6.8 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a785957c-a4e0-456a-a8fb-14046d12ab00",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil"
+    },
+    {
+      "id": "matieres-grasses-virgin-coconut-oil",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "420",
+      "selectedRecordId": "420",
+      "cnfDescription": {
+        "en": "Vegetable oil, coconut",
+        "fr": "Huile végétale, noix de coco"
+      },
+      "sourceDescription": {
+        "en": "Vegetable oil, coconut",
+        "fr": "Huile végétale, noix de coco"
+      },
+      "beforePortion": {
+        "labelFr": "7,5 ml d'Huile de coco vierge",
+        "labelEn": "7.5 ml Virgin coconut oil",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile de noix de coco (6,9 g)",
+        "labelEn": "7.5 ml coconut oil (6.9 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 6,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 59
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 5.7,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.4,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 6.9 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "63e497e7-b33a-45d3-b46f-a7af63dfcb60",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil"
+    },
+    {
+      "id": "matieres-grasses-whole-egg",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "130",
+      "selectedRecordId": "130",
+      "cnfDescription": {
+        "en": "Egg, chicken, whole, cooked, boiled in shell, hard-cooked",
+        "fr": "Oeuf, poule, entier, cuit, bouilli à la coque, dur"
+      },
+      "sourceDescription": {
+        "en": "Egg, chicken, whole, cooked, boiled in shell, hard-cooked",
+        "fr": "Oeuf, poule, entier, cuit, bouilli à la coque, dur"
+      },
+      "beforePortion": {
+        "labelFr": "1 œuf entier",
+        "labelEn": "1 whole egg",
+        "amount": 1,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 gros œuf cuit dur (50 g)",
+        "labelEn": "1 large hard-cooked egg (50 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 50,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 6,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 70
+      },
+      "afterNutrients": {
+        "proteinG": 5.9,
+        "carbsG": 0.9,
+        "fiberG": 0,
+        "fatG": 5,
+        "saturatedFatG": 1.5,
+        "polyunsaturatedFatG": 0.7,
+        "monounsaturatedFatG": 2.1,
+        "declaredKcal": 71
+      },
+      "formula": "valuePortion = valuePer100g × 50 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e777ac5c-4c38-4d82-b828-ed1e9399709f",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-egg"
+    },
+    {
+      "id": "matieres-grasses-egg-yolks",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6718",
+      "selectedRecordId": "6718",
+      "cnfDescription": {
+        "en": "Egg, chicken, yolk, cooked",
+        "fr": "Oeuf, poule, jaune, cuit"
+      },
+      "sourceDescription": {
+        "en": "Egg, chicken, yolk, cooked",
+        "fr": "Oeuf, poule, jaune, cuit"
+      },
+      "beforePortion": {
+        "labelFr": "2 jaunes d'œuf",
+        "labelEn": "2 egg yolks",
+        "amount": 2,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 jaune d’œuf cuit (17 g)",
+        "labelEn": "1 cooked egg yolk (17 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 17,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 2,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 55
+      },
+      "afterNutrients": {
+        "proteinG": 2.7,
+        "carbsG": 0.6,
+        "fiberG": 0,
+        "fatG": 5.6,
+        "saturatedFatG": 1.7,
+        "polyunsaturatedFatG": 0.9,
+        "monounsaturatedFatG": 2.3,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 17 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "0e465409-7eb1-407c-9c40-9385c7122137",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-egg"
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-margarine-or-butter",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "118",
+      "selectedRecordId": "118",
+      "cnfDescription": {
+        "en": "Butter, regular",
+        "fr": "Beurre, salé"
+      },
+      "sourceDescription": {
+        "en": "Butter, regular",
+        "fr": "Beurre, salé"
+      },
+      "beforePortion": {
+        "labelFr": "7,5 ml de Margarine non hydrogénée ou de beurre",
+        "labelEn": "7.5 ml Non-hydrogenated margarine or butter",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml de beurre salé (7,2 g)",
+        "labelEn": "7.5 ml salted butter (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.7,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.5,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "af9d6585-168f-4c7b-a340-0606742d1d28",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread"
+    },
+    {
+      "id": "matieres-grasses-mayonnaise",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "531",
+      "selectedRecordId": "531",
+      "cnfDescription": {
+        "en": "Salad dressing, mayonnaise, regular",
+        "fr": "Vinaigrette, mayonnaise, régulière"
+      },
+      "sourceDescription": {
+        "en": "Salad dressing, mayonnaise, regular",
+        "fr": "Vinaigrette, mayonnaise, régulière"
+      },
+      "beforePortion": {
+        "labelFr": "7,5 ml de mayonnaise",
+        "labelEn": "7.5 ml Mayonnaise",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml de mayonnaise régulière (7 g)",
+        "labelEn": "7.5 ml regular mayonnaise (7 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 49
+      },
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.2,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 3.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 48
+      },
+      "formula": "valuePortion = valuePer100g × 7 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "7ea36fa1-a95f-4b6c-82b2-4a05cc4c61a3",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mayonnaise"
+    },
+    {
+      "id": "matieres-grasses-olives-1-6-2-cm",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "1613",
+      "selectedRecordId": "1613",
+      "cnfDescription": {
+        "en": "Olive, ripe, canned, small to extra large",
+        "fr": "Olive, mûre, conserve, petite à extra large"
+      },
+      "sourceDescription": {
+        "en": "Olive, ripe, canned, small to extra large",
+        "fr": "Olive, mûre, conserve, petite à extra large"
+      },
+      "beforePortion": {
+        "labelFr": "16 Olives de 1,6 × 2 cm",
+        "labelEn": "16 Olives 1.6 × 2 cm",
+        "amount": 16,
+        "unit": "count",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "16 petites olives noires (51 g)",
+        "labelEn": "16 small black olives (51 g)",
+        "amount": 16,
+        "unit": "count",
+        "grams": 51,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 2,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 66
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 3.1,
+        "fiberG": 0.8,
+        "fatG": 5.6,
+        "saturatedFatG": 1.2,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 3.9,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 51 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "3a381e9e-9cb3-4061-8ea1-e97451f7fa39",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-olive"
+    },
+    {
+      "id": "matieres-grasses-vegetable-oil-based-vinaigrette",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "428",
+      "selectedRecordId": "428",
+      "cnfDescription": {
+        "en": "Salad dressing, oil and vinegar, homemade",
+        "fr": "Vinaigrette, huile et vinaigre, faite maison"
+      },
+      "sourceDescription": {
+        "en": "Salad dressing, oil and vinegar, homemade",
+        "fr": "Vinaigrette, huile et vinaigre, faite maison"
+      },
+      "beforePortion": {
+        "labelFr": "10 ml de vinaigrette à base d'huile végétale",
+        "labelEn": "10 ml Vegetable oil-based vinaigrette",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "10 ml de vinaigrette maison (10,6 g)",
+        "labelEn": "10 ml homemade vinaigrette (10.6 g)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": 10.6,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 3,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0.3,
+        "fiberG": 0,
+        "fatG": 5.3,
+        "saturatedFatG": 1,
+        "polyunsaturatedFatG": 2.6,
+        "monounsaturatedFatG": 1.6,
+        "declaredKcal": 48
+      },
+      "formula": "valuePortion = valuePer100g × 10.6 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "10d2df02-9f17-482d-83e8-9b4c7ded92f8",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-dressing"
+    },
+    {
+      "id": "matieres-grasses-fish-oil",
+      "operation": "update",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "457",
+      "selectedRecordId": "457",
+      "cnfDescription": {
+        "en": "Fish oil, cod liver",
+        "fr": "Huile de poisson, foie de morue"
+      },
+      "sourceDescription": {
+        "en": "Fish oil, cod liver",
+        "fr": "Huile de poisson, foie de morue"
+      },
+      "beforePortion": {
+        "labelFr": "10 ml d'Huile de poisson (EPA / DHA)",
+        "labelEn": "10 ml Fish oil (EPA / DHA)",
+        "amount": 10,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile de foie de morue (6,9 g)",
+        "labelEn": "7.5 ml cod liver oil (6.9 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.9,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 3,
+        "monounsaturatedFatG": 2,
+        "declaredKcal": 56
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.9,
+        "saturatedFatG": 1.6,
+        "polyunsaturatedFatG": 1.6,
+        "monounsaturatedFatG": 3.2,
+        "declaredKcal": 62
+      },
+      "formula": "valuePortion = valuePer100g × 6.9 / 100",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "cf5ed873-f95c-4e46-8a7b-a0ed1144d827",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-fish-oil"
+    },
+    {
+      "id": "matieres-grasses-dark-chocolate-60-69",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "6671",
+      "selectedRecordId": "6671",
+      "cnfDescription": {
+        "en": "Candies, chocolate, dark, 60-69% cocoa solids",
+        "fr": "Bonbons, chocolat noir, 60-69% solides de cacao"
+      },
+      "sourceDescription": {
+        "en": "Candies, chocolate, dark, 60-69% cocoa solids",
+        "fr": "Bonbons, chocolat noir, 60-69% solides de cacao"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "1 carré de chocolat noir (10 g)",
+        "labelEn": "1 square dark chocolate (10 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 10,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 5.2,
+        "fiberG": 0.8,
+        "fatG": 3.8,
+        "saturatedFatG": 2.2,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.2,
+        "declaredKcal": 58
+      },
+      "formula": "valuePortion = valuePer100g × 10 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a4a59be7-1e83-4d17-94a8-91a714afeaf3",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-chocolate"
+    },
+    {
+      "id": "matieres-grasses-mozzarella-cheese",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "35",
+      "selectedRecordId": "35",
+      "cnfDescription": {
+        "en": "Cheese, mozzarella, (48% water, 25% M.F.)",
+        "fr": "Fromage mozzarella (48%d'humidité, 25% M.G.)"
+      },
+      "sourceDescription": {
+        "en": "Cheese, mozzarella, (48% water, 25% M.F.)",
+        "fr": "Fromage mozzarella (48%d'humidité, 25% M.G.)"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "18 g de fromage mozzarella",
+        "labelEn": "18 g mozzarella cheese",
+        "amount": 18,
+        "unit": "g",
+        "grams": 18,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 3.9,
+        "carbsG": 0.4,
+        "fiberG": 0,
+        "fatG": 4.4,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 1.3,
+        "declaredKcal": 57
+      },
+      "formula": "valuePortion = valuePer100g × 18 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d16c7dec-929c-4442-afea-fec211b0e5e6",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese"
+    },
+    {
+      "id": "matieres-grasses-cream-cheese-plain",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "28",
+      "selectedRecordId": "28",
+      "cnfDescription": {
+        "en": "Cheese, cream cheese product, plain",
+        "fr": "Fromage, produit de fromage à la crème, nature"
+      },
+      "sourceDescription": {
+        "en": "Cheese, cream cheese product, plain",
+        "fr": "Fromage, produit de fromage à la crème, nature"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "15 g de fromage à la crème nature",
+        "labelEn": "15 g plain cream cheese",
+        "amount": 15,
+        "unit": "g",
+        "grams": 15,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 1.2,
+        "fiberG": 0,
+        "fatG": 4.3,
+        "saturatedFatG": 2.8,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 47
+      },
+      "formula": "valuePortion = valuePer100g × 15 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c1dc9d1c-c1ca-4af6-aaeb-f9f4167cddd3",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-cheese"
+    },
+    {
+      "id": "matieres-grasses-canola-oil",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "451",
+      "selectedRecordId": "451",
+      "cnfDescription": {
+        "en": "Vegetable oil, canola",
+        "fr": "Huile végétale, canola (colza)"
+      },
+      "sourceDescription": {
+        "en": "Vegetable oil, canola",
+        "fr": "Huile végétale, canola (colza)"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile de canola (7,1 g)",
+        "labelEn": "7.5 ml canola oil (7.1 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.5,
+        "polyunsaturatedFatG": 2,
+        "monounsaturatedFatG": 4.5,
+        "declaredKcal": 63
+      },
+      "formula": "valuePortion = valuePer100g × 7.1 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "78db4ef7-2a8a-4fb3-902a-9df1fde65c15",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil"
+    },
+    {
+      "id": "matieres-grasses-peanut-oil",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "418",
+      "selectedRecordId": "418",
+      "cnfDescription": {
+        "en": "Vegetable oil, peanut",
+        "fr": "Huile végétale, arachide"
+      },
+      "sourceDescription": {
+        "en": "Vegetable oil, peanut",
+        "fr": "Huile végétale, arachide"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile d’arachide (6,8 g)",
+        "labelEn": "7.5 ml peanut oil (6.8 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 6.8,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 6.8,
+        "saturatedFatG": 1.1,
+        "polyunsaturatedFatG": 2.2,
+        "monounsaturatedFatG": 3.1,
+        "declaredKcal": 60
+      },
+      "formula": "valuePortion = valuePer100g × 6.8 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "cc5f0728-f6f3-4724-9f42-b1febcf87838",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil"
+    },
+    {
+      "id": "matieres-grasses-avocado-oil",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "450",
+      "selectedRecordId": "450",
+      "cnfDescription": {
+        "en": "Vegetable oil, avocado",
+        "fr": "Huile végétale, avocat"
+      },
+      "sourceDescription": {
+        "en": "Vegetable oil, avocado",
+        "fr": "Huile végétale, avocat"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile d’avocat (7,1 g)",
+        "labelEn": "7.5 ml avocado oil (7.1 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.1,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1,
+        "monounsaturatedFatG": 5,
+        "declaredKcal": 63
+      },
+      "formula": "valuePortion = valuePer100g × 7.1 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d12c047f-0b7b-4f48-88d5-d59887e38aee",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-oil"
+    },
+    {
+      "id": "matieres-grasses-unsalted-butter",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "92",
+      "selectedRecordId": "92",
+      "cnfDescription": {
+        "en": "Butter, unsalted",
+        "fr": "Beurre, sans sel"
+      },
+      "sourceDescription": {
+        "en": "Butter, unsalted",
+        "fr": "Beurre, sans sel"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "7,5 ml de beurre sans sel (7,2 g)",
+        "labelEn": "7.5 ml unsalted butter (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 3.6,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 1.7,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "078172d3-6102-4d42-bf46-873fffadac72",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread"
+    },
+    {
+      "id": "matieres-grasses-non-hydrogenated-canola-margarine",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "7463",
+      "selectedRecordId": "7463",
+      "cnfDescription": {
+        "en": "Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)",
+        "fr": "Margarine, molle, non hydrogénée, huile de canola (incluant huile de tournesol)"
+      },
+      "sourceDescription": {
+        "en": "Margarine, tub, non-hydrogenated, canola oil (includes some sunflower oil)",
+        "fr": "Margarine, molle, non hydrogénée, huile de canola (incluant huile de tournesol)"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "7,5 ml de margarine non hydrogénée (7,2 g)",
+        "labelEn": "7.5 ml non-hydrogenated margarine (7.2 g)",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7.2,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 5.8,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 1.5,
+        "monounsaturatedFatG": 2.9,
+        "declaredKcal": 52
+      },
+      "formula": "valuePortion = valuePer100g × 7.2 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "611215b0-d34b-45f9-b4c2-6e184cc8ffad",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-butter-spread"
+    },
+    {
+      "id": "matieres-grasses-green-olives",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5391",
+      "selectedRecordId": "5391",
+      "cnfDescription": {
+        "en": "Olive, pickled, canned or bottled, green",
+        "fr": "Olive, marinée, conserve ou embouteillées, verte"
+      },
+      "sourceDescription": {
+        "en": "Olive, pickled, canned or bottled, green",
+        "fr": "Olive, marinée, conserve ou embouteillées, verte"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "10 olives vertes (40 g)",
+        "labelEn": "10 green olives (40 g)",
+        "amount": 10,
+        "unit": "count",
+        "grams": 40,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 1.5,
+        "fiberG": 1.3,
+        "fatG": 6.1,
+        "saturatedFatG": 0.8,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 4.5,
+        "declaredKcal": 58
+      },
+      "formula": "valuePortion = valuePer100g × 40 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "dae40767-8e00-4d45-b6ce-75ed50e4f80e",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-olive"
+    },
+    {
+      "id": "matieres-grasses-reduced-fat-mayonnaise",
+      "operation": "add",
+      "sourceType": "canadian_nutrient_file",
+      "expectedRecordId": "5332",
+      "selectedRecordId": "5332",
+      "cnfDescription": {
+        "en": "Salad dressing, mayonnaise, reduced fat",
+        "fr": "Vinaigrette, mayonnaise, teneur réduite en gras"
+      },
+      "sourceDescription": {
+        "en": "Salad dressing, mayonnaise, reduced fat",
+        "fr": "Vinaigrette, mayonnaise, teneur réduite en gras"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "20 ml de mayonnaise réduite en gras (21 g)",
+        "labelEn": "20 ml reduced-fat mayonnaise (21 g)",
+        "amount": 20,
+        "unit": "ml",
+        "grams": 21,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.1,
+        "carbsG": 1.9,
+        "fiberG": 0,
+        "fatG": 4.7,
+        "saturatedFatG": 0.7,
+        "polyunsaturatedFatG": 2.7,
+        "monounsaturatedFatG": 1.1,
+        "declaredKcal": 50
+      },
+      "formula": "valuePortion = valuePer100g × 21 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c9765f86-196e-491d-aec4-afea0d2ce6e6",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mayonnaise"
+    },
+    {
+      "id": "matieres-grasses-mct-oil",
+      "operation": "update",
+      "sourceType": "manufacturer_website",
+      "expectedRecordId": null,
+      "selectedRecordId": "https://www.nowfoods.com/products/sports-nutrition/mct-oil-liquid-plastic-bottle",
+      "cnfDescription": null,
+      "sourceDescription": {
+        "en": "MCT Oil Liquid",
+        "fr": "Huile MCT NOW Foods (C8/C10)"
+      },
+      "beforePortion": {
+        "labelFr": "7,5 ml d'Huile MCT",
+        "labelEn": "7.5 ml MCT oil",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "7,5 ml d’huile MCT NOW Foods",
+        "labelEn": "7.5 ml NOW Foods MCT Oil",
+        "amount": 7.5,
+        "unit": "ml",
+        "grams": 7,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": true,
+        "brand": "NOW Foods"
+      },
+      "beforeNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": null,
+        "saturatedFatG": 7,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 7,
+        "saturatedFatG": 7,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 65
+      },
+      "formula": "valueCanonical = valueLabel × 7.5 / 15",
+      "errorsBefore": [
+        "MISSING_TOTAL_FAT"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "e9b8efa7-b362-4f64-9b7b-fe310bcf14fa",
+      "version": 3,
+      "calculationGroup": "fat",
+      "exchangeProfileId": "fat-mct-oil"
+    }
+  ]
+}
