@@ -1,0 +1,1229 @@
+{
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "foods": [
+    {
+      "id": "legumes-garlic",
+      "formula": "valuePortion = valuePer100g × 13 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 149,
+        "protein_g": 6.36,
+        "carbohydrate_g": 33.06,
+        "fibre_g": 2.1,
+        "total_fat_g": 0.5,
+        "saturated_fat_g": 0.089,
+        "polyunsaturated_fat_g": 0.249,
+        "monounsaturated_fat_g": 0.011
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 19.37,
+        "proteinG": 0.8268000000000001,
+        "carbsG": 4.2978000000000005,
+        "fiberG": 0.273,
+        "fatG": 0.065,
+        "saturatedFatG": 0.01157,
+        "polyunsaturatedFatG": 0.03237,
+        "monounsaturatedFatG": 0.00143
+      },
+      "storedRounded": {
+        "declaredKcal": 19,
+        "proteinG": 0.8,
+        "carbsG": 4.3,
+        "fiberG": 0.3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-artichoke",
+      "formula": "valuePortion = valuePer100g × 120 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 53,
+        "protein_g": 2.89,
+        "carbohydrate_g": 11.95,
+        "fibre_g": 3.88,
+        "total_fat_g": 0.34,
+        "saturated_fat_g": 0.079,
+        "polyunsaturated_fat_g": 0.145,
+        "monounsaturated_fat_g": 0.011
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 63.599999999999994,
+        "proteinG": 3.468,
+        "carbsG": 14.339999999999998,
+        "fiberG": 4.656,
+        "fatG": 0.40800000000000003,
+        "saturatedFatG": 0.0948,
+        "polyunsaturatedFatG": 0.174,
+        "monounsaturatedFatG": 0.013199999999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 64,
+        "proteinG": 3.5,
+        "carbsG": 14.3,
+        "fiberG": 4.7,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-asparagus",
+      "formula": "valuePortion = valuePer100g × 190 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 22,
+        "protein_g": 2.4,
+        "carbohydrate_g": 4.11,
+        "fibre_g": 2,
+        "total_fat_g": 0.22,
+        "saturated_fat_g": 0.048,
+        "polyunsaturated_fat_g": 0.105,
+        "monounsaturated_fat_g": 0
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 41.8,
+        "proteinG": 4.56,
+        "carbsG": 7.809,
+        "fiberG": 3.8,
+        "fatG": 0.418,
+        "saturatedFatG": 0.0912,
+        "polyunsaturatedFatG": 0.19949999999999998,
+        "monounsaturatedFatG": 0
+      },
+      "storedRounded": {
+        "declaredKcal": 42,
+        "proteinG": 4.6,
+        "carbsG": 7.8,
+        "fiberG": 3.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-eggplant",
+      "formula": "valuePortion = valuePer100g × 87 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 25,
+        "protein_g": 0.98,
+        "carbohydrate_g": 5.88,
+        "fibre_g": 3,
+        "total_fat_g": 0.18,
+        "saturated_fat_g": 0.034,
+        "polyunsaturated_fat_g": 0.076,
+        "monounsaturated_fat_g": 0.016
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 21.75,
+        "proteinG": 0.8526,
+        "carbsG": 5.1156,
+        "fiberG": 2.61,
+        "fatG": 0.1566,
+        "saturatedFatG": 0.029580000000000002,
+        "polyunsaturatedFatG": 0.06612,
+        "monounsaturatedFatG": 0.01392
+      },
+      "storedRounded": {
+        "declaredKcal": 22,
+        "proteinG": 0.9,
+        "carbsG": 5.1,
+        "fiberG": 2.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-beets",
+      "formula": "valuePortion = valuePer100g × 90 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 44,
+        "protein_g": 1.68,
+        "carbohydrate_g": 9.96,
+        "fibre_g": 2.02,
+        "total_fat_g": 0.18,
+        "saturated_fat_g": 0.028,
+        "polyunsaturated_fat_g": 0.064,
+        "monounsaturated_fat_g": 0.035
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 39.6,
+        "proteinG": 1.512,
+        "carbsG": 8.964,
+        "fiberG": 1.818,
+        "fatG": 0.162,
+        "saturatedFatG": 0.0252,
+        "polyunsaturatedFatG": 0.057600000000000005,
+        "monounsaturatedFatG": 0.03150000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 40,
+        "proteinG": 1.5,
+        "carbsG": 9,
+        "fiberG": 1.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-broccoli",
+      "formula": "valuePortion = valuePer100g × 93 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 34,
+        "protein_g": 2.82,
+        "carbohydrate_g": 6.64,
+        "fibre_g": 2.4,
+        "total_fat_g": 0.37,
+        "saturated_fat_g": 0.114,
+        "polyunsaturated_fat_g": 0.112,
+        "monounsaturated_fat_g": 0.031
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 31.62,
+        "proteinG": 2.6226,
+        "carbsG": 6.1752,
+        "fiberG": 2.232,
+        "fatG": 0.3441,
+        "saturatedFatG": 0.10602,
+        "polyunsaturatedFatG": 0.10416,
+        "monounsaturatedFatG": 0.02883
+      },
+      "storedRounded": {
+        "declaredKcal": 32,
+        "proteinG": 2.6,
+        "carbsG": 6.2,
+        "fiberG": 2.2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-kale",
+      "formula": "valuePortion = valuePer100g × 71 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 35,
+        "protein_g": 2.92,
+        "carbohydrate_g": 4.42,
+        "fibre_g": 2.44,
+        "total_fat_g": 1.49,
+        "saturated_fat_g": 0.178,
+        "polyunsaturated_fat_g": 0.673,
+        "monounsaturated_fat_g": 0.104
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 24.849999999999998,
+        "proteinG": 2.0732,
+        "carbsG": 3.1382,
+        "fiberG": 1.7324,
+        "fatG": 1.0578999999999998,
+        "saturatedFatG": 0.12638,
+        "polyunsaturatedFatG": 0.47783000000000003,
+        "monounsaturatedFatG": 0.07383999999999999
+      },
+      "storedRounded": {
+        "declaredKcal": 25,
+        "proteinG": 2.1,
+        "carbsG": 3.1,
+        "fiberG": 1.7,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "legumes-carrots",
+      "formula": "valuePortion = valuePer100g × 61 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 41,
+        "protein_g": 0.93,
+        "carbohydrate_g": 9.58,
+        "fibre_g": 2.44,
+        "total_fat_g": 0.24,
+        "saturated_fat_g": 0.032,
+        "polyunsaturated_fat_g": 0.102,
+        "monounsaturated_fat_g": 0.012
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 25.009999999999998,
+        "proteinG": 0.5673,
+        "carbsG": 5.8438,
+        "fiberG": 1.4884,
+        "fatG": 0.1464,
+        "saturatedFatG": 0.01952,
+        "polyunsaturatedFatG": 0.06222,
+        "monounsaturatedFatG": 0.00732
+      },
+      "storedRounded": {
+        "declaredKcal": 25,
+        "proteinG": 0.6,
+        "carbsG": 5.8,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-celery",
+      "formula": "valuePortion = valuePer100g × 80 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 14,
+        "protein_g": 0.69,
+        "carbohydrate_g": 2.97,
+        "fibre_g": 1.5,
+        "total_fat_g": 0.17,
+        "saturated_fat_g": 0.042,
+        "polyunsaturated_fat_g": 0.079,
+        "monounsaturated_fat_g": 0.032
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 11.200000000000001,
+        "proteinG": 0.5519999999999999,
+        "carbsG": 2.3760000000000003,
+        "fiberG": 1.2000000000000002,
+        "fatG": 0.136,
+        "saturatedFatG": 0.033600000000000005,
+        "polyunsaturatedFatG": 0.0632,
+        "monounsaturatedFatG": 0.0256
+      },
+      "storedRounded": {
+        "declaredKcal": 11,
+        "proteinG": 0.6,
+        "carbsG": 2.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-mushrooms",
+      "formula": "valuePortion = valuePer100g × 74 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 22,
+        "protein_g": 3.09,
+        "carbohydrate_g": 3.28,
+        "fibre_g": 1,
+        "total_fat_g": 0.34,
+        "saturated_fat_g": 0.05,
+        "polyunsaturated_fat_g": 0.16,
+        "monounsaturated_fat_g": 0
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 16.28,
+        "proteinG": 2.2866,
+        "carbsG": 2.4272,
+        "fiberG": 0.74,
+        "fatG": 0.2516,
+        "saturatedFatG": 0.037,
+        "polyunsaturatedFatG": 0.1184,
+        "monounsaturatedFatG": 0
+      },
+      "storedRounded": {
+        "declaredKcal": 16,
+        "proteinG": 2.3,
+        "carbsG": 2.4,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-brussels-sprouts",
+      "formula": "valuePortion = valuePer100g × 82 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 36,
+        "protein_g": 2.55,
+        "carbohydrate_g": 7.1,
+        "fibre_g": 3.57,
+        "total_fat_g": 0.5,
+        "saturated_fat_g": 0.102,
+        "polyunsaturated_fat_g": 0.255,
+        "monounsaturated_fat_g": 0.038
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 29.52,
+        "proteinG": 2.0909999999999997,
+        "carbsG": 5.821999999999999,
+        "fiberG": 2.9273999999999996,
+        "fatG": 0.41,
+        "saturatedFatG": 0.08363999999999999,
+        "polyunsaturatedFatG": 0.20909999999999998,
+        "monounsaturatedFatG": 0.031159999999999997
+      },
+      "storedRounded": {
+        "declaredKcal": 30,
+        "proteinG": 2.1,
+        "carbsG": 5.8,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-cauliflower",
+      "formula": "valuePortion = valuePer100g × 113 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 25,
+        "protein_g": 1.92,
+        "carbohydrate_g": 4.97,
+        "fibre_g": 1.75,
+        "total_fat_g": 0.28,
+        "saturated_fat_g": 0.13,
+        "polyunsaturated_fat_g": 0.031,
+        "monounsaturated_fat_g": 0.034
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 28.249999999999996,
+        "proteinG": 2.1695999999999995,
+        "carbsG": 5.616099999999999,
+        "fiberG": 1.9774999999999998,
+        "fatG": 0.3164,
+        "saturatedFatG": 0.1469,
+        "polyunsaturatedFatG": 0.03503,
+        "monounsaturatedFatG": 0.038419999999999996
+      },
+      "storedRounded": {
+        "declaredKcal": 28,
+        "proteinG": 2.2,
+        "carbsG": 5.6,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-cucumbers",
+      "formula": "valuePortion = valuePer100g × 126 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 16,
+        "protein_g": 0.65,
+        "carbohydrate_g": 3.63,
+        "fibre_g": 0.73,
+        "total_fat_g": 0.11,
+        "saturated_fat_g": 0.037,
+        "polyunsaturated_fat_g": 0.032,
+        "monounsaturated_fat_g": 0.005
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 20.16,
+        "proteinG": 0.8190000000000001,
+        "carbsG": 4.5738,
+        "fiberG": 0.9198,
+        "fatG": 0.1386,
+        "saturatedFatG": 0.046619999999999995,
+        "polyunsaturatedFatG": 0.04032,
+        "monounsaturatedFatG": 0.0063
+      },
+      "storedRounded": {
+        "declaredKcal": 20,
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-zucchini",
+      "formula": "valuePortion = valuePer100g × 119 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 17,
+        "protein_g": 1.21,
+        "carbohydrate_g": 3.11,
+        "fibre_g": 1,
+        "total_fat_g": 0.32,
+        "saturated_fat_g": 0.084,
+        "polyunsaturated_fat_g": 0.091,
+        "monounsaturated_fat_g": 0.011
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 20.23,
+        "proteinG": 1.4399,
+        "carbsG": 3.7009,
+        "fiberG": 1.19,
+        "fatG": 0.38079999999999997,
+        "saturatedFatG": 0.09996000000000001,
+        "polyunsaturatedFatG": 0.10829,
+        "monounsaturatedFatG": 0.01309
+      },
+      "storedRounded": {
+        "declaredKcal": 20,
+        "proteinG": 1.4,
+        "carbsG": 3.7,
+        "fiberG": 1.2,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-squash",
+      "formula": "valuePortion = valuePer100g × 108 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 40,
+        "protein_g": 0.9,
+        "carbohydrate_g": 10.49,
+        "fibre_g": 1.68,
+        "total_fat_g": 0.09,
+        "saturated_fat_g": 0.019,
+        "polyunsaturated_fat_g": 0.038,
+        "monounsaturated_fat_g": 0.007
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 43.2,
+        "proteinG": 0.9720000000000001,
+        "carbsG": 11.3292,
+        "fiberG": 1.8144,
+        "fatG": 0.09720000000000001,
+        "saturatedFatG": 0.02052,
+        "polyunsaturatedFatG": 0.04104,
+        "monounsaturatedFatG": 0.007560000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 43,
+        "proteinG": 1,
+        "carbsG": 11.3,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-shallot",
+      "formula": "valuePortion = valuePer100g × 24 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 72,
+        "protein_g": 2.5,
+        "carbohydrate_g": 16.8,
+        "fibre_g": 2.09,
+        "total_fat_g": 0.1,
+        "saturated_fat_g": 0.017,
+        "polyunsaturated_fat_g": 0.039,
+        "monounsaturated_fat_g": 0.014
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 17.28,
+        "proteinG": 0.6,
+        "carbsG": 4.032,
+        "fiberG": 0.5015999999999999,
+        "fatG": 0.024,
+        "saturatedFatG": 0.00408,
+        "polyunsaturatedFatG": 0.00936,
+        "monounsaturatedFatG": 0.00336
+      },
+      "storedRounded": {
+        "declaredKcal": 17,
+        "proteinG": 0.6,
+        "carbsG": 4,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-spinach",
+      "formula": "valuePortion = valuePer100g × 28 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 23,
+        "protein_g": 2.86,
+        "carbohydrate_g": 3.63,
+        "fibre_g": 2.2,
+        "total_fat_g": 0.39,
+        "saturated_fat_g": 0.063,
+        "polyunsaturated_fat_g": 0.165,
+        "monounsaturated_fat_g": 0.01
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 6.44,
+        "proteinG": 0.8008000000000001,
+        "carbsG": 1.0164,
+        "fiberG": 0.6160000000000001,
+        "fatG": 0.10920000000000002,
+        "saturatedFatG": 0.017640000000000003,
+        "polyunsaturatedFatG": 0.046200000000000005,
+        "monounsaturatedFatG": 0.0028000000000000004
+      },
+      "storedRounded": {
+        "declaredKcal": 6,
+        "proteinG": 0.8,
+        "carbsG": 1,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-fennel",
+      "formula": "valuePortion = valuePer100g × 92 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 31,
+        "protein_g": 1.24,
+        "carbohydrate_g": 7.3,
+        "fibre_g": 3.1,
+        "total_fat_g": 0.2,
+        "saturated_fat_g": 0.09,
+        "polyunsaturated_fat_g": 0.169,
+        "monounsaturated_fat_g": 0.068
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 28.52,
+        "proteinG": 1.1408,
+        "carbsG": 6.716,
+        "fiberG": 2.8520000000000003,
+        "fatG": 0.18400000000000002,
+        "saturatedFatG": 0.0828,
+        "polyunsaturatedFatG": 0.15548,
+        "monounsaturatedFatG": 0.06256
+      },
+      "storedRounded": {
+        "declaredKcal": 29,
+        "proteinG": 1.1,
+        "carbsG": 6.7,
+        "fiberG": 2.9,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "legumes-yellow-or-green-beans",
+      "formula": "valuePortion = valuePer100g × 66 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 35,
+        "protein_g": 1.89,
+        "carbohydrate_g": 7.88,
+        "fibre_g": 2.4,
+        "total_fat_g": 0.28,
+        "saturated_fat_g": 0.064,
+        "polyunsaturated_fat_g": 0.145,
+        "monounsaturated_fat_g": 0.011
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 23.1,
+        "proteinG": 1.2474,
+        "carbsG": 5.2008,
+        "fiberG": 1.584,
+        "fatG": 0.18480000000000002,
+        "saturatedFatG": 0.04224,
+        "polyunsaturatedFatG": 0.0957,
+        "monounsaturatedFatG": 0.00726
+      },
+      "storedRounded": {
+        "declaredKcal": 23,
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-vegetable-juice",
+      "formula": "valuePortion = valuePer100g × 267 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 22,
+        "protein_g": 0.93,
+        "carbohydrate_g": 3.87,
+        "fibre_g": 0.56,
+        "total_fat_g": 0.31,
+        "saturated_fat_g": 0.088,
+        "polyunsaturated_fat_g": 0.076,
+        "monounsaturated_fat_g": 0.06
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 58.739999999999995,
+        "proteinG": 2.4831,
+        "carbsG": 10.3329,
+        "fiberG": 1.4952,
+        "fatG": 0.8277,
+        "saturatedFatG": 0.23495999999999997,
+        "polyunsaturatedFatG": 0.20292,
+        "monounsaturatedFatG": 0.16019999999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 59,
+        "proteinG": 2.5,
+        "carbsG": 10.3,
+        "fiberG": 1.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2
+      }
+    },
+    {
+      "id": "legumes-romaine-lettuce",
+      "formula": "valuePortion = valuePer100g × 59 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 17,
+        "protein_g": 1.23,
+        "carbohydrate_g": 3.29,
+        "fibre_g": 2.1,
+        "total_fat_g": 0.3,
+        "saturated_fat_g": 0.039,
+        "polyunsaturated_fat_g": 0.16,
+        "monounsaturated_fat_g": 0.012
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 10.03,
+        "proteinG": 0.7256999999999999,
+        "carbsG": 1.9410999999999998,
+        "fiberG": 1.2389999999999999,
+        "fatG": 0.177,
+        "saturatedFatG": 0.02301,
+        "polyunsaturatedFatG": 0.0944,
+        "monounsaturatedFatG": 0.0070799999999999995
+      },
+      "storedRounded": {
+        "declaredKcal": 10,
+        "proteinG": 0.7,
+        "carbsG": 1.9,
+        "fiberG": 1.2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-boiled-drained-turnip",
+      "formula": "valuePortion = valuePer100g × 82 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 22,
+        "protein_g": 0.71,
+        "carbohydrate_g": 5.06,
+        "fibre_g": 2,
+        "total_fat_g": 0.08,
+        "saturated_fat_g": 0.008,
+        "polyunsaturated_fat_g": 0.042,
+        "monounsaturated_fat_g": 0.005
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 18.04,
+        "proteinG": 0.5821999999999999,
+        "carbsG": 4.1491999999999996,
+        "fiberG": 1.64,
+        "fatG": 0.06559999999999999,
+        "saturatedFatG": 0.00656,
+        "polyunsaturatedFatG": 0.03444,
+        "monounsaturatedFatG": 0.0040999999999999995
+      },
+      "storedRounded": {
+        "declaredKcal": 18,
+        "proteinG": 0.6,
+        "carbsG": 4.1,
+        "fiberG": 1.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-onion",
+      "formula": "valuePortion = valuePer100g × 68 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 40,
+        "protein_g": 1.1,
+        "carbohydrate_g": 9.34,
+        "fibre_g": 1.7,
+        "total_fat_g": 0.1,
+        "saturated_fat_g": 0.042,
+        "polyunsaturated_fat_g": 0.017,
+        "monounsaturated_fat_g": 0.013
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 27.200000000000003,
+        "proteinG": 0.7480000000000001,
+        "carbsG": 6.3512,
+        "fiberG": 1.1560000000000001,
+        "fatG": 0.068,
+        "saturatedFatG": 0.028560000000000006,
+        "polyunsaturatedFatG": 0.01156,
+        "monounsaturatedFatG": 0.00884
+      },
+      "storedRounded": {
+        "declaredKcal": 27,
+        "proteinG": 0.7,
+        "carbsG": 6.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-boiled-drained-leek",
+      "formula": "valuePortion = valuePer100g × 55 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 31,
+        "protein_g": 0.81,
+        "carbohydrate_g": 7.62,
+        "fibre_g": 1,
+        "total_fat_g": 0.2,
+        "saturated_fat_g": 0.027,
+        "polyunsaturated_fat_g": 0.111,
+        "monounsaturated_fat_g": 0.003
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 17.05,
+        "proteinG": 0.44550000000000006,
+        "carbsG": 4.191000000000001,
+        "fiberG": 0.55,
+        "fatG": 0.11000000000000001,
+        "saturatedFatG": 0.01485,
+        "polyunsaturatedFatG": 0.06105000000000001,
+        "monounsaturatedFatG": 0.0016500000000000002
+      },
+      "storedRounded": {
+        "declaredKcal": 17,
+        "proteinG": 0.4,
+        "carbsG": 4.2,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-snow-peas",
+      "formula": "valuePortion = valuePer100g × 52 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 42,
+        "protein_g": 2.8,
+        "carbohydrate_g": 7.55,
+        "fibre_g": 1.77,
+        "total_fat_g": 0.2,
+        "saturated_fat_g": 0.039,
+        "polyunsaturated_fat_g": 0.089,
+        "monounsaturated_fat_g": 0.021
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 21.84,
+        "proteinG": 1.456,
+        "carbsG": 3.926,
+        "fiberG": 0.9204,
+        "fatG": 0.10400000000000001,
+        "saturatedFatG": 0.02028,
+        "polyunsaturatedFatG": 0.04628,
+        "monounsaturatedFatG": 0.010920000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 22,
+        "proteinG": 1.5,
+        "carbsG": 3.9,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 20,
+        "protein_g": 0.86,
+        "carbohydrate_g": 4.64,
+        "fibre_g": 1.41,
+        "total_fat_g": 0.17,
+        "saturated_fat_g": 0.058,
+        "polyunsaturated_fat_g": 0.062,
+        "monounsaturated_fat_g": 0.008
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 15.8,
+        "proteinG": 0.6794,
+        "carbsG": 3.6656,
+        "fiberG": 1.1139,
+        "fatG": 0.1343,
+        "saturatedFatG": 0.04582000000000001,
+        "polyunsaturatedFatG": 0.04898,
+        "monounsaturatedFatG": 0.00632
+      },
+      "storedRounded": {
+        "declaredKcal": 16,
+        "proteinG": 0.7,
+        "carbsG": 3.7,
+        "fiberG": 1.1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-radishes",
+      "formula": "valuePortion = valuePer100g × 123 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 16,
+        "protein_g": 0.68,
+        "carbohydrate_g": 3.4,
+        "fibre_g": 1.6,
+        "total_fat_g": 0.1,
+        "saturated_fat_g": 0.032,
+        "polyunsaturated_fat_g": 0.048,
+        "monounsaturated_fat_g": 0.017
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 19.68,
+        "proteinG": 0.8364,
+        "carbsG": 4.1819999999999995,
+        "fiberG": 1.968,
+        "fatG": 0.123,
+        "saturatedFatG": 0.03936,
+        "polyunsaturatedFatG": 0.05904,
+        "monounsaturatedFatG": 0.02091
+      },
+      "storedRounded": {
+        "declaredKcal": 20,
+        "proteinG": 0.8,
+        "carbsG": 4.2,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "formula": "valuePortion = valuePer100g × 123 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 18,
+        "protein_g": 0.88,
+        "carbohydrate_g": 3.89,
+        "fibre_g": 1.21,
+        "total_fat_g": 0.2,
+        "saturated_fat_g": 0.028,
+        "polyunsaturated_fat_g": 0.083,
+        "monounsaturated_fat_g": 0.031
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 22.14,
+        "proteinG": 1.0824,
+        "carbsG": 4.7847,
+        "fiberG": 1.4883,
+        "fatG": 0.246,
+        "saturatedFatG": 0.03444,
+        "polyunsaturatedFatG": 0.10209,
+        "monounsaturatedFatG": 0.03813
+      },
+      "storedRounded": {
+        "declaredKcal": 22,
+        "proteinG": 1.1,
+        "carbsG": 4.8,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-homemade-bone-broth",
+      "formula": "valuePortion = valuePer100g × 253 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 4,
+        "protein_g": 0.13,
+        "carbohydrate_g": 0.74,
+        "fibre_g": 0.3,
+        "total_fat_g": 0.09,
+        "saturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.028,
+        "monounsaturated_fat_g": 0.046
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 10.12,
+        "proteinG": 0.32889999999999997,
+        "carbsG": 1.8721999999999999,
+        "fiberG": 0.7589999999999999,
+        "fatG": 0.22769999999999999,
+        "saturatedFatG": 0.0253,
+        "polyunsaturatedFatG": 0.07084,
+        "monounsaturatedFatG": 0.11637999999999998
+      },
+      "storedRounded": {
+        "declaredKcal": 10,
+        "proteinG": 0.3,
+        "carbsG": 1.9,
+        "fiberG": 0.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1
+      }
+    },
+    {
+      "id": "legumes-grilled-portobello-mushroom",
+      "formula": "valuePortion = valuePer100g × 128 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 29,
+        "protein_g": 3.28,
+        "carbohydrate_g": 4.44,
+        "fibre_g": 2.2,
+        "total_fat_g": 0.58,
+        "saturated_fat_g": 0.064,
+        "polyunsaturated_fat_g": 0.232,
+        "monounsaturated_fat_g": 0.009
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 37.12,
+        "proteinG": 4.1983999999999995,
+        "carbsG": 5.6832,
+        "fiberG": 2.8160000000000003,
+        "fatG": 0.7424,
+        "saturatedFatG": 0.08192,
+        "polyunsaturatedFatG": 0.29696,
+        "monounsaturatedFatG": 0.011519999999999999
+      },
+      "storedRounded": {
+        "declaredKcal": 37,
+        "proteinG": 4.2,
+        "carbsG": 5.7,
+        "fiberG": 2.8,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-red-bell-pepper",
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 26,
+        "protein_g": 0.99,
+        "carbohydrate_g": 6.03,
+        "fibre_g": 1.41,
+        "total_fat_g": 0.3,
+        "saturated_fat_g": 0.059,
+        "polyunsaturated_fat_g": 0.156,
+        "monounsaturated_fat_g": 0.007
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 20.54,
+        "proteinG": 0.7821,
+        "carbsG": 4.7637,
+        "fiberG": 1.1139,
+        "fatG": 0.237,
+        "saturatedFatG": 0.04661,
+        "polyunsaturatedFatG": 0.12324,
+        "monounsaturatedFatG": 0.00553
+      },
+      "storedRounded": {
+        "declaredKcal": 21,
+        "proteinG": 0.8,
+        "carbsG": 4.8,
+        "fiberG": 1.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-yellow-bell-pepper",
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 27,
+        "protein_g": 1,
+        "carbohydrate_g": 6.32,
+        "fibre_g": 0.9,
+        "total_fat_g": 0.21,
+        "saturated_fat_g": 0.031,
+        "polyunsaturated_fat_g": null,
+        "monounsaturated_fat_g": null
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 21.330000000000002,
+        "proteinG": 0.79,
+        "carbsG": 4.992800000000001,
+        "fiberG": 0.7110000000000001,
+        "fatG": 0.1659,
+        "saturatedFatG": 0.02449,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null
+      },
+      "storedRounded": {
+        "declaredKcal": 21,
+        "proteinG": 0.8,
+        "carbsG": 5,
+        "fiberG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null
+      }
+    },
+    {
+      "id": "legumes-yellow-snap-beans",
+      "formula": "valuePortion = valuePer100g × 66 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 35,
+        "protein_g": 1.89,
+        "carbohydrate_g": 7.88,
+        "fibre_g": 2.4,
+        "total_fat_g": 0.28,
+        "saturated_fat_g": 0.064,
+        "polyunsaturated_fat_g": 0.145,
+        "monounsaturated_fat_g": 0.011
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 23.1,
+        "proteinG": 1.2474,
+        "carbsG": 5.2008,
+        "fiberG": 1.584,
+        "fatG": 0.18480000000000002,
+        "saturatedFatG": 0.04224,
+        "polyunsaturatedFatG": 0.0957,
+        "monounsaturatedFatG": 0.00726
+      },
+      "storedRounded": {
+        "declaredKcal": 23,
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-cremini-mushrooms",
+      "formula": "valuePortion = valuePer100g × 74 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 22,
+        "protein_g": 2.5,
+        "carbohydrate_g": 4.3,
+        "fibre_g": 0.6,
+        "total_fat_g": 0.1,
+        "saturated_fat_g": 0.014,
+        "polyunsaturated_fat_g": 0.042,
+        "monounsaturated_fat_g": 0.002
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 16.28,
+        "proteinG": 1.85,
+        "carbsG": 3.182,
+        "fiberG": 0.444,
+        "fatG": 0.074,
+        "saturatedFatG": 0.01036,
+        "polyunsaturatedFatG": 0.03108,
+        "monounsaturatedFatG": 0.00148
+      },
+      "storedRounded": {
+        "declaredKcal": 16,
+        "proteinG": 1.9,
+        "carbsG": 3.2,
+        "fiberG": 0.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-cooked-spaghetti-squash",
+      "formula": "valuePortion = valuePer100g × 164 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 27,
+        "protein_g": 0.66,
+        "carbohydrate_g": 6.46,
+        "fibre_g": 1.4,
+        "total_fat_g": 0.26,
+        "saturated_fat_g": 0.062,
+        "polyunsaturated_fat_g": 0.126,
+        "monounsaturated_fat_g": 0.022
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 44.279999999999994,
+        "proteinG": 1.0824,
+        "carbsG": 10.594399999999998,
+        "fiberG": 2.296,
+        "fatG": 0.4264,
+        "saturatedFatG": 0.10167999999999999,
+        "polyunsaturatedFatG": 0.20664,
+        "monounsaturatedFatG": 0.036079999999999994
+      },
+      "storedRounded": {
+        "declaredKcal": 44,
+        "proteinG": 1.1,
+        "carbsG": 10.6,
+        "fiberG": 2.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0
+      }
+    },
+    {
+      "id": "legumes-low-sodium-vegetable-juice",
+      "formula": "valuePortion = valuePer100g × 268 / 100",
+      "sourcePer100g": {
+        "energy_kcal": 19,
+        "protein_g": 0.91,
+        "carbohydrate_g": 3.83,
+        "fibre_g": 0.5,
+        "total_fat_g": 0.32,
+        "saturated_fat_g": 0.089,
+        "polyunsaturated_fat_g": 0.077,
+        "monounsaturated_fat_g": 0.061
+      },
+      "derivedUnrounded": {
+        "declaredKcal": 50.92,
+        "proteinG": 2.4388,
+        "carbsG": 10.2644,
+        "fiberG": 1.34,
+        "fatG": 0.8576,
+        "saturatedFatG": 0.23852,
+        "polyunsaturatedFatG": 0.20636000000000002,
+        "monounsaturatedFatG": 0.16348000000000001
+      },
+      "storedRounded": {
+        "declaredKcal": 51,
+        "proteinG": 2.4,
+        "carbsG": 10.3,
+        "fiberG": 1.3,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2
+      }
+    }
+  ]
+}

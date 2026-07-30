@@ -1,0 +1,2052 @@
+{
+  "batchId": "vegetables-complete-individual-validation-36-foods",
+  "generatedAt": "2026-07-30T16:59:24.400Z",
+  "summary": {
+    "updates": 30,
+    "adds": 6,
+    "verifiedInBatch": 36,
+    "fruitCount": 33,
+    "fruitsVerified": 33,
+    "vegetableCount": 36,
+    "vegetablesVerified": 36,
+    "totalFoods": 217,
+    "totalVerified": 74,
+    "protectedUnchanged": 181,
+    "protectedFoodsDataHash": "e5d0288f0953765f296c777543c097301f24145fa6f3c57ad84088bcc8729492",
+    "dataHash": "7ef2dffada18897410bf6706cd4c266a1854e08cd2e410e7ca100f50b72e88dc"
+  },
+  "foods": [
+    {
+      "id": "legumes-garlic",
+      "operation": "update",
+      "expectedRecordId": "2394",
+      "selectedRecordId": "2394",
+      "cnfDescription": {
+        "en": "Garlic, raw",
+        "fr": "Ail, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Ail (15 ml)",
+        "labelEn": "Garlic (15 ml)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "15 ml d’ail frais haché (13 g)",
+        "labelEn": "15 ml fresh minced garlic (13 g)",
+        "amount": 15,
+        "unit": "ml",
+        "grams": 13,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 0.5,
+        "carbsG": 3,
+        "fiberG": 0,
+        "fatG": 0,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 14
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.3,
+        "fiberG": 0.3,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 19
+      },
+      "formula": "valuePortion = valuePer100g × 13 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "dffa3535-a9aa-49f5-b739-6fd34482a3dd",
+      "version": 3,
+      "exchangeProfileId": "vegetable-aromatic"
+    },
+    {
+      "id": "legumes-artichoke",
+      "operation": "update",
+      "expectedRecordId": "2365",
+      "selectedRecordId": "2365",
+      "cnfDescription": {
+        "en": "Artichoke (Globe, French), boiled, drained",
+        "fr": "Artichaut, bouilli, égoutté"
+      },
+      "beforePortion": {
+        "labelFr": "Artichaut",
+        "labelEn": "Artichoke",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 artichaut moyen cuit, portion comestible (120 g)",
+        "labelEn": "1 medium cooked artichoke, edible portion (120 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 120,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 10,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 3.5,
+        "carbsG": 14.3,
+        "fiberG": 4.7,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 64
+      },
+      "formula": "valuePortion = valuePer100g × 120 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d44278e4-992e-489e-b789-fad0039246c5",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-asparagus",
+      "operation": "update",
+      "expectedRecordId": "1991",
+      "selectedRecordId": "1991",
+      "cnfDescription": {
+        "en": "Asparagus, boiled, drained",
+        "fr": "Asperge, bouillie, égouttée"
+      },
+      "beforePortion": {
+        "labelFr": "Asperges",
+        "labelEn": "Asparagus",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml d’asperges cuites (190 g)",
+        "labelEn": "250 ml cooked asparagus (190 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 190,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 5,
+        "carbsG": 8,
+        "fiberG": 3,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 57
+      },
+      "afterNutrients": {
+        "proteinG": 4.6,
+        "carbsG": 7.8,
+        "fiberG": 3.8,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 42
+      },
+      "formula": "valuePortion = valuePer100g × 190 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "1991",
+          "fieldsHash": "kcal:4.6|7.8|0.4|42",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:22.487Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 1991"
+        }
+      ],
+      "status": "verified",
+      "transactionId": "3947cc67-1864-4f53-93a9-2ac62296b12a",
+      "version": 4,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-eggplant",
+      "operation": "update",
+      "expectedRecordId": "2088",
+      "selectedRecordId": "2088",
+      "cnfDescription": {
+        "en": "Eggplant (aubergine, brinjal), raw",
+        "fr": "Aubergine, crue"
+      },
+      "beforePortion": {
+        "labelFr": "Aubergine",
+        "labelEn": "Eggplant",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml d’aubergine crue en cubes (87 g)",
+        "labelEn": "250 ml raw eggplant cubes (87 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 87,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 5,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 26
+      },
+      "afterNutrients": {
+        "proteinG": 0.9,
+        "carbsG": 5.1,
+        "fiberG": 2.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "formula": "valuePortion = valuePer100g × 87 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "49007442-dc75-4f37-b6f6-7db3294eccc4",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-beets",
+      "operation": "update",
+      "expectedRecordId": "2501",
+      "selectedRecordId": "2501",
+      "cnfDescription": {
+        "en": "Beets, boiled, drained",
+        "fr": "Betteraves, bouillies, égouttées"
+      },
+      "beforePortion": {
+        "labelFr": "Betteraves",
+        "labelEn": "Beets",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de betteraves cuites tranchées (90 g)",
+        "labelEn": "125 ml cooked sliced beets (90 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 90,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 9,
+        "fiberG": 0.2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 44
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 9,
+        "fiberG": 1.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 40
+      },
+      "formula": "valuePortion = valuePer100g × 90 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "8772fca6-6233-49d8-b83e-36a0b005281b",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-broccoli",
+      "operation": "update",
+      "expectedRecordId": "2374",
+      "selectedRecordId": "2374",
+      "cnfDescription": {
+        "en": "Broccoli, raw",
+        "fr": "Brocoli, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Brocoli",
+        "labelEn": "Broccoli",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de brocoli cru haché (93 g)",
+        "labelEn": "250 ml chopped raw broccoli (93 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 93,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 3,
+        "carbsG": 5,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 35
+      },
+      "afterNutrients": {
+        "proteinG": 2.6,
+        "carbsG": 6.2,
+        "fiberG": 2.2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 32
+      },
+      "formula": "valuePortion = valuePer100g × 93 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "40c8738e-7f63-4a8a-8f20-3e5834e9181a",
+      "version": 3,
+      "exchangeProfileId": "vegetable-cruciferous"
+    },
+    {
+      "id": "legumes-kale",
+      "operation": "update",
+      "expectedRecordId": "2395",
+      "selectedRecordId": "2395",
+      "cnfDescription": {
+        "en": "Kale, raw",
+        "fr": "Chou vert frisé, cru"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de Chou kale",
+        "labelEn": "250 ml Kale",
+        "amount": 250,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de chou kale cru haché (71 g)",
+        "labelEn": "250 ml chopped raw kale (71 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 71,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 6,
+        "fiberG": 3,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 33
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 3.1,
+        "fiberG": 1.7,
+        "fatG": 1.1,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.5,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 25
+      },
+      "formula": "valuePortion = valuePer100g × 71 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6a4e4bea-2619-4c55-9308-7d02fe4d70cf",
+      "version": 3,
+      "exchangeProfileId": "vegetable-leafy"
+    },
+    {
+      "id": "legumes-carrots",
+      "operation": "update",
+      "expectedRecordId": "2380",
+      "selectedRecordId": "2380",
+      "cnfDescription": {
+        "en": "Carrot, raw",
+        "fr": "Carotte, crue"
+      },
+      "beforePortion": {
+        "labelFr": "Carottes",
+        "labelEn": "Carrots",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 carotte moyenne (61 g)",
+        "labelEn": "1 medium carrot (61 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 61,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 9,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 41
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 5.8,
+        "fiberG": 1.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 25
+      },
+      "formula": "valuePortion = valuePer100g × 61 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d1b60a61-008b-4c85-a7af-12d259bdad16",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-celery",
+      "operation": "update",
+      "expectedRecordId": "2386",
+      "selectedRecordId": "2386",
+      "cnfDescription": {
+        "en": "Celery, raw",
+        "fr": "Céleri, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Céleri",
+        "labelEn": "Celery",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "2 branches moyennes de céleri (80 g)",
+        "labelEn": "2 medium celery stalks (80 g)",
+        "amount": 2,
+        "unit": "count",
+        "grams": 80,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 5,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 26
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 2.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 11
+      },
+      "formula": "valuePortion = valuePer100g × 80 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "da483102-fe02-4d51-87ee-adf967eda40c",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-mushrooms",
+      "operation": "update",
+      "expectedRecordId": "2399",
+      "selectedRecordId": "2399",
+      "cnfDescription": {
+        "en": "Mushroom, white, raw",
+        "fr": "Champignon, blanc, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Champignons",
+        "labelEn": "Mushrooms",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de champignons blancs crus tranchés (74 g)",
+        "labelEn": "250 ml sliced raw white mushrooms (74 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 3,
+        "fiberG": 3,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 22
+      },
+      "afterNutrients": {
+        "proteinG": 2.3,
+        "carbsG": 2.4,
+        "fiberG": 0.7,
+        "fatG": 0.3,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "formula": "valuePortion = valuePer100g × 74 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "2399",
+          "fieldsHash": "kcal:2.3|2.4|0.3|16",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:22.812Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 2399"
+        }
+      ],
+      "status": "verified",
+      "transactionId": "69b3d3bc-74fa-4669-8ce6-3f674c28b2b1",
+      "version": 4,
+      "exchangeProfileId": "vegetable-mushroom"
+    },
+    {
+      "id": "legumes-brussels-sprouts",
+      "operation": "update",
+      "expectedRecordId": "2379",
+      "selectedRecordId": "2379",
+      "cnfDescription": {
+        "en": "Brussels sprouts, boiled, drained",
+        "fr": "Choux de Bruxelles, bouillis, égouttés"
+      },
+      "beforePortion": {
+        "labelFr": "Chou de Bruxelles",
+        "labelEn": "Brussels sprouts",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de choux de Bruxelles cuits (82 g)",
+        "labelEn": "125 ml cooked Brussels sprouts (82 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 7,
+        "fiberG": 3,
+        "fatG": 0.6,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 40
+      },
+      "afterNutrients": {
+        "proteinG": 2.1,
+        "carbsG": 5.8,
+        "fiberG": 2.9,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 30
+      },
+      "formula": "valuePortion = valuePer100g × 82 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "4d9cb761-ff8e-435f-bf38-7c9540c4f73d",
+      "version": 3,
+      "exchangeProfileId": "vegetable-cruciferous"
+    },
+    {
+      "id": "legumes-cauliflower",
+      "operation": "update",
+      "expectedRecordId": "2385",
+      "selectedRecordId": "2385",
+      "cnfDescription": {
+        "en": "Cauliflower, raw",
+        "fr": "Chou-fleur, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Chou-fleurs",
+        "labelEn": "Cauliflower",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de chou-fleur cru en morceaux (113 g)",
+        "labelEn": "250 ml raw cauliflower pieces (113 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 113,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 6,
+        "fiberG": 0.2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 34
+      },
+      "afterNutrients": {
+        "proteinG": 2.2,
+        "carbsG": 5.6,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 28
+      },
+      "formula": "valuePortion = valuePer100g × 113 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "d008fc15-8c53-442f-ac3d-b1d5e7cc526f",
+      "version": 3,
+      "exchangeProfileId": "vegetable-cruciferous"
+    },
+    {
+      "id": "legumes-cucumbers",
+      "operation": "update",
+      "expectedRecordId": "2363",
+      "selectedRecordId": "2363",
+      "cnfDescription": {
+        "en": "Cucumber, raw",
+        "fr": "Concombre, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Concombres",
+        "labelEn": "Cucumbers",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de concombre cru tranché (126 g)",
+        "labelEn": "250 ml sliced raw cucumber (126 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 126,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 3,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 17
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.6,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "formula": "valuePortion = valuePer100g × 126 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a32db016-9765-4b3f-b859-68aa9e2f3f0e",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-zucchini",
+      "operation": "update",
+      "expectedRecordId": "2225",
+      "selectedRecordId": "2225",
+      "cnfDescription": {
+        "en": "Squash, summer, zucchini, raw",
+        "fr": "Courge d'été, courgette (zucchini), crue"
+      },
+      "beforePortion": {
+        "labelFr": "300 g de Courgette",
+        "labelEn": "300 g Zucchini",
+        "amount": 300,
+        "unit": "g",
+        "grams": 300,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de courgette crue tranchée (119 g)",
+        "labelEn": "250 ml sliced raw zucchini (119 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 119,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 7,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 51
+      },
+      "afterNutrients": {
+        "proteinG": 1.4,
+        "carbsG": 3.7,
+        "fiberG": 1.2,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "formula": "valuePortion = valuePer100g × 119 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "b548639d-2e8c-4158-bae9-d3459a36aa5b",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-squash",
+      "operation": "update",
+      "expectedRecordId": "2452",
+      "selectedRecordId": "2452",
+      "cnfDescription": {
+        "en": "Squash, winter, butternut, baked",
+        "fr": "Courge d'hiver, courge musquée, cuite au four"
+      },
+      "beforePortion": {
+        "labelFr": "Courge",
+        "labelEn": "Squash",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de courge musquée cuite en cubes (108 g)",
+        "labelEn": "125 ml baked butternut squash cubes (108 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 108,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 8,
+        "fiberG": 0.2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 45
+      },
+      "afterNutrients": {
+        "proteinG": 1,
+        "carbsG": 11.3,
+        "fiberG": 1.8,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 43
+      },
+      "formula": "valuePortion = valuePer100g × 108 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "28b6c833-796d-4e6e-88d4-f92825781074",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-shallot",
+      "operation": "update",
+      "expectedRecordId": "2326",
+      "selectedRecordId": "2326",
+      "cnfDescription": {
+        "en": "Shallot, raw",
+        "fr": "Échalote, crue"
+      },
+      "beforePortion": {
+        "labelFr": "Échalotte",
+        "labelEn": "Shallot",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "30 ml d’échalote crue hachée (24 g)",
+        "labelEn": "30 ml chopped raw shallot (24 g)",
+        "amount": 30,
+        "unit": "ml",
+        "grams": 24,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 4,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 21
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4,
+        "fiberG": 0.5,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "formula": "valuePortion = valuePer100g × 24 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "cb1eea9e-c699-4fa3-89a8-74ecae0babb8",
+      "version": 3,
+      "exchangeProfileId": "vegetable-aromatic"
+    },
+    {
+      "id": "legumes-spinach",
+      "operation": "update",
+      "expectedRecordId": "2213",
+      "selectedRecordId": "2213",
+      "cnfDescription": {
+        "en": "Spinach, raw",
+        "fr": "Épinard, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Épinards",
+        "labelEn": "Spinach",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml d’épinards crus (28 g)",
+        "labelEn": "250 ml raw spinach (28 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 28,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 2,
+        "fiberG": 5,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 18
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 1,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 6
+      },
+      "formula": "valuePortion = valuePer100g × 28 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "2213",
+          "fieldsHash": "kcal:0.8|1|0.1|6",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:23.119Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 2213"
+        }
+      ],
+      "status": "verified",
+      "transactionId": "9537dd45-9c17-420d-b6cc-af25af10ab7d",
+      "version": 4,
+      "exchangeProfileId": "vegetable-leafy"
+    },
+    {
+      "id": "legumes-fennel",
+      "operation": "update",
+      "expectedRecordId": "2350",
+      "selectedRecordId": "2350",
+      "cnfDescription": {
+        "en": "Fennel, bulb, raw",
+        "fr": "Fenouil, bulbe, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Fenouil",
+        "labelEn": "Fennel",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de fenouil cru tranché (92 g)",
+        "labelEn": "250 ml sliced raw fennel (92 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 92,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 6,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 30
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 6.7,
+        "fiberG": 2.9,
+        "fatG": 0.2,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 29
+      },
+      "formula": "valuePortion = valuePer100g × 92 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "2e8d3639-ad3d-40b1-857a-aec51e4e7cff",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-yellow-or-green-beans",
+      "operation": "update",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "cnfDescription": {
+        "en": "Beans, snap (Italian, green or yellow), boiled, drained",
+        "fr": "Haricots italiens, jaunes ou verts, bouillis, égouttés"
+      },
+      "beforePortion": {
+        "labelFr": "Haricots jaunes ou verts",
+        "labelEn": "Yellow or green beans",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de haricots verts cuits (66 g)",
+        "labelEn": "125 ml cooked green snap beans (66 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 8,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 41
+      },
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "formula": "valuePortion = valuePer100g × 66 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "aafa6984-2f24-44ad-8a28-cd3082d1daed",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-vegetable-juice",
+      "operation": "update",
+      "expectedRecordId": "2473",
+      "selectedRecordId": "2473",
+      "cnfDescription": {
+        "en": "Vegetable juice cocktail, canned",
+        "fr": "Légumes, jus, cocktail, conserve"
+      },
+      "beforePortion": {
+        "labelFr": "Jus de légumes (250 ml)",
+        "labelEn": "Vegetable juice (250 ml)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de cocktail de jus de légumes (267 g)",
+        "labelEn": "250 ml vegetable juice cocktail (267 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 267,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 12,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 2.5,
+        "carbsG": 10.3,
+        "fiberG": 1.5,
+        "fatG": 0.8,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 59
+      },
+      "formula": "valuePortion = valuePer100g × 267 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "cb8935d1-2aec-465d-bd4e-3f62d3dcc0c1",
+      "version": 3,
+      "exchangeProfileId": "vegetable-juice"
+    },
+    {
+      "id": "legumes-romaine-lettuce",
+      "operation": "update",
+      "expectedRecordId": "2116",
+      "selectedRecordId": "2116",
+      "cnfDescription": {
+        "en": "Lettuce, cos or romaine",
+        "fr": "Laitue, romaine"
+      },
+      "beforePortion": {
+        "labelFr": "Laitue romaine",
+        "labelEn": "Romaine lettuce",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "500 ml de laitue romaine déchiquetée (59 g)",
+        "labelEn": "500 ml shredded romaine lettuce (59 g)",
+        "amount": 500,
+        "unit": "ml",
+        "grams": 59,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 1,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 9
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 1.9,
+        "fiberG": 1.2,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 10
+      },
+      "formula": "valuePortion = valuePer100g × 59 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "1100d0f1-5a29-40e0-9229-8363cad1ddfa",
+      "version": 3,
+      "exchangeProfileId": "vegetable-leafy"
+    },
+    {
+      "id": "legumes-boiled-drained-turnip",
+      "operation": "update",
+      "expectedRecordId": "2262",
+      "selectedRecordId": "2262",
+      "cnfDescription": {
+        "en": "Turnip, boiled, drained",
+        "fr": "Navet, bouilli, égoutté"
+      },
+      "beforePortion": {
+        "labelFr": "Navet bouilli égoutté",
+        "labelEn": "Boiled drained turnip",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de navet cuit en cubes (82 g)",
+        "labelEn": "125 ml cooked turnip cubes (82 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 82,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 12,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 58
+      },
+      "afterNutrients": {
+        "proteinG": 0.6,
+        "carbsG": 4.1,
+        "fiberG": 1.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 18
+      },
+      "formula": "valuePortion = valuePer100g × 82 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "a48fb46e-bf4d-4001-9e5a-fa8536f85589",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-onion",
+      "operation": "update",
+      "expectedRecordId": "2401",
+      "selectedRecordId": "2401",
+      "cnfDescription": {
+        "en": "Onion, raw",
+        "fr": "Oignon, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Oignon",
+        "labelEn": "Onion",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml d’oignon cru haché (68 g)",
+        "labelEn": "125 ml chopped raw onion (68 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 68,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 8,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 37
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 6.4,
+        "fiberG": 1.2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 27
+      },
+      "formula": "valuePortion = valuePer100g × 68 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "4756d5f0-cefb-49cb-891a-df6dfc344426",
+      "version": 3,
+      "exchangeProfileId": "vegetable-aromatic"
+    },
+    {
+      "id": "legumes-boiled-drained-leek",
+      "operation": "update",
+      "expectedRecordId": "2397",
+      "selectedRecordId": "2397",
+      "cnfDescription": {
+        "en": "Leeks (bulb and lower-leaf portion), boiled, drained",
+        "fr": "Poireaux (bulbe et portion inférieure), bouillis, égouttés"
+      },
+      "beforePortion": {
+        "labelFr": "Poireau bouilli égoutté",
+        "labelEn": "Boiled drained leek",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de poireau cuit (55 g)",
+        "labelEn": "125 ml cooked leek (55 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 55,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 8,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 38
+      },
+      "afterNutrients": {
+        "proteinG": 0.4,
+        "carbsG": 4.2,
+        "fiberG": 0.6,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 17
+      },
+      "formula": "valuePortion = valuePer100g × 55 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "dc2d9ce6-2a0a-4b3f-bfd6-7da8449368d9",
+      "version": 3,
+      "exchangeProfileId": "vegetable-aromatic"
+    },
+    {
+      "id": "legumes-snow-peas",
+      "operation": "update",
+      "expectedRecordId": "2408",
+      "selectedRecordId": "2408",
+      "cnfDescription": {
+        "en": "Peas, edible-podded (snow peas), raw",
+        "fr": "Pois mange-tout, crus"
+      },
+      "beforePortion": {
+        "labelFr": "Pois mange-tout",
+        "labelEn": "Snow peas",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de pois mange-tout crus (52 g)",
+        "labelEn": "125 ml raw snow peas (52 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 52,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 6,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 33
+      },
+      "afterNutrients": {
+        "proteinG": 1.5,
+        "carbsG": 3.9,
+        "fiberG": 0.9,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "formula": "valuePortion = valuePer100g × 52 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "9b6559e2-b7b8-4c47-8c50-1eccdeb4ab80",
+      "version": 3,
+      "exchangeProfileId": "vegetable-higher-carb"
+    },
+    {
+      "id": "legumes-green-red-yellow-bell-pepper",
+      "operation": "update",
+      "expectedRecordId": "2413",
+      "selectedRecordId": "2413",
+      "cnfDescription": {
+        "en": "Pepper, sweet, green, raw",
+        "fr": "Poivron vert, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Poivron vert / rouge / jaune",
+        "labelEn": "Green / red / yellow bell pepper",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "125 ml de poivron vert cru haché (79 g)",
+        "labelEn": "125 ml chopped raw green pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 10,
+        "fiberG": 3,
+        "fatG": 0.2,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 47
+      },
+      "afterNutrients": {
+        "proteinG": 0.7,
+        "carbsG": 3.7,
+        "fiberG": 1.1,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "277adeaa-fa95-45c1-a856-8e5c2ceb2012",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-radishes",
+      "operation": "update",
+      "expectedRecordId": "2443",
+      "selectedRecordId": "2443",
+      "cnfDescription": {
+        "en": "Radish, raw",
+        "fr": "Radis, cru"
+      },
+      "beforePortion": {
+        "labelFr": "Radis",
+        "labelEn": "Radishes",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de radis crus tranchés (123 g)",
+        "labelEn": "250 ml sliced raw radishes (123 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 123,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 26
+      },
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.2,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 20
+      },
+      "formula": "valuePortion = valuePer100g × 123 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "c4d4efae-4c24-485a-ae98-c2a85d5b5bde",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-tomato-6-6-cm-in-diameter",
+      "operation": "update",
+      "expectedRecordId": "2460",
+      "selectedRecordId": "2460",
+      "cnfDescription": {
+        "en": "Tomato, red, ripe, raw, year round average",
+        "fr": "Tomate, rouge, mûre, crue, moyenne durant toute l'année"
+      },
+      "beforePortion": {
+        "labelFr": "Tomate de 6,6 cm de diamètre",
+        "labelEn": "Tomato 6.6 cm in diameter",
+        "amount": 1,
+        "unit": "portion",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "1 tomate moyenne (123 g)",
+        "labelEn": "1 medium tomato (123 g)",
+        "amount": 1,
+        "unit": "count",
+        "grams": 123,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 1,
+        "carbsG": 6,
+        "fiberG": 2,
+        "fatG": 0.1,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 32
+      },
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 4.8,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 22
+      },
+      "formula": "valuePortion = valuePer100g × 123 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "69a67c7a-8d71-4d85-961c-5018e4eff01c",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-homemade-bone-broth",
+      "operation": "update",
+      "expectedRecordId": "7378",
+      "selectedRecordId": "7378",
+      "cnfDescription": {
+        "en": "Soup, broth, vegetable, ready-to-serve, low sodium",
+        "fr": "Soupe, bouillon, légumes, prêt-à-servir, faible en sodium"
+      },
+      "beforePortion": {
+        "labelFr": "250 ml de Bouillon d'os maison",
+        "labelEn": "250 ml Homemade bone broth",
+        "amount": 250,
+        "unit": "ml",
+        "grams": null,
+        "preparationState": null,
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de bouillon de légumes faible en sodium (253 g)",
+        "labelEn": "250 ml low-sodium vegetable broth (253 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 253,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 1,
+        "fiberG": 0,
+        "fatG": 0.4,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 50
+      },
+      "afterNutrients": {
+        "proteinG": 0.3,
+        "carbsG": 1.9,
+        "fiberG": 0.8,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0.1,
+        "declaredKcal": 10
+      },
+      "formula": "valuePortion = valuePer100g × 253 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "21580700-e550-4432-8fe7-38515f8309ec",
+      "version": 3,
+      "exchangeProfileId": "vegetable-broth"
+    },
+    {
+      "id": "legumes-grilled-portobello-mushroom",
+      "operation": "update",
+      "expectedRecordId": "5957",
+      "selectedRecordId": "5957",
+      "cnfDescription": {
+        "en": "Mushroom, portabella (portobello), grilled",
+        "fr": "Champignon, portobella (portobello), grillé"
+      },
+      "beforePortion": {
+        "labelFr": "200 g de Portobello grillé",
+        "labelEn": "200 g Grilled portobello mushroom",
+        "amount": 200,
+        "unit": "g",
+        "grams": 200,
+        "preparationState": "prepared",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "afterPortion": {
+        "labelFr": "250 ml de portobello grillé tranché (128 g)",
+        "labelEn": "250 ml sliced grilled portobello (128 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 128,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": {
+        "proteinG": 2,
+        "carbsG": 7,
+        "fiberG": 2,
+        "fatG": 0.3,
+        "saturatedFatG": null,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 52
+      },
+      "afterNutrients": {
+        "proteinG": 4.2,
+        "carbsG": 5.7,
+        "fiberG": 2.8,
+        "fatG": 0.7,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.3,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 37
+      },
+      "formula": "valuePortion = valuePer100g × 128 / 100",
+      "errorsBefore": [
+        "KCAL_DIFF_HIGH"
+      ],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "ff07b430-d133-4fd9-b44b-1af1ff13f689",
+      "version": 3,
+      "exchangeProfileId": "vegetable-mushroom"
+    },
+    {
+      "id": "legumes-red-bell-pepper",
+      "operation": "add",
+      "expectedRecordId": "2484",
+      "selectedRecordId": "2484",
+      "cnfDescription": {
+        "en": "Pepper, sweet, red, raw",
+        "fr": "Poivron rouge, cru"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de poivron rouge cru haché (79 g)",
+        "labelEn": "125 ml chopped raw red pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 4.8,
+        "fiberG": 1.1,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 21
+      },
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "273d94d4-dd41-4394-ac85-9e3935c6d4c9",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-yellow-bell-pepper",
+      "operation": "add",
+      "expectedRecordId": "2344",
+      "selectedRecordId": "2344",
+      "cnfDescription": {
+        "en": "Pepper, sweet, yellow, raw",
+        "fr": "Poivron jaune, cru"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de poivron jaune cru haché (79 g)",
+        "labelEn": "125 ml chopped raw yellow pepper (79 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 79,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 0.8,
+        "carbsG": 5,
+        "fiberG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": null,
+        "monounsaturatedFatG": null,
+        "declaredKcal": 21
+      },
+      "formula": "valuePortion = valuePer100g × 79 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "af656342-1fa0-44a9-8ba5-589e313d4dc7",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-yellow-snap-beans",
+      "operation": "add",
+      "expectedRecordId": "2371",
+      "selectedRecordId": "2371",
+      "cnfDescription": {
+        "en": "Beans, snap (Italian, green or yellow), boiled, drained",
+        "fr": "Haricots italiens, jaunes ou verts, bouillis, égouttés"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "125 ml de haricots jaunes cuits (66 g)",
+        "labelEn": "125 ml cooked yellow snap beans (66 g)",
+        "amount": 125,
+        "unit": "ml",
+        "grams": 66,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.2,
+        "carbsG": 5.2,
+        "fiberG": 1.6,
+        "fatG": 0.2,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0.1,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 23
+      },
+      "formula": "valuePortion = valuePer100g × 66 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "de07f11d-aaee-4a8c-b7b9-25f3de5f2bd2",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-cremini-mushrooms",
+      "operation": "add",
+      "expectedRecordId": "4974",
+      "selectedRecordId": "4974",
+      "cnfDescription": {
+        "en": "Mushroom, brown, Italian (crimini), raw",
+        "fr": "Champignon, bruns, italien (crimini), cru"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de champignons cremini crus tranchés (74 g)",
+        "labelEn": "250 ml sliced raw cremini mushrooms (74 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 74,
+        "preparationState": "raw",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.9,
+        "carbsG": 3.2,
+        "fiberG": 0.4,
+        "fatG": 0.1,
+        "saturatedFatG": 0,
+        "polyunsaturatedFatG": 0,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 16
+      },
+      "formula": "valuePortion = valuePer100g × 74 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [
+        {
+          "code": "KCAL_DIFF_HIGH",
+          "sourceReferenceId": "4974",
+          "fieldsHash": "kcal:1.9|3.2|0.1|16",
+          "approvedAt": "2026-07-30",
+          "approvedBy": "KR Kinetics",
+          "createdAt": "2026-07-30T16:59:23.867Z",
+          "version": 3,
+          "reason": "Différence documentée contre source authoritative 4974"
+        }
+      ],
+      "status": "verified",
+      "transactionId": "342e5e9c-b63a-49c1-a3a8-a2d762aa0e9c",
+      "version": 4,
+      "exchangeProfileId": "vegetable-mushroom"
+    },
+    {
+      "id": "legumes-cooked-spaghetti-squash",
+      "operation": "add",
+      "expectedRecordId": "2459",
+      "selectedRecordId": "2459",
+      "cnfDescription": {
+        "en": "Squash, winter, spaghetti, baked or boiled, drained",
+        "fr": "Courge d'hiver, spaghetti, au four ou bouillie, égouttée"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de courge spaghetti cuite (164 g)",
+        "labelEn": "250 ml cooked spaghetti squash (164 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 164,
+        "preparationState": "cooked",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 1.1,
+        "carbsG": 10.6,
+        "fiberG": 2.3,
+        "fatG": 0.4,
+        "saturatedFatG": 0.1,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0,
+        "declaredKcal": 44
+      },
+      "formula": "valuePortion = valuePer100g × 164 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "77a06407-41a1-4c87-880d-61b486b23295",
+      "version": 3,
+      "exchangeProfileId": "vegetable-standard"
+    },
+    {
+      "id": "legumes-low-sodium-vegetable-juice",
+      "operation": "add",
+      "expectedRecordId": "7421",
+      "selectedRecordId": "7421",
+      "cnfDescription": {
+        "en": "Vegetable juice cocktail, canned, low sodium",
+        "fr": "Légumes, jus, cocktail, conserve, faible en sodium"
+      },
+      "beforePortion": null,
+      "afterPortion": {
+        "labelFr": "250 ml de cocktail de jus de légumes faible en sodium (268 g)",
+        "labelEn": "250 ml low-sodium vegetable juice cocktail (268 g)",
+        "amount": 250,
+        "unit": "ml",
+        "grams": 268,
+        "preparationState": "ready_to_eat",
+        "brandSpecific": false,
+        "brand": null
+      },
+      "beforeNutrients": null,
+      "afterNutrients": {
+        "proteinG": 2.4,
+        "carbsG": 10.3,
+        "fiberG": 1.3,
+        "fatG": 0.9,
+        "saturatedFatG": 0.2,
+        "polyunsaturatedFatG": 0.2,
+        "monounsaturatedFatG": 0.2,
+        "declaredKcal": 51
+      },
+      "formula": "valuePortion = valuePer100g × 268 / 100",
+      "errorsBefore": [],
+      "errorsAfter": [],
+      "resolutions": [],
+      "status": "verified",
+      "transactionId": "6e9e88d4-891e-4cd8-bb7c-970be81e79b1",
+      "version": 3,
+      "exchangeProfileId": "vegetable-juice"
+    }
+  ]
+}
