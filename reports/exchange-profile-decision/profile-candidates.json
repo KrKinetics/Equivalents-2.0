@@ -209,8 +209,8 @@
       "totals": {
         "proteinG": 74,
         "carbsG": 135,
-        "fiberG": 18.799999999999997,
-        "fatG": 30.699999999999996,
+        "fiberG": 18.8,
+        "fatG": 30.7,
         "declaredKcal": 1112
       },
       "unavailable": []
@@ -506,8 +506,8 @@
       "totals": {
         "proteinG": 74,
         "carbsG": 135,
-        "fiberG": 18.799999999999997,
-        "fatG": 30.699999999999996,
+        "fiberG": 18.8,
+        "fatG": 30.7,
         "declaredKcal": 1112
       },
       "unavailable": []

@@ -15,7 +15,15 @@
 
 - 157 profils d’échange, dont **122 singletons**.
 - Relier chaque singleton au calculateur ferait exploser les options UI sans gain d’équivalence.
-- Proposition : couche intermédiaire `exchangeRollupId` / `calculatorBridgeProfileId` (21 familles proposées).
+- Proposition : couche intermédiaire `exchangeRollupId` / `calculatorBridgeProfileId` (**27** familles proposées).
+
+## Règles déterministes lean / moderate-fat / fatty
+
+- **fatty** si le profil matche: fatty, high-fat, with-skin, ribs, ground-beef-regular/medium, lamb, duck, pork-standard, pork-ribs, processed-meat-high-fat.
+- **moderate** si: moderate-fat, processed-seafood, processed-poultry.
+- **lean** par défaut pour les autres profils protéine, y compris les lean documentés (extra-lean / lean ground beef, pork-lean, game-lean, lean fish/shellfish).
+- Les barres = uniquement `protein-bar-*` (jamais une sous-chaîne `bar` qui matcherait `barley`).
+- Les boissons végétales = `dairy-alternative-*` (jamais `includes('oat')` qui matcherait `goat`).
 
 ## Séparations obligatoires (refus d’une cible unique)
 
@@ -31,26 +39,32 @@ Le groupe calculateur `whey` existe dans calculation-groups.json et dans les MOY
 
 Pont proposé (sans mutation production) : `exchangeRollupId=rollup-whey-powders → calculatorGroup=whey (future approval only)`.
 
-## Familles proposées
+## Familles proposées (27)
 
 | exchangeRollupId | Aliments | Profils sources | Échantillon insuffisant (<3) | Pont calculateur | Médiane P/G/L |
 | --- | ---: | ---: | --- | --- | --- |
+| rollup-chestnut | 1 | 1 | oui | starch | P 1 / G 15.9 / L 0.7 |
 | rollup-collagen-incomplete | 1 | 1 | oui | — | P 9 / G 0 / L 0 |
 | rollup-dairy-cheese | 3 | 3 | non | dairy | P 9.6 / G 1.2 / L 2.5 |
-| rollup-dairy-milk-yogurt | 19 | 19 | non | dairy | P 10.8 / G 5.7 / L 1.65 |
-| rollup-dairy-plant-drink | 7 | 7 | non | dairy | P 1.7 / G 10.3 / L 2.3 |
+| rollup-dairy-fresh-cheese | 4 | 4 | non | dairy | P 12.15 / G 4.7 / L 2.05 |
+| rollup-dairy-milk-yogurt | 16 | 16 | non | dairy | P 8.75 / G 5.8 / L 1.7 |
+| rollup-dairy-plant-drink | 6 | 6 | non | dairy | P 1.35 / G 9 / L 2.25 |
 | rollup-fat-cheese-portion | 3 | 1 | non | fat | P 3.5 / G 1.2 / L 4.4 |
-| rollup-fat-other | 4 | 2 | non | fat | P 1.75 / G 2.75 / L 4.65 |
+| rollup-fat-chocolate | 2 | 1 | oui | fat | P 0.7 / G 4.9 / L 4.05 |
+| rollup-fat-egg | 2 | 1 | oui | fat | P 4.3 / G 0.75 / L 5.3 |
 | rollup-fruit-standard | 33 | 1 | non | fruit | P 0.9 / G 15 / L 0.2 |
+| rollup-granola | 1 | 1 | oui | starch | P 4.5 / G 15.9 / L 7.3 |
+| rollup-legume-spread | 1 | 1 | oui | fat | P 2.4 / G 4.7 / L 5.5 |
 | rollup-nut-seed-butter | 5 | 2 | non | fat | P 1.9 / G 2.3 / L 5.4 |
-| rollup-nuts-seeds | 27 | 10 | non | fat | P 1.8 / G 2 / L 4.9 |
+| rollup-nuts-seeds | 22 | 5 | non | fat | P 1.8 / G 1.65 / L 4.9 |
 | rollup-oils-spreads | 16 | 8 | non | fat | P 0 / G 0 / L 5.95 |
-| rollup-protein-bars | 2 | 2 | oui | protein | P 5.85 / G 16.6 / L 1.65 |
-| rollup-protein-fatty | 11 | 3 | non | protein | P 7.1 / G 0 / L 3.5 |
-| rollup-protein-lean | 79 | 51 | non | protein | P 9.3 / G 0 / L 1.3 |
-| rollup-protein-moderate-fat | 2 | 1 | oui | protein | P 10.6 / G 0 / L 2.4 |
+| rollup-protein-bars | 1 | 1 | oui | protein | P 10 / G 12 / L 3 |
+| rollup-protein-fatty | 18 | 10 | non | protein | P 7.15 / G 0 / L 3.85 |
+| rollup-protein-lean | 70 | 42 | non | protein | P 9.75 / G 0 / L 1.2 |
+| rollup-protein-moderate-fat | 4 | 3 | non | protein | P 9.75 / G 0.65 / L 2.4 |
 | rollup-protein-rtd | 4 | 3 | non | protein | P 10.05 / G 2.05 / L 0.85 |
-| rollup-starch-cereal | 29 | 29 | non | starch | P 2.7 / G 17.4 / L 0.6 |
+| rollup-soy-legume-snack | 2 | 2 | oui | protein | P 8.75 / G 7.5 / L 4.95 |
+| rollup-starch-cereal | 30 | 30 | non | starch | P 2.65 / G 17.55 / L 0.6 |
 | rollup-starch-legume | 3 | 3 | non | starch | P 8.9 / G 23.7 / L 0.5 |
 | rollup-vegetable-higher-carb | 6 | 1 | non | vegetable | P 1.25 / G 7.4 / L 0.1 |
 | rollup-vegetable-juice | 2 | 1 | oui | vegetable | P 2.45 / G 10.3 / L 0.85 |

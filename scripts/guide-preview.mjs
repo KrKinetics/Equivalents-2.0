@@ -17,10 +17,10 @@ const localAssetsDir = path.join(outDir, 'assets');
 const screenshotsDir = path.join(outDir, 'screenshots');
 const readJson = async (name) => JSON.parse(await fs.readFile(path.join(dataDir, name), 'utf8'));
 
-// Prefer raster logos: SVG viewBox-only assets often report naturalWidth=0 in Chromium file://.
+// Prefer opaque full logo (transparent PNG can render as grey checkerboard in PDF viewers).
 const LOGO_CANDIDATES = [
-  path.join(root, 'assets', 'kinetics-logo-transparent.png'),
   path.join(root, 'assets', 'kinetics-logo-full.png'),
+  path.join(root, 'assets', 'kinetics-logo-transparent.png'),
   path.join(root, 'assets', 'kinetics-logo.svg'),
 ];
 

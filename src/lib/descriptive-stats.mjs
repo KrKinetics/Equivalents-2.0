@@ -43,10 +43,25 @@ export function normalizeFrName(value) {
  */
 export function formatStatNumber(value, maxDecimals = 4) {
   if (value == null || typeof value !== 'number' || !Number.isFinite(value)) return null;
-  const factor = 10 ** maxDecimals;
-  const rounded = Math.round((value + Number.EPSILON) * factor) / factor;
+  // toFixed avoids binary float tails (30.6999… / 18.7999…) before numeric coercion.
+  const rounded = Number(value.toFixed(maxDecimals));
   if (Object.is(rounded, -0)) return 0;
   return rounded;
+}
+
+/** Recursively replace finite numbers with formatStatNumber for stable JSON/CSV/HTML exports. */
+export function sanitizeExportNumbers(value, maxDecimals = 4) {
+  if (value == null) return value;
+  if (typeof value === 'number') return formatStatNumber(value, maxDecimals);
+  if (Array.isArray(value)) return value.map((item) => sanitizeExportNumbers(item, maxDecimals));
+  if (typeof value === 'object') {
+    const out = {};
+    for (const [key, nested] of Object.entries(value)) {
+      out[key] = sanitizeExportNumbers(nested, maxDecimals);
+    }
+    return out;
+  }
+  return value;
 }
 
 export function formatNumberForLocale(value, lang = 'fr', maxDecimals = 4) {

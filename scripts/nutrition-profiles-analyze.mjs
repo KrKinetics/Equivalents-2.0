@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyzeAllLevels, buildDecisionsMarkdown, buildProfileCandidates, NUTRIENT_KEYS } from '../src/lib/exchange-profile-analysis.mjs';
 import { buildExchangeRollupProposal, buildRollupProposalMarkdown } from '../src/lib/exchange-rollup-proposal.mjs';
-import { formatStatNumber } from '../src/lib/descriptive-stats.mjs';
+import { formatStatNumber, sanitizeExportNumbers } from '../src/lib/descriptive-stats.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -60,8 +60,9 @@ function overviewHtml(analysis, groupRows, categoryRows, profileRows, allRows, o
   <ul>
     <li><code>group-statistics.csv</code> — level=calculationGroup — <strong>${groupRows.length}</strong> lignes · somme aliments ${sum(groupRows)} · verified ${sumV(groupRows)}</li>
     <li><code>category-statistics.csv</code> — level=displayCategory — <strong>${categoryRows.length}</strong> lignes · somme aliments ${sum(categoryRows)} · verified ${sumV(categoryRows)}</li>
-    <li><code>exchange-profile-statistics.csv</code> — level=exchangeProfileId — <strong>${profileRows.length}</strong> lignes · somme aliments ${sum(profileRows)} · verified ${sumV(profileRows)}</li>
-    <li><code>all-levels-statistics.csv</code> — les trois niveaux concaténés — <strong>${allRows.length}</strong> lignes</li>
+    <li><code>exchange-profile-statistics.csv</code> — <strong>trois niveaux</strong> (calculationGroup + displayCategory + exchangeProfileId) — <strong>${allRows.length}</strong> lignes</li>
+    <li><code>exchange-profile-id-only.csv</code> — level=exchangeProfileId seulement — <strong>${profileRows.length}</strong> lignes · somme aliments ${sum(profileRows)}</li>
+    <li><code>all-levels-statistics.csv</code> — copie des trois niveaux — <strong>${allRows.length}</strong> lignes</li>
   </ul>
   <p>Les moyennes/médianes sont des <strong>statistiques</strong>. Les cibles du candidat A sont des <strong>règles d’affaires</strong>, pas des moyennes.</p>
   ${htmlTable('Tous les niveaux', allRows)}
@@ -106,7 +107,7 @@ const outliers = [...Object.values(analysis.calculationGroup), ...Object.values(
 
 await fs.mkdir(outDir, { recursive: true });
 const files = new Map([
-  ['overview.json', `${JSON.stringify({
+  ['overview.json', `${JSON.stringify(sanitizeExportNumbers({
     generatedAt: versionMeta.lastModifiedAt,
     version: versionMeta.version,
     dataHash: versionMeta.dataHash,
@@ -123,16 +124,18 @@ const files = new Map([
       exchangeProfileIdTotal: profiles.reduce((a, r) => a + r.totalCount, 0),
     },
     ...analysis,
-  }, null, 2)}\n`],
+  }), null, 2)}\n`],
   ['overview.html', overviewHtml(analysis, groups, categories, profiles, allLevels, outliers)],
   ['group-statistics.csv', toCsv(groups, statColumns)],
   ['category-statistics.csv', toCsv(categories, statColumns)],
-  ['exchange-profile-statistics.csv', toCsv(profiles, statColumns)],
+  // Mandate: this export must contain all three analysis levels (level column discriminates rows).
+  ['exchange-profile-statistics.csv', toCsv(allLevels, statColumns)],
   ['all-levels-statistics.csv', toCsv(allLevels, statColumns)],
+  ['exchange-profile-id-only.csv', toCsv(profiles, statColumns)],
   ['legacy-comparison.csv', toCsv(legacyRows, ['calculationGroup', 'basis', 'nutrient', 'reference', 'delta', 'outsideToleranceCount', 'referenceKind'])],
   ['outliers.csv', toCsv(outliers, ['level', 'cohortId', 'rank', 'id', 'nameFr', 'distanceScore'])],
-  ['profile-candidates.json', `${JSON.stringify(candidates, null, 2)}\n`],
-  ['exchange-rollup-proposal.json', `${JSON.stringify(rollupProposal, null, 2)}\n`],
+  ['profile-candidates.json', `${JSON.stringify(sanitizeExportNumbers(candidates), null, 2)}\n`],
+  ['exchange-rollup-proposal.json', `${JSON.stringify(sanitizeExportNumbers(rollupProposal), null, 2)}\n`],
   ['EXCHANGE_ROLLUP_PROPOSAL.md', buildRollupProposalMarkdown(rollupProposal)],
   ['DECISIONS_REQUIRED.md', buildDecisionsMarkdown(analysis, candidates)],
 ]);

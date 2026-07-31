@@ -77,8 +77,8 @@ test('rollup proposal keeps forbidden separations and explains empty whey group'
   assert.equal(proposal.wheyObservation.proposedBridge.productionChangeInThisPr, false);
 });
 
-test('generated all-levels CSV matches in-memory three-level export when present', () => {
-  const reportPath = path.join(root, 'reports', 'exchange-profile-decision', 'all-levels-statistics.csv');
+test('generated exchange-profile-statistics.csv contains all three levels when present', () => {
+  const reportPath = path.join(root, 'reports', 'exchange-profile-decision', 'exchange-profile-statistics.csv');
   if (!fs.existsSync(reportPath)) {
     assert.ok(true, 'report not generated yet in this phase');
     return;
@@ -93,4 +93,11 @@ test('generated all-levels CSV matches in-memory three-level export when present
   assert.match(text, /calculationGroup/);
   assert.match(text, /displayCategory/);
   assert.match(text, /exchangeProfileId/);
+  const levels = new Set(text.split('\n').slice(1).map((line) => line.split(',')[0]));
+  assert.deepEqual([...levels].sort(), ['calculationGroup', 'displayCategory', 'exchangeProfileId']);
+});
+
+test('formatStatNumber stabilizes common float tails in generators', () => {
+  assert.equal(formatStatNumber(18.799999999999997), 18.8);
+  assert.equal(formatStatNumber(30.699999999999996), 30.7);
 });

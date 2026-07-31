@@ -17,7 +17,8 @@ function landscapeCss() {
   .banner .banner-en{display:block;font-weight:700;opacity:.92;margin-top:2px;font-size:10px}
   header,.toc,.section{background:#fff;margin:12px auto;padding:16px;max-width:1280px}
   header{display:flex;align-items:center;gap:20px}
-  header img.brand-logo{width:140px;max-height:64px;object-fit:contain;display:block}
+  .brand-logo-wrap{background:#ffffff;padding:8px 10px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
+  header img.brand-logo{width:140px;max-height:64px;object-fit:contain;display:block;background:#ffffff}
   .meta{font-size:12px;color:#475569;line-height:1.45}
   .toc a{display:inline-block;margin:4px;padding:7px 10px;color:#fff;border-radius:4px;text-decoration:none}
   .section{break-before:auto;page-break-before:auto}
@@ -46,7 +47,8 @@ function mobileCss() {
   .banner .banner-en{display:block;font-weight:700;opacity:.92;margin-top:2px;font-size:10px}
   header,.toc,.section{background:#fff;margin:10px auto;padding:14px;max-width:720px}
   header{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-  header img.brand-logo{width:150px;max-height:70px;object-fit:contain;display:block}
+  .brand-logo-wrap{background:#ffffff;padding:8px 10px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
+  header img.brand-logo{width:150px;max-height:70px;object-fit:contain;display:block;background:#ffffff}
   .meta{font-size:12px;color:#475569;line-height:1.45}
   .toc a{display:inline-block;margin:4px;padding:7px 10px;color:#fff;border-radius:4px;text-decoration:none;font-size:12px}
   .section{break-before:auto;page-break-before:auto}
@@ -97,7 +99,9 @@ function headerHtml(model, { bilingual = false, lang = 'fr' } = {}) {
       : `${esc(model.meta.foodsLabelFr)} · ${esc(model.meta.updatedLabelFr)} · ${esc(model.meta.noteFr)} · v${esc(model.meta.version)} · ${esc(model.meta.shortHash)}`);
   return `${bannerHtml(model)}
   <header>
-    <img class="brand-logo" src="${esc(model.logoSrc)}" alt="KR Kinetics" width="140" height="64">
+    <div class="brand-logo-wrap">
+      <img class="brand-logo" src="${esc(model.logoSrc)}" alt="KR Kinetics" width="140" height="64">
+    </div>
     <div><h1>${esc(title)}</h1><div class="meta">${meta}</div></div>
   </header>`;
 }
@@ -107,16 +111,24 @@ function toc(model, bilingual) {
     `<a style="background:${section.color}" href="#section-${esc(section.legacyKey)}">${esc(bilingual ? `${section.titleFr} · ${section.titleEn}` : section.titleFr)}</a>`).join('')}</div></nav>`;
 }
 
-function landscapeTable(section, lang) {
-  const columns = section.columns;
-  return `<table data-section="${esc(section.legacyKey)}"><thead><tr>${columns.map((column) =>
-    `<th>${esc(lang === 'en' ? column.labelEn : column.labelFr)}</th>`).join('')}</tr></thead>
-  <tbody>${section.foods.map((food) => `<tr data-food-id="${esc(food.id)}">${columns.map((column) => {
+function landscapeRow(section, food, lang) {
+  return `<tr data-food-id="${esc(food.id)}">${section.columns.map((column) => {
     if (column.key === 'aliment') {
       return `<td class="cell-aliment">${esc(lang === 'en' ? food.portionEn : food.portionFr)}</td>`;
     }
     return `<td data-value-key="${column.key}" data-raw="${food.values[column.key] ?? ''}">${esc(formatCellValue(food.values[column.key], lang))}</td>`;
-  }).join('')}</tr>`).join('')}</tbody></table>`;
+  }).join('')}</tr>`;
+}
+
+function landscapeTableHead(section, lang) {
+  return `<thead><tr>${section.columns.map((column) =>
+    `<th>${esc(lang === 'en' ? column.labelEn : column.labelFr)}</th>`).join('')}</tr></thead>`;
+}
+
+function landscapeTable(section, lang, { skipFirst = 0 } = {}) {
+  const foods = section.foods.slice(skipFirst);
+  return `<table data-section="${esc(section.legacyKey)}">${landscapeTableHead(section, lang)}
+  <tbody>${foods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody></table>`;
 }
 
 function renderMobileItem(section, food) {
@@ -146,12 +158,22 @@ function buildSections(model, { lang, mobile, bilingual }) {
     const subtitle = bilingual ? `${section.subtitleFr} · ${section.subtitleEn}` : lang === 'en' ? section.subtitleEn : section.subtitleFr;
     const note = section.note ? (bilingual ? `${section.note.fr} · ${section.note.en}` : section.note[lang]) : '';
     if (!mobile) {
+      const leadCount = Math.min(3, section.foods.length);
+      const leadFoods = section.foods.slice(0, leadCount);
+      const restFoods = section.foods.slice(leadCount);
       return `<section class="section" id="section-${esc(section.legacyKey)}" style="--color:${section.color}">
         <div class="section-lead">
           <div class="section-header"><h2>${esc(title)}</h2><p>${esc(subtitle)}</p></div>
           ${note ? `<p class="note">${esc(note)}</p>` : ''}
+          <table data-section="${esc(section.legacyKey)}" class="section-lead-table">
+            ${landscapeTableHead(section, lang)}
+            <tbody>${leadFoods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
+          </table>
         </div>
-        ${landscapeTable(section, lang)}
+        ${restFoods.length ? `<table data-section="${esc(section.legacyKey)}" class="section-continue-table">
+          ${landscapeTableHead(section, lang)}
+          <tbody>${restFoods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
+        </table>` : ''}
         <p><a href="#index">↑ Index</a></p>
       </section>`;
     }

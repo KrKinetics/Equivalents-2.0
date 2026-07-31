@@ -1,6 +1,9 @@
 /**
  * Non-approved intermediate rollup proposal for candidate D.
  * Does NOT modify production data or calculator MOYENNES.
+ *
+ * Classification uses exchangeProfileId + displayCategory + calculationGroup.
+ * Never classifies by ambiguous foodId substrings (e.g. "bar"⊂"barley", "oat"⊂"goat").
  */
 
 import { analyzeCohort, DEFAULT_TOLERANCES, NUTRIENT_KEYS } from './exchange-profile-analysis.mjs';
@@ -10,67 +13,217 @@ const MIN_SAMPLE = 3;
 
 /** Explicit refusals — never merge these families. */
 export const FORBIDDEN_MERGES = [
-  { id: 'nuts_vs_oils', a: 'nuts_seeds', b: 'oils_spreads', reason: 'Noix/graines ≠ huiles' },
-  { id: 'lean_vs_fatty_protein', a: 'protein_lean', b: 'protein_fatty', reason: 'Protéines maigres ≠ grasses' },
-  { id: 'dairy_splits', a: 'dairy_milk_yogurt', b: 'dairy_cheese_or_plant', reason: 'Lait/yogourt ≠ fromages ≠ boissons végétales' },
-  { id: 'whey_vs_collagen_bars', a: 'whey_powders', b: 'collagen_bars_rtd', reason: 'Whey ≠ collagène ≠ barres ≠ boissons protéinées' },
-  { id: 'legumes_vs_cereal_starches', a: 'starch_legume', b: 'starch_cereal', reason: 'Légumineuses ≠ pains/riz/pâtes' },
+  { id: 'nuts_vs_oils', a: 'rollup-nuts-seeds', b: 'rollup-oils-spreads', reason: 'Noix/graines ≠ huiles' },
+  { id: 'lean_vs_fatty_protein', a: 'rollup-protein-lean', b: 'rollup-protein-fatty', reason: 'Protéines maigres ≠ grasses' },
+  { id: 'dairy_splits', a: 'rollup-dairy-milk-yogurt', b: 'rollup-dairy-plant-drink', reason: 'Lait/yogourt ≠ fromages ≠ boissons végétales' },
+  { id: 'whey_vs_collagen_bars', a: 'rollup-whey-powders', b: 'rollup-protein-bars', reason: 'Whey ≠ collagène ≠ barres ≠ boissons protéinées' },
+  { id: 'legumes_vs_cereal_starches', a: 'rollup-starch-legume', b: 'rollup-starch-cereal', reason: 'Légumineuses ≠ pains/riz/pâtes' },
 ];
 
 /**
- * Map an exchangeProfileId to a proposed intermediate rollup id.
- * Heuristic only — decision document, not production.
+ * Deterministic protein fat-class rules (exchangeProfileId only).
+ * Order: fatty → moderate → lean (default for remaining protein profiles).
  */
-export function proposeRollupId(exchangeProfileId, calculationGroup, displayCategory) {
-  const id = String(exchangeProfileId || '');
-  if (id.startsWith('fruit-')) return 'rollup-fruit-standard';
-  if (id.startsWith('vegetable-')) {
-    if (id.includes('higher-carb') || id.includes('starchy')) return 'rollup-vegetable-higher-carb';
-    if (id.includes('juice')) return 'rollup-vegetable-juice';
-    return 'rollup-vegetable-non-starchy';
+export const PROTEIN_FAT_CLASS_RULES = {
+  fattyProfileRegexes: [
+    /(?:^|-)fatty(?:-|$)/,
+    /high-fat/,
+    /with-skin/,
+    /ribs/,
+    /ground-beef-regular/,
+    /ground-beef-medium/,
+    /^protein-lamb$/,
+    /^protein-duck$/,
+    /pork-standard/,
+    /pork-ribs/,
+    /processed-meat-high-fat/,
+  ],
+  moderateProfileRegexes: [
+    /moderate-fat/,
+    /processed-seafood/,
+    /processed-poultry/,
+  ],
+  /** Explicit lean keepers that must never be pulled into fatty by loose tokens. */
+  documentedLeanProfiles: [
+    'protein-ground-beef-extra-lean',
+    'protein-ground-beef-lean',
+    'protein-pork-lean',
+    'protein-game-lean',
+    'protein-lean-fish',
+    'protein-shellfish-lean',
+    'protein-mollusk-lean',
+    'protein-canned-fish-lean',
+    'protein-chicken-dark-meat', // dark meat without skin token stays lean unless with-skin
+  ],
+};
+
+function profileOf(foodOrProfile) {
+  if (foodOrProfile && typeof foodOrProfile === 'object') {
+    return String(foodOrProfile.exchangeProfileId || '');
   }
-  if (displayCategory === 'noix_graines' || id.startsWith('fat-nut') || id.startsWith('fat-seed')) {
-    if (id.includes('butter')) return 'rollup-nut-seed-butter';
-    return 'rollup-nuts-seeds';
+  return String(foodOrProfile || '');
+}
+
+export function classifyProteinFatClass(exchangeProfileId) {
+  const profile = String(exchangeProfileId || '');
+  if (PROTEIN_FAT_CLASS_RULES.documentedLeanProfiles.includes(profile)) {
+    return 'lean';
   }
+  if (PROTEIN_FAT_CLASS_RULES.fattyProfileRegexes.some((re) => re.test(profile))) {
+    return 'fatty';
+  }
+  if (PROTEIN_FAT_CLASS_RULES.moderateProfileRegexes.some((re) => re.test(profile))) {
+    return 'moderate';
+  }
+  return 'lean';
+}
+
+function isPlantDairyProfile(profile) {
+  return (
+    profile.startsWith('dairy-alternative-')
+    || profile.startsWith('dairy-plant-')
+    || /(?:^|-)plant(?:-drink|-beverage)?(?:-|$)/.test(profile)
+  );
+}
+
+function isFreshCheeseProfile(profile) {
+  return /cottage|ricotta|quark|fresh-cheese|fromage-frais/.test(profile);
+}
+
+function isAgedOrFirmCheeseProfile(profile) {
+  if (isFreshCheeseProfile(profile)) return false;
+  return /(?:^|-)cheese(?:-|$)|fromage/.test(profile);
+}
+
+/**
+ * Map a food to a proposed intermediate rollup id.
+ * Most specific rules first. Prefer exchangeProfileId tokens over foodId.
+ *
+ * @param {object|string} foodOrProfile food object (preferred) or legacy profile string
+ * @param {string} [calculationGroup]
+ * @param {string} [displayCategory]
+ */
+export function proposeRollupId(foodOrProfile, calculationGroup, displayCategory) {
+  const food = typeof foodOrProfile === 'object' && foodOrProfile
+    ? foodOrProfile
+    : {
+      exchangeProfileId: foodOrProfile,
+      calculationGroup,
+      displayCategory,
+    };
+  const profile = profileOf(food);
+  const group = food.calculationGroup || calculationGroup || null;
+  const category = food.displayCategory || displayCategory || null;
+
+  // --- Explicit specialty products (before any broad includes) ---
+  if (profile.startsWith('protein-bar-')) return 'rollup-protein-bars';
+  if (profile.startsWith('protein-whey-')) return 'rollup-whey-powders';
+  if (profile.includes('collagen')) return 'rollup-collagen-incomplete';
   if (
-    id.startsWith('fat-oil')
-    || id.includes('mayonnaise')
-    || id.includes('butter-spread')
-    || id.includes('mct')
-    || (id.includes('olive') && displayCategory === 'matieres_grasses')
-    || (id.includes('avocado') && displayCategory === 'matieres_grasses')
+    profile.startsWith('protein-ready-to-drink')
+    || profile.startsWith('protein-rtd')
+    || /(?:^|-)protein-drink(?:-|$)/.test(profile)
   ) {
-    return 'rollup-oils-spreads';
+    return 'rollup-protein-rtd';
   }
-  if (displayCategory === 'matieres_grasses') {
-    if (id.includes('cheese')) return 'rollup-fat-cheese-portion';
-    if (id.includes('egg') || id.includes('chocolate')) return 'rollup-fat-other';
-    return 'rollup-oils-spreads';
-  }
-  if (id.includes('whey')) return 'rollup-whey-powders';
-  if (id.includes('collagen')) return 'rollup-collagen-incomplete';
-  if (id.includes('bar')) return 'rollup-protein-bars';
-  if (id.includes('ready-to-drink') || id.includes('rtd') || id.includes('protein-drink')) return 'rollup-protein-rtd';
-  if (calculationGroup === 'dairy' || displayCategory === 'produits_laitiers') {
-    if (id.includes('cheese') || id.includes('fromage')) return 'rollup-dairy-cheese';
-    if (id.includes('plant') || id.includes('almond') || id.includes('soy') || id.includes('oat') || id.includes('rice') || id.includes('alternative')) {
-      return 'rollup-dairy-plant-drink';
-    }
-    return 'rollup-dairy-milk-yogurt';
-  }
-  if (calculationGroup === 'starch' || displayCategory === 'feculents') {
-    if (id.includes('legume') || id.includes('bean') || id.includes('lentil') || id.includes('chickpea') || id.includes('pea')) {
+
+  // --- Starches / grains (prevent barley→bars and chestnut/granola mishops) ---
+  if (group === 'starch' || category === 'feculents' || profile.startsWith('starch-')) {
+    if (profile.includes('chestnut')) return 'rollup-chestnut';
+    if (profile.includes('granola')) return 'rollup-granola';
+    if (
+      profile.includes('legume')
+      || /(?:^|-)(?:bean|lentil|chickpea|pea)(?:-|$)/.test(profile)
+    ) {
       return 'rollup-starch-legume';
     }
     return 'rollup-starch-cereal';
   }
-  if (calculationGroup === 'protein') {
-    if (id.includes('fatty') || id.includes('high-fat') || id.includes('processed-meat-high-fat')) return 'rollup-protein-fatty';
-    if (id.includes('moderate-fat')) return 'rollup-protein-moderate-fat';
+
+  // --- Fruit ---
+  if (group === 'fruit' || category === 'fruits' || profile.startsWith('fruit-')) {
+    return 'rollup-fruit-standard';
+  }
+
+  // --- Vegetables ---
+  if (group === 'vegetable' || category === 'legumes' || profile.startsWith('vegetable-')) {
+    if (profile.includes('higher-carb') || profile.includes('starchy')) return 'rollup-vegetable-higher-carb';
+    if (profile.includes('juice')) return 'rollup-vegetable-juice';
+    return 'rollup-vegetable-non-starchy';
+  }
+
+  // --- Dairy (animal vs plant vs cheeses) ---
+  if (group === 'dairy' || category === 'produits_laitiers' || profile.startsWith('dairy-')) {
+    if (isPlantDairyProfile(profile)) return 'rollup-dairy-plant-drink';
+    if (isFreshCheeseProfile(profile)) return 'rollup-dairy-fresh-cheese';
+    if (isAgedOrFirmCheeseProfile(profile)) return 'rollup-dairy-cheese';
+    return 'rollup-dairy-milk-yogurt';
+  }
+
+  // --- Nuts display category specials (not automatic true-nut targets) ---
+  if (
+    profile.startsWith('fat-legume')
+    || profile === 'fat-legume-spread'
+    || /hummus|houmous/.test(profile)
+  ) {
+    return 'rollup-legume-spread';
+  }
+  if (
+    profile.includes('edamame')
+    || profile === 'protein-fat-soy-nut'
+    || profile.startsWith('protein-plant-edamame')
+  ) {
+    return 'rollup-soy-legume-snack';
+  }
+  if (profile.includes('granola') || profile.startsWith('starch-fat-granola')) {
+    return 'rollup-granola';
+  }
+  if (profile.includes('chestnut') || profile.startsWith('starch-chestnut')) {
+    return 'rollup-chestnut';
+  }
+  if (profile.startsWith('fat-nut-butter') || profile.startsWith('fat-seed-butter') || /nut-butter|seed-butter/.test(profile)) {
+    return 'rollup-nut-seed-butter';
+  }
+  if (profile.startsWith('fat-nut') || profile.startsWith('fat-seed')) {
+    return 'rollup-nuts-seeds';
+  }
+  if (category === 'noix_graines') {
+    // Remaining nuts/seeds display items that are true nut/seed profiles.
+    return 'rollup-nuts-seeds';
+  }
+
+  // --- Added fats ---
+  if (category === 'matieres_grasses' || (group === 'fat' && !profile.startsWith('fat-nut') && !profile.startsWith('fat-seed'))) {
+    if (profile.startsWith('fat-egg') || profile === 'fat-egg') return 'rollup-fat-egg';
+    if (profile.startsWith('fat-chocolate') || /(?:^|-)chocolate(?:-|$)/.test(profile)) return 'rollup-fat-chocolate';
+    if (/(?:^|-)cheese(?:-|$)/.test(profile)) return 'rollup-fat-cheese-portion';
+    if (
+      profile.startsWith('fat-oil')
+      || /mayonnaise|butter-spread|(?:^|-)mct(?:-|$)/.test(profile)
+      || (/(?:^|-)olive(?:-|$)/.test(profile) && category === 'matieres_grasses')
+      || (/(?:^|-)avocado(?:-|$)/.test(profile) && category === 'matieres_grasses')
+    ) {
+      return 'rollup-oils-spreads';
+    }
+    if (category === 'matieres_grasses') return 'rollup-oils-spreads';
+  }
+
+  // --- Protein (after specialty powders/bars) ---
+  if (group === 'protein' || profile.startsWith('protein-')) {
+    const fatClass = classifyProteinFatClass(profile);
+    if (fatClass === 'fatty') return 'rollup-protein-fatty';
+    if (fatClass === 'moderate') return 'rollup-protein-moderate-fat';
     return 'rollup-protein-lean';
   }
-  return `rollup-other-${calculationGroup || 'unknown'}`;
+
+  // --- Residual fat group ---
+  if (group === 'fat') {
+    if (profile.startsWith('fat-egg')) return 'rollup-fat-egg';
+    if (profile.startsWith('fat-chocolate')) return 'rollup-fat-chocolate';
+    return 'rollup-oils-spreads';
+  }
+
+  return `rollup-other-${group || 'unknown'}`;
 }
 
 export function proposeCalculatorBridge(rollupId) {
@@ -82,14 +235,30 @@ export function proposeCalculatorBridge(rollupId) {
       productionChangeInThisPr: false,
     };
   }
-  if (rollupId.startsWith('rollup-protein-')) return { calculatorGroup: 'protein', bridge: 'keep_protein_group', productionChangeInThisPr: false };
-  if (rollupId.startsWith('rollup-nuts') || rollupId.startsWith('rollup-nut') || rollupId.startsWith('rollup-oils') || rollupId.startsWith('rollup-fat')) {
+  if (rollupId.startsWith('rollup-protein-') || rollupId === 'rollup-soy-legume-snack') {
+    return { calculatorGroup: 'protein', bridge: 'keep_protein_group_with_sub_targets', productionChangeInThisPr: false };
+  }
+  if (
+    rollupId.startsWith('rollup-nuts')
+    || rollupId.startsWith('rollup-nut')
+    || rollupId.startsWith('rollup-oils')
+    || rollupId.startsWith('rollup-fat')
+    || rollupId === 'rollup-legume-spread'
+  ) {
     return { calculatorGroup: 'fat', bridge: 'keep_fat_group_with_sub_targets', productionChangeInThisPr: false };
   }
-  if (rollupId.startsWith('rollup-dairy')) return { calculatorGroup: 'dairy', bridge: 'keep_dairy_group_with_sub_targets', productionChangeInThisPr: false };
-  if (rollupId.startsWith('rollup-starch')) return { calculatorGroup: 'starch', bridge: 'keep_starch_group_with_sub_targets', productionChangeInThisPr: false };
-  if (rollupId.startsWith('rollup-vegetable')) return { calculatorGroup: 'vegetable', bridge: 'keep_vegetable_group', productionChangeInThisPr: false };
-  if (rollupId.startsWith('rollup-fruit')) return { calculatorGroup: 'fruit', bridge: 'keep_fruit_group', productionChangeInThisPr: false };
+  if (rollupId.startsWith('rollup-dairy')) {
+    return { calculatorGroup: 'dairy', bridge: 'keep_dairy_group_with_sub_targets', productionChangeInThisPr: false };
+  }
+  if (rollupId.startsWith('rollup-starch') || rollupId === 'rollup-chestnut' || rollupId === 'rollup-granola') {
+    return { calculatorGroup: 'starch', bridge: 'keep_starch_group_with_sub_targets', productionChangeInThisPr: false };
+  }
+  if (rollupId.startsWith('rollup-vegetable')) {
+    return { calculatorGroup: 'vegetable', bridge: 'keep_vegetable_group', productionChangeInThisPr: false };
+  }
+  if (rollupId.startsWith('rollup-fruit')) {
+    return { calculatorGroup: 'fruit', bridge: 'keep_fruit_group', productionChangeInThisPr: false };
+  }
   return { calculatorGroup: null, bridge: 'unassigned', productionChangeInThisPr: false };
 }
 
@@ -97,13 +266,15 @@ function cleanNutrientStats(stats) {
   const out = {};
   for (const key of NUTRIENT_KEYS) {
     const n = stats[key];
+    const p75 = formatStatNumber(n.p75);
+    const p25 = formatStatNumber(n.p25);
     out[key] = {
       numericCount: n.numericCount,
       nullCount: n.nullCount,
       mean: formatStatNumber(n.mean),
       median: formatStatNumber(n.median),
-      p25: formatStatNumber(n.p25),
-      p75: formatStatNumber(n.p75),
+      p25,
+      p75,
       min: formatStatNumber(n.min),
       max: formatStatNumber(n.max),
       stddev: formatStatNumber(n.stddev),
@@ -113,6 +284,28 @@ function cleanNutrientStats(stats) {
   return out;
 }
 
+function assertAssignmentIntegrity(assignments, foods) {
+  const foodIds = assignments.map((a) => a.foodId);
+  if (foodIds.length !== foods.length) {
+    throw new Error(`Rollup assignments cover ${foodIds.length} foods, expected ${foods.length}`);
+  }
+  if (new Set(foodIds).size !== foodIds.length) {
+    throw new Error('Duplicate foodId in rollup assignments');
+  }
+  const byProfile = new Map();
+  for (const row of assignments) {
+    const list = byProfile.get(row.exchangeProfileId) || [];
+    list.push(row.exchangeRollupId);
+    byProfile.set(row.exchangeProfileId, list);
+  }
+  for (const [profile, rollups] of byProfile) {
+    const unique = [...new Set(rollups)];
+    if (unique.length > 1) {
+      throw new Error(`exchangeProfileId ${profile} mapped to incompatible rollups: ${unique.join(', ')}`);
+    }
+  }
+}
+
 /**
  * @param {object[]} foods
  * @param {object} analysis from analyzeAllLevels
@@ -120,7 +313,7 @@ function cleanNutrientStats(stats) {
 export function buildExchangeRollupProposal(foods, analysis) {
   const assignments = [];
   for (const food of foods || []) {
-    const rollupId = proposeRollupId(food.exchangeProfileId, food.calculationGroup, food.displayCategory);
+    const rollupId = proposeRollupId(food);
     assignments.push({
       foodId: food.id,
       exchangeProfileId: food.exchangeProfileId,
@@ -130,6 +323,7 @@ export function buildExchangeRollupProposal(foods, analysis) {
       calculatorBridgeProfileId: rollupId,
     });
   }
+  assertAssignmentIntegrity(assignments, foods || []);
 
   const byRollup = {};
   for (const row of assignments) {
@@ -142,6 +336,7 @@ export function buildExchangeRollupProposal(foods, analysis) {
     const cohort = analyzeCohort(cohortFoods, { level: 'exchangeRollupId', id: rollupId, legacyRef: null });
     const exchangeProfiles = [...new Set(cohortFoods.map((f) => f.exchangeProfileId))].sort();
     const bridge = proposeCalculatorBridge(rollupId);
+    const nutrients = cleanNutrientStats(cohort.nutrients);
     return {
       exchangeRollupId: rollupId,
       calculatorBridgeProfileId: rollupId,
@@ -151,14 +346,14 @@ export function buildExchangeRollupProposal(foods, analysis) {
       exchangeProfileCount: exchangeProfiles.length,
       insufficientSample: cohortFoods.length < MIN_SAMPLE,
       proposedTolerances: { ...DEFAULT_TOLERANCES },
-      nutrients: cleanNutrientStats(cohort.nutrients),
-      medianProfile: Object.fromEntries(NUTRIENT_KEYS.map((k) => [k, formatStatNumber(cohort.nutrients[k].median)])),
+      nutrients,
+      medianProfile: Object.fromEntries(NUTRIENT_KEYS.map((k) => [k, nutrients[k].median])),
       dispersion: Object.fromEntries(NUTRIENT_KEYS.map((k) => [k, {
-        mad: formatStatNumber(cohort.nutrients[k].mad),
-        stddev: formatStatNumber(cohort.nutrients[k].stddev),
+        mad: nutrients[k].mad,
+        stddev: nutrients[k].stddev,
         iqr: formatStatNumber(
-          (cohort.nutrients[k].p75 != null && cohort.nutrients[k].p25 != null)
-            ? cohort.nutrients[k].p75 - cohort.nutrients[k].p25
+          (nutrients[k].p75 != null && nutrients[k].p25 != null)
+            ? nutrients[k].p75 - nutrients[k].p25
             : null,
         ),
       }])),
@@ -169,7 +364,7 @@ export function buildExchangeRollupProposal(foods, analysis) {
   });
 
   const singletonProfiles = Object.values(analysis.exchangeProfileId || {}).filter((c) => c.totalCount === 1).length;
-  const wheyFoods = (foods || []).filter((f) => String(f.exchangeProfileId || '').includes('whey'));
+  const wheyFoods = (foods || []).filter((f) => String(f.exchangeProfileId || '').startsWith('protein-whey-'));
   const wheyObservation = {
     calculatorGroupWheyFoodCount: analysis.calculationGroup?.whey?.totalCount ?? 0,
     foodsWithWheyExchangeProfile: wheyFoods.length,
@@ -186,7 +381,7 @@ export function buildExchangeRollupProposal(foods, analysis) {
   };
 
   return {
-    schemaVersion: '1.0.0',
+    schemaVersion: '1.1.0',
     status: 'proposal_not_approved',
     decisionModel: 'hybrid_D_A_transition',
     policy: {
@@ -196,9 +391,14 @@ export function buildExchangeRollupProposal(foods, analysis) {
       medoidsC: 'not_primary_model',
       forbiddenUniqueTargets: FORBIDDEN_MERGES.map((m) => m.id),
       doNotModifyProductionInThisPr: true,
+      classificationNotes: {
+        proteinFatClass: PROTEIN_FAT_CLASS_RULES,
+        neverUseAmbiguousFoodIdSubstrings: ['bar⊂barley', 'oat⊂goat'],
+      },
     },
     meta: {
       totalFoods: foods.length,
+      assignedFoods: assignments.length,
       exchangeProfileCount: Object.keys(analysis.exchangeProfileId || {}).length,
       singletonExchangeProfiles: singletonProfiles,
       rollupCount: rollups.length,
@@ -228,11 +428,19 @@ export function buildRollupProposalMarkdown(proposal) {
 - **C** = ne pas utiliser comme modèle principal.
 - Dataset demeure en \`review\`; \`calculation-groups.json\` non approuvé dans cette PR.
 
-## Pourquoi ne pas brancher les 157 exchangeProfileId directement
+## Pourquoi ne pas brancher les ${proposal.meta.exchangeProfileCount} exchangeProfileId directement
 
 - ${proposal.meta.exchangeProfileCount} profils d’échange, dont **${proposal.meta.singletonExchangeProfiles} singletons**.
 - Relier chaque singleton au calculateur ferait exploser les options UI sans gain d’équivalence.
-- Proposition : couche intermédiaire \`exchangeRollupId\` / \`calculatorBridgeProfileId\` (${proposal.meta.rollupCount} familles proposées).
+- Proposition : couche intermédiaire \`exchangeRollupId\` / \`calculatorBridgeProfileId\` (**${proposal.meta.rollupCount}** familles proposées).
+
+## Règles déterministes lean / moderate-fat / fatty
+
+- **fatty** si le profil matche: fatty, high-fat, with-skin, ribs, ground-beef-regular/medium, lamb, duck, pork-standard, pork-ribs, processed-meat-high-fat.
+- **moderate** si: moderate-fat, processed-seafood, processed-poultry.
+- **lean** par défaut pour les autres profils protéine, y compris les lean documentés (extra-lean / lean ground beef, pork-lean, game-lean, lean fish/shellfish).
+- Les barres = uniquement \`protein-bar-*\` (jamais une sous-chaîne \`bar\` qui matcherait \`barley\`).
+- Les boissons végétales = \`dairy-alternative-*\` (jamais \`includes('oat')\` qui matcherait \`goat\`).
 
 ## Séparations obligatoires (refus d’une cible unique)
 
@@ -244,7 +452,7 @@ ${proposal.wheyObservation.explanationFr}
 
 Pont proposé (sans mutation production) : \`${proposal.wheyObservation.proposedBridge.map}\`.
 
-## Familles proposées
+## Familles proposées (${proposal.meta.rollupCount})
 
 | exchangeRollupId | Aliments | Profils sources | Échantillon insuffisant (<${proposal.meta.minSampleForStableRollup}) | Pont calculateur | Médiane P/G/L |
 | --- | ---: | ---: | --- | --- | --- |

@@ -7,8 +7,8 @@
         {
           "src": "./assets/kinetics-logo.png",
           "complete": true,
-          "naturalWidth": 2048,
-          "naturalHeight": 2048,
+          "naturalWidth": 2238,
+          "naturalHeight": 1920,
           "ok": true
         }
       ]
@@ -19,8 +19,8 @@
         {
           "src": "./assets/kinetics-logo.png",
           "complete": true,
-          "naturalWidth": 2048,
-          "naturalHeight": 2048,
+          "naturalWidth": 2238,
+          "naturalHeight": 1920,
           "ok": true
         }
       ]
@@ -430,7 +430,7 @@
       "failures": []
     },
     "landscape": {
-      "pageCount": 11,
+      "pageCount": 12,
       "failures": []
     }
   },
