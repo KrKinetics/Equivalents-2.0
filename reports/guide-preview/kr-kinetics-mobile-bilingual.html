@@ -1,52 +1,56 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS</title><style>
   *{box-sizing:border-box}html{scroll-behavior:smooth}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f1f5f9}
-  .banner{position:sticky;top:0;z-index:5;background:#991b1b;color:#fff;padding:10px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:#334155;background:#f8fafc}
+  .banner{position:sticky;top:0;z-index:5;background:#D91136;color:#fff;padding:8px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
   .banner .banner-en{display:block;font-weight:700;opacity:.92;margin-top:2px;font-size:10px}
-  header,.toc,.section{background:#fff;margin:10px auto;padding:14px;max-width:720px}
-  header{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-  .brand-logo-wrap{background:#ffffff;padding:8px 10px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
-  header img.brand-logo{width:150px;max-height:70px;object-fit:contain;display:block;background:#ffffff}
-  .meta{font-size:12px;color:#475569;line-height:1.45}
+  .toc,.section,.howto,.legend{background:#fff;margin:8px auto;padding:12px;max-width:720px;border:1px solid #e2e8f0;border-radius:8px}
+  header.brand-band{background:#1e293b;color:#fff;margin:8px auto;padding:14px 16px;max-width:720px;border-radius:8px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .brand-logo-wrap{background:transparent;padding:8px 10px;display:inline-flex;align-items:center;justify-content:center}
+  header.brand-band img.brand-logo{width:200px;max-height:52px;object-fit:contain;display:block;background:transparent}
+  header.brand-band h1{color:#fff;margin:0 0 4px;font-size:18px}
+  .meta{font-size:12px;color:#cbd5e1;line-height:1.45}
   .toc a{display:inline-block;margin:4px;padding:7px 10px;color:#fff;border-radius:4px;text-decoration:none;font-size:12px}
   .section{break-before:auto;page-break-before:auto}
-  .section-lead{break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid;margin-bottom:6px}
-  .section-header{border-left:8px solid var(--color);padding:8px 12px;break-after:avoid;page-break-after:avoid}
-  h1,h2,p{margin:3px 0}.note{font-size:11px;color:#475569;margin:7px 0 10px}
-  .item-list{border:1px solid #dbe3ee;border-radius:8px;overflow:hidden;background:#fff}
-  .item{padding:10px 12px;border-bottom:1px solid #e2e8f0;break-inside:avoid;page-break-inside:avoid;background:#fff}
+  .section-lead{break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid;margin-bottom:5px}
+  .section-header{border-left:8px solid var(--color);padding:8px 12px;break-after:avoid;page-break-after:avoid;color:#1e293b}
+  h1,h2,p{margin:3px 0;color:#1e293b}.note{font-size:11px;color:#64748b;margin:6px 0 8px}
+  .item-list{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}
+  .item{padding:8px 10px;border-bottom:1px solid #e2e8f0;break-inside:avoid;page-break-inside:avoid;background:#fff}
   .item:nth-child(even){background:#f8fafc}
   .item:last-child{border-bottom:none}
-  .item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
-  .item-name{font-size:11px;font-weight:700;line-height:1.35;color:#172033;flex:1}
-  .item-name .en{display:block;font-weight:600;color:#475569;font-size:10px;margin-top:2px}
+  .item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:5px}
+  .item-name{font-size:11px;font-weight:700;line-height:1.35;color:#1e293b;flex:1}
+  .item-name .en{display:block;font-weight:600;color:#64748b;font-size:10px;margin-top:2px}
   .item-kcal{flex-shrink:0;font-size:13px;font-weight:700;color:var(--color);font-variant-numeric:tabular-nums;line-height:1.2}
   .item-kcal small{font-size:9px;font-weight:600;opacity:.75;margin-left:1px}
   .item-tags{display:flex;flex-wrap:wrap;gap:5px}
-  .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
   .tag-prot{background:#eff6ff;color:#1d4ed8}
   .tag-gluc{background:#fffbeb;color:#b45309}
   .tag-fib{background:#f0fdf4;color:#15803d}
   .tag-lip{background:#fdf2f8;color:#9d174d}
   .tag-cal{background:#f1f5f9;color:#334155}
   .tag-neutral{background:#f1f5f9;color:#475569}
-  .howto,.legend{background:#fff;margin:10px auto;padding:14px;max-width:720px;border-left:6px solid #991b1b}
-  .howto h2,.legend h2{margin:0 0 8px;font-size:16px}
-  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45;font-size:12px}
+  .howto,.legend{border-left:6px solid #1e293b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:15px;color:#1e293b}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.4;font-size:12px}
   .legend dl{display:grid;grid-template-columns:100px 1fr;gap:6px 10px;margin:0;font-size:11px}
-  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
-  @page{size:A4 portrait;margin:14mm 10mm 16mm 10mm}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#64748b}
+  .back-index{margin:6px 0 0;font-size:11px}
+  @page{size:A4 portrait;margin:10mm 10mm 12mm 10mm}
   @media print{
     body{background:#fff}.banner{position:static}
-    .section{margin:0 auto 8mm;padding:8px 0}
+    header.brand-band,.toc,.howto,.legend{margin:0 auto 4mm;padding:8px;border-radius:0}
+    header.brand-band{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .section{margin:0 auto 4mm;padding:6px 0;border-radius:0}
     .toc a,.section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
 </style></head>
   <body><div class="banner">APERÇU — PROFILS D’ÉCHANGE NON APPROUVÉS<span class="banner-en">PREVIEW — UNAPPROVED EXCHANGE PROFILES</span></div>
-  <header>
+  <header class="brand-band">
     <div class="brand-logo-wrap">
-      <img class="brand-logo" src="./assets/kinetics-logo.svg" alt="KR Kinetics" width="140" height="64">
+      <img class="brand-logo" src="./assets/logo-kr-kinetics-horizontal.png" alt="KR Kinetics">
     </div>
     <div><h1>Équivalents alimentaires · Food Equivalents</h1><div class="meta">287 aliments vérifiés · 287 verified foods<br>Mise à jour : 30 juillet 2026 · Updated: July 30, 2026 · valeurs individuelles vérifiées · verified individual values · v1.0.0 · 8492cde87e61</div></div>
   </header><section class="howto" id="howto">
