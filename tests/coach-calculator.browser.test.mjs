@@ -111,7 +111,8 @@ let server;
 
 before(async () => {
   assertProtectedFilesUnchanged();
-  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs', '--with-guide-pdf'], {
+  // HTML guide is enough for browser assertions; avoid optional PDF render in CI hooks.
+  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs'], {
     cwd: ROOT,
     stdio: 'inherit',
   });

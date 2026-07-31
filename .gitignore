@@ -16,6 +16,9 @@ screenshots/
 # Mandat ZIP extract (local only)
 _mandat_extract/
 reports/coach-calculator-restoration/owner-package-staging/
+
+# Owner-review ZIP stays local only (do not commit)
+KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip
 verify-*/
 
 # Client and generated documents kept local by default

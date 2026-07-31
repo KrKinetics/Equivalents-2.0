@@ -452,7 +452,10 @@ function writeClientGuideHtml(coachData) {
 async function maybeRenderGuidePdf(guideHtmlPath) {
   if (!withGuidePdf) return null;
   const puppeteer = (await import('puppeteer')).default;
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
   try {
     const page = await browser.newPage();
     const fileUrl = 'file:///' + guideHtmlPath.replace(/\\/g, '/');
