@@ -102,6 +102,7 @@ async function main() {
         if (parseFloat(card.getAttribute('data-multiplier')) === 1.0) card.classList.add('active');
       });
       selectedGoalMultiplier = 1.0;
+      if (typeof changerMethodeEnergetique === 'function') changerMethodeEnergetique('nasem2023');
       calculerBesoins();
       suggererBanque();
       repartirAutomatique('classique');

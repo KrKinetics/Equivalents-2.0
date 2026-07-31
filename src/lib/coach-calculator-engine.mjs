@@ -48,7 +48,8 @@ const PA_MALE = { sedentaire: 1.0, leger: 1.11, modere: 1.25, actif: 1.48 };
 const PA_FEMALE = { sedentaire: 1.0, leger: 1.12, modere: 1.27, actif: 1.45 };
 
 const DEFAULT_PROTEIN_G_PER_KG = 2;
-const MIN_PROTEIN_G_PER_KG = 2;
+const MIN_PROTEIN_G_PER_KG = 0.8;
+const MAX_PROTEIN_G_PER_KG = 3.5;
 const DEFAULT_PROTEIN_PCT = 25;
 const MIN_PROTEIN_PCT = 10;
 const MAX_PROTEIN_PCT = 50;
@@ -88,8 +89,8 @@ export function heightToMeters({ unit = 'cm', cm, ft, in: inches } = {}) {
 
 export function normalizeProteinesParKg(value) {
   const n = parseFloat(value);
-  if (Number.isNaN(n) || n < MIN_PROTEIN_G_PER_KG) return DEFAULT_PROTEIN_G_PER_KG;
-  return Math.round(n * 10) / 10;
+  if (Number.isNaN(n)) return DEFAULT_PROTEIN_G_PER_KG;
+  return Math.min(MAX_PROTEIN_G_PER_KG, Math.max(MIN_PROTEIN_G_PER_KG, Math.round(n * 10) / 10));
 }
 
 export function normalizeProteinesPct(value) {
@@ -104,29 +105,118 @@ export function normalizeMacroPct(value) {
   return Math.min(MAX_MACRO_PCT, Math.max(MIN_MACRO_PCT, Math.round(n)));
 }
 
-export function computeEerTdee({ sexe, age, poidsKg, hauteurM, activite }) {
+function growthAllowanceNasem(sexe, age) {
+  if (age < 4) return sexe === 'H' ? 20 : 15;
+  if (age < 9) return 15;
+  if (age < 14) return sexe === 'H' ? 25 : 30;
+  return 20;
+}
+
+const NASEM_COEFFICIENTS = {
+  H: {
+    youth: {
+      sedentaire: [-447.51, 3.68, 13.01, 13.15],
+      leger: [19.12, 3.68, 8.62, 20.28],
+      modere: [-388.19, 3.68, 12.66, 20.46],
+      actif: [-671.75, 3.68, 15.38, 23.25],
+    },
+    adult: {
+      sedentaire: [753.07, -10.83, 6.50, 14.10],
+      leger: [581.47, -10.83, 8.30, 14.94],
+      modere: [1004.82, -10.83, 6.52, 15.91],
+      actif: [-517.88, -10.83, 15.61, 19.11],
+    },
+  },
+  F: {
+    youth: {
+      sedentaire: [55.59, -22.25, 8.43, 17.07],
+      leger: [-297.54, -22.25, 12.77, 14.73],
+      modere: [-189.55, -22.25, 11.74, 18.34],
+      actif: [-709.59, -22.25, 18.22, 14.25],
+    },
+    adult: {
+      sedentaire: [584.90, -7.01, 5.72, 11.71],
+      leger: [575.77, -7.01, 6.60, 12.14],
+      modere: [710.25, -7.01, 6.54, 12.34],
+      actif: [511.83, -7.01, 9.07, 12.56],
+    },
+  },
+};
+
+/** IOM 2005 adult equations (historical compatibility). */
+export function computeIom2005Eer({ sexe, age, poidsKg, hauteurM, activite }) {
+  const kg = parseFloat(poidsKg) || 0;
+  const m = parseFloat(hauteurM) || 0;
+  const years = parseFloat(age) || 0;
+  if (kg <= 0 || m <= 0 || years <= 0) return 0;
+  if (sexe === 'H') {
+    const pa = PA_MALE[activite] ?? PA_MALE.sedentaire;
+    return 662 - (9.53 * years) + pa * ((15.91 * kg) + (539.6 * m));
+  }
+  const pa = PA_FEMALE[activite] ?? PA_FEMALE.sedentaire;
+  return 354 - (6.91 * years) + pa * ((9.36 * kg) + (726 * m));
+}
+
+/** NASEM 2023 EER (youth + adult). */
+export function computeNasem2023Eer({ sexe, age, poidsKg, hauteurCm, activite }) {
+  const kg = parseFloat(poidsKg) || 0;
+  const cm = parseFloat(hauteurCm) || 0;
+  const years = parseFloat(age) || 0;
+  if (kg <= 0 || cm <= 0 || years <= 0) return 0;
+  const sex = sexe === 'F' ? 'F' : 'H';
+  const youth = years < 19;
+  const key = activite in (NASEM_COEFFICIENTS[sex].adult) ? activite : 'sedentaire';
+  const [constant, ageFactor, heightFactor, weightFactor] =
+    NASEM_COEFFICIENTS[sex][youth ? 'youth' : 'adult'][key];
+  const growth = youth ? growthAllowanceNasem(sex, years) : 0;
+  return constant + ageFactor * years + heightFactor * cm + weightFactor * kg + growth;
+}
+
+/**
+ * Energy estimate.
+ * @param {'nasem2023'|'iom2005'} [method='nasem2023']
+ * Youth (<19) always uses NASEM 2023.
+ */
+export function computeEerTdee({
+  sexe,
+  age,
+  poidsKg,
+  hauteurM,
+  activite,
+  method = 'nasem2023',
+}) {
   const kg = parseFloat(poidsKg) || 0;
   const m = parseFloat(hauteurM) || 0;
   const years = parseFloat(age) || 0;
   if (kg <= 0 || m <= 0 || years <= 0) {
-    return { bmr: 0, tdee: 0 };
+    return { bmr: 0, tdee: 0, method: 'nasem2023' };
   }
 
-  if (sexe === 'H') {
-    const pa = PA_MALE[activite] ?? PA_MALE.sedentaire;
-    const energy = (15.91 * kg) + (539.6 * m);
+  let resolved = method === 'iom2005' ? 'iom2005' : 'nasem2023';
+  if (years < 19) resolved = 'nasem2023';
+
+  if (resolved === 'iom2005') {
     return {
-      bmr: 662 - (9.53 * years) + 1.0 * energy,
-      tdee: 662 - (9.53 * years) + pa * energy,
+      bmr: computeIom2005Eer({ sexe, age: years, poidsKg: kg, hauteurM: m, activite: 'sedentaire' }),
+      tdee: computeIom2005Eer({ sexe, age: years, poidsKg: kg, hauteurM: m, activite }),
+      method: resolved,
     };
   }
 
-  const pa = PA_FEMALE[activite] ?? PA_FEMALE.sedentaire;
-  const energy = (9.36 * kg) + (726 * m);
+  const cm = m * 100;
   return {
-    bmr: 354 - (6.91 * years) + 1.0 * energy,
-    tdee: 354 - (6.91 * years) + pa * energy,
+    bmr: computeNasem2023Eer({
+      sexe, age: years, poidsKg: kg, hauteurCm: cm, activite: 'sedentaire',
+    }),
+    tdee: computeNasem2023Eer({
+      sexe, age: years, poidsKg: kg, hauteurCm: cm, activite,
+    }),
+    method: resolved,
   };
+}
+
+export function migrateEnergyEquationVersion(data = {}) {
+  return data.energyEquationVersion === 'nasem2023' ? 'nasem2023' : 'iom2005';
 }
 
 export function computeProteinGrams({ mode = 'gkg', weightKg, gPerKg, pct, goalKcal }) {

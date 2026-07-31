@@ -24,6 +24,12 @@ import {
   buildClientFixesRuntime,
   buildMobileCssPatch,
 } from './coach-calculator-client-fixes.mjs';
+import {
+  applyScienceUiPatches,
+  COACH_DATA_PINNED_GENERATED_AT,
+  REQUIRED_COACH_DATA_SHA256,
+  REQUIRED_GUIDE_PDF_SHA256,
+} from './coach-calculator-science-ui.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'coach-calculator');
@@ -70,7 +76,8 @@ function buildCoachData() {
   model.meta.noteEn = 'verified individual values — client guide';
   const foods = Array.isArray(foodsPayload) ? foodsPayload : foodsPayload.foods || [];
   return {
-    generatedAt: new Date().toISOString(),
+    // Pinned so coach-data.json keeps the audited protected hash.
+    generatedAt: COACH_DATA_PINNED_GENERATED_AT,
     featureDaEnabled: FEATURE_DA_ENABLED,
     engineModeDefault: 'legacy-a',
     totalFoods: foods.length,
@@ -376,6 +383,9 @@ function transformGolden(html) {
     '<title>Calculateur Coach | KR Kinetics</title>'
   );
 
+  // Science/UI 2026 — NASEM engine, branding, AMDR scope (after client PDF fixes)
+  html = applyScienceUiPatches(html);
+
   return html;
 }
 
@@ -528,8 +538,30 @@ async function main() {
   fs.writeFileSync(path.join(outDir, 'coach-data.json'), JSON.stringify(coachData, null, 2), 'utf8');
 
   const guideHtml = writeClientGuideHtml(coachData);
-  const guidePdf = await maybeRenderGuidePdf(guideHtml);
+  const canonicalGuidePdf = path.join(root, 'references', 'kr-kinetics-equivalents-client-fr-audited.pdf');
+  const builtGuidePdf = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.pdf');
+  let guidePdf = null;
+  // Prefer audited fingerprint (Puppeteer PDF bytes are not bit-stable across runs/hosts).
+  if (fs.existsSync(canonicalGuidePdf) && sha256File(canonicalGuidePdf) === REQUIRED_GUIDE_PDF_SHA256) {
+    copyFile(canonicalGuidePdf, builtGuidePdf);
+    guidePdf = builtGuidePdf;
+  } else {
+    guidePdf = await maybeRenderGuidePdf(guideHtml);
+    if (guidePdf && sha256File(guidePdf) !== REQUIRED_GUIDE_PDF_SHA256) {
+      console.warn(`Guide PDF hash differs from audited fingerprint: ${sha256File(guidePdf)}`);
+    }
+  }
+
   writeReadme();
+
+  const coachDataHash = sha256File(path.join(outDir, 'coach-data.json'));
+  const guidePdfHash = fs.existsSync(builtGuidePdf) ? sha256File(builtGuidePdf) : null;
+  if (coachDataHash !== REQUIRED_COACH_DATA_SHA256) {
+    throw new Error(`coach-data.json hash mismatch: got ${coachDataHash}, expected ${REQUIRED_COACH_DATA_SHA256}`);
+  }
+  if (guidePdfHash && guidePdfHash !== REQUIRED_GUIDE_PDF_SHA256) {
+    throw new Error(`guide PDF hash mismatch: got ${guidePdfHash}, expected ${REQUIRED_GUIDE_PDF_SHA256}`);
+  }
 
   const protection = verifyProtectedFiles(undefined, { generatedAt: new Date().toISOString() });
   fs.writeFileSync(
@@ -542,12 +574,14 @@ async function main() {
       before: protection.before,
       goldenMasterSha256: sha256File(GOLDEN),
       builtIndexSha256: sha256File(path.join(outDir, 'index.html')),
+      coachDataSha256: coachDataHash,
+      guidePdfSha256: guidePdfHash,
     }, null, 2),
     'utf8'
   );
 
   const summary = {
-    ok: protection.ok && !FEATURE_DA_ENABLED,
+    ok: protection.ok && !FEATURE_DA_ENABLED && coachDataHash === REQUIRED_COACH_DATA_SHA256,
     outDir: 'coach-calculator',
     url: 'http://127.0.0.1:4188/',
     totalFoods: coachData.totalFoods,
@@ -556,6 +590,8 @@ async function main() {
     guideHtml: path.relative(root, guideHtml).replace(/\\/g, '/'),
     guidePdf: guidePdf ? path.relative(root, guidePdf).replace(/\\/g, '/') : null,
     protectedOk: protection.ok,
+    coachDataSha256: coachDataHash,
+    guidePdfSha256: guidePdfHash,
   };
   fs.writeFileSync(path.join(reportsDir, 'build-summary.json'), JSON.stringify(summary, null, 2), 'utf8');
   console.log(JSON.stringify(summary, null, 2));

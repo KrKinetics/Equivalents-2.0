@@ -1,0 +1,28 @@
+{
+  "zip": "KR_KINETICS_SCIENCE_UI_OWNER_REVIEW.zip",
+  "bytes": 3411325,
+  "branch": "feature/science-ui-2026-07-31",
+  "commit": "1d8526644bb9448ef36b17895d2b2639167f1e20",
+  "files": [
+    "AUDIT_SCIENTIFIQUE_ET_PRODUIT_2026-07-31.md",
+    "CHANGED_FILES.md",
+    "COMMIT.txt",
+    "START_HERE.md",
+    "TEST_REPORT_SCIENCE_UI.md",
+    "coach-calculator/README.md",
+    "coach-calculator/assets/logo-kr-kinetics-horizontal.png",
+    "coach-calculator/assets/logo-kr-monogramme.png",
+    "coach-calculator/coach-data.json",
+    "coach-calculator/guides/kr-kinetics-equivalents-client-fr.html",
+    "coach-calculator/guides/kr-kinetics-equivalents-client-fr.pdf",
+    "coach-calculator/index.html",
+    "coach-calculator/vendor/html2canvas.min.js",
+    "coach-calculator/vendor/jspdf.umd.min.js",
+    "generated-pdfs/xavier-plan-client-en-science-ui.pdf",
+    "generated-pdfs/xavier-plan-client-fr-science-ui.pdf",
+    "protected-hashes.json",
+    "screenshots/desktop-1440-science-ui.png",
+    "screenshots/mobile-390-science-ui.png",
+    "screenshots/tablet-768-science-ui.png"
+  ]
+}

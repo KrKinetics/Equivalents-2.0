@@ -15,6 +15,9 @@ import {
   weightToKg,
   heightToMeters,
   computeEerTdee,
+  computeNasem2023Eer,
+  computeIom2005Eer,
+  migrateEnergyEquationVersion,
   computeProteinGrams,
   computeMacroTargets,
   computeBanqueTotals,
@@ -62,15 +65,51 @@ test('MOYENNES match calculatorLegacyMoyennes in category-mapping', () => {
 });
 
 test('male EER/TDEE uses IOM formula with male PA factors', () => {
-  const { bmr, tdee } = computeEerTdee(maleProfile);
+  const { bmr, tdee, method } = computeEerTdee({ ...maleProfile, method: 'iom2005' });
+  assert.equal(method, 'iom2005');
   assert.equal(Math.round(bmr), 2682);
   assert.equal(Math.round(tdee), 3259);
 });
 
 test('female EER/TDEE uses IOM formula with female PA factors', () => {
-  const { bmr, tdee } = computeEerTdee(femaleProfile);
+  const { bmr, tdee, method } = computeEerTdee({ ...femaleProfile, method: 'iom2005' });
+  assert.equal(method, 'iom2005');
   assert.equal(Math.round(bmr), 2239);
   assert.equal(Math.round(tdee), 2804);
+});
+
+test('default energy method is NASEM 2023 for adults', () => {
+  const { tdee, method } = computeEerTdee(maleProfile);
+  assert.equal(method, 'nasem2023');
+  assert.equal(Math.round(tdee), 3189);
+});
+
+test('NASEM 2023 youth matrix samples match audited coefficients', () => {
+  assert.equal(Math.round(computeNasem2023Eer({
+    sexe: 'H', age: 17, poidsKg: 70, hauteurCm: 175, activite: 'modere',
+  })), 3342);
+  assert.equal(Math.round(computeNasem2023Eer({
+    sexe: 'F', age: 37, poidsKg: 63.5029, hauteurCm: 160, activite: 'modere',
+  })), 2281);
+});
+
+test('youth always forces NASEM even when IOM requested', () => {
+  const { method, tdee } = computeEerTdee({
+    sexe: 'H', age: 17, poidsKg: 70, hauteurM: 1.75, activite: 'modere', method: 'iom2005',
+  });
+  assert.equal(method, 'nasem2023');
+  assert.equal(Math.round(tdee), 3342);
+});
+
+test('legacy profiles migrate to IOM 2005 unless NASEM is stored', () => {
+  assert.equal(migrateEnergyEquationVersion({}), 'iom2005');
+  assert.equal(migrateEnergyEquationVersion({ energyEquationVersion: 'nasem2023' }), 'nasem2023');
+});
+
+test('IOM helper remains bit-stable for historical adult dossiers', () => {
+  assert.equal(Math.round(computeIom2005Eer({
+    sexe: 'H', age: 30, poidsKg: weightToKg(185, 'lbs'), hauteurM: 1.8, activite: 'modere',
+  })), 3259);
 });
 
 test('weight and height unit conversions', () => {
@@ -81,7 +120,7 @@ test('weight and height unit conversions', () => {
 });
 
 test('five goal multipliers scale TDEE targets', () => {
-  const { tdee } = computeEerTdee(maleProfile);
+  const { tdee } = computeEerTdee({ ...maleProfile, method: 'iom2005' });
   const multipliers = [0.8, 0.9, 1, 1.1, 1.2];
   const goalKcals = multipliers.map((m) => Math.round(tdee * m));
   const actual = multipliers.map((goalMultiplier) =>
@@ -135,14 +174,18 @@ test('custom macros adjust complement to sum 100 with protein share', () => {
   assert.equal(fromL.customG + fromL.customL + proPct, 100);
 });
 
-test('protein gkg mode rounds kg * gPerKg with minimum 2 g/kg', () => {
+test('protein gkg mode rounds kg * gPerKg within 0.8–3.5 g/kg', () => {
   assert.equal(
     computeProteinGrams({ mode: 'gkg', weightKg: 80, gPerKg: 2, goalKcal: 2500 }),
     160,
   );
   assert.equal(
     computeProteinGrams({ mode: 'gkg', weightKg: 80, gPerKg: 1.5, goalKcal: 2500 }),
-    160,
+    120,
+  );
+  assert.equal(
+    computeProteinGrams({ mode: 'gkg', weightKg: 80, gPerKg: 0.5, goalKcal: 2500 }),
+    64,
   );
 });
 

@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-07-31T17:20:57.055Z",
+  "computedAt": "2026-07-31T23:22:06.641Z",
   "ok": true,
   "changed": [],
   "after": {
@@ -15,5 +15,9 @@
     "src/data/category-mapping.json": "efe4dcb4ffa304dbb3ac735b92c5602f4eb30452206c8afb521db598f743776c",
     "src/data/calculation-groups.json": "ec10ef42e64d1c260c3bf3d4e1d9a4e59ce8f8c0b26e9b37c065451a89a2f131",
     "reports/exchange-profile-decision/exchange-rollup-proposal.json": "1e4b0c7da55ff52d504e75ab88100880b70f18497ff774b46d0aa6cba1a81c0f"
-  }
+  },
+  "goldenMasterSha256": "68807da14bde7c20a0f3ea44272b3975eee59a5c65e0487f7bd3a4b1c1fff7b8",
+  "builtIndexSha256": "1f8d14d36a7f27e3e8b514933bf27877e333e57080d053c0d60d97be00f76df8",
+  "coachDataSha256": "0ec66324b5aabf59266d6a1a16c15e1804adc9bc5ce6c445e2396fa480c9e978",
+  "guidePdfSha256": "f4527bef880a6d0c19af00c98a98cb7c46aad0db8df19dde218f980979bd7f4d"
 }
