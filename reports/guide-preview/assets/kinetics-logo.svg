@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" role="img" aria-label="KR Kinetics logo">
   <defs>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black:ital@1&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap');
-      .kr { font-family: 'Archivo Black', Impact, sans-serif; font-style: italic; font-size: 148px; font-weight: 900; fill: #5C1023; letter-spacing: -0.02em; }
-      .kinetics { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 52px; fill: #000000; letter-spacing: 0.14em; }
-      .subtitle { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 13px; fill: #000000; letter-spacing: 0.42em; }
+    <style type="text/css">
+      .kr { font-family: Impact, "Arial Black", sans-serif; font-style: italic; font-size: 148px; font-weight: 900; fill: #5C1023; letter-spacing: -0.02em; }
+      .kinetics { font-family: "Arial Narrow", Arial, sans-serif; font-weight: 700; font-size: 52px; fill: #000000; letter-spacing: 0.14em; }
+      .subtitle { font-family: "Arial Narrow", Arial, sans-serif; font-weight: 600; font-size: 13px; fill: #000000; letter-spacing: 0.42em; }
     </style>
   </defs>
   <rect width="800" height="320" fill="#FFFFFF"/>
@@ -17,7 +16,7 @@
   </g>
   <line x1="218" y1="198" x2="582" y2="198" stroke="#000000" stroke-width="1"/>
   <text x="400" y="232" text-anchor="middle" class="subtitle">FORCE, CONDITIONNEMENT &amp; NUTRITION</text>
-  <!-- Chamfer cuts  flat, sharp terminals -->
+  <!-- Chamfer cuts: flat, sharp terminals -->
   <g fill="#FFFFFF">
     <polygon points="248,52 258,42 268,52 258,62"/>
     <polygon points="518,52 528,42 538,52 528,62"/>

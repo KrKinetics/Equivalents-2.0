@@ -101,9 +101,10 @@ if (missing.totals.fiberG != null) {
 const indexHtml = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8');
 for (const label of [
   'VERSION CANDIDATE — NE PAS UTILISER POUR DES CLIENTS',
-  'Mode actuel — règles KR Kinetics',
-  'Aperçu précision — profils d’échange',
-  'Valeurs provisoires non approuvées',
+  'Calcul actuel',
+  'Aperçu personnalisé',
+  'Diagnostics propriétaire',
+  'Non approuvé pour la production',
 ]) {
   if (!indexHtml.includes(label)) throw new Error(`Missing required label in index.html: ${label}`);
 }

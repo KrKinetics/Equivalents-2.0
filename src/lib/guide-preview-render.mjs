@@ -33,9 +33,20 @@ function landscapeCss() {
   tr{break-inside:avoid;page-break-inside:avoid}
   tbody tr:nth-child(even){background:#f8fafc}
   .en{color:#475569;font-size:.88em}
-  @page{size:A4 landscape;margin:8mm}
-  @media print{body{background:#fff}.banner{position:static}.section{margin:0 auto;padding:10px}
-    .toc a{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  .howto,.legend{background:#fff;margin:12px auto;padding:16px;max-width:1280px;border-left:6px solid #991b1b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:18px}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45}
+  .legend dl{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;margin:0;font-size:12px}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
+  .running-footer{display:none}
+  @page{size:A4 landscape;margin:14mm 8mm 14mm 8mm}
+  @media print{
+    body{background:#fff}.banner{position:static}
+    .section{margin:0 auto;padding:10px;break-inside:auto}
+    .section-continue-table thead{display:table-header-group}
+    .toc a{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .running-footer{display:block;position:fixed;bottom:0;left:0;right:0;font-size:9px;color:#64748b;text-align:center}
+  }
 `;
 }
 
@@ -72,7 +83,12 @@ function mobileCss() {
   .tag-lip{background:#fdf2f8;color:#9d174d}
   .tag-cal{background:#f1f5f9;color:#334155}
   .tag-neutral{background:#f1f5f9;color:#475569}
-  @page{size:A4 portrait;margin:10mm 10mm 12mm 10mm}
+  .howto,.legend{background:#fff;margin:10px auto;padding:14px;max-width:720px;border-left:6px solid #991b1b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:16px}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45;font-size:12px}
+  .legend dl{display:grid;grid-template-columns:100px 1fr;gap:6px 10px;margin:0;font-size:11px}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
+  @page{size:A4 portrait;margin:14mm 10mm 16mm 10mm}
   @media print{
     body{background:#fff}.banner{position:static}
     .section{margin:0 auto 8mm;padding:8px 0}
@@ -104,6 +120,56 @@ function headerHtml(model, { bilingual = false, lang = 'fr' } = {}) {
     </div>
     <div><h1>${esc(title)}</h1><div class="meta">${meta}</div></div>
   </header>`;
+}
+
+function howtoHtml(bilingual) {
+  if (bilingual) {
+    return `<section class="howto" id="howto">
+      <h2>Comment utiliser ce guide · How to use this guide</h2>
+      <ol>
+        <li>Choisissez une catégorie dans l’index. / Pick a category from the index.</li>
+        <li>Chaque ligne est une portion d’échange individuelle vérifiée. / Each row is one verified exchange portion.</li>
+        <li>Comparez protéines, glucides, fibres, lipides et calories. / Compare protein, carbs, fiber, fat and calories.</li>
+        <li>Ce document est un aperçu : profils d’échange non approuvés. / Preview only: exchange profiles are unapproved.</li>
+      </ol>
+    </section>`;
+  }
+  return `<section class="howto" id="howto">
+    <h2>Comment utiliser ce guide</h2>
+    <ol>
+      <li>Choisissez une catégorie dans la table des matières.</li>
+      <li>Chaque ligne représente une portion d’échange individuelle vérifiée.</li>
+      <li>Les colonnes indiquent protéines, glucides, fibres, lipides et calories de la portion.</li>
+      <li>Document d’aperçu seulement : aucune moyenne de production n’y est approuvée.</li>
+    </ol>
+  </section>`;
+}
+
+function legendHtml(bilingual) {
+  if (bilingual) {
+    return `<section class="legend" id="legend">
+      <h2>Légende · Legend</h2>
+      <dl>
+        <dt>P / Prot</dt><dd>Protéines (g) · Protein (g)</dd>
+        <dt>G / Gluc</dt><dd>Glucides (g) · Carbohydrate (g)</dd>
+        <dt>Fib</dt><dd>Fibres (g) · Fiber (g)</dd>
+        <dt>L / Lip</dt><dd>Lipides (g) · Fat (g)</dd>
+        <dt>kcal / Cal</dt><dd>Calories déclarées de la portion · Declared portion calories</dd>
+        <dt>—</dt><dd>Valeur absente (jamais convertie en 0) · Missing value (never coerced to 0)</dd>
+      </dl>
+    </section>`;
+  }
+  return `<section class="legend" id="legend">
+    <h2>Légende</h2>
+    <dl>
+      <dt>Protéines</dt><dd>Grammes de protéines par portion d’échange</dd>
+      <dt>Glucides</dt><dd>Grammes de glucides par portion d’échange</dd>
+      <dt>Fibres</dt><dd>Grammes de fibres par portion d’échange</dd>
+      <dt>Lipides</dt><dd>Grammes de lipides par portion d’échange</dd>
+      <dt>Calories</dt><dd>Calories déclarées de la portion</dd>
+      <dt>—</dt><dd>Valeur absente (jamais convertie en zéro)</dd>
+    </dl>
+  </section>`;
 }
 
 function toc(model, bilingual) {
@@ -171,6 +237,7 @@ function buildSections(model, { lang, mobile, bilingual }) {
           </table>
         </div>
         ${restFoods.length ? `<table data-section="${esc(section.legacyKey)}" class="section-continue-table">
+          <caption class="section-header" style="caption-side:top;text-align:left;padding:6px 0;font-weight:700;">${esc(title)} — suite</caption>
           ${landscapeTableHead(section, lang)}
           <tbody>${restFoods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
         </table>` : ''}
@@ -196,7 +263,7 @@ function buildDocument(model, { lang = 'fr', mobile = false, bilingual = false }
   const css = mobile ? mobileCss() : landscapeCss();
   return `<!doctype html><html lang="${bilingual ? 'fr' : lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${esc(model.watermarkFr || model.watermark)}</title><style>${css}</style></head>
-  <body>${headerHtml(model, { bilingual, lang })}${toc(model, bilingual)}${buildSections(model, { lang, mobile, bilingual })}</body></html>`;
+  <body>${headerHtml(model, { bilingual, lang })}${howtoHtml(bilingual)}${legendHtml(bilingual)}${toc(model, bilingual)}${buildSections(model, { lang, mobile, bilingual })}</body></html>`;
 }
 
 export const buildLandscapeHtml = (model, lang = 'fr') => buildDocument(model, { lang });

@@ -31,7 +31,12 @@
   .tag-lip{background:#fdf2f8;color:#9d174d}
   .tag-cal{background:#f1f5f9;color:#334155}
   .tag-neutral{background:#f1f5f9;color:#475569}
-  @page{size:A4 portrait;margin:10mm 10mm 12mm 10mm}
+  .howto,.legend{background:#fff;margin:10px auto;padding:14px;max-width:720px;border-left:6px solid #991b1b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:16px}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45;font-size:12px}
+  .legend dl{display:grid;grid-template-columns:100px 1fr;gap:6px 10px;margin:0;font-size:11px}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
+  @page{size:A4 portrait;margin:14mm 10mm 16mm 10mm}
   @media print{
     body{background:#fff}.banner{position:static}
     .section{margin:0 auto 8mm;padding:8px 0}
@@ -44,7 +49,25 @@
       <img class="brand-logo" src="../assets/kinetics-logo.svg" alt="KR Kinetics" width="140" height="64">
     </div>
     <div><h1>Équivalents alimentaires · Food Equivalents</h1><div class="meta">287 aliments vérifiés · 287 verified foods<br>Mise à jour : 30 juillet 2026 · Updated: July 30, 2026 · valeurs individuelles vérifiées · verified individual values · v1.0.0 · 8492cde87e61</div></div>
-  </header><nav class="toc" id="index"><strong>Sections · Sections</strong><div><a style="background:#8B6914" href="#section-noix">Noix &amp; graines · Nuts &amp; Seeds</a><a style="background:#C45C26" href="#section-matiereGrasse">Matières grasses · Fats</a><a style="background:#2D6A4F" href="#section-legumes">Légumes · Vegetables</a><a style="background:#E63946" href="#section-fruits">Fruits · Fruits</a><a style="background:#0077B6" href="#section-poissons">Poissons &amp; fruits de mer · Fish &amp; Seafood</a><a style="background:#9D0208" href="#section-viandes">Viandes &amp; volaille · Meats &amp; Poultry</a><a style="background:#6A4C93" href="#section-autresProteines">Autres sources protéinées · Other Protein Sources</a><a style="background:#BC6C25" href="#section-feculents">Féculents · Starches</a><a style="background:#4895EF" href="#section-laitier">Produits laitiers · Dairy Products</a></div></nav><section class="section" id="section-noix" style="--color:#8B6914">
+  </header><section class="howto" id="howto">
+      <h2>Comment utiliser ce guide · How to use this guide</h2>
+      <ol>
+        <li>Choisissez une catégorie dans l’index. / Pick a category from the index.</li>
+        <li>Chaque ligne est une portion d’échange individuelle vérifiée. / Each row is one verified exchange portion.</li>
+        <li>Comparez protéines, glucides, fibres, lipides et calories. / Compare protein, carbs, fiber, fat and calories.</li>
+        <li>Ce document est un aperçu : profils d’échange non approuvés. / Preview only: exchange profiles are unapproved.</li>
+      </ol>
+    </section><section class="legend" id="legend">
+      <h2>Légende · Legend</h2>
+      <dl>
+        <dt>P / Prot</dt><dd>Protéines (g) · Protein (g)</dd>
+        <dt>G / Gluc</dt><dd>Glucides (g) · Carbohydrate (g)</dd>
+        <dt>Fib</dt><dd>Fibres (g) · Fiber (g)</dd>
+        <dt>L / Lip</dt><dd>Lipides (g) · Fat (g)</dd>
+        <dt>kcal / Cal</dt><dd>Calories déclarées de la portion · Declared portion calories</dd>
+        <dt>—</dt><dd>Valeur absente (jamais convertie en 0) · Missing value (never coerced to 0)</dd>
+      </dl>
+    </section><nav class="toc" id="index"><strong>Sections · Sections</strong><div><a style="background:#8B6914" href="#section-noix">Noix &amp; graines · Nuts &amp; Seeds</a><a style="background:#C45C26" href="#section-matiereGrasse">Matières grasses · Fats</a><a style="background:#2D6A4F" href="#section-legumes">Légumes · Vegetables</a><a style="background:#E63946" href="#section-fruits">Fruits · Fruits</a><a style="background:#0077B6" href="#section-poissons">Poissons &amp; fruits de mer · Fish &amp; Seafood</a><a style="background:#9D0208" href="#section-viandes">Viandes &amp; volaille · Meats &amp; Poultry</a><a style="background:#6A4C93" href="#section-autresProteines">Autres sources protéinées · Other Protein Sources</a><a style="background:#BC6C25" href="#section-feculents">Féculents · Starches</a><a style="background:#4895EF" href="#section-laitier">Produits laitiers · Dairy Products</a></div></nav><section class="section" id="section-noix" style="--color:#8B6914">
       <div class="section-lead">
         <div class="section-header"><h2>Noix &amp; graines · Nuts &amp; Seeds</h2><p>Une portion de NOIX, c&#39;est : · One NUTS portion is:</p></div>
         

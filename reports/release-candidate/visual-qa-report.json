@@ -12,7 +12,8 @@
         "hasBanner": true,
         "hasModeA": true,
         "hasModeDA": true,
-        "hasProvisional": true
+        "hasProvisionalNote": true,
+        "hasLogo": true
       },
       "overflow": false,
       "reusedScreenshot": true,
@@ -29,7 +30,8 @@
         "hasBanner": true,
         "hasModeA": true,
         "hasModeDA": true,
-        "hasProvisional": true
+        "hasProvisionalNote": true,
+        "hasLogo": true
       },
       "overflow": false,
       "reusedScreenshot": true,
@@ -46,7 +48,8 @@
         "hasBanner": true,
         "hasModeA": true,
         "hasModeDA": true,
-        "hasProvisional": true
+        "hasProvisionalNote": true,
+        "hasLogo": true
       },
       "overflow": false,
       "reusedScreenshot": true,

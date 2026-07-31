@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "labels": {
     "banner": "VERSION CANDIDATE — NE PAS UTILISER POUR DES CLIENTS",
-    "modeA": "Mode actuel — règles KR Kinetics",
-    "modeDA": "Aperçu précision — profils d’échange",
-    "provisional": "Valeurs provisoires non approuvées"
+    "modeA": "Calcul actuel",
+    "modeDA": "Aperçu personnalisé",
+    "provisional": "Aperçu personnalisé : valeurs provisoires non approuvées pour la production"
   },
   "foods": [
     {

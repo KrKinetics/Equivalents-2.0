@@ -5,10 +5,10 @@
       "page": "landscape-fr",
       "images": [
         {
-          "src": "./assets/kinetics-logo.png",
+          "src": "./assets/kinetics-logo.svg",
           "complete": true,
-          "naturalWidth": 2238,
-          "naturalHeight": 1920,
+          "naturalWidth": 300,
+          "naturalHeight": 120,
           "ok": true
         }
       ]
@@ -17,10 +17,10 @@
       "page": "mobile-bilingual",
       "images": [
         {
-          "src": "./assets/kinetics-logo.png",
+          "src": "./assets/kinetics-logo.svg",
           "complete": true,
-          "naturalWidth": 2238,
-          "naturalHeight": 1920,
+          "naturalWidth": 300,
+          "naturalHeight": 120,
           "ok": true
         }
       ]
@@ -426,11 +426,11 @@
   ],
   "pdfOrphans": {
     "mobile": {
-      "pageCount": 24,
+      "pageCount": 25,
       "failures": []
     },
     "landscape": {
-      "pageCount": 12,
+      "pageCount": 14,
       "failures": []
     }
   },

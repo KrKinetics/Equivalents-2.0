@@ -41,6 +41,7 @@ const HOST = process.env.RC_HOST || '127.0.0.1';
 const buildOnly = process.argv.includes('--build-only');
 const skipGuide = process.argv.includes('--skip-guide');
 const rewriteScreenshots = process.argv.includes('--rewrite-screenshots');
+const rewriteGuides = process.argv.includes('--rewrite-guides');
 const forceRebuild = process.argv.includes('--rebuild') || buildOnly;
 const serveOnly = process.argv.includes('--serve-only');
 
@@ -178,14 +179,15 @@ async function captureScreenshots(baseUrl, { generatedAt, rewrite = false } = {}
           scrollWidth: widest,
           clientWidth: doc.clientWidth,
           hasBanner: Boolean(document.querySelector('.banner')?.textContent?.includes('VERSION CANDIDATE')),
-          hasModeA: Boolean(document.body.innerText.includes('Mode actuel — règles KR Kinetics')),
-          hasModeDA: Boolean(document.body.innerText.includes('Aperçu précision — profils d’échange')),
-          hasProvisional: Boolean(document.body.innerText.includes('Valeurs provisoires non approuvées')),
+          hasModeA: Boolean(document.body.innerText.includes('Calcul actuel')),
+          hasModeDA: Boolean(document.body.innerText.includes('Aperçu personnalisé')),
+          hasProvisionalNote: Boolean(document.body.innerText.includes('Non approuvé pour la production')),
+          hasLogo: [...document.images].some((img) => img.complete && img.naturalWidth > 0),
         };
       });
       // Allow 2px sub-pixel tolerance on mobile Chromium.
       const overflow = metrics.scrollWidth > metrics.clientWidth + 2;
-      const pass = !overflow && metrics.hasBanner && metrics.hasModeA && metrics.hasModeDA && metrics.hasProvisional;
+      const pass = !overflow && metrics.hasBanner && metrics.hasModeA && metrics.hasModeDA && metrics.hasProvisionalNote && metrics.hasLogo;
       if (!pass) visual.overall = 'FAIL';
       const shotPath = path.join(screenshotsDir, viewport.name);
       const exists = fs.existsSync(shotPath);
@@ -219,13 +221,13 @@ function writeMarkdownReports({ url, command, scenarioReport, protection, visual
 
 ## Ce que le propriétaire doit tester
 
-1. Calculateur utilisable (portions par groupe).
-2. Basculer entre « Mode actuel — règles KR Kinetics » et « Aperçu précision — profils d’échange » sans perdre les entrées.
-3. Voir les totaux A et D/A côte à côte et comprendre les écarts.
-4. Parcourir le guide desktop FR et le guide mobile bilingue.
+1. Calculateur utilisable (portions par groupe pour le calcul actuel).
+2. Basculer entre « Calcul actuel » et « Aperçu personnalisé » sans perdre les entrées.
+3. Ajouter des aliments réels au panier et comparer les totaux.
+4. Parcourir les guides desktop FR/EN et le guide mobile bilingue.
 5. Rechercher / filtrer les 287 aliments.
-6. Lire les avertissements « Valeurs provisoires non approuvées » / « Échantillon insuffisant ».
-7. Inspecter les scénarios d’acceptation et les PDF candidats.
+6. Lire la bannière provisoire et les exceptions (échantillon insuffisant / fallback).
+7. Inspecter les diagnostics propriétaire et les PDF candidats.
 
 ## Limites connues
 
@@ -328,10 +330,11 @@ async function build() {
   for (const [name, dest] of guideCopies) {
     const src = path.join(guidePreviewDir, name);
     if (!fs.existsSync(src)) throw new Error(`Missing guide preview artifact: ${name}`);
-    if (rcGuidesReady) {
-      // Preserve committed RC binaries/HTML; guide:preview still validated separately.
+    if (rewriteGuides || !rcGuidesReady) {
+      copyFile(src, dest);
       continue;
     }
+    // Preserve committed RC binaries/HTML; guide:preview still validated separately.
     copyIfMissing(src, dest);
   }
   // Point guide HTML logos at the shared RC asset (no second multi‑MB PNG copy).
@@ -363,9 +366,9 @@ async function build() {
     version: versionMeta.version,
     labels: {
       banner: 'VERSION CANDIDATE — NE PAS UTILISER POUR DES CLIENTS',
-      modeA: 'Mode actuel — règles KR Kinetics',
-      modeDA: 'Aperçu précision — profils d’échange',
-      provisional: 'Valeurs provisoires non approuvées',
+      modeA: 'Calcul actuel',
+      modeDA: 'Aperçu personnalisé',
+      provisional: 'Aperçu personnalisé : valeurs provisoires non approuvées pour la production',
     },
     foods: foodsPayload.foods.map((food) => ({
       id: food.id,

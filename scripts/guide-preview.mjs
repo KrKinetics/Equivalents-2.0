@@ -19,9 +19,9 @@ const readJson = async (name) => JSON.parse(await fs.readFile(path.join(dataDir,
 
 // Prefer opaque full logo (transparent PNG can render as grey checkerboard in PDF viewers).
 const LOGO_CANDIDATES = [
+  path.join(root, 'assets', 'kinetics-logo.svg'),
   path.join(root, 'assets', 'kinetics-logo-full.png'),
   path.join(root, 'assets', 'kinetics-logo-transparent.png'),
-  path.join(root, 'assets', 'kinetics-logo.svg'),
 ];
 
 function resolveLogoAsset() {
@@ -211,13 +211,25 @@ try {
   qa.headerReadability.push({ mode: 'mobile', ...mobileHeaderCheck });
   if (!mobileHeaderCheck.pass) qa.overall = 'FAIL';
 
+  const pdfHeader = `
+    <div style="font-size:8px;width:100%;padding:0 10mm;color:#64748b;font-family:Arial,sans-serif;">
+      <span>KR Kinetics — Aperçu guide (non approuvé)</span>
+    </div>`;
+  const pdfFooter = `
+    <div style="font-size:8px;width:100%;padding:0 10mm;color:#64748b;font-family:Arial,sans-serif;display:flex;justify-content:space-between;">
+      <span>Profils d’échange non approuvés</span>
+      <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
+    </div>`;
   await landscape.pdf({
     path: path.join(outDir, 'kr-kinetics-landscape-fr.pdf'),
     format: 'A4',
     landscape: true,
     printBackground: true,
     preferCSSPageSize: true,
-    margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
+    displayHeaderFooter: true,
+    headerTemplate: pdfHeader,
+    footerTemplate: pdfFooter,
+    margin: { top: '14mm', right: '8mm', bottom: '14mm', left: '8mm' },
   });
   await mobile.pdf({
     path: path.join(outDir, 'kr-kinetics-mobile-bilingual.pdf'),
@@ -225,7 +237,10 @@ try {
     landscape: false,
     printBackground: true,
     preferCSSPageSize: true,
-    margin: { top: '10mm', right: '10mm', bottom: '12mm', left: '10mm' },
+    displayHeaderFooter: true,
+    headerTemplate: pdfHeader,
+    footerTemplate: pdfFooter,
+    margin: { top: '14mm', right: '10mm', bottom: '16mm', left: '10mm' },
   });
 
   const sectionTitles = model.sections.map((section) => `${section.titleFr} · ${section.titleEn}`);

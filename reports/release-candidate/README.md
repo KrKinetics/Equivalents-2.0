@@ -7,13 +7,13 @@
 
 ## Ce que le propriétaire doit tester
 
-1. Calculateur utilisable (portions par groupe).
-2. Basculer entre « Mode actuel — règles KR Kinetics » et « Aperçu précision — profils d’échange » sans perdre les entrées.
-3. Voir les totaux A et D/A côte à côte et comprendre les écarts.
-4. Parcourir le guide desktop FR et le guide mobile bilingue.
+1. Calculateur utilisable (portions par groupe pour le calcul actuel).
+2. Basculer entre « Calcul actuel » et « Aperçu personnalisé » sans perdre les entrées.
+3. Ajouter des aliments réels au panier et comparer les totaux.
+4. Parcourir les guides desktop FR/EN et le guide mobile bilingue.
 5. Rechercher / filtrer les 287 aliments.
-6. Lire les avertissements « Valeurs provisoires non approuvées » / « Échantillon insuffisant ».
-7. Inspecter les scénarios d’acceptation et les PDF candidats.
+6. Lire la bannière provisoire et les exceptions (échantillon insuffisant / fallback).
+7. Inspecter les diagnostics propriétaire et les PDF candidats.
 
 ## Limites connues
 
