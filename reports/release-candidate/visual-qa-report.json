@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-07-31T01:18:37.499Z",
+  "widths": [
+    {
+      "width": 1440,
+      "height": 1100,
+      "name": "desktop-1440.png",
+      "file": "screenshots/desktop-1440.png",
+      "metrics": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisional": true
+      },
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "height": 1100,
+      "name": "tablet-768.png",
+      "file": "screenshots/tablet-768.png",
+      "metrics": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisional": true
+      },
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 1100,
+      "name": "mobile-390.png",
+      "file": "screenshots/mobile-390.png",
+      "metrics": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisional": true
+      },
+      "overflow": false,
+      "status": "PASS"
+    }
+  ],
+  "overall": "PASS"
+}
