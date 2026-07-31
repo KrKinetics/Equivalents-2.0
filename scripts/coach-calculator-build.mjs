@@ -20,6 +20,10 @@ import {
   verifyProtectedFiles,
 } from '../src/lib/rc-data-protection.mjs';
 import { FEATURE_DA_ENABLED } from '../src/lib/coach-calculator-engine.mjs';
+import {
+  buildClientFixesRuntime,
+  buildMobileCssPatch,
+} from './coach-calculator-client-fixes.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'coach-calculator');
@@ -342,8 +346,25 @@ function transformGolden(html) {
     html = html.slice(0, start) + replacement + html.slice(end);
   }
 
+  // Mobile polish CSS (390px) before closing main stylesheet
+  {
+    const styleClose = html.indexOf('</style>');
+    if (styleClose === -1) throw new Error('Unable to locate main </style>');
+    html = html.slice(0, styleClose) + buildMobileCssPatch() + html.slice(styleClose);
+  }
+
   html = injectGuideSection(html);
   html = injectGuideRuntime(html);
+
+  // PDF logo (data URI), rest-day omit, totals reconciliation, image wait
+  {
+    const logoB64 = fs.readFileSync(LOGO_H).toString('base64');
+    const fixes = buildClientFixesRuntime(logoB64);
+    const endHtml = html.lastIndexOf('</html>');
+    const bodyClose = html.lastIndexOf('</body>', endHtml);
+    if (bodyClose === -1 || endHtml === -1) throw new Error('Cannot inject client PDF fixes');
+    html = html.slice(0, bodyClose) + fixes + '\n' + html.slice(bodyClose);
+  }
 
   // Marker for restored build
   html = html.replace(

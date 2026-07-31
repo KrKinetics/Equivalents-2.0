@@ -93,6 +93,7 @@ Le dossier \`coach-calculator/\` de ce ZIP contient l'application déjà buildé
     'xavier-plan-client-en.pdf',
     'equivalents-client-287.pdf',
     'parity-report.md',
+    'PR13-CORRECTIONS.md',
     'CHECKLIST_PARITE_FONCTIONNELLE.md',
     'test-report.md',
     'parity-baseline.md',

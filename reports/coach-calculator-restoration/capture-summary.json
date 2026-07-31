@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-07-31T16:26:47.001Z",
+  "capturedAt": "2026-07-31T17:20:57.056Z",
   "url": "http://127.0.0.1:4188/",
   "foods": 287,
   "tdee": 3240,
@@ -19,5 +19,41 @@
     "xavier-plan-client-en.pdf",
     "equivalents-client-287.pdf"
   ],
+  "pageCount": 1,
+  "hasLogoDataUri": true,
+  "hasReconciliation": true,
+  "reconciliation": {
+    "target": {
+      "pro": 168,
+      "glu": 385,
+      "lip": 114,
+      "kcal": 3238
+    },
+    "banque": {
+      "pro": 168,
+      "glu": 387,
+      "lip": 114,
+      "kcal": 3246
+    },
+    "planned": {
+      "pro": 169,
+      "glu": 388,
+      "lip": 115,
+      "kcal": 3263
+    },
+    "variance": {
+      "kcal": 25,
+      "pro": 1,
+      "glu": 3,
+      "lip": 1
+    },
+    "withinThreshold": true,
+    "thresholds": {
+      "kcal": 50,
+      "pro": 5,
+      "glu": 5,
+      "lip": 5
+    }
+  },
   "protectedOk": true
 }

@@ -368,3 +368,122 @@ test('responsive viewports render without crash', async () => {
   }
   await page.close();
 });
+
+test('client PDF embeds logo, omits empty rest day, shows reconciliation', async () => {
+  const page = await browser.newPage();
+  await stubDialogs(page);
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle0', timeout: 120000 });
+  await page.waitForFunction(() => typeof buildFullPDFHTML === 'function');
+  await seedAthlete(page, 'PDF Audit Client');
+  const result = await page.evaluate(async () => {
+    setJourReposActif(true);
+    // Ensure rest remains empty / unconfigured
+    joursData.repos = createEmptyJourData();
+    captureJourActif();
+    const snapEnt = getJourSnapshot('entrainement');
+    const snapRep = getClientPdfRestSnapshot();
+    const html = buildFullPDFHTML(
+      snapEnt,
+      snapRep,
+      'PDF Audit Client',
+      '2026-07-31',
+      getMacroRatioLabel(),
+      getActiveGoalLabel(),
+    );
+    const iframe = creerIframePDF(html);
+    await attendreRenduPDF(iframe);
+    const doc = iframe.contentWindow.document;
+    const imgs = Array.from(doc.images);
+    const broken = imgs.filter((img) => !img.complete || !img.naturalWidth).length;
+    const pages = doc.querySelectorAll('.pdf-a4-page').length;
+    const text = doc.body.innerText;
+    const recon = reconcilePlanTotalsFromSnapshot(snapEnt);
+    nettoyerIframePDF();
+    return {
+      pages,
+      broken,
+      imgCount: imgs.length,
+      hasDataUri: html.includes('data:image/png;base64,'),
+      hasMarineBanner: html.includes('#071B41'),
+      hasRecon: html.includes('Réconciliation') || html.includes('Energy reconciliation'),
+      hasPlanned: html.includes('Total planifié') || html.includes('Planned total'),
+      hasVariance: html.includes('Écart planifié') || html.includes('Planned vs target'),
+      hasZeroKcalPlan: /0 kcal/.test(text) && pages > 1,
+      snapRepNull: snapRep === null,
+      withinThresholdDefined: typeof recon.withinThreshold === 'boolean',
+      varianceKcal: recon.variance.kcal,
+    };
+  });
+  assert.equal(result.snapRepNull, true);
+  assert.equal(result.pages, 1);
+  assert.equal(result.broken, 0);
+  assert.ok(result.imgCount >= 1);
+  assert.equal(result.hasDataUri, true);
+  assert.equal(result.hasMarineBanner, true);
+  assert.equal(result.hasRecon, true);
+  assert.equal(result.hasPlanned, true);
+  assert.equal(result.hasVariance, true);
+  assert.equal(result.hasZeroKcalPlan, false);
+  assert.equal(result.withinThresholdDefined, true);
+  assert.equal(typeof result.varianceKcal, 'number');
+  await page.close();
+});
+
+test('configured rest day still yields a second client PDF page', async () => {
+  const page = await browser.newPage();
+  await stubDialogs(page);
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle0', timeout: 120000 });
+  await seedAthlete(page, 'Rest Configured');
+  const pages = await page.evaluate(() => {
+    setJourReposActif(true);
+    changerJour('repos');
+    suggererBanque();
+    repartirAutomatique('equilibre');
+    const proBank = parseFloat(document.querySelector('.target-input[data-cat="pro"]')?.value) || 0;
+    if (proBank > 0) {
+      const shares = [0.3, 0, 0.25, 0, 0.25, 0.2];
+      for (let m = 0; m < 6; m++) {
+        const input = document.querySelectorAll('.rep-input[data-cat="pro"]')[m];
+        if (input) input.value = String(Math.round(proBank * shares[m] * 2) / 2);
+      }
+    }
+    calculerBanque();
+    calculerRepartition();
+    captureJourActif();
+    const html = buildFullPDFHTML(
+      getJourSnapshot('entrainement'),
+      getClientPdfRestSnapshot(),
+      'Rest Configured',
+      '2026-07-31',
+      getMacroRatioLabel(),
+      getActiveGoalLabel(),
+    );
+    return (html.match(/class="pdf-a4-page"/g) || []).length;
+  });
+  assert.equal(pages, 2);
+  await page.close();
+});
+
+test('mobile 390px keeps readable type and scroll hints on tables', async () => {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 390, height: 844 });
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle0', timeout: 120000 });
+  await page.waitForSelector('#nom_athlete');
+  const mobile = await page.evaluate(() => {
+    const wraps = document.querySelectorAll('.table-h-scroll');
+    const btn = document.querySelector('.btn');
+    const label = document.querySelector('label');
+    const btnH = btn ? btn.getBoundingClientRect().height : 0;
+    const labelSize = label ? parseFloat(getComputedStyle(label).fontSize) : 0;
+    return {
+      wrapCount: wraps.length,
+      btnH,
+      labelSize,
+      hasScrollHint: !!document.styleSheets,
+    };
+  });
+  assert.ok(mobile.wrapCount >= 1, 'tables should be wrapped for horizontal scroll');
+  assert.ok(mobile.btnH >= 44, `touch target ${mobile.btnH}px`);
+  assert.ok(mobile.labelSize >= 14, `label font ${mobile.labelSize}px`);
+  await page.close();
+});

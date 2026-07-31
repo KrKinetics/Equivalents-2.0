@@ -13,16 +13,15 @@ npm run coach:capture
 
 ## Résultats `npm test`
 
-- **322** pass
+- **324** pass
 - **0** fail
 - **1** skipped
-- durée ≈ 19 s
 
-Les tests coach moteur (`tests/coach-calculator-engine.test.mjs`, 21 cas) sont inclus dans `npm test`.
+Les tests coach moteur (`tests/coach-calculator-engine.test.mjs`, 23 cas) sont inclus dans `npm test`.
 
 ## Tests navigateur coach
 
-Fichier : `tests/coach-calculator.browser.test.mjs`
+Fichier : `tests/coach-calculator.browser.test.mjs` — **10/10 PASS**
 
 | Test | Résultat |
 |---|---|
@@ -33,6 +32,9 @@ Fichier : `tests/coach-calculator.browser.test.mjs`
 | training/rest days, distribution modes, hydration, plan text | PASS |
 | client equivalents guide 287 + no forbidden markers | PASS |
 | responsive viewports | PASS |
+| PDF logo + omit empty rest + reconciliation | PASS |
+| configured rest day → 2 pages | PASS |
+| mobile 390px touch/scroll | PASS |
 
 ## Protection données nutritionnelles
 

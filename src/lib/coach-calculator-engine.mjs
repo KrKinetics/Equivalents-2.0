@@ -469,3 +469,119 @@ export function suggestBanque(targets) {
 export function profileStorageKey(athleteName) {
   return `${PROFILE_STORAGE_KEY_PREFIX}${athleteName}`;
 }
+
+/** Explicit client-PDF variance thresholds (planned vs target). */
+export const PDF_VARIANCE_THRESHOLDS = Object.freeze({
+  kcal: 50,
+  pro: 5,
+  glu: 5,
+  lip: 5,
+});
+
+/**
+ * A day is "configured" for the client PDF only when meal distribution
+ * contains at least one non-zero portion (banque alone is not enough).
+ */
+export function isJourClientPlanConfigured(jourData) {
+  const data = jourData || createEmptyJourData();
+  for (let i = 0; i < MEAL_COUNT * CATS.length; i += 1) {
+    if ((parseFloat(data.repartition?.[i]) || 0) > 0) return true;
+  }
+  return false;
+}
+
+/**
+ * Planned totals from meal distribution, mirroring getJourSnapshot rounding:
+ * each meal rounds P/G/L before summing, then kcal is derived from the sums.
+ * This is the documented source of banque vs planned divergence.
+ */
+export function computePlannedTotalsFromRepartition(repartition) {
+  let totalPro = 0;
+  let totalGlu = 0;
+  let totalLip = 0;
+  for (let i = 0; i < MEAL_COUNT; i += 1) {
+    let rPro = 0;
+    let rGlu = 0;
+    let rLip = 0;
+    for (const cat of CATS) {
+      const val = getRepValueFromData(repartition, i, cat);
+      rPro += val * MOYENNES[cat].p;
+      rGlu += val * MOYENNES[cat].g;
+      rLip += val * MOYENNES[cat].l;
+    }
+    const rKcal = kcalFromMacros(rPro, rGlu, rLip);
+    if (rKcal > 0) {
+      totalPro += Math.round(rPro);
+      totalGlu += Math.round(rGlu);
+      totalLip += Math.round(rLip);
+    }
+  }
+  return {
+    pro: totalPro,
+    glu: totalGlu,
+    lip: totalLip,
+    kcal: kcalFromMacros(totalPro, totalGlu, totalLip),
+  };
+}
+
+function deltaMacros(a, b) {
+  return {
+    kcal: (a?.kcal || 0) - (b?.kcal || 0),
+    pro: (a?.pro || 0) - (b?.pro || 0),
+    glu: (a?.glu || 0) - (b?.glu || 0),
+    lip: (a?.lip || 0) - (b?.lip || 0),
+  };
+}
+
+function withinVarianceThresholds(delta, thresholds = PDF_VARIANCE_THRESHOLDS) {
+  return (
+    Math.abs(delta.kcal) <= thresholds.kcal
+    && Math.abs(delta.pro) <= thresholds.pro
+    && Math.abs(delta.glu) <= thresholds.glu
+    && Math.abs(delta.lip) <= thresholds.lip
+  );
+}
+
+/**
+ * Reconcile target / banque / planned totals for client PDF display.
+ * Origin of differences:
+ * - target: macro formula (rounded grams → kcal)
+ * - banque: portions × MOYENNES, macros rounded once, then kcal
+ * - planned: per-meal macros rounded then summed (can differ from banque)
+ */
+export function reconcilePlanTotals({ targets, banqueTotals, plannedTotals, thresholds = PDF_VARIANCE_THRESHOLDS }) {
+  const target = {
+    kcal: targets?.kcal || 0,
+    pro: targets?.pro || 0,
+    glu: targets?.glu || 0,
+    lip: targets?.lip || 0,
+  };
+  const banque = {
+    kcal: banqueTotals?.kcal || 0,
+    pro: banqueTotals?.pro || 0,
+    glu: banqueTotals?.glu || 0,
+    lip: banqueTotals?.lip || 0,
+  };
+  const planned = {
+    kcal: plannedTotals?.kcal || 0,
+    pro: plannedTotals?.pro || 0,
+    glu: plannedTotals?.glu || 0,
+    lip: plannedTotals?.lip || 0,
+  };
+  const varianceVsTarget = deltaMacros(planned, target);
+  const banqueVsTarget = deltaMacros(banque, target);
+  const plannedVsBanque = deltaMacros(planned, banque);
+  return {
+    target,
+    banque,
+    planned,
+    varianceVsTarget,
+    banqueVsTarget,
+    plannedVsBanque,
+    thresholds: { ...thresholds },
+    withinThreshold: withinVarianceThresholds(varianceVsTarget, thresholds),
+    origin:
+      'Cible = formule macro; banque = portions × moyennes (arrondi global); '
+      + 'planifié = arrondi P/G/L par repas puis somme (source de l’écart banque/planifié).',
+  };
+}

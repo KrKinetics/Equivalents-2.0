@@ -66,17 +66,6 @@ Notes du coach :
 Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.
 
 ══════════════════════════════════════════════
-🛌 JOUR REPOS (CARB CYCLING)
-══════════════════════════════════════════════
-Calories cibles : 3236 kcal
-Macros cibles   : 168g Pro | 317g Glu | 144g Lip
-Calories banque : 0 kcal
-Macros banque   : 0g Pro | 0g Glu | 0g Lip
-
-TOTAL JOURNEE : 0 Pro | 0 Glu | 0 Lip | 0 kcal
-HYDRATATION    : 3.2 L / jour (Base auto : 3.2 L (1 L / 1000 kcal))
-
-Notes du coach :
-Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.
+Jour repos non configuré — omis du PDF client
 
 📖 Référez-vous au guide des équivalents alimentaires

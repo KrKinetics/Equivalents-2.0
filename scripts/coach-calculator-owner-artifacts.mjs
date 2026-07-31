@@ -116,6 +116,9 @@ async function main() {
       calculerBanque();
       calculerRepartition();
       updateEau();
+      // Keep rest-day toggle on but leave distribution empty (must be omitted from client PDF)
+      setJourReposActif(true);
+      joursData.repos = createEmptyJourData();
       captureJourActif();
       sauvegarderProfil();
       genererPlanTextuel();
@@ -123,13 +126,22 @@ async function main() {
       const planText = document.getElementById('output-plan')?.value || '';
       // Build native PDF HTML (same source as client export)
       const snapEnt = getJourSnapshot('entrainement');
-      const snapRep = jourReposActif ? getJourSnapshot('repos') : null;
+      const snapRep = typeof getClientPdfRestSnapshot === 'function'
+        ? getClientPdfRestSnapshot()
+        : null;
       const dateStr = new Date().toLocaleDateString('fr-CA');
       const pdfHtml = buildFullPDFHTML(snapEnt, snapRep, 'Xavier Tremblay', dateStr, getMacroRatioLabel(), getActiveGoalLabel());
+      const recon = typeof reconcilePlanTotalsFromSnapshot === 'function'
+        ? reconcilePlanTotalsFromSnapshot(snapEnt)
+        : null;
       return {
         profile,
         planText,
         pdfHtml,
+        pageCount: (pdfHtml.match(/class="pdf-a4-page"/g) || []).length,
+        hasLogoDataUri: pdfHtml.includes('data:image/png;base64,'),
+        hasReconciliation: pdfHtml.includes('Réconciliation') || pdfHtml.includes('Energy reconciliation'),
+        recon,
         foods: window.COACH_DATA.totalFoods,
         tdee: Math.round(currentTDEE),
         targets,
@@ -138,18 +150,33 @@ async function main() {
 
     fs.writeFileSync(path.join(reportsDir, 'xavier-profile-export.json'), JSON.stringify(artifact.profile, null, 2));
     fs.writeFileSync(path.join(reportsDir, 'xavier-plan-text.txt'), artifact.planText);
+    if (!artifact.hasLogoDataUri) throw new Error('PDF HTML missing embedded logo data URI');
+    if (artifact.pageCount !== 1) throw new Error(`Expected 1 PDF page when rest unconfigured, got ${artifact.pageCount}`);
 
-    // Render client PDF from the same HTML the app would export
-    const pdfPage = await browser.newPage();
-    await pdfPage.setContent(artifact.pdfHtml, { waitUntil: 'networkidle0' });
+    async function renderPdf(html, outPath) {
+      const pdfPage = await browser.newPage();
+      await pdfPage.setContent(html, { waitUntil: 'networkidle0' });
+      await pdfPage.waitForFunction(() => {
+        const imgs = Array.from(document.images);
+        return imgs.length > 0 && imgs.every((img) => img.complete && img.naturalWidth > 0);
+      }, { timeout: 15000 });
+      const broken = await pdfPage.evaluate(() =>
+        Array.from(document.images).filter((img) => !img.complete || !img.naturalWidth).length);
+      if (broken) {
+        await pdfPage.close();
+        throw new Error(`Broken images before PDF print: ${broken}`);
+      }
+      await pdfPage.pdf({
+        path: outPath,
+        format: 'A4',
+        printBackground: true,
+        margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
+      });
+      await pdfPage.close();
+    }
+
     const pdfPath = path.join(reportsDir, 'xavier-plan-client-fr.pdf');
-    await pdfPage.pdf({
-      path: pdfPath,
-      format: 'A4',
-      printBackground: true,
-      margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
-    });
-    await pdfPage.close();
+    await renderPdf(artifact.pdfHtml, pdfPath);
 
     // English PDF
     await page.evaluate(() => {
@@ -158,19 +185,13 @@ async function main() {
     });
     const enHtml = await page.evaluate(() => {
       const snapEnt = getJourSnapshot('entrainement');
-      const snapRep = jourReposActif ? getJourSnapshot('repos') : null;
+      const snapRep = typeof getClientPdfRestSnapshot === 'function'
+        ? getClientPdfRestSnapshot()
+        : null;
       const dateStr = new Date().toLocaleDateString('en-CA');
       return buildFullPDFHTML(snapEnt, snapRep, 'Xavier Tremblay', dateStr, getMacroRatioLabel(), getActiveGoalLabel());
     });
-    const pdfPageEn = await browser.newPage();
-    await pdfPageEn.setContent(enHtml, { waitUntil: 'networkidle0' });
-    await pdfPageEn.pdf({
-      path: path.join(reportsDir, 'xavier-plan-client-en.pdf'),
-      format: 'A4',
-      printBackground: true,
-      margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
-    });
-    await pdfPageEn.close();
+    await renderPdf(enHtml, path.join(reportsDir, 'xavier-plan-client-en.pdf'));
 
     // Copy equivalents guide PDF
     const guidePdf = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.pdf');
@@ -208,6 +229,10 @@ async function main() {
           'xavier-plan-client-en.pdf',
           'equivalents-client-287.pdf',
         ],
+        pageCount: artifact.pageCount,
+        hasLogoDataUri: artifact.hasLogoDataUri,
+        hasReconciliation: artifact.hasReconciliation,
+        reconciliation: artifact.recon,
         protectedOk: protection.ok,
       }, null, 2)
     );

@@ -29,6 +29,10 @@ import {
   adjustComplementaryCustomMacro,
   kcalFromMacros,
   profileStorageKey,
+  PDF_VARIANCE_THRESHOLDS,
+  isJourClientPlanConfigured,
+  computePlannedTotalsFromRepartition,
+  reconcilePlanTotals,
 } from '../src/lib/coach-calculator-engine.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -260,6 +264,54 @@ test('suggestBanque returns scored portions near targets', () => {
   for (const cat of CATS) assert.ok(typeof suggested[cat] === 'number');
   const score = scorePortions(suggested, targets);
   assert.ok(Number.isFinite(score));
+});
+
+test('empty rest day is not client-PDF configured', () => {
+  assert.equal(isJourClientPlanConfigured(createEmptyJourData()), false);
+  const banqueOnly = createEmptyJourData();
+  banqueOnly.banque.pro = '4';
+  assert.equal(isJourClientPlanConfigured(banqueOnly), false);
+  const byMeals = createEmptyJourData();
+  byMeals.repartition['0'] = '2';
+  assert.equal(isJourClientPlanConfigured(byMeals), true);
+});
+
+test('reconcilePlanTotals exposes target/planned/variance with explicit thresholds', () => {
+  assert.deepEqual(PDF_VARIANCE_THRESHOLDS, { kcal: 50, pro: 5, glu: 5, lip: 5 });
+  const banque = { pro: '10', fec: '16.5', leg: '2', fru: '2.5', lai: '1.5', lip: '11.5', whey: '0' };
+  const banqueTotals = computeBanqueTotals(banque);
+  const repartition = {};
+  for (let i = 0; i < MEAL_COUNT * CATS.length; i += 1) repartition[i] = '0';
+  // Place banque portions into meals unevenly to exercise per-meal rounding
+  repartition['0'] = '3';
+  repartition['14'] = '4';
+  repartition['28'] = '3'; // pro 10
+  repartition['1'] = '5';
+  repartition['15'] = '6';
+  repartition['29'] = '5.5'; // fec 16.5
+  repartition['2'] = '1';
+  repartition['16'] = '1'; // leg 2
+  repartition['3'] = '1';
+  repartition['17'] = '1.5'; // fru 2.5
+  repartition['4'] = '0.5';
+  repartition['18'] = '1'; // lai 1.5
+  repartition['5'] = '4';
+  repartition['19'] = '4';
+  repartition['33'] = '3.5'; // lip 11.5
+  const planned = computePlannedTotalsFromRepartition(repartition);
+  const targets = { kcal: 3238, pro: 168, glu: 385, lip: 114 };
+  const recon = reconcilePlanTotals({ targets, banqueTotals, plannedTotals: planned });
+  assert.equal(recon.target.kcal, 3238);
+  assert.equal(recon.planned.kcal, planned.kcal);
+  assert.equal(recon.varianceVsTarget.kcal, planned.kcal - targets.kcal);
+  assert.equal(typeof recon.origin, 'string');
+  assert.ok(recon.origin.includes('arrondi'));
+  assert.equal(recon.thresholds.kcal, 50);
+  // Planned may differ from banque solely due to per-meal macro rounding
+  assert.equal(
+    recon.plannedVsBanque.kcal,
+    planned.kcal - banqueTotals.kcal,
+  );
 });
 
 test('evaluatePlanCompleteness mirrors evaluerJourData rules', () => {

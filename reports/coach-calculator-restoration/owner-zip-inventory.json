@@ -1,9 +1,10 @@
 {
   "zip": "KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip",
-  "bytes": 3080734,
+  "bytes": 3241242,
   "url": "http://127.0.0.1:4188/",
   "files": [
     "CHECKLIST_PARITE_FONCTIONNELLE.md",
+    "PR13-CORRECTIONS.md",
     "START_HERE.md",
     "build-summary.json",
     "capture-summary.json",
