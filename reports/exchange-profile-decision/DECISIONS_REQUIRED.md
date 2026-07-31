@@ -133,9 +133,9 @@ Portions utilisées pour l’estimation: **4 protéines, 4 féculents, 3 légume
 | Modèle | Totaux estimés (journée type) |
 | --- | --- |
 | A Legacy | P 73 g · G 149 g · L 38 g · — kcal |
-| B Médianes | P 74 g · G 135 g · L 30.699999999999996 g · 1112 kcal |
+| B Médianes | P 74 g · G 135 g · L 30.7 g · 1112 kcal |
 | C Médoïdes | P 74.5 g · G 130 g · L 31.6 g · 1078 kcal |
-| D Rollup (pont large = B) | P 74 g · G 135 g · L 30.699999999999996 g · 1112 kcal |
+| D Rollup (pont large = B) | P 74 g · G 135 g · L 30.7 g · 1112 kcal |
 
 Écart B vs A (médiane − legacy): P 1 g · G -14 g · L -7.3 g · — kcal  
 Écart C vs A (médoïde − legacy): P 1.5 g · G -19 g · L -6.4 g · — kcal

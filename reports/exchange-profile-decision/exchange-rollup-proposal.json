@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "status": "proposal_not_approved",
   "decisionModel": "hybrid_D_A_transition",
   "policy": {
@@ -10,30 +10,30 @@
     "forbiddenUniqueTargets": [
       "nuts_vs_oils",
       "lean_vs_fatty_protein",
-      "dairy_splits",
-      "whey_vs_collagen_bars",
+      "dairy_family_splits",
+      "whey_collagen_bars_rtd",
       "legumes_vs_cereal_starches"
     ],
     "doNotModifyProductionInThisPr": true,
     "classificationNotes": {
       "proteinFatClass": {
-        "fattyProfileRegexes": [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {}
+        "fattyProfilePatterns": [
+          "(?:^|-)fatty(?:-|$)",
+          "high-fat",
+          "with-skin",
+          "ribs",
+          "ground-beef-regular",
+          "ground-beef-medium",
+          "^protein-lamb$",
+          "^protein-duck$",
+          "pork-standard",
+          "pork-ribs",
+          "processed-meat-high-fat"
         ],
-        "moderateProfileRegexes": [
-          {},
-          {},
-          {}
+        "moderateProfilePatterns": [
+          "moderate-fat",
+          "processed-seafood",
+          "processed-poultry"
         ],
         "documentedLeanProfiles": [
           "protein-ground-beef-extra-lean",
@@ -45,12 +45,19 @@
           "protein-mollusk-lean",
           "protein-canned-fish-lean",
           "protein-chicken-dark-meat"
+        ],
+        "evaluationOrder": [
+          "documentedLeanProfiles",
+          "fattyProfilePatterns",
+          "moderateProfilePatterns",
+          "defaultLean"
         ]
       },
       "neverUseAmbiguousFoodIdSubstrings": [
         "bar⊂barley",
         "oat⊂goat"
-      ]
+      ],
+      "dairyProteinShakeRule": "exchangeProfileId dairy-protein-shake-* → rollup-dairy-protein-rtd (never milk/yogurt)"
     }
   },
   "meta": {
@@ -58,39 +65,67 @@
     "assignedFoods": 287,
     "exchangeProfileCount": 157,
     "singletonExchangeProfiles": 122,
-    "rollupCount": 27,
+    "rollupCount": 28,
     "minSampleForStableRollup": 3,
-    "insufficientSampleRollupCount": 9
+    "insufficientSampleRollupCount": 10
   },
   "forbiddenMerges": [
     {
       "id": "nuts_vs_oils",
       "a": "rollup-nuts-seeds",
       "b": "rollup-oils-spreads",
+      "mutuallyExclusiveRollups": [
+        "rollup-nuts-seeds",
+        "rollup-nut-seed-butter",
+        "rollup-oils-spreads"
+      ],
       "reason": "Noix/graines ≠ huiles"
     },
     {
       "id": "lean_vs_fatty_protein",
       "a": "rollup-protein-lean",
       "b": "rollup-protein-fatty",
+      "mutuallyExclusiveRollups": [
+        "rollup-protein-lean",
+        "rollup-protein-moderate-fat",
+        "rollup-protein-fatty"
+      ],
       "reason": "Protéines maigres ≠ grasses"
     },
     {
-      "id": "dairy_splits",
+      "id": "dairy_family_splits",
       "a": "rollup-dairy-milk-yogurt",
       "b": "rollup-dairy-plant-drink",
-      "reason": "Lait/yogourt ≠ fromages ≠ boissons végétales"
+      "mutuallyExclusiveRollups": [
+        "rollup-dairy-milk-yogurt",
+        "rollup-dairy-fresh-cheese",
+        "rollup-dairy-cheese",
+        "rollup-dairy-plant-drink",
+        "rollup-dairy-protein-rtd"
+      ],
+      "reason": "Lait/yogourt ≠ fromages frais ≠ fromages ≠ boissons végétales ≠ boissons protéinées laitières"
     },
     {
-      "id": "whey_vs_collagen_bars",
+      "id": "whey_collagen_bars_rtd",
       "a": "rollup-whey-powders",
       "b": "rollup-protein-bars",
-      "reason": "Whey ≠ collagène ≠ barres ≠ boissons protéinées"
+      "mutuallyExclusiveRollups": [
+        "rollup-whey-powders",
+        "rollup-collagen-incomplete",
+        "rollup-protein-bars",
+        "rollup-protein-rtd",
+        "rollup-dairy-protein-rtd"
+      ],
+      "reason": "Whey ≠ collagène ≠ barres ≠ boissons protéinées (protéine ou laitier)"
     },
     {
       "id": "legumes_vs_cereal_starches",
       "a": "rollup-starch-legume",
       "b": "rollup-starch-cereal",
+      "mutuallyExclusiveRollups": [
+        "rollup-starch-legume",
+        "rollup-starch-cereal"
+      ],
       "reason": "Légumineuses ≠ pains/riz/pâtes"
     }
   ],
@@ -106,7 +141,8 @@
       "keepSeparatedFrom": [
         "rollup-collagen-incomplete",
         "rollup-protein-bars",
-        "rollup-protein-rtd"
+        "rollup-protein-rtd",
+        "rollup-dairy-protein-rtd"
       ]
     }
   },
@@ -603,8 +639,8 @@
     {
       "exchangeRollupId": "rollup-dairy-milk-yogurt",
       "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt",
-      "foodCount": 16,
-      "verifiedCount": 16,
+      "foodCount": 15,
+      "verifiedCount": 15,
       "exchangeProfileIds": [
         "dairy-filtered-milk-fairlife-2",
         "dairy-goat-milk-whole",
@@ -618,12 +654,11 @@
         "dairy-milk-2",
         "dairy-milk-skim",
         "dairy-milk-whole",
-        "dairy-protein-shake-core-power-26",
         "dairy-skyr-0",
         "dairy-yogurt-fat-free-plain",
         "dairy-yogurt-low-fat-plain"
       ],
-      "exchangeProfileCount": 16,
+      "exchangeProfileCount": 15,
       "insufficientSample": false,
       "proposedTolerances": {
         "proteinG": 2,
@@ -634,98 +669,98 @@
       },
       "nutrients": {
         "proteinG": {
-          "numericCount": 16,
+          "numericCount": 15,
           "nullCount": 0,
-          "mean": 8.85,
-          "median": 8.75,
-          "p25": 7.525,
-          "p75": 11.175,
+          "mean": 8.5733,
+          "median": 8.5,
+          "p25": 6.95,
+          "p75": 10.85,
           "min": 3.2,
           "max": 13.2,
-          "stddev": 3.1343,
-          "mad": 2.55
+          "stddev": 3.0354,
+          "mad": 2.4
         },
         "carbsG": {
-          "numericCount": 15,
+          "numericCount": 14,
           "nullCount": 1,
-          "mean": 7.6333,
-          "median": 5.8,
-          "p25": 4.25,
-          "p75": 11.25,
+          "mean": 7.8929,
+          "median": 6.8,
+          "p25": 4.625,
+          "p75": 11.275,
           "min": 3.5,
           "max": 14.7,
-          "stddev": 3.7376,
-          "mad": 2
+          "stddev": 3.7358,
+          "mad": 3.15
         },
         "fiberG": {
-          "numericCount": 15,
+          "numericCount": 14,
           "nullCount": 1,
-          "mean": 0.0667,
+          "mean": 0,
           "median": 0,
           "p25": 0,
           "p75": 0,
           "min": 0,
-          "max": 1,
-          "stddev": 0.2582,
+          "max": 0,
+          "stddev": 0,
           "mad": 0
         },
         "fatG": {
-          "numericCount": 15,
+          "numericCount": 14,
           "nullCount": 1,
-          "mean": 2.4733,
-          "median": 1.7,
-          "p25": 0.6,
-          "p75": 2.65,
+          "mean": 2.4857,
+          "median": 1.65,
+          "p25": 0.4,
+          "p75": 2.725,
           "min": 0.1,
           "max": 8,
-          "stddev": 2.5736,
-          "mad": 1.1
+          "stddev": 2.6703,
+          "mad": 1.3
         },
         "declaredKcal": {
-          "numericCount": 16,
+          "numericCount": 15,
           "nullCount": 0,
-          "mean": 85.6875,
-          "median": 82.5,
-          "p25": 68.25,
-          "p75": 93.5,
+          "mean": 85.7333,
+          "median": 80,
+          "p25": 65.5,
+          "p75": 97,
           "min": 44,
           "max": 152,
-          "stddev": 31.4213,
-          "mad": 16.5
+          "stddev": 32.5235,
+          "mad": 20
         }
       },
       "medianProfile": {
-        "proteinG": 8.75,
-        "carbsG": 5.8,
+        "proteinG": 8.5,
+        "carbsG": 6.8,
         "fiberG": 0,
-        "fatG": 1.7,
-        "declaredKcal": 82.5
+        "fatG": 1.65,
+        "declaredKcal": 80
       },
       "dispersion": {
         "proteinG": {
-          "mad": 2.55,
-          "stddev": 3.1343,
-          "iqr": 3.65
+          "mad": 2.4,
+          "stddev": 3.0354,
+          "iqr": 3.9
         },
         "carbsG": {
-          "mad": 2,
-          "stddev": 3.7376,
-          "iqr": 7
+          "mad": 3.15,
+          "stddev": 3.7358,
+          "iqr": 6.65
         },
         "fiberG": {
           "mad": 0,
-          "stddev": 0.2582,
+          "stddev": 0,
           "iqr": 0
         },
         "fatG": {
-          "mad": 1.1,
-          "stddev": 2.5736,
-          "iqr": 2.05
+          "mad": 1.3,
+          "stddev": 2.6703,
+          "iqr": 2.325
         },
         "declaredKcal": {
-          "mad": 16.5,
-          "stddev": 31.4213,
-          "iqr": 25.25
+          "mad": 20,
+          "stddev": 32.5235,
+          "iqr": 31.5
         }
       },
       "calculatorBridge": {
@@ -857,6 +892,128 @@
       "calculatorBridge": {
         "calculatorGroup": "dairy",
         "bridge": "keep_dairy_group_with_sub_targets",
+        "productionChangeInThisPr": false
+      },
+      "approved": false,
+      "status": "proposal_only_not_production"
+    },
+    {
+      "exchangeRollupId": "rollup-dairy-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-dairy-protein-rtd",
+      "foodCount": 1,
+      "verifiedCount": 1,
+      "exchangeProfileIds": [
+        "dairy-protein-shake-core-power-26"
+      ],
+      "exchangeProfileCount": 1,
+      "insufficientSample": true,
+      "proposedTolerances": {
+        "proteinG": 2,
+        "carbsG": 4,
+        "fiberG": 2,
+        "fatG": 2,
+        "declaredKcal": 15
+      },
+      "nutrients": {
+        "proteinG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 13,
+          "median": 13,
+          "p25": 13,
+          "p75": 13,
+          "min": 13,
+          "max": 13,
+          "stddev": null,
+          "mad": 0
+        },
+        "carbsG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 4,
+          "median": 4,
+          "p25": 4,
+          "p75": 4,
+          "min": 4,
+          "max": 4,
+          "stddev": null,
+          "mad": 0
+        },
+        "fiberG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 1,
+          "median": 1,
+          "p25": 1,
+          "p75": 1,
+          "min": 1,
+          "max": 1,
+          "stddev": null,
+          "mad": 0
+        },
+        "fatG": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 2.3,
+          "median": 2.3,
+          "p25": 2.3,
+          "p75": 2.3,
+          "min": 2.3,
+          "max": 2.3,
+          "stddev": null,
+          "mad": 0
+        },
+        "declaredKcal": {
+          "numericCount": 1,
+          "nullCount": 0,
+          "mean": 85,
+          "median": 85,
+          "p25": 85,
+          "p75": 85,
+          "min": 85,
+          "max": 85,
+          "stddev": null,
+          "mad": 0
+        }
+      },
+      "medianProfile": {
+        "proteinG": 13,
+        "carbsG": 4,
+        "fiberG": 1,
+        "fatG": 2.3,
+        "declaredKcal": 85
+      },
+      "dispersion": {
+        "proteinG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "carbsG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "fiberG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "fatG": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        },
+        "declaredKcal": {
+          "mad": 0,
+          "stddev": null,
+          "iqr": 0
+        }
+      },
+      "calculatorBridge": {
+        "calculatorGroup": "dairy",
+        "bridge": "keep_dairy_with_protein_rtd_subtarget",
+        "note": "Boisson protéinée laitière (ex. dairy-protein-shake-*): reste dans le pont dairy, distincte du lait/yogourt ordinaire.",
         "productionChangeInThisPr": false
       },
       "approved": false,
@@ -5092,8 +5249,8 @@
       "exchangeProfileId": "dairy-protein-shake-core-power-26",
       "calculationGroup": "dairy",
       "displayCategory": "produits_laitiers",
-      "exchangeRollupId": "rollup-dairy-milk-yogurt",
-      "calculatorBridgeProfileId": "rollup-dairy-milk-yogurt"
+      "exchangeRollupId": "rollup-dairy-protein-rtd",
+      "calculatorBridgeProfileId": "rollup-dairy-protein-rtd"
     },
     {
       "foodId": "produits-laitiers-allegro-9-cheese",

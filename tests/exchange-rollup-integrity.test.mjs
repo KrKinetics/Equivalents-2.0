@@ -115,12 +115,57 @@ test('assignments cover exactly 287 unique foods and one rollup per exchangeProf
 test('forbidden rollup family merges remain separated', () => {
   const members = Object.fromEntries(proposal.rollups.map((r) => [r.exchangeRollupId, new Set(r.exchangeProfileIds)]));
   for (const merge of FORBIDDEN_MERGES) {
-    assert.ok(members[merge.a] || members[merge.b], merge.id);
-    if (members[merge.a] && members[merge.b]) {
-      for (const profile of members[merge.a]) {
-        assert.equal(members[merge.b].has(profile), false, `${merge.id} shared profile ${profile}`);
+    assert.ok(Array.isArray(merge.mutuallyExclusiveRollups) && merge.mutuallyExclusiveRollups.length >= 2, merge.id);
+    const present = merge.mutuallyExclusiveRollups.filter((id) => members[id]);
+    assert.ok(present.length >= 1, `${merge.id} should reference at least one present rollup`);
+    for (let i = 0; i < present.length; i += 1) {
+      for (let j = i + 1; j < present.length; j += 1) {
+        const left = members[present[i]];
+        const right = members[present[j]];
+        for (const profile of left) {
+          assert.equal(right.has(profile), false, `${merge.id}: ${profile} shared by ${present[i]} and ${present[j]}`);
+        }
       }
     }
+  }
+});
+
+test('dairy-protein-shake profiles never classify as ordinary milk/yogurt', () => {
+  assert.equal(
+    proposeRollupId({
+      exchangeProfileId: 'dairy-protein-shake-core-power-26',
+      calculationGroup: 'dairy',
+      displayCategory: 'produits_laitiers',
+    }),
+    'rollup-dairy-protein-rtd',
+  );
+  for (const row of proposal.assignments.filter((a) => String(a.exchangeProfileId).startsWith('dairy-protein-shake-'))) {
+    assert.equal(row.exchangeRollupId, 'rollup-dairy-protein-rtd', row.foodId);
+    assert.notEqual(row.exchangeRollupId, 'rollup-dairy-milk-yogurt', row.foodId);
+  }
+  const corePower = byFood['produits-laitiers-bottle-core-power-fairlife'];
+  assert.ok(corePower);
+  assert.equal(corePower.exchangeProfileId, 'dairy-protein-shake-core-power-26');
+  assert.equal(corePower.exchangeRollupId, 'rollup-dairy-protein-rtd');
+  assert.equal(corePower.calculatorBridgeProfileId, 'rollup-dairy-protein-rtd');
+  const dairyBridge = proposal.rollups.find((r) => r.exchangeRollupId === 'rollup-dairy-protein-rtd');
+  assert.ok(dairyBridge);
+  assert.equal(dairyBridge.calculatorBridge?.calculatorGroup, 'dairy');
+});
+
+test('rollup proposal classificationNotes serialize without empty objects', () => {
+  const notes = proposal.policy.classificationNotes;
+  assert.ok(Array.isArray(notes.proteinFatClass.fattyProfilePatterns));
+  assert.ok(notes.proteinFatClass.fattyProfilePatterns.every((p) => typeof p === 'string' && p.length > 0));
+  assert.ok(Array.isArray(notes.proteinFatClass.moderateProfilePatterns));
+  assert.ok(notes.proteinFatClass.moderateProfilePatterns.every((p) => typeof p === 'string' && p.length > 0));
+  assert.equal(Object.prototype.hasOwnProperty.call(notes.proteinFatClass, 'fattyProfileRegexes'), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(notes.proteinFatClass, 'moderateProfileRegexes'), false);
+  const serialized = JSON.stringify(notes);
+  assert.equal(serialized.includes('{}'), false, 'classificationNotes must not contain empty objects');
+  for (const merge of proposal.forbiddenMerges) {
+    assert.ok(Array.isArray(merge.mutuallyExclusiveRollups));
+    assert.ok(merge.mutuallyExclusiveRollups.every((id) => typeof id === 'string' && id.startsWith('rollup-')));
   }
 });
 

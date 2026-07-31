@@ -1,5 +1,5 @@
 import { mean, median, stddev, nutrientSeries } from './group-statistics.mjs';
-import { formatStatNumber, mad, percentile, roundHalfAwayFromZero } from './descriptive-stats.mjs';
+import { formatStatNumber, formatStatNumberText, mad, percentile, roundHalfAwayFromZero } from './descriptive-stats.mjs';
 
 export const NUTRIENT_KEYS = ['proteinG', 'carbsG', 'fiberG', 'fatG', 'declaredKcal'];
 export const DEFAULT_TOLERANCES = { proteinG: 2, carbsG: 4, fiberG: 2, fatG: 2, declaredKcal: 15 };
@@ -171,23 +171,27 @@ export function estimateTypicalDayImpact(profileByGroup) {
       }
     }
   }
-  return { portions, totals, unavailable };
+  // Normalize accumulated portion totals so markdown/JSON never show binary float tails.
+  const normalizedTotals = Object.fromEntries(
+    NUTRIENT_KEYS.map((key) => [key, formatStatNumber(totals[key], 4)]),
+  );
+  return { portions, totals: normalizedTotals, unavailable };
 }
 
 function fmtMacro(profile) {
   if (!profile) return 'P — / G — / L —';
-  const p = isNumber(profile.proteinG) ? formatStatNumber(profile.proteinG) : '—';
-  const g = isNumber(profile.carbsG) ? formatStatNumber(profile.carbsG) : '—';
-  const l = isNumber(profile.fatG) ? formatStatNumber(profile.fatG) : '—';
+  const p = isNumber(profile.proteinG) ? formatStatNumberText(profile.proteinG) : '—';
+  const g = isNumber(profile.carbsG) ? formatStatNumberText(profile.carbsG) : '—';
+  const l = isNumber(profile.fatG) ? formatStatNumberText(profile.fatG) : '—';
   return `P ${p} / G ${g} / L ${l}`;
 }
 
 function dayLine(impact) {
   const t = impact?.totals || {};
-  const p = isNumber(t.proteinG) ? t.proteinG : '—';
-  const g = isNumber(t.carbsG) ? t.carbsG : '—';
-  const l = isNumber(t.fatG) ? t.fatG : '—';
-  const k = isNumber(t.declaredKcal) ? t.declaredKcal : '—';
+  const p = isNumber(t.proteinG) ? formatStatNumberText(t.proteinG) : '—';
+  const g = isNumber(t.carbsG) ? formatStatNumberText(t.carbsG) : '—';
+  const l = isNumber(t.fatG) ? formatStatNumberText(t.fatG) : '—';
+  const k = isNumber(t.declaredKcal) ? formatStatNumberText(t.declaredKcal) : '—';
   return `P ${p} g · G ${g} g · L ${l} g · ${k} kcal`;
 }
 
@@ -205,7 +209,9 @@ export function buildProfileCandidates(analysis) {
   const medoidDay = estimateTypicalDayImpact(medoids);
   const dayDelta = (a, b) => Object.fromEntries(NUTRIENT_KEYS.map((key) => [
     key,
-    isNumber(a?.totals?.[key]) && isNumber(b?.totals?.[key]) ? Number((a.totals[key] - b.totals[key]).toFixed(2)) : null,
+    isNumber(a?.totals?.[key]) && isNumber(b?.totals?.[key])
+      ? formatStatNumber(a.totals[key] - b.totals[key], 2)
+      : null,
   ]));
   const base = (id, values, overrides = {}) => ({
     id,

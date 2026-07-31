@@ -3,8 +3,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { formatStatNumber } from '../src/lib/descriptive-stats.mjs';
-import { analyzeAllLevels, NUTRIENT_KEYS } from '../src/lib/exchange-profile-analysis.mjs';
+import { formatStatNumber, sanitizeExportNumbers } from '../src/lib/descriptive-stats.mjs';
+import {
+  analyzeAllLevels,
+  buildDecisionsMarkdown,
+  buildProfileCandidates,
+  NUTRIENT_KEYS,
+} from '../src/lib/exchange-profile-analysis.mjs';
 import { buildExchangeRollupProposal } from '../src/lib/exchange-rollup-proposal.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -72,8 +77,11 @@ test('rollup proposal keeps forbidden separations and explains empty whey group'
   assert.ok(proposal.wheyObservation.foodsWithWheyExchangeProfile > 0);
   assert.match(proposal.wheyObservation.explanationFr, /calculationGroup: "whey"/i);
   assert.ok(proposal.forbiddenMerges.some((item) => item.id === 'nuts_vs_oils'));
+  assert.ok(proposal.forbiddenMerges.some((item) => item.id === 'dairy_family_splits'));
+  assert.ok(proposal.forbiddenMerges.some((item) => item.id === 'whey_collagen_bars_rtd'));
   assert.ok(proposal.assignments.some((a) => a.exchangeRollupId === 'rollup-nuts-seeds'));
   assert.ok(proposal.assignments.some((a) => a.exchangeRollupId === 'rollup-oils-spreads'));
+  assert.ok(proposal.assignments.some((a) => a.exchangeRollupId === 'rollup-dairy-protein-rtd'));
   assert.equal(proposal.wheyObservation.proposedBridge.productionChangeInThisPr, false);
 });
 
@@ -100,4 +108,14 @@ test('generated exchange-profile-statistics.csv contains all three levels when p
 test('formatStatNumber stabilizes common float tails in generators', () => {
   assert.equal(formatStatNumber(18.799999999999997), 18.8);
   assert.equal(formatStatNumber(30.699999999999996), 30.7);
+});
+
+test('decision artifacts never contain unnormalized float tails', () => {
+  const { analysis } = loadAnalysis();
+  const candidates = sanitizeExportNumbers(buildProfileCandidates(analysis));
+  const markdown = buildDecisionsMarkdown(analysis, candidates);
+  const blob = `${markdown}\n${JSON.stringify(candidates)}`;
+  assert.equal(/\d+\.\d*99999/.test(blob), false, 'unnormalized float tail found in decision artifacts');
+  assert.match(markdown, /L 30\.7 g/);
+  assert.equal(candidates.B.typicalDayImpact.totals.fatG, 30.7);
 });

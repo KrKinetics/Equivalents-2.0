@@ -11,37 +11,83 @@ import { formatStatNumber } from './descriptive-stats.mjs';
 
 const MIN_SAMPLE = 3;
 
-/** Explicit refusals — never merge these families. */
+/**
+ * Explicit refusals — machine-readable mutually exclusive rollup families.
+ * `a`/`b` kept for backward-compatible pairwise checks; `mutuallyExclusiveRollups` is authoritative.
+ */
 export const FORBIDDEN_MERGES = [
-  { id: 'nuts_vs_oils', a: 'rollup-nuts-seeds', b: 'rollup-oils-spreads', reason: 'Noix/graines ≠ huiles' },
-  { id: 'lean_vs_fatty_protein', a: 'rollup-protein-lean', b: 'rollup-protein-fatty', reason: 'Protéines maigres ≠ grasses' },
-  { id: 'dairy_splits', a: 'rollup-dairy-milk-yogurt', b: 'rollup-dairy-plant-drink', reason: 'Lait/yogourt ≠ fromages ≠ boissons végétales' },
-  { id: 'whey_vs_collagen_bars', a: 'rollup-whey-powders', b: 'rollup-protein-bars', reason: 'Whey ≠ collagène ≠ barres ≠ boissons protéinées' },
-  { id: 'legumes_vs_cereal_starches', a: 'rollup-starch-legume', b: 'rollup-starch-cereal', reason: 'Légumineuses ≠ pains/riz/pâtes' },
+  {
+    id: 'nuts_vs_oils',
+    a: 'rollup-nuts-seeds',
+    b: 'rollup-oils-spreads',
+    mutuallyExclusiveRollups: ['rollup-nuts-seeds', 'rollup-nut-seed-butter', 'rollup-oils-spreads'],
+    reason: 'Noix/graines ≠ huiles',
+  },
+  {
+    id: 'lean_vs_fatty_protein',
+    a: 'rollup-protein-lean',
+    b: 'rollup-protein-fatty',
+    mutuallyExclusiveRollups: ['rollup-protein-lean', 'rollup-protein-moderate-fat', 'rollup-protein-fatty'],
+    reason: 'Protéines maigres ≠ grasses',
+  },
+  {
+    id: 'dairy_family_splits',
+    a: 'rollup-dairy-milk-yogurt',
+    b: 'rollup-dairy-plant-drink',
+    mutuallyExclusiveRollups: [
+      'rollup-dairy-milk-yogurt',
+      'rollup-dairy-fresh-cheese',
+      'rollup-dairy-cheese',
+      'rollup-dairy-plant-drink',
+      'rollup-dairy-protein-rtd',
+    ],
+    reason: 'Lait/yogourt ≠ fromages frais ≠ fromages ≠ boissons végétales ≠ boissons protéinées laitières',
+  },
+  {
+    id: 'whey_collagen_bars_rtd',
+    a: 'rollup-whey-powders',
+    b: 'rollup-protein-bars',
+    mutuallyExclusiveRollups: [
+      'rollup-whey-powders',
+      'rollup-collagen-incomplete',
+      'rollup-protein-bars',
+      'rollup-protein-rtd',
+      'rollup-dairy-protein-rtd',
+    ],
+    reason: 'Whey ≠ collagène ≠ barres ≠ boissons protéinées (protéine ou laitier)',
+  },
+  {
+    id: 'legumes_vs_cereal_starches',
+    a: 'rollup-starch-legume',
+    b: 'rollup-starch-cereal',
+    mutuallyExclusiveRollups: ['rollup-starch-legume', 'rollup-starch-cereal'],
+    reason: 'Légumineuses ≠ pains/riz/pâtes',
+  },
 ];
 
 /**
  * Deterministic protein fat-class rules (exchangeProfileId only).
+ * Patterns are plain strings (JSON-serializable); compiled to RegExp at runtime.
  * Order: fatty → moderate → lean (default for remaining protein profiles).
  */
 export const PROTEIN_FAT_CLASS_RULES = {
-  fattyProfileRegexes: [
-    /(?:^|-)fatty(?:-|$)/,
-    /high-fat/,
-    /with-skin/,
-    /ribs/,
-    /ground-beef-regular/,
-    /ground-beef-medium/,
-    /^protein-lamb$/,
-    /^protein-duck$/,
-    /pork-standard/,
-    /pork-ribs/,
-    /processed-meat-high-fat/,
+  fattyProfilePatterns: [
+    '(?:^|-)fatty(?:-|$)',
+    'high-fat',
+    'with-skin',
+    'ribs',
+    'ground-beef-regular',
+    'ground-beef-medium',
+    '^protein-lamb$',
+    '^protein-duck$',
+    'pork-standard',
+    'pork-ribs',
+    'processed-meat-high-fat',
   ],
-  moderateProfileRegexes: [
-    /moderate-fat/,
-    /processed-seafood/,
-    /processed-poultry/,
+  moderateProfilePatterns: [
+    'moderate-fat',
+    'processed-seafood',
+    'processed-poultry',
   ],
   /** Explicit lean keepers that must never be pulled into fatty by loose tokens. */
   documentedLeanProfiles: [
@@ -53,9 +99,13 @@ export const PROTEIN_FAT_CLASS_RULES = {
     'protein-shellfish-lean',
     'protein-mollusk-lean',
     'protein-canned-fish-lean',
-    'protein-chicken-dark-meat', // dark meat without skin token stays lean unless with-skin
+    'protein-chicken-dark-meat',
   ],
 };
+
+function compilePatterns(patterns) {
+  return (patterns || []).map((pattern) => new RegExp(pattern));
+}
 
 function profileOf(foodOrProfile) {
   if (foodOrProfile && typeof foodOrProfile === 'object') {
@@ -69,10 +119,10 @@ export function classifyProteinFatClass(exchangeProfileId) {
   if (PROTEIN_FAT_CLASS_RULES.documentedLeanProfiles.includes(profile)) {
     return 'lean';
   }
-  if (PROTEIN_FAT_CLASS_RULES.fattyProfileRegexes.some((re) => re.test(profile))) {
+  if (compilePatterns(PROTEIN_FAT_CLASS_RULES.fattyProfilePatterns).some((re) => re.test(profile))) {
     return 'fatty';
   }
-  if (PROTEIN_FAT_CLASS_RULES.moderateProfileRegexes.some((re) => re.test(profile))) {
+  if (compilePatterns(PROTEIN_FAT_CLASS_RULES.moderateProfilePatterns).some((re) => re.test(profile))) {
     return 'moderate';
   }
   return 'lean';
@@ -119,6 +169,7 @@ export function proposeRollupId(foodOrProfile, calculationGroup, displayCategory
   if (profile.startsWith('protein-bar-')) return 'rollup-protein-bars';
   if (profile.startsWith('protein-whey-')) return 'rollup-whey-powders';
   if (profile.includes('collagen')) return 'rollup-collagen-incomplete';
+  if (profile.startsWith('dairy-protein-shake-')) return 'rollup-dairy-protein-rtd';
   if (
     profile.startsWith('protein-ready-to-drink')
     || profile.startsWith('protein-rtd')
@@ -232,6 +283,14 @@ export function proposeCalculatorBridge(rollupId) {
       calculatorGroup: 'whey',
       bridge: 'map_rollup_whey_powders_to_calculator_whey',
       note: 'Les aliments whey sont aujourd’hui classés calculationGroup=protein; le groupe calculateur whey est vide. Pont proposé sans mutation production.',
+      productionChangeInThisPr: false,
+    };
+  }
+  if (rollupId === 'rollup-dairy-protein-rtd') {
+    return {
+      calculatorGroup: 'dairy',
+      bridge: 'keep_dairy_with_protein_rtd_subtarget',
+      note: 'Boisson protéinée laitière (ex. dairy-protein-shake-*): reste dans le pont dairy, distincte du lait/yogourt ordinaire.',
       productionChangeInThisPr: false,
     };
   }
@@ -376,12 +435,17 @@ export function buildExchangeRollupProposal(foods, analysis) {
     proposedBridge: {
       productionChangeInThisPr: false,
       map: 'exchangeRollupId=rollup-whey-powders → calculatorGroup=whey (future approval only)',
-      keepSeparatedFrom: ['rollup-collagen-incomplete', 'rollup-protein-bars', 'rollup-protein-rtd'],
+      keepSeparatedFrom: [
+        'rollup-collagen-incomplete',
+        'rollup-protein-bars',
+        'rollup-protein-rtd',
+        'rollup-dairy-protein-rtd',
+      ],
     },
   };
 
   return {
-    schemaVersion: '1.1.0',
+    schemaVersion: '1.2.0',
     status: 'proposal_not_approved',
     decisionModel: 'hybrid_D_A_transition',
     policy: {
@@ -392,8 +456,14 @@ export function buildExchangeRollupProposal(foods, analysis) {
       forbiddenUniqueTargets: FORBIDDEN_MERGES.map((m) => m.id),
       doNotModifyProductionInThisPr: true,
       classificationNotes: {
-        proteinFatClass: PROTEIN_FAT_CLASS_RULES,
+        proteinFatClass: {
+          fattyProfilePatterns: [...PROTEIN_FAT_CLASS_RULES.fattyProfilePatterns],
+          moderateProfilePatterns: [...PROTEIN_FAT_CLASS_RULES.moderateProfilePatterns],
+          documentedLeanProfiles: [...PROTEIN_FAT_CLASS_RULES.documentedLeanProfiles],
+          evaluationOrder: ['documentedLeanProfiles', 'fattyProfilePatterns', 'moderateProfilePatterns', 'defaultLean'],
+        },
         neverUseAmbiguousFoodIdSubstrings: ['bar⊂barley', 'oat⊂goat'],
+        dairyProteinShakeRule: 'exchangeProfileId dairy-protein-shake-* → rollup-dairy-protein-rtd (never milk/yogurt)',
       },
     },
     meta: {
@@ -441,10 +511,11 @@ export function buildRollupProposalMarkdown(proposal) {
 - **lean** par défaut pour les autres profils protéine, y compris les lean documentés (extra-lean / lean ground beef, pork-lean, game-lean, lean fish/shellfish).
 - Les barres = uniquement \`protein-bar-*\` (jamais une sous-chaîne \`bar\` qui matcherait \`barley\`).
 - Les boissons végétales = \`dairy-alternative-*\` (jamais \`includes('oat')\` qui matcherait \`goat\`).
+- Les boissons protéinées laitières = \`dairy-protein-shake-*\` → \`rollup-dairy-protein-rtd\` (jamais lait/yogourt ordinaire).
 
 ## Séparations obligatoires (refus d’une cible unique)
 
-${proposal.forbiddenMerges.map((m) => `- **${m.id}** — ${m.reason}`).join('\n')}
+${proposal.forbiddenMerges.map((m) => `- **${m.id}** — ${m.reason}\n  - Mutuellement exclusifs: \`${(m.mutuallyExclusiveRollups || []).join('`, `')}\``).join('\n')}
 
 ## Cas whey
 

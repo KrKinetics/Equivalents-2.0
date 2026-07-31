@@ -15,7 +15,7 @@
 
 - 157 profils d’échange, dont **122 singletons**.
 - Relier chaque singleton au calculateur ferait exploser les options UI sans gain d’équivalence.
-- Proposition : couche intermédiaire `exchangeRollupId` / `calculatorBridgeProfileId` (**27** familles proposées).
+- Proposition : couche intermédiaire `exchangeRollupId` / `calculatorBridgeProfileId` (**28** familles proposées).
 
 ## Règles déterministes lean / moderate-fat / fatty
 
@@ -24,14 +24,20 @@
 - **lean** par défaut pour les autres profils protéine, y compris les lean documentés (extra-lean / lean ground beef, pork-lean, game-lean, lean fish/shellfish).
 - Les barres = uniquement `protein-bar-*` (jamais une sous-chaîne `bar` qui matcherait `barley`).
 - Les boissons végétales = `dairy-alternative-*` (jamais `includes('oat')` qui matcherait `goat`).
+- Les boissons protéinées laitières = `dairy-protein-shake-*` → `rollup-dairy-protein-rtd` (jamais lait/yogourt ordinaire).
 
 ## Séparations obligatoires (refus d’une cible unique)
 
 - **nuts_vs_oils** — Noix/graines ≠ huiles
+  - Mutuellement exclusifs: `rollup-nuts-seeds`, `rollup-nut-seed-butter`, `rollup-oils-spreads`
 - **lean_vs_fatty_protein** — Protéines maigres ≠ grasses
-- **dairy_splits** — Lait/yogourt ≠ fromages ≠ boissons végétales
-- **whey_vs_collagen_bars** — Whey ≠ collagène ≠ barres ≠ boissons protéinées
+  - Mutuellement exclusifs: `rollup-protein-lean`, `rollup-protein-moderate-fat`, `rollup-protein-fatty`
+- **dairy_family_splits** — Lait/yogourt ≠ fromages frais ≠ fromages ≠ boissons végétales ≠ boissons protéinées laitières
+  - Mutuellement exclusifs: `rollup-dairy-milk-yogurt`, `rollup-dairy-fresh-cheese`, `rollup-dairy-cheese`, `rollup-dairy-plant-drink`, `rollup-dairy-protein-rtd`
+- **whey_collagen_bars_rtd** — Whey ≠ collagène ≠ barres ≠ boissons protéinées (protéine ou laitier)
+  - Mutuellement exclusifs: `rollup-whey-powders`, `rollup-collagen-incomplete`, `rollup-protein-bars`, `rollup-protein-rtd`, `rollup-dairy-protein-rtd`
 - **legumes_vs_cereal_starches** — Légumineuses ≠ pains/riz/pâtes
+  - Mutuellement exclusifs: `rollup-starch-legume`, `rollup-starch-cereal`
 
 ## Cas whey
 
@@ -39,7 +45,7 @@ Le groupe calculateur `whey` existe dans calculation-groups.json et dans les MOY
 
 Pont proposé (sans mutation production) : `exchangeRollupId=rollup-whey-powders → calculatorGroup=whey (future approval only)`.
 
-## Familles proposées (27)
+## Familles proposées (28)
 
 | exchangeRollupId | Aliments | Profils sources | Échantillon insuffisant (<3) | Pont calculateur | Médiane P/G/L |
 | --- | ---: | ---: | --- | --- | --- |
@@ -47,8 +53,9 @@ Pont proposé (sans mutation production) : `exchangeRollupId=rollup-whey-powders
 | rollup-collagen-incomplete | 1 | 1 | oui | — | P 9 / G 0 / L 0 |
 | rollup-dairy-cheese | 3 | 3 | non | dairy | P 9.6 / G 1.2 / L 2.5 |
 | rollup-dairy-fresh-cheese | 4 | 4 | non | dairy | P 12.15 / G 4.7 / L 2.05 |
-| rollup-dairy-milk-yogurt | 16 | 16 | non | dairy | P 8.75 / G 5.8 / L 1.7 |
+| rollup-dairy-milk-yogurt | 15 | 15 | non | dairy | P 8.5 / G 6.8 / L 1.65 |
 | rollup-dairy-plant-drink | 6 | 6 | non | dairy | P 1.35 / G 9 / L 2.25 |
+| rollup-dairy-protein-rtd | 1 | 1 | oui | dairy | P 13 / G 4 / L 2.3 |
 | rollup-fat-cheese-portion | 3 | 1 | non | fat | P 3.5 / G 1.2 / L 4.4 |
 | rollup-fat-chocolate | 2 | 1 | oui | fat | P 0.7 / G 4.9 / L 4.05 |
 | rollup-fat-egg | 2 | 1 | oui | fat | P 4.3 / G 0.75 / L 5.3 |

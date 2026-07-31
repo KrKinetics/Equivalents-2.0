@@ -49,12 +49,20 @@ export function formatStatNumber(value, maxDecimals = 4) {
   return rounded;
 }
 
+/** Stable textual form for markdown / UI (never emits 30.699999999999996). */
+export function formatStatNumberText(value, maxDecimals = 4) {
+  const cleaned = formatStatNumber(value, maxDecimals);
+  if (cleaned == null) return null;
+  return cleaned.toFixed(maxDecimals).replace(/\.?0+$/, '');
+}
+
 /** Recursively replace finite numbers with formatStatNumber for stable JSON/CSV/HTML exports. */
 export function sanitizeExportNumbers(value, maxDecimals = 4) {
   if (value == null) return value;
   if (typeof value === 'number') return formatStatNumber(value, maxDecimals);
   if (Array.isArray(value)) return value.map((item) => sanitizeExportNumbers(item, maxDecimals));
   if (typeof value === 'object') {
+    if (value instanceof RegExp) return value.source;
     const out = {};
     for (const [key, nested] of Object.entries(value)) {
       out[key] = sanitizeExportNumbers(nested, maxDecimals);
@@ -65,11 +73,7 @@ export function sanitizeExportNumbers(value, maxDecimals = 4) {
 }
 
 export function formatNumberForLocale(value, lang = 'fr', maxDecimals = 4) {
-  const cleaned = formatStatNumber(value, maxDecimals);
-  if (cleaned == null) return '—';
-  let text = String(cleaned);
-  if (text.includes('e') || text.includes('E')) {
-    text = cleaned.toFixed(maxDecimals).replace(/\.?0+$/, '');
-  }
+  const text = formatStatNumberText(value, maxDecimals);
+  if (text == null) return '—';
   return lang === 'fr' ? text.replace('.', ',') : text;
 }
