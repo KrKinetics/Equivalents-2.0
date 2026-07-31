@@ -32,7 +32,7 @@ test('calculation groups remain unapproved with null reference values', () => {
 });
 
 test('reports never claim final profile approval', () => {
-  const reportDirs = ['reports/exchange-profile-decision', 'reports/guide-preview']
+  const reportDirs = ['reports/exchange-profile-decision', 'reports/guide-preview', 'reports/release-candidate']
     .map((dir) => path.join(root, dir))
     .filter(fs.existsSync);
   for (const dir of reportDirs) {
