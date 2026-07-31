@@ -1,0 +1,306 @@
+level,cohortId,rank,id,nameFr,distanceScore
+calculationGroup,dairy,1,produits-laitiers-rice-beverage-unsweetened,"Boisson de riz nature non sucrée, enrichie",1.1038
+calculationGroup,dairy,2,produits-laitiers-whole-milk,"Lait entier homogénéisé 3,25 % M.G.",0.9018
+calculationGroup,dairy,3,produits-laitiers-goat-milk-whole,"Lait de chèvre entier 3,25 % M.G., enrichi",0.8437
+calculationGroup,dairy,4,produits-laitiers-soy-beverage-vanilla,"Boisson de soya à la vanille, enrichie",0.7554
+calculationGroup,dairy,5,produits-laitiers-greek-yogurt-fat-free-fruit,Yogourt grec aux fruits sans gras,0.6326
+calculationGroup,fat,1,matieres-grasses-whole-egg,"Œuf de poule entier, cuit dur",0.6161
+calculationGroup,fat,2,noix-graines-ground-chia-seeds,"Graines de chia séchées, moulues ou entières",0.6039
+calculationGroup,fat,3,noix-graines-mixed-nuts-dry-roasted-unsalted,"Noix mélangées avec arachides, rôties à sec, sans sel ajouté",0.5007
+calculationGroup,fat,4,noix-graines-hummus,Houmous commercial,0.4293
+calculationGroup,fat,5,matieres-grasses-mozzarella-cheese,"Fromage mozzarella, 25 % M.G.",0.4224
+calculationGroup,fruit,1,fruits-raspberries,"Framboises fraîches, crues",0.7959
+calculationGroup,fruit,2,fruits-blackberries,"Mûres fraîches, crues",0.7822
+calculationGroup,fruit,3,fruits-dried-goji-berries,Baies de goji séchées,0.3023
+calculationGroup,fruit,4,fruits-pineapple-juice-100-pure-no-added-sugar,"Jus d'ananas 100 % pur, sans sucre ajouté",0.2707
+calculationGroup,fruit,5,fruits-strawberries,"Fraises fraîches, crues",0.2606
+calculationGroup,protein,1,noix-graines-cup-soybeans-or-edamame,Edamames bouillis et égouttés,1.6895
+calculationGroup,protein,2,autres-sources-proteinees-performance-protein-bar,Barre protéinée Quest Chocolate Brownie,1.5956
+calculationGroup,protein,3,autres-sources-proteinees-fermented-natto,Natto de soya fermenté,1.1478
+calculationGroup,protein,4,autres-sources-proteinees-seitan,Rôti de seitan GUSTA Classico,1.0119
+calculationGroup,protein,5,autres-sources-proteinees-cooked-tempeh,Tempeh cuit,0.9391
+calculationGroup,starch,1,feculents-cooked-legumes,"Pois chiches mûrs, bouillis",1.1658
+calculationGroup,starch,2,feculents-cooked-black-beans,"Haricots noirs mûrs, bouillis",1.1036
+calculationGroup,starch,3,noix-graines-homemade-protein-granola,Granola maison,0.9948
+calculationGroup,starch,4,feculents-cooked-beluga-lentils,"Lentilles mûres, bouillies",0.7749
+calculationGroup,starch,5,feculents-rolled-oats-uncooked,Avoine sèche,0.7325
+calculationGroup,vegetable,1,legumes-artichoke,Artichaut globe bouilli et égoutté,1.3455
+calculationGroup,vegetable,2,legumes-asparagus,Asperges bouillies et égouttées,0.9002
+calculationGroup,vegetable,3,legumes-vegetable-juice,Cocktail de jus de légumes régulier,0.7568
+calculationGroup,vegetable,4,legumes-low-sodium-vegetable-juice,Cocktail de jus de légumes faible en sodium,0.704
+calculationGroup,vegetable,5,legumes-grilled-portobello-mushroom,"Champignon portobello grillé, sans gras ajouté",0.659
+displayCategory,noix_graines,1,noix-graines-cup-soybeans-or-edamame,Edamames bouillis et égouttés,2.01
+displayCategory,noix_graines,2,noix-graines-homemade-protein-granola,Granola maison,1.5099
+displayCategory,noix_graines,3,noix-graines-roasted-chestnuts,Châtaignes européennes rôties,1.0668
+displayCategory,noix_graines,4,noix-graines-roasted-soy-nuts-unsalted,"Noix de soya rôties, non salées",0.7941
+displayCategory,noix_graines,5,noix-graines-ground-chia-seeds,"Graines de chia séchées, moulues ou entières",0.5211
+displayCategory,matieres_grasses,1,matieres-grasses-whole-egg,"Œuf de poule entier, cuit dur",0.6721
+displayCategory,matieres_grasses,2,matieres-grasses-avocado,"Avocat cru, toutes variétés commerciales",0.4584
+displayCategory,matieres_grasses,3,matieres-grasses-square-dark-chocolate-70,"Chocolat noir, 70 à 85 % de cacao",0.4448
+displayCategory,matieres_grasses,4,matieres-grasses-dark-chocolate-60-69,"Chocolat noir, 60 à 69 % de cacao",0.4427
+displayCategory,matieres_grasses,5,matieres-grasses-cheddar-mozzarella-cream-cheese,Fromage cheddar doux,0.4421
+displayCategory,legumes,1,legumes-artichoke,Artichaut globe bouilli et égoutté,1.3455
+displayCategory,legumes,2,legumes-asparagus,Asperges bouillies et égouttées,0.9002
+displayCategory,legumes,3,legumes-vegetable-juice,Cocktail de jus de légumes régulier,0.7568
+displayCategory,legumes,4,legumes-low-sodium-vegetable-juice,Cocktail de jus de légumes faible en sodium,0.704
+displayCategory,legumes,5,legumes-grilled-portobello-mushroom,"Champignon portobello grillé, sans gras ajouté",0.659
+displayCategory,fruits,1,fruits-raspberries,"Framboises fraîches, crues",0.7959
+displayCategory,fruits,2,fruits-blackberries,"Mûres fraîches, crues",0.7822
+displayCategory,fruits,3,fruits-dried-goji-berries,Baies de goji séchées,0.3023
+displayCategory,fruits,4,fruits-pineapple-juice-100-pure-no-added-sugar,"Jus d'ananas 100 % pur, sans sucre ajouté",0.2707
+displayCategory,fruits,5,fruits-strawberries,"Fraises fraîches, crues",0.2606
+displayCategory,poissons_fruits_mer,1,poissons-fruits-mer-caviar,"Caviar noir ou rouge, granuleux",0.6175
+displayCategory,poissons_fruits_mer,2,poissons-fruits-mer-mackerel,Maquereau bleu cuit au four ou grillé,0.5517
+displayCategory,poissons_fruits_mer,3,poissons-fruits-mer-canned-light-tuna-oil,"Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté",0.4603
+displayCategory,poissons_fruits_mer,4,poissons-fruits-mer-eel,Anguille cuite au four ou grillée,0.4445
+displayCategory,poissons_fruits_mer,5,poissons-fruits-mer-oysters,"Huîtres de l’Est d’élevage, crues",0.422
+displayCategory,viandes_volaille,1,viandes-volaille-turkey-bacon,Bacon de dinde cuit,0.7244
+displayCategory,viandes_volaille,2,viandes-volaille-bacon-cooked,Bacon de porc cuit au four,0.5228
+displayCategory,viandes_volaille,3,viandes-volaille-natural-beef-jerky,Jerky de bœuf haché et formé,0.5179
+displayCategory,viandes_volaille,4,viandes-volaille-regular-ground-beef,"Bœuf haché régulier, émietté et sauté, non rincé",0.5134
+displayCategory,viandes_volaille,5,viandes-volaille-beef-ribeye-steak,"Bifteck de faux-filet de bœuf, maigre et gras, grillé",0.3841
+displayCategory,autres_sources_proteinees,1,autres-sources-proteinees-performance-protein-bar,Barre protéinée Quest Chocolate Brownie,1.4398
+displayCategory,autres_sources_proteinees,2,autres-sources-proteinees-fermented-natto,Natto de soya fermenté,0.9908
+displayCategory,autres_sources_proteinees,3,autres-sources-proteinees-seitan,Rôti de seitan GUSTA Classico,0.8255
+displayCategory,autres_sources_proteinees,4,autres-sources-proteinees-cooked-tempeh,Tempeh cuit,0.7962
+displayCategory,autres_sources_proteinees,5,autres-sources-proteinees-tempeh,Tempeh fermenté,0.7491
+displayCategory,feculents,1,feculents-cooked-legumes,"Pois chiches mûrs, bouillis",1.164
+displayCategory,feculents,2,feculents-cooked-black-beans,"Haricots noirs mûrs, bouillis",1.1021
+displayCategory,feculents,3,feculents-cooked-beluga-lentils,"Lentilles mûres, bouillies",0.7736
+displayCategory,feculents,4,feculents-rolled-oats-uncooked,Avoine sèche,0.731
+displayCategory,feculents,5,feculents-rolled-oats,"Gruau instantané nature, préparé",0.5967
+displayCategory,produits_laitiers,1,produits-laitiers-rice-beverage-unsweetened,"Boisson de riz nature non sucrée, enrichie",1.1038
+displayCategory,produits_laitiers,2,produits-laitiers-whole-milk,"Lait entier homogénéisé 3,25 % M.G.",0.9018
+displayCategory,produits_laitiers,3,produits-laitiers-goat-milk-whole,"Lait de chèvre entier 3,25 % M.G., enrichi",0.8437
+displayCategory,produits_laitiers,4,produits-laitiers-soy-beverage-vanilla,"Boisson de soya à la vanille, enrichie",0.7554
+displayCategory,produits_laitiers,5,produits-laitiers-greek-yogurt-fat-free-fruit,Yogourt grec aux fruits sans gras,0.6326
+exchangeProfileId,dairy-alternative-almond-unsweetened,1,produits-laitiers-cup-plain-almond-barley-rice-beverage,"Boisson d’amandes nature non sucrée, enrichie",0
+exchangeProfileId,dairy-alternative-almond-vanilla,1,produits-laitiers-cup-vanilla-almond-barley-rice-beverage,"Boisson d’amandes à la vanille non sucrée, enrichie",0
+exchangeProfileId,dairy-alternative-oat-quinoa,1,produits-laitiers-oat-quinoa-beverage-unsweetened,"Boisson d’avoine et de quinoa non sucrée, enrichie",0
+exchangeProfileId,dairy-alternative-rice-unsweetened,1,produits-laitiers-rice-beverage-unsweetened,"Boisson de riz nature non sucrée, enrichie",0
+exchangeProfileId,dairy-alternative-soy-unsweetened,1,produits-laitiers-cup-soy-beverage,"Boisson de soya nature non sucrée, enrichie",0
+exchangeProfileId,dairy-alternative-soy-vanilla,1,produits-laitiers-soy-beverage-vanilla,"Boisson de soya à la vanille, enrichie",0
+exchangeProfileId,dairy-cheese-6-percent,1,produits-laitiers-le-six-pourcent-cheese,"Fromage à teneur réduite en calories, 6 % M.G.",0
+exchangeProfileId,dairy-cheese-allegro-9,1,produits-laitiers-allegro-9-cheese,Fromage Allégro 9 % blanc,0
+exchangeProfileId,dairy-cheese-swiss-light,1,produits-laitiers-light-swiss-cheese-cogruet,Fromage suisse léger,0
+exchangeProfileId,dairy-cottage-1,1,produits-laitiers-cottage-cheese,Fromage cottage 1 % M.G.,0
+exchangeProfileId,dairy-cottage-2,1,produits-laitiers-cottage-cheese-2,Fromage cottage 2 % M.G.,0
+exchangeProfileId,dairy-filtered-milk-fairlife-2,1,produits-laitiers-high-protein-filtered-milk,Lait ultrafiltré fairlife 2 %,0
+exchangeProfileId,dairy-goat-milk-whole,1,produits-laitiers-goat-milk-whole,"Lait de chèvre entier 3,25 % M.G., enrichi",0
+exchangeProfileId,dairy-greek-yogurt-0,1,produits-laitiers-plain-greek-yogurt,Yogourt grec nature sans gras,0
+exchangeProfileId,dairy-greek-yogurt-2,1,produits-laitiers-greek-yogurt,Yogourt grec nature 2 % M.G.,0
+exchangeProfileId,dairy-greek-yogurt-fruit-0,1,produits-laitiers-greek-yogurt-fat-free-fruit,Yogourt grec aux fruits sans gras,0
+exchangeProfileId,dairy-high-protein-chocolate-milk,1,produits-laitiers-protein-chocolate-milk,Lait Natrel Plus chocolat 1 % sans lactose,0
+exchangeProfileId,dairy-high-protein-milk-natrel-2,1,produits-laitiers-natrel-plus-2,Lait Natrel Plus 2 % sans lactose,0
+exchangeProfileId,dairy-kefir-fruit-low-fat,1,produits-laitiers-kefir-fruit-low-fat,Kéfir aux fruits faible en gras,0
+exchangeProfileId,dairy-kefir-plain-low-fat,1,produits-laitiers-plain-or-fruit-kefir,Kéfir nature faible en gras,0
+exchangeProfileId,dairy-milk-2,1,produits-laitiers-cup-1-2-milk,Lait 2 % M.G.,0
+exchangeProfileId,dairy-milk-skim,1,produits-laitiers-skim-milk,"Lait écrémé 0,1 % M.G.",0
+exchangeProfileId,dairy-milk-whole,1,produits-laitiers-whole-milk,"Lait entier homogénéisé 3,25 % M.G.",0
+exchangeProfileId,dairy-protein-shake-core-power-26,1,produits-laitiers-bottle-core-power-fairlife,"Boisson Core Power fairlife chocolat, 26 g de protéines",0
+exchangeProfileId,dairy-quark-fat-free,1,produits-laitiers-quark-fat-free-plain,"Fromage frais de type quark, nature, sans gras et non salé",0
+exchangeProfileId,dairy-ricotta-light,1,produits-laitiers-partly-skimmed-ricotta,Ricotta légère,0
+exchangeProfileId,dairy-skyr-0,1,produits-laitiers-plain-skyr,Skyr siggi’s nature 0 %,0
+exchangeProfileId,dairy-yogurt-fat-free-plain,1,produits-laitiers-yogurt-fat-free-plain,"Yogourt nature sans gras, 0 à 0,5 % M.G.",0
+exchangeProfileId,dairy-yogurt-low-fat-plain,1,produits-laitiers-2-yogurt-no-added-sugar,"Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",0
+exchangeProfileId,fat-avocado,1,matieres-grasses-avocado,"Avocat cru, toutes variétés commerciales",0
+exchangeProfileId,fat-butter-spread,1,matieres-grasses-non-hydrogenated-canola-margarine,Margarine molle non hydrogénée à l’huile de canola,0.01
+exchangeProfileId,fat-butter-spread,2,matieres-grasses-non-hydrogenated-margarine-or-butter,Beurre salé,0
+exchangeProfileId,fat-butter-spread,3,matieres-grasses-unsalted-butter,Beurre sans sel,0
+exchangeProfileId,fat-cheese,1,matieres-grasses-cream-cheese-plain,"Produit de fromage à la crème, nature",0.1825
+exchangeProfileId,fat-cheese,2,matieres-grasses-mozzarella-cheese,"Fromage mozzarella, 25 % M.G.",0.0629
+exchangeProfileId,fat-cheese,3,matieres-grasses-cheddar-mozzarella-cream-cheese,Fromage cheddar doux,0.0542
+exchangeProfileId,fat-chocolate,1,matieres-grasses-square-dark-chocolate-70,"Chocolat noir, 70 à 85 % de cacao",0.053
+exchangeProfileId,fat-chocolate,2,matieres-grasses-dark-chocolate-60-69,"Chocolat noir, 60 à 69 % de cacao",0.053
+exchangeProfileId,fat-coconut,1,noix-graines-shredded-coconut,"Noix de coco desséchée, non sucrée",0
+exchangeProfileId,fat-dressing,1,matieres-grasses-vegetable-oil-based-vinaigrette,Vinaigrette maison à l’huile et au vinaigre,0
+exchangeProfileId,fat-egg,1,matieres-grasses-egg-yolks,"Jaune d’œuf de poule, cuit",0.11
+exchangeProfileId,fat-egg,2,matieres-grasses-whole-egg,"Œuf de poule entier, cuit dur",0.11
+exchangeProfileId,fat-fish-oil,1,matieres-grasses-fish-oil,Huile de foie de morue,0
+exchangeProfileId,fat-legume-spread,1,noix-graines-hummus,Houmous commercial,0
+exchangeProfileId,fat-mayonnaise,1,matieres-grasses-mayonnaise,Mayonnaise régulière,0.0617
+exchangeProfileId,fat-mayonnaise,2,matieres-grasses-reduced-fat-mayonnaise,Mayonnaise à teneur réduite en gras,0.0617
+exchangeProfileId,fat-mct-oil,1,matieres-grasses-mct-oil,Huile MCT NOW Foods (C8/C10),0
+exchangeProfileId,fat-mixed-nuts,1,noix-graines-mixed-nuts-dry-roasted-unsalted,"Noix mélangées avec arachides, rôties à sec, sans sel ajouté",0
+exchangeProfileId,fat-nut-butter,1,noix-graines-natural-cashew-butter,Beurre de cajou nature,0.1298
+exchangeProfileId,fat-nut-butter,2,noix-graines-almond-butter-plain,Beurre d’amandes nature,0.0752
+exchangeProfileId,fat-nut-butter,3,noix-graines-peanut-almond-butter,Beurre d’arachide naturel,0.0371
+exchangeProfileId,fat-nut-seed,1,noix-graines-macadamia-nuts,Noix de macadamia crues,0.3552
+exchangeProfileId,fat-nut-seed,2,noix-graines-cashews,"Noix de cajou crues, non salées",0.2066
+exchangeProfileId,fat-nut-seed,3,noix-graines-hazelnuts-dried,"Noisettes séchées, non blanchies",0.1936
+exchangeProfileId,fat-nut-seed,4,noix-graines-dehydrated-pine-nuts,Pignons de pin séchés,0.183
+exchangeProfileId,fat-nut-seed,5,noix-graines-oil-roasted-pecans,Pacanes rôties à l’huile,0.1714
+exchangeProfileId,fat-oil,1,matieres-grasses-avocado-oil,Huile d’avocat,0.012
+exchangeProfileId,fat-oil,2,matieres-grasses-canola-oil,Huile de canola,0.012
+exchangeProfileId,fat-oil,3,matieres-grasses-peanut-oil,Huile d’arachide,0.0065
+exchangeProfileId,fat-oil,4,matieres-grasses-vegetable-oil,Huile d’olive,0.0065
+exchangeProfileId,fat-oil,5,matieres-grasses-virgin-coconut-oil,Huile de noix de coco,0
+exchangeProfileId,fat-olive,1,matieres-grasses-olives-1-6-2-cm,"Olives noires mûres, en conserve",0.0753
+exchangeProfileId,fat-olive,2,matieres-grasses-green-olives,"Olives vertes marinées, en conserve ou en bouteille",0.0753
+exchangeProfileId,fat-seed,1,noix-graines-oil-roasted-sunflower-seeds,"Graines de tournesol décortiquées, rôties à l’huile",0.1595
+exchangeProfileId,fat-seed,2,noix-graines-sesame-seeds,"Graines de sésame décortiquées, séchées",0.1415
+exchangeProfileId,fat-seed,3,noix-graines-hemp-seeds,Graines de chanvre décortiquées,0.0533
+exchangeProfileId,fat-seed,4,noix-graines-roasted-pumpkin-seeds,"Graines de citrouille et de courge décortiquées, rôties",0.0273
+exchangeProfileId,fat-seed,5,noix-graines-pumpkin-seeds-dried,"Graines de citrouille et de courge décortiquées, séchées",0.0136
+exchangeProfileId,fat-seed-butter,1,noix-graines-sunflower-seed-butter,Beurre de graines de tournesol,0.0622
+exchangeProfileId,fat-seed-butter,2,noix-graines-tahini,Tahini de graines de sésame rôties,0.0622
+exchangeProfileId,fat-seed-high-fibre,1,noix-graines-ground-chia-seeds,"Graines de chia séchées, moulues ou entières",0.2047
+exchangeProfileId,fat-seed-high-fibre,2,noix-graines-ground-flax-seeds,Graines de lin moulues,0.2047
+exchangeProfileId,fruit-standard,1,fruits-raspberries,"Framboises fraîches, crues",0.7959
+exchangeProfileId,fruit-standard,2,fruits-blackberries,"Mûres fraîches, crues",0.7822
+exchangeProfileId,fruit-standard,3,fruits-dried-goji-berries,Baies de goji séchées,0.3023
+exchangeProfileId,fruit-standard,4,fruits-pineapple-juice-100-pure-no-added-sugar,"Jus d'ananas 100 % pur, sans sucre ajouté",0.2707
+exchangeProfileId,fruit-standard,5,fruits-strawberries,"Fraises fraîches, crues",0.2606
+exchangeProfileId,protein-bar-high-fibre,1,autres-sources-proteinees-performance-protein-bar,Barre protéinée Quest Chocolate Brownie,0
+exchangeProfileId,protein-beef-fatty-steak,1,viandes-volaille-beef-ribeye-steak,"Bifteck de faux-filet de bœuf, maigre et gras, grillé",0
+exchangeProfileId,protein-beef-isolate,1,autres-sources-proteinees-scoop-beef-protein-isolate,Isolat de protéine de bœuf MuscleMeds Carnivor chocolat,0
+exchangeProfileId,protein-beef-lean-steak,1,viandes-volaille-beef-tenderloin-steak,"Bifteck de filet de bœuf maigre, grillé",0.0494
+exchangeProfileId,protein-beef-lean-steak,2,viandes-volaille-extra-lean-sirloin-steak,"Bifteck de haut de surlonge maigre, grillé",0.0494
+exchangeProfileId,protein-beef-standard,1,viandes-volaille-beef,"Bœuf, coupes diverses, cuit",0
+exchangeProfileId,protein-canned-chicken,1,viandes-volaille-canned-chicken-in-water-drained,"Poulet en conserve, sans bouillon",0
+exchangeProfileId,protein-canned-fish,1,poissons-fruits-mer-canned-light-tuna-oil,"Thon pâle en conserve dans l’huile, égoutté, sans sel ajouté",0.1181
+exchangeProfileId,protein-canned-fish,2,poissons-fruits-mer-canned-pink-salmon,"Saumon rose en conserve, égoutté, sans peau ni arêtes",0.1181
+exchangeProfileId,protein-canned-fish-lean,1,poissons-fruits-mer-canned-white-tuna-water,"Thon blanc en conserve dans l’eau, égoutté, sans sel ajouté",0.0641
+exchangeProfileId,protein-canned-fish-lean,2,poissons-fruits-mer-canned-tuna-in-water-drained,"Thon pâle en conserve dans l’eau, égoutté, sans sel ajouté",0.0641
+exchangeProfileId,protein-casein-micellar,1,autres-sources-proteinees-scoop-micellar-casein,"Caséine micellaire Optimum Nutrition Gold Standard, chocolat-arachide",0
+exchangeProfileId,protein-chicken-dark-meat,1,viandes-volaille-chicken-thigh,"Haut de cuisse de poulet, viande seulement, rôti",0.0494
+exchangeProfileId,protein-chicken-dark-meat,2,viandes-volaille-chicken-drumstick,"Pilon de poulet, viande seulement, rôti",0.0494
+exchangeProfileId,protein-chicken-with-skin,1,viandes-volaille-chicken-thigh-with-skin,"Haut de cuisse de poulet, viande et peau, rôti",0
+exchangeProfileId,protein-collagen-incomplete,1,autres-sources-proteinees-hydrolyzed-collagen,"Peptides de collagène Vital Proteins, sans saveur",0
+exchangeProfileId,protein-deli-ham,1,viandes-volaille-deli-meats,"Jambon cuit, tranché",0
+exchangeProfileId,protein-duck,1,viandes-volaille-duck,"Canard domestique, viande seulement, rôti",0
+exchangeProfileId,protein-egg-substitute-powder,1,autres-sources-proteinees-egg-substitute-powder,Substitut d’œuf en poudre,0
+exchangeProfileId,protein-egg-white-cooked,1,autres-sources-proteinees-egg-whites,Blancs d’œufs de poule cuits,0
+exchangeProfileId,protein-egg-white-wrap,1,autres-sources-proteinees-egglife-wrap,Wraps de blancs d’œufs Egglife Original,0
+exchangeProfileId,protein-fat-soy-nut,1,noix-graines-roasted-soy-nuts-unsalted,"Noix de soya rôties, non salées",0
+exchangeProfileId,protein-fatty-fish,1,poissons-fruits-mer-sockeye-salmon,Saumon sockeye cuit au four ou grillé,0.1708
+exchangeProfileId,protein-fatty-fish,2,poissons-fruits-mer-mackerel,Maquereau bleu cuit au four ou grillé,0.1635
+exchangeProfileId,protein-fatty-fish,3,poissons-fruits-mer-rainbow-trout,Truite arc-en-ciel d’élevage cuite au four ou grillée,0.1126
+exchangeProfileId,protein-fatty-fish,4,poissons-fruits-mer-eel,Anguille cuite au four ou grillée,0.0913
+exchangeProfileId,protein-fatty-fish,5,poissons-fruits-mer-canned-anchovies-in-water,"Anchois européens en conserve dans l’huile d’olive, égouttés",0.0785
+exchangeProfileId,protein-fish-moderate-fat,1,poissons-fruits-mer-sea-bass,Bar de mer cuit au four ou grillé,0.1316
+exchangeProfileId,protein-fish-moderate-fat,2,poissons-fruits-mer-swordfish,Espadon cuit au four ou grillé,0.1316
+exchangeProfileId,protein-game-lean,1,viandes-volaille-rabbit,Lapin domestique rôti,0.1979
+exchangeProfileId,protein-game-lean,2,viandes-volaille-moose,Orignal rôti,0.1225
+exchangeProfileId,protein-game-lean,3,viandes-volaille-horse,Cheval rôti,0.1194
+exchangeProfileId,protein-game-lean,4,viandes-volaille-elk,Wapiti rôti,0.0542
+exchangeProfileId,protein-game-lean,5,viandes-volaille-bison,Bison rôti,0.0529
+exchangeProfileId,protein-ground-beef-extra-lean,1,viandes-volaille-extra-lean-ground-beef,"Bœuf haché extra-maigre, émietté et sauté",0
+exchangeProfileId,protein-ground-beef-lean,1,viandes-volaille-lean-ground-beef,"Bœuf haché maigre, émietté et sauté",0
+exchangeProfileId,protein-ground-beef-medium,1,viandes-volaille-medium-ground-beef,"Bœuf haché mi-maigre, émietté et sauté",0
+exchangeProfileId,protein-ground-beef-regular,1,viandes-volaille-regular-ground-beef,"Bœuf haché régulier, émietté et sauté, non rincé",0
+exchangeProfileId,protein-ground-poultry,1,viandes-volaille-ground-turkey,"Dinde hachée, cuite",0.0442
+exchangeProfileId,protein-ground-poultry,2,viandes-volaille-lean-ground-chicken,"Poulet haché maigre, cuit",0.0442
+exchangeProfileId,protein-ground-veal,1,viandes-volaille-ground-veal,"Veau haché, grillé",0
+exchangeProfileId,protein-jerky,1,viandes-volaille-natural-beef-jerky,Jerky de bœuf haché et formé,0
+exchangeProfileId,protein-lamb,1,viandes-volaille-lamb,"Jarret d’agneau canadien maigre, braisé",0
+exchangeProfileId,protein-lean-animal,1,viandes-volaille-chicken-breast,"Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",0
+exchangeProfileId,protein-lean-fish,1,poissons-fruits-mer-sole,"Poisson plat (sole, plie ou flet) cuit au four ou grillé",0.1721
+exchangeProfileId,protein-lean-fish,2,poissons-fruits-mer-turbot,Turbot européen cuit au four ou grillé,0.1649
+exchangeProfileId,protein-lean-fish,3,poissons-fruits-mer-tilapia,Tilapia cuit au four ou grillé,0.1407
+exchangeProfileId,protein-lean-fish,4,poissons-fruits-mer-tuna,Thon à nageoires jaunes cuit au four ou grillé,0.1102
+exchangeProfileId,protein-lean-fish,5,poissons-fruits-mer-haddock,Aiglefin cuit au four ou grillé,0.0829
+exchangeProfileId,protein-liquid-egg-white,1,autres-sources-proteinees-liquid-egg-whites-burnbrae,Blancs d’œufs liquides Naturegg Simply Egg Whites Free Run,0
+exchangeProfileId,protein-mollusk,1,poissons-fruits-mer-oysters,"Huîtres de l’Est d’élevage, crues",0.2826
+exchangeProfileId,protein-mollusk,2,poissons-fruits-mer-mussels,Moules bleues bouillies ou cuites à la vapeur,0.2006
+exchangeProfileId,protein-mollusk,3,poissons-fruits-mer-canned-clams,"Palourdes en conserve, solides égouttés",0.0037
+exchangeProfileId,protein-mollusk-lean,1,poissons-fruits-mer-octopus,Poulpe bouilli ou cuit à la vapeur,0.2173
+exchangeProfileId,protein-mollusk-lean,2,poissons-fruits-mer-snail,"Escargot cru, chair comestible",0.1345
+exchangeProfileId,protein-mollusk-lean,3,poissons-fruits-mer-scallop,Pétoncles cuits à la vapeur,0.04
+exchangeProfileId,protein-natto,1,autres-sources-proteinees-fermented-natto,Natto de soya fermenté,0
+exchangeProfileId,protein-pea-isolate,1,autres-sources-proteinees-now-pea-protein-vanilla-toffee,"Protéine de pois NOW Sports, vanille caramel",0
+exchangeProfileId,protein-plant-edamame,1,noix-graines-cup-soybeans-or-edamame,Edamames bouillis et égouttés,0
+exchangeProfileId,protein-plant-soy-generic,1,autres-sources-proteinees-scoop-plant-protein,"Poudre protéinée végétale à base de soya, profil CNF",0
+exchangeProfileId,protein-pork-lean,1,viandes-volaille-pork-centre-chop,"Côtelette de porc du centre, maigre, grillée",0.0987
+exchangeProfileId,protein-pork-lean,2,viandes-volaille-pork-tenderloin,"Filet de porc maigre, rôti",0.0987
+exchangeProfileId,protein-pork-ribs,1,viandes-volaille-pork,"Côtes de dos de porc, maigre et gras, rôties",0
+exchangeProfileId,protein-pork-standard,1,viandes-volaille-pork-shoulder,"Épaule de porc, palette, maigre, braisée",0
+exchangeProfileId,protein-powdered-peanut,1,autres-sources-proteinees-5-tbsp-pb2,PB2 Original en poudre,0
+exchangeProfileId,protein-processed-meat-high-fat,1,viandes-volaille-bacon-cooked,Bacon de porc cuit au four,0.2068
+exchangeProfileId,protein-processed-meat-high-fat,2,viandes-volaille-sausage,"Saucisse italienne de porc, cuite",0.2068
+exchangeProfileId,protein-processed-poultry,1,viandes-volaille-turkey-bacon,Bacon de dinde cuit,0
+exchangeProfileId,protein-processed-seafood,1,poissons-fruits-mer-surimi,Surimi de poisson,0
+exchangeProfileId,protein-ready-to-drink,1,autres-sources-proteinees-core-power-fairlife,"fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",0.0325
+exchangeProfileId,protein-ready-to-drink,2,autres-sources-proteinees-core-power-fairlife-elite-vanilla-42g,"fairlife Core Power Elite vanille, 42 g de protéines, bouteille 414 ml",0.0325
+exchangeProfileId,protein-rice,1,autres-sources-proteinees-now-sprouted-brown-rice-protein,Protéine de riz brun germé NOW Sports,0
+exchangeProfileId,protein-rtd-muscle-milk,1,autres-sources-proteinees-ready-to-drink-protein-shake,"Boisson protéinée Muscle Milk chocolat, prête à boire",0
+exchangeProfileId,protein-rtd-premier,1,autres-sources-proteinees-premier-protein-chocolate-peanut-butter,Boisson Premier Protein chocolat-arachide,0
+exchangeProfileId,protein-seafood-specialty,1,poissons-fruits-mer-caviar,"Caviar noir ou rouge, granuleux",0
+exchangeProfileId,protein-seitan-branded,1,autres-sources-proteinees-seitan,Rôti de seitan GUSTA Classico,0
+exchangeProfileId,protein-shellfish-lean,1,poissons-fruits-mer-lobster,Homard d’Amérique bouilli ou cuit à la vapeur,0.1092
+exchangeProfileId,protein-shellfish-lean,2,poissons-fruits-mer-shrimp,Crevettes bouillies ou cuites à la vapeur,0.0527
+exchangeProfileId,protein-shellfish-lean,3,poissons-fruits-mer-crab,Crabe des neiges bouilli ou cuit à la vapeur,0.0078
+exchangeProfileId,protein-smoked-fish,1,poissons-fruits-mer-smoked-chinook-salmon,Saumon quinnat fumé,0
+exchangeProfileId,protein-smoked-turkey,1,viandes-volaille-extra-lean-smoked-turkey,"Dinde fumée cuite, sans peau ni os",0
+exchangeProfileId,protein-soy-isolate,1,autres-sources-proteinees-soy-protein-isolate,Isolat de protéine de soya préparé avec sodium,0
+exchangeProfileId,protein-tempeh,1,autres-sources-proteinees-tempeh,Tempeh fermenté,0
+exchangeProfileId,protein-tempeh-cooked,1,autres-sources-proteinees-cooked-tempeh,Tempeh cuit,0
+exchangeProfileId,protein-tofu-extra-firm,1,autres-sources-proteinees-extra-firm-tofu,Tofu régulier ferme ou extra-ferme,0
+exchangeProfileId,protein-tofu-firm,1,autres-sources-proteinees-firm-tofu,Tofu régulier ferme préparé avec sulfate de calcium,0
+exchangeProfileId,protein-tofu-silken-firm,1,autres-sources-proteinees-silken-firm-tofu,"Tofu soyeux ferme, longue conservation",0
+exchangeProfileId,protein-turkey,1,viandes-volaille-turkey,"Dinde, viande seulement, rôtie",0
+exchangeProfileId,protein-veal,1,viandes-volaille-veal-cutlet,"Escalope de veau de grain, sautée",0
+exchangeProfileId,protein-whey-generic,1,autres-sources-proteinees-scoop-whey-protein,"Poudre protéinée à base de lactosérum, profil CNF",0
+exchangeProfileId,protein-whey-hydrolysate,1,autres-sources-proteinees-optimum-hydrowhey-strawberry,"Hydrolysat de lactosérum Optimum Nutrition Platinum Hydrowhey, fraise",0
+exchangeProfileId,protein-whey-isolate,1,autres-sources-proteinees-scoop-whey-isolate,"Isolat de lactosérum Dymatize ISO100, vanille gourmet",0
+exchangeProfileId,starch-bread-bagel,1,feculents-bagel,Bagel nature,0
+exchangeProfileId,starch-bread-bun,1,feculents-hamburger-hot-dog-bun,Pain nature à hamburger ou à hot-dog,0
+exchangeProfileId,starch-bread-english-muffin,1,feculents-english-muffin-hot-dog-or-hamburger-bun,Muffin anglais nature,0
+exchangeProfileId,starch-bread-ezekiel-original,1,feculents-slice-ezekiel-sprouted-bread,"Pain Food For Life Ezekiel 4:9 Original, grains entiers germés",0
+exchangeProfileId,starch-bread-pita-whole-wheat,1,feculents-10-2-cm-wheat-pita,Petit pain pita de blé entier,0
+exchangeProfileId,starch-bread-rye,1,feculents-rye-bread,Pain de seigle,0
+exchangeProfileId,starch-bread-sprouted-generic,1,feculents-slice-sprouted-bread,Pain de blé germé commercial,0
+exchangeProfileId,starch-bread-whole-wheat,1,feculents-slice-bread,Pain de blé entier commercial,0
+exchangeProfileId,starch-breakfast-cereal-cheerios,1,feculents-lightly-sweetened-breakfast-cereal,Céréales Cheerios originales,0
+exchangeProfileId,starch-chestnut,1,noix-graines-roasted-chestnuts,Châtaignes européennes rôties,0
+exchangeProfileId,starch-cooked-grain,1,feculents-cooked-quinoa,"Quinoa blanc cuit dans l'eau, sans huile ajoutée",0
+exchangeProfileId,starch-cooked-grain-barley,1,feculents-cooked-barley,Orge perlé cuit,0
+exchangeProfileId,starch-cooked-grain-buckwheat,1,feculents-cooked-buckwheat,"Gruau de sarrasin rôti, cuit",0
+exchangeProfileId,starch-cooked-grain-bulgur,1,feculents-cooked-bulgur,Bulgur cuit,0
+exchangeProfileId,starch-cooked-grain-couscous,1,feculents-cooked-couscous,Couscous cuit,0
+exchangeProfileId,starch-cooked-grain-millet,1,feculents-cooked-millet,Millet cuit,0
+exchangeProfileId,starch-corn,1,feculents-boiled-drained-corn,"Maïs jaune sucré, bouilli et égoutté",0
+exchangeProfileId,starch-fat-granola,1,noix-graines-homemade-protein-granola,Granola maison,0
+exchangeProfileId,starch-legume-black-bean,1,feculents-cooked-black-beans,"Haricots noirs mûrs, bouillis",0
+exchangeProfileId,starch-legume-chickpea,1,feculents-cooked-legumes,"Pois chiches mûrs, bouillis",0
+exchangeProfileId,starch-legume-lentil,1,feculents-cooked-beluga-lentils,"Lentilles mûres, bouillies",0
+exchangeProfileId,starch-oatmeal-instant-dry,1,feculents-plain-oatmeal-uncooked,"Gruau instantané nature, sec",0
+exchangeProfileId,starch-oatmeal-prepared,1,feculents-rolled-oats,"Gruau instantané nature, préparé",0
+exchangeProfileId,starch-oats-dry,1,feculents-rolled-oats-uncooked,Avoine sèche,0
+exchangeProfileId,starch-pasta-enriched,1,feculents-cooked-pasta,"Pâtes enrichies cuites, macaroni ou spaghetti",0
+exchangeProfileId,starch-pasta-whole-wheat,1,feculents-cooked-whole-wheat-pasta,Pâtes de blé entier cuites,0
+exchangeProfileId,starch-potato-boiled,1,feculents-boiled-potato,Pomme de terre bouillie sans pelure,0
+exchangeProfileId,starch-potato-mashed-milk,1,feculents-mashed-potato-with-milk,Purée de pommes de terre maison préparée avec lait 2 %,0
+exchangeProfileId,starch-rice-brown,1,feculents-cooked-brown-rice,"Riz brun à grain moyen, cuit",0
+exchangeProfileId,starch-rice-cake,1,feculents-rice-cakes,"Galettes de riz brun nature, sans sel",0
+exchangeProfileId,starch-rice-white,1,feculents-cooked-rice,"Riz blanc à grain moyen, cuit",0
+exchangeProfileId,starch-root-jerusalem-artichoke,1,feculents-jerusalem-artichoke,Topinambour cru,0
+exchangeProfileId,starch-sweet-potato,1,feculents-medium-sweet-potato,"Patate douce cuite au four, pelée",0
+exchangeProfileId,starch-tortilla-corn,1,feculents-corn-tortilla,Tortilla de maïs sans sel,0
+exchangeProfileId,starch-tortilla-flour,1,feculents-flour-tortilla,Tortilla de farine nature,0
+exchangeProfileId,vegetable-aromatic,1,legumes-onion,"Oignon frais, cru",0.2712
+exchangeProfileId,vegetable-aromatic,2,legumes-garlic,"Ail frais, cru",0.0535
+exchangeProfileId,vegetable-aromatic,3,legumes-boiled-drained-leek,Poireau bouilli et égoutté,0.0435
+exchangeProfileId,vegetable-aromatic,4,legumes-shallot,"Échalote fraîche, crue",0.0429
+exchangeProfileId,vegetable-broth,1,legumes-homemade-bone-broth,"Bouillon de légumes prêt à servir, faible en sodium",0
+exchangeProfileId,vegetable-cruciferous,1,legumes-brussels-sprouts,Choux de Bruxelles bouillis et égouttés,0.0827
+exchangeProfileId,vegetable-cruciferous,2,legumes-broccoli,"Brocoli frais, cru",0.0635
+exchangeProfileId,vegetable-cruciferous,3,legumes-cauliflower,"Chou-fleur frais, cru",0.0384
+exchangeProfileId,vegetable-higher-carb,1,legumes-artichoke,Artichaut globe bouilli et égoutté,0.9353
+exchangeProfileId,vegetable-higher-carb,2,legumes-snow-peas,"Pois mange-tout frais, crus",0.2642
+exchangeProfileId,vegetable-higher-carb,3,legumes-boiled-drained-turnip,Navet bouilli et égoutté,0.2534
+exchangeProfileId,vegetable-higher-carb,4,legumes-squash,Courge musquée cuite au four,0.205
+exchangeProfileId,vegetable-higher-carb,5,legumes-carrots,"Carotte fraîche, crue",0.1744
+exchangeProfileId,vegetable-juice,1,legumes-low-sodium-vegetable-juice,Cocktail de jus de légumes faible en sodium,0.0336
+exchangeProfileId,vegetable-juice,2,legumes-vegetable-juice,Cocktail de jus de légumes régulier,0.0336
+exchangeProfileId,vegetable-leafy,1,legumes-kale,"Chou kale frais, cru",0.53
+exchangeProfileId,vegetable-leafy,2,legumes-spinach,"Épinards frais, crus",0.1683
+exchangeProfileId,vegetable-leafy,3,legumes-romaine-lettuce,"Laitue romaine fraîche, crue",0.01
+exchangeProfileId,vegetable-mushroom,1,legumes-grilled-portobello-mushroom,"Champignon portobello grillé, sans gras ajouté",0.8027
+exchangeProfileId,vegetable-mushroom,2,legumes-cremini-mushrooms,"Champignons cremini frais, crus",0.0848
+exchangeProfileId,vegetable-mushroom,3,legumes-mushrooms,"Champignons blancs frais, crus",0.04
+exchangeProfileId,vegetable-standard,1,legumes-asparagus,Asperges bouillies et égouttées,0.9141
+exchangeProfileId,vegetable-standard,2,legumes-cooked-spaghetti-squash,Courge spaghetti cuite et égouttée,0.547
+exchangeProfileId,vegetable-standard,3,legumes-fennel,"Bulbe de fenouil frais, cru",0.2882
+exchangeProfileId,vegetable-standard,4,legumes-celery,"Céleri frais, cru",0.2847
+exchangeProfileId,vegetable-standard,5,legumes-green-red-yellow-bell-pepper,"Poivron vert doux, frais et cru",0.1851

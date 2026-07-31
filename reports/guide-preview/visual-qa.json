@@ -1,0 +1,446 @@
+{
+  "generatedAt": "2026-07-30T01:25:20.093Z",
+  "images": [
+    {
+      "page": "landscape-fr",
+      "images": [
+        {
+          "src": "./assets/kinetics-logo.png",
+          "complete": true,
+          "naturalWidth": 2238,
+          "naturalHeight": 1920,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "page": "mobile-bilingual",
+      "images": [
+        {
+          "src": "./assets/kinetics-logo.png",
+          "complete": true,
+          "naturalWidth": 2238,
+          "naturalHeight": 1920,
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "section": "noix",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "noix",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "matiereGrasse",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "matiereGrasse",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "legumes",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "legumes",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "fruits",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "fruits",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "poissons",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "poissons",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "viandes",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "viandes",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "autresProteines",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "autresProteines",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "feculents",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "feculents",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "laitier",
+      "mode": "landscape",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "section": "laitier",
+      "mode": "mobile",
+      "checks": {
+        "overflow": {
+          "pass": true,
+          "scrollWidth": 420,
+          "clientWidth": 420
+        },
+        "truncatedCells": {
+          "pass": true,
+          "count": 0
+        },
+        "orphanHeader": {
+          "pass": true
+        },
+        "logoInDocument": {
+          "pass": true
+        }
+      },
+      "status": "PASS"
+    }
+  ],
+  "pdfOrphans": {
+    "mobile": {
+      "pageCount": 24,
+      "failures": []
+    },
+    "landscape": {
+      "pageCount": 12,
+      "failures": []
+    }
+  },
+  "headerReadability": [
+    {
+      "mode": "mobile",
+      "tableCount": 0,
+      "thinHeaderCount": 0,
+      "pass": true
+    }
+  ],
+  "overall": "PASS"
+}

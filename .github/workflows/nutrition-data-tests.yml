@@ -15,6 +15,7 @@ on:
       - batch/other-protein-sources-complete-individual-validation
       - batch/dairy-alternatives-complete-individual-validation
       - batch/starches-complete-individual-validation
+      - analysis/exchange-profiles-and-guide-preview
       - main
       - master
   pull_request:
@@ -440,6 +441,15 @@ jobs:
       - name: Run final ecosystem closure audit
         run: npm run nutrition:final-audit
 
+      - name: Analyze exchange profiles
+        run: npm run nutrition:profiles:analyze
+
+      - name: Build guide preview
+        run: npm run guide:preview
+
+      - name: Verify guide preview
+        run: npm run guide:preview:verify
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -450,6 +460,8 @@ jobs:
             ci-batch-sandbox/reports/
             reports/batches/
             reports/nutrition-source-of-truth-final-audit/
+            reports/exchange-profile-decision/
+            reports/guide-preview/
             reports/nutrition-pilot-*.json
             reports/nutrition-pilot-*.html
           if-no-files-found: ignore

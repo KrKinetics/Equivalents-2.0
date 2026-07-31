@@ -1,0 +1,549 @@
+{
+  "A": {
+    "id": "legacy_compatibility",
+    "advantages": [
+      "Conserve le comportement actuel du calculateur",
+      "Aucune migration de plans existants",
+      "Décrit clairement les cibles comme règles d’affaires (pas comme moyennes statistiques)"
+    ],
+    "risks": [
+      "Les cibles historiques divergent des médianes/médoïdes vérifiés",
+      "108 aliment(s) hors tolérance historique au total (tous groupes)",
+      "Risque de maintenir une équivalence trop large sur des groupes hétérogènes"
+    ],
+    "clientImpact": "Aucun changement immédiat pour les clients tant que le calculateur reste sur ces cibles",
+    "existingPlansImpact": "Plans inchangés",
+    "technicalComplexity": "faible",
+    "calculatorCompatibility": "maximale",
+    "pdfCompatibility": "compatible avec aperçu SoT (sans ligne moyenne non approuvée)",
+    "migrationsNeeded": [
+      "Documenter que MOYENNES = règles d’affaires",
+      "Ne pas les présenter comme moyennes statistiques"
+    ],
+    "testsNeeded": [
+      "régression calculateur",
+      "comparaison PDF FR/EN",
+      "garde de périmètre nutritionnelle"
+    ],
+    "cursorRecommendation": "RECOMMANDATION CURSOR — utile comme solution de repli courte durée, pas comme modèle final si l’on veut refléter les 287 valeurs vérifiées; ceci n’est pas une décision.",
+    "proposedValues": {
+      "dairy": {
+        "proteinG": 7,
+        "carbsG": 10,
+        "fiberG": null,
+        "fatG": 2,
+        "declaredKcal": null
+      },
+      "fat": {
+        "proteinG": 1,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 6,
+        "declaredKcal": null
+      },
+      "fruit": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": null,
+        "fatG": 2,
+        "declaredKcal": null
+      },
+      "protein": {
+        "proteinG": 9,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 2,
+        "declaredKcal": null
+      },
+      "starch": {
+        "proteinG": 3,
+        "carbsG": 18,
+        "fiberG": null,
+        "fatG": 1,
+        "declaredKcal": null
+      },
+      "vegetable": {
+        "proteinG": 2,
+        "carbsG": 7,
+        "fiberG": null,
+        "fatG": 0,
+        "declaredKcal": null
+      },
+      "whey": {
+        "proteinG": 22,
+        "carbsG": 2,
+        "fiberG": null,
+        "fatG": 2,
+        "declaredKcal": null
+      }
+    },
+    "typicalDayImpact": {
+      "portions": {
+        "protein": 4,
+        "starch": 4,
+        "vegetable": 3,
+        "fruit": 2,
+        "dairy": 2,
+        "fat": 3,
+        "whey": 0
+      },
+      "totals": {
+        "proteinG": 73,
+        "carbsG": 149,
+        "fiberG": null,
+        "fatG": 38,
+        "declaredKcal": null
+      },
+      "unavailable": [
+        "protein.fiberG",
+        "protein.declaredKcal",
+        "starch.fiberG",
+        "starch.declaredKcal",
+        "vegetable.fiberG",
+        "vegetable.declaredKcal",
+        "fruit.fiberG",
+        "fruit.declaredKcal",
+        "dairy.fiberG",
+        "dairy.declaredKcal",
+        "fat.fiberG",
+        "fat.declaredKcal"
+      ]
+    },
+    "label": "Candidat A — Legacy compatibility",
+    "dayVsLegacy": {
+      "proteinG": 0,
+      "carbsG": 0,
+      "fiberG": null,
+      "fatG": 0,
+      "declaredKcal": null
+    }
+  },
+  "B": {
+    "id": "verified_medians",
+    "advantages": [
+      "Robuste aux valeurs extrêmes",
+      "Fondé uniquement sur les aliments vérifiés",
+      "Politique d’arrondi documentée (P/L/F à 0,1 g; G et kcal entiers)"
+    ],
+    "risks": [
+      "Profil synthétique pouvant ne correspondre à aucun aliment réel",
+      "Changement de cibles pour le calculateur et les plans futurs"
+    ],
+    "clientImpact": "Les portions « moyennes » affichées/calculées changeraient selon les écarts ci-dessous",
+    "existingPlansImpact": "Écart journée type vs legacy: P 1 g · G -14 g · L -7.3 g · — kcal (médiane − legacy)",
+    "technicalComplexity": "moyenne",
+    "calculatorCompatibility": "requiert mise à jour contrôlée des MOYENNES après décision humaine",
+    "pdfCompatibility": "compatible avec aperçu SoT (sans ligne moyenne non approuvée)",
+    "migrationsNeeded": [
+      "Mettre à jour MOYENNES après approbation",
+      "Recalculer plans types",
+      "Mettre à jour textes du guide"
+    ],
+    "testsNeeded": [
+      "régression calculateur",
+      "comparaison PDF FR/EN",
+      "garde de périmètre nutritionnelle"
+    ],
+    "cursorRecommendation": "RECOMMANDATION CURSOR — bon compromis statistique si l’on accepte un profil synthétique; ceci n’est pas une décision.",
+    "proposedValues": {
+      "dairy": {
+        "proteinG": 8.5,
+        "carbsG": 6,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "declaredKcal": 80
+      },
+      "fat": {
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 0.7,
+        "fatG": 5.3,
+        "declaredKcal": 58
+      },
+      "fruit": {
+        "proteinG": 0.9,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "declaredKcal": 60
+      },
+      "protein": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "declaredKcal": 57
+      },
+      "starch": {
+        "proteinG": 2.8,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "declaredKcal": 91
+      },
+      "vegetable": {
+        "proteinG": 1.1,
+        "carbsG": 5,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "declaredKcal": 22
+      },
+      "whey": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "declaredKcal": null
+      }
+    },
+    "typicalDayImpact": {
+      "portions": {
+        "protein": 4,
+        "starch": 4,
+        "vegetable": 3,
+        "fruit": 2,
+        "dairy": 2,
+        "fat": 3,
+        "whey": 0
+      },
+      "totals": {
+        "proteinG": 74,
+        "carbsG": 135,
+        "fiberG": 18.8,
+        "fatG": 30.7,
+        "declaredKcal": 1112
+      },
+      "unavailable": []
+    },
+    "label": "Candidat B — Verified medians",
+    "roundingPolicy": {
+      "proteinG": 1,
+      "fatG": 1,
+      "fiberG": 1,
+      "carbsG": 0,
+      "declaredKcal": 0,
+      "method": "roundHalfAwayFromZero"
+    },
+    "dayVsLegacy": {
+      "proteinG": 1,
+      "carbsG": -14,
+      "fiberG": null,
+      "fatG": -7.3,
+      "declaredKcal": null
+    }
+  },
+  "C": {
+    "id": "verified_medoids",
+    "advantages": [
+      "Chaque cible correspond à un aliment réel",
+      "Évite un profil synthétique inexistant",
+      "Sélection déterministe (distance normalisée au vecteur médian)"
+    ],
+    "risks": [
+      "Le médoïde peut changer lors d’ajouts futurs",
+      "Un seul aliment peut mal représenter un groupe hétérogène"
+    ],
+    "clientImpact": "Cibles ancrées dans un aliment représentatif nommé",
+    "existingPlansImpact": "Écart journée type vs legacy: P 1.5 g · G -19 g · L -6.4 g · — kcal (médoïde − legacy)",
+    "technicalComplexity": "moyenne",
+    "calculatorCompatibility": "requiert mapping aliment → cible groupe",
+    "pdfCompatibility": "compatible avec aperçu SoT (sans ligne moyenne non approuvée)",
+    "migrationsNeeded": [
+      "Publier l’aliment représentatif par groupe",
+      "Mettre à jour MOYENNES après approbation"
+    ],
+    "testsNeeded": [
+      "régression calculateur",
+      "comparaison PDF FR/EN",
+      "garde de périmètre nutritionnelle"
+    ],
+    "cursorRecommendation": "RECOMMANDATION CURSOR — préférable à B lorsque la traçabilité « aliment réel » est prioritaire; ceci n’est pas une décision.",
+    "proposedValues": {
+      "dairy": {
+        "proteinG": 9,
+        "carbsG": 5,
+        "fiberG": 0,
+        "fatG": 2.5,
+        "declaredKcal": 80
+      },
+      "fat": {
+        "proteinG": 1.2,
+        "carbsG": 1,
+        "fiberG": 0.5,
+        "fatG": 5.2,
+        "declaredKcal": 52
+      },
+      "fruit": {
+        "proteinG": 1,
+        "carbsG": 15,
+        "fiberG": 2,
+        "fatG": 0.2,
+        "declaredKcal": 60
+      },
+      "protein": {
+        "proteinG": 9.3,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "declaredKcal": 55
+      },
+      "starch": {
+        "proteinG": 2.6,
+        "carbsG": 18,
+        "fiberG": 2.2,
+        "fatG": 0.8,
+        "declaredKcal": 89
+      },
+      "vegetable": {
+        "proteinG": 1.1,
+        "carbsG": 5,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "declaredKcal": 22
+      },
+      "whey": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "declaredKcal": null
+      }
+    },
+    "typicalDayImpact": {
+      "portions": {
+        "protein": 4,
+        "starch": 4,
+        "vegetable": 3,
+        "fruit": 2,
+        "dairy": 2,
+        "fat": 3,
+        "whey": 0
+      },
+      "totals": {
+        "proteinG": 74.5,
+        "carbsG": 130,
+        "fiberG": 18.8,
+        "fatG": 31.6,
+        "declaredKcal": 1078
+      },
+      "unavailable": []
+    },
+    "label": "Candidat C — Verified medoids",
+    "representativeFoods": {
+      "dairy": {
+        "id": "produits-laitiers-natrel-plus-2",
+        "nameFr": "Lait Natrel Plus 2 % sans lactose",
+        "nameEn": "Natrel Plus 2% lactose-free milk",
+        "nutrients": {
+          "proteinG": 9,
+          "carbsG": 4.5,
+          "fiberG": 0,
+          "fatG": 2.5,
+          "declaredKcal": 80
+        }
+      },
+      "fat": {
+        "id": "noix-graines-walnuts",
+        "nameFr": "Noix de Grenoble",
+        "nameEn": "English or Persian walnuts",
+        "nutrients": {
+          "proteinG": 1.2,
+          "carbsG": 1.1,
+          "fiberG": 0.5,
+          "fatG": 5.2,
+          "declaredKcal": 52
+        }
+      },
+      "fruit": {
+        "id": "fruits-cherries-with-pits",
+        "nameFr": "Cerises douces fraîches, crues",
+        "nameEn": "Sweet cherries, fresh, raw",
+        "nutrients": {
+          "proteinG": 1,
+          "carbsG": 15.2,
+          "fiberG": 2,
+          "fatG": 0.2,
+          "declaredKcal": 60
+        }
+      },
+      "protein": {
+        "id": "poissons-fruits-mer-turbot",
+        "nameFr": "Turbot européen cuit au four ou grillé",
+        "nameEn": "European turbot, baked or broiled",
+        "nutrients": {
+          "proteinG": 9.3,
+          "carbsG": 0,
+          "fiberG": 0,
+          "fatG": 1.7,
+          "declaredKcal": 55
+        }
+      },
+      "starch": {
+        "id": "feculents-cooked-millet",
+        "nameFr": "Millet cuit",
+        "nameEn": "Cooked millet",
+        "nutrients": {
+          "proteinG": 2.6,
+          "carbsG": 17.8,
+          "fiberG": 2.2,
+          "fatG": 0.8,
+          "declaredKcal": 89
+        }
+      },
+      "vegetable": {
+        "id": "legumes-tomato-6-6-cm-in-diameter",
+        "nameFr": "Tomate rouge mûre, fraîche et crue",
+        "nameEn": "Red ripe tomato, fresh and raw",
+        "nutrients": {
+          "proteinG": 1.1,
+          "carbsG": 4.8,
+          "fiberG": 1.5,
+          "fatG": 0.2,
+          "declaredKcal": 22
+        }
+      },
+      "whey": null
+    },
+    "dayVsLegacy": {
+      "proteinG": 1.5,
+      "carbsG": -19,
+      "fiberG": null,
+      "fatG": -6.4,
+      "declaredKcal": null
+    }
+  },
+  "D": {
+    "id": "exchange_profile_rollup",
+    "advantages": [
+      "Utilise exchangeProfileId comme profil réel d’équivalence",
+      "Évite d’équivaloir noix/huiles, maigre/gras, laitiers/fromages/boissons, whey/collagène/barres, légumineuses/céréales",
+      "Pont explicite vers les groupes calculateur (pas d’explosion inutile d’options UI)"
+    ],
+    "risks": [
+      "Complexité métier et produit plus élevée",
+      "Nécessite des décisions humaines par pont"
+    ],
+    "clientImpact": "Meilleure fidélité nutritionnelle; certaines options du calculateur pourraient être affinées",
+    "existingPlansImpact": "Plans existants stables jusqu’à migration explicite; nouveaux plans plus précis",
+    "technicalComplexity": "élevée",
+    "calculatorCompatibility": "pont requis (groupes larges + exceptions)",
+    "pdfCompatibility": "guide peut rester par displayCategory; moyennes seulement si profil approuvé",
+    "migrationsNeeded": [
+      "Distinguer noix vs huiles",
+      "Protéines maigres vs grasses",
+      "Laitiers vs fromages vs boissons végétales",
+      "Whey vs collagène vs barres",
+      "Légumineuses vs féculents céréaliers"
+    ],
+    "testsNeeded": [
+      "tests de pont calculateur",
+      "non-équivalence des sous-profils",
+      "régression PDF",
+      "garde de périmètre"
+    ],
+    "cursorRecommendation": "RECOMMANDATION CURSOR — modèle principal recommandé: conserver les groupes calculateur comme pont UI, mais n’approuver aucune cible unique sur les sous-profils signalés non équivalents; ceci n’est pas une décision approuvée.",
+    "proposedValues": {
+      "dairy": {
+        "proteinG": 8.5,
+        "carbsG": 6,
+        "fiberG": 0,
+        "fatG": 2.3,
+        "declaredKcal": 80
+      },
+      "fat": {
+        "proteinG": 1.3,
+        "carbsG": 2,
+        "fiberG": 0.7,
+        "fatG": 5.3,
+        "declaredKcal": 58
+      },
+      "fruit": {
+        "proteinG": 0.9,
+        "carbsG": 15,
+        "fiberG": 2.1,
+        "fatG": 0.2,
+        "declaredKcal": 60
+      },
+      "protein": {
+        "proteinG": 9.2,
+        "carbsG": 0,
+        "fiberG": 0,
+        "fatG": 1.7,
+        "declaredKcal": 57
+      },
+      "starch": {
+        "proteinG": 2.8,
+        "carbsG": 18,
+        "fiberG": 2,
+        "fatG": 0.6,
+        "declaredKcal": 91
+      },
+      "vegetable": {
+        "proteinG": 1.1,
+        "carbsG": 5,
+        "fiberG": 1.5,
+        "fatG": 0.2,
+        "declaredKcal": 22
+      },
+      "whey": {
+        "proteinG": null,
+        "carbsG": null,
+        "fiberG": null,
+        "fatG": null,
+        "declaredKcal": null
+      }
+    },
+    "typicalDayImpact": {
+      "portions": {
+        "protein": 4,
+        "starch": 4,
+        "vegetable": 3,
+        "fruit": 2,
+        "dairy": 2,
+        "fat": 3,
+        "whey": 0
+      },
+      "totals": {
+        "proteinG": 74,
+        "carbsG": 135,
+        "fiberG": 18.8,
+        "fatG": 30.7,
+        "declaredKcal": 1112
+      },
+      "unavailable": []
+    },
+    "label": "Candidat D — Exchange profile rollup",
+    "nonEquivalentBridges": [
+      "nuts_vs_oils",
+      "lean_vs_fatty_protein",
+      "dairy_cheese_plant_drinks",
+      "whey_collagen_bars",
+      "legumes_vs_cereal_starches"
+    ],
+    "proposedCalculatorBridge": {
+      "keepGroups": [
+        "protein",
+        "starch",
+        "vegetable",
+        "fruit",
+        "dairy",
+        "fat",
+        "whey"
+      ],
+      "doNotShareSingleTargetAcross": [
+        "fat-nut-seed vs fat-oil/fat-butter",
+        "protein lean vs fatty cuts",
+        "dairy milk/yogurt vs cheese vs plant drinks",
+        "protein-whey* vs collagen vs bars",
+        "starch-legume vs cereal starches"
+      ]
+    },
+    "dayVsLegacy": {
+      "proteinG": 1,
+      "carbsG": -14,
+      "fiberG": null,
+      "fatG": -7.3,
+      "declaredKcal": null
+    }
+  }
+}
