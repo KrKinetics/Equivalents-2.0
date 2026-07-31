@@ -1,0 +1,145 @@
+MANDAT MAÎTRE — RESTAURATION COMPLÈTE DU CALCULATEUR COACH KR KINETICS
+
+IMPORTANT
+Ce travail n'est pas une nouvelle maquette. Le fichier references/calculateur-coach-original.html est le produit de référence. Il faut restaurer son parcours coach complet, conserver ses outils utiles et connecter proprement la nouvelle source nutritionnelle vérifiée.
+
+BASE ET SÉCURITÉ
+1. Partir de origin/refactor/nutrition-source-of-truth.
+2. Créer la branche restore/full-coach-calculator.
+3. Garder la PR en brouillon. Ne pas fusionner.
+4. Vérifier l'arbre propre avant de commencer.
+5. Calculer et consigner les hashes des fichiers protégés avant et après.
+6. Ne modifier aucune valeur des 287 aliments, aucune preuve nutritionnelle ni aucune règle approuvée pour faciliter l'interface.
+
+RÉFÉRENCES OBLIGATOIRES
+- references/calculateur-coach-original.html : golden master fonctionnel et visuel.
+- references/plan-client-reference-xavier.pdf : référence de sortie client.
+- references/logo-kr-kinetics-horizontal.png : logo horizontal officiel.
+- references/logo-kr-monogramme.png : monogramme officiel.
+- KR_KINETICS_SPEC_RESTAURATION_CALCULATEUR_COACH.json : contrat fonctionnel.
+- CHECKLIST_PARITE_FONCTIONNELLE.md : critères bloquants.
+
+DÉCISION PRODUIT
+Le produit est un outil privé du coach. Le client ne navigue jamais dans le calculateur. Le client reçoit seulement :
+1. son plan alimentaire PDF détaillé en PORTIONS;
+2. le tableau des équivalents alimentaires.
+
+La version candidate simplifiée et sa page de comparaison A/D-A ne sont pas la référence d'expérience. Tu peux réutiliser des modules internes fiables, des tests, la banque de 287 aliments et les travaux de rollup, mais tu ne dois pas reprendre l'interface simplifiée comme point de départ.
+
+ÉTAPE 1 — INVENTAIRE AVANT MODIFICATION
+Ouvre le golden master et dresse un inventaire de toutes les commandes, champs, modes, tableaux, calculs, persistances et sorties. Compare cet inventaire au code actuel. Ajoute les résultats dans reports/coach-calculator-restoration/parity-baseline.md.
+
+Toute fonction utile trouvée dans le golden master est présumée obligatoire. Si une fonction semble obsolète ou contradictoire, conserve-la et signale-la; ne la supprime pas sans décision explicite du propriétaire.
+
+ÉTAPE 2 — RESTAURATION DU PARCOURS COACH
+Restaurer dans cet ordre :
+
+1. PROFIL DE L'ATHLÈTE
+- nom complet;
+- sauvegarde locale;
+- liste et chargement d'un dossier existant;
+- suppression confirmée;
+- export JSON;
+- import JSON;
+- compatibilité avec les clés localStorage athlete_ et les dossiers antérieurs.
+
+2. DONNÉES ET OBJECTIFS
+- sexe, âge, poids, grandeur et unités;
+- activité physique;
+- calcul EER/TDEE conforme au golden master;
+- déficit -20 %, déficit -10 %, maintien, surplus +10 %, surplus +20 %;
+- les huit presets historiques;
+- mode personnalisé;
+- protéine en g/kg ou % calories;
+- calories, protéines, glucides et lipides cibles.
+
+3. JOUR ENTRAÎNEMENT ET JOUR REPOS
+- jour entraînement;
+- plan repos activable/désactivable;
+- cibles, banques et répartitions cohérentes pour chaque jour;
+- alertes claires lorsqu'un jour est incomplet.
+
+4. BANQUE JOURNALIÈRE D'ÉQUIVALENTS
+- Protéines, Féculents, Légumes, Fruits, Produits laitiers, Matières grasses, Whey;
+- calcul automatique des portions;
+- saisie manuelle;
+- remise à zéro;
+- totaux et écarts P/G/L/kcal;
+- comportement actuel A identique par défaut.
+
+5. RÉPARTITION DANS LA JOURNÉE
+- Déjeuner, Collation AM, Dîner, Collation PM, Souper, Collation soirée;
+- total distribué et restant à placer;
+- modes Classique, Selon entraînement, Équilibré;
+- heure d'entraînement et repérage pré/post;
+- récapitulatif nutritionnel par repas et total journée;
+- édition manuelle toujours possible après automatisation.
+
+6. EXPORTATION DU PLAN
+- hydratation automatique 1 L / 1000 kcal et ajout manuel;
+- commentaires et directives du coach;
+- créateur du PDF;
+- français/anglais;
+- génération du plan alimentaire;
+- téléchargement du PDF;
+- tableau des équivalents issu de la source de vérité vérifiée.
+
+ÉTAPE 3 — INTÉGRATION DES 287 ALIMENTS
+La banque vérifiée complète doit alimenter le guide et le tableau d'équivalents. Elle doit être recherchable et filtrable en interne si utile au coach, mais ne doit pas remplacer le flux de création du plan par portions.
+
+Le moteur A reste le moteur de production. Le D/A, s'il est conservé, doit être un aperçu coach optionnel :
+- feature flag désactivé par défaut;
+- aucune influence sur les anciens dossiers;
+- aucune présence dans le PDF client;
+- aucun statut provisoire ou rollup visible au client;
+- non bloquant pour la restauration du parcours principal.
+
+ÉTAPE 4 — IDENTITÉ VISUELLE
+Utiliser uniquement les deux logos fournis et la palette marine #071B41, rouge #ED1136, blanc #FFFFFF. Reprendre la densité, la hiérarchie, les sections numérotées et le caractère opérationnel du golden master. L'objectif est un outil professionnel dense et efficace, pas une page marketing ni une suite de grandes cartes aérées.
+
+ÉTAPE 5 — PDF CLIENT
+Le PDF doit reprendre la structure métier du PDF de référence : identité du client, date, objectif, calories/macros, hydratation, repas, portions, notes et totaux. Il doit être lisible, compact et imprimable.
+
+Le PDF client ne doit jamais contenir : diagnostics, noms de branches, statuts de tests, A/D-A, rollups, valeurs provisoires, boutons, recherche, outils coach ou données d'autres clients.
+
+Produire séparément le tableau des équivalents alimentaires complet destiné au client. Le guide doit provenir des 287 aliments vérifiés.
+
+ÉTAPE 6 — TESTS BLOQUANTS
+Ajouter ou restaurer des tests couvrant :
+- sauvegarder/charger/supprimer un dossier;
+- export/import JSON sans perte;
+- compatibilité d'un ancien profil;
+- formules homme/femme et conversions d'unités;
+- cinq objectifs et huit presets;
+- mode personnalisé;
+- jour entraînement/repos;
+- banque automatique et manuelle;
+- trois modes de répartition et édition manuelle;
+- hydratation et notes;
+- génération PDF FR/EN;
+- absence de contenu interne dans le PDF;
+- présence des 287 aliments dans le guide;
+- desktop, tablette et mobile;
+- hashes protégés inchangés.
+
+Exécuter tous les contrôles existants du dépôt, schema:check, audit nutritionnel, tests navigateur et tests de génération PDF. Aucun test ne peut être supprimé ou affaibli.
+
+ÉTAPE 7 — PAQUET UNIQUE D'EXAMEN PROPRIÉTAIRE
+Créer un seul ZIP : KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip contenant :
+- application complète ou instructions de démarrage en une commande;
+- URL locale exacte;
+- capture pleine page desktop 1440;
+- capture pleine page mobile 390;
+- profil JSON exporté après un aller-retour sauvegarde/chargement;
+- PDF client généré à partir du scénario Xavier;
+- tableau des équivalents généré;
+- reports/coach-calculator-restoration/parity-report.md rempli;
+- rapport des tests;
+- hashes avant/après.
+
+Le propriétaire doit pouvoir transmettre ce ZIP pour audit direct sans devoir prendre des dizaines de captures d'écran.
+
+CRITÈRE FINAL
+La PR n'est prête pour examen que si chaque ligne P0 de CHECKLIST_PARITE_FONCTIONNELLE.md est PASS. « Presque équivalent », « aperçu », « preuve de concept » ou « prévu plus tard » vaut FAIL.
+
+Ne marque pas la PR Ready. Ne fusionne pas. Ne demande pas au propriétaire d'approuver avant d'avoir produit le ZIP complet.

@@ -1,0 +1,71 @@
+╔══════════════════════════════════════════════╗
+║       PLAN ALIMENTAIRE PERSONNALISÉ          ║
+╚══════════════════════════════════════════════╝
+
+Athlète       : Xavier Tremblay
+Date          : 2026-07-31
+Objectif      : Maintien
+Projet Conjoint : KR Kinetics x Elevate Fitness
+Ratio         : 3. Maintien
+Proteines/kg  : 2.0 g/kg (jour entraînement)
+──────────────────────────────────────────────
+
+══════════════════════════════════════════════
+💪 JOUR ENTRAÎNEMENT
+══════════════════════════════════════════════
+Entraînement  : 17h30 (Pré : Collation PM · Post : Souper)
+Calories cibles : 3238 kcal
+Macros cibles   : 168g Pro | 385g Glu | 114g Lip
+Calories banque : 3246 kcal
+Macros banque   : 168g Pro | 387g Glu | 114g Lip
+
+[ 🌅 Déjeuner ]
+  - 3 portion(s) : Protéines (Viande, Poisson, Oeufs)
+  - 4 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Légumes
+  - 0.5 portion(s) : Fruits
+  - 0.5 portion(s) : Produits Laitiers
+  - 3.5 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+[ ☕ Collation AM ]
+  - 1.5 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Fruits
+  - 0.5 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+[ 🍽️ Dîner ]
+  - 2.5 portion(s) : Protéines (Viande, Poisson, Oeufs)
+  - 4 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Légumes
+  - 0.5 portion(s) : Produits Laitiers
+  - 3 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+[ 🍎 Collation PM (Pré-entraînement) ]
+  - 2.5 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Légumes
+  - 0.5 portion(s) : Fruits
+  - 1 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+[ 🥩 Souper (Post-entraînement) ]
+  - 2.5 portion(s) : Protéines (Viande, Poisson, Oeufs)
+  - 3.5 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Légumes
+  - 0.5 portion(s) : Fruits
+  - 0.5 portion(s) : Produits Laitiers
+  - 3 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+[ 🌙 Collation Soirée ]
+  - 2 portion(s) : Protéines (Viande, Poisson, Oeufs)
+  - 1 portion(s) : Féculents (Riz, Pâtes, Avoine, Pain)
+  - 0.5 portion(s) : Fruits
+  - 0.5 portion(s) : Matières Grasses (Noix, Huiles, Avocat)
+
+TOTAL JOURNEE : 169 Pro | 388 Glu | 115 Lip | 3263 kcal
+HYDRATATION    : 3.2 L / jour (Base auto : 3.2 L (1 L / 1000 kcal))
+
+Notes du coach :
+Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.
+
+══════════════════════════════════════════════
+Jour repos non configuré — omis du PDF client
+
+📖 Référez-vous au guide des équivalents alimentaires
