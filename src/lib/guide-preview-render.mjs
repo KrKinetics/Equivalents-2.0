@@ -12,38 +12,41 @@ const TAG_CLASS = {
 function landscapeCss() {
   return `
   *{box-sizing:border-box}html{scroll-behavior:smooth}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f1f5f9}
-  .banner{position:sticky;top:0;z-index:5;background:#991b1b;color:#fff;padding:10px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:#334155;background:#f8fafc}
+  .banner{position:sticky;top:0;z-index:5;background:#D91136;color:#fff;padding:8px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
   .banner .banner-en{display:block;font-weight:700;opacity:.92;margin-top:2px;font-size:10px}
-  header,.toc,.section{background:#fff;margin:12px auto;padding:16px;max-width:1280px}
-  header{display:flex;align-items:center;gap:20px}
-  .brand-logo-wrap{background:#ffffff;padding:8px 10px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
-  header img.brand-logo{width:140px;max-height:64px;object-fit:contain;display:block;background:#ffffff}
-  .meta{font-size:12px;color:#475569;line-height:1.45}
+  .toc,.section,.howto,.legend{background:#fff;margin:8px auto;padding:12px;max-width:1280px;border:1px solid #e2e8f0;border-radius:8px}
+  header.brand-band{background:#1e293b;color:#fff;margin:8px auto;padding:14px 18px;max-width:1280px;border-radius:8px;display:flex;align-items:center;gap:20px}
+  .brand-logo-wrap{background:transparent;padding:8px 10px;display:inline-flex;align-items:center;justify-content:center}
+  header.brand-band img.brand-logo{width:220px;max-height:56px;object-fit:contain;display:block;background:transparent}
+  header.brand-band h1{color:#fff;margin:0 0 4px;font-size:22px}
+  .meta{font-size:12px;color:#cbd5e1;line-height:1.45}
   .toc a{display:inline-block;margin:4px;padding:7px 10px;color:#fff;border-radius:4px;text-decoration:none}
-  .section{break-before:auto;page-break-before:auto}
-  .section-lead{border-left:8px solid var(--color);padding:8px 12px;break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid}
-  .section-header{break-after:avoid;page-break-after:avoid}
-  h1,h2,p{margin:3px 0}.note{font-size:11px;color:#475569;margin:7px 0}
-  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:9px}
+  .section{break-before:auto;page-break-before:auto;break-inside:auto;page-break-inside:auto}
+  .section-header{border-left:8px solid var(--color);padding:6px 10px;margin-bottom:6px;break-after:avoid;page-break-after:avoid;color:#1e293b}
+  h1,h2,p{margin:3px 0;color:#1e293b}.note{font-size:10px;color:#64748b;margin:4px 0 6px}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:8.5px}
   thead{display:table-header-group}
-  th,td{padding:5px;border:1px solid #dbe3ee;text-align:right;overflow-wrap:anywhere;hyphens:manual}
-  th{background:var(--color);color:#fff;white-space:normal;line-height:1.25}
+  th,td{padding:3px 4px;border:1px solid #e2e8f0;text-align:right;overflow-wrap:anywhere;hyphens:manual}
+  th{background:var(--color);color:#fff;white-space:normal;line-height:1.2}
   th:first-child,td:first-child{text-align:left;width:34%}
   tr{break-inside:avoid;page-break-inside:avoid}
   tbody tr:nth-child(even){background:#f8fafc}
-  .en{color:#475569;font-size:.88em}
-  .howto,.legend{background:#fff;margin:12px auto;padding:16px;max-width:1280px;border-left:6px solid #991b1b}
-  .howto h2,.legend h2{margin:0 0 8px;font-size:18px}
-  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45}
+  .en{color:#64748b;font-size:.88em}
+  .howto,.legend{border-left:6px solid #1e293b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:16px;color:#1e293b}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.35}
   .legend dl{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;margin:0;font-size:12px}
-  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#64748b}
+  .back-index{margin:6px 0 0;font-size:11px}
   .running-footer{display:none}
-  @page{size:A4 landscape;margin:14mm 8mm 14mm 8mm}
+  @page{size:A4 landscape;margin:10mm 8mm 10mm 8mm}
   @media print{
     body{background:#fff}.banner{position:static}
-    .section{margin:0 auto;padding:10px;break-inside:auto}
-    .section-continue-table thead{display:table-header-group}
+    header.brand-band,.toc,.howto,.legend{margin:0 auto 4mm;padding:8px 10px;border-radius:0;box-shadow:none}
+    header.brand-band{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .section{margin:0 auto 3mm;padding:6px 8px;break-inside:auto;border-radius:0}
+    thead{display:table-header-group}
     .toc a{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .running-footer{display:block;position:fixed;bottom:0;left:0;right:0;font-size:9px;color:#64748b;text-align:center}
   }
@@ -53,45 +56,49 @@ function landscapeCss() {
 function mobileCss() {
   return `
   *{box-sizing:border-box}html{scroll-behavior:smooth}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f1f5f9}
-  .banner{position:sticky;top:0;z-index:5;background:#991b1b;color:#fff;padding:10px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:#334155;background:#f8fafc}
+  .banner{position:sticky;top:0;z-index:5;background:#D91136;color:#fff;padding:8px 12px;text-align:center;font-weight:800;letter-spacing:.03em;font-size:11px;line-height:1.35}
   .banner .banner-en{display:block;font-weight:700;opacity:.92;margin-top:2px;font-size:10px}
-  header,.toc,.section{background:#fff;margin:10px auto;padding:14px;max-width:720px}
-  header{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-  .brand-logo-wrap{background:#ffffff;padding:8px 10px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
-  header img.brand-logo{width:150px;max-height:70px;object-fit:contain;display:block;background:#ffffff}
-  .meta{font-size:12px;color:#475569;line-height:1.45}
+  .toc,.section,.howto,.legend{background:#fff;margin:8px auto;padding:12px;max-width:720px;border:1px solid #e2e8f0;border-radius:8px}
+  header.brand-band{background:#1e293b;color:#fff;margin:8px auto;padding:14px 16px;max-width:720px;border-radius:8px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .brand-logo-wrap{background:transparent;padding:8px 10px;display:inline-flex;align-items:center;justify-content:center}
+  header.brand-band img.brand-logo{width:200px;max-height:52px;object-fit:contain;display:block;background:transparent}
+  header.brand-band h1{color:#fff;margin:0 0 4px;font-size:18px}
+  .meta{font-size:12px;color:#cbd5e1;line-height:1.45}
   .toc a{display:inline-block;margin:4px;padding:7px 10px;color:#fff;border-radius:4px;text-decoration:none;font-size:12px}
   .section{break-before:auto;page-break-before:auto}
-  .section-lead{break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid;margin-bottom:6px}
-  .section-header{border-left:8px solid var(--color);padding:8px 12px;break-after:avoid;page-break-after:avoid}
-  h1,h2,p{margin:3px 0}.note{font-size:11px;color:#475569;margin:7px 0 10px}
-  .item-list{border:1px solid #dbe3ee;border-radius:8px;overflow:hidden;background:#fff}
-  .item{padding:10px 12px;border-bottom:1px solid #e2e8f0;break-inside:avoid;page-break-inside:avoid;background:#fff}
+  .section-lead{break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid;margin-bottom:5px}
+  .section-header{border-left:8px solid var(--color);padding:8px 12px;break-after:avoid;page-break-after:avoid;color:#1e293b}
+  h1,h2,p{margin:3px 0;color:#1e293b}.note{font-size:11px;color:#64748b;margin:6px 0 8px}
+  .item-list{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}
+  .item{padding:8px 10px;border-bottom:1px solid #e2e8f0;break-inside:avoid;page-break-inside:avoid;background:#fff}
   .item:nth-child(even){background:#f8fafc}
   .item:last-child{border-bottom:none}
-  .item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
-  .item-name{font-size:11px;font-weight:700;line-height:1.35;color:#172033;flex:1}
-  .item-name .en{display:block;font-weight:600;color:#475569;font-size:10px;margin-top:2px}
+  .item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:5px}
+  .item-name{font-size:11px;font-weight:700;line-height:1.35;color:#1e293b;flex:1}
+  .item-name .en{display:block;font-weight:600;color:#64748b;font-size:10px;margin-top:2px}
   .item-kcal{flex-shrink:0;font-size:13px;font-weight:700;color:var(--color);font-variant-numeric:tabular-nums;line-height:1.2}
   .item-kcal small{font-size:9px;font-weight:600;opacity:.75;margin-left:1px}
   .item-tags{display:flex;flex-wrap:wrap;gap:5px}
-  .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
   .tag-prot{background:#eff6ff;color:#1d4ed8}
   .tag-gluc{background:#fffbeb;color:#b45309}
   .tag-fib{background:#f0fdf4;color:#15803d}
   .tag-lip{background:#fdf2f8;color:#9d174d}
   .tag-cal{background:#f1f5f9;color:#334155}
   .tag-neutral{background:#f1f5f9;color:#475569}
-  .howto,.legend{background:#fff;margin:10px auto;padding:14px;max-width:720px;border-left:6px solid #991b1b}
-  .howto h2,.legend h2{margin:0 0 8px;font-size:16px}
-  .howto ol{margin:0;padding-left:1.2rem;line-height:1.45;font-size:12px}
+  .howto,.legend{border-left:6px solid #1e293b}
+  .howto h2,.legend h2{margin:0 0 8px;font-size:15px;color:#1e293b}
+  .howto ol{margin:0;padding-left:1.2rem;line-height:1.4;font-size:12px}
   .legend dl{display:grid;grid-template-columns:100px 1fr;gap:6px 10px;margin:0;font-size:11px}
-  .legend dt{font-weight:700}.legend dd{margin:0;color:#475569}
-  @page{size:A4 portrait;margin:14mm 10mm 16mm 10mm}
+  .legend dt{font-weight:700}.legend dd{margin:0;color:#64748b}
+  .back-index{margin:6px 0 0;font-size:11px}
+  @page{size:A4 portrait;margin:10mm 10mm 12mm 10mm}
   @media print{
     body{background:#fff}.banner{position:static}
-    .section{margin:0 auto 8mm;padding:8px 0}
+    header.brand-band,.toc,.howto,.legend{margin:0 auto 4mm;padding:8px;border-radius:0}
+    header.brand-band{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .section{margin:0 auto 4mm;padding:6px 0;border-radius:0}
     .toc a,.section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
 `;
@@ -114,9 +121,9 @@ function headerHtml(model, { bilingual = false, lang = 'fr' } = {}) {
       ? `${esc(model.meta.foodsLabelEn)} · ${esc(model.meta.updatedLabelEn)} · ${esc(model.meta.noteEn)} · v${esc(model.meta.version)} · ${esc(model.meta.shortHash)}`
       : `${esc(model.meta.foodsLabelFr)} · ${esc(model.meta.updatedLabelFr)} · ${esc(model.meta.noteFr)} · v${esc(model.meta.version)} · ${esc(model.meta.shortHash)}`);
   return `${bannerHtml(model)}
-  <header>
+  <header class="brand-band">
     <div class="brand-logo-wrap">
-      <img class="brand-logo" src="${esc(model.logoSrc)}" alt="KR Kinetics" width="140" height="64">
+      <img class="brand-logo" src="${esc(model.logoSrc)}" alt="KR Kinetics">
     </div>
     <div><h1>${esc(title)}</h1><div class="meta">${meta}</div></div>
   </header>`;
@@ -224,24 +231,15 @@ function buildSections(model, { lang, mobile, bilingual }) {
     const subtitle = bilingual ? `${section.subtitleFr} · ${section.subtitleEn}` : lang === 'en' ? section.subtitleEn : section.subtitleFr;
     const note = section.note ? (bilingual ? `${section.note.fr} · ${section.note.en}` : section.note[lang]) : '';
     if (!mobile) {
-      const leadCount = Math.min(3, section.foods.length);
-      const leadFoods = section.foods.slice(0, leadCount);
-      const restFoods = section.foods.slice(leadCount);
+      // Single continuous table per section: avoids orphan last pages that only hold a 3-row lead block.
       return `<section class="section" id="section-${esc(section.legacyKey)}" style="--color:${section.color}">
-        <div class="section-lead">
-          <div class="section-header"><h2>${esc(title)}</h2><p>${esc(subtitle)}</p></div>
-          ${note ? `<p class="note">${esc(note)}</p>` : ''}
-          <table data-section="${esc(section.legacyKey)}" class="section-lead-table">
-            ${landscapeTableHead(section, lang)}
-            <tbody>${leadFoods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
-          </table>
-        </div>
-        ${restFoods.length ? `<table data-section="${esc(section.legacyKey)}" class="section-continue-table">
-          <caption class="section-header" style="caption-side:top;text-align:left;padding:6px 0;font-weight:700;">${esc(title)} — suite</caption>
+        <div class="section-header"><h2>${esc(title)}</h2><p>${esc(subtitle)}</p></div>
+        ${note ? `<p class="note">${esc(note)}</p>` : ''}
+        <table data-section="${esc(section.legacyKey)}">
           ${landscapeTableHead(section, lang)}
-          <tbody>${restFoods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
-        </table>` : ''}
-        <p><a href="#index">↑ Index</a></p>
+          <tbody>${section.foods.map((food) => landscapeRow(section, food, lang)).join('')}</tbody>
+        </table>
+        <p class="back-index"><a href="#index">↑ Index</a></p>
       </section>`;
     }
     const first = section.foods[0];

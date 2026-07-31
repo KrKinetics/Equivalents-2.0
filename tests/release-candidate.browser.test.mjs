@@ -157,11 +157,41 @@ test('RC has no horizontal overflow at 390/768/1440 and keeps user-facing mode l
   await page.close();
 });
 
-test('source SVG logo has no ASCII control characters', () => {
-  const svg = fs.readFileSync(path.join(ROOT, 'assets', 'kinetics-logo.svg'));
-  for (let i = 0; i < svg.length; i += 1) {
-    const code = svg[i];
-    if (code === 9 || code === 10 || code === 13) continue;
-    assert.ok(code >= 32, `control char ${code} at offset ${i}`);
+test('official owner-approved logos are present (horizontal + monogram)', () => {
+  const horizontal = path.join(ROOT, 'assets', 'logo-kr-kinetics-horizontal.png');
+  const monogram = path.join(ROOT, 'assets', 'logo-kr-monogramme.png');
+  const fakeSvg = path.join(ROOT, 'assets', 'kinetics-logo.svg');
+  assert.equal(fs.existsSync(fakeSvg), false, 'fake assets/kinetics-logo.svg must be removed');
+  assert.equal(fs.existsSync(horizontal), true);
+  assert.equal(fs.existsSync(monogram), true);
+  for (const pngPath of [horizontal, monogram]) {
+    const png = fs.readFileSync(pngPath);
+    assert.ok(png.length > 1000);
+    assert.equal(png[0], 0x89);
+    assert.equal(png[1], 0x50);
+    assert.equal(png[2], 0x4e);
+    assert.equal(png[3], 0x47);
   }
+});
+
+test('RC food list paginates the full catalog and empty cart hides fake A vs D/A deltas', async () => {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1440, height: 1100 });
+  await page.goto(`${origin}/`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  await page.waitForSelector('#food-count', { timeout: 30000 });
+  const emptyDiff = await page.$eval('#diff-summary', (el) => el.textContent || '');
+  assert.match(emptyDiff, /Panier vide/i);
+  assert.doesNotMatch(emptyDiff, /Écart aperçu/);
+  assert.equal(await page.$eval('body', (el) => el.innerHTML.includes('dominantRollup')), false);
+  assert.equal(await page.$eval('body', (el) => /DM Serif Display|#991F2D|#f7f4f1/.test(el.innerHTML)), false);
+  const countBefore = await page.$eval('#food-count', (el) => el.textContent || '');
+  assert.match(countBefore, /catalogue exact\s*:\s*287/);
+  await page.click('#btn-food-all');
+  await page.waitForFunction(() => {
+    const text = document.getElementById('food-count')?.textContent || '';
+    return text.includes('287 / 287');
+  }, { timeout: 30000 });
+  const rows = await page.$$eval('#food-list .food-row [data-add]', (nodes) => nodes.length);
+  assert.equal(rows, 287);
+  await page.close();
 });

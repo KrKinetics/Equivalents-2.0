@@ -17,33 +17,22 @@ const localAssetsDir = path.join(outDir, 'assets');
 const screenshotsDir = path.join(outDir, 'screenshots');
 const readJson = async (name) => JSON.parse(await fs.readFile(path.join(dataDir, name), 'utf8'));
 
-// Prefer opaque full logo (transparent PNG can render as grey checkerboard in PDF viewers).
-const LOGO_CANDIDATES = [
-  path.join(root, 'assets', 'kinetics-logo.svg'),
-  path.join(root, 'assets', 'kinetics-logo-full.png'),
-  path.join(root, 'assets', 'kinetics-logo-transparent.png'),
-];
-
-function resolveLogoAsset() {
-  for (const candidate of LOGO_CANDIDATES) {
-    if (existsSync(candidate)) return candidate;
-  }
-  throw new Error(`KR Kinetics logo not found. Tried: ${LOGO_CANDIDATES.join(', ')}`);
-}
+// Owner-approved horizontal wordmark only (never auto-pick kinetics-branding SVGs).
+const LOGO_SOURCE = path.join(root, 'assets', 'logo-kr-kinetics-horizontal.png');
 
 function prepareLocalLogo() {
-  const source = resolveLogoAsset();
+  if (!existsSync(LOGO_SOURCE)) {
+    throw new Error(`Official logo missing: ${LOGO_SOURCE}`);
+  }
   mkdirSync(localAssetsDir, { recursive: true });
-  const ext = path.extname(source);
-  const destName = `kinetics-logo${ext}`;
+  const destName = 'logo-kr-kinetics-horizontal.png';
   const dest = path.join(localAssetsDir, destName);
-  copyFileSync(source, dest);
+  copyFileSync(LOGO_SOURCE, dest);
   if (!existsSync(dest) || readFileSync(dest).length === 0) {
     throw new Error(`Failed to stage logo asset at ${dest}`);
   }
-  // Relative URL from HTML files in reports/guide-preview/ — same directory tree (Chromium file:// safe).
   return {
-    sourcePath: source,
+    sourcePath: LOGO_SOURCE,
     stagedPath: dest,
     relativeUrl: `./assets/${destName}`,
     absoluteFileUrl: pathToFileURL(dest).href,
@@ -229,7 +218,7 @@ try {
     displayHeaderFooter: true,
     headerTemplate: pdfHeader,
     footerTemplate: pdfFooter,
-    margin: { top: '14mm', right: '8mm', bottom: '14mm', left: '8mm' },
+    margin: { top: '10mm', right: '8mm', bottom: '10mm', left: '8mm' },
   });
   await mobile.pdf({
     path: path.join(outDir, 'kr-kinetics-mobile-bilingual.pdf'),
@@ -240,7 +229,7 @@ try {
     displayHeaderFooter: true,
     headerTemplate: pdfHeader,
     footerTemplate: pdfFooter,
-    margin: { top: '14mm', right: '10mm', bottom: '16mm', left: '10mm' },
+    margin: { top: '10mm', right: '10mm', bottom: '12mm', left: '10mm' },
   });
 
   const sectionTitles = model.sections.map((section) => `${section.titleFr} · ${section.titleEn}`);
@@ -272,6 +261,13 @@ try {
         const overflowNodes = isMobile
           ? [node, ...node.querySelectorAll('.item-name, .tag')]
           : [node, ...node.querySelectorAll('td,th')];
+        const orphanHeaderPass = isMobile
+          ? Boolean(leadStyle)
+            && (leadStyle.breakInside === 'avoid' || leadStyle.pageBreakInside === 'avoid')
+            && Boolean(headerStyle)
+            && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid')
+          : Boolean(headerStyle)
+            && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid');
         return {
           overflow: {
             pass: overflowNodes.every((el) => el.scrollWidth <= el.clientWidth + 1),
@@ -282,12 +278,7 @@ try {
             pass: cells.every((cell) => cell.scrollWidth <= cell.clientWidth + 2),
             count: cells.filter((cell) => cell.scrollWidth > cell.clientWidth + 2).length,
           },
-          orphanHeader: {
-            pass: Boolean(leadStyle)
-              && (leadStyle.breakInside === 'avoid' || leadStyle.pageBreakInside === 'avoid')
-              && Boolean(headerStyle)
-              && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid'),
-          },
+          orphanHeader: { pass: orphanHeaderPass },
           logoInDocument: {
             pass: [...document.images].every((img) => img.complete && img.naturalWidth > 0),
           },

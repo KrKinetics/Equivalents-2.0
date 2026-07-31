@@ -86,19 +86,18 @@ function runNpm(script) {
 }
 
 function stageLogo() {
-  // Prefer compact SVG for the RC app bundle (avoid committing multi‑MB PNG duplicates).
-  const candidates = [
-    path.join(root, 'assets', 'kinetics-logo.svg'),
-    path.join(root, 'assets', 'kinetics-logo-transparent.png'),
-    path.join(root, 'assets', 'kinetics-logo-full.png'),
-  ];
-  const source = candidates.find((candidate) => fs.existsSync(candidate));
-  if (!source) throw new Error('KR Kinetics logo not found');
+  // Owner-approved brand assets only (horizontal wordmark + monogram favicon).
+  const horizontal = path.join(root, 'assets', 'logo-kr-kinetics-horizontal.png');
+  const monogram = path.join(root, 'assets', 'logo-kr-monogramme.png');
+  if (!fs.existsSync(horizontal)) throw new Error('Official logo-kr-kinetics-horizontal.png not found');
+  if (!fs.existsSync(monogram)) throw new Error('Official logo-kr-monogramme.png not found');
   ensureDir(assetsDir);
-  const destName = `kinetics-logo${path.extname(source)}`;
-  const dest = path.join(assetsDir, destName);
-  copyFile(source, dest);
-  return `./assets/${destName}`;
+  copyFile(horizontal, path.join(assetsDir, 'logo-kr-kinetics-horizontal.png'));
+  copyFile(monogram, path.join(assetsDir, 'logo-kr-monogramme.png'));
+  return {
+    logoUrl: './assets/logo-kr-kinetics-horizontal.png',
+    faviconUrl: './assets/logo-kr-monogramme.png',
+  };
 }
 
 function contentType(filePath) {
@@ -337,17 +336,15 @@ async function build() {
     // Preserve committed RC binaries/HTML; guide:preview still validated separately.
     copyIfMissing(src, dest);
   }
-  // Point guide HTML logos at the shared RC asset (no second multi‑MB PNG copy).
-  // Only rewrite exact "./assets/..." refs — never touch already-relative "../assets/...".
-  const sharedLogoUrl = '../assets/kinetics-logo.svg';
+  // Point guide HTML logos at the shared official horizontal asset.
+  const sharedLogoUrl = '../assets/logo-kr-kinetics-horizontal.png';
   for (const htmlName of ['kr-kinetics-landscape-fr.html', 'kr-kinetics-landscape-en.html', 'kr-kinetics-mobile-bilingual.html']) {
     const htmlPath = path.join(guidesDir, htmlName);
     if (!fs.existsSync(htmlPath)) continue;
     const html = fs.readFileSync(htmlPath, 'utf8');
-    const next = html.replace(
-      /(?<!\.)\.\/assets\/kinetics-logo\.(?:png|svg)/g,
-      sharedLogoUrl,
-    );
+    const next = html
+      .replace(/(?<!\.)\.\/assets\/(?:kinetics-logo|logo-kr-kinetics-horizontal)\.(?:png|svg)/g, sharedLogoUrl)
+      .replace(/\.\.\/assets\/(?:kinetics-logo|logo-kr-kinetics-horizontal)\.(?:png|svg)/g, sharedLogoUrl);
     if (next !== html) fs.writeFileSync(htmlPath, next, 'utf8');
   }
   // Keep nutrition:final-audit clean: regenerating guide-preview dirties tracked PDFs/HTML.
@@ -360,7 +357,7 @@ async function build() {
     });
   }
 
-  const logoUrl = stageLogo();
+  const { logoUrl, faviconUrl } = stageLogo();
   const rcData = {
     generatedAt,
     version: versionMeta.version,
@@ -409,7 +406,7 @@ async function build() {
   fs.writeFileSync(path.join(outDir, 'rc-data.json'), `${JSON.stringify(rcData, null, 2)}\n`, 'utf8');
   fs.writeFileSync(
     path.join(outDir, 'index.html'),
-    buildReleaseCandidateHtml({ dataUrl: './rc-data.json', logoUrl }),
+    buildReleaseCandidateHtml({ dataUrl: './rc-data.json', logoUrl, faviconUrl }),
     'utf8',
   );
   fs.writeFileSync(
