@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-07-31T16:26:47.001Z",
+  "url": "http://127.0.0.1:4188/",
+  "foods": 287,
+  "tdee": 3240,
+  "targets": {
+    "pro": 168,
+    "glu": 385,
+    "lip": 114,
+    "kcal": 3238
+  },
+  "screenshots": [
+    "screenshots/desktop-1440.png",
+    "screenshots/tablet-768.png",
+    "screenshots/mobile-390.png"
+  ],
+  "pdfs": [
+    "xavier-plan-client-fr.pdf",
+    "xavier-plan-client-en.pdf",
+    "equivalents-client-287.pdf"
+  ],
+  "protectedOk": true
+}

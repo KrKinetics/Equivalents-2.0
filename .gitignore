@@ -10,6 +10,12 @@ page3.png/
 screenshots/
 !reports/release-candidate/screenshots/
 !reports/release-candidate/screenshots/**
+!reports/coach-calculator-restoration/screenshots/
+!reports/coach-calculator-restoration/screenshots/**
+
+# Mandat ZIP extract (local only)
+_mandat_extract/
+reports/coach-calculator-restoration/owner-package-staging/
 verify-*/
 
 # Client and generated documents kept local by default

@@ -1,0 +1,240 @@
+{
+  "document": {
+    "name": "KR Kinetics — spécification de restauration du calculateur coach",
+    "version": "1.0.0",
+    "status": "owner-approved direction",
+    "language": "fr-CA"
+  },
+  "decision": {
+    "type": "restoration-not-redesign",
+    "statement": "Le calculateur original est la référence fonctionnelle obligatoire. La version candidate simplifiée ne constitue pas une référence d'interface ni de périmètre.",
+    "primary_user": "coach KR Kinetics",
+    "client_access": false,
+    "client_receives_only": [
+      "plan alimentaire PDF détaillé en portions",
+      "tableau des équivalents alimentaires"
+    ]
+  },
+  "git": {
+    "base_branch": "refactor/nutrition-source-of-truth",
+    "work_branch": "restore/full-coach-calculator",
+    "pull_request": "draft only",
+    "merge_authorized": false
+  },
+  "references": {
+    "golden_master": {
+      "path": "references/calculateur-coach-original.html",
+      "sha256": "de02cd2da62e440c60415b521e4a5103422f2ab8a8c10b0aadd7401c7be5be02",
+      "role": "référence fonctionnelle, visuelle et comportementale principale"
+    },
+    "client_pdf": {
+      "path": "references/plan-client-reference-xavier.pdf",
+      "sha256": "f4e48e884216efc2a09ac874a43e1cfff82ef0d14bb2aa1332640fd98d45ab08",
+      "role": "référence de structure et de contenu du PDF remis au client"
+    },
+    "branding": [
+      {
+        "path": "references/logo-kr-kinetics-horizontal.png",
+        "sha256": "d81eede87085e8ee00d84c2f733c6171c01d194e802ea381487271a51e219327",
+        "use": "en-tête horizontal sur fond marine ou sombre"
+      },
+      {
+        "path": "references/logo-kr-monogramme.png",
+        "sha256": "f93489c90f5f4c4b7742bde3208a0e25a71b46e68242f80764b6052e3a28ecc1",
+        "use": "favicon, icône et espaces carrés"
+      }
+    ],
+    "palette": {
+      "navy": "#071B41",
+      "red": "#ED1136",
+      "white": "#FFFFFF",
+      "light_background": "#F4F7FB",
+      "dark_text": "#111B33"
+    }
+  },
+  "architecture": {
+    "principles": [
+      "Le calculateur est un outil privé du coach.",
+      "Les dossiers clients et les plans doivent rester utilisables hors ligne dans le navigateur.",
+      "La source nutritionnelle vérifiée de 287 aliments alimente le guide et les équivalences sans supprimer les fonctions métier existantes.",
+      "Le moteur actuel A demeure le comportement de production par défaut tant qu'une nouvelle méthode n'est pas approuvée explicitement.",
+      "Toute comparaison D/A est facultative, réservée au coach, désactivée par défaut et exclue des PDF clients."
+    ],
+    "protected_data": [
+      "src/data/food-equivalents.json",
+      "src/data/nutrition-data-version.json",
+      "src/data/category-mapping.json",
+      "src/data/calculation-groups.json",
+      "reports/exchange-profile-decision/exchange-rollup-proposal.json"
+    ],
+    "forbidden": [
+      "remplacer l'outil par une simple page de comparaison A/D-A",
+      "supprimer ou masquer une fonction présente dans le golden master",
+      "modifier les 287 données nutritionnelles pour adapter l'interface",
+      "migrer automatiquement les anciens dossiers clients sans sauvegarde réversible",
+      "exposer les analyses internes, les rollups, les statuts provisoires ou les tests dans un PDF client"
+    ]
+  },
+  "functional_requirements": [
+    {
+      "id": "COACH-001",
+      "section": "profil-athlete",
+      "priority": "P0",
+      "requirements": [
+        "saisir le nom complet",
+        "créer et sauvegarder un dossier",
+        "charger individuellement un dossier existant",
+        "supprimer un dossier avec confirmation",
+        "exporter un dossier JSON",
+        "importer un dossier JSON",
+        "préserver la compatibilité des anciennes sauvegardes et des clés localStorage athlete_"
+      ]
+    },
+    {
+      "id": "COACH-002",
+      "section": "donnees-athlete",
+      "priority": "P0",
+      "requirements": [
+        "sexe",
+        "âge",
+        "poids avec unités lb ou kg",
+        "grandeur avec unités cm ou impériales",
+        "niveau d'activité physique"
+      ]
+    },
+    {
+      "id": "COACH-003",
+      "section": "objectifs-et-macros",
+      "priority": "P0",
+      "requirements": [
+        "calculer EER et TDEE",
+        "offrir déficit 20 %, déficit 10 %, maintien, surplus 10 % et surplus 20 %",
+        "offrir les huit presets historiques",
+        "permettre une répartition personnalisée totalisant 100 %",
+        "permettre la protéine en g/kg ou en pourcentage des calories",
+        "afficher calories, protéines, glucides et lipides cibles"
+      ]
+    },
+    {
+      "id": "COACH-004",
+      "section": "banque-equivalents",
+      "priority": "P0",
+      "requirements": [
+        "gérer Protéines, Féculents, Légumes, Fruits, Produits laitiers, Matières grasses et Whey",
+        "calcul automatique des portions à partir des cibles",
+        "édition manuelle des portions",
+        "remise à zéro",
+        "totaux et écarts en protéines, glucides, lipides et calories",
+        "utiliser la banque vérifiée de 287 aliments pour le guide et les équivalences détaillées"
+      ]
+    },
+    {
+      "id": "COACH-005",
+      "section": "jours-entrainement-repos",
+      "priority": "P0",
+      "requirements": [
+        "gérer un jour d'entraînement et un jour de repos",
+        "activer ou désactiver le plan repos",
+        "conserver des banques et répartitions distinctes quand le mode repos est actif",
+        "indiquer clairement les sections incomplètes"
+      ]
+    },
+    {
+      "id": "COACH-006",
+      "section": "repartition-quotidienne",
+      "priority": "P0",
+      "requirements": [
+        "répartir les portions sur Déjeuner, Collation AM, Dîner, Collation PM, Souper et Collation soirée",
+        "afficher total distribué et restant à placer par catégorie",
+        "offrir Classique, Selon entraînement et Équilibré",
+        "saisir l'heure d'entraînement et identifier les repas pré et post entraînement",
+        "afficher le récapitulatif nutritionnel par repas et le total journalier"
+      ]
+    },
+    {
+      "id": "COACH-007",
+      "section": "hydratation-et-notes",
+      "priority": "P0",
+      "requirements": [
+        "calculer automatiquement l'hydratation selon 1 L par 1000 kcal",
+        "permettre un ajout manuel en litres",
+        "permettre des commentaires et directives libres du coach"
+      ]
+    },
+    {
+      "id": "COACH-008",
+      "section": "sorties-client",
+      "priority": "P0",
+      "requirements": [
+        "générer un plan alimentaire structuré en portions",
+        "générer un PDF client en français ou en anglais",
+        "choisir le créateur KR Kinetics ou Elevate Fitness si cette option existe dans le golden master",
+        "générer ou joindre le tableau des équivalents alimentaires",
+        "ne jamais inclure l'interface coach, les diagnostics, les comparaisons A/D-A, les rollups ni les statuts provisoires"
+      ]
+    }
+  ],
+  "macro_presets": [
+    {"id": 1, "name": "Perte légère", "protein_pct": 30, "carb_pct": 40, "fat_pct": 30},
+    {"id": 2, "name": "Perte sévère", "protein_pct": 40, "carb_pct": 35, "fat_pct": 25},
+    {"id": 3, "name": "Maintien", "protein_pct": 25, "carb_pct": 45, "fat_pct": 30},
+    {"id": 4, "name": "Équilibré", "protein_pct": 33, "carb_pct": 33, "fat_pct": 33},
+    {"id": 5, "name": "Prise légère", "protein_pct": 25, "carb_pct": 50, "fat_pct": 25},
+    {"id": 6, "name": "Prise sévère", "protein_pct": 20, "carb_pct": 55, "fat_pct": 25},
+    {"id": 7, "name": "Performance", "protein_pct": 15, "carb_pct": 60, "fat_pct": 25},
+    {"id": 8, "name": "Lipides réduits", "protein_pct": 45, "carb_pct": 35, "fat_pct": 20}
+  ],
+  "energy_model": {
+    "source": "Institute of Medicine EER as implemented in golden master",
+    "male": "662 - 9.53*age + PA*((15.91*kg)+(539.6*meters))",
+    "female": "354 - 6.91*age + PA*((9.36*kg)+(726*meters))",
+    "pa_male": [1.0, 1.11, 1.25, 1.48],
+    "pa_female": [1.0, 1.12, 1.27, 1.45],
+    "hydration": "target_kcal / 1000 + manual_liters"
+  },
+  "acceptance": {
+    "blocking_rule": "Toute exigence P0 absente, inactive, non persistée ou non testée bloque la PR.",
+    "golden_master_parity": "Aucune fonction utile du golden master ne peut disparaître.",
+    "responsive": ["desktop 1440", "tablet 768", "mobile 390"],
+    "data": [
+      "287 aliments chargés depuis la source de vérité",
+      "287 aliments vérifiés",
+      "aucun changement des hashes protégés"
+    ],
+    "profile_roundtrip": [
+      "création puis rechargement localStorage sans perte",
+      "export JSON puis import JSON identique",
+      "chargement d'un ancien dossier compatible"
+    ],
+    "calculation_scenarios": [
+      "homme et femme",
+      "unités métriques et impériales",
+      "chacun des cinq objectifs énergétiques",
+      "huit presets et mode personnalisé",
+      "jour entraînement et jour repos",
+      "répartition automatique et édition manuelle"
+    ],
+    "pdf": [
+      "nom, date, objectif, cibles et hydratation exacts",
+      "six repas et portions exactes",
+      "notes du coach exactes",
+      "totaux cohérents",
+      "branding officiel",
+      "aucune information interne"
+    ]
+  },
+  "required_delivery": {
+    "draft_pr": true,
+    "owner_review_zip": [
+      "application complète exécutable localement",
+      "capture pleine page desktop",
+      "capture pleine page mobile",
+      "profil JSON d'essai exporté",
+      "PDF client généré à partir du scénario Xavier",
+      "tableau des équivalents généré",
+      "rapport de parité rempli",
+      "rapport des tests"
+    ],
+    "instructions": "Le propriétaire remet un seul ZIP d'examen. L'audit doit pouvoir se faire sans une série de captures manuelles."
+  }
+}

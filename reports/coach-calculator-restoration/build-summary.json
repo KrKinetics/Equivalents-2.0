@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "outDir": "coach-calculator",
+  "url": "http://127.0.0.1:4188/",
+  "totalFoods": 287,
+  "verifiedFoods": 287,
+  "featureDaEnabled": false,
+  "guideHtml": "coach-calculator/guides/kr-kinetics-equivalents-client-fr.html",
+  "guidePdf": "coach-calculator/guides/kr-kinetics-equivalents-client-fr.pdf",
+  "protectedOk": true
+}

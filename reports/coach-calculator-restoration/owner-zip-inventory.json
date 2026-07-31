@@ -1,0 +1,33 @@
+{
+  "zip": "KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip",
+  "bytes": 3080734,
+  "url": "http://127.0.0.1:4188/",
+  "files": [
+    "CHECKLIST_PARITE_FONCTIONNELLE.md",
+    "START_HERE.md",
+    "build-summary.json",
+    "capture-summary.json",
+    "coach-calculator/README.md",
+    "coach-calculator/assets/logo-kr-kinetics-horizontal.png",
+    "coach-calculator/assets/logo-kr-monogramme.png",
+    "coach-calculator/coach-data.json",
+    "coach-calculator/guides/kr-kinetics-equivalents-client-fr.html",
+    "coach-calculator/guides/kr-kinetics-equivalents-client-fr.pdf",
+    "coach-calculator/index.html",
+    "coach-calculator/vendor/html2canvas.min.js",
+    "coach-calculator/vendor/jspdf.umd.min.js",
+    "equivalents-client-287.pdf",
+    "parity-baseline.md",
+    "parity-report.md",
+    "protected-hashes-after.json",
+    "protected-hashes-before.json",
+    "screenshots/desktop-1440.png",
+    "screenshots/mobile-390.png",
+    "screenshots/tablet-768.png",
+    "test-report.md",
+    "xavier-plan-client-en.pdf",
+    "xavier-plan-client-fr.pdf",
+    "xavier-plan-text.txt",
+    "xavier-profile-export.json"
+  ]
+}
