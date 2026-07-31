@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T01:18:37.499Z",
+  "generatedAt": "2026-07-30T01:25:20.093Z",
   "widths": [
     {
       "width": 1440,
@@ -15,6 +15,7 @@
         "hasProvisional": true
       },
       "overflow": false,
+      "reusedScreenshot": true,
       "status": "PASS"
     },
     {
@@ -31,6 +32,7 @@
         "hasProvisional": true
       },
       "overflow": false,
+      "reusedScreenshot": true,
       "status": "PASS"
     },
     {
@@ -47,6 +49,7 @@
         "hasProvisional": true
       },
       "overflow": false,
+      "reusedScreenshot": true,
       "status": "PASS"
     }
   ],

@@ -2,15 +2,17 @@
  * Build the interactive hybrid D/A release candidate and optionally serve it.
  *
  * Usage:
- *   node scripts/rc-preview.mjs           # build + serve
- *   node scripts/rc-preview.mjs --build-only
+ *   node scripts/rc-preview.mjs              # serve existing artifacts (build only if missing)
+ *   node scripts/rc-preview.mjs --rebuild    # force deterministic rebuild + serve
+ *   node scripts/rc-preview.mjs --build-only # force deterministic rebuild, no serve
+ *   node scripts/rc-preview.mjs --serve-only # never rebuild
  */
 
 import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 
 import { buildReleaseCandidateHtml } from '../src/lib/rc-app-render.mjs';
@@ -19,6 +21,7 @@ import {
   collectProtectedHashes,
   verifyProtectedFiles,
 } from '../src/lib/rc-data-protection.mjs';
+import { releaseCandidateGeneratedAt } from '../src/lib/rc-determinism.mjs';
 import {
   assertForbiddenMergesRespected,
   assertMandatorySpecialCases,
@@ -37,6 +40,26 @@ const PORT = Number(process.env.RC_PORT || 4177);
 const HOST = process.env.RC_HOST || '127.0.0.1';
 const buildOnly = process.argv.includes('--build-only');
 const skipGuide = process.argv.includes('--skip-guide');
+const rewriteScreenshots = process.argv.includes('--rewrite-screenshots');
+const forceRebuild = process.argv.includes('--rebuild') || buildOnly;
+const serveOnly = process.argv.includes('--serve-only');
+
+const REQUIRED_ARTIFACTS = [
+  'index.html',
+  'rc-data.json',
+  'legacy-vs-hybrid-scenarios.json',
+  'data-protection-report.json',
+  'visual-qa-report.json',
+  'screenshots/desktop-1440.png',
+  'screenshots/tablet-768.png',
+  'screenshots/mobile-390.png',
+  'kr-kinetics-guide-landscape-fr-rc.pdf',
+  'kr-kinetics-guide-mobile-bilingual-rc.pdf',
+];
+
+function artifactsReady() {
+  return REQUIRED_ARTIFACTS.every((rel) => fs.existsSync(path.join(outDir, rel)));
+}
 
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
 
@@ -117,7 +140,7 @@ function startServer() {
   });
 }
 
-async function captureScreenshots(baseUrl) {
+async function captureScreenshots(baseUrl, { generatedAt, rewrite = false } = {}) {
   ensureDir(screenshotsDir);
   const browser = await puppeteer.launch({
     headless: true,
@@ -130,7 +153,7 @@ async function captureScreenshots(baseUrl) {
     { width: 390, height: 1100, name: 'mobile-390.png' },
   ];
   const visual = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     widths: [],
     overall: 'PASS',
   };
@@ -165,12 +188,17 @@ async function captureScreenshots(baseUrl) {
       const pass = !overflow && metrics.hasBanner && metrics.hasModeA && metrics.hasModeDA && metrics.hasProvisional;
       if (!pass) visual.overall = 'FAIL';
       const shotPath = path.join(screenshotsDir, viewport.name);
-      await page.screenshot({ path: shotPath, fullPage: true });
+      const exists = fs.existsSync(shotPath);
+      // PNG captures are non-deterministic across Chromium runs; reuse committed files by default.
+      if (rewrite || !exists) {
+        await page.screenshot({ path: shotPath, fullPage: true });
+      }
       visual.widths.push({
         ...viewport,
         file: `screenshots/${viewport.name}`,
         metrics,
         overflow,
+        reusedScreenshot: !(rewrite || !exists),
         status: pass ? 'PASS' : 'FAIL',
       });
       await page.close();
@@ -239,6 +267,13 @@ Ce build **ne modifie aucun client**, aucune donnée nutritionnelle individuelle
   fs.writeFileSync(path.join(outDir, 'ACCEPTANCE_CHECKLIST.md'), `${checklist}\n`, 'utf8');
 }
 
+function copyIfMissing(src, dest) {
+  if (fs.existsSync(dest)) return false;
+  if (!fs.existsSync(src)) throw new Error(`Missing source artifact: ${src}`);
+  copyFile(src, dest);
+  return true;
+}
+
 async function build() {
   ensureDir(outDir);
   ensureDir(screenshotsDir);
@@ -246,12 +281,12 @@ async function build() {
   ensureDir(assetsDir);
 
   const beforeHashes = collectProtectedHashes();
-  assertProtectedFilesUnchanged();
-
   const foodsPayload = readJson('src/data/food-equivalents.json');
   const categoryMapping = readJson('src/data/category-mapping.json');
   const proposal = readJson('reports/exchange-profile-decision/exchange-rollup-proposal.json');
   const versionMeta = readJson('src/data/nutrition-data-version.json');
+  const generatedAt = releaseCandidateGeneratedAt(versionMeta);
+  assertProtectedFilesUnchanged(undefined, { generatedAt });
 
   const rollupIndex = buildRollupIndex(proposal);
   assertUniqueFullCoverage(rollupIndex, 287, 28);
@@ -261,15 +296,25 @@ async function build() {
   const foodsById = new Map(foodsPayload.foods.map((food) => [food.id, food]));
   const legacyRefs = buildLegacyContext(categoryMapping);
   const context = { legacyRefs, rollupIndex, foodsById };
-  const scenarioReport = runAcceptanceScenarios(context, { foodIdResolver: defaultFoodIdResolver });
+  const scenarioReport = runAcceptanceScenarios(context, {
+    foodIdResolver: defaultFoodIdResolver,
+    generatedAt,
+  });
   if (scenarioReport.failed) {
     throw new Error(`Acceptance scenarios failed: ${scenarioReport.failed}`);
   }
 
-  // Ensure guide preview artifacts exist, then copy RC PDFs/HTML.
+  // Ensure guide preview artifacts exist. Keep already-committed RC PDFs/HTML by default
+  // (Puppeteer PDF bytes are non-deterministic across runs).
   const guidePreviewDir = path.join(root, 'reports', 'guide-preview');
   const guideReady = ['kr-kinetics-landscape-fr.pdf', 'kr-kinetics-mobile-bilingual.pdf', 'kr-kinetics-landscape-fr.html', 'kr-kinetics-mobile-bilingual.html']
     .every((name) => fs.existsSync(path.join(guidePreviewDir, name)));
+  const rcGuidesReady = [
+    path.join(guidesDir, 'kr-kinetics-landscape-fr.html'),
+    path.join(guidesDir, 'kr-kinetics-mobile-bilingual.html'),
+    path.join(outDir, 'kr-kinetics-guide-landscape-fr-rc.pdf'),
+    path.join(outDir, 'kr-kinetics-guide-mobile-bilingual-rc.pdf'),
+  ].every((filePath) => fs.existsSync(filePath));
   if (!skipGuide || !guideReady) {
     runNpm('guide:preview');
   }
@@ -283,16 +328,24 @@ async function build() {
   for (const [name, dest] of guideCopies) {
     const src = path.join(guidePreviewDir, name);
     if (!fs.existsSync(src)) throw new Error(`Missing guide preview artifact: ${name}`);
-    copyFile(src, dest);
+    if (rcGuidesReady) {
+      // Preserve committed RC binaries/HTML; guide:preview still validated separately.
+      continue;
+    }
+    copyIfMissing(src, dest);
   }
   // Point guide HTML logos at the shared RC asset (no second multi‑MB PNG copy).
+  // Only rewrite exact "./assets/..." refs — never touch already-relative "../assets/...".
   const sharedLogoUrl = '../assets/kinetics-logo.svg';
   for (const htmlName of ['kr-kinetics-landscape-fr.html', 'kr-kinetics-landscape-en.html', 'kr-kinetics-mobile-bilingual.html']) {
     const htmlPath = path.join(guidesDir, htmlName);
     if (!fs.existsSync(htmlPath)) continue;
-    const html = fs.readFileSync(htmlPath, 'utf8')
-      .replace(/\.\/assets\/kinetics-logo\.(?:png|svg)/g, sharedLogoUrl);
-    fs.writeFileSync(htmlPath, html, 'utf8');
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const next = html.replace(
+      /(?<!\.)\.\/assets\/kinetics-logo\.(?:png|svg)/g,
+      sharedLogoUrl,
+    );
+    if (next !== html) fs.writeFileSync(htmlPath, next, 'utf8');
   }
   // Keep nutrition:final-audit clean: regenerating guide-preview dirties tracked PDFs/HTML.
   // RC already copied the candidate artifacts under reports/release-candidate/.
@@ -306,7 +359,7 @@ async function build() {
 
   const logoUrl = stageLogo();
   const rcData = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     version: versionMeta.version,
     labels: {
       banner: 'VERSION CANDIDATE — NE PAS UTILISER POUR DES CLIENTS',
@@ -362,7 +415,7 @@ async function build() {
     'utf8',
   );
 
-  const protection = verifyProtectedFiles();
+  const protection = verifyProtectedFiles(undefined, { generatedAt });
   const afterHashes = collectProtectedHashes();
   protection.before = beforeHashes.before;
   protection.after = afterHashes.after;
@@ -374,7 +427,7 @@ async function build() {
   const url = `http://${HOST}:${PORT}`;
   let visual;
   try {
-    visual = await captureScreenshots(url);
+    visual = await captureScreenshots(url, { generatedAt, rewrite: rewriteScreenshots });
     fs.writeFileSync(path.join(outDir, 'visual-qa-report.json'), `${JSON.stringify(visual, null, 2)}\n`, 'utf8');
     if (visual.overall !== 'PASS') {
       throw new Error('Visual QA failed for release candidate');
@@ -417,12 +470,32 @@ async function build() {
   return { url: publicUrl, command, server: buildOnly ? null : server, summary };
 }
 
-const result = await build();
-if (buildOnly) {
-  process.exitCode = 0;
-} else {
-  console.log(`\nServing ${result.url}`);
+async function serveExisting() {
+  if (!artifactsReady()) {
+    throw new Error('Release-candidate artifacts missing. Run: node scripts/rc-preview.mjs --build-only');
+  }
+  const server = await startServer();
+  const publicUrl = `http://${HOST}:${PORT}/`;
+  console.log('\n=== RELEASE CANDIDATE READY ===');
+  console.log(`URL: ${publicUrl}`);
+  console.log('Command: npm run rc:preview');
+  console.log('(serving existing artifacts — no rebuild)');
   console.log('Press Ctrl+C to stop.');
-  // Keep process alive.
+  globalThis.__rcServer = server;
   await new Promise(() => {});
+}
+
+// Default owner command serves committed artifacts without rewriting them.
+// --build-only / --rebuild force a deterministic rebuild for verification.
+if (serveOnly || (!buildOnly && !forceRebuild && artifactsReady())) {
+  await serveExisting();
+} else {
+  const result = await build();
+  if (buildOnly) {
+    process.exitCode = 0;
+  } else {
+    console.log(`\nServing ${result.url}`);
+    console.log('Press Ctrl+C to stop.');
+    await new Promise(() => {});
+  }
 }

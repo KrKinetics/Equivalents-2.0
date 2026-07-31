@@ -149,7 +149,7 @@ function resolveFoodIdsExist(entries, foodsById) {
 /**
  * Run all scenarios. Food IDs that are missing are remapped via fuzzy search in foods.
  */
-export function runAcceptanceScenarios(context, { foodIdResolver } = {}) {
+export function runAcceptanceScenarios(context, { foodIdResolver, generatedAt = 'deterministic:release-candidate' } = {}) {
   const scenarios = buildAcceptanceScenarios();
   const results = [];
 
@@ -282,7 +282,7 @@ export function runAcceptanceScenarios(context, { foodIdResolver } = {}) {
   }
 
   return {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     scenarioCount: results.length,
     passed: results.filter((row) => row.result === 'PASS').length,
     failed: results.filter((row) => row.result === 'FAIL').length,

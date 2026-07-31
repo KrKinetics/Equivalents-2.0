@@ -54,7 +54,7 @@ export function collectProtectedHashes(baseline = PROTECTED_RC_BASELINE) {
 /**
  * Returns a protection report. Fails (ok:false) if any protected file drifted.
  */
-export function verifyProtectedFiles(baseline = PROTECTED_RC_BASELINE) {
+export function verifyProtectedFiles(baseline = PROTECTED_RC_BASELINE, { generatedAt = null } = {}) {
   const { before, after } = collectProtectedHashes(baseline);
   const changed = [];
   for (const file of Object.keys(baseline)) {
@@ -64,7 +64,7 @@ export function verifyProtectedFiles(baseline = PROTECTED_RC_BASELINE) {
   }
   return {
     ok: changed.length === 0,
-    generatedAt: new Date().toISOString(),
+    generatedAt: generatedAt || 'deterministic:release-candidate',
     protectedFileCount: Object.keys(baseline).length,
     changed,
     before,
@@ -73,8 +73,8 @@ export function verifyProtectedFiles(baseline = PROTECTED_RC_BASELINE) {
   };
 }
 
-export function assertProtectedFilesUnchanged(baseline = PROTECTED_RC_BASELINE) {
-  const report = verifyProtectedFiles(baseline);
+export function assertProtectedFilesUnchanged(baseline = PROTECTED_RC_BASELINE, options = {}) {
+  const report = verifyProtectedFiles(baseline, options);
   if (!report.ok) {
     const detail = report.changed.map((row) => `${row.file}: ${row.before} → ${row.after}`).join('; ');
     throw new Error(`Protected file mutation detected: ${detail}`);

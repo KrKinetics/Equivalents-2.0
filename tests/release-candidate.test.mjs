@@ -22,6 +22,7 @@ import {
   assertProtectedFilesUnchanged,
   hashFile,
 } from '../src/lib/rc-data-protection.mjs';
+import { releaseCandidateGeneratedAt } from '../src/lib/rc-determinism.mjs';
 import {
   defaultFoodIdResolver,
   runAcceptanceScenarios,
@@ -183,4 +184,13 @@ test('hybrid-da-rc is never implied as production default in package scripts', (
   // Normal generate/test scripts must not force hybrid preview as default calculator mode.
   assert.doesNotMatch(pkg.scripts.generate || '', /hybrid-da-rc/);
   assert.doesNotMatch(pkg.scripts.test || '', /calculationModelVersion=hybrid/);
+});
+
+test('release-candidate generatedAt is deterministic from nutrition version meta', () => {
+  const versionMeta = readJson('src/data/nutrition-data-version.json');
+  const a = releaseCandidateGeneratedAt(versionMeta);
+  const b = releaseCandidateGeneratedAt(versionMeta);
+  assert.equal(a, b);
+  assert.equal(a, versionMeta.lastModifiedAt);
+  assert.notEqual(a, new Date().toISOString());
 });
