@@ -17,33 +17,22 @@ const localAssetsDir = path.join(outDir, 'assets');
 const screenshotsDir = path.join(outDir, 'screenshots');
 const readJson = async (name) => JSON.parse(await fs.readFile(path.join(dataDir, name), 'utf8'));
 
-// Prefer opaque full logo (transparent PNG can render as grey checkerboard in PDF viewers).
-const LOGO_CANDIDATES = [
-  path.join(root, 'assets', 'kinetics-logo-full.png'),
-  path.join(root, 'assets', 'kinetics-logo-transparent.png'),
-  path.join(root, 'assets', 'kinetics-logo.svg'),
-];
-
-function resolveLogoAsset() {
-  for (const candidate of LOGO_CANDIDATES) {
-    if (existsSync(candidate)) return candidate;
-  }
-  throw new Error(`KR Kinetics logo not found. Tried: ${LOGO_CANDIDATES.join(', ')}`);
-}
+// Owner-approved horizontal wordmark only (never auto-pick kinetics-branding SVGs).
+const LOGO_SOURCE = path.join(root, 'assets', 'logo-kr-kinetics-horizontal.png');
 
 function prepareLocalLogo() {
-  const source = resolveLogoAsset();
+  if (!existsSync(LOGO_SOURCE)) {
+    throw new Error(`Official logo missing: ${LOGO_SOURCE}`);
+  }
   mkdirSync(localAssetsDir, { recursive: true });
-  const ext = path.extname(source);
-  const destName = `kinetics-logo${ext}`;
+  const destName = 'logo-kr-kinetics-horizontal.png';
   const dest = path.join(localAssetsDir, destName);
-  copyFileSync(source, dest);
+  copyFileSync(LOGO_SOURCE, dest);
   if (!existsSync(dest) || readFileSync(dest).length === 0) {
     throw new Error(`Failed to stage logo asset at ${dest}`);
   }
-  // Relative URL from HTML files in reports/guide-preview/ — same directory tree (Chromium file:// safe).
   return {
-    sourcePath: source,
+    sourcePath: LOGO_SOURCE,
     stagedPath: dest,
     relativeUrl: `./assets/${destName}`,
     absoluteFileUrl: pathToFileURL(dest).href,
@@ -211,13 +200,25 @@ try {
   qa.headerReadability.push({ mode: 'mobile', ...mobileHeaderCheck });
   if (!mobileHeaderCheck.pass) qa.overall = 'FAIL';
 
+  const pdfHeader = `
+    <div style="font-size:8px;width:100%;padding:0 10mm;color:#64748b;font-family:Arial,sans-serif;">
+      <span>KR Kinetics — Aperçu guide (non approuvé)</span>
+    </div>`;
+  const pdfFooter = `
+    <div style="font-size:8px;width:100%;padding:0 10mm;color:#64748b;font-family:Arial,sans-serif;display:flex;justify-content:space-between;">
+      <span>Profils d’échange non approuvés</span>
+      <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
+    </div>`;
   await landscape.pdf({
     path: path.join(outDir, 'kr-kinetics-landscape-fr.pdf'),
     format: 'A4',
     landscape: true,
     printBackground: true,
     preferCSSPageSize: true,
-    margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
+    displayHeaderFooter: true,
+    headerTemplate: pdfHeader,
+    footerTemplate: pdfFooter,
+    margin: { top: '10mm', right: '8mm', bottom: '10mm', left: '8mm' },
   });
   await mobile.pdf({
     path: path.join(outDir, 'kr-kinetics-mobile-bilingual.pdf'),
@@ -225,6 +226,9 @@ try {
     landscape: false,
     printBackground: true,
     preferCSSPageSize: true,
+    displayHeaderFooter: true,
+    headerTemplate: pdfHeader,
+    footerTemplate: pdfFooter,
     margin: { top: '10mm', right: '10mm', bottom: '12mm', left: '10mm' },
   });
 
@@ -257,6 +261,13 @@ try {
         const overflowNodes = isMobile
           ? [node, ...node.querySelectorAll('.item-name, .tag')]
           : [node, ...node.querySelectorAll('td,th')];
+        const orphanHeaderPass = isMobile
+          ? Boolean(leadStyle)
+            && (leadStyle.breakInside === 'avoid' || leadStyle.pageBreakInside === 'avoid')
+            && Boolean(headerStyle)
+            && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid')
+          : Boolean(headerStyle)
+            && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid');
         return {
           overflow: {
             pass: overflowNodes.every((el) => el.scrollWidth <= el.clientWidth + 1),
@@ -267,12 +278,7 @@ try {
             pass: cells.every((cell) => cell.scrollWidth <= cell.clientWidth + 2),
             count: cells.filter((cell) => cell.scrollWidth > cell.clientWidth + 2).length,
           },
-          orphanHeader: {
-            pass: Boolean(leadStyle)
-              && (leadStyle.breakInside === 'avoid' || leadStyle.pageBreakInside === 'avoid')
-              && Boolean(headerStyle)
-              && (headerStyle.breakAfter === 'avoid' || headerStyle.pageBreakAfter === 'avoid'),
-          },
+          orphanHeader: { pass: orphanHeaderPass },
           logoInDocument: {
             pass: [...document.images].every((img) => img.complete && img.naturalWidth > 0),
           },

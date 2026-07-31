@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:4177/",
+  "command": "npm run rc:preview",
+  "scenarioReport": {
+    "passed": 10,
+    "failed": 0,
+    "scenarioCount": 10
+  },
+  "protectionOk": true,
+  "visual": "PASS",
+  "pdfs": [
+    "reports/release-candidate/kr-kinetics-guide-landscape-fr-rc.pdf",
+    "reports/release-candidate/kr-kinetics-guide-mobile-bilingual-rc.pdf"
+  ]
+}

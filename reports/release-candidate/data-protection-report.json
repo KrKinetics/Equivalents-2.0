@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "generatedAt": "2026-07-30T01:25:20.093Z",
+  "protectedFileCount": 5,
+  "changed": [],
+  "before": {
+    "src/data/food-equivalents.json": "b4125e985418701ed4d9e4d51a6c8bfdb0685030bbd1e729e9fb89cef6daa3d3",
+    "src/data/nutrition-data-version.json": "5d2c0a04fe73b1b6d7c26307e1e3bbbe90ca733ad799ff0f0be079bb0ebb09c5",
+    "src/data/category-mapping.json": "efe4dcb4ffa304dbb3ac735b92c5602f4eb30452206c8afb521db598f743776c",
+    "src/data/calculation-groups.json": "ec10ef42e64d1c260c3bf3d4e1d9a4e59ce8f8c0b26e9b37c065451a89a2f131",
+    "reports/exchange-profile-decision/exchange-rollup-proposal.json": "1e4b0c7da55ff52d504e75ab88100880b70f18497ff774b46d0aa6cba1a81c0f"
+  },
+  "after": {
+    "src/data/food-equivalents.json": "b4125e985418701ed4d9e4d51a6c8bfdb0685030bbd1e729e9fb89cef6daa3d3",
+    "src/data/nutrition-data-version.json": "5d2c0a04fe73b1b6d7c26307e1e3bbbe90ca733ad799ff0f0be079bb0ebb09c5",
+    "src/data/category-mapping.json": "efe4dcb4ffa304dbb3ac735b92c5602f4eb30452206c8afb521db598f743776c",
+    "src/data/calculation-groups.json": "ec10ef42e64d1c260c3bf3d4e1d9a4e59ce8f8c0b26e9b37c065451a89a2f131",
+    "reports/exchange-profile-decision/exchange-rollup-proposal.json": "1e4b0c7da55ff52d504e75ab88100880b70f18497ff774b46d0aa6cba1a81c0f"
+  },
+  "note": "Individual nutrients, portions, identities, verification transactions, legacy A MOYENNES, and rollup proposal assignments must remain unchanged."
+}

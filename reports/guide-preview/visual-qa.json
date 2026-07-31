@@ -5,10 +5,10 @@
       "page": "landscape-fr",
       "images": [
         {
-          "src": "./assets/kinetics-logo.png",
+          "src": "./assets/logo-kr-kinetics-horizontal.png",
           "complete": true,
-          "naturalWidth": 2238,
-          "naturalHeight": 1920,
+          "naturalWidth": 993,
+          "naturalHeight": 302,
           "ok": true
         }
       ]
@@ -17,10 +17,10 @@
       "page": "mobile-bilingual",
       "images": [
         {
-          "src": "./assets/kinetics-logo.png",
+          "src": "./assets/logo-kr-kinetics-horizontal.png",
           "complete": true,
-          "naturalWidth": 2238,
-          "naturalHeight": 1920,
+          "naturalWidth": 993,
+          "naturalHeight": 302,
           "ok": true
         }
       ]
@@ -33,8 +33,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -55,8 +55,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -77,8 +77,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -99,8 +99,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -121,8 +121,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -143,8 +143,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -165,8 +165,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -187,8 +187,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -209,8 +209,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -231,8 +231,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -253,8 +253,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -275,8 +275,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -297,8 +297,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -319,8 +319,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -341,8 +341,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -363,8 +363,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -385,8 +385,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 1280,
-          "clientWidth": 1280
+          "scrollWidth": 1278,
+          "clientWidth": 1278
         },
         "truncatedCells": {
           "pass": true,
@@ -407,8 +407,8 @@
       "checks": {
         "overflow": {
           "pass": true,
-          "scrollWidth": 420,
-          "clientWidth": 420
+          "scrollWidth": 418,
+          "clientWidth": 418
         },
         "truncatedCells": {
           "pass": true,
@@ -426,11 +426,11 @@
   ],
   "pdfOrphans": {
     "mobile": {
-      "pageCount": 24,
+      "pageCount": 23,
       "failures": []
     },
     "landscape": {
-      "pageCount": 12,
+      "pageCount": 11,
       "failures": []
     }
   },

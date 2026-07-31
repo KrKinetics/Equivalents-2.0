@@ -1,0 +1,2788 @@
+{
+  "generatedAt": "2026-07-30T01:25:20.093Z",
+  "scenarioCount": 10,
+  "passed": 10,
+  "failed": 0,
+  "scenarios": [
+    {
+      "id": "01-typical-day",
+      "titleFr": "Journée type (DECISIONS_REQUIRED)",
+      "titleEn": "Typical day (DECISIONS_REQUIRED)",
+      "inputs": [
+        {
+          "type": "group",
+          "group": "protein",
+          "portions": 4
+        },
+        {
+          "type": "group",
+          "group": "starch",
+          "portions": 4
+        },
+        {
+          "type": "group",
+          "group": "vegetable",
+          "portions": 3
+        },
+        {
+          "type": "group",
+          "group": "fruit",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "dairy",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "fat",
+          "portions": 3
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-protein-lean",
+        "rollup-starch-cereal",
+        "rollup-vegetable-non-starchy",
+        "rollup-fruit-standard",
+        "rollup-dairy-milk-yogurt",
+        "rollup-nuts-seeds"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-protein-lean » pour le groupe protein. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-protein-lean” for group protein. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-starch-cereal » pour le groupe starch. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-starch-cereal” for group starch. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-vegetable-non-starchy » pour le groupe vegetable. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-vegetable-non-starchy” for group vegetable. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-fruit-standard » pour le groupe fruit. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-fruit-standard” for group fruit. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-dairy-milk-yogurt » pour le groupe dairy. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-dairy-milk-yogurt” for group dairy. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-nuts-seeds » pour le groupe fat. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-nuts-seeds” for group fat. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 73,
+          "carbsG": 149,
+          "fiberG": null,
+          "fatG": 38,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 77.2,
+          "carbsG": 137,
+          "fiberG": 17.8,
+          "fatG": 26.3,
+          "declaredKcal": 1087
+        }
+      },
+      "differences": {
+        "proteinG": 4.2,
+        "carbsG": -12,
+        "fiberG": null,
+        "fatG": -11.7,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "group",
+            "group": "protein",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 4,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "group",
+            "group": "starch",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 4,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "group",
+            "group": "vegetable",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 3,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 2,
+              "carbsG": 7,
+              "fiberG": null,
+              "fatG": 0,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "group",
+            "group": "fruit",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 2,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 15,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "group",
+            "group": "dairy",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 2,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "group",
+            "group": "fat",
+            "foodId": null,
+            "exchangeRollupId": null,
+            "portions": 3,
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 2,
+              "fiberG": null,
+              "fatG": 6,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "group",
+            "group": "protein",
+            "foodId": null,
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 4,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9.8,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 1.2,
+              "declaredKcal": 54
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-protein-lean » pour le groupe protein. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-protein-lean” for group protein. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          },
+          {
+            "type": "group",
+            "group": "starch",
+            "foodId": null,
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 4,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 2.7,
+              "carbsG": 18,
+              "fiberG": 1.9,
+              "fatG": 0.6,
+              "declaredKcal": 90
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-starch-cereal » pour le groupe starch. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-starch-cereal” for group starch. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          },
+          {
+            "type": "group",
+            "group": "vegetable",
+            "foodId": null,
+            "exchangeRollupId": "rollup-vegetable-non-starchy",
+            "portions": 3,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 5,
+              "fiberG": 1.2,
+              "fatG": 0.2,
+              "declaredKcal": 21
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-vegetable-non-starchy » pour le groupe vegetable. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-vegetable-non-starchy” for group vegetable. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          },
+          {
+            "type": "group",
+            "group": "fruit",
+            "foodId": null,
+            "exchangeRollupId": "rollup-fruit-standard",
+            "portions": 2,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0.9,
+              "carbsG": 15,
+              "fiberG": 2.1,
+              "fatG": 0.2,
+              "declaredKcal": 60
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-fruit-standard » pour le groupe fruit. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-fruit-standard” for group fruit. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          },
+          {
+            "type": "group",
+            "group": "dairy",
+            "foodId": null,
+            "exchangeRollupId": "rollup-dairy-milk-yogurt",
+            "portions": 2,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 8.5,
+              "carbsG": 7,
+              "fiberG": 0,
+              "fatG": 1.7,
+              "declaredKcal": 80
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-dairy-milk-yogurt » pour le groupe dairy. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-dairy-milk-yogurt” for group dairy. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          },
+          {
+            "type": "group",
+            "group": "fat",
+            "foodId": null,
+            "exchangeRollupId": "rollup-nuts-seeds",
+            "portions": 3,
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1.8,
+              "carbsG": 2,
+              "fiberG": 0.8,
+              "fatG": 4.9,
+              "declaredKcal": 56
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "dominant_rollup_preview",
+                "messageFr": "Aperçu via le rollup dominant « rollup-nuts-seeds » pour le groupe fat. Sélectionnez des aliments pour plus de précision.",
+                "messageEn": "Preview via dominant rollup “rollup-nuts-seeds” for group fat. Select foods for more precision."
+              },
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "02-lean-protein-rich",
+      "titleFr": "Journée riche en protéines maigres",
+      "titleEn": "Lean-protein-rich day",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "viandes-volaille-chicken-breast",
+          "portions": 4
+        },
+        {
+          "type": "food",
+          "foodId": "feculents-cooked-rice",
+          "portions": 4
+        },
+        {
+          "type": "food",
+          "foodId": "legumes-broccoli",
+          "portions": 3
+        },
+        {
+          "type": "food",
+          "foodId": "fruits-apple",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "matieres-grasses-unsalted-butter",
+          "portions": 3
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-protein-lean",
+        "rollup-starch-cereal",
+        "rollup-vegetable-non-starchy",
+        "rollup-fruit-standard",
+        "rollup-dairy-milk-yogurt",
+        "rollup-oils-spreads"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 73,
+          "carbsG": 149,
+          "fiberG": null,
+          "fatG": 38,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 71.8,
+          "carbsG": 131,
+          "fiberG": 15.4,
+          "fatG": 29.6,
+          "declaredKcal": 1096
+        }
+      },
+      "differences": {
+        "proteinG": -1.2,
+        "carbsG": -18,
+        "fiberG": null,
+        "fatG": -8.4,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 4,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 4,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "vegetable",
+            "foodId": "legumes-broccoli",
+            "exchangeProfileId": "vegetable-cruciferous",
+            "exchangeRollupId": "rollup-vegetable-non-starchy",
+            "portions": 3,
+            "nameFr": "Brocoli frais, cru",
+            "nameEn": "Broccoli, fresh, raw",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 2,
+              "carbsG": 7,
+              "fiberG": null,
+              "fatG": 0,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "fruit",
+            "foodId": "fruits-apple",
+            "exchangeProfileId": "fruit-standard",
+            "exchangeRollupId": "rollup-fruit-standard",
+            "portions": 2,
+            "nameFr": "Pomme fraîche avec pelure, crue",
+            "nameEn": "Apple, fresh, raw, with skin",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 15,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+            "exchangeProfileId": "dairy-yogurt-low-fat-plain",
+            "exchangeRollupId": "rollup-dairy-milk-yogurt",
+            "portions": 2,
+            "nameFr": "Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",
+            "nameEn": "Plain low-fat yogurt, 0.5–1.9% M.F.",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-unsalted-butter",
+            "exchangeProfileId": "fat-butter-spread",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 3,
+            "nameFr": "Beurre sans sel",
+            "nameEn": "Unsalted butter",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 2,
+              "fiberG": null,
+              "fatG": 6,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 4,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9.8,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 1.2,
+              "declaredKcal": 54
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 4,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 2.7,
+              "carbsG": 18,
+              "fiberG": 1.9,
+              "fatG": 0.6,
+              "declaredKcal": 90
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "vegetable",
+            "foodId": "legumes-broccoli",
+            "exchangeProfileId": "vegetable-cruciferous",
+            "exchangeRollupId": "rollup-vegetable-non-starchy",
+            "portions": 3,
+            "nameFr": "Brocoli frais, cru",
+            "nameEn": "Broccoli, fresh, raw",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 5,
+              "fiberG": 1.2,
+              "fatG": 0.2,
+              "declaredKcal": 21
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "fruit",
+            "foodId": "fruits-apple",
+            "exchangeProfileId": "fruit-standard",
+            "exchangeRollupId": "rollup-fruit-standard",
+            "portions": 2,
+            "nameFr": "Pomme fraîche avec pelure, crue",
+            "nameEn": "Apple, fresh, raw, with skin",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0.9,
+              "carbsG": 15,
+              "fiberG": 2.1,
+              "fatG": 0.2,
+              "declaredKcal": 60
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+            "exchangeProfileId": "dairy-yogurt-low-fat-plain",
+            "exchangeRollupId": "rollup-dairy-milk-yogurt",
+            "portions": 2,
+            "nameFr": "Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",
+            "nameEn": "Plain low-fat yogurt, 0.5–1.9% M.F.",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 8.5,
+              "carbsG": 7,
+              "fiberG": 0,
+              "fatG": 1.7,
+              "declaredKcal": 80
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-unsalted-butter",
+            "exchangeProfileId": "fat-butter-spread",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 3,
+            "nameFr": "Beurre sans sel",
+            "nameEn": "Unsalted butter",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 6,
+              "declaredKcal": 59
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-fatty-protein",
+      "titleFr": "Journée contenant une protéine grasse",
+      "titleEn": "Day with fatty protein",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "poissons-fruits-mer-atlantic-salmon",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "poissons-fruits-mer-mackerel",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "feculents-cooked-rice",
+          "portions": 3
+        },
+        {
+          "type": "food",
+          "foodId": "legumes-spinach",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "fruits-banana",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "matieres-grasses-unsalted-butter",
+          "portions": 2
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-protein-fatty",
+        "rollup-protein-fatty",
+        "rollup-starch-cereal",
+        "rollup-vegetable-non-starchy",
+        "rollup-fruit-standard",
+        "rollup-oils-spreads"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 53,
+          "carbsG": 102,
+          "fiberG": null,
+          "fatG": 27,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 40.7,
+          "carbsG": 94,
+          "fiberG": 12.3,
+          "fatG": 30.2,
+          "declaredKcal": 818
+        }
+      },
+      "differences": {
+        "proteinG": -12.3,
+        "carbsG": -8,
+        "fiberG": null,
+        "fatG": 3.2,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "poissons-fruits-mer-atlantic-salmon",
+            "exchangeProfileId": "protein-fatty-fish",
+            "exchangeRollupId": "rollup-protein-fatty",
+            "portions": 2,
+            "nameFr": "Saumon de l’Atlantique d’élevage, cuit au four ou grillé",
+            "nameEn": "Farmed Atlantic salmon, baked or broiled",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "poissons-fruits-mer-mackerel",
+            "exchangeProfileId": "protein-fatty-fish",
+            "exchangeRollupId": "rollup-protein-fatty",
+            "portions": 2,
+            "nameFr": "Maquereau bleu cuit au four ou grillé",
+            "nameEn": "Atlantic mackerel, baked or broiled",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 3,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "vegetable",
+            "foodId": "legumes-spinach",
+            "exchangeProfileId": "vegetable-leafy",
+            "exchangeRollupId": "rollup-vegetable-non-starchy",
+            "portions": 2,
+            "nameFr": "Épinards frais, crus",
+            "nameEn": "Spinach, fresh, raw",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 2,
+              "carbsG": 7,
+              "fiberG": null,
+              "fatG": 0,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "fruit",
+            "foodId": "fruits-banana",
+            "exchangeProfileId": "fruit-standard",
+            "exchangeRollupId": "rollup-fruit-standard",
+            "portions": 2,
+            "nameFr": "Banane fraîche, crue",
+            "nameEn": "Banana, fresh, raw",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 15,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-unsalted-butter",
+            "exchangeProfileId": "fat-butter-spread",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 2,
+            "nameFr": "Beurre sans sel",
+            "nameEn": "Unsalted butter",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 2,
+              "fiberG": null,
+              "fatG": 6,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "poissons-fruits-mer-atlantic-salmon",
+            "exchangeProfileId": "protein-fatty-fish",
+            "exchangeRollupId": "rollup-protein-fatty",
+            "portions": 2,
+            "nameFr": "Saumon de l’Atlantique d’élevage, cuit au four ou grillé",
+            "nameEn": "Farmed Atlantic salmon, baked or broiled",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 7.2,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 3.9,
+              "declaredKcal": 67
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "poissons-fruits-mer-mackerel",
+            "exchangeProfileId": "protein-fatty-fish",
+            "exchangeRollupId": "rollup-protein-fatty",
+            "portions": 2,
+            "nameFr": "Maquereau bleu cuit au four ou grillé",
+            "nameEn": "Atlantic mackerel, baked or broiled",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 7.2,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 3.9,
+              "declaredKcal": 67
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 3,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 2.7,
+              "carbsG": 18,
+              "fiberG": 1.9,
+              "fatG": 0.6,
+              "declaredKcal": 90
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "vegetable",
+            "foodId": "legumes-spinach",
+            "exchangeProfileId": "vegetable-leafy",
+            "exchangeRollupId": "rollup-vegetable-non-starchy",
+            "portions": 2,
+            "nameFr": "Épinards frais, crus",
+            "nameEn": "Spinach, fresh, raw",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 5,
+              "fiberG": 1.2,
+              "fatG": 0.2,
+              "declaredKcal": 21
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "fruit",
+            "foodId": "fruits-banana",
+            "exchangeProfileId": "fruit-standard",
+            "exchangeRollupId": "rollup-fruit-standard",
+            "portions": 2,
+            "nameFr": "Banane fraîche, crue",
+            "nameEn": "Banana, fresh, raw",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0.9,
+              "carbsG": 15,
+              "fiberG": 2.1,
+              "fatG": 0.2,
+              "declaredKcal": 60
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-unsalted-butter",
+            "exchangeProfileId": "fat-butter-spread",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 2,
+            "nameFr": "Beurre sans sel",
+            "nameEn": "Unsalted butter",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 6,
+              "declaredKcal": 59
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-nuts-and-oils",
+      "titleFr": "Noix/graines et huile dans le même plan",
+      "titleEn": "Nuts/seeds and oil in the same plan",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "noix-graines-almonds",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "matieres-grasses-vegetable-oil",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "viandes-volaille-chicken-breast",
+          "portions": 3
+        },
+        {
+          "type": "food",
+          "foodId": "feculents-cooked-rice",
+          "portions": 3
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-nuts-seeds",
+        "rollup-oils-spreads",
+        "rollup-protein-lean",
+        "rollup-starch-cereal"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 40,
+          "carbsG": 62,
+          "fiberG": null,
+          "fatG": 33,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 41.1,
+          "carbsG": 58,
+          "fiberG": 7.3,
+          "fatG": 27.2,
+          "declaredKcal": 662
+        }
+      },
+      "differences": {
+        "proteinG": 1.1,
+        "carbsG": -4,
+        "fiberG": null,
+        "fatG": -5.8,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "noix-graines-almonds",
+            "exchangeProfileId": "fat-nut-seed",
+            "exchangeRollupId": "rollup-nuts-seeds",
+            "portions": 2,
+            "nameFr": "Amandes entières, crues, non salées",
+            "nameEn": "Almonds, whole, raw, unsalted",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 2,
+              "fiberG": null,
+              "fatG": 6,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-vegetable-oil",
+            "exchangeProfileId": "fat-oil",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 2,
+            "nameFr": "Huile d’olive",
+            "nameEn": "Olive oil",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 1,
+              "carbsG": 2,
+              "fiberG": null,
+              "fatG": 6,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 3,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 3,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "noix-graines-almonds",
+            "exchangeProfileId": "fat-nut-seed",
+            "exchangeRollupId": "rollup-nuts-seeds",
+            "portions": 2,
+            "nameFr": "Amandes entières, crues, non salées",
+            "nameEn": "Almonds, whole, raw, unsalted",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1.8,
+              "carbsG": 2,
+              "fiberG": 0.8,
+              "fatG": 4.9,
+              "declaredKcal": 56
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "fat",
+            "foodId": "matieres-grasses-vegetable-oil",
+            "exchangeProfileId": "fat-oil",
+            "exchangeRollupId": "rollup-oils-spreads",
+            "portions": 2,
+            "nameFr": "Huile d’olive",
+            "nameEn": "Olive oil",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 0,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 6,
+              "declaredKcal": 59
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 3,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9.8,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 1.2,
+              "declaredKcal": 54
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 3,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 2.7,
+              "carbsG": 18,
+              "fiberG": 1.9,
+              "fatG": 0.6,
+              "declaredKcal": 90
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-dairy-families",
+      "titleFr": "Lait/yogourt, fromage, boisson végétale et Core Power",
+      "titleEn": "Milk/yogurt, cheese, plant drink and Core Power",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-allegro-9-cheese",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-bottle-core-power-fairlife",
+          "portions": 1
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-dairy-milk-yogurt",
+        "rollup-dairy-cheese",
+        "rollup-dairy-plant-drink",
+        "rollup-dairy-protein-rtd"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "insufficient_sample",
+          "messageFr": "Échantillon insuffisant — valeur provisoire",
+          "messageEn": "Insufficient sample — provisional value"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 28,
+          "carbsG": 40,
+          "fiberG": null,
+          "fatG": 8,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 32.5,
+          "carbsG": 21,
+          "fiberG": 2,
+          "fatG": 8.8,
+          "declaredKcal": 314
+        }
+      },
+      "differences": {
+        "proteinG": 4.5,
+        "carbsG": -19,
+        "fiberG": null,
+        "fatG": 0.8,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+            "exchangeProfileId": "dairy-yogurt-low-fat-plain",
+            "exchangeRollupId": "rollup-dairy-milk-yogurt",
+            "portions": 1,
+            "nameFr": "Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",
+            "nameEn": "Plain low-fat yogurt, 0.5–1.9% M.F.",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-allegro-9-cheese",
+            "exchangeProfileId": "dairy-cheese-allegro-9",
+            "exchangeRollupId": "rollup-dairy-cheese",
+            "portions": 1,
+            "nameFr": "Fromage Allégro 9 % blanc",
+            "nameEn": "Allégro 9% White cheese",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+            "exchangeProfileId": "dairy-alternative-almond-unsweetened",
+            "exchangeRollupId": "rollup-dairy-plant-drink",
+            "portions": 1,
+            "nameFr": "Boisson d’amandes nature non sucrée, enrichie",
+            "nameEn": "Plain unsweetened fortified almond beverage",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-bottle-core-power-fairlife",
+            "exchangeProfileId": "dairy-protein-shake-core-power-26",
+            "exchangeRollupId": "rollup-dairy-protein-rtd",
+            "portions": 1,
+            "nameFr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+            "nameEn": "fairlife Core Power Chocolate, 26 g protein",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-2-yogurt-no-added-sugar",
+            "exchangeProfileId": "dairy-yogurt-low-fat-plain",
+            "exchangeRollupId": "rollup-dairy-milk-yogurt",
+            "portions": 1,
+            "nameFr": "Yogourt nature faible en gras, 0,5 à 1,9 % M.G.",
+            "nameEn": "Plain low-fat yogurt, 0.5–1.9% M.F.",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 8.5,
+              "carbsG": 7,
+              "fiberG": 0,
+              "fatG": 1.7,
+              "declaredKcal": 80
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-allegro-9-cheese",
+            "exchangeProfileId": "dairy-cheese-allegro-9",
+            "exchangeRollupId": "rollup-dairy-cheese",
+            "portions": 1,
+            "nameFr": "Fromage Allégro 9 % blanc",
+            "nameEn": "Allégro 9% White cheese",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9.6,
+              "carbsG": 1,
+              "fiberG": 0,
+              "fatG": 2.5,
+              "declaredKcal": 70
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-cup-plain-almond-barley-rice-beverage",
+            "exchangeProfileId": "dairy-alternative-almond-unsweetened",
+            "exchangeRollupId": "rollup-dairy-plant-drink",
+            "portions": 1,
+            "nameFr": "Boisson d’amandes nature non sucrée, enrichie",
+            "nameEn": "Plain unsweetened fortified almond beverage",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 1.4,
+              "carbsG": 9,
+              "fiberG": 1,
+              "fatG": 2.3,
+              "declaredKcal": 79
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-bottle-core-power-fairlife",
+            "exchangeProfileId": "dairy-protein-shake-core-power-26",
+            "exchangeRollupId": "rollup-dairy-protein-rtd",
+            "portions": 1,
+            "nameFr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+            "nameEn": "fairlife Core Power Chocolate, 26 g protein",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 13,
+              "carbsG": 4,
+              "fiberG": 1,
+              "fatG": 2.3,
+              "declaredKcal": 85
+            },
+            "status": "insufficient_sample_provisional",
+            "insufficientSample": true,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "insufficient_sample",
+                "messageFr": "Échantillon insuffisant — valeur provisoire",
+                "messageEn": "Insufficient sample — provisional value"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-whey-collagen-bar-rtd",
+      "titleFr": "Whey, collagène, barre et boisson protéinée",
+      "titleEn": "Whey, collagen, bar and protein drink",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "autres-sources-proteinees-scoop-whey-protein",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "autres-sources-proteinees-hydrolyzed-collagen",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "autres-sources-proteinees-performance-protein-bar",
+          "portions": 1
+        },
+        {
+          "type": "food",
+          "foodId": "autres-sources-proteinees-core-power-fairlife",
+          "portions": 1
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-whey-powders",
+        "rollup-collagen-incomplete",
+        "rollup-protein-bars",
+        "rollup-protein-rtd"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "insufficient_sample",
+          "messageFr": "Échantillon insuffisant — valeur provisoire",
+          "messageEn": "Insufficient sample — provisional value"
+        },
+        {
+          "code": "insufficient_sample",
+          "messageFr": "Échantillon insuffisant — valeur provisoire",
+          "messageEn": "Insufficient sample — provisional value"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 36,
+          "carbsG": 0,
+          "fiberG": null,
+          "fatG": 8,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 41.6,
+          "carbsG": 15,
+          "fiberG": 8.1,
+          "fatG": 4.4,
+          "declaredKcal": 231
+        }
+      },
+      "differences": {
+        "proteinG": 5.6,
+        "carbsG": 15,
+        "fiberG": null,
+        "fatG": -3.6,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-scoop-whey-protein",
+            "exchangeProfileId": "protein-whey-generic",
+            "exchangeRollupId": "rollup-whey-powders",
+            "portions": 1,
+            "nameFr": "Poudre protéinée à base de lactosérum, profil CNF",
+            "nameEn": "Whey-based protein powder, CNF profile",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-hydrolyzed-collagen",
+            "exchangeProfileId": "protein-collagen-incomplete",
+            "exchangeRollupId": "rollup-collagen-incomplete",
+            "portions": 1,
+            "nameFr": "Peptides de collagène Vital Proteins, sans saveur",
+            "nameEn": "Vital Proteins Collagen Peptides, unflavored",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-performance-protein-bar",
+            "exchangeProfileId": "protein-bar-high-fibre",
+            "exchangeRollupId": "rollup-protein-bars",
+            "portions": 1,
+            "nameFr": "Barre protéinée Quest Chocolate Brownie",
+            "nameEn": "Quest Chocolate Brownie protein bar",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-core-power-fairlife",
+            "exchangeProfileId": "protein-ready-to-drink",
+            "exchangeRollupId": "rollup-protein-rtd",
+            "portions": 1,
+            "nameFr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+            "nameEn": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "whey",
+            "foodId": "autres-sources-proteinees-scoop-whey-protein",
+            "exchangeProfileId": "protein-whey-generic",
+            "exchangeRollupId": "rollup-whey-powders",
+            "portions": 1,
+            "nameFr": "Poudre protéinée à base de lactosérum, profil CNF",
+            "nameEn": "Whey-based protein powder, CNF profile",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 12.5,
+              "carbsG": 1,
+              "fiberG": 0,
+              "fatG": 0.5,
+              "declaredKcal": 55
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-hydrolyzed-collagen",
+            "exchangeProfileId": "protein-collagen-incomplete",
+            "exchangeRollupId": "rollup-collagen-incomplete",
+            "portions": 1,
+            "nameFr": "Peptides de collagène Vital Proteins, sans saveur",
+            "nameEn": "Vital Proteins Collagen Peptides, unflavored",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 0,
+              "declaredKcal": 35
+            },
+            "status": "insufficient_sample_provisional",
+            "insufficientSample": true,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "insufficient_sample",
+                "messageFr": "Échantillon insuffisant — valeur provisoire",
+                "messageEn": "Insufficient sample — provisional value"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-performance-protein-bar",
+            "exchangeProfileId": "protein-bar-high-fibre",
+            "exchangeRollupId": "rollup-protein-bars",
+            "portions": 1,
+            "nameFr": "Barre protéinée Quest Chocolate Brownie",
+            "nameEn": "Quest Chocolate Brownie protein bar",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 10,
+              "carbsG": 12,
+              "fiberG": 7.5,
+              "fatG": 3,
+              "declaredKcal": 85
+            },
+            "status": "insufficient_sample_provisional",
+            "insufficientSample": true,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "insufficient_sample",
+                "messageFr": "Échantillon insuffisant — valeur provisoire",
+                "messageEn": "Insufficient sample — provisional value"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "autres-sources-proteinees-core-power-fairlife",
+            "exchangeProfileId": "protein-ready-to-drink",
+            "exchangeRollupId": "rollup-protein-rtd",
+            "portions": 1,
+            "nameFr": "fairlife Core Power Elite chocolat, 42 g de protéines, bouteille 414 ml",
+            "nameEn": "fairlife Core Power Elite Chocolate, 42 g protein, 414 ml bottle",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 10.1,
+              "carbsG": 2,
+              "fiberG": 0.6,
+              "fatG": 0.9,
+              "declaredKcal": 56
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-legume-vs-cereal",
+      "titleFr": "Légumineuse et féculent céréalier",
+      "titleEn": "Legume and cereal starch",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "feculents-cooked-beluga-lentils",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "feculents-cooked-rice",
+          "portions": 2
+        },
+        {
+          "type": "food",
+          "foodId": "viandes-volaille-chicken-breast",
+          "portions": 2
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-starch-legume",
+        "rollup-starch-cereal",
+        "rollup-protein-lean"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 30,
+          "carbsG": 72,
+          "fiberG": null,
+          "fatG": 8,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 42.8,
+          "carbsG": 84,
+          "fiberG": 13,
+          "fatG": 4.6,
+          "declaredKcal": 552
+        }
+      },
+      "differences": {
+        "proteinG": 12.8,
+        "carbsG": 12,
+        "fiberG": null,
+        "fatG": -3.4,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-beluga-lentils",
+            "exchangeProfileId": "starch-legume-lentil",
+            "exchangeRollupId": "rollup-starch-legume",
+            "portions": 2,
+            "nameFr": "Lentilles mûres, bouillies",
+            "nameEn": "Mature lentils, boiled",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 2,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 3,
+              "carbsG": 18,
+              "fiberG": null,
+              "fatG": 1,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 2,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 9,
+              "carbsG": 0,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-beluga-lentils",
+            "exchangeProfileId": "starch-legume-lentil",
+            "exchangeRollupId": "rollup-starch-legume",
+            "portions": 2,
+            "nameFr": "Lentilles mûres, bouillies",
+            "nameEn": "Mature lentils, boiled",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 8.9,
+              "carbsG": 24,
+              "fiberG": 4.6,
+              "fatG": 0.5,
+              "declaredKcal": 132
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "starch",
+            "foodId": "feculents-cooked-rice",
+            "exchangeProfileId": "starch-rice-white",
+            "exchangeRollupId": "rollup-starch-cereal",
+            "portions": 2,
+            "nameFr": "Riz blanc à grain moyen, cuit",
+            "nameEn": "Cooked medium-grain white rice",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 2.7,
+              "carbsG": 18,
+              "fiberG": 1.9,
+              "fatG": 0.6,
+              "declaredKcal": 90
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          },
+          {
+            "type": "food",
+            "group": "protein",
+            "foodId": "viandes-volaille-chicken-breast",
+            "exchangeProfileId": "protein-lean-animal",
+            "exchangeRollupId": "rollup-protein-lean",
+            "portions": 2,
+            "nameFr": "Poitrine de poulet désossée, sans peau, viande seulement, cuite/rôtie, sans huile ajoutée",
+            "nameEn": "Chicken breast, boneless, skinless, meat only, cooked/roasted, no added oil",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 9.8,
+              "carbsG": 0,
+              "fiberG": 0,
+              "fatG": 1.2,
+              "declaredKcal": 54
+            },
+            "status": "stable_provisional",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [
+              {
+                "code": "provisional_unapproved",
+                "messageFr": "Valeurs provisoires non approuvées",
+                "messageEn": "Provisional values not approved"
+              }
+            ],
+            "source": "exchange_rollup_median_b_rounded",
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-insufficient-sample",
+      "titleFr": "Rollup à échantillon insuffisant (Core Power / actionable)",
+      "titleEn": "Insufficient-sample rollup (Core Power / actionable)",
+      "inputs": [
+        {
+          "type": "food",
+          "foodId": "produits-laitiers-bottle-core-power-fairlife",
+          "portions": 1
+        }
+      ],
+      "model": {
+        "legacy": "legacy-a",
+        "hybrid": "hybrid-da-rc"
+      },
+      "rollups": [
+        "rollup-dairy-protein-rtd"
+      ],
+      "fallbacks": [
+        {
+          "entry": {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-bottle-core-power-fairlife",
+            "exchangeProfileId": "dairy-protein-shake-core-power-26",
+            "exchangeRollupId": "rollup-dairy-protein-rtd",
+            "portions": 1,
+            "nameFr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+            "nameEn": "fairlife Core Power Chocolate, 26 g protein"
+          },
+          "reason": "insufficient_sample_actionable",
+          "exchangeRollupId": "rollup-dairy-protein-rtd"
+        }
+      ],
+      "warnings": [
+        {
+          "code": "insufficient_sample",
+          "messageFr": "Échantillon insuffisant — valeur provisoire",
+          "messageEn": "Insufficient sample — provisional value"
+        },
+        {
+          "code": "actionable_fallback_legacy_a",
+          "messageFr": "Plan exploitable : retour explicite aux règles actuelles (mode A) car l’échantillon est insuffisant.",
+          "messageEn": "Actionable plan: explicit fallback to current rules (mode A) because the sample is insufficient."
+        }
+      ],
+      "totals": {
+        "legacy": {
+          "proteinG": 7,
+          "carbsG": 10,
+          "fiberG": null,
+          "fatG": 2,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 7,
+          "carbsG": 10,
+          "fiberG": null,
+          "fatG": 2,
+          "declaredKcal": null
+        }
+      },
+      "differences": {
+        "proteinG": 0,
+        "carbsG": 0,
+        "fiberG": null,
+        "fatG": 0,
+        "declaredKcal": null
+      },
+      "result": "PASS",
+      "error": null,
+      "lineItems": {
+        "legacy": [
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-bottle-core-power-fairlife",
+            "exchangeProfileId": "dairy-protein-shake-core-power-26",
+            "exchangeRollupId": "rollup-dairy-protein-rtd",
+            "portions": 1,
+            "nameFr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+            "nameEn": "fairlife Core Power Chocolate, 26 g protein",
+            "model": "legacy-a",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "legacy_business_rule",
+            "insufficientSample": false,
+            "fallbackApplied": false,
+            "warnings": [],
+            "source": "calculatorLegacyMoyennes"
+          }
+        ],
+        "hybrid": [
+          {
+            "type": "food",
+            "group": "dairy",
+            "foodId": "produits-laitiers-bottle-core-power-fairlife",
+            "exchangeProfileId": "dairy-protein-shake-core-power-26",
+            "exchangeRollupId": "rollup-dairy-protein-rtd",
+            "portions": 1,
+            "nameFr": "Boisson Core Power fairlife chocolat, 26 g de protéines",
+            "nameEn": "fairlife Core Power Chocolate, 26 g protein",
+            "model": "hybrid-da-rc",
+            "nutrients": {
+              "proteinG": 7,
+              "carbsG": 10,
+              "fiberG": null,
+              "fatG": 2,
+              "declaredKcal": null
+            },
+            "status": "insufficient_sample_provisional_fallback_legacy_a",
+            "insufficientSample": true,
+            "fallbackApplied": true,
+            "warnings": [
+              {
+                "code": "insufficient_sample",
+                "messageFr": "Échantillon insuffisant — valeur provisoire",
+                "messageEn": "Insufficient sample — provisional value"
+              },
+              {
+                "code": "actionable_fallback_legacy_a",
+                "messageFr": "Plan exploitable : retour explicite aux règles actuelles (mode A) car l’échantillon est insuffisant.",
+                "messageEn": "Actionable plan: explicit fallback to current rules (mode A) because the sample is insufficient."
+              }
+            ],
+            "source": "calculatorLegacyMoyennes",
+            "fallbackReason": "insufficient_sample_actionable",
+            "previewNutrients": {
+              "proteinG": 13,
+              "carbsG": 4,
+              "fiberG": 1,
+              "fatG": 2.3,
+              "declaredKcal": 85
+            },
+            "usedDominantRollup": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-missing-model-version",
+      "titleFr": "Ancien plan sans calculationModelVersion",
+      "titleEn": "Legacy plan without calculationModelVersion",
+      "inputs": [
+        {
+          "type": "group",
+          "group": "protein",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "starch",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "fruit",
+          "portions": 1
+        }
+      ],
+      "model": "legacy-a",
+      "rollups": [],
+      "fallbacks": [],
+      "warnings": [],
+      "totals": {
+        "proteinG": 25,
+        "carbsG": 51,
+        "fiberG": null,
+        "fatG": 8,
+        "declaredKcal": null
+      },
+      "differences": null,
+      "result": "PASS",
+      "error": null
+    },
+    {
+      "id": "10-round-trip-a-da-a",
+      "titleFr": "Aller-retour A → D/A → A",
+      "titleEn": "Round-trip A → D/A → A",
+      "inputs": [
+        {
+          "type": "group",
+          "group": "protein",
+          "portions": 4
+        },
+        {
+          "type": "group",
+          "group": "starch",
+          "portions": 4
+        },
+        {
+          "type": "group",
+          "group": "vegetable",
+          "portions": 3
+        },
+        {
+          "type": "group",
+          "group": "fruit",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "dairy",
+          "portions": 2
+        },
+        {
+          "type": "group",
+          "group": "fat",
+          "portions": 3
+        }
+      ],
+      "model": "round-trip",
+      "rollups": [
+        "rollup-protein-lean",
+        "rollup-starch-cereal",
+        "rollup-vegetable-non-starchy",
+        "rollup-fruit-standard",
+        "rollup-dairy-milk-yogurt",
+        "rollup-nuts-seeds"
+      ],
+      "fallbacks": [],
+      "warnings": [
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-protein-lean » pour le groupe protein. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-protein-lean” for group protein. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-starch-cereal » pour le groupe starch. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-starch-cereal” for group starch. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-vegetable-non-starchy » pour le groupe vegetable. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-vegetable-non-starchy” for group vegetable. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-fruit-standard » pour le groupe fruit. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-fruit-standard” for group fruit. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-dairy-milk-yogurt » pour le groupe dairy. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-dairy-milk-yogurt” for group dairy. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        },
+        {
+          "code": "dominant_rollup_preview",
+          "messageFr": "Aperçu via le rollup dominant « rollup-nuts-seeds » pour le groupe fat. Sélectionnez des aliments pour plus de précision.",
+          "messageEn": "Preview via dominant rollup “rollup-nuts-seeds” for group fat. Select foods for more precision."
+        },
+        {
+          "code": "provisional_unapproved",
+          "messageFr": "Valeurs provisoires non approuvées",
+          "messageEn": "Provisional values not approved"
+        }
+      ],
+      "totals": {
+        "a1": {
+          "proteinG": 73,
+          "carbsG": 149,
+          "fiberG": null,
+          "fatG": 38,
+          "declaredKcal": null
+        },
+        "hybrid": {
+          "proteinG": 77.2,
+          "carbsG": 137,
+          "fiberG": 17.8,
+          "fatG": 26.3,
+          "declaredKcal": 1087
+        },
+        "a2": {
+          "proteinG": 73,
+          "carbsG": 149,
+          "fiberG": null,
+          "fatG": 38,
+          "declaredKcal": null
+        }
+      },
+      "differences": null,
+      "result": "PASS",
+      "error": null
+    }
+  ]
+}

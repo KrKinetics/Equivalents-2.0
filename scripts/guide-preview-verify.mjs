@@ -124,7 +124,13 @@ const reproducible = JSON.stringify(rebuild.sections.map((s) => ({
 const logoStaged = manifest.logo?.stagedPath
   ? existsSync(path.join(root, manifest.logo.stagedPath))
   : false;
-const logoOkInHtml = allHtml.every((text) => text.includes('class="brand-logo"') && text.includes('./assets/kinetics-logo'));
+const logoOkInHtml = allHtml.every((text) =>
+  text.includes('class="brand-logo"')
+  && (
+    text.includes('./assets/logo-kr-kinetics-horizontal.png')
+    || text.includes('./assets/kinetics-logo.png')
+    || text.includes('./assets/kinetics-logo.svg')
+  ));
 const frHtml = html['kr-kinetics-landscape-fr.html'];
 const enHtml = html['kr-kinetics-landscape-en.html'];
 const mobileHtml = html['kr-kinetics-mobile-bilingual.html'];

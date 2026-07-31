@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-07-30T01:25:20.093Z",
+  "widths": [
+    {
+      "width": 1440,
+      "height": 1100,
+      "name": "desktop-1440.png",
+      "file": "screenshots/desktop-1440.png",
+      "metrics": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisionalNote": true,
+        "hasLogo": true
+      },
+      "overflow": false,
+      "reusedScreenshot": true,
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "height": 1100,
+      "name": "tablet-768.png",
+      "file": "screenshots/tablet-768.png",
+      "metrics": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisionalNote": true,
+        "hasLogo": true
+      },
+      "overflow": false,
+      "reusedScreenshot": true,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 1100,
+      "name": "mobile-390.png",
+      "file": "screenshots/mobile-390.png",
+      "metrics": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasBanner": true,
+        "hasModeA": true,
+        "hasModeDA": true,
+        "hasProvisionalNote": true,
+        "hasLogo": true
+      },
+      "overflow": false,
+      "reusedScreenshot": true,
+      "status": "PASS"
+    }
+  ],
+  "overall": "PASS"
+}

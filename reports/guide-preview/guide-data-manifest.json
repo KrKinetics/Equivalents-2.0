@@ -304,9 +304,9 @@
   "version": "1.0.0",
   "generatedAt": "2026-07-30T01:25:20.093Z",
   "logo": {
-    "sourcePath": "assets/kinetics-logo-full.png",
-    "stagedPath": "reports/guide-preview/assets/kinetics-logo.png",
-    "htmlSrc": "./assets/kinetics-logo.png"
+    "sourcePath": "assets/logo-kr-kinetics-horizontal.png",
+    "stagedPath": "reports/guide-preview/assets/logo-kr-kinetics-horizontal.png",
+    "htmlSrc": "./assets/logo-kr-kinetics-horizontal.png"
   },
   "sourcePaths": {
     "foods": "src/data/food-equivalents.json",

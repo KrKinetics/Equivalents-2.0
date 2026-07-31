@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KR Kinetics — Calculateur · version candidate</title>
+<link rel="icon" type="image/png" href="./assets/logo-kr-monogramme.png" />
+<style>
+:root {
+  --navy: #1e293b;
+  --primary: #1e293b;
+  --secondary: #334155;
+  --brand-red: #D91136;
+  --accent: #D91136;
+  --danger: #D91136;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --panel: #ffffff;
+  --text: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --ok-bg: #ecfdf5;
+  --warn-bg: #fff7ed;
+  --warn: #9a3412;
+  --shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; max-width: 100%; overflow-x: hidden; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.banner {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--brand-red); color: #fff;
+  text-align: center; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.55rem 1rem; font-size: 0.82rem;
+}
+.provisional-banner {
+  background: var(--warn-bg); color: var(--warn);
+  border-bottom: 1px solid #fdba74;
+  text-align: center; padding: 0.5rem 1rem; font-weight: 700; font-size: 0.86rem;
+}
+.wrap { width: min(1300px, calc(100% - 40px)); margin: 0 auto; padding: 20px 0 2.5rem; }
+.app-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  background: var(--navy); color: #fff; border-radius: 10px;
+  padding: 18px 28px; margin-bottom: 25px; box-shadow: var(--shadow);
+}
+.header-logo {
+  flex: 0 0 auto; padding: 8px 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.header-logo img {
+  max-height: 72px; width: auto; max-width: min(340px, 48vw);
+  object-fit: contain; display: block;
+  background: transparent; filter: none; box-shadow: none;
+}
+.header-title-container { flex: 1; text-align: center; min-width: 0; padding: 0 12px; }
+.header-title-container h1 {
+  color: #fff; margin: 0 0 5px; padding: 0; border: none;
+  font-size: 1.55rem; letter-spacing: 1px; font-weight: 700;
+}
+.header-title-container p { margin: 0; color: #cbd5e1; font-size: 0.9rem; }
+.panel {
+  background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: var(--shadow); padding: 25px; margin-bottom: 25px; max-width: 100%;
+}
+.panel h2 {
+  color: var(--navy); margin: 0 0 15px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--border); font-size: 1.3rem; font-weight: 700;
+}
+.mode-bar { display: grid; gap: 0.75rem; }
+@media (min-width: 768px) { .mode-bar { grid-template-columns: 1fr 1fr; } }
+.mode-option {
+  border: 2px solid var(--border); border-radius: 8px; padding: 0.8rem 0.95rem;
+  cursor: pointer; background: var(--bg); transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.mode-option:hover { border-color: #fca5a5; }
+.mode-option.active {
+  border-color: var(--brand-red); background: #fff5f6;
+  box-shadow: 0 0 0 3px rgba(217,17,54,0.15);
+}
+.mode-option strong { display: block; margin-bottom: 0.2rem; color: var(--navy); }
+.mode-option span { color: var(--muted); font-size: 0.9rem; }
+.grid-2 { display: grid; gap: 1rem; }
+@media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.totals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; }
+@media (min-width: 768px) { .totals { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat {
+  background: #f1f5f9; border: 1px solid var(--border); border-left: 4px solid var(--navy);
+  border-radius: 8px; padding: 0.65rem 0.7rem; min-width: 0;
+}
+.stat .label {
+  color: var(--muted); font-size: 0.72rem; text-transform: uppercase;
+  font-weight: 700; letter-spacing: 0.04em;
+}
+.stat .value { font-size: 1.2rem; font-weight: 800; margin-top: 0.15rem; color: var(--navy); overflow-wrap: anywhere; }
+.stat .value.na { font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+.groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; }
+@media (min-width: 768px) { .groups { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.group-card label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.25rem; }
+.group-card input, input[type="search"], select, .qty-input {
+  width: 100%; border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.5rem 0.65rem; font: inherit; background: #fcfcfc; color: var(--secondary);
+}
+.group-card input:focus, input:focus, select:focus {
+  outline: none; border-color: var(--brand-red); box-shadow: 0 0 0 3px rgba(217,17,54,0.15);
+}
+button, .btn {
+  appearance: none; border: none; border-radius: 7px; background: var(--brand-red); color: #fff;
+  font: inherit; font-weight: 700; padding: 0.6rem 0.9rem; cursor: pointer; letter-spacing: 0.2px;
+}
+button:hover, .btn:hover { background: #b40e2c; }
+button.secondary, .btn.secondary {
+  background: transparent; color: var(--navy); border: 2px solid var(--navy);
+}
+button.secondary:hover, .btn.secondary:hover { background: var(--navy); color: #fff; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.85rem; align-items: center; }
+.warn-list { margin: 0.5rem 0 0; padding-left: 1.1rem; color: #991b1b; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; table-layout: fixed; }
+.compare-table th, .compare-table td {
+  border: 1px solid var(--border); text-align: left; padding: 0.45rem 0.4rem;
+  vertical-align: top; word-break: break-word; overflow-wrap: anywhere;
+}
+.compare-table th { background: #f1f5f9; color: var(--navy); font-weight: 700; font-size: 0.8rem; }
+.filters { display: grid; gap: 0.55rem; }
+@media (min-width: 900px) { .filters { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+select { max-width: 100%; text-overflow: ellipsis; }
+.food-list {
+  border: 1px solid var(--border); border-radius: 8px; margin-top: 0.5rem;
+  max-height: min(520px, 60vh); overflow: auto;
+}
+.food-row {
+  display: grid; gap: 0.35rem; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border);
+  grid-template-columns: 1fr auto; align-items: center;
+}
+.food-row:nth-child(even) { background: #fafbfc; }
+.food-row:last-child { border-bottom: none; }
+.muted { color: var(--muted); font-size: 0.88rem; }
+.links a, .links .btn { color: inherit; text-decoration: none; }
+.cart-item {
+  display: grid; gap: 0.45rem; grid-template-columns: 1fr auto auto; align-items: center;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+}
+.cart-item .qty-input { width: 4.5rem; }
+details.diagnostics { margin-top: 0.15rem; }
+details.diagnostics > summary {
+  cursor: pointer; font-weight: 700; color: var(--secondary); list-style: none; padding: 0.3rem 0;
+}
+details.diagnostics > summary::-webkit-details-marker { display: none; }
+.scenario {
+  border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem;
+  margin-bottom: 0.5rem; background: var(--ok-bg);
+}
+.pill {
+  display: inline-block; border-radius: 4px; padding: 0.1rem 0.45rem;
+  font-size: 0.72rem; font-weight: 700; background: #d1fae5; color: #065f46;
+}
+.footer-note { color: var(--muted); font-size: 0.84rem; margin-top: 1.25rem; }
+.hidden { display: none !important; }
+.food-pager { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; margin-top: 0.65rem; }
+@media (max-width: 768px) {
+  .app-header { flex-direction: column; gap: 12px; text-align: center; padding: 16px 18px; }
+  .header-logo img { max-height: 56px; max-width: min(280px, 80vw); }
+  .header-title-container h1 { font-size: 1.2rem; }
+}
+@media (max-width: 420px) {
+  .groups, .totals { grid-template-columns: 1fr 1fr; }
+  .actions { flex-direction: column; align-items: stretch; }
+  button, .btn { width: 100%; text-align: center; }
+  .cart-item { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="banner">VERSION CANDIDATE — NE PAS UTILISER POUR DES CLIENTS</div>
+<div class="provisional-banner" id="provisional-banner">Aperçu personnalisé : valeurs provisoires non approuvées pour la production</div>
+<div class="wrap">
+  <header class="app-header">
+    <div class="header-logo">
+      <img id="brand-logo" src="./assets/logo-kr-kinetics-horizontal.png" alt="KR Kinetics" />
+    </div>
+    <div class="header-title-container">
+      <h1>Calculateur d’équivalents alimentaires</h1>
+      <p>Outil principal — calcul actuel par défaut · aperçu personnalisé non approuvé</p>
+    </div>
+  </header>
+
+  <section class="panel" id="mode-panel">
+    <h2>Mode de calcul</h2>
+    <div class="mode-bar" role="radiogroup" aria-label="Mode de calcul">
+      <div class="mode-option active" data-mode="legacy-a" id="mode-a" tabindex="0" role="radio" aria-checked="true">
+        <strong>Calcul actuel</strong>
+        <span>Règles KR Kinetics actuelles. Comportement inchangé pour les plans existants.</span>
+      </div>
+      <div class="mode-option" data-mode="hybrid-da-rc" id="mode-da" tabindex="0" role="radio" aria-checked="false">
+        <strong>Aperçu personnalisé</strong>
+        <span>Précision par aliments et familles d’échange. Non approuvé pour la production.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="groups-panel">
+    <h2>Portions par groupe — calcul actuel</h2>
+    <p class="muted">Ces champs pilotent uniquement le calcul actuel. Ils restent séparés du panier d’aliments.</p>
+    <div class="groups" id="group-inputs"></div>
+    <div class="actions">
+      <button type="button" id="btn-typical">Charger la journée type</button>
+      <button type="button" class="secondary" id="btn-reset-groups">Réinitialiser les groupes</button>
+    </div>
+  </section>
+
+  <section class="panel" id="cart-panel">
+    <h2>Panier d’aliments — aperçu personnalisé <span class="muted" id="cart-count">(0)</span></h2>
+    <p class="muted">Chaque aliment conserve son identifiant et sa famille d’échange. Aucun clic ne devient une portion générique de groupe.</p>
+    <div id="cart-list"></div>
+    <div class="actions">
+      <button type="button" class="secondary" id="btn-clear-cart">Vider le panier</button>
+      <label style="display:flex;gap:.5rem;align-items:center;">
+        <input type="checkbox" id="actionable" />
+        Plan exploitable (retour explicite au calcul actuel si échantillon insuffisant)
+      </label>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="panel">
+      <h2>Totaux — mode actif</h2>
+      <div class="totals" id="active-totals"></div>
+      <ul class="warn-list" id="active-warnings"></ul>
+    </div>
+    <div class="panel">
+      <h2>Comparaison calcul actuel vs aperçu</h2>
+      <div class="totals" id="compare-totals"></div>
+      <p class="muted" id="diff-summary"></p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Détail des lignes</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table" id="lines-table">
+        <thead>
+          <tr><th>Entrée</th><th>Calcul actuel</th><th>Aperçu</th><th>Exception</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Guide alimentaire</h2>
+    <div class="links actions">
+      <a class="btn secondary" href="./guides/kr-kinetics-landscape-fr.html" target="_blank" rel="noopener">Guide desktop FR</a>
+      <a class="btn secondary" href="./guides/kr-kinetics-landscape-en.html" target="_blank" rel="noopener">Guide desktop EN</a>
+      <a class="btn secondary" href="./guides/kr-kinetics-mobile-bilingual.html" target="_blank" rel="noopener">Guide mobile bilingue</a>
+      <a class="btn secondary" href="./kr-kinetics-guide-landscape-fr-rc.pdf" target="_blank" rel="noopener">PDF desktop FR</a>
+      <a class="btn secondary" href="./kr-kinetics-guide-mobile-bilingual-rc.pdf" target="_blank" rel="noopener">PDF mobile</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Recherche &amp; filtres</h2>
+    <div class="filters">
+      <input type="search" id="food-search" placeholder="Rechercher (FR ou EN)" />
+      <select id="filter-category" aria-label="Catégorie"><option value="">Toutes catégories</option></select>
+      <select id="filter-group" aria-label="Groupe calculateur"><option value="">Tous groupes</option></select>
+      <select id="filter-rollup" aria-label="Famille d’échange"><option value="">Toutes familles</option></select>
+    </div>
+    <p class="muted" id="food-count"></p>
+    <div class="food-list" id="food-list"></div>
+    <div class="food-pager">
+      <button type="button" class="secondary" id="btn-food-more">Afficher plus</button>
+      <button type="button" class="secondary" id="btn-food-all">Afficher tout</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <details class="diagnostics" id="diagnostics">
+      <summary>Diagnostics propriétaire (replié)</summary>
+      <p class="muted">Détails techniques pour validation. Hors parcours client.</p>
+      <pre id="validation-details" class="muted" style="white-space:pre-wrap;overflow:auto;"></pre>
+      <h3>Scénarios de contrôle qualité</h3>
+      <div id="scenarios"></div>
+    </details>
+  </section>
+
+  <p class="footer-note">
+    Ce build ne modifie aucun plan client, aucune donnée nutritionnelle individuelle, ni aucune règle de production.
+    Calcul actuel = défaut. Aperçu personnalisé = non approuvé.
+  </p>
+</div>
+<script>
+const DATA_URL = "./rc-data.json";
+const NUTRIENT_KEYS = ['proteinG','carbsG','fiberG','fatG','declaredKcal'];
+const GROUP_LABELS = {
+  protein: 'Protéines', starch: 'Féculents', vegetable: 'Légumes', fruit: 'Fruits',
+  dairy: 'Laitiers', fat: 'Lipides', whey: 'Whey'
+};
+const CATEGORY_LABELS = {
+  noix_graines: 'Noix et graines', matieres_grasses: 'Matières grasses', legumes: 'Légumes',
+  fruits: 'Fruits', poissons_fruits_mer: 'Poissons et fruits de mer', viandes_volaille: 'Viandes et volaille',
+  autres_sources_proteinees: 'Autres sources protéinées', feculents: 'Féculents', produits_laitiers: 'Produits laitiers'
+};
+const ROUNDING = { proteinG:1, fatG:1, fiberG:1, carbsG:0, declaredKcal:0 };
+const FOOD_PAGE_SIZE = 40;
+
+let DATA = null;
+let mode = 'legacy-a';
+let portions = { protein:4, starch:4, vegetable:3, fruit:2, dairy:2, fat:3, whey:0 };
+/** @type {{foodId:string, quantity:number, exchangeRollupId:string}[]} */
+let cart = [];
+let foodVisibleLimit = FOOD_PAGE_SIZE;
+let filteredFoodRows = [];
+
+function roundHalfAwayFromZero(n, decimals=0) {
+  if (typeof n !== 'number' || !Number.isFinite(n)) return null;
+  const factor = 10 ** decimals;
+  return Math.sign(n) * Math.round((Math.abs(n) + Number.EPSILON) * factor) / factor;
+}
+function formatNum(value, lang='fr') {
+  if (value == null || typeof value !== 'number' || !Number.isFinite(value)) return null;
+  const cleaned = Number(value.toFixed(4));
+  const text = String(cleaned);
+  return lang === 'fr' ? text.replace('.', ',') : text;
+}
+function roundPreview(profile) {
+  const out = {};
+  for (const key of NUTRIENT_KEYS) {
+    const value = profile?.[key];
+    out[key] = value == null || typeof value !== 'number' ? null : roundHalfAwayFromZero(value, ROUNDING[key] ?? 0);
+  }
+  return out;
+}
+function legacyFor(group) {
+  return DATA.legacyRefs[group] || { proteinG:null, carbsG:null, fiberG:null, fatG:null, declaredKcal:null };
+}
+function add(totals, nutrients, count) {
+  for (const key of NUTRIENT_KEYS) {
+    const value = nutrients?.[key];
+    if (typeof value === 'number' && Number.isFinite(value) && count) {
+      totals[key] = (totals[key] ?? 0) + value * count;
+    }
+  }
+}
+function normalize(totals) {
+  const out = {};
+  for (const key of NUTRIENT_KEYS) {
+    const value = totals[key];
+    out[key] = value == null ? null : Number(value.toFixed(4));
+  }
+  return out;
+}
+function uniqueWarnings(list) {
+  const seen = new Set();
+  const out = [];
+  for (const warning of list || []) {
+    const key = warning.code || warning.messageFr;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(warning);
+  }
+  return out;
+}
+
+function calcLegacyFromGroups() {
+  const totals = Object.fromEntries(NUTRIENT_KEYS.map(k => [k, null]));
+  const lines = [];
+  for (const [group, n] of Object.entries(portions)) {
+    const count = Number(n) || 0;
+    if (!count) continue;
+    const nutrients = legacyFor(group);
+    add(totals, nutrients, count);
+    lines.push({
+      label: (GROUP_LABELS[group] || group) + ' × ' + count,
+      nutrients,
+      exception: null,
+      exchangeRollupId: null,
+    });
+  }
+  return { model: 'legacy-a', totals: normalize(totals), lines, warnings: [], fallbacks: [] };
+}
+
+function calcHybridFromCart(actionable) {
+  const totals = Object.fromEntries(NUTRIENT_KEYS.map(k => [k, null]));
+  const lines = [];
+  const warnings = [];
+  const fallbacks = [];
+  if (!cart.length) {
+    warnings.push({ code: 'empty_cart', messageFr: 'Ajoutez des aliments au panier pour l’aperçu personnalisé.' });
+    return { model: 'hybrid-da-rc', totals: normalize(totals), lines, warnings, fallbacks };
+  }
+  for (const item of cart) {
+    const food = DATA.foodsById[item.foodId];
+    const assignment = DATA.assignmentsByFoodId[item.foodId];
+    const rollupId = item.exchangeRollupId || assignment?.exchangeRollupId;
+    const rollup = DATA.rollupsById[rollupId];
+    const insufficient = !rollup || rollup.insufficientSample || (rollup.foodCount || 0) < 3;
+    const preview = roundPreview(rollup?.medianProfile || {});
+    let nutrients = preview;
+    let exception = null;
+    if (insufficient && actionable) {
+      const group = food?.calculationGroup || rollup?.calculatorBridge?.calculatorGroup;
+      nutrients = legacyFor(group);
+      exception = 'Échantillon insuffisant — retour explicite au calcul actuel';
+      fallbacks.push(item);
+      warnings.push({ code: 'insufficient_fallback', messageFr: exception });
+    } else if (insufficient) {
+      exception = 'Échantillon insuffisant — valeur provisoire';
+      warnings.push({ code: 'insufficient_sample', messageFr: exception });
+    }
+    add(totals, nutrients, item.quantity);
+    lines.push({
+      label: (food?.names?.fr || item.foodId) + ' × ' + item.quantity,
+      nutrients,
+      exception,
+      exchangeRollupId: rollupId,
+      foodId: item.foodId,
+    });
+  }
+  return { model: 'hybrid-da-rc', totals: normalize(totals), lines, warnings: uniqueWarnings(warnings), fallbacks };
+}
+
+function calcLegacyFromCartFoods() {
+  // Bit-for-bit A rule applied to selected foods: each food uses its calculationGroup moyennes.
+  const totals = Object.fromEntries(NUTRIENT_KEYS.map(k => [k, null]));
+  const lines = [];
+  for (const item of cart) {
+    const food = DATA.foodsById[item.foodId];
+    const group = food?.calculationGroup;
+    const nutrients = legacyFor(group);
+    add(totals, nutrients, item.quantity);
+    lines.push({
+      label: (food?.names?.fr || item.foodId) + ' × ' + item.quantity,
+      nutrients,
+      exception: null,
+      exchangeRollupId: null,
+      foodId: item.foodId,
+    });
+  }
+  return { model: 'legacy-a', totals: normalize(totals), lines, warnings: [], fallbacks: [] };
+}
+
+function renderTotals(el, totals, { showKcal = true, kcalLabel = null } = {}) {
+  const macros = [
+    ['proteinG', 'Protéines (g)', false],
+    ['carbsG', 'Glucides (g)', false],
+    ['fatG', 'Lipides (g)', false],
+    ['declaredKcal', 'Calories', true],
+  ];
+  el.innerHTML = macros.map(([key, label, isKcal]) => {
+    if (isKcal && !showKcal) {
+      return '<div class="stat"><div class="label">'+label+'</div><div class="value na">'+(kcalLabel || 'Non disponible dans le calcul actuel')+'</div></div>';
+    }
+    const text = formatNum(totals?.[key]);
+    if (isKcal && text == null) {
+      return '<div class="stat"><div class="label">'+label+'</div><div class="value na">Non disponible dans le calcul actuel</div></div>';
+    }
+    return '<div class="stat"><div class="label">'+label+'</div><div class="value">'+(text ?? '—')+'</div></div>';
+  }).join('');
+}
+
+function setMode(next) {
+  mode = next;
+  document.querySelectorAll('.mode-option').forEach((el) => {
+    const active = el.dataset.mode === mode;
+    el.classList.toggle('active', active);
+    el.setAttribute('aria-checked', active ? 'true' : 'false');
+  });
+  document.getElementById('provisional-banner').classList.toggle('hidden', mode !== 'hybrid-da-rc');
+  render();
+}
+
+function buildGroupInputs() {
+  const root = document.getElementById('group-inputs');
+  root.innerHTML = Object.keys(GROUP_LABELS).map((group) =>
+    '<div class="group-card"><label for="g-'+group+'">'+GROUP_LABELS[group]+'</label>'+
+    '<input id="g-'+group+'" type="number" min="0" step="1" value="'+(portions[group]||0)+'" data-group="'+group+'" /></div>'
+  ).join('');
+  root.querySelectorAll('input').forEach((input) => {
+    input.addEventListener('input', () => {
+      portions[input.dataset.group] = Number(input.value) || 0;
+      render();
+    });
+  });
+}
+
+function addToCart(foodId) {
+  const assignment = DATA.assignmentsByFoodId[foodId];
+  if (!assignment) return;
+  const existing = cart.find((item) => item.foodId === foodId);
+  if (existing) existing.quantity += 1;
+  else cart.push({ foodId, quantity: 1, exchangeRollupId: assignment.exchangeRollupId });
+  render();
+}
+
+function renderCart() {
+  document.getElementById('cart-count').textContent = '(' + cart.reduce((n, i) => n + i.quantity, 0) + ' sélectionnés · ' + cart.length + ' aliments)';
+  const root = document.getElementById('cart-list');
+  if (!cart.length) {
+    root.innerHTML = '<p class="muted">Panier vide. Utilisez « +1 » dans la recherche pour ajouter un aliment précis.</p>';
+    return;
+  }
+  root.innerHTML = cart.map((item, index) => {
+    const food = DATA.foodsById[item.foodId];
+    return '<div class="cart-item" data-index="'+index+'">'+
+      '<div><strong>'+(food?.names?.fr || item.foodId)+'</strong><div class="muted">'+(food?.names?.en || '')+'</div></div>'+
+      '<input class="qty-input" type="number" min="1" step="1" value="'+item.quantity+'" data-qty="'+index+'" aria-label="Quantité" />'+
+      '<button type="button" class="secondary" data-remove="'+index+'">Retirer</button>'+
+    '</div>';
+  }).join('');
+  root.querySelectorAll('[data-qty]').forEach((input) => {
+    input.addEventListener('input', () => {
+      const idx = Number(input.getAttribute('data-qty'));
+      cart[idx].quantity = Math.max(1, Number(input.value) || 1);
+      render();
+    });
+  });
+  root.querySelectorAll('[data-remove]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      cart.splice(Number(btn.getAttribute('data-remove')), 1);
+      render();
+    });
+  });
+}
+
+function fillFilters() {
+  const cats = [...new Set(DATA.foods.map(f => f.displayCategory))].sort();
+  const groups = [...new Set(DATA.foods.map(f => f.calculationGroup))].sort();
+  const rollups = DATA.rollups.map(r => r.exchangeRollupId).sort();
+  document.getElementById('filter-category').innerHTML += cats.map(c =>
+    '<option value="'+c+'">'+(CATEGORY_LABELS[c] || c)+'</option>').join('');
+  document.getElementById('filter-group').innerHTML += groups.map(c =>
+    '<option value="'+c+'">'+(GROUP_LABELS[c] || c)+'</option>').join('');
+  document.getElementById('filter-rollup').innerHTML += rollups.map(c =>
+    '<option value="'+c+'">'+c.replace(/^rollup-/, '')+'</option>').join('');
+}
+
+function filterFoodRows() {
+  const q = document.getElementById('food-search').value.trim().toLowerCase();
+  const cat = document.getElementById('filter-category').value;
+  const grp = document.getElementById('filter-group').value;
+  const rol = document.getElementById('filter-rollup').value;
+  return DATA.foods.filter((food) => {
+    const assignment = DATA.assignmentsByFoodId[food.id];
+    if (cat && food.displayCategory !== cat) return false;
+    if (grp && food.calculationGroup !== grp) return false;
+    if (rol && assignment?.exchangeRollupId !== rol) return false;
+    if (!q) return true;
+    const hay = [food.id, food.names?.fr, food.names?.en, food.exchangeProfileId, assignment?.exchangeRollupId]
+      .filter(Boolean).join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+}
+
+function renderFoods({ resetLimit = false } = {}) {
+  if (resetLimit) foodVisibleLimit = FOOD_PAGE_SIZE;
+  filteredFoodRows = filterFoodRows();
+  const totalCatalog = DATA.foods.length;
+  const filtered = filteredFoodRows.length;
+  const shown = Math.min(foodVisibleLimit, filtered);
+  document.getElementById('food-count').textContent =
+    shown + ' / ' + filtered + ' aliments affichés · catalogue exact : ' + totalCatalog;
+  document.getElementById('food-list').innerHTML = filteredFoodRows.slice(0, shown).map((food) => {
+    const a = DATA.assignmentsByFoodId[food.id];
+    return '<div class="food-row">'+
+      '<div><strong>'+(food.names?.fr || food.id)+'</strong><div class="muted">'+(food.names?.en || '')+' · '+(GROUP_LABELS[food.calculationGroup]||food.calculationGroup)+(a?.exchangeRollupId ? ' · '+a.exchangeRollupId.replace(/^rollup-/, '') : '')+'</div></div>'+
+      '<button type="button" class="secondary" data-add="'+food.id+'">+1</button>'+
+    '</div>';
+  }).join('') || '<div class="food-row"><div class="muted">Aucun aliment pour ces filtres.</div></div>';
+  document.querySelectorAll('[data-add]').forEach((btn) => {
+    btn.addEventListener('click', () => addToCart(btn.getAttribute('data-add')));
+  });
+  const moreBtn = document.getElementById('btn-food-more');
+  const allBtn = document.getElementById('btn-food-all');
+  const canShowMore = shown < filtered;
+  moreBtn.disabled = !canShowMore;
+  allBtn.disabled = !canShowMore;
+  moreBtn.classList.toggle('hidden', filtered === 0);
+  allBtn.classList.toggle('hidden', filtered === 0);
+}
+
+function renderScenarios() {
+  const root = document.getElementById('scenarios');
+  root.innerHTML = (DATA.scenarios || []).map((s) => {
+    const totals = s.totals;
+    const line = totals?.legacy
+      ? 'A P '+ (formatNum(totals.legacy.proteinG) ?? '—') +' / G '+ (formatNum(totals.legacy.carbsG) ?? '—') +' / L '+ (formatNum(totals.legacy.fatG) ?? '—')
+        + ' · aperçu P '+ (formatNum(totals.hybrid.proteinG) ?? '—')
+      : (totals?.a1 ? 'Aller-retour A conservé' : JSON.stringify(totals));
+    return '<div class="scenario"><div><span class="pill">'+s.result+'</span> <strong>'+s.titleFr+'</strong></div><div class="muted">'+line+'</div></div>';
+  }).join('');
+}
+
+function renderEmptyComparison() {
+  document.getElementById('compare-totals').innerHTML = [
+    ['Actuel · P', '—'],
+    ['Aperçu · P', '—'],
+    ['Actuel · G', '—'],
+    ['Aperçu · G', '—'],
+    ['Actuel · L', '—'],
+    ['Aperçu · L', '—'],
+    ['Actuel · kcal', null],
+    ['Aperçu · kcal', '—'],
+  ].map(([label, value]) => {
+    if (label === 'Actuel · kcal') {
+      return '<div class="stat"><div class="label">'+label+'</div><div class="value na">Non disponible dans le calcul actuel</div></div>';
+    }
+    return '<div class="stat"><div class="label">'+label+'</div><div class="value na">'+(value ?? '—')+'</div></div>';
+  }).join('');
+  document.getElementById('diff-summary').textContent =
+    'Panier vide : aucune comparaison A contre aperçu (pas d’écarts fictifs).';
+  document.querySelector('#lines-table tbody').innerHTML =
+    '<tr><td colspan="4" class="muted">Ajoutez des aliments au panier pour comparer ligne à ligne.</td></tr>';
+}
+
+function render() {
+  const actionable = document.getElementById('actionable').checked;
+  renderCart();
+  const legacyGroups = calcLegacyFromGroups();
+  const hybridCart = calcHybridFromCart(actionable);
+  const legacyCart = cart.length ? calcLegacyFromCartFoods() : null;
+  const active = mode === 'legacy-a' ? legacyGroups : hybridCart;
+
+  renderTotals(document.getElementById('active-totals'), active.totals, {
+    showKcal: mode === 'hybrid-da-rc',
+    kcalLabel: 'Non disponible dans le calcul actuel',
+  });
+  document.getElementById('active-warnings').innerHTML = uniqueWarnings(active.warnings)
+    .map(w => '<li>'+w.messageFr+'</li>').join('');
+
+  if (!cart.length) {
+    renderEmptyComparison();
+  } else {
+    const compareA = legacyCart;
+    const compareDA = hybridCart;
+    const aKcal = compareA.totals.declaredKcal;
+    const daKcal = compareDA.totals.declaredKcal;
+    const kcalComparable = typeof aKcal === 'number' && typeof daKcal === 'number';
+    document.getElementById('compare-totals').innerHTML = [
+      ['Actuel · P', formatNum(compareA.totals.proteinG)],
+      ['Aperçu · P', formatNum(compareDA.totals.proteinG)],
+      ['Actuel · G', formatNum(compareA.totals.carbsG)],
+      ['Aperçu · G', formatNum(compareDA.totals.carbsG)],
+      ['Actuel · L', formatNum(compareA.totals.fatG)],
+      ['Aperçu · L', formatNum(compareDA.totals.fatG)],
+      ['Actuel · kcal', null],
+      ['Aperçu · kcal', formatNum(daKcal)],
+    ].map(([label, value]) => {
+      if (label === 'Actuel · kcal') {
+        return '<div class="stat"><div class="label">'+label+'</div><div class="value na">Non disponible dans le calcul actuel</div></div>';
+      }
+      return '<div class="stat"><div class="label">'+label+'</div><div class="value">'+(value ?? '—')+'</div></div>';
+    }).join('');
+
+    const dP = (compareDA.totals.proteinG??0)-(compareA.totals.proteinG??0);
+    const dG = (compareDA.totals.carbsG??0)-(compareA.totals.carbsG??0);
+    const dL = (compareDA.totals.fatG??0)-(compareA.totals.fatG??0);
+    document.getElementById('diff-summary').textContent = kcalComparable
+      ? ('Écart aperçu − actuel : P '+formatNum(dP)+' · G '+formatNum(dG)+' · L '+formatNum(dL)+' · kcal '+formatNum(daKcal - aKcal))
+      : ('Écart aperçu − actuel : P '+formatNum(dP)+' · G '+formatNum(dG)+' · L '+formatNum(dL)+' · calories non comparables (absentes du calcul actuel)');
+
+    const tbody = document.querySelector('#lines-table tbody');
+    const max = Math.max(compareA.lines.length, compareDA.lines.length);
+    const rows = [];
+    for (let i = 0; i < max; i += 1) {
+      const a = compareA.lines[i];
+      const h = compareDA.lines[i];
+      const fmt = (n) => n ? ('P '+(formatNum(n.proteinG)??'—')+' / G '+(formatNum(n.carbsG)??'—')+' / L '+(formatNum(n.fatG)??'—')) : '—';
+      rows.push('<tr><td>'+(h?.label || a?.label || '—')+'</td><td>'+fmt(a?.nutrients)+'</td><td>'+fmt(h?.nutrients)+'</td><td class="muted">'+(h?.exception || '—')+'</td></tr>');
+    }
+    tbody.innerHTML = rows.join('') || '<tr><td colspan="4" class="muted">Aucune ligne</td></tr>';
+  }
+
+  document.getElementById('validation-details').textContent = JSON.stringify({
+    calculationModelVersion: mode,
+    labels: { active: mode === 'legacy-a' ? 'Calcul actuel' : 'Aperçu personnalisé' },
+    portions,
+    cart,
+    actionable,
+    activeTotals: active.totals,
+    fallbacks: hybridCart.fallbacks,
+    warnings: hybridCart.warnings,
+    foodCatalogCount: DATA.foods.length,
+    foodVisibleLimit,
+  }, null, 2);
+}
+
+async function boot() {
+  const res = await fetch(DATA_URL);
+  DATA = await res.json();
+  buildGroupInputs();
+  fillFilters();
+  renderFoods({ resetLimit: true });
+  renderScenarios();
+  document.getElementById('provisional-banner').classList.add('hidden');
+  render();
+  document.querySelectorAll('.mode-option').forEach((el) => {
+    el.addEventListener('click', () => setMode(el.dataset.mode));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode(el.dataset.mode); }
+    });
+  });
+  document.getElementById('actionable').addEventListener('change', render);
+  document.getElementById('btn-typical').addEventListener('click', () => {
+    portions = { protein:4, starch:4, vegetable:3, fruit:2, dairy:2, fat:3, whey:0 };
+    buildGroupInputs();
+    render();
+  });
+  document.getElementById('btn-reset-groups').addEventListener('click', () => {
+    portions = { protein:0, starch:0, vegetable:0, fruit:0, dairy:0, fat:0, whey:0 };
+    buildGroupInputs();
+    render();
+  });
+  document.getElementById('btn-clear-cart').addEventListener('click', () => { cart = []; render(); });
+  document.getElementById('btn-food-more').addEventListener('click', () => {
+    foodVisibleLimit = Math.min(filteredFoodRows.length, foodVisibleLimit + FOOD_PAGE_SIZE);
+    renderFoods();
+  });
+  document.getElementById('btn-food-all').addEventListener('click', () => {
+    foodVisibleLimit = filteredFoodRows.length;
+    renderFoods();
+  });
+  ['food-search','filter-category','filter-group','filter-rollup'].forEach((id) => {
+    document.getElementById(id).addEventListener('input', () => renderFoods({ resetLimit: true }));
+    document.getElementById(id).addEventListener('change', () => renderFoods({ resetLimit: true }));
+  });
+}
+boot().catch((err) => {
+  document.body.insertAdjacentHTML('beforeend', '<pre style="color:#991b1b;padding:1rem;">Erreur de chargement : '+String(err)+'</pre>');
+});
+</script>
+</body>
+</html>

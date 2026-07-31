@@ -8,6 +8,8 @@ extract-output.txt
 page2.png/
 page3.png/
 screenshots/
+!reports/release-candidate/screenshots/
+!reports/release-candidate/screenshots/**
 verify-*/
 
 # Client and generated documents kept local by default
