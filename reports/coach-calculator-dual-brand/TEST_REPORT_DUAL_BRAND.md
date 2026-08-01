@@ -24,12 +24,12 @@
 |---|---|---|
 | `xavier-plan-kr-fr.pdf` | 1 | Jour Entraînement seulement |
 | `xavier-plan-kr-en.pdf` | 1 | notes EN; pas de phrase FR d’hydratation |
-| `xavier-plan-kr-fr-with-rest.pdf` | 2 | Jour Entraînement + Jour Repos; ≠ sans repos |
-| `xavier-plan-kr-en-with-rest.pdf` | 2 | Rest Day; notes EN |
+| `xavier-plan-kr-fr-with-rest.pdf` | 2 | Jour Repos (cyclage des glucides); protéines 2/1/2,5/1/3/1,5; note repos FR |
+| `xavier-plan-kr-en-with-rest.pdf` | 2 | Rest Day; protéines réparties; note repos EN |
 | `xavier-plan-elevate-fr.pdf` | 1 | exclusif Elevate |
 | `xavier-plan-elevate-en.pdf` | 1 | notes EN; exclusif Elevate |
-| `xavier-plan-elevate-fr-with-rest.pdf` | 2 | Jour Repos réel; exclusif Elevate |
-| `xavier-plan-elevate-en-with-rest.pdf` | 2 | Rest Day réel; exclusif Elevate |
+| `xavier-plan-elevate-fr-with-rest.pdf` | 2 | même scénario repos; exclusif Elevate |
+| `xavier-plan-elevate-en-with-rest.pdf` | 2 | même scénario repos EN; exclusif Elevate |
 
 ## Corrections reprises
 

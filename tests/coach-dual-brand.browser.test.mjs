@@ -19,7 +19,10 @@ const PROFILE = path.join(ROOT, 'reports', 'coach-calculator-restoration', 'xavi
 const FORBIDDEN_IN_ELEVATE = [/KR Kinetics/i, /logo-kr/i, /projet conjoint/i];
 const NOTE_FR = 'Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.';
 const NOTE_EN = 'Prioritize hydration. Emphasize lean proteins and starches around training sessions.';
+const NOTE_REST_FR = 'Prioriser l’hydratation, la récupération et une répartition régulière des protéines au cours de la journée.';
+const NOTE_REST_EN = 'Prioritize hydration, recovery, and an even distribution of protein throughout the day.';
 const FORBIDDEN_FR_IN_EN = 'Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.';
+const REST_PRO_SHARES = [2, 1, 2.5, 1, 3, 1.5];
 
 function contentType(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -126,7 +129,7 @@ async function ensureTrainingExportable() {
 }
 
 async function configureRealRestDay() {
-  return page.evaluate(() => {
+  return page.evaluate((proShares) => {
     window.changerJour('entrainement');
     window.captureJourActif();
     window.setJourReposActif(true);
@@ -136,28 +139,36 @@ async function configureRealRestDay() {
     window.calculerBanque();
     window.calculerRepartition();
 
-    const cats = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
-    // Zero out "restant à placer" exactly (half-portion rounding safe).
-    cats.forEach((cat) => {
+    // Demo-only realistic protein spread for owner-review rest day (not a clinical default).
+    const proInputs = Array.from(document.querySelectorAll('.rep-input[data-cat="pro"]'));
+    proShares.forEach((value, idx) => {
+      if (proInputs[idx]) proInputs[idx].value = String(value);
+    });
+
+    const otherCats = ['fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+    // Keep non-protein portions near auto distribution; only clear leftover remainder.
+    otherCats.forEach((cat) => {
       const cible = parseFloat(document.querySelector(`.target-input[data-cat="${cat}"]`)?.value) || 0;
       const inputs = Array.from(document.querySelectorAll(`.rep-input[data-cat="${cat}"]`));
       let sum = inputs.reduce((acc, el) => acc + (parseFloat(el.value) || 0), 0);
-      let restant = Math.round((cible - sum) * 10) / 10;
+      const restant = Math.round((cible - sum) * 10) / 10;
       if (restant === 0 || !inputs.length) return;
-      let target = inputs.find((el) => (parseFloat(el.value) || 0) > 0) || inputs[0];
+      const target = inputs.find((el) => (parseFloat(el.value) || 0) > 0) || inputs[0];
       target.value = String(Math.round(((parseFloat(target.value) || 0) + restant) * 10) / 10);
     });
     window.calculerBanque();
     window.calculerRepartition();
     window.captureJourActif();
 
+    const cats = ['pro', ...otherCats];
     const remaining = [];
+    const proValues = [];
     cats.forEach((cat) => {
       const cible = parseFloat(document.querySelector(`.target-input[data-cat="${cat}"]`)?.value) || 0;
-      let sum = 0;
-      document.querySelectorAll(`.rep-input[data-cat="${cat}"]`).forEach((el) => {
-        sum += parseFloat(el.value) || 0;
-      });
+      const values = Array.from(document.querySelectorAll(`.rep-input[data-cat="${cat}"]`))
+        .map((el) => parseFloat(el.value) || 0);
+      if (cat === 'pro') proValues.push(...values);
+      const sum = values.reduce((acc, v) => acc + v, 0);
       const restant = Math.round((cible - sum) * 10) / 10;
       if (cible > 0 && restant !== 0) remaining.push({ cat, restant, cible, sum });
     });
@@ -167,6 +178,8 @@ async function configureRealRestDay() {
     const rest = window.getClientPdfRestSnapshot();
     return {
       remaining,
+      proValues,
+      proTarget: parseFloat(document.querySelector('.target-input[data-cat="pro"]')?.value) || 0,
       restConfigured: !!rest,
       restCanExport: restEval.canExport,
       restErrors: restEval.errors,
@@ -180,7 +193,7 @@ async function configureRealRestDay() {
         pro: rest?.totalPro, glu: rest?.totalGlu, lip: rest?.totalLip, kcal: rest?.totalKcal,
       },
     };
-  });
+  }, REST_PRO_SHARES);
 }
 
 async function buildPdfHtml(creator, lang, notes) {
@@ -384,17 +397,20 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
 
   const restSetup = await configureRealRestDay();
   assert.deepEqual(restSetup.remaining, [], `rest remaining must be zero: ${JSON.stringify(restSetup.remaining)}`);
+  assert.equal(restSetup.proTarget, 11, 'demo rest protein bank should remain 11 portions');
+  assert.deepEqual(restSetup.proValues, REST_PRO_SHARES, 'demo rest protein must be spread across meals');
   assert.equal(restSetup.restConfigured, true, `rest not configured: ${restSetup.restErrors?.join('; ')}`);
   assert.equal(restSetup.restCanExport, true, `rest not exportable: ${restSetup.restErrors?.join('; ')}`);
-  assert.match(restSetup.restLabel, /Jour Repos|Rest Day/i);
+  assert.match(restSetup.restLabel, /Jour Repos \(cyclage des glucides\)|Rest Day/i);
+  assert.equal(/Carb Cycling/i.test(restSetup.restLabel), false, 'French rest label must not keep English Carb Cycling');
   assert.notDeepEqual(restSetup.trainingTargets, restSetup.restTargets, 'rest day targets must differ from training (carb cycling)');
   assert.notEqual(restSetup.trainingPlanned.kcal, restSetup.restPlanned.kcal, 'rest planned kcal must differ from training');
 
   const scenariosWithRest = [
-    { creator: 'kr', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-kr-fr-with-rest.pdf', noRestFile: 'xavier-plan-kr-fr.pdf' },
-    { creator: 'kr', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-kr-en-with-rest.pdf', noRestFile: 'xavier-plan-kr-en.pdf' },
-    { creator: 'elevate', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-elevate-fr-with-rest.pdf', noRestFile: 'xavier-plan-elevate-fr.pdf' },
-    { creator: 'elevate', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-elevate-en-with-rest.pdf', noRestFile: 'xavier-plan-elevate-en.pdf' },
+    { creator: 'kr', lang: 'fr', notes: NOTE_REST_FR, file: 'xavier-plan-kr-fr-with-rest.pdf', noRestFile: 'xavier-plan-kr-fr.pdf' },
+    { creator: 'kr', lang: 'en', notes: NOTE_REST_EN, file: 'xavier-plan-kr-en-with-rest.pdf', noRestFile: 'xavier-plan-kr-en.pdf' },
+    { creator: 'elevate', lang: 'fr', notes: NOTE_REST_FR, file: 'xavier-plan-elevate-fr-with-rest.pdf', noRestFile: 'xavier-plan-elevate-fr.pdf' },
+    { creator: 'elevate', lang: 'en', notes: NOTE_REST_EN, file: 'xavier-plan-elevate-en-with-rest.pdf', noRestFile: 'xavier-plan-elevate-en.pdf' },
   ];
 
   for (const scenario of scenariosWithRest) {
@@ -404,11 +420,16 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
     assert.ok(countPdfPages(built.html) === 2);
     if (scenario.lang === 'fr') {
       assert.match(built.html, /Jour Entraînement/);
-      assert.match(built.html, /Jour Repos/);
+      assert.match(built.html, /Jour Repos \(cyclage des glucides\)/);
+      assert.equal(/Carb Cycling/i.test(built.html), false, `${scenario.file} must use French carb-cycling wording`);
+      assert.match(built.html, /répartition régulière des protéines/);
+      assert.equal(/autour de l’entraînement|autour de l'entraînement/i.test(built.html), false);
     } else {
       assert.match(built.html, /Training Day|Jour Entraînement/i);
       assert.match(built.html, /Rest Day/);
       assert.equal(built.html.includes(FORBIDDEN_FR_IN_EN), false, `${scenario.file} must not contain French demo note`);
+      assert.match(built.html, /even distribution of protein throughout the day/i);
+      assert.equal(/autour de l’entraînement|féculents autour/i.test(built.html), false);
     }
     assert.notEqual(built.html, noRestHtml[scenario.noRestFile], `${scenario.file} must differ from no-rest HTML`);
     assert.ok(
@@ -442,12 +463,21 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
   for (const pdfPath of [
     path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en.pdf'),
     path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en.pdf'),
+  ]) {
+    const text = await pdfText(pdfPath);
+    assert.equal(text.includes(FORBIDDEN_FR_IN_EN), false, `${path.basename(pdfPath)} parsed text still has French note`);
+    assert.match(text, /Prioritize hydration|lean proteins and starches/i);
+  }
+
+  for (const pdfPath of [
     path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en-with-rest.pdf'),
     path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en-with-rest.pdf'),
   ]) {
     const text = await pdfText(pdfPath);
     assert.equal(text.includes(FORBIDDEN_FR_IN_EN), false, `${path.basename(pdfPath)} parsed text still has French note`);
-    assert.match(text, /Prioritize hydration|lean proteins and starches/i);
+    assert.match(text, /Rest Day/);
+    assert.match(text, /even distribution of protein throughout the day/i);
+    assert.equal(/autour de l’entraînement|féculents autour/i.test(text), false);
   }
 
   for (const pdfPath of [
@@ -456,18 +486,12 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
   ]) {
     const text = await pdfText(pdfPath);
     assert.match(text, /Jour Entraînement/);
-    assert.match(text, /Jour Repos/);
+    assert.match(text, /Jour Repos \(cyclage des glucides\)/);
+    assert.equal(/Carb Cycling/i.test(text), false);
+    assert.match(text, /répartition régulière des protéines/);
     const noRestName = path.basename(pdfPath).replace('-with-rest', '');
     const noRestText = await pdfText(path.join(ARTIFACT_DIR, 'generated-pdfs', noRestName));
     assert.notEqual(text, noRestText, `${path.basename(pdfPath)} must not be identical to no-rest PDF text`);
-  }
-
-  for (const pdfPath of [
-    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en-with-rest.pdf'),
-    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en-with-rest.pdf'),
-  ]) {
-    const text = await pdfText(pdfPath);
-    assert.match(text, /Rest Day/);
   }
 
   const elevateGuideHtml = fs.readFileSync(

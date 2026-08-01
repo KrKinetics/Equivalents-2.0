@@ -485,6 +485,13 @@ function applyProfessionalUiPatches(html) {
     'plan status warn message',
   );
 
+  html = mustIncludesReplace(
+    html,
+    'Jour Repos (Carb Cycling)',
+    'Jour Repos (cyclage des glucides)',
+    'French rest day carb-cycling wording',
+  );
+
   html = mustReplace(
     html,
     /(<textarea id="coach-notes"[^>]*><\/textarea>)\s*<\/div>\s*<div class="pdf-export-options">/,

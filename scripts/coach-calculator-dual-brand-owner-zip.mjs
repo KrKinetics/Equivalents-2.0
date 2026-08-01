@@ -15,7 +15,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const reportsDir = path.join(root, 'reports', 'coach-calculator-dual-brand');
 const artifactsDir = path.join(root, 'verify-elevate-dual-brand');
 const staging = path.join(reportsDir, 'owner-package-staging');
-const zipName = 'KR_KINETICS_ELEVATE_DUAL_BRAND_OWNER_REVIEW.zip';
+const zipName = process.env.DUAL_BRAND_ZIP_NAME
+  || (process.argv.includes('--final')
+    ? 'KR_KINETICS_ELEVATE_DUAL_BRAND_OWNER_REVIEW_FINAL.zip'
+    : 'KR_KINETICS_ELEVATE_DUAL_BRAND_OWNER_REVIEW.zip');
 const zipPath = path.join(root, zipName);
 
 function rmrf(dir) {

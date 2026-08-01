@@ -35,6 +35,7 @@
     "coach:owner-zip": "node scripts/coach-calculator-owner-zip.mjs",
     "coach:science-zip": "node scripts/coach-calculator-science-owner-zip.mjs",
     "coach:dual-brand-zip": "node scripts/coach-calculator-dual-brand-owner-zip.mjs",
+    "coach:dual-brand-zip:final": "node scripts/coach-calculator-dual-brand-owner-zip.mjs --final",
     "test:science-audit": "node --test tests/kr-calculator-audit.test.mjs",
     "test:science-ui": "node --test tests/kr-science-ui.browser.test.mjs",
     "test:dual-brand": "node --test tests/coach-dual-brand.browser.test.mjs",
