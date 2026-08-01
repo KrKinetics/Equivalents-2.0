@@ -430,6 +430,97 @@ test('client PDF embeds logo, omits empty rest day, shows reconciliation', async
   await page.close();
 });
 
+test('client PDF FR and EN keep all elements within A4 page width', async () => {
+  const page = await browser.newPage();
+  await stubDialogs(page);
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle0', timeout: 120000 });
+  await page.waitForFunction(() => typeof buildFullPDFHTML === 'function' && typeof creerIframePDF === 'function');
+  await seedAthlete(page, 'Overflow Audit Client');
+  const result = await page.evaluate(async () => {
+    function measurePdfOverflow(html) {
+      const iframe = creerIframePDF(html);
+      return attendreRenduPDF(iframe).then(() => {
+        const doc = iframe.contentWindow.document;
+        const pages = Array.from(doc.querySelectorAll('.pdf-a4-page'));
+        const overflows = [];
+        for (const pageEl of pages) {
+          const pageRect = pageEl.getBoundingClientRect();
+          const pageRight = pageRect.right;
+          const nodes = pageEl.querySelectorAll('*');
+          for (const el of nodes) {
+            const rect = el.getBoundingClientRect();
+            if (rect.width <= 0 || rect.height <= 0) continue;
+            const over = rect.right - pageRight;
+            if (over > 1) {
+              overflows.push({
+                tag: el.tagName,
+                className: String(el.className || '').slice(0, 80),
+                over: Math.round(over * 100) / 100,
+                right: Math.round(rect.right * 100) / 100,
+                pageRight: Math.round(pageRight * 100) / 100,
+              });
+            }
+          }
+        }
+        const logoVisible = pages.every((pageEl) => {
+          const img = pageEl.querySelector('.pdf-brand-header-logo img, .pdf-brand-logo, img');
+          if (!img) return false;
+          const pageRect = pageEl.getBoundingClientRect();
+          const r = img.getBoundingClientRect();
+          return r.width > 8 && r.height > 8 && r.left >= pageRect.left - 1 && r.right <= pageRect.right + 1;
+        });
+        const bannerLeftOk = pages.every((pageEl) => {
+          const banner = pageEl.querySelector('.pdf-brand-header, .pdf-brand-banner');
+          if (!banner) return false;
+          const pageRect = pageEl.getBoundingClientRect();
+          const padLeft = parseFloat(getComputedStyle(pageEl).paddingLeft) || 0;
+          const expectedLeft = pageRect.left + padLeft;
+          const r = banner.getBoundingClientRect();
+          // Banner must start at the page content edge, not mid-page.
+          return Math.abs(r.left - expectedLeft) <= 2;
+        });
+        nettoyerIframePDF();
+        return { pageCount: pages.length, overflows, logoVisible, bannerLeftOk };
+      });
+    }
+
+    setJourReposActif(true);
+    suggererBanque();
+    repartirAutomatique('entrainement');
+    captureJourActif();
+    const snapEnt = getJourSnapshot('entrainement');
+    const snapRep = getClientPdfRestSnapshot();
+    const byLang = {};
+    for (const lang of ['fr', 'en']) {
+      pdfLang = lang;
+      const html = buildFullPDFHTML(
+        snapEnt,
+        snapRep,
+        'Overflow Audit Client',
+        '2026-07-31',
+        getMacroRatioLabel(),
+        getActiveGoalLabel(),
+      );
+      byLang[lang] = await measurePdfOverflow(html);
+    }
+    pdfLang = 'fr';
+    return byLang;
+  });
+
+  for (const lang of ['fr', 'en']) {
+    const r = result[lang];
+    assert.ok(r.pageCount >= 1, `${lang}: expected at least one PDF page`);
+    assert.equal(r.logoVisible, true, `${lang}: logo must remain visible inside A4`);
+    assert.equal(r.bannerLeftOk, true, `${lang}: marine banner must start near the left of the page`);
+    assert.equal(
+      r.overflows.length,
+      0,
+      `${lang}: horizontal overflow >1px: ${JSON.stringify(r.overflows.slice(0, 8), null, 2)}`,
+    );
+  }
+  await page.close();
+});
+
 test('configured rest day still yields a second client PDF page', async () => {
   const page = await browser.newPage();
   await stubDialogs(page);

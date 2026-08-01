@@ -7,5 +7,7 @@
   "featureDaEnabled": false,
   "guideHtml": "coach-calculator/guides/kr-kinetics-equivalents-client-fr.html",
   "guidePdf": "coach-calculator/guides/kr-kinetics-equivalents-client-fr.pdf",
-  "protectedOk": true
+  "protectedOk": true,
+  "coachDataSha256": "0ec66324b5aabf59266d6a1a16c15e1804adc9bc5ce6c445e2396fa480c9e978",
+  "guidePdfSha256": "f4527bef880a6d0c19af00c98a98cb7c46aad0db8df19dde218f980979bd7f4d"
 }

@@ -12,14 +12,20 @@ screenshots/
 !reports/release-candidate/screenshots/**
 !reports/coach-calculator-restoration/screenshots/
 !reports/coach-calculator-restoration/screenshots/**
+!reports/coach-calculator-science-ui/screenshots/
+!reports/coach-calculator-science-ui/screenshots/**
 
 # Mandat ZIP extract (local only)
 _mandat_extract/
+_science_ui_extract/
 reports/coach-calculator-restoration/owner-package-staging/
+reports/coach-calculator-science-ui/owner-package-staging/
 
 # Owner-review ZIP stays local only (do not commit)
 KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip
+KR_KINETICS_SCIENCE_UI_OWNER_REVIEW.zip
 verify-*/
+verify-science-ui-artifacts/
 
 # Client and generated documents kept local by default
 *.xlsx

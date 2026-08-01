@@ -1,0 +1,4 @@
+# Keep protected coach nutrition artifacts byte-stable across platforms.
+coach-calculator/coach-data.json -text
+coach-calculator/guides/*.pdf binary
+reports/coach-calculator-restoration/equivalents-client-287.pdf binary

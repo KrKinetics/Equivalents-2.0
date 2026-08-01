@@ -52,7 +52,8 @@ function startServer() {
 }
 
 async function main() {
-  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs', '--with-guide-pdf'], {
+  // Never pass --with-guide-pdf: the protected guide PDF must not be rewritten.
+  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs'], {
     cwd: root,
     stdio: 'inherit',
   });
@@ -102,6 +103,7 @@ async function main() {
         if (parseFloat(card.getAttribute('data-multiplier')) === 1.0) card.classList.add('active');
       });
       selectedGoalMultiplier = 1.0;
+      if (typeof changerMethodeEnergetique === 'function') changerMethodeEnergetique('nasem2023');
       calculerBesoins();
       suggererBanque();
       repartirAutomatique('classique');
