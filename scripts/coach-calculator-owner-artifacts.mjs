@@ -52,7 +52,8 @@ function startServer() {
 }
 
 async function main() {
-  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs', '--with-guide-pdf'], {
+  // Never pass --with-guide-pdf: the protected guide PDF must not be rewritten.
+  const build = spawnSync(process.execPath, ['scripts/coach-calculator-build.mjs'], {
     cwd: root,
     stdio: 'inherit',
   });

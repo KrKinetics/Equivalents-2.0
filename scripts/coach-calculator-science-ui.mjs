@@ -3,11 +3,11 @@
  * Source of truth: KR_KINETICS_SCIENCE_UI_REVIEW package master index.html.
  */
 
-export const COACH_DATA_PINNED_GENERATED_AT = '2026-07-31T20:33:35.085Z';
+// Protected fingerprints from refactor/nutrition-source-of-truth (immutable verify-only).
 export const REQUIRED_COACH_DATA_SHA256 =
-  '0ec66324b5aabf59266d6a1a16c15e1804adc9bc5ce6c445e2396fa480c9e978';
+  '3647d051f1121c60e9bdf7fd67800071e22f1464a02334aed63d332333f4b06d';
 export const REQUIRED_GUIDE_PDF_SHA256 =
-  'f4527bef880a6d0c19af00c98a98cb7c46aad0db8df19dde218f980979bd7f4d';
+  'f418b4ff7d88541bff7e4b39f661b400638faa03677671940995c1bc5114f8fd';
 
 function mustReplace(html, pattern, replacement, label) {
   if (!pattern.test(html)) {

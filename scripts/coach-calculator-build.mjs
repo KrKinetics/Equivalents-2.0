@@ -26,7 +26,6 @@ import {
 } from './coach-calculator-client-fixes.mjs';
 import {
   applyScienceUiPatches,
-  COACH_DATA_PINNED_GENERATED_AT,
   REQUIRED_COACH_DATA_SHA256,
   REQUIRED_GUIDE_PDF_SHA256,
 } from './coach-calculator-science-ui.mjs';
@@ -76,8 +75,8 @@ function buildCoachData() {
   model.meta.noteEn = 'verified individual values — client guide';
   const foods = Array.isArray(foodsPayload) ? foodsPayload : foodsPayload.foods || [];
   return {
-    // Pinned so coach-data.json keeps the audited protected hash.
-    generatedAt: COACH_DATA_PINNED_GENERATED_AT,
+    // Not written to disk by build (protected coach-data.json is immutable).
+    generatedAt: null,
     featureDaEnabled: FEATURE_DA_ENABLED,
     engineModeDefault: 'legacy-a',
     totalFoods: foods.length,
@@ -531,37 +530,39 @@ async function main() {
   const transformed = transformGolden(golden);
   fs.writeFileSync(path.join(outDir, 'index.html'), transformed, 'utf8');
 
-  const coachData = buildCoachData();
-  if (coachData.totalFoods !== 287 || coachData.verifiedFoods !== 287) {
-    throw new Error(`Expected 287 verified foods, got total=${coachData.totalFoods} verified=${coachData.verifiedFoods}`);
-  }
-  fs.writeFileSync(path.join(outDir, 'coach-data.json'), JSON.stringify(coachData, null, 2), 'utf8');
-
-  const guideHtml = writeClientGuideHtml(coachData);
-  const canonicalGuidePdf = path.join(root, 'references', 'kr-kinetics-equivalents-client-fr-audited.pdf');
+  const coachDataPath = path.join(outDir, 'coach-data.json');
   const builtGuidePdf = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.pdf');
-  let guidePdf = null;
-  // Prefer audited fingerprint (Puppeteer PDF bytes are not bit-stable across runs/hosts).
-  if (fs.existsSync(canonicalGuidePdf) && sha256File(canonicalGuidePdf) === REQUIRED_GUIDE_PDF_SHA256) {
-    copyFile(canonicalGuidePdf, builtGuidePdf);
-    guidePdf = builtGuidePdf;
-  } else {
-    guidePdf = await maybeRenderGuidePdf(guideHtml);
-    if (guidePdf && sha256File(guidePdf) !== REQUIRED_GUIDE_PDF_SHA256) {
-      console.warn(`Guide PDF hash differs from audited fingerprint: ${sha256File(guidePdf)}`);
-    }
+  const guideHtmlPath = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.html');
+
+  // Protected coach nutrition artifacts: never rewrite. Verify fingerprints only.
+  if (!fs.existsSync(coachDataPath)) {
+    throw new Error(`Protected file missing (will not regenerate): ${coachDataPath}`);
   }
-
-  writeReadme();
-
-  const coachDataHash = sha256File(path.join(outDir, 'coach-data.json'));
-  const guidePdfHash = fs.existsSync(builtGuidePdf) ? sha256File(builtGuidePdf) : null;
+  if (!fs.existsSync(builtGuidePdf)) {
+    throw new Error(`Protected file missing (will not regenerate): ${builtGuidePdf}`);
+  }
+  const coachDataHash = sha256File(coachDataPath);
+  const guidePdfHash = sha256File(builtGuidePdf);
   if (coachDataHash !== REQUIRED_COACH_DATA_SHA256) {
     throw new Error(`coach-data.json hash mismatch: got ${coachDataHash}, expected ${REQUIRED_COACH_DATA_SHA256}`);
   }
-  if (guidePdfHash && guidePdfHash !== REQUIRED_GUIDE_PDF_SHA256) {
+  if (guidePdfHash !== REQUIRED_GUIDE_PDF_SHA256) {
     throw new Error(`guide PDF hash mismatch: got ${guidePdfHash}, expected ${REQUIRED_GUIDE_PDF_SHA256}`);
   }
+
+  const coachData = JSON.parse(fs.readFileSync(coachDataPath, 'utf8'));
+  if (coachData.totalFoods !== 287 || coachData.verifiedFoods !== 287) {
+    throw new Error(`Expected 287 verified foods, got total=${coachData.totalFoods} verified=${coachData.verifiedFoods}`);
+  }
+  // Guide HTML may be refreshed for preview text, but never touch the protected PDF bytes.
+  if (!fs.existsSync(guideHtmlPath)) {
+    writeClientGuideHtml(coachData);
+  }
+  const guideHtml = guideHtmlPath;
+  const guidePdf = builtGuidePdf;
+  // Intentionally skip maybeRenderGuidePdf / coach-data writes — protected artifacts are immutable.
+
+  writeReadme();
 
   const protection = verifyProtectedFiles(undefined, { generatedAt: new Date().toISOString() });
   fs.writeFileSync(

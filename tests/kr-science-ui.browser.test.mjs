@@ -13,6 +13,8 @@ import puppeteer from 'puppeteer';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const COACH_DIR = path.join(ROOT, 'coach-calculator');
 const REPORTS = path.join(ROOT, 'reports', 'coach-calculator-science-ui');
+// Write PDFs outside the git worktree so nutrition:final-audit's dirty-tree PDF guard stays clean.
+const ARTIFACT_DIR = path.join(ROOT, 'verify-science-ui-artifacts');
 const PROFILE = path.join(ROOT, 'reports', 'coach-calculator-restoration', 'xavier-profile-export.json');
 
 function contentType(filePath) {
@@ -60,7 +62,7 @@ before(async () => {
   });
   assert.equal(build.status, 0, build.stderr || build.stdout || 'coach build failed');
   fs.mkdirSync(path.join(REPORTS, 'screenshots'), { recursive: true });
-  fs.mkdirSync(path.join(REPORTS, 'generated-pdfs'), { recursive: true });
+  fs.mkdirSync(path.join(ARTIFACT_DIR, 'generated-pdfs'), { recursive: true });
   ({ server, origin } = await startServer(COACH_DIR));
   browser = await puppeteer.launch({
     headless: true,
@@ -205,8 +207,8 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
     await pdfPage.close();
   }
 
-  await renderPdf(frHtml, path.join(REPORTS, 'generated-pdfs', 'xavier-plan-client-fr-science-ui.pdf'));
-  await renderPdf(enHtml, path.join(REPORTS, 'generated-pdfs', 'xavier-plan-client-en-science-ui.pdf'));
+  await renderPdf(frHtml, path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-client-fr-science-ui.pdf'));
+  await renderPdf(enHtml, path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-client-en-science-ui.pdf'));
 
   assert.equal(runtimeErrors.length, 0, runtimeErrors.join('\n'));
 });
