@@ -171,25 +171,50 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
   // PDF FR/EN via HTML print path (same as owner artifacts)
   await page.setViewport({ width: 1440, height: 1000 });
   await loadXavier();
-  const frHtml = await page.evaluate(() => {
-    window.choisirPdfLang('fr');
-    const training = window.getJourSnapshot('entrainement');
-    const rest = window.getClientPdfRestSnapshot();
-    return window.buildFullPDFHTML(
-      training, rest, 'Xavier Tremblay', '2026-07-31', window.getMacroRatioLabel(), window.getActiveGoalLabel(),
+
+  async function buildAndAssertPdfBounds(lang) {
+    const report = await page.evaluate(async (pdfLang) => {
+      window.choisirPdfLang(pdfLang);
+      const training = window.getJourSnapshot('entrainement');
+      const rest = window.getClientPdfRestSnapshot();
+      const html = window.buildFullPDFHTML(
+        training, rest, 'Xavier Tremblay', '2026-07-31', window.getMacroRatioLabel(), window.getActiveGoalLabel(),
+      );
+      const iframe = window.creerIframePDF(html);
+      await window.attendreRenduPDF(iframe);
+      const doc = iframe.contentWindow.document;
+      const pages = Array.from(doc.querySelectorAll('.pdf-a4-page'));
+      const overflows = [];
+      for (const pageEl of pages) {
+        const pageRight = pageEl.getBoundingClientRect().right;
+        for (const el of pageEl.querySelectorAll('*')) {
+          const rect = el.getBoundingClientRect();
+          if (rect.width <= 0 || rect.height <= 0) continue;
+          const over = rect.right - pageRight;
+          if (over > 1) {
+            overflows.push({
+              tag: el.tagName,
+              className: String(el.className || '').slice(0, 80),
+              over: Math.round(over * 100) / 100,
+            });
+          }
+        }
+      }
+      window.nettoyerIframePDF();
+      return { html, overflows, pageCount: pages.length };
+    }, lang);
+    assert.match(report.html, /pdf-brand-header/);
+    assert.equal(
+      report.overflows.length,
+      0,
+      `${lang}: horizontal overflow >1px before export: ${JSON.stringify(report.overflows.slice(0, 8), null, 2)}`,
     );
-  });
-  assert.match(frHtml, /pdf-brand-header/);
+    return report.html;
+  }
+
+  const frHtml = await buildAndAssertPdfBounds('fr');
   assert.match(frHtml, /#071B41/);
-  const enHtml = await page.evaluate(() => {
-    window.choisirPdfLang('en');
-    const training = window.getJourSnapshot('entrainement');
-    const rest = window.getClientPdfRestSnapshot();
-    return window.buildFullPDFHTML(
-      training, rest, 'Xavier Tremblay', '2026-07-31', window.getMacroRatioLabel(), window.getActiveGoalLabel(),
-    );
-  });
-  assert.match(enHtml, /pdf-brand-header/);
+  const enHtml = await buildAndAssertPdfBounds('en');
 
   async function renderPdf(html, outPath) {
     const pdfPage = await browser.newPage();

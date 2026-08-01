@@ -143,16 +143,16 @@ function buildPdfHeaderLogoHtml(creator) {
     window.getPDFStylesCSS = function getPDFStylesCSS() {
         const base = typeof origGetPDFStylesCSS === 'function' ? origGetPDFStylesCSS() : '';
         return base
-            + '.pdf-brand-banner{background:#071B41;border-radius:6px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:flex-start;margin-right:12px;}'
-            + '.pdf-brand-logo{height:40px;width:auto;max-width:220px;object-fit:contain;display:block;filter:brightness(0) invert(1);}'
-            + '.pdf-recon{margin:8px 0 10px;border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;}'
-            + '.pdf-recon-title{background:#071B41;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;}'
-            + '.pdf-recon table{width:100%;border-collapse:collapse;}'
-            + '.pdf-recon td{padding:5px 8px;border-top:1px solid #e2e8f0;font-size:10px;}'
-            + '.pdf-recon .info-label{background:#f1f5f9;font-weight:700;width:46%;color:#475569;}'
+            + '.pdf-brand-banner{background:#071B41;border-radius:6px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:flex-start;margin-right:12px;flex-shrink:0;}'
+            + '.pdf-brand-logo{height:40px;width:auto;max-width:180px;object-fit:contain;display:block;filter:brightness(0) invert(1);flex-shrink:0;}'
+            + '.pdf-recon{margin:8px 0 10px;border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;min-width:0;max-width:100%;width:100%;box-sizing:border-box;}'
+            + '.pdf-recon-title{background:#071B41;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;overflow-wrap:anywhere;}'
+            + '.pdf-recon table{width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;}'
+            + '.pdf-recon td{padding:5px 8px;border-top:1px solid #e2e8f0;font-size:10px;overflow-wrap:anywhere;word-break:break-word;}'
+            + '.pdf-recon .info-label{background:#f1f5f9;font-weight:700;width:42%;color:#475569;}'
             + '.pdf-recon .var-ok{color:#0f766e;font-weight:700;}'
             + '.pdf-recon .var-warn{color:#b45309;font-weight:700;}'
-            + '.pdf-recon-note{font-size:9px;color:#64748b;padding:6px 8px;background:#f8fafc;}';
+            + '.pdf-recon-note{font-size:9px;color:#64748b;padding:6px 8px;background:#f8fafc;overflow-wrap:anywhere;}';
     };
 })();
 

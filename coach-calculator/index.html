@@ -3042,16 +3042,16 @@ function buildPdfHeaderLogoHtml(creator) {
     window.getPDFStylesCSS = function getPDFStylesCSS() {
         const base = typeof origGetPDFStylesCSS === 'function' ? origGetPDFStylesCSS() : '';
         return base
-            + '.pdf-brand-banner{background:#071B41;border-radius:6px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:flex-start;margin-right:12px;}'
-            + '.pdf-brand-logo{height:40px;width:auto;max-width:220px;object-fit:contain;display:block;filter:brightness(0) invert(1);}'
-            + '.pdf-recon{margin:8px 0 10px;border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;}'
-            + '.pdf-recon-title{background:#071B41;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;}'
-            + '.pdf-recon table{width:100%;border-collapse:collapse;}'
-            + '.pdf-recon td{padding:5px 8px;border-top:1px solid #e2e8f0;font-size:10px;}'
-            + '.pdf-recon .info-label{background:#f1f5f9;font-weight:700;width:46%;color:#475569;}'
+            + '.pdf-brand-banner{background:#071B41;border-radius:6px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:flex-start;margin-right:12px;flex-shrink:0;}'
+            + '.pdf-brand-logo{height:40px;width:auto;max-width:180px;object-fit:contain;display:block;filter:brightness(0) invert(1);flex-shrink:0;}'
+            + '.pdf-recon{margin:8px 0 10px;border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;min-width:0;max-width:100%;width:100%;box-sizing:border-box;}'
+            + '.pdf-recon-title{background:#071B41;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;overflow-wrap:anywhere;}'
+            + '.pdf-recon table{width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;}'
+            + '.pdf-recon td{padding:5px 8px;border-top:1px solid #e2e8f0;font-size:10px;overflow-wrap:anywhere;word-break:break-word;}'
+            + '.pdf-recon .info-label{background:#f1f5f9;font-weight:700;width:42%;color:#475569;}'
             + '.pdf-recon .var-ok{color:#0f766e;font-weight:700;}'
             + '.pdf-recon .var-warn{color:#b45309;font-weight:700;}'
-            + '.pdf-recon-note{font-size:9px;color:#64748b;padding:6px 8px;background:#f8fafc;}';
+            + '.pdf-recon-note{font-size:9px;color:#64748b;padding:6px 8px;background:#f8fafc;overflow-wrap:anywhere;}';
     };
 })();
 
@@ -3594,10 +3594,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const krBasePdfStyles = getPDFStylesCSS;
     getPDFStylesCSS = function () {
         return krBasePdfStyles()
-            + '.pdf-brand-header{height:82px;background:linear-gradient(135deg,#071B41 0%,#0B285B 68%,#071B41 100%);display:flex;align-items:center;padding:12px 18px;color:#fff;border-radius:7px 7px 0 0;}'
-            + '.pdf-brand-header-logo{width:245px;display:flex;align-items:center;}.pdf-brand-header-logo img{width:220px;height:auto;max-height:58px;object-fit:contain;display:block;}'
-            + '.pdf-brand-copy{flex:1;text-align:right;padding-left:18px;}.pdf-brand-title{font-size:18px;font-weight:800;letter-spacing:.55px;line-height:1.15;color:#fff;}.pdf-brand-subtitle{font-size:9.5px;color:#cbd8eb;margin-top:6px;letter-spacing:.25px;}'
-            + '.pdf-brand-day{font-size:10px;color:#fff;margin-top:4px;font-weight:700;}.pdf-brand-rule{height:4px;background:#ED1136;margin-bottom:14px;border-radius:0 0 3px 3px;}'
+            // Containment: every PDF container must stay inside the A4 page width (FR + EN).
+            + '.pdf-a4-page{width:794px;max-width:794px;overflow:hidden;box-sizing:border-box;}'
+            + '.pdf-a4-page .pdf-page-body,.pdf-a4-page .info-grid,.pdf-a4-page .meals-grid,.pdf-a4-page .pdf-recon,.pdf-a4-page .pdf-macro-chart,.pdf-a4-page .pdf-coach-notes,.pdf-a4-page .pdf-brand-header,.pdf-a4-page .pdf-brand-rule,.pdf-a4-page .pdf-section{width:100%;max-width:100%;box-sizing:border-box;}'
+            + '.pdf-a4-page .pdf-totals,.pdf-a4-page .pdf-footer{max-width:none;box-sizing:border-box;}'
+            + '.pdf-a4-page .info-grid > *,.pdf-a4-page .meals-grid > *,.pdf-a4-page .meals-col,.pdf-a4-page .meal-box,.pdf-a4-page .pdf-macro-chart-row,.pdf-a4-page .pdf-pie-wrap,.pdf-a4-page .pdf-brand-copy{min-width:0;max-width:100%;}'
+            + '.info-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-bottom:10px;}'
+            + '.meals-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:start;}'
+            + '.info-table,.pdf-recon table,.macro-ratio-table{width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;}'
+            + '.info-table td,.pdf-recon td,.meal-title,.meal-list li,.pdf-brand-title,.pdf-brand-subtitle,.pdf-totals,.pdf-footer,.pdf-recon-note,.pdf-coach-notes-body{overflow-wrap:anywhere;word-break:break-word;}'
+            + '.pdf-recon{margin:8px 0 10px;border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;min-width:0;}'
+            + '.pdf-brand-header{height:auto;min-height:72px;background:linear-gradient(135deg,#071B41 0%,#0B285B 68%,#071B41 100%);display:flex;align-items:center;gap:10px;padding:10px 14px;color:#fff;border-radius:7px 7px 0 0;overflow:hidden;}'
+            + '.pdf-brand-header-logo{flex:0 0 auto;flex-shrink:0;width:auto;max-width:190px;display:flex;align-items:center;}'
+            + '.pdf-brand-header-logo img{width:auto;max-width:180px;height:auto;max-height:48px;object-fit:contain;display:block;flex-shrink:0;}'
+            + '.pdf-brand-copy{flex:1 1 auto;min-width:0;text-align:right;padding-left:8px;}'
+            + '.pdf-brand-title{font-size:15px;font-weight:800;letter-spacing:.3px;line-height:1.2;color:#fff;max-width:100%;}'
+            + '.pdf-brand-subtitle{font-size:9px;color:#cbd8eb;margin-top:4px;letter-spacing:.2px;max-width:100%;}'
+            + '.pdf-brand-day{font-size:10px;color:#fff;margin-top:4px;font-weight:700;}.pdf-brand-rule{height:4px;background:#ED1136;margin-bottom:12px;border-radius:0 0 3px 3px;}'
             + '.pdf-section{border-left-color:#ED1136;color:#071B41;}.meal-box{border-left-color:#ED1136;}.pdf-totals{background:#071B41;}.val-blue{color:#1d4ed8;font-weight:700;}';
     };
 
