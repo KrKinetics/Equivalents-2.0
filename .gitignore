@@ -24,8 +24,12 @@ reports/coach-calculator-science-ui/owner-package-staging/
 # Owner-review ZIP stays local only (do not commit)
 KR_KINETICS_FULL_COACH_CALCULATOR_OWNER_REVIEW.zip
 KR_KINETICS_SCIENCE_UI_OWNER_REVIEW.zip
+KR_KINETICS_ELEVATE_DUAL_BRAND_OWNER_REVIEW.zip
+_zip_elevate_dual_brand/
 verify-*/
 verify-science-ui-artifacts/
+verify-elevate-dual-brand/
+reports/coach-calculator-dual-brand/owner-package-staging/
 
 # Client and generated documents kept local by default
 *.xlsx

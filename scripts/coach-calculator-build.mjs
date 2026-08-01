@@ -29,6 +29,7 @@ import {
   REQUIRED_COACH_DATA_SHA256,
   REQUIRED_GUIDE_PDF_SHA256,
 } from './coach-calculator-science-ui.mjs';
+import { applyDualBrandPatches } from './coach-calculator-dual-brand.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'coach-calculator');
@@ -40,6 +41,8 @@ const withGuidePdf = process.argv.includes('--with-guide-pdf');
 const GOLDEN = path.join(root, 'references', 'calculateur-coach-original.html');
 const LOGO_H = path.join(root, 'assets', 'logo-kr-kinetics-horizontal.png');
 const LOGO_M = path.join(root, 'assets', 'logo-kr-monogramme.png');
+const LOGO_ELEVATE = path.join(root, 'assets', 'logo-elevate-fitness.jpg');
+const ELEVATE_LOGO_DATA = path.join(root, 'assets', 'elevate-logo-data.js');
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -385,6 +388,9 @@ function transformGolden(html) {
   // Science/UI 2026 — NASEM engine, branding, AMDR scope (after client PDF fixes)
   html = applyScienceUiPatches(html);
 
+  // Dual brand — coach header co-branding + exclusive client PDF/guide brands
+  html = applyDualBrandPatches(html);
+
   return html;
 }
 
@@ -484,7 +490,7 @@ async function maybeRenderGuidePdf(guideHtmlPath) {
 }
 
 function writeReadme() {
-  const text = `# Calculateur Coach KR Kinetics (restauré)
+  const text = `# Calculateur Coach — KR Kinetics × Elevate Fitness
 
 ## Démarrage en une commande
 
@@ -500,13 +506,15 @@ URL locale exacte : **http://127.0.0.1:4188/**
 - Banque A (MOYENNES) par défaut
 - 287 aliments vérifiés (guide + tableau client)
 - D/A désactivé par défaut (\`FEATURE_DA_ENABLED = false\`)
-- PDF plan alimentaire client FR/EN
+- Application coach volontairement co-marquée KR Kinetics et Elevate Fitness
+- PDF plan alimentaire client FR/EN avec marque exclusive selon le créateur choisi
+- Guide client KR ou Elevate sélectionné automatiquement avec la même marque
 - Aucune modification des données nutritionnelles protégées
 
 ## Offline
 
 Les dépendances PDF (\`html2canvas\`, \`jsPDF\`) sont vendues dans \`vendor/\`.
-Les logos officiels sont dans \`assets/\`.
+Les logos officiels sont dans \`assets/\`. Le PDF Elevate n'affiche aucune mention ni ressource KR; le PDF KR n'affiche aucune mention ni ressource Elevate.
 `;
   fs.writeFileSync(path.join(outDir, 'README.md'), text, 'utf8');
 }
@@ -517,6 +525,9 @@ async function main() {
   if (!fs.existsSync(LOGO_H) || !fs.existsSync(LOGO_M)) {
     throw new Error('Official logos missing under assets/');
   }
+  if (!fs.existsSync(LOGO_ELEVATE) || !fs.existsSync(ELEVATE_LOGO_DATA)) {
+    throw new Error('Elevate dual-brand assets missing under assets/');
+  }
 
   ensureDir(outDir);
   ensureDir(assetsOut);
@@ -524,6 +535,8 @@ async function main() {
 
   copyFile(LOGO_H, path.join(assetsOut, 'logo-kr-kinetics-horizontal.png'));
   copyFile(LOGO_M, path.join(assetsOut, 'logo-kr-monogramme.png'));
+  copyFile(LOGO_ELEVATE, path.join(assetsOut, 'logo-elevate-fitness.jpg'));
+  copyFile(ELEVATE_LOGO_DATA, path.join(assetsOut, 'elevate-logo-data.js'));
   await ensureVendorLibs();
 
   const golden = fs.readFileSync(GOLDEN, 'utf8');
@@ -533,6 +546,8 @@ async function main() {
   const coachDataPath = path.join(outDir, 'coach-data.json');
   const builtGuidePdf = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.pdf');
   const guideHtmlPath = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.html');
+  const elevateGuidePdf = path.join(outDir, 'guides', 'elevate-fitness-equivalents-client-fr.pdf');
+  const elevateGuideHtml = path.join(outDir, 'guides', 'elevate-fitness-equivalents-client-fr.html');
 
   // Protected coach nutrition artifacts: never rewrite. Verify fingerprints only.
   if (!fs.existsSync(coachDataPath)) {
@@ -540,6 +555,9 @@ async function main() {
   }
   if (!fs.existsSync(builtGuidePdf)) {
     throw new Error(`Protected file missing (will not regenerate): ${builtGuidePdf}`);
+  }
+  if (!fs.existsSync(elevateGuidePdf) || !fs.existsSync(elevateGuideHtml)) {
+    throw new Error('Elevate client guide missing under coach-calculator/guides/');
   }
   const coachDataHash = sha256File(coachDataPath);
   const guidePdfHash = sha256File(builtGuidePdf);

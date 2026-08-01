@@ -550,7 +550,7 @@ test('configured rest day still yields a second client PDF page', async () => {
       getMacroRatioLabel(),
       getActiveGoalLabel(),
     );
-    return (html.match(/class="pdf-a4-page"/g) || []).length;
+    return (html.match(/class="pdf-a4-page(?:\s+brand-\w+)?"/g) || []).length;
   });
   assert.equal(pages, 2);
   await page.close();
