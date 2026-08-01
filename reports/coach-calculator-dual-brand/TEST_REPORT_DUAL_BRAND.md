@@ -4,12 +4,12 @@
 
 | Contrôle | Résultat |
 |---|---|
-| `npm test` | PASS (330 pass, 1 skipped) |
-| `npm run test:browser` | PASS (32/32) |
-| `npm run nutrition:final-audit` | PASS (`ok: true`, 287 aliments) |
-| `npm run test:science-audit` | PASS (64 checks) |
+| `npm test` | PASS — 330 pass, 1 skipped |
+| `npm run test:browser` | PASS — 32/32 |
+| `npm run nutrition:final-audit` | PASS — `ok: true`, 287 aliments |
+| `npm run test:science-audit` | PASS — 64 checks |
 | `npm run test:science-ui` | PASS |
-| `npm run test:dual-brand` | PASS (inclus dans `test:browser`) |
+| `npm run test:dual-brand` | PASS — 8 PDF scénarios + repos réel |
 
 ## Hashes protégés
 
@@ -18,14 +18,30 @@
 | `coach-calculator/coach-data.json` | `3647d051f1121c60e9bdf7fd67800071e22f1464a02334aed63d332333f4b06d` | inchangé |
 | Guide KR PDF | `f418b4ff7d88541bff7e4b39f661b400638faa03677671940995c1bc5114f8fd` | inchangé |
 
-## Double marque
+## Scénarios PDF (exigés)
 
-- En-tête coach : grand logo KR à gauche + logo Elevate complet à droite
-- Sélection exclusive de marque PDF (KR ou Elevate)
-- PDF / guide Elevate : aucune mention « KR Kinetics », « logo-kr », « projet conjoint »
-- Guide Elevate distinct (`elevate-fitness-equivalents-client-fr`)
-- FR / EN, avec et sans jour de repos
-- Captures 1440 / 768 / 390 px
+| Fichier | Pages | Contenu vérifié |
+|---|---|---|
+| `xavier-plan-kr-fr.pdf` | 1 | Jour Entraînement seulement |
+| `xavier-plan-kr-en.pdf` | 1 | notes EN; pas de phrase FR d’hydratation |
+| `xavier-plan-kr-fr-with-rest.pdf` | 2 | Jour Entraînement + Jour Repos; ≠ sans repos |
+| `xavier-plan-kr-en-with-rest.pdf` | 2 | Rest Day; notes EN |
+| `xavier-plan-elevate-fr.pdf` | 1 | exclusif Elevate |
+| `xavier-plan-elevate-en.pdf` | 1 | notes EN; exclusif Elevate |
+| `xavier-plan-elevate-fr-with-rest.pdf` | 2 | Jour Repos réel; exclusif Elevate |
+| `xavier-plan-elevate-en-with-rest.pdf` | 2 | Rest Day réel; exclusif Elevate |
+
+## Corrections reprises
+
+- Titre : ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE
+- Préréglages macros en restant G/L (protéines fixées en section 2)
+- Cible alimentaire après arrondi des macros
+- Cible initiale de liquides — repère automatique
+- Hint créateur : marque exclusive PDF/guide
+- Bouton guide dynamique selon la marque
+- Plan complet — ajustements à confirmer
+- Notes reproduites telles quelles (indication UI)
+- Jour de repos : banque + répartition réelles, restant à placer = 0
 
 ## Contraintes conservées
 

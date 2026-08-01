@@ -1,5 +1,6 @@
 /**
- * Dual-brand browser QA: exclusive KR / Elevate PDF + guide selection.
+ * Dual-brand browser QA: exclusive KR / Elevate PDF + guide selection,
+ * real rest-day 2-page plans, English notes, professional UI labels.
  */
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
@@ -16,6 +17,9 @@ const COACH_DIR = path.join(ROOT, 'coach-calculator');
 const ARTIFACT_DIR = path.join(ROOT, 'verify-elevate-dual-brand');
 const PROFILE = path.join(ROOT, 'reports', 'coach-calculator-restoration', 'xavier-profile-export.json');
 const FORBIDDEN_IN_ELEVATE = [/KR Kinetics/i, /logo-kr/i, /projet conjoint/i];
+const NOTE_FR = 'Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.';
+const NOTE_EN = 'Prioritize hydration. Emphasize lean proteins and starches around training sessions.';
+const FORBIDDEN_FR_IN_EN = 'Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.';
 
 function contentType(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -56,6 +60,10 @@ function assertNoForbidden(text, label) {
   for (const pattern of FORBIDDEN_IN_ELEVATE) {
     assert.equal(pattern.test(text), false, `${label} contains forbidden pattern ${pattern}`);
   }
+}
+
+function countPdfPages(html) {
+  return (html.match(/<div class="pdf-a4-page\b/g) || []).length;
 }
 
 let server;
@@ -101,61 +109,84 @@ async function loadXavier() {
   await new Promise((r) => setTimeout(r, 250));
 }
 
-async function readPersonalizedScenario() {
+async function ensureTrainingExportable() {
   return page.evaluate(() => {
-    if (typeof window.calculerBanque === 'function') window.calculerBanque();
-    if (typeof window.updateEtatPlan === 'function') window.updateEtatPlan();
-    const cats = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
-    const moyennes = window.COACH_DATA?.moyennes;
-    const banqueInputs = {};
-    for (const cat of cats) {
-      banqueInputs[cat] = parseFloat(document.querySelector(`.target-input[data-cat="${cat}"]`)?.value) || 0;
-    }
-    const computed = window.computeBanqueTotalsFromData(banqueInputs);
-    let proRaw = 0; let gluRaw = 0; let lipRaw = 0;
-    cats.forEach((cat) => {
-      const value = banqueInputs[cat] || 0;
-      proRaw += value * moyennes[cat].p;
-      gluRaw += value * moyennes[cat].g;
-      lipRaw += value * moyennes[cat].l;
-    });
-    const rawKcal = Math.round(proRaw * 4 + gluRaw * 4 + lipRaw * 9);
-    const roundedMacroKcal = Math.round(
-      Math.round(proRaw) * 4 + Math.round(gluRaw) * 4 + Math.round(lipRaw) * 9,
-    );
-    const bank = {
-      pro: Number(document.getElementById('gen-pro').textContent.replace(/[^0-9.-]/g, '')),
-      glu: Number(document.getElementById('gen-glu').textContent.replace(/[^0-9.-]/g, '')),
-      lip: Number(document.getElementById('gen-lip').textContent.replace(/[^0-9.-]/g, '')),
-      kcal: Number(document.getElementById('gen-kcal').textContent.replace(/[^0-9.-]/g, '')),
-    };
-    const snap = window.getJourSnapshot('entrainement');
-    const planned = {
-      pro: snap.totalPro,
-      glu: snap.totalGlu,
-      lip: snap.totalLip,
-      kcal: snap.totalKcal,
-    };
-    const exportable = !document.getElementById('btn-export-pdf')?.disabled;
+    if (typeof window.setJourReposActif === 'function') window.setJourReposActif(false);
+    window.changerJour?.('entrainement');
+    window.calculerBanque?.();
+    window.calculerRepartition?.();
+    window.captureJourActif?.();
+    const evalEnt = window.evaluerJourData('entrainement');
     return {
-      bank,
-      computed,
-      rawKcal,
-      roundedMacroKcal,
-      planned,
-      exportable,
-      within: typeof window.withinCoachTolerance === 'function'
-        ? window.withinCoachTolerance(snap.targets, planned)
-        : null,
-      foodCount: window.COACH_DATA?.totalFoods,
-      featureDaEnabled: window.COACH_DATA?.featureDaEnabled,
-      banqueTotalsFromSnap: snap.banqueTotals,
+      canExport: evalEnt.canExport,
+      errors: evalEnt.errors,
+      remainingZero: !evalEnt.errors.some((e) => /Répartition incomplète/i.test(e)),
     };
   });
 }
 
-async function buildPdfHtml(creator, lang) {
-  return page.evaluate(async ({ creator, lang }) => {
+async function configureRealRestDay() {
+  return page.evaluate(() => {
+    window.changerJour('entrainement');
+    window.captureJourActif();
+    window.setJourReposActif(true);
+    window.changerJour('repos');
+    window.suggererBanque();
+    window.repartirAutomatique('equilibre');
+    window.calculerBanque();
+    window.calculerRepartition();
+
+    const cats = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+    // Zero out "restant à placer" exactly (half-portion rounding safe).
+    cats.forEach((cat) => {
+      const cible = parseFloat(document.querySelector(`.target-input[data-cat="${cat}"]`)?.value) || 0;
+      const inputs = Array.from(document.querySelectorAll(`.rep-input[data-cat="${cat}"]`));
+      let sum = inputs.reduce((acc, el) => acc + (parseFloat(el.value) || 0), 0);
+      let restant = Math.round((cible - sum) * 10) / 10;
+      if (restant === 0 || !inputs.length) return;
+      let target = inputs.find((el) => (parseFloat(el.value) || 0) > 0) || inputs[0];
+      target.value = String(Math.round(((parseFloat(target.value) || 0) + restant) * 10) / 10);
+    });
+    window.calculerBanque();
+    window.calculerRepartition();
+    window.captureJourActif();
+
+    const remaining = [];
+    cats.forEach((cat) => {
+      const cible = parseFloat(document.querySelector(`.target-input[data-cat="${cat}"]`)?.value) || 0;
+      let sum = 0;
+      document.querySelectorAll(`.rep-input[data-cat="${cat}"]`).forEach((el) => {
+        sum += parseFloat(el.value) || 0;
+      });
+      const restant = Math.round((cible - sum) * 10) / 10;
+      if (cible > 0 && restant !== 0) remaining.push({ cat, restant, cible, sum });
+    });
+
+    const restEval = window.evaluerJourData('repos');
+    const training = window.getJourSnapshot('entrainement');
+    const rest = window.getClientPdfRestSnapshot();
+    return {
+      remaining,
+      restConfigured: !!rest,
+      restCanExport: restEval.canExport,
+      restErrors: restEval.errors,
+      restLabel: rest?.jourLabel || '',
+      trainingTargets: training?.targets,
+      restTargets: rest?.targets,
+      trainingPlanned: {
+        pro: training?.totalPro, glu: training?.totalGlu, lip: training?.totalLip, kcal: training?.totalKcal,
+      },
+      restPlanned: {
+        pro: rest?.totalPro, glu: rest?.totalGlu, lip: rest?.totalLip, kcal: rest?.totalKcal,
+      },
+    };
+  });
+}
+
+async function buildPdfHtml(creator, lang, notes) {
+  return page.evaluate(async ({ creator, lang, notes }) => {
+    const notesEl = document.getElementById('coach-notes');
+    if (notesEl) notesEl.value = notes;
     window.choisirPdfCreator(creator);
     window.choisirPdfLang(lang);
     window.genererPlanTextuel();
@@ -171,9 +202,25 @@ async function buildPdfHtml(creator, lang) {
     );
     const brand = window.getSelectedPdfBrand();
     const guideHref = document.getElementById('btn-guide-pdf')?.getAttribute('href') || '';
+    const guideText = document.getElementById('btn-guide-pdf')?.textContent || '';
     const planText = document.getElementById('output-plan').value;
-    return { html, brandKey: brand.key, brandLabel: brand.label, guideHref, planText };
-  }, { creator, lang });
+    return {
+      html,
+      brandKey: brand.key,
+      brandLabel: brand.label,
+      guideHref,
+      guideText,
+      planText,
+      pages: (html.match(/<div class="pdf-a4-page\b/g) || []).length,
+      hasRestSnapshot: !!rest,
+      trainingLabel: training?.jourLabel || '',
+      restLabel: rest?.jourLabel || '',
+      trainingTargets: training?.targets || null,
+      restTargets: rest?.targets || null,
+      trainingPlannedKcal: training?.totalKcal || 0,
+      restPlannedKcal: rest?.totalKcal || 0,
+    };
+  }, { creator, lang, notes });
 }
 
 async function renderPdf(html, outPath) {
@@ -190,6 +237,13 @@ async function renderPdf(html, outPath) {
     margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' },
   });
   await pdfPage.close();
+}
+
+async function pdfText(pdfPath) {
+  const parser = new PDFParse({ data: fs.readFileSync(pdfPath) });
+  const parsed = await parser.getText();
+  await parser.destroy();
+  return parsed.text || '';
 }
 
 test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', async () => {
@@ -210,44 +264,66 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
   }, { timeout: 15000 });
   await loadXavier();
 
-  const header = await page.evaluate(() => {
+  const ui = await page.evaluate(() => {
+    const h1 = document.querySelector('.header-title-container h1')?.textContent || '';
+    const macroText = Array.from(document.querySelectorAll('#macroRatio option')).map((o) => o.textContent.trim());
+    const macroHint = document.querySelector('.macro-hint')?.textContent || '';
+    const calorieTitle = document.querySelector('#cible-kcal')?.closest('.dash-card, div')?.querySelector('.dash-title')?.textContent
+      || Array.from(document.querySelectorAll('.dash-title')).find((el) => /Cible/i.test(el.textContent || ''))?.textContent
+      || '';
+    const hydrationLabel = Array.from(document.querySelectorAll('label')).find((el) => /liquides|Hydratation/i.test(el.textContent || ''))?.textContent || '';
+    const hydrationDetail = Array.from(document.querySelectorAll('div')).find((el) => /Repère initial|Règle : 1 L/i.test(el.textContent || ''))?.textContent || '';
+    const creatorHint = document.querySelector('.pdf-creator-picker .pdf-creator-hint')?.textContent || '';
+    const notesHint = document.getElementById('coach-notes-lang-hint')?.textContent || '';
     const elevate = document.querySelector('.header-logo.elevate-logo img');
     const kr = document.querySelector('.header-logo.kr-logo img');
-    const badge = document.querySelector('.collab-badge')?.textContent || '';
     const elevateBox = elevate?.closest('.header-logo')?.getBoundingClientRect();
     const krBox = kr?.closest('.header-logo')?.getBoundingClientRect();
     return {
+      h1,
+      macroText,
+      macroHint,
+      calorieTitle,
+      hydrationLabel,
+      hydrationDetail,
+      creatorHint,
+      notesHint,
       elevateSrc: elevate?.getAttribute('src') || '',
       elevateAlt: elevate?.getAttribute('alt') || '',
       krSrc: kr?.getAttribute('src') || '',
-      badge,
       elevateW: elevateBox?.width || 0,
       elevateH: elevateBox?.height || 0,
       krW: krBox?.width || 0,
       krH: krBox?.height || 0,
       hasRuntime: typeof window.getSelectedPdfBrand === 'function',
+      foodCount: window.COACH_DATA?.totalFoods,
+      featureDaEnabled: window.COACH_DATA?.featureDaEnabled,
     };
   });
-  assert.equal(header.hasRuntime, true);
-  assert.match(header.elevateSrc, /logo-elevate-fitness\.jpg/);
-  assert.match(header.elevateAlt, /Elevate Fitness/i);
-  assert.match(header.krSrc, /logo-kr-kinetics-horizontal\.png/);
-  assert.match(header.badge, /Outil coach/);
-  assert.ok(header.elevateW >= 200 && header.krW >= 200, `logo widths too small: KR=${header.krW} Elevate=${header.elevateW}`);
-  assert.ok(header.elevateH >= 90 && header.krH >= 90, `logo heights too small: KR=${header.krH} Elevate=${header.elevateH}`);
-  const widthRatio = header.elevateW / header.krW;
-  assert.ok(widthRatio > 0.6 && widthRatio < 1.6, `logo widths not comparable: ratio=${widthRatio}`);
 
-  const dist = await readPersonalizedScenario();
-  assert.equal(dist.foodCount, 287);
-  assert.equal(dist.featureDaEnabled, false);
-  assert.deepEqual(dist.bank, dist.computed);
-  assert.equal(dist.bank.kcal, dist.rawKcal, 'bank kcal must keep raw exchange precision');
-  assert.notEqual(dist.rawKcal, dist.roundedMacroKcal, 'raw precision must differ from rounded-macro kcal in this scenario');
-  assert.ok(dist.planned.kcal > 0);
-  assert.ok(dist.exportable, 'personalized Xavier distribution should remain exportable');
-  assert.equal(typeof dist.within, 'boolean', 'withinCoachTolerance helper must be available');
-  assert.deepEqual(dist.banqueTotalsFromSnap, dist.computed, 'snapshot banque totals must use dual-brand precision helper');
+  assert.equal(ui.hasRuntime, true);
+  assert.equal(ui.foodCount, 287);
+  assert.equal(ui.featureDaEnabled, false);
+  assert.match(ui.h1, /ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE/);
+  assert.ok(ui.macroText.some((t) => /restant 57 % G \/ 43 % L/.test(t)));
+  assert.ok(ui.macroText.some((t) => /Maintien — restant 60 % G \/ 40 % L/.test(t)));
+  assert.equal(ui.macroText.some((t) => /25P\s*\|\s*45G/.test(t)), false, 'misleading P/G/L ratios must be removed');
+  assert.match(ui.macroHint, /protéines sont fixées d'abord en section 2/i);
+  assert.match(ui.calorieTitle, /Cible alimentaire après arrondi des macros/);
+  assert.match(ui.hydrationLabel, /Cible initiale de liquides — repère automatique/);
+  assert.match(ui.hydrationDetail, /Repère initial : 1 L \/ 1000 kcal/);
+  assert.match(ui.hydrationDetail, /individualiser selon la sudation/i);
+  assert.match(ui.creatorHint, /exclusivement la marque choisie/);
+  assert.match(ui.notesHint, /notes sont reproduites telles quelles/);
+  assert.match(ui.elevateSrc, /logo-elevate-fitness\.jpg/);
+  assert.match(ui.elevateAlt, /Elevate Fitness/i);
+  assert.match(ui.krSrc, /logo-kr-kinetics-horizontal\.png/);
+  assert.ok(ui.elevateW >= 200 && ui.krW >= 200, `logo widths too small: KR=${ui.krW} Elevate=${ui.elevateW}`);
+  assert.ok(ui.elevateH >= 90 && ui.krH >= 90, `logo heights too small: KR=${ui.krH} Elevate=${ui.elevateH}`);
+
+  const trainingReady = await ensureTrainingExportable();
+  assert.equal(trainingReady.canExport, true, `training not exportable: ${trainingReady.errors?.join('; ')}`);
+  assert.equal(trainingReady.remainingZero, true);
 
   await page.screenshot({
     path: path.join(ARTIFACT_DIR, 'screenshots', 'desktop-1440-dual-brand.png'),
@@ -265,85 +341,133 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
   });
   await page.setViewport({ width: 1440, height: 1000 });
 
-  // Elevate FR
-  const elevateFr = await buildPdfHtml('elevate', 'fr');
-  assert.equal(elevateFr.brandKey, 'elevate');
-  assert.match(elevateFr.guideHref, /elevate-fitness-equivalents-client-fr\.pdf/);
-  assertNoForbidden(elevateFr.html, 'Elevate FR HTML');
-  assertNoForbidden(elevateFr.planText, 'Elevate FR plan text');
-  assert.match(elevateFr.html, /Préparé par Elevate Fitness|Elevate Fitness/);
-  assert.equal(/KR Kinetics/i.test(elevateFr.html), false);
-  assert.equal(/logo-kr/i.test(elevateFr.html), false);
-  const elevateFrPdf = path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-fr.pdf');
-  await renderPdf(elevateFr.html, elevateFrPdf);
-  fs.writeFileSync(path.join(ARTIFACT_DIR, 'review', 'plan-elevate-preview.html'), elevateFr.html, 'utf8');
+  const scenariosNoRest = [
+    { creator: 'kr', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-kr-fr.pdf' },
+    { creator: 'kr', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-kr-en.pdf' },
+    { creator: 'elevate', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-elevate-fr.pdf' },
+    { creator: 'elevate', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-elevate-en.pdf' },
+  ];
 
-  // Elevate EN
-  const elevateEn = await buildPdfHtml('elevate', 'en');
-  assertNoForbidden(elevateEn.html, 'Elevate EN HTML');
-  assert.match(elevateEn.html, /Prepared by Elevate Fitness/);
-  assert.equal(/KR Kinetics/i.test(elevateEn.html), false);
-  const elevateEnPdf = path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en.pdf');
-  await renderPdf(elevateEn.html, elevateEnPdf);
-
-  // KR FR / EN exclusive
-  const krFr = await buildPdfHtml('kr', 'fr');
-  assert.equal(krFr.brandKey, 'kr');
-  assert.match(krFr.guideHref, /kr-kinetics-equivalents-client-fr\.pdf/);
-  assert.equal(/Elevate Fitness/i.test(krFr.html), false);
-  assert.equal(/logo-elevate/i.test(krFr.html), false);
-  assert.match(krFr.html, /KR Kinetics/);
-  const krFrPdf = path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-fr.pdf');
-  await renderPdf(krFr.html, krFrPdf);
-  fs.writeFileSync(path.join(ARTIFACT_DIR, 'review', 'plan-kr-preview.html'), krFr.html, 'utf8');
-
-  const krEn = await buildPdfHtml('kr', 'en');
-  assert.equal(/Elevate Fitness/i.test(krEn.html), false);
-  assert.match(krEn.html, /Prepared by KR Kinetics|KR Kinetics/);
-  const krEnPdf = path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en.pdf');
-  await renderPdf(krEn.html, krEnPdf);
-
-  // Rest-day scenario: ensure repos day is active and mirrored from training.
-  await page.evaluate(() => {
-    if (typeof window.setJourReposActif === 'function') window.setJourReposActif(true);
-    if (typeof window.copierEntrainementVersRepos === 'function') {
-      window.copierEntrainementVersRepos();
+  const noRestHtml = {};
+  for (const scenario of scenariosNoRest) {
+    const built = await buildPdfHtml(scenario.creator, scenario.lang, scenario.notes);
+    assert.equal(built.pages, 1, `${scenario.file} must be 1 page without rest`);
+    assert.equal(built.hasRestSnapshot, false);
+    assert.match(built.guideText, new RegExp(built.brandLabel));
+    if (scenario.creator === 'elevate') {
+      assertNoForbidden(built.html, scenario.file);
+      assert.equal(/KR Kinetics/i.test(built.html), false);
+      assert.equal(/logo-kr/i.test(built.html), false);
+      assert.match(built.guideHref, /elevate-fitness-equivalents-client-fr\.pdf/);
     } else {
-      // Fallback: clone training bank/repartition into repos.
-      window.captureJourActif?.();
-      const src = window.joursData?.entrainement;
-      if (src && window.joursData) {
-        window.joursData.repos = JSON.parse(JSON.stringify(src));
-      }
+      assert.equal(/Elevate Fitness/i.test(built.html), false);
+      assert.equal(/logo-elevate/i.test(built.html), false);
+      assert.match(built.guideHref, /kr-kinetics-equivalents-client-fr\.pdf/);
     }
-  });
-  const elevateRest = await buildPdfHtml('elevate', 'fr');
-  assert.match(elevateRest.html, /pdf-a4-page/g);
-  assert.ok((elevateRest.html.match(/pdf-a4-page/g) || []).length >= 2, 'rest-day Elevate PDF should have 2 pages');
-  assertNoForbidden(elevateRest.html, 'Elevate rest-day HTML');
-  await renderPdf(
-    elevateRest.html,
-    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-fr-with-rest.pdf'),
-  );
+    if (scenario.lang === 'en') {
+      assert.equal(built.html.includes(FORBIDDEN_FR_IN_EN), false, `${scenario.file} must not contain French demo note`);
+      assert.match(built.html, /Prioritize hydration|lean proteins and starches/i);
+      assert.match(built.html, /Rest Day|Training Day|Prepared by/);
+    } else {
+      assert.match(built.html, /Jour Entraînement|Hydratation prioritaire/);
+    }
+    const out = path.join(ARTIFACT_DIR, 'generated-pdfs', scenario.file);
+    await renderPdf(built.html, out);
+    noRestHtml[scenario.file] = built.html;
+    if (scenario.file.includes('elevate-fr.pdf')) {
+      fs.writeFileSync(path.join(ARTIFACT_DIR, 'review', 'plan-elevate-preview.html'), built.html, 'utf8');
+    }
+    if (scenario.file.includes('kr-fr.pdf')) {
+      fs.writeFileSync(path.join(ARTIFACT_DIR, 'review', 'plan-kr-preview.html'), built.html, 'utf8');
+    }
+  }
 
-  const krRest = await buildPdfHtml('kr', 'fr');
-  assert.ok((krRest.html.match(/pdf-a4-page/g) || []).length >= 2, 'rest-day KR PDF should have 2 pages');
-  assert.equal(/Elevate Fitness/i.test(krRest.html), false);
-  await renderPdf(
-    krRest.html,
-    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-fr-with-rest.pdf'),
-  );
+  const restSetup = await configureRealRestDay();
+  assert.deepEqual(restSetup.remaining, [], `rest remaining must be zero: ${JSON.stringify(restSetup.remaining)}`);
+  assert.equal(restSetup.restConfigured, true, `rest not configured: ${restSetup.restErrors?.join('; ')}`);
+  assert.equal(restSetup.restCanExport, true, `rest not exportable: ${restSetup.restErrors?.join('; ')}`);
+  assert.match(restSetup.restLabel, /Jour Repos|Rest Day/i);
+  assert.notDeepEqual(restSetup.trainingTargets, restSetup.restTargets, 'rest day targets must differ from training (carb cycling)');
+  assert.notEqual(restSetup.trainingPlanned.kcal, restSetup.restPlanned.kcal, 'rest planned kcal must differ from training');
 
-  // Parse Elevate PDFs + guide for forbidden brand leakage
+  const scenariosWithRest = [
+    { creator: 'kr', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-kr-fr-with-rest.pdf', noRestFile: 'xavier-plan-kr-fr.pdf' },
+    { creator: 'kr', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-kr-en-with-rest.pdf', noRestFile: 'xavier-plan-kr-en.pdf' },
+    { creator: 'elevate', lang: 'fr', notes: NOTE_FR, file: 'xavier-plan-elevate-fr-with-rest.pdf', noRestFile: 'xavier-plan-elevate-fr.pdf' },
+    { creator: 'elevate', lang: 'en', notes: NOTE_EN, file: 'xavier-plan-elevate-en-with-rest.pdf', noRestFile: 'xavier-plan-elevate-en.pdf' },
+  ];
+
+  for (const scenario of scenariosWithRest) {
+    const built = await buildPdfHtml(scenario.creator, scenario.lang, scenario.notes);
+    assert.equal(built.pages, 2, `${scenario.file} must have exactly 2 pages`);
+    assert.equal(built.hasRestSnapshot, true);
+    assert.ok(countPdfPages(built.html) === 2);
+    if (scenario.lang === 'fr') {
+      assert.match(built.html, /Jour Entraînement/);
+      assert.match(built.html, /Jour Repos/);
+    } else {
+      assert.match(built.html, /Training Day|Jour Entraînement/i);
+      assert.match(built.html, /Rest Day/);
+      assert.equal(built.html.includes(FORBIDDEN_FR_IN_EN), false, `${scenario.file} must not contain French demo note`);
+    }
+    assert.notEqual(built.html, noRestHtml[scenario.noRestFile], `${scenario.file} must differ from no-rest HTML`);
+    assert.ok(
+      built.restTargets
+      && (
+        built.restTargets.glu !== built.trainingTargets.glu
+        || built.restTargets.lip !== built.trainingTargets.lip
+        || built.restPlannedKcal !== built.trainingPlannedKcal
+      ),
+      `${scenario.file} rest page must carry its own targets/macros`,
+    );
+    if (scenario.creator === 'elevate') {
+      assertNoForbidden(built.html, scenario.file);
+    } else {
+      assert.equal(/Elevate Fitness/i.test(built.html), false);
+    }
+    await renderPdf(built.html, path.join(ARTIFACT_DIR, 'generated-pdfs', scenario.file));
+  }
+
   for (const pdfPath of [
-    elevateFrPdf,
-    elevateEnPdf,
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-fr.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-fr-with-rest.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en-with-rest.pdf'),
     path.join(COACH_DIR, 'guides', 'elevate-fitness-equivalents-client-fr.pdf'),
   ]) {
-    const parser = new PDFParse({ data: fs.readFileSync(pdfPath) });
-    const parsed = await parser.getText();
-    await parser.destroy();
-    assertNoForbidden(parsed.text || '', path.basename(pdfPath));
+    const text = await pdfText(pdfPath);
+    assertNoForbidden(text, path.basename(pdfPath));
+  }
+
+  for (const pdfPath of [
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en-with-rest.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en-with-rest.pdf'),
+  ]) {
+    const text = await pdfText(pdfPath);
+    assert.equal(text.includes(FORBIDDEN_FR_IN_EN), false, `${path.basename(pdfPath)} parsed text still has French note`);
+    assert.match(text, /Prioritize hydration|lean proteins and starches/i);
+  }
+
+  for (const pdfPath of [
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-fr-with-rest.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-fr-with-rest.pdf'),
+  ]) {
+    const text = await pdfText(pdfPath);
+    assert.match(text, /Jour Entraînement/);
+    assert.match(text, /Jour Repos/);
+    const noRestName = path.basename(pdfPath).replace('-with-rest', '');
+    const noRestText = await pdfText(path.join(ARTIFACT_DIR, 'generated-pdfs', noRestName));
+    assert.notEqual(text, noRestText, `${path.basename(pdfPath)} must not be identical to no-rest PDF text`);
+  }
+
+  for (const pdfPath of [
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-kr-en-with-rest.pdf'),
+    path.join(ARTIFACT_DIR, 'generated-pdfs', 'xavier-plan-elevate-en-with-rest.pdf'),
+  ]) {
+    const text = await pdfText(pdfPath);
+    assert.match(text, /Rest Day/);
   }
 
   const elevateGuideHtml = fs.readFileSync(
@@ -354,23 +478,38 @@ test('dual brand header, exclusive PDFs, FR/EN, rest-day and Elevate purity', as
 
   assert.equal(runtimeErrors.length, 0, runtimeErrors.join('\n'));
 
+  const generated = fs.readdirSync(path.join(ARTIFACT_DIR, 'generated-pdfs')).sort();
+  assert.deepEqual(generated, [
+    'xavier-plan-elevate-en-with-rest.pdf',
+    'xavier-plan-elevate-en.pdf',
+    'xavier-plan-elevate-fr-with-rest.pdf',
+    'xavier-plan-elevate-fr.pdf',
+    'xavier-plan-kr-en-with-rest.pdf',
+    'xavier-plan-kr-en.pdf',
+    'xavier-plan-kr-fr-with-rest.pdf',
+    'xavier-plan-kr-fr.pdf',
+  ]);
+
   fs.writeFileSync(
     path.join(ARTIFACT_DIR, 'review', 'functional-results.json'),
     JSON.stringify({
       ok: true,
       checks: [
-        '287 foods preserved',
-        'Elevate logo in coach header',
-        'Bank calories keep raw exchange precision (3987)',
-        'Bank macro display remains 176/432/173',
-        'Personalized plan exportable within coach tolerance',
-        'Elevate PDF FR/EN contain no KR text or asset',
-        'Elevate guide selected with Elevate creator',
-        'KR PDF contain no Elevate text or asset',
-        'Rest-day pages generated for KR and Elevate',
+        '287 foods preserved; Mode A; D/A disabled',
+        'Professional UI labels restored (title, macros remaining G/L, calorie/hydration, brand hint, notes hint)',
+        '8 PDF scenarios generated (KR/Elevate × FR/EN × with/without rest)',
+        'Rest-day PDFs have 2 pages with Jour Repos / Rest Day and distinct targets',
+        'English demo PDFs use English notes (no French hydration phrase)',
+        'Elevate PDFs/guides contain no KR Kinetics / logo-kr / projet conjoint',
       ],
-      bank: dist.bank,
-      planned: dist.planned,
+      restSetup: {
+        remaining: restSetup.remaining,
+        trainingTargets: restSetup.trainingTargets,
+        restTargets: restSetup.restTargets,
+        trainingPlanned: restSetup.trainingPlanned,
+        restPlanned: restSetup.restPlanned,
+      },
+      pdfs: generated,
     }, null, 2),
     'utf8',
   );

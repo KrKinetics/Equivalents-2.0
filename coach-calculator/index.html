@@ -291,6 +291,7 @@
         }
         .coach-notes-panel label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--primary); }
         .coach-notes-panel textarea { min-height: 140px; resize: vertical; font-size: 0.92rem; line-height: 1.55; }
+        .coach-notes-lang-hint { margin: 8px 0 0; font-size: 0.78rem; color: #64748b; line-height: 1.4; }
         #pdf-render-root { display: none; }
     
         /* ═══ Mobile polish (390px) — no desktop regression ═══ */
@@ -350,7 +351,7 @@
         <img src="./assets/logo-kr-kinetics-horizontal.png" alt="KR Kinetics">
     </div>
     <div class="header-title-container">
-        <h1>ÉVALUATION & PLANIFICATION NUTRITIONNELLE</h1>
+        <h1>ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE</h1>
         <div class="collab-badge">Outil coach · KR Kinetics × Elevate Fitness</div>
     </div>
     <div class="header-logo elevate-logo">
@@ -441,16 +442,16 @@
                     </div>
                 </div>
                 <select id="macroRatio" onchange="updateCibles()">
-                    <option value="30,40,30">1. Perte légère     (30P | 40G | 30L)</option>
-                    <option value="40,35,25">2. Perte sévère      (40P | 35G | 25L)</option>
-                    <option value="25,45,30" selected>3. Maintien          (25P | 45G | 30L)</option>
-                    <option value="33,33,33">4. Équilibré         (33P | 33G | 33L)</option>
-                    <option value="25,50,25">5. Prise légère      (25P | 50G | 25L)</option>
-                    <option value="20,55,25">6. Prise sévère      (20P | 55G | 25L)</option>
-                    <option value="15,60,25">7. Performance       (15P | 60G | 25L)</option>
-                    <option value="45,35,20">8. Lipides réduits   (45P | 35G | 20L)</option>
+                    <option value="30,40,30">1. Perte légère — restant 57 % G / 43 % L</option>
+                    <option value="40,35,25">2. Perte soutenue — restant 58 % G / 42 % L</option>
+                    <option value="25,45,30" selected>3. Maintien — restant 60 % G / 40 % L</option>
+                    <option value="33,33,33">4. Partage égal du restant — 50 % G / 50 % L</option>
+                    <option value="25,50,25">5. Prise légère — restant 67 % G / 33 % L</option>
+                    <option value="20,55,25">6. Prise soutenue — restant 69 % G / 31 % L</option>
+                    <option value="15,60,25">7. Performance — restant 71 % G / 29 % L</option>
+                    <option value="45,35,20">8. Lipides réduits — restant 64 % G / 36 % L</option>
                 </select>
-                <p class="macro-hint">Le % protéines du preset est indicatif — les protéines sont fixées en section 2.</p>
+                <p class="macro-hint">Les protéines sont fixées d'abord en section 2. Le préréglage répartit ensuite les calories restantes entre glucides et lipides; le PDF affiche les pourcentages réels.</p>
             </div>
             <div class="macro-custom-panel muted" id="macro-custom-panel">
                 <div class="dash-title">Macros personnalisées</div>
@@ -503,7 +504,7 @@
     </div>
     <div class="dashboard">
         <div class="dash-box target" style="border-left-color:var(--accent);">
-            <div class="dash-title">Cible Calorique</div>
+            <div class="dash-title">Cible alimentaire après arrondi des macros</div>
             <div class="dash-value" id="cible-kcal">-- kcal</div>
             <div class="dash-sub"><span id="dash-goal-label">Maintien</span> · <span id="dash-ratio-label">—</span></div>
             <div class="dash-sub">Macros : <span id="cible-macros">-- Pro | -- Glu | -- Lip</span></div>
@@ -744,12 +745,12 @@
     <div class="info-bar" style="margin-bottom:18px; background:linear-gradient(135deg,#eff6ff,#ecfeff); border-color:#7dd3fc;">
         <div class="grid-3" style="align-items:end;">
             <div>
-                <label>💧 Hydratation — calcul automatique</label>
+                <label>💧 Cible initiale de liquides — repère automatique</label>
                 <div style="font-size:0.88rem; color:#475569; margin-top:4px;">
                     <strong id="eau-auto" style="font-size:1.3rem;color:var(--primary);">0.0</strong> L &nbsp;/ jour
                 </div>
                 <div style="font-size:0.78rem; color:#64748b; margin-top:4px;">
-                    Règle : 1 L / 1000 kcal &nbsp;·&nbsp; Basé sur <strong id="eau-kcal-base">0</strong> kcal
+                    Repère initial : 1 L / 1000 kcal &nbsp;·&nbsp; Basé sur <strong id="eau-kcal-base">0</strong> kcal · À individualiser selon la sudation, la chaleur et l'entraînement
                 </div>
             </div>
             <div>
@@ -781,6 +782,7 @@
     <div class="coach-notes-panel">
         <label for="coach-notes" id="coach-notes-label">Commentaires et directives du coach</label>
         <textarea id="coach-notes" placeholder="Écrivez ici vos consignes personnalisées pour l'athlète (suppléments, timing, hydratation, substitutions, etc.)..."></textarea>
+        <p class="coach-notes-lang-hint" id="coach-notes-lang-hint">Les notes sont reproduites telles quelles dans le PDF; rédigez-les dans la langue sélectionnée.</p>
     </div>
     <div class="pdf-export-options">
         <div class="pdf-creator-picker">
@@ -789,7 +791,7 @@
                 <button type="button" class="creator-btn active" id="creator-btn-kr" onclick="choisirPdfCreator('kr')">KR Kinetics</button>
                 <button type="button" class="creator-btn" id="creator-btn-elevate" onclick="choisirPdfCreator('elevate')">Elevate Fitness</button>
             </div>
-            <p class="pdf-creator-hint">Un seul logo apparaîtra en haut à gauche du PDF client.</p>
+            <p class="pdf-creator-hint">Le PDF et le guide client utiliseront exclusivement la marque choisie.</p>
         </div>
         <div class="pdf-creator-picker">
             <label>Langue du PDF</label>
@@ -2264,7 +2266,7 @@ function updateEtatPlan() {
         list.style.display = 'none';
     } else if (status.level === 'warn') {
         icon.textContent = '⚠️';
-        title.textContent = 'Dossier exportable avec réserves';
+        title.textContent = 'Plan complet — ajustements à confirmer';
         msg.textContent = 'Les deux journées sont complètes, mais vérifiez :';
         msg.style.display = 'block';
         list.innerHTML = status.warnings.map(w => '<li>' + w + '</li>').join('');
@@ -2411,14 +2413,14 @@ const GOAL_LABELS_EN = {
     'Surplus +10%': 'Surplus +10%', 'Surplus +20%': 'Surplus +20%'
 };
 const MACRO_PRESET_LABELS_EN = {
-    '1. Perte légère     (30P | 40G | 30L)': '1. Light loss        (30P | 40C | 30F)',
-    '2. Perte sévère      (40P | 35G | 25L)': '2. Severe loss       (40P | 35C | 25F)',
-    '3. Maintien          (25P | 45G | 30L)': '3. Maintenance       (25P | 45C | 30F)',
-    '4. Équilibré         (33P | 33G | 33L)': '4. Balanced          (33P | 33C | 33F)',
-    '5. Prise légère      (25P | 50G | 25L)': '5. Light gain        (25P | 50C | 25F)',
-    '6. Prise sévère      (20P | 55G | 25L)': '6. Severe gain       (20P | 55C | 25F)',
-    '7. Performance       (15P | 60G | 25L)': '7. Performance       (15P | 60C | 25F)',
-    '8. Lipides réduits   (45P | 35G | 20L)': '8. Reduced fats      (45P | 35C | 20F)'
+    '1. Perte légère — restant 57 % G / 43 % L': '1. Light loss — remaining 57% C / 43% F',
+    '2. Perte soutenue — restant 58 % G / 42 % L': '2. Sustained loss — remaining 58% C / 42% F',
+    '3. Maintien — restant 60 % G / 40 % L': '3. Maintenance — remaining 60% C / 40% F',
+    '4. Partage égal du restant — 50 % G / 50 % L': '4. Equal remaining split — 50% C / 50% F',
+    '5. Prise légère — restant 67 % G / 33 % L': '5. Light gain — remaining 67% C / 33% F',
+    '6. Prise soutenue — restant 69 % G / 31 % L': '6. Sustained gain — remaining 69% C / 31% F',
+    '7. Performance — restant 71 % G / 29 % L': '7. Performance — remaining 71% C / 29% F',
+    '8. Lipides réduits — restant 64 % G / 36 % L': '8. Reduced fats — remaining 64% C / 36% F'
 };
 
 function translateMealLabelPlan(mealIdx) {
@@ -3330,8 +3332,8 @@ function updateEtatPlan() {
         list.style.display = 'none';
     } else if (status.level === 'warn') {
         icon.textContent = '⚠️';
-        title.textContent = 'Dossier exportable avec réserves';
-        msg.textContent = 'Vérifiez :';
+        title.textContent = 'Plan complet — ajustements à confirmer';
+        msg.textContent = 'Les journées sont complètes; validez simplement les écarts suivants :';
         msg.style.display = 'block';
         list.innerHTML = status.warnings.map(function(w) { return '<li>' + w + '</li>'; }).join('');
         list.style.display = 'block';
@@ -3703,7 +3705,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script id="dual-brand-professional-corrections">
-// Corrections client 2026-08-01: marques exclusives, tolérances, libellés et réconciliation.
+// Corrections client: marques exclusives, tolérances, libellés et réconciliation.
 const PDF_BRANDS = Object.freeze({
     kr: Object.freeze({
         key: 'kr', label: 'KR Kinetics', slug: 'KR_Kinetics',

@@ -10,6 +10,13 @@ function mustReplace(html, pattern, replacement, label) {
   return html.replace(pattern, replacement);
 }
 
+function mustIncludesReplace(html, find, replacement, label) {
+  if (!html.includes(find)) {
+    throw new Error(`Dual-brand patch failed: missing ${label}`);
+  }
+  return html.split(find).join(replacement);
+}
+
 const DUAL_HEADER_CSS = `.header-logo.kr-logo,
         .header-logo.elevate-logo {
             flex: 0 0 315px;
@@ -75,8 +82,430 @@ const DUAL_HEADER_CSS = `.header-logo.kr-logo,
         }
 `;
 
+const MACRO_OPTIONS_HTML = `<select id="macroRatio" onchange="updateCibles()">
+                    <option value="30,40,30">1. Perte légère — restant 57 % G / 43 % L</option>
+                    <option value="40,35,25">2. Perte soutenue — restant 58 % G / 42 % L</option>
+                    <option value="25,45,30" selected>3. Maintien — restant 60 % G / 40 % L</option>
+                    <option value="33,33,33">4. Partage égal du restant — 50 % G / 50 % L</option>
+                    <option value="25,50,25">5. Prise légère — restant 67 % G / 33 % L</option>
+                    <option value="20,55,25">6. Prise soutenue — restant 69 % G / 31 % L</option>
+                    <option value="15,60,25">7. Performance — restant 71 % G / 29 % L</option>
+                    <option value="45,35,20">8. Lipides réduits — restant 64 % G / 36 % L</option>
+                </select>
+                <p class="macro-hint">Les protéines sont fixées d'abord en section 2. Le préréglage répartit ensuite les calories restantes entre glucides et lipides; le PDF affiche les pourcentages réels.</p>`;
+
+const MACRO_PRESET_LABELS_EN_JS = `const MACRO_PRESET_LABELS_EN = {
+    '1. Perte légère — restant 57 % G / 43 % L': '1. Light loss — remaining 57% C / 43% F',
+    '2. Perte soutenue — restant 58 % G / 42 % L': '2. Sustained loss — remaining 58% C / 42% F',
+    '3. Maintien — restant 60 % G / 40 % L': '3. Maintenance — remaining 60% C / 40% F',
+    '4. Partage égal du restant — 50 % G / 50 % L': '4. Equal remaining split — 50% C / 50% F',
+    '5. Prise légère — restant 67 % G / 33 % L': '5. Light gain — remaining 67% C / 33% F',
+    '6. Prise soutenue — restant 69 % G / 31 % L': '6. Sustained gain — remaining 69% C / 31% F',
+    '7. Performance — restant 71 % G / 29 % L': '7. Performance — remaining 71% C / 29% F',
+    '8. Lipides réduits — restant 64 % G / 36 % L': '8. Reduced fats — remaining 64% C / 36% F'
+};`;
+
 export function buildDualBrandRuntime() {
-  return "<script id=\"dual-brand-professional-corrections\">\n// Corrections client 2026-08-01: marques exclusives, tolérances, libellés et réconciliation.\nconst PDF_BRANDS = Object.freeze({\n    kr: Object.freeze({\n        key: 'kr', label: 'KR Kinetics', slug: 'KR_Kinetics',\n        logo: window.KR_PDF_LOGO_HORIZONTAL_DATA_URI,\n        logoAlt: 'KR Kinetics', guide: './guides/kr-kinetics-equivalents-client-fr.pdf'\n    }),\n    elevate: Object.freeze({\n        key: 'elevate', label: 'Elevate Fitness', slug: 'Elevate_Fitness',\n        logo: window.ELEVATE_PDF_LOGO_DATA_URI,\n        logoAlt: 'Elevate Fitness', guide: './guides/elevate-fitness-equivalents-client-fr.pdf'\n    })\n});\n\nfunction getSelectedPdfBrand() {\n    return pdfCreator === 'elevate' ? PDF_BRANDS.elevate : PDF_BRANDS.kr;\n}\n\nfunction updateGuideBrandLink() {\n    const brand = getSelectedPdfBrand();\n    const link = document.getElementById('btn-guide-pdf');\n    if (!link) return;\n    link.href = brand.guide;\n    link.textContent = '📄 Tableau des équivalents (PDF — ' + brand.label + ')';\n}\n\nchoisirPdfCreator = function (creator) {\n    pdfCreator = creator === 'elevate' ? 'elevate' : 'kr';\n    document.getElementById('creator-btn-kr').classList.toggle('active', pdfCreator === 'kr');\n    document.getElementById('creator-btn-elevate').classList.toggle('active', pdfCreator === 'elevate');\n    updateGuideBrandLink();\n    if (document.getElementById('output-plan').value.trim()) genererPlanTextuel();\n};\n\nObject.assign(PDF_LABELS.fr, {\n    subtitle: 'Évaluation des habitudes & planification alimentaire',\n    macroRatio: 'Répartition des macronutriments',\n    macroChartTitle: 'Répartition des macronutriments',\n    targetCalories: 'Cible alimentaire (macros arrondies)',\n    banqueNote: 'Portions sélectionnées (moyennes)',\n    hydration: 'Cible initiale de liquides',\n    varianceOrigin: 'Tolérance coach : ±2 % pour l\\'\\u00e9nergie et ±6 % par macro. Les petits écarts proviennent des moyennes et des arrondis.',\n    brandBy: 'Préparé par',\n    withinTolerance: 'dans la tolérance',\n    scopeNotice: 'Structure alimentaire destinée à une personne généralement en santé; elle ne remplace pas un avis médical ou un traitement nutritionnel clinique.'\n});\nObject.assign(PDF_LABELS.en, {\n    subtitle: 'Eating habits assessment & meal planning',\n    macroRatio: 'Macronutrient distribution',\n    macroChartTitle: 'Macronutrient distribution',\n    targetCalories: 'Meal target (rounded macros)',\n    banqueNote: 'Selected portions (averages)',\n    hydration: 'Initial fluid target',\n    varianceOrigin: 'Coach tolerance: ±2% energy and ±6% per macro. Small variances come from averages and rounding.',\n    brandBy: 'Prepared by',\n    withinTolerance: 'within tolerance',\n    scopeNotice: 'Meal structure intended for a generally healthy person; it does not replace medical advice or clinical nutrition treatment.'\n});\n\nfunction macroPercentagesFromTargets(target) {\n    const total = kcalFromMacros(target.pro || 0, target.glu || 0, target.lip || 0);\n    if (!total) return { pro: 0, glu: 0, lip: 0 };\n    const pro = Math.round((target.pro * 4 / total) * 100);\n    const glu = Math.round((target.glu * 4 / total) * 100);\n    return { pro, glu, lip: Math.max(0, 100 - pro - glu) };\n}\n\nfunction getClientMacroDistributionLabel(snapshot) {\n    const p = macroPercentagesFromTargets(snapshot.targets || {});\n    if (pdfLang === 'en') return p.pro + '% protein · ' + p.glu + '% carbs · ' + p.lip + '% fat';\n    return p.pro + ' % protéines · ' + p.glu + ' % glucides · ' + p.lip + ' % lipides';\n}\n\n// Preserve raw exchange precision for calories; round grams only for display.\ncomputeBanqueTotalsFromData = function (banque) {\n    let proRaw = 0, gluRaw = 0, lipRaw = 0;\n    CATS.forEach(function (cat) {\n        const value = parseFloat(banque[cat]) || 0;\n        proRaw += value * MOYENNES[cat].p;\n        gluRaw += value * MOYENNES[cat].g;\n        lipRaw += value * MOYENNES[cat].l;\n    });\n    return {\n        pro: Math.round(proRaw),\n        glu: Math.round(gluRaw),\n        lip: Math.round(lipRaw),\n        kcal: kcalFromMacros(proRaw, gluRaw, lipRaw)\n    };\n};\n\nfunction withinCoachTolerance(target, actual) {\n    const energyTolerance = Math.max(50, Math.round((target.kcal || 0) * 0.02));\n    const macroTolerance = function (value) { return Math.max(5, Math.round((value || 0) * 0.06)); };\n    return Math.abs((actual.kcal || 0) - (target.kcal || 0)) <= energyTolerance &&\n        Math.abs((actual.pro || 0) - (target.pro || 0)) <= macroTolerance(target.pro) &&\n        Math.abs((actual.glu || 0) - (target.glu || 0)) <= macroTolerance(target.glu) &&\n        Math.abs((actual.lip || 0) - (target.lip || 0)) <= macroTolerance(target.lip);\n}\n\nevaluerJourData = function (jourKey) {\n    const jourData = joursData[jourKey] || createEmptyJourData();\n    const jourTargets = computeTargetsForJour(jourKey);\n    const errors = [], warnings = [];\n    if (jourTargets.kcal === 0) errors.push('Profil incomplet (cibles).');\n    let banqueTotal = 0;\n    CATS.forEach(function (cat) { banqueTotal += parseFloat(jourData.banque[cat]) || 0; });\n    if (banqueTotal === 0) errors.push('Banque vide.');\n    const banqueTotals = computeBanqueTotalsFromData(jourData.banque);\n    if (jourTargets.kcal > 0 && banqueTotal > 0 && !withinCoachTolerance(jourTargets, banqueTotals)) {\n        warnings.push('Écart banque/cibles au-delà de la tolérance coach.');\n    }\n    const restants = [];\n    CATS.forEach(function (cat) {\n        const cible = parseFloat(jourData.banque[cat]) || 0;\n        let sum = 0;\n        for (let meal = 0; meal < MEAL_COUNT; meal++) sum += getRepValueFromData(jourData.repartition, meal, cat);\n        const restant = Math.round((cible - sum) * 10) / 10;\n        if (cible > 0 && restant !== 0) restants.push(NOMS_COURTS[cat]);\n    });\n    if (restants.length) errors.push('Répartition incomplète (' + restants.join(', ') + ').');\n    let hasMealFood = false;\n    for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {\n        if ((parseFloat(jourData.repartition[i]) || 0) > 0) hasMealFood = true;\n    }\n    if (banqueTotal > 0 && !hasMealFood) errors.push('Repas non distribués.');\n    return { jourKey, errors, warnings, canExport: errors.length === 0 && hasMealFood && banqueTotal > 0 };\n};\n\nreconcilePlanTotalsFromSnapshot = function (snapshot) {\n    const target = snapshot.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };\n    const banque = snapshot.banqueTotals || { kcal: 0, pro: 0, glu: 0, lip: 0 };\n    const planned = {\n        pro: snapshot.totalPro || 0, glu: snapshot.totalGlu || 0,\n        lip: snapshot.totalLip || 0, kcal: snapshot.totalKcal || 0\n    };\n    const variance = {\n        kcal: planned.kcal - target.kcal,\n        pro: planned.pro - target.pro,\n        glu: planned.glu - target.glu,\n        lip: planned.lip - target.lip\n    };\n    return { target, banque, planned, variance, withinThreshold: withinCoachTolerance(target, planned) };\n};\n\nconst professionalPdfStylesBase = getPDFStylesCSS;\ngetPDFStylesCSS = function () {\n    return professionalPdfStylesBase()\n        + '.pdf-totals{bottom:54px;}'\n        + '.pdf-scope-note{position:absolute;left:28px;right:28px;bottom:29px;font-size:7.5px;line-height:1.25;color:#64748b;text-align:center;padding:0 18px;overflow-wrap:anywhere;}'\n        + '.pdf-footer{bottom:10px;padding-top:4px;}'\n        + '.pdf-a4-page.brand-elevate .pdf-brand-header{background:#050505;color:#fff;}'\n        + '.pdf-a4-page.brand-elevate .pdf-brand-rule{background:#D4A94F;}'\n        + '.pdf-a4-page.brand-elevate .pdf-brand-header-logo{max-width:170px;height:56px;background:#050505;border-radius:4px;overflow:hidden;}'\n        + '.pdf-a4-page.brand-elevate .pdf-brand-header-logo img{width:150px;height:54px;max-width:150px;max-height:54px;object-fit:cover;object-position:center;filter:none;}'\n        + '.pdf-a4-page.brand-elevate .pdf-brand-subtitle{color:#E8D39B;}'\n        + '.pdf-a4-page.brand-elevate .pdf-section{border-left-color:#D4A94F;color:#171717;}'\n        + '.pdf-a4-page.brand-elevate .meal-box{border-left-color:#D4A94F;}'\n        + '.pdf-a4-page.brand-elevate .pdf-recon-title,.pdf-a4-page.brand-elevate .pdf-totals{background:#111;color:#fff;}'\n        + '.pdf-a4-page.brand-elevate .val-blue{color:#9A6A13;}'\n        + '.pdf-a4-page.brand-elevate .pdf-pie-legend .dot-pro{background:#D4A94F;}'\n        + '.pdf-a4-page.brand-elevate .pdf-footer{color:#5f4310;}';\n};\n\nbuildPdfHeaderLogoHtml = function (creator) {\n    const brand = creator === 'elevate' ? PDF_BRANDS.elevate : PDF_BRANDS.kr;\n    return '<img src=\"' + brand.logo + '\" alt=\"' + brand.logoAlt + '\">';\n};\n\nfunction cleanProfessionalPdfText(value) {\n    return String(value == null ? '' : value)\n        .replace(/[\\u{1F4AA}\\u{1F6CC}\\u{1F305}\\u{2615}\\u{1F37D}\\u{1F34E}\\u{1F969}\\u{1F319}\\u{FE0F}]/gu, '')\n        .replace(/\\s{2,}/g, ' ')\n        .replace(/>\\s+</g, '><')\n        .trim();\n}\n\nbuildPDFInfoGrid = function (snapshot, nom, dateStr, ratioText, goalLabel) {\n    const l = PDF_LABELS[pdfLang];\n    const r = reconcilePlanTotalsFromSnapshot(snapshot);\n    const timingRow = snapshot.timing.active\n        ? '<tr><td class=\"info-label\">' + l.training + '</td><td><strong>' + snapshot.timing.heureLabel + '</strong> — ' + snapshot.timing.summary + '</td></tr>'\n        : '';\n    const variancePercent = r.target.kcal > 0 ? Math.round((r.variance.kcal / r.target.kcal) * 1000) / 10 : 0;\n    const varianceTxt = formatSignedDelta(r.variance.kcal, ' kcal') + ' (' + formatSignedDelta(variancePercent, ' %') + ')'\n        + ' · ' + formatSignedDelta(r.variance.pro, 'g ') + l.pro\n        + ' · ' + formatSignedDelta(r.variance.glu, 'g ') + l.glu\n        + ' · ' + formatSignedDelta(r.variance.lip, 'g ') + l.lip\n        + (r.withinThreshold ? ' — ' + l.withinTolerance : '');\n    const varianceClass = r.withinThreshold ? 'var-ok' : 'var-warn';\n    return '<div class=\"info-grid\">'\n        + '<table class=\"info-table\"><tbody>'\n        + '<tr><td class=\"info-label\">' + l.athlete + '</td><td>' + nom + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.date + '</td><td>' + dateStr + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.energyGoal + '</td><td>' + goalLabel + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.dayType + '</td><td>' + snapshot.jourLabel + '</td></tr>'\n        + timingRow\n        + '<tr><td class=\"info-label\">' + l.macroRatio + '</td><td>' + ratioText + '</td></tr>'\n        + '</tbody></table>'\n        + '<div class=\"pdf-recon\"><div class=\"pdf-recon-title\">' + l.reconciliationTitle + '</div><table><tbody>'\n        + '<tr><td class=\"info-label\">' + l.targetCalories + '</td><td class=\"val-blue\">' + r.target.kcal + ' kcal</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.targetMacros + '</td><td>' + formatSnapshotMacros(r.target.pro, r.target.glu, r.target.lip) + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.plannedCalories + '</td><td><strong>' + r.planned.kcal + ' kcal</strong></td></tr>'\n        + '<tr><td class=\"info-label\">' + l.plannedMacros + '</td><td>' + formatSnapshotMacros(r.planned.pro, r.planned.glu, r.planned.lip) + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.varianceLabel + '</td><td class=\"' + varianceClass + '\">' + varianceTxt + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.banqueNote + '</td><td>' + r.banque.kcal + ' kcal · ' + formatSnapshotMacros(r.banque.pro, r.banque.glu, r.banque.lip) + '</td></tr>'\n        + '<tr><td class=\"info-label\">' + l.hydration + '</td><td><span class=\"val-cyan\">' + formatEau(snapshot.eau.total) + ' ' + l.perDay + '</span> — ' + snapshot.eauDetail + '</td></tr>'\n        + '</tbody></table><div class=\"pdf-recon-note\">' + l.varianceOrigin + '</div></div></div>';\n};\n\nbuildClientPDFPageHTML = function (snapshot, nom, dateStr, ratioText, goalLabel, isFirstPage) {\n    snapshot = Object.assign({}, snapshot, {\n        jourLabel: cleanProfessionalPdfText(snapshot.jourLabel),\n        portionsLeft: cleanProfessionalPdfText(snapshot.portionsLeft),\n        portionsRight: cleanProfessionalPdfText(snapshot.portionsRight)\n    });\n    const brand = getSelectedPdfBrand();\n    const l = PDF_LABELS[pdfLang];\n    const actualRatio = getClientMacroDistributionLabel(snapshot);\n    const dayLine = isFirstPage ? '' : '<div class=\"pdf-brand-day\">' + snapshot.jourLabel + '</div>';\n    const header = '<div class=\"pdf-brand-header\"><div class=\"pdf-brand-header-logo\">'\n        + buildPdfHeaderLogoHtml(brand.key) + '</div><div class=\"pdf-brand-copy\"><div class=\"pdf-brand-title\">' + l.mainTitle + '</div>'\n        + '<div class=\"pdf-brand-subtitle\">' + l.subtitle + ' — ' + l.brandBy + ' ' + brand.label + '</div>' + dayLine + '</div></div>'\n        + '<div class=\"pdf-brand-rule\"></div>';\n    const notes = getCoachNotes();\n    return '<div class=\"pdf-a4-page brand-' + brand.key + '\">' + header\n        + buildPDFInfoGrid(snapshot, nom, dateStr, actualRatio, goalLabel)\n        + '<div class=\"pdf-section\">' + l.portionsSection + '</div>'\n        + '<div class=\"pdf-page-body\"><div class=\"meals-grid\"><div class=\"meals-col\">' + snapshot.portionsLeft\n        + '</div><div class=\"meals-col\">' + snapshot.portionsRight + '</div></div>'\n        + buildCoachNotesHtml(notes) + buildMacroChartHtml(snapshot) + '</div>'\n        + '<div class=\"pdf-totals\">' + formatSnapshotTotals(snapshot) + '</div>'\n        + '<div class=\"pdf-scope-note\">' + l.scopeNotice + '</div>'\n        + '<div class=\"pdf-footer\">' + cleanProfessionalPdfText(l.footer) + '</div></div>';\n};\n\ngenererPlanTextuel = function () {\n    captureJourActif();\n    const l = PDF_LABELS[pdfLang];\n    const brand = getSelectedPdfBrand();\n    const nom = document.getElementById('nom_athlete').value.trim() || l.planUnspecified;\n    const activeGoal = document.querySelector('.goal-card.active .goal-title');\n    const kg = getPoidsKg();\n    const snapEnt = getJourSnapshot('entrainement');\n    const proKg = kg > 0 ? (snapEnt.targets.pro / kg).toFixed(1) : '0';\n    const goalLabel = translateGoalLabelForPdf(activeGoal ? activeGoal.textContent : '--');\n    const ratioLabel = getClientMacroDistributionLabel(snapEnt);\n    let plan = '==============================================\\n';\n    plan += l.mainTitle + '\\n';\n    plan += '==============================================\\n\\n';\n    plan += l.athlete.padEnd(18) + ': ' + nom + '\\n';\n    plan += l.date.padEnd(18) + ': ' + getPdfDateString(pdfLang) + '\\n';\n    plan += l.planObjective.padEnd(18) + ': ' + goalLabel + '\\n';\n    plan += l.brandBy.padEnd(18) + ': ' + brand.label + '\\n';\n    plan += l.macroRatio.padEnd(18) + ': ' + ratioLabel + '\\n';\n    plan += l.planProteinKg.padEnd(18) + ': ' + proKg + ' g/kg ' + l.planTrainingDay + '\\n';\n    plan += '----------------------------------------------\\n\\n';\n    plan += genererPlanBlocJour(snapEnt);\n    if (jourReposActif && isJourClientPlanConfigured(joursData.repos)) plan += genererPlanBlocJour(getJourSnapshot('repos'));\n    else if (jourReposActif) plan += l.restOmittedNote + '\\n\\n';\n    plan += l.footer + '\\n';\n    document.getElementById('output-plan').value = plan;\n};\n\nexporterPDF = function () {\n    if (!document.getElementById('output-plan').value.trim()) genererPlanTextuel();\n    const l = PDF_LABELS[pdfLang];\n    const brand = getSelectedPdfBrand();\n    const nom = document.getElementById('nom_athlete').value.trim() || l.defaultAthlete;\n    const dateStr = getPdfDateString(pdfLang);\n    const filenameDate = new Date().toISOString().slice(0, 10);\n    const snapEnt = getJourSnapshot('entrainement');\n    const snapRep = getClientPdfRestSnapshot();\n    const expectedPages = snapRep ? 2 : 1;\n    const btn = document.getElementById('btn-export-pdf');\n    const btnLabel = btn.textContent;\n    btn.disabled = true;\n    btn.textContent = '⏳ Génération PDF...';\n    const safeName = nom.replace(/[^a-zA-Z0-9À-ſ_-]+/g, '_');\n    const filename = l.filenamePrefix + '_' + brand.slug + '_' + safeName + '_' + filenameDate + (pdfLang === 'en' ? '_EN' : '') + '.pdf';\n    const html = buildFullPDFHTML(snapEnt, snapRep, nom, dateStr, getMacroRatioLabel(), getActiveGoalLabel());\n    const iframe = creerIframePDF(html);\n    attendreRenduPDF(iframe).then(function () {\n        const doc = iframe.contentWindow.document;\n        const pages = doc.querySelectorAll('.pdf-a4-page');\n        if (pages.length !== expectedPages || doc.body.innerText.trim().length < 30) throw new Error('Structure PDF invalide');\n        assertPdfImagesReady(doc);\n        const text = doc.body.innerText;\n        const bodyHtml = doc.body.innerHTML;\n        if (brand.key === 'elevate' && (/KR Kinetics/i.test(text) || /logo-kr/i.test(bodyHtml))) {\n            throw new Error('Contamination de marque KR détectée dans le PDF Elevate');\n        }\n        if (brand.key === 'kr' && (/Elevate Fitness/i.test(text) || /logo-elevate/i.test(bodyHtml))) {\n            throw new Error('Contamination de marque Elevate détectée dans le PDF KR');\n        }\n        return genererPDFNatif(pages, filename);\n    }).then(function () {\n        nettoyerIframePDF();\n        btn.disabled = false;\n        btn.textContent = btnLabel;\n    }).catch(function (error) {\n        console.error(error);\n        nettoyerIframePDF();\n        btn.disabled = false;\n        btn.textContent = btnLabel;\n        alert('Erreur PDF : ' + (error.message || 'réessayez.'));\n    });\n};\n\ndocument.addEventListener('DOMContentLoaded', function () {\n    updateGuideBrandLink();\n});\n</script>";
+  return `<script id="dual-brand-professional-corrections">
+// Corrections client: marques exclusives, tolérances, libellés et réconciliation.
+const PDF_BRANDS = Object.freeze({
+    kr: Object.freeze({
+        key: 'kr', label: 'KR Kinetics', slug: 'KR_Kinetics',
+        logo: window.KR_PDF_LOGO_HORIZONTAL_DATA_URI,
+        logoAlt: 'KR Kinetics', guide: './guides/kr-kinetics-equivalents-client-fr.pdf'
+    }),
+    elevate: Object.freeze({
+        key: 'elevate', label: 'Elevate Fitness', slug: 'Elevate_Fitness',
+        logo: window.ELEVATE_PDF_LOGO_DATA_URI,
+        logoAlt: 'Elevate Fitness', guide: './guides/elevate-fitness-equivalents-client-fr.pdf'
+    })
+});
+
+function getSelectedPdfBrand() {
+    return pdfCreator === 'elevate' ? PDF_BRANDS.elevate : PDF_BRANDS.kr;
+}
+
+function updateGuideBrandLink() {
+    const brand = getSelectedPdfBrand();
+    const link = document.getElementById('btn-guide-pdf');
+    if (!link) return;
+    link.href = brand.guide;
+    link.textContent = '📄 Tableau des équivalents (PDF — ' + brand.label + ')';
+}
+
+choisirPdfCreator = function (creator) {
+    pdfCreator = creator === 'elevate' ? 'elevate' : 'kr';
+    document.getElementById('creator-btn-kr').classList.toggle('active', pdfCreator === 'kr');
+    document.getElementById('creator-btn-elevate').classList.toggle('active', pdfCreator === 'elevate');
+    updateGuideBrandLink();
+    if (document.getElementById('output-plan').value.trim()) genererPlanTextuel();
+};
+
+Object.assign(PDF_LABELS.fr, {
+    subtitle: 'Évaluation des habitudes & planification alimentaire',
+    macroRatio: 'Répartition des macronutriments',
+    macroChartTitle: 'Répartition des macronutriments',
+    targetCalories: 'Cible alimentaire (macros arrondies)',
+    banqueNote: 'Portions sélectionnées (moyennes)',
+    hydration: 'Cible initiale de liquides',
+    varianceOrigin: 'Tolérance coach : ±2 % pour l\\'\\u00e9nergie et ±6 % par macro. Les petits écarts proviennent des moyennes et des arrondis.',
+    brandBy: 'Préparé par',
+    withinTolerance: 'dans la tolérance',
+    scopeNotice: 'Structure alimentaire destinée à une personne généralement en santé; elle ne remplace pas un avis médical ou un traitement nutritionnel clinique.'
+});
+Object.assign(PDF_LABELS.en, {
+    subtitle: 'Eating habits assessment & meal planning',
+    macroRatio: 'Macronutrient distribution',
+    macroChartTitle: 'Macronutrient distribution',
+    targetCalories: 'Meal target (rounded macros)',
+    banqueNote: 'Selected portions (averages)',
+    hydration: 'Initial fluid target',
+    varianceOrigin: 'Coach tolerance: ±2% energy and ±6% per macro. Small variances come from averages and rounding.',
+    brandBy: 'Prepared by',
+    withinTolerance: 'within tolerance',
+    scopeNotice: 'Meal structure intended for a generally healthy person; it does not replace medical advice or clinical nutrition treatment.'
+});
+
+function macroPercentagesFromTargets(target) {
+    const total = kcalFromMacros(target.pro || 0, target.glu || 0, target.lip || 0);
+    if (!total) return { pro: 0, glu: 0, lip: 0 };
+    const pro = Math.round((target.pro * 4 / total) * 100);
+    const glu = Math.round((target.glu * 4 / total) * 100);
+    return { pro, glu, lip: Math.max(0, 100 - pro - glu) };
+}
+
+function getClientMacroDistributionLabel(snapshot) {
+    const p = macroPercentagesFromTargets(snapshot.targets || {});
+    if (pdfLang === 'en') return p.pro + '% protein · ' + p.glu + '% carbs · ' + p.lip + '% fat';
+    return p.pro + ' % protéines · ' + p.glu + ' % glucides · ' + p.lip + ' % lipides';
+}
+
+// Preserve raw exchange precision for calories; round grams only for display.
+computeBanqueTotalsFromData = function (banque) {
+    let proRaw = 0, gluRaw = 0, lipRaw = 0;
+    CATS.forEach(function (cat) {
+        const value = parseFloat(banque[cat]) || 0;
+        proRaw += value * MOYENNES[cat].p;
+        gluRaw += value * MOYENNES[cat].g;
+        lipRaw += value * MOYENNES[cat].l;
+    });
+    return {
+        pro: Math.round(proRaw),
+        glu: Math.round(gluRaw),
+        lip: Math.round(lipRaw),
+        kcal: kcalFromMacros(proRaw, gluRaw, lipRaw)
+    };
+};
+
+function withinCoachTolerance(target, actual) {
+    const energyTolerance = Math.max(50, Math.round((target.kcal || 0) * 0.02));
+    const macroTolerance = function (value) { return Math.max(5, Math.round((value || 0) * 0.06)); };
+    return Math.abs((actual.kcal || 0) - (target.kcal || 0)) <= energyTolerance &&
+        Math.abs((actual.pro || 0) - (target.pro || 0)) <= macroTolerance(target.pro) &&
+        Math.abs((actual.glu || 0) - (target.glu || 0)) <= macroTolerance(target.glu) &&
+        Math.abs((actual.lip || 0) - (target.lip || 0)) <= macroTolerance(target.lip);
+}
+
+evaluerJourData = function (jourKey) {
+    const jourData = joursData[jourKey] || createEmptyJourData();
+    const jourTargets = computeTargetsForJour(jourKey);
+    const errors = [], warnings = [];
+    if (jourTargets.kcal === 0) errors.push('Profil incomplet (cibles).');
+    let banqueTotal = 0;
+    CATS.forEach(function (cat) { banqueTotal += parseFloat(jourData.banque[cat]) || 0; });
+    if (banqueTotal === 0) errors.push('Banque vide.');
+    const banqueTotals = computeBanqueTotalsFromData(jourData.banque);
+    if (jourTargets.kcal > 0 && banqueTotal > 0 && !withinCoachTolerance(jourTargets, banqueTotals)) {
+        warnings.push('Écart banque/cibles au-delà de la tolérance coach.');
+    }
+    const restants = [];
+    CATS.forEach(function (cat) {
+        const cible = parseFloat(jourData.banque[cat]) || 0;
+        let sum = 0;
+        for (let meal = 0; meal < MEAL_COUNT; meal++) sum += getRepValueFromData(jourData.repartition, meal, cat);
+        const restant = Math.round((cible - sum) * 10) / 10;
+        if (cible > 0 && restant !== 0) restants.push(NOMS_COURTS[cat]);
+    });
+    if (restants.length) errors.push('Répartition incomplète (' + restants.join(', ') + ').');
+    let hasMealFood = false;
+    for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {
+        if ((parseFloat(jourData.repartition[i]) || 0) > 0) hasMealFood = true;
+    }
+    if (banqueTotal > 0 && !hasMealFood) errors.push('Repas non distribués.');
+    return { jourKey, errors, warnings, canExport: errors.length === 0 && hasMealFood && banqueTotal > 0 };
+};
+
+reconcilePlanTotalsFromSnapshot = function (snapshot) {
+    const target = snapshot.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };
+    const banque = snapshot.banqueTotals || { kcal: 0, pro: 0, glu: 0, lip: 0 };
+    const planned = {
+        pro: snapshot.totalPro || 0, glu: snapshot.totalGlu || 0,
+        lip: snapshot.totalLip || 0, kcal: snapshot.totalKcal || 0
+    };
+    const variance = {
+        kcal: planned.kcal - target.kcal,
+        pro: planned.pro - target.pro,
+        glu: planned.glu - target.glu,
+        lip: planned.lip - target.lip
+    };
+    return { target, banque, planned, variance, withinThreshold: withinCoachTolerance(target, planned) };
+};
+
+const professionalPdfStylesBase = getPDFStylesCSS;
+getPDFStylesCSS = function () {
+    return professionalPdfStylesBase()
+        + '.pdf-totals{bottom:54px;}'
+        + '.pdf-scope-note{position:absolute;left:28px;right:28px;bottom:29px;font-size:7.5px;line-height:1.25;color:#64748b;text-align:center;padding:0 18px;overflow-wrap:anywhere;}'
+        + '.pdf-footer{bottom:10px;padding-top:4px;}'
+        + '.pdf-a4-page.brand-elevate .pdf-brand-header{background:#050505;color:#fff;}'
+        + '.pdf-a4-page.brand-elevate .pdf-brand-rule{background:#D4A94F;}'
+        + '.pdf-a4-page.brand-elevate .pdf-brand-header-logo{max-width:170px;height:56px;background:#050505;border-radius:4px;overflow:hidden;}'
+        + '.pdf-a4-page.brand-elevate .pdf-brand-header-logo img{width:150px;height:54px;max-width:150px;max-height:54px;object-fit:cover;object-position:center;filter:none;}'
+        + '.pdf-a4-page.brand-elevate .pdf-brand-subtitle{color:#E8D39B;}'
+        + '.pdf-a4-page.brand-elevate .pdf-section{border-left-color:#D4A94F;color:#171717;}'
+        + '.pdf-a4-page.brand-elevate .meal-box{border-left-color:#D4A94F;}'
+        + '.pdf-a4-page.brand-elevate .pdf-recon-title,.pdf-a4-page.brand-elevate .pdf-totals{background:#111;color:#fff;}'
+        + '.pdf-a4-page.brand-elevate .val-blue{color:#9A6A13;}'
+        + '.pdf-a4-page.brand-elevate .pdf-pie-legend .dot-pro{background:#D4A94F;}'
+        + '.pdf-a4-page.brand-elevate .pdf-footer{color:#5f4310;}';
+};
+
+buildPdfHeaderLogoHtml = function (creator) {
+    const brand = creator === 'elevate' ? PDF_BRANDS.elevate : PDF_BRANDS.kr;
+    return '<img src="' + brand.logo + '" alt="' + brand.logoAlt + '">';
+};
+
+function cleanProfessionalPdfText(value) {
+    return String(value == null ? '' : value)
+        .replace(/[\\u{1F4AA}\\u{1F6CC}\\u{1F305}\\u{2615}\\u{1F37D}\\u{1F34E}\\u{1F969}\\u{1F319}\\u{FE0F}]/gu, '')
+        .replace(/\\s{2,}/g, ' ')
+        .replace(/>\\s+</g, '><')
+        .trim();
+}
+
+buildPDFInfoGrid = function (snapshot, nom, dateStr, ratioText, goalLabel) {
+    const l = PDF_LABELS[pdfLang];
+    const r = reconcilePlanTotalsFromSnapshot(snapshot);
+    const timingRow = snapshot.timing.active
+        ? '<tr><td class="info-label">' + l.training + '</td><td><strong>' + snapshot.timing.heureLabel + '</strong> — ' + snapshot.timing.summary + '</td></tr>'
+        : '';
+    const variancePercent = r.target.kcal > 0 ? Math.round((r.variance.kcal / r.target.kcal) * 1000) / 10 : 0;
+    const varianceTxt = formatSignedDelta(r.variance.kcal, ' kcal') + ' (' + formatSignedDelta(variancePercent, ' %') + ')'
+        + ' · ' + formatSignedDelta(r.variance.pro, 'g ') + l.pro
+        + ' · ' + formatSignedDelta(r.variance.glu, 'g ') + l.glu
+        + ' · ' + formatSignedDelta(r.variance.lip, 'g ') + l.lip
+        + (r.withinThreshold ? ' — ' + l.withinTolerance : '');
+    const varianceClass = r.withinThreshold ? 'var-ok' : 'var-warn';
+    return '<div class="info-grid">'
+        + '<table class="info-table"><tbody>'
+        + '<tr><td class="info-label">' + l.athlete + '</td><td>' + nom + '</td></tr>'
+        + '<tr><td class="info-label">' + l.date + '</td><td>' + dateStr + '</td></tr>'
+        + '<tr><td class="info-label">' + l.energyGoal + '</td><td>' + goalLabel + '</td></tr>'
+        + '<tr><td class="info-label">' + l.dayType + '</td><td>' + snapshot.jourLabel + '</td></tr>'
+        + timingRow
+        + '<tr><td class="info-label">' + l.macroRatio + '</td><td>' + ratioText + '</td></tr>'
+        + '</tbody></table>'
+        + '<div class="pdf-recon"><div class="pdf-recon-title">' + l.reconciliationTitle + '</div><table><tbody>'
+        + '<tr><td class="info-label">' + l.targetCalories + '</td><td class="val-blue">' + r.target.kcal + ' kcal</td></tr>'
+        + '<tr><td class="info-label">' + l.targetMacros + '</td><td>' + formatSnapshotMacros(r.target.pro, r.target.glu, r.target.lip) + '</td></tr>'
+        + '<tr><td class="info-label">' + l.plannedCalories + '</td><td><strong>' + r.planned.kcal + ' kcal</strong></td></tr>'
+        + '<tr><td class="info-label">' + l.plannedMacros + '</td><td>' + formatSnapshotMacros(r.planned.pro, r.planned.glu, r.planned.lip) + '</td></tr>'
+        + '<tr><td class="info-label">' + l.varianceLabel + '</td><td class="' + varianceClass + '">' + varianceTxt + '</td></tr>'
+        + '<tr><td class="info-label">' + l.banqueNote + '</td><td>' + r.banque.kcal + ' kcal · ' + formatSnapshotMacros(r.banque.pro, r.banque.glu, r.banque.lip) + '</td></tr>'
+        + '<tr><td class="info-label">' + l.hydration + '</td><td><span class="val-cyan">' + formatEau(snapshot.eau.total) + ' ' + l.perDay + '</span> — ' + snapshot.eauDetail + '</td></tr>'
+        + '</tbody></table><div class="pdf-recon-note">' + l.varianceOrigin + '</div></div></div>';
+};
+
+buildClientPDFPageHTML = function (snapshot, nom, dateStr, ratioText, goalLabel, isFirstPage) {
+    snapshot = Object.assign({}, snapshot, {
+        jourLabel: cleanProfessionalPdfText(snapshot.jourLabel),
+        portionsLeft: cleanProfessionalPdfText(snapshot.portionsLeft),
+        portionsRight: cleanProfessionalPdfText(snapshot.portionsRight)
+    });
+    const brand = getSelectedPdfBrand();
+    const l = PDF_LABELS[pdfLang];
+    const actualRatio = getClientMacroDistributionLabel(snapshot);
+    const dayLine = isFirstPage ? '' : '<div class="pdf-brand-day">' + snapshot.jourLabel + '</div>';
+    const header = '<div class="pdf-brand-header"><div class="pdf-brand-header-logo">'
+        + buildPdfHeaderLogoHtml(brand.key) + '</div><div class="pdf-brand-copy"><div class="pdf-brand-title">' + l.mainTitle + '</div>'
+        + '<div class="pdf-brand-subtitle">' + l.subtitle + ' — ' + l.brandBy + ' ' + brand.label + '</div>' + dayLine + '</div></div>'
+        + '<div class="pdf-brand-rule"></div>';
+    const notes = getCoachNotes();
+    return '<div class="pdf-a4-page brand-' + brand.key + '">' + header
+        + buildPDFInfoGrid(snapshot, nom, dateStr, actualRatio, goalLabel)
+        + '<div class="pdf-section">' + l.portionsSection + '</div>'
+        + '<div class="pdf-page-body"><div class="meals-grid"><div class="meals-col">' + snapshot.portionsLeft
+        + '</div><div class="meals-col">' + snapshot.portionsRight + '</div></div>'
+        + buildCoachNotesHtml(notes) + buildMacroChartHtml(snapshot) + '</div>'
+        + '<div class="pdf-totals">' + formatSnapshotTotals(snapshot) + '</div>'
+        + '<div class="pdf-scope-note">' + l.scopeNotice + '</div>'
+        + '<div class="pdf-footer">' + cleanProfessionalPdfText(l.footer) + '</div></div>';
+};
+
+genererPlanTextuel = function () {
+    captureJourActif();
+    const l = PDF_LABELS[pdfLang];
+    const brand = getSelectedPdfBrand();
+    const nom = document.getElementById('nom_athlete').value.trim() || l.planUnspecified;
+    const activeGoal = document.querySelector('.goal-card.active .goal-title');
+    const kg = getPoidsKg();
+    const snapEnt = getJourSnapshot('entrainement');
+    const proKg = kg > 0 ? (snapEnt.targets.pro / kg).toFixed(1) : '0';
+    const goalLabel = translateGoalLabelForPdf(activeGoal ? activeGoal.textContent : '--');
+    const ratioLabel = getClientMacroDistributionLabel(snapEnt);
+    let plan = '==============================================\\n';
+    plan += l.mainTitle + '\\n';
+    plan += '==============================================\\n\\n';
+    plan += l.athlete.padEnd(18) + ': ' + nom + '\\n';
+    plan += l.date.padEnd(18) + ': ' + getPdfDateString(pdfLang) + '\\n';
+    plan += l.planObjective.padEnd(18) + ': ' + goalLabel + '\\n';
+    plan += l.brandBy.padEnd(18) + ': ' + brand.label + '\\n';
+    plan += l.macroRatio.padEnd(18) + ': ' + ratioLabel + '\\n';
+    plan += l.planProteinKg.padEnd(18) + ': ' + proKg + ' g/kg ' + l.planTrainingDay + '\\n';
+    plan += '----------------------------------------------\\n\\n';
+    plan += genererPlanBlocJour(snapEnt);
+    if (jourReposActif && isJourClientPlanConfigured(joursData.repos)) plan += genererPlanBlocJour(getJourSnapshot('repos'));
+    else if (jourReposActif) plan += l.restOmittedNote + '\\n\\n';
+    plan += l.footer + '\\n';
+    document.getElementById('output-plan').value = plan;
+};
+
+exporterPDF = function () {
+    if (!document.getElementById('output-plan').value.trim()) genererPlanTextuel();
+    const l = PDF_LABELS[pdfLang];
+    const brand = getSelectedPdfBrand();
+    const nom = document.getElementById('nom_athlete').value.trim() || l.defaultAthlete;
+    const dateStr = getPdfDateString(pdfLang);
+    const filenameDate = new Date().toISOString().slice(0, 10);
+    const snapEnt = getJourSnapshot('entrainement');
+    const snapRep = getClientPdfRestSnapshot();
+    const expectedPages = snapRep ? 2 : 1;
+    const btn = document.getElementById('btn-export-pdf');
+    const btnLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '⏳ Génération PDF...';
+    const safeName = nom.replace(/[^a-zA-Z0-9À-ſ_-]+/g, '_');
+    const filename = l.filenamePrefix + '_' + brand.slug + '_' + safeName + '_' + filenameDate + (pdfLang === 'en' ? '_EN' : '') + '.pdf';
+    const html = buildFullPDFHTML(snapEnt, snapRep, nom, dateStr, getMacroRatioLabel(), getActiveGoalLabel());
+    const iframe = creerIframePDF(html);
+    attendreRenduPDF(iframe).then(function () {
+        const doc = iframe.contentWindow.document;
+        const pages = doc.querySelectorAll('.pdf-a4-page');
+        if (pages.length !== expectedPages || doc.body.innerText.trim().length < 30) throw new Error('Structure PDF invalide');
+        assertPdfImagesReady(doc);
+        const text = doc.body.innerText;
+        const bodyHtml = doc.body.innerHTML;
+        if (brand.key === 'elevate' && (/KR Kinetics/i.test(text) || /logo-kr/i.test(bodyHtml))) {
+            throw new Error('Contamination de marque KR détectée dans le PDF Elevate');
+        }
+        if (brand.key === 'kr' && (/Elevate Fitness/i.test(text) || /logo-elevate/i.test(bodyHtml))) {
+            throw new Error('Contamination de marque Elevate détectée dans le PDF KR');
+        }
+        return genererPDFNatif(pages, filename);
+    }).then(function () {
+        nettoyerIframePDF();
+        btn.disabled = false;
+        btn.textContent = btnLabel;
+    }).catch(function (error) {
+        console.error(error);
+        nettoyerIframePDF();
+        btn.disabled = false;
+        btn.textContent = btnLabel;
+        alert('Erreur PDF : ' + (error.message || 'réessayez.'));
+    });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    updateGuideBrandLink();
+});
+</script>`;
+}
+
+function applyProfessionalUiPatches(html) {
+  html = mustReplace(
+    html,
+    /<h1>ÉVALUATION & PLANIFICATION NUTRITIONNELLE<\/h1>/,
+    '<h1>ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE</h1>',
+    'main h1 title',
+  );
+
+  html = mustReplace(
+    html,
+    /<select id="macroRatio" onchange="updateCibles\(\)">[\s\S]*?<\/select>\s*<p class="macro-hint">[\s\S]*?<\/p>/,
+    MACRO_OPTIONS_HTML,
+    'macro preset options',
+  );
+
+  html = mustReplace(
+    html,
+    /const MACRO_PRESET_LABELS_EN = \{[\s\S]*?\};/,
+    MACRO_PRESET_LABELS_EN_JS,
+    'MACRO_PRESET_LABELS_EN',
+  );
+
+  html = mustIncludesReplace(
+    html,
+    '<div class="dash-title">Cible Calorique</div>',
+    '<div class="dash-title">Cible alimentaire après arrondi des macros</div>',
+    'calorie target label',
+  );
+
+  html = mustIncludesReplace(
+    html,
+    '<label>💧 Hydratation — calcul automatique</label>',
+    '<label>💧 Cible initiale de liquides — repère automatique</label>',
+    'hydration label',
+  );
+
+  html = mustReplace(
+    html,
+    /Règle : 1 L \/ 1000 kcal\s*&nbsp;·&nbsp;\s*Basé sur <strong id="eau-kcal-base">0<\/strong> kcal/,
+    'Repère initial : 1 L / 1000 kcal &nbsp;·&nbsp; Basé sur <strong id="eau-kcal-base">0</strong> kcal · À individualiser selon la sudation, la chaleur et l\'entraînement',
+    'hydration rule text',
+  );
+
+  html = mustReplace(
+    html,
+    /(<div class="pdf-creator-picker">\s*<label>Créateur du plan PDF<\/label>[\s\S]*?<p class="pdf-creator-hint">)[^<]*(<\/p>)/,
+    '$1Le PDF et le guide client utiliseront exclusivement la marque choisie.$2',
+    'pdf creator brand hint',
+  );
+
+  html = mustIncludesReplace(
+    html,
+    "title.textContent = 'Dossier exportable avec réserves';",
+    "title.textContent = 'Plan complet — ajustements à confirmer';",
+    'plan status warn title',
+  );
+
+  html = mustIncludesReplace(
+    html,
+    "msg.textContent = 'Vérifiez :';",
+    "msg.textContent = 'Les journées sont complètes; validez simplement les écarts suivants :';",
+    'plan status warn message',
+  );
+
+  html = mustReplace(
+    html,
+    /(<textarea id="coach-notes"[^>]*><\/textarea>)\s*<\/div>\s*<div class="pdf-export-options">/,
+    `$1
+        <p class="coach-notes-lang-hint" id="coach-notes-lang-hint">Les notes sont reproduites telles quelles dans le PDF; rédigez-les dans la langue sélectionnée.</p>
+    </div>
+    <div class="pdf-export-options">`,
+    'coach notes language hint',
+  );
+
+  if (!html.includes('.coach-notes-lang-hint')) {
+    html = mustReplace(
+      html,
+      /\.coach-notes-panel textarea \{[^}]+\}/,
+      (match) => `${match}
+        .coach-notes-lang-hint { margin: 8px 0 0; font-size: 0.78rem; color: #64748b; line-height: 1.4; }`,
+      'coach notes hint css',
+    );
+  }
+
+  return html;
 }
 
 export function applyDualBrandPatches(html) {
@@ -84,7 +513,7 @@ export function applyDualBrandPatches(html) {
     html,
     /<title>[^<]*<\/title>/,
     '<title>Calculateur Coach | KR Kinetics × Elevate Fitness</title>',
-    'title'
+    'title',
   );
 
   if (!html.includes('elevate-logo-data.js')) {
@@ -92,7 +521,7 @@ export function applyDualBrandPatches(html) {
       html,
       /(<script src="\.\/vendor\/html2canvas\.min\.js"><\/script>)/,
       '<script src="./assets/elevate-logo-data.js"></script>\n    $1',
-      'elevate logo data script'
+      'elevate logo data script',
     );
   }
 
@@ -100,7 +529,7 @@ export function applyDualBrandPatches(html) {
     html,
     /\.header-logo\.kr-logo img \{[\s\S]*?\.header-logo:not\(\.kr-logo\) img \{[^}]+\}/,
     DUAL_HEADER_CSS.trimEnd(),
-    'header dual-brand css'
+    'header dual-brand css',
   );
 
   html = mustReplace(
@@ -117,14 +546,14 @@ export function applyDualBrandPatches(html) {
             .header-title-container h1 { font-size: 1.2rem; }
             .collab-badge { font-size:0.76rem; letter-spacing:1px; white-space:normal; }
         }`,
-    'mobile dual-brand header'
+    'mobile dual-brand header',
   );
 
   html = mustReplace(
     html,
     /<div class="collab-badge">[^<]*<\/div>/,
     '<div class="collab-badge">Outil coach · KR Kinetics × Elevate Fitness</div>',
-    'collab badge'
+    'collab badge',
   );
 
   html = mustReplace(
@@ -134,8 +563,10 @@ export function applyDualBrandPatches(html) {
         <img src="./assets/logo-elevate-fitness.jpg" alt="Elevate Fitness">
     </div>
 </header>`,
-    'elevate header logo'
+    'elevate header logo',
   );
+
+  html = applyProfessionalUiPatches(html);
 
   if (html.includes('dual-brand-professional-corrections')) {
     throw new Error('Dual-brand runtime already present');
@@ -146,6 +577,15 @@ export function applyDualBrandPatches(html) {
 
   if (!html.includes('elevate-logo') || !html.includes('getSelectedPdfBrand') || !html.includes('ELEVATE_PDF_LOGO_DATA_URI')) {
     throw new Error('Dual-brand patch incomplete');
+  }
+  if (!html.includes('ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE')) {
+    throw new Error('Professional title patch incomplete');
+  }
+  if (!html.includes('restant 57 % G / 43 % L') || !html.includes('Cible alimentaire après arrondi des macros')) {
+    throw new Error('Professional label patches incomplete');
+  }
+  if (!html.includes('Les notes sont reproduites telles quelles dans le PDF')) {
+    throw new Error('Coach notes language hint missing');
   }
   return html;
 }

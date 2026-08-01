@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-08-01T16:00:38.383Z",
+  "computedAt": "2026-08-01T16:25:32.181Z",
   "ok": true,
   "changed": [],
   "after": {
@@ -17,7 +17,7 @@
     "reports/exchange-profile-decision/exchange-rollup-proposal.json": "1e4b0c7da55ff52d504e75ab88100880b70f18497ff774b46d0aa6cba1a81c0f"
   },
   "goldenMasterSha256": "68807da14bde7c20a0f3ea44272b3975eee59a5c65e0487f7bd3a4b1c1fff7b8",
-  "builtIndexSha256": "b262f90413d35149a8a9fe77dc8852c2bb7d2d5d99d128b9e29700bc50b4216e",
+  "builtIndexSha256": "271bed3cfa6fc9daced8010952f59d64bc13b0622eded0546032c3fe2a3433f0",
   "coachDataSha256": "3647d051f1121c60e9bdf7fd67800071e22f1464a02334aed63d332333f4b06d",
   "guidePdfSha256": "f418b4ff7d88541bff7e4b39f661b400638faa03677671940995c1bc5114f8fd"
 }
