@@ -579,3 +579,46 @@ test('mobile 390px keeps readable type and scroll hints on tables', async () => 
   assert.ok(mobile.labelSize >= 14, `label font ${mobile.labelSize}px`);
   await page.close();
 });
+
+test('app and PDF macro percentages match for 166g/403g/91g and total 100%', async () => {
+  const page = await browser.newPage();
+  await stubDialogs(page);
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle0', timeout: 120000 });
+  await page.waitForFunction(() => typeof window.macroPercentagesFromGrams === 'function');
+  const case166 = await page.evaluate(() => {
+    const pro = 166, glu = 403, lip = 91;
+    const pct = window.macroPercentagesFromGrams(pro, glu, lip);
+    const pdf = window.computeMacroDistribution({ totalPro: pro, totalGlu: glu, totalLip: lip });
+    return {
+      pct,
+      pdf: { pro: pdf.proPct, glu: pdf.gluPct, lip: pdf.lipPct },
+      sum: pct.pro + pct.glu + pct.lip,
+    };
+  });
+  assert.deepEqual(case166.pct, { pro: 21, glu: 52, lip: 27 });
+  assert.equal(case166.sum, 100);
+  assert.deepEqual(case166.pdf, { pro: 21, glu: 52, lip: 27 });
+
+  await seedAthlete(page, 'Macro Pct Consistency');
+  const live = await page.evaluate(() => {
+    window.calculerRepartition();
+    const snap = window.getJourSnapshot('entrainement');
+    const pdf = window.computeMacroDistribution(snap);
+    const app = {
+      pro: document.getElementById('recap-pct-pro').textContent,
+      glu: document.getElementById('recap-pct-glu').textContent,
+      lip: document.getElementById('recap-pct-lip').textContent,
+    };
+    return {
+      app,
+      pdf: { pro: `${pdf.proPct}%`, glu: `${pdf.gluPct}%`, lip: `${pdf.lipPct}%` },
+      snapPct: { pro: snap.pctPro, glu: snap.pctGlu, lip: snap.pctLip },
+      sum: pdf.proPct + pdf.gluPct + pdf.lipPct,
+      grams: { pro: snap.totalPro, glu: snap.totalGlu, lip: snap.totalLip },
+    };
+  });
+  assert.deepEqual(live.app, live.pdf, `app ${JSON.stringify(live.app)} vs pdf ${JSON.stringify(live.pdf)} for ${JSON.stringify(live.grams)}`);
+  assert.deepEqual(live.app, live.snapPct);
+  assert.equal(live.sum, 100);
+  await page.close();
+});

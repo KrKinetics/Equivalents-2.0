@@ -166,13 +166,29 @@ Object.assign(PDF_LABELS.en, {
     scopeNotice: 'Meal structure intended for a generally healthy person; it does not replace medical advice or clinical nutrition treatment.'
 });
 
-function macroPercentagesFromTargets(target) {
-    const total = kcalFromMacros(target.pro || 0, target.glu || 0, target.lip || 0);
+macroPercentagesFromGrams = function (pro, glu, lip) {
+    const total = kcalFromMacros(pro || 0, glu || 0, lip || 0);
     if (!total) return { pro: 0, glu: 0, lip: 0 };
-    const pro = Math.round((target.pro * 4 / total) * 100);
-    const glu = Math.round((target.glu * 4 / total) * 100);
-    return { pro, glu, lip: Math.max(0, 100 - pro - glu) };
+    const proPct = Math.round(((pro || 0) * 4 / total) * 100);
+    const gluPct = Math.round(((glu || 0) * 4 / total) * 100);
+    return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+};
+
+function macroPercentagesFromTargets(target) {
+    return macroPercentagesFromGrams(target.pro, target.glu, target.lip);
 }
+
+computeMacroDistribution = function (snapshot) {
+    const p = macroPercentagesFromGrams(snapshot.totalPro, snapshot.totalGlu, snapshot.totalLip);
+    const proK = (snapshot.totalPro || 0) * 4;
+    const gluK = (snapshot.totalGlu || 0) * 4;
+    const lipK = (snapshot.totalLip || 0) * 9;
+    return {
+        proK: proK, gluK: gluK, lipK: lipK,
+        proPct: p.pro, gluPct: p.glu, lipPct: p.lip,
+        total: proK + gluK + lipK
+    };
+};
 
 function getClientMacroDistributionLabel(snapshot) {
     const p = macroPercentagesFromTargets(snapshot.targets || {});
@@ -490,6 +506,50 @@ function applyProfessionalUiPatches(html) {
     'Jour Repos (Carb Cycling)',
     'Jour Repos (cyclage des glucides)',
     'French rest day carb-cycling wording',
+  );
+
+  // App/PDF consistency: residual fat % so displayed shares always total 100%.
+  html = mustReplace(
+    html,
+    /const pctPro = totalKcal > 0 \? Math\.round\(\(totalPro \* 4 \/ totalKcal\) \* 100\) \+ '%' : '—';\s*const pctGlu = totalKcal > 0 \? Math\.round\(\(totalGlu \* 4 \/ totalKcal\) \* 100\) \+ '%' : '—';\s*const pctLip = totalKcal > 0 \? Math\.round\(\(totalLip \* 9 \/ totalKcal\) \* 100\) \+ '%' : '—';/,
+    `let pctPro = '—', pctGlu = '—', pctLip = '—';
+    if (totalKcal > 0) {
+        const pct = macroPercentagesFromGrams(totalPro, totalGlu, totalLip);
+        pctPro = pct.pro + '%'; pctGlu = pct.glu + '%'; pctLip = pct.lip + '%';
+    }`,
+    'snapshot macro percent residual rounding',
+  );
+
+  html = mustReplace(
+    html,
+    /if \(totalKcal > 0\) \{\s*document\.getElementById\('recap-pct-pro'\)\.textContent = Math\.round\(\(totalPro \* 4 \/ totalKcal\) \* 100\) \+ '%';\s*document\.getElementById\('recap-pct-glu'\)\.textContent = Math\.round\(\(totalGlu \* 4 \/ totalKcal\) \* 100\) \+ '%';\s*document\.getElementById\('recap-pct-lip'\)\.textContent = Math\.round\(\(totalLip \* 9 \/ totalKcal\) \* 100\) \+ '%';\s*\} else \{/,
+    `if (totalKcal > 0) {
+        const pct = macroPercentagesFromGrams(totalPro, totalGlu, totalLip);
+        document.getElementById('recap-pct-pro').textContent = pct.pro + '%';
+        document.getElementById('recap-pct-glu').textContent = pct.glu + '%';
+        document.getElementById('recap-pct-lip').textContent = pct.lip + '%';
+    } else {`,
+    'recap macro percent residual rounding',
+  );
+
+  html = mustReplace(
+    html,
+    /function computeMacroDistribution\(snapshot\) \{\s*const proK = snapshot\.totalPro \* 4, gluK = snapshot\.totalGlu \* 4, lipK = snapshot\.totalLip \* 9;\s*const total = proK \+ gluK \+ lipK;\s*if \(total <= 0\) return \{ proK: 0, gluK: 0, lipK: 0, proPct: 0, gluPct: 0, lipPct: 0, total: 0 \};\s*const proPct = Math\.round\(\(proK \/ total\) \* 100\);\s*const gluPct = Math\.round\(\(gluK \/ total\) \* 100\);\s*const lipPct = Math\.max\(0, 100 - proPct - gluPct\);\s*return \{ proK, gluK, lipK, proPct, gluPct, lipPct, total \};\s*\}/,
+    `function macroPercentagesFromGrams(pro, glu, lip) {
+    const total = kcalFromMacros(pro || 0, glu || 0, lip || 0);
+    if (!total) return { pro: 0, glu: 0, lip: 0 };
+    const proPct = Math.round(((pro || 0) * 4 / total) * 100);
+    const gluPct = Math.round(((glu || 0) * 4 / total) * 100);
+    return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+}
+function computeMacroDistribution(snapshot) {
+    const p = macroPercentagesFromGrams(snapshot.totalPro, snapshot.totalGlu, snapshot.totalLip);
+    const proK = (snapshot.totalPro || 0) * 4, gluK = (snapshot.totalGlu || 0) * 4, lipK = (snapshot.totalLip || 0) * 9;
+    const total = proK + gluK + lipK;
+    if (total <= 0) return { proK: 0, gluK: 0, lipK: 0, proPct: 0, gluPct: 0, lipPct: 0, total: 0 };
+    return { proK, gluK, lipK, proPct: p.pro, gluPct: p.glu, lipPct: p.lip, total };
+}`,
+    'shared macroPercentagesFromGrams helper',
   );
 
   html = mustReplace(
