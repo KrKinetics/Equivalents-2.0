@@ -31,6 +31,7 @@ import {
   suggestBanque,
   adjustComplementaryCustomMacro,
   kcalFromMacros,
+  macroPercentagesFromGrams,
   profileStorageKey,
   PDF_VARIANCE_THRESHOLDS,
   isJourClientPlanConfigured,
@@ -355,6 +356,16 @@ test('reconcilePlanTotals exposes target/planned/variance with explicit threshol
     recon.plannedVsBanque.kcal,
     planned.kcal - banqueTotals.kcal,
   );
+});
+
+test('macro percentages for 166/403/91 use PDF residual rounding to 100%', () => {
+  const pct = macroPercentagesFromGrams(166, 403, 91);
+  assert.deepEqual(pct, { pro: 21, glu: 52, lip: 27 });
+  assert.equal(pct.pro + pct.glu + pct.lip, 100);
+  // Independent rounding would yield 26% fat and a 99% total — must not regress.
+  const independentLip = Math.round((91 * 9 / kcalFromMacros(166, 403, 91)) * 100);
+  assert.equal(independentLip, 26);
+  assert.notEqual(pct.lip, independentLip);
 });
 
 test('evaluatePlanCompleteness mirrors evaluerJourData rules', () => {
