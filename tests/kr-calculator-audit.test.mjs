@@ -215,12 +215,17 @@ try {
 
   const training = window.getJourSnapshot('entrainement');
   const rest = window.getClientPdfRestSnapshot();
+  if (typeof window.choisirPdfCreator === 'function') window.choisirPdfCreator('kr');
   const pdfHtml = window.buildFullPDFHTML(training, rest, 'Xavier Tremblay', '2026-07-31', 'Maintien', 'Maintien');
   assert.match(pdfHtml, /pdf-brand-header/);
   assert.match(pdfHtml, /#071B41/);
   assert.match(pdfHtml, /#ED1136/);
   assert.match(pdfHtml, /data:image\/png;base64,/);
-  assert.equal((pdfHtml.match(/<div class="pdf-a4-page">/g) || []).length, rest ? 2 : 1);
+  assert.match(pdfHtml, /brand-kr/);
+  assert.equal(
+    (pdfHtml.match(/<div class="pdf-a4-page(?:\s+brand-\w+)?">/g) || []).length,
+    rest ? 2 : 1,
+  );
 
   const html = fs.readFileSync(path.join(COACH_DIR, 'index.html'), 'utf8');
   assert.match(html, /linear-gradient\(135deg,#071B41/);
