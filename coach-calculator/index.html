@@ -1624,10 +1624,10 @@ function getGrandeurM() {
 function initProfils() {
     const select = document.getElementById('liste_profils');
     select.innerHTML = '<option value="">— Charger un dossier existant —</option>';
-    Object.keys(localStorage).filter(k => k.startsWith('athlete_')).sort().forEach(key => {
+    window.CoachClientProfileStore.listProfileKeys().forEach(key => {
         const opt = document.createElement('option');
         opt.value = key;
-        opt.textContent = key.replace('athlete_', '');
+        opt.textContent = key.replace(window.CoachClientProfileStore.PREFIX, '');
         select.appendChild(opt);
     });
 }
@@ -1719,9 +1719,9 @@ function appliquerProfilData(data, nomAffiche) {
 function sauvegarderProfil() {
     const nom = document.getElementById('nom_athlete').value.trim();
     if (!nom) { alert("Veuillez entrer un nom d'athlète pour sauvegarder."); return; }
-    localStorage.setItem('athlete_' + nom, JSON.stringify(getProfilData(nom)));
+    window.CoachClientProfileStore.saveProfile(nom, getProfilData(nom));
     initProfils();
-    document.getElementById('liste_profils').value = 'athlete_' + nom;
+    document.getElementById('liste_profils').value = window.CoachClientProfileStore.profileStorageKey(nom);
     alert('✅ Dossier de ' + nom + ' sauvegardé !');
 }
 
@@ -1754,12 +1754,12 @@ function importerProfilJSON(event) {
                 if (!nom || !nom.trim()) return;
                 nom = nom.trim();
             }
-            if (localStorage.getItem('athlete_' + nom) && !confirm('Un dossier "' + nom + '" existe déjà. Écraser ?')) return;
+            if (window.CoachClientProfileStore.hasProfile(nom) && !confirm('Un dossier "' + nom + '" existe déjà. Écraser ?')) return;
             data.nom = nom;
             data.savedAt = data.savedAt || new Date().toISOString();
-            localStorage.setItem('athlete_' + nom, JSON.stringify(data));
+            window.CoachClientProfileStore.saveProfile(nom, data);
             initProfils();
-            document.getElementById('liste_profils').value = 'athlete_' + nom;
+            document.getElementById('liste_profils').value = window.CoachClientProfileStore.profileStorageKey(nom);
             appliquerProfilData(data, nom);
             alert('✅ Dossier de ' + nom + ' importé avec succès !');
         } catch (err) {
@@ -1773,16 +1773,16 @@ function importerProfilJSON(event) {
 function chargerProfil() {
     const key = document.getElementById('liste_profils').value;
     if (!key) return;
-    const data = JSON.parse(localStorage.getItem(key));
+    const data = window.CoachClientProfileStore.loadProfileByKey(key);
     if (!data) return;
-    appliquerProfilData(data, key.replace('athlete_', ''));
+    appliquerProfilData(data, key.replace(window.CoachClientProfileStore.PREFIX, ''));
 }
 
 function supprimerProfil() {
     const key = document.getElementById('liste_profils').value;
     if (!key) { alert('Sélectionnez un profil à supprimer.'); return; }
-    if (confirm('Supprimer définitivement le dossier de ' + key.replace('athlete_', '') + ' ?')) {
-        localStorage.removeItem(key);
+    if (confirm('Supprimer définitivement le dossier de ' + key.replace(window.CoachClientProfileStore.PREFIX, '') + ' ?')) {
+        window.CoachClientProfileStore.removeProfileByKey(key);
         document.getElementById('nom_athlete').value = '';
         document.getElementById('liste_profils').value = '';
         initProfils();
@@ -4040,6 +4040,38 @@ exporterPDF = function () {
 document.addEventListener('DOMContentLoaded', function () {
     updateGuideBrandLink();
 });
+</script>
+<script id="coach-client-profile-store">
+(function () {
+  var PREFIX = "athlete_";
+  function profileStorageKey(name) { return PREFIX + name; }
+  function listProfileKeys() {
+    return Object.keys(localStorage).filter(function (k) { return k.indexOf(PREFIX) === 0; }).sort();
+  }
+  function loadProfileByKey(key) {
+    var raw = localStorage.getItem(key);
+    if (raw == null) return null;
+    return JSON.parse(raw);
+  }
+  function saveProfile(name, data) {
+    localStorage.setItem(profileStorageKey(name), JSON.stringify(data));
+  }
+  function removeProfileByKey(key) {
+    localStorage.removeItem(key);
+  }
+  function hasProfile(name) {
+    return localStorage.getItem(profileStorageKey(name)) != null;
+  }
+  window.CoachClientProfileStore = {
+    PREFIX: PREFIX,
+    profileStorageKey: profileStorageKey,
+    listProfileKeys: listProfileKeys,
+    loadProfileByKey: loadProfileByKey,
+    saveProfile: saveProfile,
+    removeProfileByKey: removeProfileByKey,
+    hasProfile: hasProfile
+  };
+})();
 </script>
 </body>
 </html>

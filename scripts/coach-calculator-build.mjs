@@ -30,6 +30,7 @@ import {
   REQUIRED_GUIDE_PDF_SHA256,
 } from './coach-calculator-science-ui.mjs';
 import { applyDualBrandPatches } from './coach-calculator-dual-brand.mjs';
+import { applyClientProfileStoragePatches } from './coach-calculator-storage.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'coach-calculator');
@@ -434,6 +435,9 @@ function transformGolden(html) {
 
   // Dual brand — coach header co-branding + exclusive client PDF/guide brands
   html = applyDualBrandPatches(html);
+
+  // Client profile storage facade — athlete_* localStorage behind a testable adapter
+  html = applyClientProfileStoragePatches(html);
 
   return html;
 }
