@@ -1,6 +1,7 @@
 /**
  * Authenticated Coach workspace bootstrap (same-origin with portal).
- * Loads fictional client under RLS and applies brand from organization slug.
+ * Loads fictional client under RLS, restores Supabase dossier SoT when present,
+ * and routes Sauvegarder to Supabase (localStorage left unchanged for offline calculator).
  * Publishable Supabase key only — never service_role.
  */
 import { getPortalSupabase, recoverSession, redirectClean } from './auth-session.js';
@@ -9,6 +10,8 @@ import {
   assertWorkspaceClientAccess,
   parseClientIdParam,
 } from '/src/coach/workspace/workspace-access.mjs';
+import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
+import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
 
 function clientIdFromLocation() {
   const params = new URLSearchParams(window.location.search);
@@ -40,6 +43,23 @@ function ensureBanner() {
   return el;
 }
 
+function ensureStatusSlot(banner) {
+  let status = document.getElementById('workspace-persist-status');
+  if (status) return status;
+  status = document.createElement('div');
+  status.id = 'workspace-persist-status';
+  status.style.cssText = 'width:100%;font:500 13px/1.35 system-ui,sans-serif;color:#94a3b8;';
+  banner.appendChild(status);
+  return status;
+}
+
+function setPersistStatus(message, kind = 'ok') {
+  const banner = ensureBanner();
+  const status = ensureStatusSlot(banner);
+  status.textContent = message || '';
+  status.style.color = kind === 'error' ? '#fecaca' : kind === 'busy' ? '#fde68a' : '#86efac';
+}
+
 function renderBanner(ctx, message, kind = 'ok') {
   const el = ensureBanner();
   const color = kind === 'error' ? '#fecaca' : '#e2e8f0';
@@ -59,6 +79,8 @@ function renderBanner(ctx, message, kind = 'ok') {
     </span>
     <a href="/dashboard.html" style="color:#93c5fd;font-weight:700;">← Portail</a>
   `;
+  ensureStatusSlot(el);
+  if (message) setPersistStatus(message, kind === 'error' ? 'error' : 'ok');
 }
 
 function escapeHtml(value) {
@@ -100,6 +122,8 @@ function waitForCalculatorReady() {
     const started = Date.now();
     const tick = () => {
       if (typeof window.appliquerProfilData === 'function'
+        && typeof window.getProfilData === 'function'
+        && typeof window.sauvegarderProfil === 'function'
         && typeof window.choisirPdfCreator === 'function'
         && window.COACH_DATA?.totalFoods === 287) {
         resolve();
@@ -113,6 +137,85 @@ function waitForCalculatorReady() {
     };
     tick();
   });
+}
+
+/**
+ * Workspace persistence: Supabase SoT for save/load; JSON import/export stay UI-only until Save.
+ */
+function installWorkspacePersistence(supabase, ctx, userId) {
+  const dossierStore = createSupabaseClientDossierStore(supabase);
+  const localStore = window.CoachClientProfileStore;
+
+  // Block ambiguous localStorage writes while workspace SoT is active.
+  if (localStore && typeof localStore.saveProfile === 'function') {
+    localStore.saveProfile = function workspaceBlockLocalSave() {
+      throw new Error(
+        'En mode workspace, utilisez « Sauvegarder » (Supabase). La sauvegarde localStorage est désactivée.',
+      );
+    };
+  }
+
+  window.sauvegarderProfil = async function workspaceSauvegarderProfil() {
+    try {
+      setPersistStatus('Sauvegarde en cours…', 'busy');
+      const nom = (document.getElementById('nom_athlete')?.value || '').trim() || ctx.fullName;
+      if (document.getElementById('nom_athlete')) {
+        document.getElementById('nom_athlete').value = nom;
+      }
+      const raw = window.getProfilData(nom);
+      const payload = attachWorkspaceMeta(raw, {
+        clientId: ctx.clientId,
+        organizationSlug: ctx.organizationSlug,
+        fullName: ctx.fullName,
+      });
+      await dossierStore.saveClientDossier(ctx.clientId, payload, {
+        organizationId: ctx.organizationId,
+        userId,
+      });
+      setPersistStatus(`Dossier sauvegardé (${new Date().toLocaleTimeString()})`, 'ok');
+    } catch (err) {
+      const msg = err?.message || String(err);
+      setPersistStatus(`Erreur de sauvegarde : ${msg}`, 'error');
+      window.alert(`Impossible de sauvegarder le dossier : ${msg}`);
+    }
+  };
+
+  // Import JSON: hydrate UI only; persist requires explicit Sauvegarder (Supabase SoT).
+  if (typeof window.importerProfilJSON === 'function') {
+    const fileInput = document.getElementById('import-profil');
+    if (fileInput) {
+      fileInput.onchange = async (event) => {
+        try {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          setPersistStatus('Import JSON…', 'busy');
+          const text = await file.text();
+          const data = JSON.parse(text);
+          if (!data.sexe || (!data.banque && !data.jours)) {
+            throw new Error('JSON invalide (sexe + jours/banque requis).');
+          }
+          const nom = (document.getElementById('nom_athlete')?.value || '').trim()
+            || data.nom
+            || ctx.fullName;
+          const payload = attachWorkspaceMeta(data, {
+            clientId: ctx.clientId,
+            organizationSlug: ctx.organizationSlug,
+            fullName: nom,
+          });
+          window.appliquerProfilData(payload, nom);
+          setPersistStatus('JSON importé dans l’UI — cliquez Sauvegarder pour persister dans Supabase.', 'ok');
+        } catch (err) {
+          const msg = err?.message || String(err);
+          setPersistStatus(`Import refusé : ${msg}`, 'error');
+          window.alert(msg);
+        } finally {
+          event.target.value = '';
+        }
+      };
+    }
+  }
+
+  return dossierStore;
 }
 
 async function bootWorkspace() {
@@ -147,7 +250,8 @@ async function bootWorkspace() {
 
   await waitForCalculatorReady();
   window.choisirPdfCreator(ctx.brandId);
-  window.appliquerProfilData(ctx.stub, ctx.fullName);
+
+  const dossierStore = installWorkspacePersistence(supabase, ctx, session.user.id);
   window.__COACH_WORKSPACE_CONTEXT__ = Object.freeze({
     userId: session.user.id,
     organizationId: ctx.organizationId,
@@ -157,8 +261,30 @@ async function bootWorkspace() {
     clientId: ctx.clientId,
     brandId: ctx.brandId,
     fullName: ctx.fullName,
+    persistence: 'supabase',
   });
-  renderBanner(ctx, 'Dossier ouvert', 'ok');
+
+  renderBanner(ctx, 'Chargement du dossier…', 'ok');
+  setPersistStatus('Chargement du dossier…', 'busy');
+
+  try {
+    const existing = await dossierStore.loadClientDossier(ctx.clientId);
+    if (existing) {
+      const payload = attachWorkspaceMeta(existing.payload, {
+        clientId: ctx.clientId,
+        organizationSlug: ctx.organizationSlug,
+        fullName: ctx.fullName,
+      });
+      window.appliquerProfilData(payload, ctx.fullName);
+      setPersistStatus('Dossier chargé depuis Supabase (source de vérité).', 'ok');
+    } else {
+      window.appliquerProfilData(ctx.stub, ctx.fullName);
+      setPersistStatus('Nouveau dossier workspace — cliquez Sauvegarder pour créer la fiche Supabase.', 'ok');
+    }
+  } catch (err) {
+    window.appliquerProfilData(ctx.stub, ctx.fullName);
+    setPersistStatus(`Chargement impossible : ${err.message || err}`, 'error');
+  }
 }
 
 bootWorkspace().catch((err) => {
