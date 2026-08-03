@@ -11,7 +11,8 @@ export const DOSSIER_SCHEMA_VERSION = 1;
  * @param {unknown} version
  */
 export function isSupportedDossierSchemaVersion(version) {
-  return version === DOSSIER_SCHEMA_VERSION || version === 1;
+  const n = Number(version);
+  return Number.isInteger(n) && n === DOSSIER_SCHEMA_VERSION;
 }
 
 /**

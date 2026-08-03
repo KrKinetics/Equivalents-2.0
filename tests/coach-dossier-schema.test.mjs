@@ -11,8 +11,9 @@ test('dossier schema version is positive and supported', () => {
   assert.equal(DOSSIER_SCHEMA_VERSION, 1);
   assert.equal(isSupportedDossierSchemaVersion(1), true);
   assert.equal(isSupportedDossierSchemaVersion(DOSSIER_SCHEMA_VERSION), true);
+  assert.equal(isSupportedDossierSchemaVersion('1'), true);
   assert.equal(isSupportedDossierSchemaVersion(99), false);
-  assert.equal(isSupportedDossierSchemaVersion('1'), false);
+  assert.equal(isSupportedDossierSchemaVersion('nope'), false);
 });
 
 test('validateDossierPayload accepts jours shape and legacy banque', () => {

@@ -64,6 +64,12 @@ test('same-origin preview serves portal, workspace calculator, and public config
   assert.match(workspace.text, /workspace-bootstrap\.mjs/);
   assert.match(workspace.text, /Calculateur Coach|ÉVALUATION/);
 
+  const bootstrap = await fetchText('http://127.0.0.1:4197/assets/workspace-bootstrap.mjs');
+  assert.equal(bootstrap.status, 200);
+  assert.match(bootstrap.text, /← Retour au portail/);
+  assert.match(bootstrap.text, /href="\/dashboard\.html"/);
+  assert.match(bootstrap.text, /resolveWorkspaceOpenState/);
+
   const moduleRes = await fetchText('http://127.0.0.1:4197/src/coach/workspace/org-brand.mjs');
   assert.equal(moduleRes.status, 200);
   assert.match(moduleRes.text, /kr-kinetics/);

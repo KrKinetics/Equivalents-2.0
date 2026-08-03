@@ -16,6 +16,7 @@ import {
 import { createSupabaseClientDossierStore } from '../src/coach/services/storage/supabase-client-dossier-store.mjs';
 import { validateDossierPayload } from '../src/coach/services/storage/dossier-schema.mjs';
 import { createLocalStorageClientProfileStore, createMemoryStorage } from '../src/coach/services/storage/client-profile-store.mjs';
+import { resolveWorkspaceOpenState } from '../src/coach/workspace/workspace-dossier-ui.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -171,6 +172,14 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
   const krReloaded = await krStore.loadClientDossier(krClient.id);
   assert.equal(krReloaded.payload.jours.entrainement.banque.pro, '7');
   assert.equal(krReloaded.payload.coachNotes, `note-KR-${stamp}`);
+  // Direct open by client_id must resolve to existing payload (no manual menu step).
+  const openExisting = resolveWorkspaceOpenState(krReloaded, samplePayload('stub'));
+  assert.equal(openExisting.mode, 'existing');
+  assert.equal(openExisting.payload.jours.entrainement.banque.pro, '7');
+  assert.equal(openExisting.status, 'Dossier chargé');
+  const openEmpty = resolveWorkspaceOpenState(null, samplePayload('stub-empty'));
+  assert.equal(openEmpty.mode, 'empty');
+  assert.equal(openEmpty.status, 'Aucun dossier sauvegardé pour ce client');
 
   const elevPayload = samplePayload(`EL-${stamp}`);
   elevPayload.jours.entrainement.banque.fec = '9';
