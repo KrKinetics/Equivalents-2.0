@@ -1,16 +1,13 @@
 /**
- * Load KEY=VALUE pairs from .env.local (gitignored).
+ * Load KEY=VALUE pairs from gitignored local env files.
  * No dotenv dependency. Never logs secret values.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-export function loadEnvLocal(rootDir) {
-  const filePath = path.join(rootDir, '.env.local');
-  if (!fs.existsSync(filePath)) {
-    throw new Error('.env.local missing — copy .env.example and fill SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY');
-  }
+export function parseEnvFile(filePath) {
+  if (!fs.existsSync(filePath)) return null;
   const out = {};
   for (const line of fs.readFileSync(filePath, 'utf8').split(/\r?\n/)) {
     const trimmed = line.trim();
@@ -30,6 +27,15 @@ export function loadEnvLocal(rootDir) {
   return out;
 }
 
+export function loadEnvLocal(rootDir) {
+  const filePath = path.join(rootDir, '.env.local');
+  const out = parseEnvFile(filePath);
+  if (!out) {
+    throw new Error('.env.local missing — copy .env.example and fill SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY');
+  }
+  return out;
+}
+
 export function requireSupabasePublicEnv(rootDir) {
   const env = loadEnvLocal(rootDir);
   const url = env.SUPABASE_URL || '';
@@ -45,4 +51,46 @@ export function requireSupabasePublicEnv(rootDir) {
     throw new Error('NEXT_PUBLIC_SUPABASE_* variables are not used in this project');
   }
   return { url, publishableKey: key };
+}
+
+/** Admin-only. Never pass this key into browser config. */
+export function requireSupabaseServiceRoleEnv(rootDir) {
+  const env = loadEnvLocal(rootDir);
+  const { url } = requireSupabasePublicEnv(rootDir);
+  const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
+  if (!serviceRoleKey) {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY missing in .env.local (admin scripts only)');
+  }
+  if (serviceRoleKey.startsWith('sb_publishable_')) {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY looks like a publishable key — refuse to continue');
+  }
+  return { url, serviceRoleKey };
+}
+
+export function coachPasswordsLocalPath(rootDir) {
+  return path.join(rootDir, '.coach-passwords.local');
+}
+
+/**
+ * Local password assignment file (gitignored). Never log values.
+ * Expected keys: KR_EMAIL, KR_PASSWORD, ELEVATE_EMAIL, ELEVATE_PASSWORD
+ */
+export function loadCoachPasswordsLocal(rootDir) {
+  const filePath = coachPasswordsLocalPath(rootDir);
+  const env = parseEnvFile(filePath);
+  if (!env) {
+    throw new Error(
+      '.coach-passwords.local missing — copy .coach-passwords.example and fill values locally',
+    );
+  }
+  const entries = [
+    { org: 'kr-kinetics', email: env.KR_EMAIL || '', password: env.KR_PASSWORD || '' },
+    { org: 'elevate-fitness', email: env.ELEVATE_EMAIL || '', password: env.ELEVATE_PASSWORD || '' },
+  ];
+  for (const row of entries) {
+    if (!row.email || !row.password) {
+      throw new Error(`.coach-passwords.local incomplete for ${row.org} (email/password required)`);
+    }
+  }
+  return entries;
 }

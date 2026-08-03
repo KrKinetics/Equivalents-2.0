@@ -41,6 +41,7 @@ Equivalents-alimentaires-*.pdf
 .env
 .env.*
 !.env.example
+.coach-passwords.local
 .DS_Store
 Thumbs.db
 
