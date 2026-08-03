@@ -31,6 +31,10 @@ import {
 } from './coach-calculator-science-ui.mjs';
 import { applyDualBrandPatches } from './coach-calculator-dual-brand.mjs';
 import { applyClientProfileStoragePatches } from './coach-calculator-storage.mjs';
+import {
+  injectSharedEngineRuntime,
+  applySharedEnginePatches,
+} from './coach-calculator-shared-engine.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'coach-calculator');
@@ -410,6 +414,9 @@ function transformGolden(html) {
   html = injectGuideSection(html);
   html = injectGuideRuntime(html);
 
+  // Shared pure calculation runtime (Lot 5 Option A) — before client-fixes / dual-brand
+  html = injectSharedEngineRuntime(html);
+
   // PDF logo (data URI), rest-day omit, totals reconciliation, image wait
   {
     const logoB64 = fs.readFileSync(LOGO_H).toString('base64');
@@ -438,6 +445,9 @@ function transformGolden(html) {
 
   // Client profile storage facade — athlete_* localStorage behind a testable adapter
   html = applyClientProfileStoragePatches(html);
+
+  // Route Option A UI helpers through the shared engine (after dual-brand inject)
+  html = applySharedEnginePatches(html);
 
   return html;
 }

@@ -158,11 +158,7 @@ Object.assign(PDF_LABELS.en, {
 });
 
 macroPercentagesFromGrams = function (pro, glu, lip) {
-    const total = kcalFromMacros(pro || 0, glu || 0, lip || 0);
-    if (!total) return { pro: 0, glu: 0, lip: 0 };
-    const proPct = Math.round(((pro || 0) * 4 / total) * 100);
-    const gluPct = Math.round(((glu || 0) * 4 / total) * 100);
-    return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+    return window.CoachSharedEngine.macroPercentagesFromGrams(pro, glu, lip);
 };
 
 function macroPercentagesFromTargets(target) {

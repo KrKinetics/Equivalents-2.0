@@ -84,11 +84,7 @@ window.PDF_VARIANCE_THRESHOLDS = Object.freeze({ kcal: 50, pro: 5, glu: 5, lip: 
 })();
 
 function isJourClientPlanConfigured(jourData) {
-    const data = jourData || createEmptyJourData();
-    for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {
-        if ((parseFloat(data.repartition && data.repartition[i]) || 0) > 0) return true;
-    }
-    return false;
+    return window.CoachSharedEngine.isJourClientPlanConfigured(jourData);
 }
 
 function getClientPdfRestSnapshot() {
