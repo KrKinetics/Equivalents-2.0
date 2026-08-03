@@ -7,6 +7,7 @@ Static invitation-only portal for KR Kinetics × Elevate Fitness.
 - Same-origin workspace: `npm run coach:portal` (or `npm run coach:workspace`) serves portal + calculator
 - URL locale: `http://127.0.0.1:4190/`
 - Workspace: `http://127.0.0.1:4190/workspace/?client_id=<uuid>` (fictional clients only, RLS)
+- Workspace save/load: Supabase `client_dossiers` (SoT). Offline `athlete_*` localStorage remains for `npm run coach:preview` only.
 
 ## Login modes
 

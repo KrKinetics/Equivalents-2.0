@@ -2,6 +2,7 @@
 
 Static Coach calculator (`coach-calculator/`, preview `http://127.0.0.1:4188/`).  
 Authenticated same-origin workspace: `npm run coach:workspace` → `http://127.0.0.1:4190/workspace/?client_id=…` (portal + calculator; fictional clients only).  
+Workspace dossier SoT: Supabase `client_dossiers` (RLS org-scoped). Offline calculator localStorage `athlete_*` unchanged — no bidirectional sync.  
 Calculator core still has no Next.js; auth is portal/session + RLS only.
 
 ## Layers

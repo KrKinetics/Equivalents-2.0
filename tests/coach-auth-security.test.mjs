@@ -29,7 +29,7 @@ test('anonymous session cannot read clients / organizations / memberships', asyn
   const { data: sessionData } = await supabase.auth.getSession();
   assert.equal(sessionData.session, null);
 
-  for (const table of ['clients', 'organizations', 'memberships', 'profiles']) {
+  for (const table of ['clients', 'organizations', 'memberships', 'profiles', 'client_dossiers']) {
     const { data, error } = await supabase.from(table).select('*').limit(5);
     if (error && /does not exist|schema cache|Could not find the table/i.test(error.message)) {
       assert.fail(

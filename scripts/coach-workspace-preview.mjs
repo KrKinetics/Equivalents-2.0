@@ -120,9 +120,12 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // Expose only the pure workspace modules needed by the browser bootstrap.
-    if (urlPath.startsWith('/src/coach/workspace/')) {
-      const abs = resolveUnder(path.join(root, 'src', 'coach', 'workspace'), urlPath.slice('/src/coach/workspace'.length));
+    // Expose only pure coach modules needed by the browser workspace bootstrap.
+    if (
+      urlPath.startsWith('/src/coach/workspace/')
+      || urlPath.startsWith('/src/coach/services/')
+    ) {
+      const abs = resolveUnder(path.join(root, 'src', 'coach'), urlPath.slice('/src/coach'.length));
       if (!abs || !abs.endsWith('.mjs')) {
         res.writeHead(404);
         res.end('Not found');
