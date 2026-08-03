@@ -1,7 +1,8 @@
 # Coach — Phase 1 architecture boundaries
 
 Static Coach calculator (`coach-calculator/`, preview `http://127.0.0.1:4188/`).  
-No auth, database, Supabase, or Next.js in this phase.
+Authenticated same-origin workspace: `npm run coach:workspace` → `http://127.0.0.1:4190/workspace/?client_id=…` (portal + calculator; fictional clients only).  
+Calculator core still has no Next.js; auth is portal/session + RLS only.
 
 ## Layers
 

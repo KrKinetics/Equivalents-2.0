@@ -4,7 +4,9 @@ Static invitation-only portal for KR Kinetics × Elevate Fitness.
 
 - Stack: HTML/JS + `@supabase/supabase-js` (no Next.js, no `@supabase/ssr`)
 - Config: gitignored `.env.local` → served as `/config.js` by `npm run coach:portal` (publishable values only)
+- Same-origin workspace: `npm run coach:portal` (or `npm run coach:workspace`) serves portal + calculator
 - URL locale: `http://127.0.0.1:4190/`
+- Workspace: `http://127.0.0.1:4190/workspace/?client_id=<uuid>` (fictional clients only, RLS)
 
 ## Login modes
 

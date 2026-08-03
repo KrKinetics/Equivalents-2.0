@@ -4,6 +4,7 @@ import {
   redirectPreservingAuthParams,
   redirectClean,
 } from './auth-session.js';
+import { workspaceOpenPath } from '/src/coach/workspace/workspace-access.mjs';
 
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
@@ -75,16 +76,20 @@ async function loadClients() {
     clientsBody.innerHTML = '<tr><td colspan="3" class="empty">Aucun client fictif pour cette organisation.</td></tr>';
     return;
   }
-  clientsBody.innerHTML = data.map((row) => `
+  clientsBody.innerHTML = data.map((row) => {
+    const openHref = workspaceOpenPath(row.id);
+    return `
     <tr data-id="${escapeHtml(row.id)}">
       <td>${escapeHtml(row.full_name)}</td>
       <td>${escapeHtml(row.notes || '')}</td>
       <td class="row">
+        <a class="btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
         <button type="button" class="secondary btn-edit">Modifier</button>
         <button type="button" class="danger btn-delete">Supprimer</button>
       </td>
     </tr>
-  `).join('');
+  `;
+  }).join('');
 }
 
 async function createClient(fullName, notes) {

@@ -66,6 +66,17 @@ function missingConfigMessage() {
   return 'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).';
 }
 
+/** Same-origin relative next path only (workspace or dashboard). */
+function safeNextPath() {
+  const next = new URLSearchParams(window.location.search).get('next');
+  if (!next || !next.startsWith('/')) return './dashboard.html';
+  if (next.startsWith('//') || next.includes('://')) return './dashboard.html';
+  if (next.startsWith('/workspace/') || next === '/dashboard.html' || next.startsWith('/dashboard.html?')) {
+    return next;
+  }
+  return './dashboard.html';
+}
+
 function showCaughtError(err, formatter) {
   const formatted = formatter(err);
   if (formatted.kind === 'config') {
@@ -92,7 +103,7 @@ async function handlePasswordLogin(supabase, email) {
     return;
   }
   setStatus(PASSWORD_SUCCESS_MESSAGE, 'ok');
-  redirectClean('./dashboard.html');
+  redirectClean(safeNextPath());
 }
 
 async function handleMagicLink(supabase, email) {
@@ -159,7 +170,7 @@ async function boot() {
     const supabase = getPortalSupabase();
     const session = await recoverSession(supabase);
     if (session) {
-      redirectClean('./dashboard.html');
+      redirectClean(safeNextPath());
     }
   } catch (err) {
     setStatus(`Erreur JavaScript : ${err?.message || String(err)}`, 'error');
