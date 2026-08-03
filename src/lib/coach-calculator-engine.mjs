@@ -1,7 +1,35 @@
 /**
  * Pure coach calculator engine — mirrors golden master calculateur-coach-original.html.
  * No browser or DOM dependency.
+ *
+ * Client-profile / plan-structure contracts live under src/coach/domain/ and are
+ * re-exported here so existing imports keep a stable public surface.
  */
+
+import { CATS, MEAL_COUNT } from '../coach/domain/plan-structure.mjs';
+import {
+  PROFILE_STORAGE_KEY_PREFIX,
+  profileStorageKey,
+  migrateEnergyEquationVersion,
+  normalizeProteinesParKg,
+  normalizeProteinesPct,
+  normalizeMacroPct,
+  createEmptyJourData,
+  migrateProfilData,
+} from '../coach/domain/clients.mjs';
+
+export {
+  CATS,
+  MEAL_COUNT,
+  PROFILE_STORAGE_KEY_PREFIX,
+  profileStorageKey,
+  migrateEnergyEquationVersion,
+  normalizeProteinesParKg,
+  normalizeProteinesPct,
+  normalizeMacroPct,
+  createEmptyJourData,
+  migrateProfilData,
+};
 
 export const FEATURE_DA_ENABLED = false;
 
@@ -16,10 +44,6 @@ export const FORBIDDEN_PDF_MARKERS = [
   'release-candidate',
   'legacy-a',
 ];
-
-export const PROFILE_STORAGE_KEY_PREFIX = 'athlete_';
-
-export const CATS = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
 
 export const MOYENNES = {
   pro: { p: 9, g: 0, l: 2 },
@@ -42,22 +66,12 @@ export const MACRO_PRESETS = [
   { id: 8, name: 'Lipides réduits', ratio: '45,35,20', proteinPct: 45, carbPct: 35, fatPct: 20 },
 ];
 
-export const MEAL_COUNT = 6;
-
 const PA_MALE = { sedentaire: 1.0, leger: 1.11, modere: 1.25, actif: 1.48 };
 const PA_FEMALE = { sedentaire: 1.0, leger: 1.12, modere: 1.27, actif: 1.45 };
-
-const DEFAULT_PROTEIN_G_PER_KG = 2;
-const MIN_PROTEIN_G_PER_KG = 0.8;
-const MAX_PROTEIN_G_PER_KG = 3.5;
-const DEFAULT_PROTEIN_PCT = 25;
-const MIN_PROTEIN_PCT = 10;
-const MAX_PROTEIN_PCT = 50;
 
 const DEFAULT_MACRO_CUSTOM_G = 45;
 const DEFAULT_MACRO_CUSTOM_L = 30;
 const MIN_MACRO_PCT = 5;
-const MAX_MACRO_PCT = 80;
 
 const LBS_TO_KG = 2.20462;
 
@@ -98,24 +112,6 @@ export function heightToMeters({ unit = 'cm', cm, ft, in: inches } = {}) {
     return ((feet * 12) + inch) * 2.54 / 100;
   }
   return (parseFloat(cm) || 0) / 100;
-}
-
-export function normalizeProteinesParKg(value) {
-  const n = parseFloat(value);
-  if (Number.isNaN(n)) return DEFAULT_PROTEIN_G_PER_KG;
-  return Math.min(MAX_PROTEIN_G_PER_KG, Math.max(MIN_PROTEIN_G_PER_KG, Math.round(n * 10) / 10));
-}
-
-export function normalizeProteinesPct(value) {
-  const n = parseFloat(value);
-  if (Number.isNaN(n)) return DEFAULT_PROTEIN_PCT;
-  return Math.min(MAX_PROTEIN_PCT, Math.max(MIN_PROTEIN_PCT, Math.round(n)));
-}
-
-export function normalizeMacroPct(value) {
-  const n = parseFloat(value);
-  if (Number.isNaN(n)) return DEFAULT_MACRO_CUSTOM_G;
-  return Math.min(MAX_MACRO_PCT, Math.max(MIN_MACRO_PCT, Math.round(n)));
 }
 
 function growthAllowanceNasem(sexe, age) {
@@ -226,10 +222,6 @@ export function computeEerTdee({
     }),
     method: resolved,
   };
-}
-
-export function migrateEnergyEquationVersion(data = {}) {
-  return data.energyEquationVersion === 'nasem2023' ? 'nasem2023' : 'iom2005';
 }
 
 export function computeProteinGrams({ mode = 'gkg', weightKg, gPerKg, pct, goalKcal }) {
@@ -371,66 +363,6 @@ export function computeHydration(kcal, manualAddL = 0) {
   return { auto, ajout, total: auto + ajout };
 }
 
-export function createEmptyJourData() {
-  const banque = {};
-  const repartition = {};
-  for (const cat of CATS) banque[cat] = '0';
-  for (let i = 0; i < MEAL_COUNT * CATS.length; i++) repartition[i] = '0';
-  return {
-    banque,
-    repartition,
-    heureEntrainement: '17:30',
-    repartitionSelonEntrainement: true,
-    eauLitres: '0',
-    eauAjout: '0',
-    eauManuel: false,
-  };
-}
-
-export function migrateProfilData(data) {
-  if (data?.jours?.entrainement && data?.jours?.repos) {
-    return {
-      ...data,
-      activeJour: data.activeJour || 'entrainement',
-      macroMode: data.macroMode === 'custom' ? 'custom' : 'preset',
-      macroCustomG: normalizeMacroPct(data.macroCustomG),
-      macroCustomL: normalizeMacroPct(data.macroCustomL),
-      proteinesMode: data.proteinesMode === 'pct' ? 'pct' : 'gkg',
-      proteinesParKg: normalizeProteinesParKg(data.proteinesParKg),
-      proteinesPct: normalizeProteinesPct(data.proteinesPct),
-      jourReposActif: data.jourReposActif !== false,
-      coachNotes: typeof data.coachNotes === 'string' ? data.coachNotes : '',
-      jours: {
-        entrainement: { ...createEmptyJourData(), ...data.jours.entrainement },
-        repos: { ...createEmptyJourData(), ...data.jours.repos },
-      },
-    };
-  }
-
-  const ent = createEmptyJourData();
-  if (data?.banque) ent.banque = { ...ent.banque, ...data.banque };
-  if (data?.repartition) ent.repartition = { ...ent.repartition, ...data.repartition };
-  ent.heureEntrainement = data?.heureEntrainement || '17:30';
-  ent.eauLitres = data?.eauLitres || '0';
-  ent.eauAjout = data?.eauAjout || '0';
-  ent.eauManuel = !!data?.eauManuel;
-
-  return {
-    ...data,
-    version: 2,
-    activeJour: data?.typeJour || data?.activeJour || 'entrainement',
-    macroMode: data?.macroMode === 'custom' ? 'custom' : 'preset',
-    macroCustomG: normalizeMacroPct(data?.macroCustomG),
-    macroCustomL: normalizeMacroPct(data?.macroCustomL),
-    proteinesMode: data?.proteinesMode === 'pct' ? 'pct' : 'gkg',
-    proteinesParKg: normalizeProteinesParKg(data?.proteinesParKg),
-    proteinesPct: normalizeProteinesPct(data?.proteinesPct),
-    jourReposActif: data?.jourReposActif !== false,
-    coachNotes: typeof data?.coachNotes === 'string' ? data.coachNotes : '',
-    jours: { entrainement: ent, repos: createEmptyJourData() },
-  };
-}
-
 export function assertNoForbiddenPdfContent(text) {
   const haystack = String(text ?? '').toLowerCase();
   for (const marker of FORBIDDEN_PDF_MARKERS) {
@@ -567,10 +499,6 @@ export function suggestBanque(targets) {
   }
 
   return best;
-}
-
-export function profileStorageKey(athleteName) {
-  return `${PROFILE_STORAGE_KEY_PREFIX}${athleteName}`;
 }
 
 /** Explicit client-PDF variance thresholds (planned vs target). */

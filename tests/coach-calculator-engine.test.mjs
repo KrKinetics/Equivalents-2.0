@@ -38,6 +38,17 @@ import {
   computePlannedTotalsFromRepartition,
   reconcilePlanTotals,
 } from '../src/lib/coach-calculator-engine.mjs';
+import {
+  CATS as DOMAIN_CATS,
+  MEAL_COUNT as DOMAIN_MEAL_COUNT,
+} from '../src/coach/domain/plan-structure.mjs';
+import {
+  PROFILE_STORAGE_KEY_PREFIX as DOMAIN_PROFILE_PREFIX,
+  profileStorageKey as domainProfileStorageKey,
+  migrateEnergyEquationVersion as domainMigrateEnergyEquationVersion,
+  createEmptyJourData as domainCreateEmptyJourData,
+  migrateProfilData as domainMigrateProfilData,
+} from '../src/coach/domain/clients.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const categoryMapping = JSON.parse(
@@ -291,6 +302,16 @@ test('forbidden PDF markers throw on client-facing text', () => {
 test('profile storage key uses athlete_ prefix', () => {
   assert.equal(PROFILE_STORAGE_KEY_PREFIX, 'athlete_');
   assert.equal(profileStorageKey('Xavier'), 'athlete_Xavier');
+});
+
+test('domain client/plan-structure modules are re-exported by the engine', () => {
+  assert.equal(DOMAIN_PROFILE_PREFIX, PROFILE_STORAGE_KEY_PREFIX);
+  assert.equal(domainProfileStorageKey, profileStorageKey);
+  assert.equal(domainMigrateEnergyEquationVersion, migrateEnergyEquationVersion);
+  assert.equal(domainCreateEmptyJourData, createEmptyJourData);
+  assert.equal(domainMigrateProfilData, migrateProfilData);
+  assert.deepEqual(DOMAIN_CATS, CATS);
+  assert.equal(DOMAIN_MEAL_COUNT, MEAL_COUNT);
 });
 
 test('distribuerPortions uses half-portion remainder algorithm', () => {
