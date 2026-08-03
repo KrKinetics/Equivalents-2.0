@@ -3,6 +3,8 @@
  * Applied after science UI patches so exclusive PDF branding and header logos survive rebuilds.
  */
 
+import { BRANDS, buildPdfBrandsRuntimeObjectLiteral } from '../src/coach/branding/brands.mjs';
+
 function mustReplace(html, pattern, replacement, label) {
   if (!pattern.test(html)) {
     throw new Error(`Dual-brand patch failed: missing ${label}`);
@@ -108,18 +110,7 @@ const MACRO_PRESET_LABELS_EN_JS = `const MACRO_PRESET_LABELS_EN = {
 export function buildDualBrandRuntime() {
   return `<script id="dual-brand-professional-corrections">
 // Corrections client: marques exclusives, tolérances, libellés et réconciliation.
-const PDF_BRANDS = Object.freeze({
-    kr: Object.freeze({
-        key: 'kr', label: 'KR Kinetics', slug: 'KR_Kinetics',
-        logo: window.KR_PDF_LOGO_HORIZONTAL_DATA_URI,
-        logoAlt: 'KR Kinetics', guide: './guides/kr-kinetics-equivalents-client-fr.pdf'
-    }),
-    elevate: Object.freeze({
-        key: 'elevate', label: 'Elevate Fitness', slug: 'Elevate_Fitness',
-        logo: window.ELEVATE_PDF_LOGO_DATA_URI,
-        logoAlt: 'Elevate Fitness', guide: './guides/elevate-fitness-equivalents-client-fr.pdf'
-    })
-});
+const PDF_BRANDS = ${buildPdfBrandsRuntimeObjectLiteral()};
 
 function getSelectedPdfBrand() {
     return pdfCreator === 'elevate' ? PDF_BRANDS.elevate : PDF_BRANDS.kr;
@@ -627,7 +618,7 @@ export function applyDualBrandPatches(html) {
     html,
     /<div class="header-logo">\s*<img[^>]*>\s*<\/div>\s*<\/header>/,
     `<div class="header-logo elevate-logo">
-        <img src="./assets/logo-elevate-fitness.jpg" alt="Elevate Fitness">
+        <img src="${BRANDS.elevate.headerLogoPath}" alt="${BRANDS.elevate.logoAlt}">
     </div>
 </header>`,
     'elevate header logo',
