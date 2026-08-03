@@ -951,15 +951,7 @@ const REPART_PRESETS = {
 };
 
 function createEmptyJourData() {
-    const banque = {}, repartition = {};
-    CATS.forEach(cat => { banque[cat] = '0'; });
-    for (let i = 0; i < MEAL_COUNT * CATS.length; i++) repartition[i] = '0';
-    return {
-        banque, repartition,
-        heureEntrainement: '17:30',
-        repartitionSelonEntrainement: true,
-        eauLitres: '0', eauAjout: '0', eauManuel: false
-    };
+    return window.CoachSharedEngine.createEmptyJourData();
 }
 
 function initJoursData() {
@@ -979,9 +971,7 @@ function normalizeProteinesParKg(value) {
 }
 
 function normalizeProteinesPct(value) {
-    const n = parseFloat(value);
-    if (isNaN(n)) return DEFAULT_PROTEIN_PCT;
-    return Math.min(MAX_PROTEIN_PCT, Math.max(MIN_PROTEIN_PCT, Math.round(n)));
+    return window.CoachSharedEngine.normalizeProteinesPct(value);
 }
 
 function getProteinesParKg() {
@@ -1011,9 +1001,7 @@ function computeProteinGrams(kcalBrut, poidsKg, protein) {
 }
 
 function normalizeMacroPct(value) {
-    const n = parseFloat(value);
-    if (isNaN(n)) return DEFAULT_MACRO_CUSTOM_G;
-    return Math.min(MAX_MACRO_PCT, Math.max(MIN_MACRO_PCT, Math.round(n)));
+    return window.CoachSharedEngine.normalizeMacroPct(value);
 }
 
 function getMacroCustomG() {
@@ -1481,7 +1469,7 @@ function kcalFromMacros(pro, glu, lip) {
 }
 
 function roundHalf(n) {
-    return Math.max(0, Math.round(n * 2) / 2);
+    return window.CoachSharedEngine.roundHalf(n);
 }
 
 function getPortionTotals(portions) {
@@ -1909,54 +1897,13 @@ function updateDiff(id, target, actual) {
 }
 
 function scorePortions(portions) {
-    const t = getPortionTotals(portions);
-    const tol = { pro: 5, glu: 5, lip: 5, kcal: 50 };
-    let score = Math.abs(t.pro - targets.pro) + Math.abs(t.glu - targets.glu) + Math.abs(t.lip - targets.lip);
-    score += Math.abs(t.kcal - targets.kcal) * 0.1;
-    if (Math.abs(t.pro - targets.pro) > tol.pro) score += 20;
-    if (Math.abs(t.glu - targets.glu) > tol.glu) score += 20;
-    if (Math.abs(t.lip - targets.lip) > tol.lip) score += 20;
-    if (Math.abs(t.kcal - targets.kcal) > tol.kcal) score += 30;
-    return score;
+    return window.CoachSharedEngine.scorePortions(portions, targets);
 }
 
 function suggererBanque() {
     if (targets.kcal === 0) { alert("Veuillez d'abord compléter le profil pour obtenir des cibles caloriques."); return; }
-    const tweaks = [-1, -0.5, 0, 0.5, 1];
-    let best = null, bestScore = Infinity;
-
-    for (let leg = 1.5; leg <= 3; leg += 0.5) {
-        for (let fru = 1; fru <= 3; fru += 0.5) {
-            for (let lai = 0.5; lai <= 2; lai += 0.5) {
-                const seed = { leg, fru, lai, whey: 0, pro: 0, fec: 0, lip: 0 };
-                let used = getPortionTotals(seed);
-                seed.fec = roundHalf((targets.glu - used.glu) / MOYENNES.fec.g);
-                used = getPortionTotals(seed);
-                seed.pro = roundHalf((targets.pro - used.pro) / MOYENNES.pro.p);
-                used = getPortionTotals(seed);
-                seed.lip = roundHalf((targets.lip - used.lip) / MOYENNES.lip.l);
-
-                for (const dp of tweaks) {
-                    for (const df of tweaks) {
-                        for (const dl of tweaks) {
-                            for (const dw of [0, 0.5, 1]) {
-                                const trial = {
-                                    leg, fru, lai,
-                                    pro:  Math.max(0, seed.pro  + dp),
-                                    fec:  Math.max(0, seed.fec  + df),
-                                    lip:  Math.max(0, seed.lip  + dl),
-                                    whey: Math.max(0, seed.whey + dw)
-                                };
-                                const s = scorePortions(trial);
-                                if (s < bestScore) { bestScore = s; best = trial; }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    const best = window.CoachSharedEngine.suggestBanque(targets);
+    if (!best) return;
     CATS.forEach(cat => {
         document.querySelector('.target-input[data-cat="' + cat + '"]').value = best[cat];
     });
@@ -2152,19 +2099,7 @@ function updateTimingUI() {
 }
 
 function distribuerPortions(total, weights) {
-    if (total <= 0) return new Array(MEAL_COUNT).fill(0);
-    const raw = weights.map(w => total * w);
-    const portions = raw.map(v => Math.floor(v * 2) / 2);
-    let remain = Math.round((total - portions.reduce((a, b) => a + b, 0)) * 2) / 2;
-    const order = raw.map((v, i) => ({ i, frac: v - portions[i] }))
-        .sort((a, b) => b.frac - a.frac || b.i - a.i);
-    let step = 0;
-    while (remain >= 0.5 && step < 24) {
-        portions[order[step % MEAL_COUNT].i] += 0.5;
-        remain -= 0.5;
-        step++;
-    }
-    return portions;
+    return window.CoachSharedEngine.distribuerPortions(total, weights);
 }
 
 function repartirAutomatique(mode) {
@@ -3328,12 +3263,102 @@ function reconcilePlanTotals({ targets, banqueTotals, plannedTotals, thresholds 
   };
 }
 
+/**
+ * Pure portion distribution / banque suggestion helpers.
+ * Extracted from the coach calculator engine without formula changes.
+ */
+function roundHalf(n) {
+  return Math.max(0, Math.round(n * 2) / 2);
+}
+function distribuerPortions(total, weights) {
+  if (total <= 0) return new Array(MEAL_COUNT).fill(0);
+  const raw = weights.map((w) => total * w);
+  const portions = raw.map((v) => Math.floor(v * 2) / 2);
+  let remain = Math.round((total - portions.reduce((a, b) => a + b, 0)) * 2) / 2;
+  const order = raw
+    .map((v, i) => ({ i, frac: v - portions[i] }))
+    .sort((a, b) => b.frac - a.frac || b.i - a.i);
+  let step = 0;
+  while (remain >= 0.5 && step < 24) {
+    portions[order[step % MEAL_COUNT].i] += 0.5;
+    remain -= 0.5;
+    step += 1;
+  }
+  return portions;
+}
+function scorePortions(portions, targets) {
+  const t = getPortionTotals(portions);
+  const tol = { pro: 5, glu: 5, lip: 5, kcal: 50 };
+  let score = Math.abs(t.pro - targets.pro) + Math.abs(t.glu - targets.glu) + Math.abs(t.lip - targets.lip);
+  score += Math.abs(t.kcal - targets.kcal) * 0.1;
+  if (Math.abs(t.pro - targets.pro) > tol.pro) score += 20;
+  if (Math.abs(t.glu - targets.glu) > tol.glu) score += 20;
+  if (Math.abs(t.lip - targets.lip) > tol.lip) score += 20;
+  if (Math.abs(t.kcal - targets.kcal) > tol.kcal) score += 30;
+  return score;
+}
+function suggestBanque(targets) {
+  if (!targets || targets.kcal === 0) {
+    return null;
+  }
+
+  const tweaks = [-1, -0.5, 0, 0.5, 1];
+  let best = null;
+  let bestScore = Infinity;
+
+  for (let leg = 1.5; leg <= 3; leg += 0.5) {
+    for (let fru = 1; fru <= 3; fru += 0.5) {
+      for (let lai = 0.5; lai <= 2; lai += 0.5) {
+        const seed = { leg, fru, lai, whey: 0, pro: 0, fec: 0, lip: 0 };
+        let used = getPortionTotals(seed);
+        seed.fec = roundHalf((targets.glu - used.glu) / MOYENNES.fec.g);
+        used = getPortionTotals(seed);
+        seed.pro = roundHalf((targets.pro - used.pro) / MOYENNES.pro.p);
+        used = getPortionTotals(seed);
+        seed.lip = roundHalf((targets.lip - used.lip) / MOYENNES.lip.l);
+
+        for (const dp of tweaks) {
+          for (const df of tweaks) {
+            for (const dl of tweaks) {
+              for (const dw of [0, 0.5, 1]) {
+                const trial = {
+                  leg,
+                  fru,
+                  lai,
+                  pro: Math.max(0, seed.pro + dp),
+                  fec: Math.max(0, seed.fec + df),
+                  lip: Math.max(0, seed.lip + dl),
+                  whey: Math.max(0, seed.whey + dw),
+                };
+                const s = scorePortions(trial, targets);
+                if (s < bestScore) {
+                  bestScore = s;
+                  best = trial;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return best;
+}
+
 global.CoachSharedEngine = {
   kcalFromMacros: kcalFromMacros,
   macroPercentagesFromGrams: macroPercentagesFromGrams,
   getPortionTotals: getPortionTotals,
   computePlannedTotalsFromRepartition: computePlannedTotalsFromRepartition,
-  isJourClientPlanConfigured: isJourClientPlanConfigured
+  isJourClientPlanConfigured: isJourClientPlanConfigured,
+  createEmptyJourData: createEmptyJourData,
+  normalizeProteinesPct: normalizeProteinesPct,
+  normalizeMacroPct: normalizeMacroPct,
+  roundHalf: roundHalf,
+  distribuerPortions: distribuerPortions,
+  scorePortions: scorePortions,
+  suggestBanque: suggestBanque
 };
 })(window);
 </script>
