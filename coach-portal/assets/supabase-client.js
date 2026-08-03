@@ -1,6 +1,7 @@
 /**
  * Browser Supabase client for the Coach portal.
  * Expects window.COACH_SUPABASE = { url, publishableKey } from /config.js
+ * (injected by npm run coach:portal — never read .env.local in the browser).
  */
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
 
@@ -12,7 +13,8 @@ function requireConfig() {
   if (cfg.url.startsWith('http://') && !cfg.url.includes('127.0.0.1') && !cfg.url.includes('localhost')) {
     throw new Error('SUPABASE_URL must use https://');
   }
-  return cfg;
+  // Pass both values into createClient; never log them.
+  return { url: cfg.url, publishableKey: cfg.publishableKey };
 }
 
 export function getSupabase() {
