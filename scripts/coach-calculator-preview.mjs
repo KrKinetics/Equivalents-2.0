@@ -2,10 +2,14 @@
  * Serve the restored coach calculator and optionally capture screenshots / owner artifacts.
  *
  * Usage:
- *   node scripts/coach-calculator-preview.mjs              # build if needed + serve
+ *   node scripts/coach-calculator-preview.mjs              # serve; build only if artifacts missing
+ *   node scripts/coach-calculator-preview.mjs --rebuild    # force rebuild then serve
  *   node scripts/coach-calculator-preview.mjs --build-only
  *   node scripts/coach-calculator-preview.mjs --capture
  *   node scripts/coach-calculator-preview.mjs --serve-only
+ *
+ * Note: --with-guide-pdf is forwarded to the build when a build runs; it does not
+ * force a rebuild by itself (avoids dirtying tracked generated files on every preview).
  */
 
 import { spawnSync } from 'node:child_process';
@@ -24,7 +28,7 @@ const HOST = process.env.COACH_HOST || '127.0.0.1';
 const buildOnly = process.argv.includes('--build-only');
 const serveOnly = process.argv.includes('--serve-only');
 const capture = process.argv.includes('--capture');
-const forceRebuild = process.argv.includes('--rebuild') || buildOnly || process.argv.includes('--with-guide-pdf');
+const forceRebuild = process.argv.includes('--rebuild') || buildOnly;
 const withGuidePdf = process.argv.includes('--with-guide-pdf');
 
 function ensureDir(dir) {

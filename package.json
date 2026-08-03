@@ -30,7 +30,7 @@
     "rc:preview": "node scripts/rc-preview.mjs",
     "rc:verify": "node scripts/rc-verify.mjs",
     "coach:build": "node scripts/coach-calculator-build.mjs --with-guide-pdf",
-    "coach:preview": "node scripts/coach-calculator-preview.mjs --with-guide-pdf",
+    "coach:preview": "node scripts/coach-calculator-preview.mjs",
     "coach:capture": "node scripts/coach-calculator-owner-artifacts.mjs",
     "coach:owner-zip": "node scripts/coach-calculator-owner-zip.mjs",
     "coach:science-zip": "node scripts/coach-calculator-science-owner-zip.mjs",

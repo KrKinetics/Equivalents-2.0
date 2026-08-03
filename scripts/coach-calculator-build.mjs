@@ -48,9 +48,53 @@ function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
+function writeBufferIfChanged(dest, buf) {
+  ensureDir(path.dirname(dest));
+  const next = Buffer.isBuffer(buf) ? buf : Buffer.from(buf);
+  if (fs.existsSync(dest) && fs.readFileSync(dest).equals(next)) return false;
+  fs.writeFileSync(dest, next);
+  return true;
+}
+
+function normalizeNewlines(text) {
+  return String(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+}
+
+function writeTextIfChanged(dest, text, encoding = 'utf8') {
+  ensureDir(path.dirname(dest));
+  const next = normalizeNewlines(text);
+  if (fs.existsSync(dest)) {
+    const prev = normalizeNewlines(fs.readFileSync(dest, encoding));
+    if (prev === next) return false;
+  }
+  fs.writeFileSync(dest, next, encoding);
+  return true;
+}
+
+/** Write JSON only when meaningful fields change (ignores volatile keys like computedAt). */
+function writeJsonIfChanged(dest, value, { ignoreKeys = [] } = {}) {
+  const text = JSON.stringify(value, null, 2);
+  if (fs.existsSync(dest)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(dest, 'utf8'));
+      const strip = (obj) => {
+        if (!obj || typeof obj !== 'object') return obj;
+        const out = { ...obj };
+        for (const key of ignoreKeys) delete out[key];
+        return out;
+      };
+      if (JSON.stringify(strip(prev)) === JSON.stringify(strip(value))) return false;
+    } catch {
+      // fall through and rewrite
+    }
+  }
+  return writeTextIfChanged(dest, text);
+}
+
 function copyFile(src, dest) {
   ensureDir(path.dirname(dest));
-  fs.copyFileSync(src, dest);
+  const buf = fs.readFileSync(src);
+  writeBufferIfChanged(dest, buf);
 }
 
 function sha256File(abs) {
@@ -516,7 +560,7 @@ URL locale exacte : **http://127.0.0.1:4188/**
 Les dépendances PDF (\`html2canvas\`, \`jsPDF\`) sont vendues dans \`vendor/\`.
 Les logos officiels sont dans \`assets/\`. Le PDF Elevate n'affiche aucune mention ni ressource KR; le PDF KR n'affiche aucune mention ni ressource Elevate.
 `;
-  fs.writeFileSync(path.join(outDir, 'README.md'), text, 'utf8');
+  writeTextIfChanged(path.join(outDir, 'README.md'), text);
 }
 
 async function main() {
@@ -541,7 +585,7 @@ async function main() {
 
   const golden = fs.readFileSync(GOLDEN, 'utf8');
   const transformed = transformGolden(golden);
-  fs.writeFileSync(path.join(outDir, 'index.html'), transformed, 'utf8');
+  writeTextIfChanged(path.join(outDir, 'index.html'), transformed);
 
   const coachDataPath = path.join(outDir, 'coach-data.json');
   const builtGuidePdf = path.join(outDir, 'guides', 'kr-kinetics-equivalents-client-fr.pdf');
@@ -583,9 +627,9 @@ async function main() {
   writeReadme();
 
   const protection = verifyProtectedFiles(undefined, { generatedAt: new Date().toISOString() });
-  fs.writeFileSync(
+  writeJsonIfChanged(
     path.join(reportsDir, 'protected-hashes-after.json'),
-    JSON.stringify({
+    {
       computedAt: new Date().toISOString(),
       ok: protection.ok,
       changed: protection.changed,
@@ -595,8 +639,10 @@ async function main() {
       builtIndexSha256: sha256File(path.join(outDir, 'index.html')),
       coachDataSha256: coachDataHash,
       guidePdfSha256: guidePdfHash,
-    }, null, 2),
-    'utf8'
+    },
+    // computedAt is always fresh; builtIndexSha256 can differ by EOL on Windows
+    // checkouts even when the logical HTML matches the committed artifact.
+    { ignoreKeys: ['computedAt', 'builtIndexSha256'] },
   );
 
   const summary = {
@@ -612,7 +658,7 @@ async function main() {
     coachDataSha256: coachDataHash,
     guidePdfSha256: guidePdfHash,
   };
-  fs.writeFileSync(path.join(reportsDir, 'build-summary.json'), JSON.stringify(summary, null, 2), 'utf8');
+  writeJsonIfChanged(path.join(reportsDir, 'build-summary.json'), summary);
   console.log(JSON.stringify(summary, null, 2));
   if (!protection.ok) process.exit(1);
 }
