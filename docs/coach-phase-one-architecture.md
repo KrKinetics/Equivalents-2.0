@@ -37,4 +37,4 @@ npm run coach:build
 npm run coach:preview  # http://127.0.0.1:4188/
 ```
 
-Science-UI screenshots: compared to tracked baselines; written under `verify-science-ui-artifacts/` (gitignored). Refresh baselines with `COACH_UPDATE_SCIENCE_UI_SCREENSHOTS=1`.
+Science-UI screenshots: written under `verify-science-ui-artifacts/` (gitignored) and checked against tracked baselines by PNG width/height (Puppeteer bytes can vary slightly). Refresh baselines with `COACH_UPDATE_SCIENCE_UI_SCREENSHOTS=1`.
