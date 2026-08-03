@@ -153,20 +153,33 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
   assert.equal(workflow.planOk, true);
 
   await loadXavier();
-  await page.screenshot({
-    path: path.join(REPORTS, 'screenshots', 'desktop-1440-science-ui.png'),
-    fullPage: true,
-  });
+  // Capture to gitignored artifacts and compare to tracked baselines.
+  // Never overwrite tracked PNGs during normal test runs (keeps git clean).
+  // Set COACH_UPDATE_SCIENCE_UI_SCREENSHOTS=1 to refresh baselines intentionally.
+  const updateBaselines = process.env.COACH_UPDATE_SCIENCE_UI_SCREENSHOTS === '1';
+  const actualShotDir = path.join(ARTIFACT_DIR, 'screenshots');
+  fs.mkdirSync(actualShotDir, { recursive: true });
+  async function captureAndCompare(name, shotOptions) {
+    const baseline = path.join(REPORTS, 'screenshots', name);
+    const actual = path.join(actualShotDir, name);
+    await page.screenshot({ path: actual, ...shotOptions });
+    assert.ok(fs.existsSync(baseline), `missing visual baseline: ${name}`);
+    const actualBuf = fs.readFileSync(actual);
+    const baselineBuf = fs.readFileSync(baseline);
+    if (updateBaselines) {
+      fs.writeFileSync(baseline, actualBuf);
+      return;
+    }
+    assert.ok(
+      actualBuf.equals(baselineBuf),
+      `visual regression: ${name} differs from baseline (see ${actual})`,
+    );
+  }
+  await captureAndCompare('desktop-1440-science-ui.png', { fullPage: true });
   await page.setViewport({ width: 768, height: 1024 });
-  await page.screenshot({
-    path: path.join(REPORTS, 'screenshots', 'tablet-768-science-ui.png'),
-    fullPage: true,
-  });
+  await captureAndCompare('tablet-768-science-ui.png', { fullPage: true });
   await page.setViewport({ width: 390, height: 1600 });
-  await page.screenshot({
-    path: path.join(REPORTS, 'screenshots', 'mobile-390-science-ui.png'),
-    fullPage: false,
-  });
+  await captureAndCompare('mobile-390-science-ui.png', { fullPage: false });
 
   // PDF FR/EN via HTML print path (same as owner artifacts)
   await page.setViewport({ width: 1440, height: 1000 });
