@@ -26,5 +26,9 @@ test('UI adapters module has no DOM or storage imports', () => {
     path.join(root, 'src/coach/ui/calculation-adapters.mjs'),
     'utf8',
   );
-  assert.doesNotMatch(source, /\bdocument\b|\bwindow\b|\blocalStorage\b/);
+  const codeOnly = source
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\/\/.*$/gm, '');
+  assert.doesNotMatch(codeOnly, /\bdocument\b|\bwindow\b|\blocalStorage\b/);
+  assert.doesNotMatch(codeOnly, /\bfrom\s+['"][^'"]*dom[^'"]*['"]/i);
 });

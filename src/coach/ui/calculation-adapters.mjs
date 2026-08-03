@@ -7,7 +7,7 @@
  *   3. Call the shared engine
  *   4. Write results back to the DOM in the UI layer
  *
- * This module must never import document, window, or localStorage.
+ * This module must never import browser globals or Web Storage APIs.
  * Dual-brand banque / completeness / reconcile tolerances stay in UI inject scripts.
  */
 
