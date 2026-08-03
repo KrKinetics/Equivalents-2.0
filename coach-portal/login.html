@@ -13,10 +13,25 @@
     <h1>Connexion Coach</h1>
     <p class="lead">Accès sur invitation uniquement. Aucune inscription publique.</p>
     <section class="card">
-      <form id="login-form">
+      <div class="auth-modes" role="tablist" aria-label="Mode de connexion">
+        <button type="button" class="mode-btn is-active" id="mode-password" data-mode="password" role="tab" aria-selected="true">
+          Connexion par mot de passe
+        </button>
+        <button type="button" class="mode-btn" id="mode-magic" data-mode="magic" role="tab" aria-selected="false">
+          Recevoir un lien magique
+        </button>
+      </div>
+
+      <form id="login-form" data-mode="password">
         <label for="email">Courriel invité</label>
         <input id="email" name="email" type="email" autocomplete="username" required placeholder="vous@exemple.com">
-        <button id="submit" type="submit">Recevoir un lien magique</button>
+
+        <div id="password-block">
+          <label for="password">Mot de passe</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+        </div>
+
+        <button id="submit" type="submit">Se connecter</button>
       </form>
       <div id="status" class="status hidden" role="status"></div>
     </section>

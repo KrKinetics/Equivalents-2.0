@@ -10,11 +10,22 @@ import {
   requestMagicLink,
   resolveEmailRedirectTo,
 } from './login-otp.mjs';
+import {
+  PASSWORD_SUCCESS_MESSAGE,
+  formatPasswordLoginFailure,
+  signInWithPassword,
+} from './login-password.mjs';
 
 const form = document.getElementById('login-form');
 const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const passwordBlock = document.getElementById('password-block');
 const statusEl = document.getElementById('status');
 const submitBtn = document.getElementById('submit');
+const modePasswordBtn = document.getElementById('mode-password');
+const modeMagicBtn = document.getElementById('mode-magic');
+
+let authMode = 'password';
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
@@ -31,6 +42,69 @@ function markFormReady() {
   submitBtn.disabled = false;
 }
 
+function applyMode(mode) {
+  authMode = mode === 'magic' ? 'magic' : 'password';
+  form.dataset.mode = authMode;
+
+  const isPassword = authMode === 'password';
+  modePasswordBtn.classList.toggle('is-active', isPassword);
+  modeMagicBtn.classList.toggle('is-active', !isPassword);
+  modePasswordBtn.setAttribute('aria-selected', isPassword ? 'true' : 'false');
+  modeMagicBtn.setAttribute('aria-selected', isPassword ? 'false' : 'true');
+
+  passwordBlock.classList.toggle('hidden', !isPassword);
+  passwordInput.required = isPassword;
+  if (!isPassword) {
+    passwordInput.value = '';
+  }
+
+  submitBtn.textContent = isPassword ? 'Se connecter' : 'Recevoir un lien magique';
+  clearStaleStatus();
+}
+
+function missingConfigMessage() {
+  return 'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).';
+}
+
+function showCaughtError(err, formatter) {
+  const formatted = formatter(err);
+  if (formatted.kind === 'config') {
+    setStatus(formatted.message, 'error');
+    return;
+  }
+  if (err?.name === 'TypeError' || /Failed to fetch|NetworkError|import/i.test(err?.message || '')) {
+    setStatus(`Erreur JavaScript : ${err?.message || String(err)}`, 'error');
+    return;
+  }
+  setStatus(formatted.message, 'error');
+}
+
+async function handlePasswordLogin(supabase, email) {
+  const password = passwordInput.value;
+  if (!password) {
+    setStatus('Entrez votre mot de passe.', 'error');
+    return;
+  }
+  setStatus('Connexion…');
+  const session = await signInWithPassword(supabase, email, password);
+  if (!session) {
+    setStatus('Identifiants invalides. Vérifiez le courriel et le mot de passe.', 'error');
+    return;
+  }
+  setStatus(PASSWORD_SUCCESS_MESSAGE, 'ok');
+  redirectClean('./dashboard.html');
+}
+
+async function handleMagicLink(supabase, email) {
+  setStatus('Envoi du lien magique…');
+  const redirectTo = resolveEmailRedirectTo(window.location.href) || DEFAULT_PORTAL_ORIGIN;
+  await requestMagicLink(supabase, email, redirectTo);
+  setStatus(
+    'Demande envoyée. Vérifiez votre boîte de courriel (invitation seulement — aucun compte public).',
+    'ok',
+  );
+}
+
 async function onSubmit(event) {
   event.preventDefault();
   const email = emailInput.value.trim();
@@ -41,32 +115,23 @@ async function onSubmit(event) {
 
   const cfg = readPublicSupabaseConfig(window);
   if (!cfg.ok) {
-    setStatus(
-      'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).',
-      'error',
-    );
+    setStatus(missingConfigMessage(), 'error');
     return;
   }
 
   submitBtn.disabled = true;
-  setStatus('Envoi du lien magique…');
   try {
     const supabase = getPortalSupabase();
-    const redirectTo = resolveEmailRedirectTo(window.location.href) || DEFAULT_PORTAL_ORIGIN;
-    await requestMagicLink(supabase, email, redirectTo);
-    setStatus(
-      'Demande envoyée. Vérifiez votre boîte de courriel (invitation seulement — aucun compte public).',
-      'ok',
-    );
-  } catch (err) {
-    const formatted = formatLoginFailure(err);
-    if (formatted.kind === 'config') {
-      setStatus(formatted.message, 'error');
-    } else if (err?.name === 'TypeError' || /Failed to fetch|NetworkError|import/i.test(err?.message || '')) {
-      setStatus(`Erreur JavaScript : ${err?.message || String(err)}`, 'error');
+    if (authMode === 'password') {
+      await handlePasswordLogin(supabase, email);
     } else {
-      setStatus(formatted.message, 'error');
+      await handleMagicLink(supabase, email);
     }
+  } catch (err) {
+    showCaughtError(
+      err,
+      authMode === 'password' ? formatPasswordLoginFailure : formatLoginFailure,
+    );
   } finally {
     submitBtn.disabled = false;
   }
@@ -74,19 +139,19 @@ async function onSubmit(event) {
 
 async function boot() {
   clearStaleStatus();
+  applyMode('password');
+
+  modePasswordBtn.addEventListener('click', () => applyMode('password'));
+  modeMagicBtn.addEventListener('click', () => applyMode('magic'));
 
   const cfg = readPublicSupabaseConfig(window);
   if (!cfg.ok) {
-    setStatus(
-      'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).',
-      'error',
-    );
+    setStatus(missingConfigMessage(), 'error');
     form.addEventListener('submit', onSubmit);
     markFormReady();
     return;
   }
 
-  // Attach submit before session recovery so OTP never depends on recoverSession.
   form.addEventListener('submit', onSubmit);
   markFormReady();
 
