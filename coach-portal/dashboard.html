@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord Coach | KR Kinetics × Elevate</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <p class="brand">Espace privé — invitation seulement</p>
+    <div class="row" style="justify-content: space-between; margin-bottom: 12px;">
+      <h1>Tableau de bord</h1>
+      <button id="logout" type="button" class="secondary">Déconnexion</button>
+    </div>
+    <p class="lead">Organisation connectée, rôle et clients fictifs isolés par RLS.</p>
+
+    <section class="card">
+      <h2 style="margin-top:0;font-size:1.1rem;">Session</h2>
+      <dl id="session-meta" class="meta"></dl>
+      <div id="status" class="status hidden" role="status"></div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0;font-size:1.1rem;">Nouveau client fictif</h2>
+      <form id="create-form">
+        <label for="full_name">Nom</label>
+        <input id="full_name" name="full_name" required maxlength="120" placeholder="Client démo">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Données de test uniquement"></textarea>
+        <button type="submit">Créer</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0;font-size:1.1rem;">Clients de mon organisation</h2>
+      <table>
+        <thead>
+          <tr><th>Nom</th><th>Notes</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="clients-body">
+          <tr><td colspan="3" class="empty">Chargement…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script type="module" src="./assets/dashboard.js"></script>
+</body>
+</html>

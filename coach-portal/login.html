@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion Coach | KR Kinetics × Elevate</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <p class="brand">KR Kinetics × Elevate Fitness</p>
+    <h1>Connexion Coach</h1>
+    <p class="lead">Accès sur invitation uniquement. Aucune inscription publique.</p>
+    <section class="card">
+      <form id="login-form">
+        <label for="email">Courriel invité</label>
+        <input id="email" name="email" type="email" autocomplete="username" required placeholder="vous@exemple.com">
+        <button id="submit" type="submit">Recevoir un lien magique</button>
+      </form>
+      <div id="status" class="status hidden" role="status"></div>
+    </section>
+  </main>
+  <script type="module" src="./assets/login.js"></script>
+</body>
+</html>

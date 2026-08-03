@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portail Coach</title>
+  <script src="/config.js"></script>
+</head>
+<body>
+  <p>Redirection…</p>
+  <script type="module">
+    import { getSupabase } from './assets/supabase-client.js';
+    const supabase = getSupabase();
+    const { data: { session } } = await supabase.auth.getSession();
+    window.location.replace(session ? './dashboard.html' : './login.html');
+  </script>
+</body>
+</html>
