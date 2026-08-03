@@ -68,6 +68,11 @@ test('same-origin preview serves portal, workspace calculator, and public config
   assert.equal(moduleRes.status, 200);
   assert.match(moduleRes.text, /kr-kinetics/);
 
+  const storeMod = await fetchText('http://127.0.0.1:4197/src/coach/services/storage/supabase-client-dossier-store.mjs');
+  assert.equal(storeMod.status, 200);
+  assert.match(storeMod.text, /loadClientDossier/);
+  assert.match(storeMod.text, /saveClientDossier/);
+
   const dashJs = await fetchText('http://127.0.0.1:4197/assets/dashboard.js');
   assert.equal(dashJs.status, 200);
   assert.match(dashJs.text, /Ouvrir le dossier/);
