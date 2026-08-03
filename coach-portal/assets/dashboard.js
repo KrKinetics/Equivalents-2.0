@@ -1,4 +1,9 @@
-import { getSupabase } from './supabase-client.js';
+import {
+  getPortalSupabase,
+  recoverSession,
+  redirectPreservingAuthParams,
+  redirectClean,
+} from './auth-session.js';
 
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
@@ -24,9 +29,9 @@ function escapeHtml(value) {
 }
 
 async function requireSession() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const session = await recoverSession(supabase);
   if (!session) {
-    window.location.replace('./login.html');
+    redirectPreservingAuthParams('./login.html');
     return null;
   }
   return session;
@@ -113,7 +118,8 @@ async function deleteClient(id) {
 }
 
 async function boot() {
-  supabase = getSupabase();
+  setStatus('');
+  supabase = getPortalSupabase();
   const session = await requireSession();
   if (!session) return;
 
@@ -174,7 +180,7 @@ async function boot() {
 
   logoutBtn.addEventListener('click', async () => {
     await supabase.auth.signOut();
-    window.location.replace('./login.html');
+    redirectClean('./login.html');
   });
 }
 

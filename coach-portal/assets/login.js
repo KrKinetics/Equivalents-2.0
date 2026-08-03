@@ -1,4 +1,8 @@
-import { getSupabase } from './supabase-client.js';
+import {
+  getPortalSupabase,
+  recoverSession,
+  redirectClean,
+} from './auth-session.js';
 
 const form = document.getElementById('login-form');
 const emailInput = document.getElementById('email');
@@ -11,11 +15,17 @@ function setStatus(message, kind = '') {
   statusEl.classList.toggle('hidden', !message);
 }
 
+function clearStaleStatus() {
+  // Drop any leftover UI message (e.g. previous "email rate limit exceeded").
+  setStatus('');
+}
+
 async function boot() {
-  const supabase = getSupabase();
-  const { data: { session } } = await supabase.auth.getSession();
+  clearStaleStatus();
+  const supabase = getPortalSupabase();
+  const session = await recoverSession(supabase);
   if (session) {
-    window.location.replace('./dashboard.html');
+    redirectClean('./dashboard.html');
     return;
   }
 
@@ -29,7 +39,8 @@ async function boot() {
     submitBtn.disabled = true;
     setStatus('Envoi du lien magique…');
     try {
-      const redirectTo = new URL('./dashboard.html', window.location.href).href;
+      // Root URL keeps auth params; index.html recovers the session.
+      const redirectTo = new URL('./', window.location.href).href;
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
@@ -41,12 +52,13 @@ async function boot() {
       setStatus('Lien envoyé. Vérifiez votre boîte de courriel (invitation seulement — aucun compte public).', 'ok');
     } catch (err) {
       const msg = err?.message || String(err);
-      setStatus(
-        /signups? not allowed|user not found|unable to validate/i.test(msg)
-          ? 'Connexion refusée : seuls les utilisateurs invités peuvent se connecter.'
-          : `Échec : ${msg}`,
-        'error',
-      );
+      if (/rate limit/i.test(msg)) {
+        setStatus('Limite d’envoi atteinte. Attendez avant de redemander un lien (aucun nouvel envoi automatique).', 'error');
+      } else if (/signups? not allowed|user not found|unable to validate/i.test(msg)) {
+        setStatus('Connexion refusée : seuls les utilisateurs invités peuvent se connecter.', 'error');
+      } else {
+        setStatus(`Échec : ${msg}`, 'error');
+      }
     } finally {
       submitBtn.disabled = false;
     }

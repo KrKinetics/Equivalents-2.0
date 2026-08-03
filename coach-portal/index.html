@@ -7,12 +7,23 @@
   <script src="/config.js"></script>
 </head>
 <body>
-  <p>Redirection…</p>
+  <p>Vérification de la session…</p>
   <script type="module">
-    import { getSupabase } from './assets/supabase-client.js';
-    const supabase = getSupabase();
-    const { data: { session } } = await supabase.auth.getSession();
-    window.location.replace(session ? './dashboard.html' : './login.html');
+    import {
+      getPortalSupabase,
+      recoverSession,
+      redirectPreservingAuthParams,
+      redirectClean,
+    } from './assets/auth-session.js';
+
+    const supabase = getPortalSupabase();
+    // Never redirect to login before asking Supabase for a session from the URL.
+    const session = await recoverSession(supabase);
+    if (session) {
+      redirectClean('./dashboard.html');
+    } else {
+      redirectPreservingAuthParams('./login.html');
+    }
   </script>
 </body>
 </html>
