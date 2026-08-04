@@ -1,6 +1,10 @@
 # Dependencies
 node_modules/
 
+# Vercel Coach portal static assembly (generated at build)
+dist/coach-vercel/
+.vercel/
+
 # Temporary extraction and verification artifacts
 _xlsx_tmp/
 _plan.zip

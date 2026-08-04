@@ -1,0 +1,20 @@
+# Keep upload lean; build publishes only dist/coach-vercel via outputDirectory.
+reports/
+backups/
+screenshots/
+supabase/.temp/
+.coach-passwords.local
+.env
+.env.*
+!.env.example
+*.zip
+_xlsx_tmp/
+_mandat_extract/
+_science_ui_extract/
+_zip_elevate_dual_brand/
+verify-*/
+agent-transcripts/
+.cursor/
+*.xlsx
+Plan_*.pdf
+Equivalents-alimentaires-*.pdf

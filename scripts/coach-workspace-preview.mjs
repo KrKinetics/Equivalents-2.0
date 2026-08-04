@@ -16,6 +16,10 @@ import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { requireSupabasePublicEnv } from './load-env-local.mjs';
+import {
+  buildConfigJsSource,
+  injectWorkspaceBootstrap,
+} from './coach-portal-deploy-lib.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const portalDir = path.join(root, 'coach-portal');
@@ -42,10 +46,7 @@ function mime(filePath) {
 }
 
 function configJs() {
-  return `window.COACH_SUPABASE = Object.freeze(${JSON.stringify({
-    url,
-    publishableKey,
-  })});\n`;
+  return buildConfigJsSource({ url, publishableKey });
 }
 
 function calculatorReady() {
@@ -65,26 +66,6 @@ function ensureCalculatorBuilt() {
     stdio: 'inherit',
   });
   if (result.status !== 0) throw new Error('coach-calculator-build failed');
-}
-
-function injectWorkspaceBootstrap(html) {
-  if (html.includes('workspace-bootstrap.mjs')) return html;
-  const headSnippet = `
-<script src="/config.js"></script>
-<script type="module" src="/assets/workspace-bootstrap.mjs"></script>
-`;
-  // Static form in final HTML — outside #workspace-context-banner (JS rewrites that node).
-  const changeClientForm = `
-<form action="/dashboard.html" method="get">
-  <button type="submit">← Changer de client</button>
-</form>
-`;
-  let out = html.includes('</head>')
-    ? html.replace('</head>', `${headSnippet}</head>`)
-    : `${headSnippet}${html}`;
-  // First <body> only (document root); do not touch PDF string templates later in the file.
-  if (out.includes('<body>')) return out.replace('<body>', `<body>\n${changeClientForm}`);
-  return out;
 }
 
 function sendFile(res, abs, { transformHtml } = {}) {
