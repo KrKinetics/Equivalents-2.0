@@ -5,10 +5,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
+  WORKSPACE_ACCESS_DENIED_MESSAGE,
   WORKSPACE_CLIENT_SELECT_LABEL,
+  WORKSPACE_DASHBOARD_RETURN_LABEL,
   WORKSPACE_UNSAVED_SWITCH_MESSAGE,
   canonicalizePersistedDossierPayload,
   isPersistedDossierDirty,
+  lockWorkspaceAccessDenied,
   resolveWorkspaceOpenState,
   renderWorkspaceClientMenu,
   shouldProceedWorkspaceClientSwitch,
@@ -149,13 +152,43 @@ test('waitForWorkspaceCalculatorReady resolves after DOM + COACH_DATA settle', a
   assert.ok(frames >= 2);
 });
 
+test('access denied lock clears athlete_* and leaves only dashboard return', () => {
+  const dom = new JSDOM(`<!DOCTYPE html><body>
+    <form action="/dashboard.html" method="get"><button type="submit">← Changer de client</button></form>
+    <div id="calc-root">
+      <input id="nom_athlete" value="Secret Client">
+      <select id="liste_profils"><option value="athlete_Alex">Alex</option></select>
+      <button onclick="sauvegarderProfil()">Sauvegarder</button>
+      <button onclick="supprimerProfil()">Del</button>
+      <button onclick="exporterProfilJSON()">Export</button>
+      <button onclick="document.getElementById('import-profil').click()">Import</button>
+      <input id="import-profil" type="file">
+      <input id="age" value="41">
+    </div>
+  </body>`);
+  const result = lockWorkspaceAccessDenied(dom.window.document);
+  assert.equal(result.message, WORKSPACE_ACCESS_DENIED_MESSAGE);
+  const select = dom.window.document.getElementById('liste_profils');
+  assert.equal(select.options.length, 0);
+  assert.equal(select.hidden, true);
+  assert.equal(dom.window.document.getElementById('nom_athlete').value, '');
+  assert.equal(dom.window.document.getElementById('calc-root').hidden, true);
+  const formBtn = dom.window.document.querySelector('form[action="/dashboard.html"] button[type="submit"]');
+  assert.equal(formBtn.textContent, WORKSPACE_DASHBOARD_RETURN_LABEL);
+  assert.equal(formBtn.disabled, false);
+  assert.equal(formBtn.hidden, false);
+});
+
 test('bootstrap wires client selector + dirty confirm; dashboard form stays server HTML', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/workspace-bootstrap.mjs'), 'utf8');
   const preview = fs.readFileSync(path.join(root, 'scripts/coach-workspace-preview.mjs'), 'utf8');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/nutrition-data-tests.yml'), 'utf8');
   assert.match(src, /renderWorkspaceClientMenu/);
   assert.match(src, /shouldProceedWorkspaceClientSwitch/);
   assert.match(src, /getPersistedDossierPayload/);
   assert.match(src, /markCleanFromCurrent/);
+  assert.match(src, /enterAccessDeniedState|lockWorkspaceAccessDenied/);
+  assert.match(src, /WORKSPACE_ACCESS_DENIED_MESSAGE/);
   assert.match(src, /isPersistedDossierDirty|canonicalizePersistedDossierPayload/);
   assert.match(src, /fetchOrganizationClients/);
   assert.match(src, /workspaceOpenPath/);
@@ -165,4 +198,7 @@ test('bootstrap wires client selector + dirty confirm; dashboard form stays serv
   assert.doesNotMatch(src, /WORKSPACE_DOSSIER_OPTION_PREFIX|workspace-dossier:/);
   assert.match(preview, /action="\/dashboard\.html"/);
   assert.match(preview, /← Changer de client/);
+  assert.match(workflow, /coach-auth-tests:/);
+  assert.match(workflow, /npm run test:coach-auth/);
+  assert.match(workflow, /nutrition-tests:/);
 });

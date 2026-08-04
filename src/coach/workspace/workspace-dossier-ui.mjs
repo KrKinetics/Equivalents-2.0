@@ -118,6 +118,89 @@ export function shouldProceedWorkspaceClientSwitch({
     : { proceed: false, reason: 'cancelled' };
 }
 
+/** Generic denial copy — never disclose names, org ids, or existence of foreign clients. */
+export const WORKSPACE_ACCESS_DENIED_MESSAGE = 'Accès refusé ou client introuvable.';
+export const WORKSPACE_DASHBOARD_RETURN_LABEL = 'Retour au tableau de bord';
+
+/**
+ * Lock the calculator chrome after an access denial.
+ * Clears athlete_* options and disables save/import/export/delete/fields.
+ * Leaves only the server-rendered dashboard return form usable.
+ * @param {Document} [doc]
+ */
+export function lockWorkspaceAccessDenied(doc = globalThis.document) {
+  if (!doc?.body) return { message: WORKSPACE_ACCESS_DENIED_MESSAGE };
+
+  const select = doc.getElementById('liste_profils');
+  if (select) {
+    select.innerHTML = '';
+    select.value = '';
+    select.disabled = true;
+    select.hidden = true;
+    select.onchange = null;
+    select.removeAttribute('onchange');
+    select.setAttribute('aria-hidden', 'true');
+  }
+
+  const nom = doc.getElementById('nom_athlete');
+  if (nom) {
+    nom.value = '';
+    nom.disabled = true;
+    nom.readOnly = true;
+  }
+
+  const fileInput = doc.getElementById('import-profil');
+  if (fileInput) {
+    fileInput.value = '';
+    fileInput.disabled = true;
+    fileInput.hidden = true;
+  }
+
+  for (const btn of doc.querySelectorAll('button')) {
+    const onclick = btn.getAttribute('onclick') || '';
+    if (
+      /sauvegarderProfil|supprimerProfil|exporterProfilJSON|import-profil|importerProfilJSON/.test(onclick)
+      || btn.id === 'btn-export-pdf'
+    ) {
+      btn.disabled = true;
+      btn.hidden = true;
+      btn.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  // Hide calculator UI; keep banner + dashboard return form only.
+  for (const el of [...doc.body.children]) {
+    if (el.id === 'workspace-context-banner') continue;
+    const isDashForm = el.tagName === 'FORM'
+      && el.getAttribute('action') === '/dashboard.html';
+    if (isDashForm) {
+      el.hidden = false;
+      el.removeAttribute('aria-hidden');
+      const submit = el.querySelector('button[type="submit"]');
+      if (submit) {
+        submit.disabled = false;
+        submit.hidden = false;
+        submit.textContent = WORKSPACE_DASHBOARD_RETURN_LABEL;
+      }
+      continue;
+    }
+    el.hidden = true;
+    el.setAttribute('aria-hidden', 'true');
+    el.querySelectorAll('input, select, textarea, button').forEach((node) => {
+      node.disabled = true;
+      if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
+        if (node.type !== 'hidden' && node.type !== 'file') node.value = '';
+      }
+      if (node.tagName === 'SELECT') {
+        node.innerHTML = '';
+        node.value = '';
+      }
+    });
+  }
+
+  return { message: WORKSPACE_ACCESS_DENIED_MESSAGE };
+}
+
 /**
  * Wait until DOMContentLoaded handlers have run and calculator data is ready.
  */
