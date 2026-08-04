@@ -7,8 +7,33 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildWorkspaceStubProfile } from '../src/coach/workspace/workspace-client-stub.mjs';
+import {
+  PUBLIC_SITE_RETURN_LABEL,
+  PUBLIC_SITE_URL,
+} from '../coach-portal/assets/public-site.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+test('login page has a real return link to the public KR Kinetics site', () => {
+  const html = fs.readFileSync(path.join(root, 'coach-portal/login.html'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'coach-portal/assets/portal.css'), 'utf8');
+  const titleIdx = html.indexOf('<h1>Connexion Coach</h1>');
+  const linkIdx = html.indexOf('class="public-site-return"');
+  assert.ok(titleIdx > -1, 'expected Connexion Coach title');
+  assert.ok(linkIdx > -1 && linkIdx < titleIdx, 'return link must appear above Connexion Coach');
+  assert.match(
+    html,
+    new RegExp(
+      `<a\\s+class="public-site-return"\\s+href="${PUBLIC_SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">\\s*${PUBLIC_SITE_RETURN_LABEL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</a>`,
+    ),
+  );
+  assert.doesNotMatch(html, /public-site-return[^>]*target=/i);
+  assert.doesNotMatch(html, /history\.back\s*\(/);
+  assert.equal(PUBLIC_SITE_URL, 'https://site-web-test-gules.vercel.app/fr');
+  assert.equal(PUBLIC_SITE_RETURN_LABEL, '← Retour au site KR Kinetics');
+  assert.match(css, /\.public-site-return:hover\b/);
+  assert.match(css, /\.public-site-return:focus-visible\b/);
+});
 
 test('dashboard HTML uses production client copy', () => {
   const html = fs.readFileSync(path.join(root, 'coach-portal/dashboard.html'), 'utf8');
