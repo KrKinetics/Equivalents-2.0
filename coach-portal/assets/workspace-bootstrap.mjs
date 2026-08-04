@@ -18,6 +18,8 @@ import {
   waitForWorkspaceCalculatorReady,
   canonicalizePersistedDossierPayload,
   isPersistedDossierDirty,
+  lockWorkspaceAccessDenied,
+  WORKSPACE_ACCESS_DENIED_MESSAGE,
 } from '/src/coach/workspace/workspace-dossier-ui.mjs';
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
@@ -297,6 +299,27 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
   return { dossierStore, markCleanFromCurrent, refreshClientMenu, getPersistedDossierPayload, isDirty };
 }
 
+/**
+ * Full lock after denied/missing access — generic copy only, no client/org disclosure.
+ */
+async function enterAccessDeniedState() {
+  renderBanner(null, WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
+  setPersistStatus(WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
+  try {
+    await waitForWorkspaceCalculatorReady(() => window, 8000);
+  } catch {
+    // Calculator may be incomplete; still lock whatever is in the DOM.
+  }
+  lockWorkspaceAccessDenied(document);
+  // Neutralize historical calculator entry points that might rehydrate local profiles.
+  window.initProfils = function workspaceDeniedInitProfils() {};
+  window.sauvegarderProfil = function workspaceDeniedSave() {};
+  window.chargerProfil = function workspaceDeniedLoad() {};
+  window.supprimerProfil = function workspaceDeniedDelete() {};
+  window.appliquerProfilData = function workspaceDeniedApply() {};
+  window.importerProfilJSON = function workspaceDeniedImport() {};
+}
+
 async function bootWorkspace() {
   const clientId = clientIdFromLocation();
   if (!clientId) {
@@ -310,6 +333,7 @@ async function bootWorkspace() {
   const supabase = getPortalSupabase();
   const session = await recoverSession(supabase);
   if (!session) {
+    // No dossier apply before redirect — session recovery path unchanged.
     redirectClean(`/login.html?next=${encodeURIComponent(`/workspace/?client_id=${clientId}`)}`);
     return;
   }
@@ -317,7 +341,7 @@ async function bootWorkspace() {
   const membership = await loadMembership(supabase, session.user.id);
   const brandProbe = brandIdFromOrganizationSlug(membership.organization.slug);
   if (!brandProbe) {
-    renderBanner(null, `Organisation non prise en charge : ${membership.organization.slug}`, 'error');
+    await enterAccessDeniedState();
     return;
   }
 
@@ -325,8 +349,8 @@ async function bootWorkspace() {
   let ctx;
   try {
     ctx = assertWorkspaceClientAccess({ client, membership });
-  } catch (err) {
-    renderBanner(null, err.message || String(err), 'error');
+  } catch {
+    await enterAccessDeniedState();
     return;
   }
 
@@ -365,8 +389,7 @@ async function bootWorkspace() {
   }
 }
 
-bootWorkspace().catch((err) => {
+bootWorkspace().catch(async (err) => {
   console.error(err);
-  renderBanner(null, err.message || String(err), 'error');
-  setPersistStatus(`Erreur de chargement : ${err.message || err}`, 'error');
+  await enterAccessDeniedState();
 });

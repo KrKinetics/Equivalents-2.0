@@ -14,6 +14,7 @@ import {
   loadCoachPasswordsLocal,
   parseEnvFile,
   requireSupabasePublicEnv,
+  skipWithoutLiveSupabase,
 } from '../scripts/load-env-local.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -71,7 +72,8 @@ async function deleteClient(supabase, id) {
   await supabase.from('clients').delete().eq('id', id);
 }
 
-test('unknown user password login is refused (no auto-create)', async () => {
+test('unknown user password login is refused (no auto-create)', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   const supabase = anonClient();
   const email = `unknown-password-probe-${Date.now()}@example.invalid`;
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -83,6 +85,7 @@ test('unknown user password login is refused (no auto-create)', async () => {
 });
 
 test('wrong password is refused when KR credentials file is present', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   if (!passwordsAvailable()) {
     t.skip('.coach-passwords.local not present — set passwords first');
     return;
@@ -98,6 +101,7 @@ test('wrong password is refused when KR credentials file is present', async (t) 
 });
 
 test('KR and Elevate fictional clients are isolated by RLS', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   if (!passwordsAvailable()) {
     t.skip('.coach-passwords.local not present — set passwords first');
     return;
@@ -192,6 +196,7 @@ test('KR and Elevate fictional clients are isolated by RLS', async (t) => {
 });
 
 test('signOut clears session (logout)', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   if (!passwordsAvailable()) {
     t.skip('.coach-passwords.local not present — set passwords first');
     return;

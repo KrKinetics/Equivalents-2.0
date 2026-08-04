@@ -7,8 +7,11 @@ import { spawn } from 'node:child_process';
 import puppeteer from 'puppeteer';
 import { createClient } from '@supabase/supabase-js';
 import {
+  hasLiveSupabaseEnv,
   loadCoachPasswordsLocal,
+  mergeEnvLocalIntoProcess,
   requireSupabasePublicEnv,
+  skipWithoutLiveSupabase,
 } from '../scripts/load-env-local.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -98,10 +101,7 @@ async function waitWorkspaceReady(page) {
 }
 
 test('same-origin preview serves portal, workspace calculator, and public config', async (t) => {
-  if (!fs.existsSync(path.join(ROOT, '.env.local'))) {
-    t.skip('.env.local missing — skip live preview boot');
-    return;
-  }
+  if (skipWithoutLiveSupabase(t, ROOT)) return;
   const child = spawn(process.execPath, ['scripts/coach-workspace-preview.mjs'], {
     cwd: ROOT,
     env: { ...process.env, COACH_PORTAL_PORT: '4197' },
@@ -124,8 +124,9 @@ test('same-origin preview serves portal, workspace calculator, and public config
 });
 
 test('KR client selector switches clients; dirty confirm cancel/continue; Elevate isolated', async (t) => {
-  if (!fs.existsSync(path.join(ROOT, '.env.local'))) {
-    t.skip('.env.local missing');
+  mergeEnvLocalIntoProcess(ROOT);
+  if (!hasLiveSupabaseEnv()) {
+    t.skip('live Supabase env unavailable');
     return;
   }
   let kr;
@@ -347,16 +348,65 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   assert.equal(elevMenu.labels.some((n) => /Test persistance KR|test KR final|Client test KR/i.test(n)), false);
   assert.ok(elevMenu.values.every((id) => elevate.clients.some((c) => c.id === id)));
 
-  // Cross-org URL refused (no KR dossier leak).
+  // Cross-org URL refused — generic lock, no KR dossier leak.
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${source.id}`,
     { waitUntil: 'networkidle0', timeout: 60000 },
   );
-  const denied = await page.evaluate(() => ({
+  await page.waitForFunction(
+    () => /Accès refusé ou client introuvable/.test(
+      document.getElementById('workspace-context-banner')?.innerText || '',
+    ),
+    { timeout: 30000 },
+  );
+  const denied = await page.evaluate(() => {
+    const select = document.getElementById('liste_profils');
+    const formBtn = document.querySelector('form[action="/dashboard.html"] button[type="submit"]');
+    return {
+      banner: document.getElementById('workspace-context-banner')?.innerText || '',
+      nom: document.getElementById('nom_athlete')?.value || '',
+      age: document.getElementById('age')?.value || '',
+      selectOptions: select ? [...select.options].map((o) => o.value) : [],
+      selectHidden: !!select?.hidden,
+      saveHidden: !!document.querySelector('button[onclick*="sauvegarderProfil"]')?.hidden,
+      formLabel: (formBtn?.textContent || '').trim(),
+      bodyText: document.body?.innerText || '',
+    };
+  });
+  assert.match(denied.banner, /Accès refusé ou client introuvable/);
+  assert.doesNotMatch(denied.banner, /Test persistance KR|autre organisation|hors de votre/i);
+  assert.equal(denied.nom, '');
+  assert.equal(denied.selectOptions.some((v) => String(v).startsWith('athlete_')), false);
+  assert.equal(denied.selectHidden, true);
+  assert.equal(denied.saveHidden, true);
+  assert.equal(denied.formLabel, 'Retour au tableau de bord');
+  assert.doesNotMatch(denied.bodyText, /Test persistance KR/i);
+  assert.doesNotMatch(denied.banner, /kr-kinetics|elevate-fitness|organisation/i);
+
+  // Nonexistent client_id — same generic lock (no enumeration signal).
+  const fakeId = '00000000-0000-4000-8000-000000000099';
+  await page.goto(
+    `http://127.0.0.1:4198/workspace/?client_id=${fakeId}`,
+    { waitUntil: 'networkidle0', timeout: 60000 },
+  );
+  await page.waitForFunction(
+    () => /Accès refusé ou client introuvable/.test(
+      document.getElementById('workspace-context-banner')?.innerText || '',
+    ),
+    { timeout: 30000 },
+  );
+  const missing = await page.evaluate(() => ({
     banner: document.getElementById('workspace-context-banner')?.innerText || '',
-    nom: document.getElementById('nom_athlete')?.value || '',
+    formLabel: (document.querySelector('form[action="/dashboard.html"] button[type="submit"]')?.textContent || '').trim(),
   }));
-  assert.match(denied.banner, /refus|autre organisation|introuvable|hors de votre organisation/i);
-  assert.doesNotMatch(denied.nom, /Test persistance KR/i);
+  assert.match(missing.banner, /Accès refusé ou client introuvable/);
+  assert.equal(missing.formLabel, 'Retour au tableau de bord');
+
+  // Dashboard return still works from locked state.
+  await Promise.all([
+    page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 }),
+    page.click('form[action="/dashboard.html"] button[type="submit"]'),
+  ]);
+  assert.equal(new URL(page.url()).pathname, '/dashboard.html');
   assert.deepEqual(pageErrors, []);
 });
