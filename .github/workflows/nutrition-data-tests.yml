@@ -24,6 +24,9 @@ jobs:
   coach-auth-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # No Supabase secrets: live network tests must SKIP via hasLiveSupabaseEnv.
+    env:
+      COACH_IGNORE_ENV_LOCAL: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

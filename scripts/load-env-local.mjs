@@ -6,6 +6,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+/** When set to "1"/"true", .env.local is not read (CI / CI-simulation). */
+export const COACH_IGNORE_ENV_LOCAL = 'COACH_IGNORE_ENV_LOCAL';
+
 export function parseEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return null;
   const out = {};
@@ -27,37 +30,105 @@ export function parseEnvFile(filePath) {
   return out;
 }
 
-export function loadEnvLocal(rootDir) {
-  const filePath = path.join(rootDir, '.env.local');
-  const out = parseEnvFile(filePath);
-  if (!out) {
-    throw new Error('.env.local missing — copy .env.example and fill SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY');
-  }
-  return out;
+function shouldIgnoreEnvLocalFile() {
+  const flag = process.env[COACH_IGNORE_ENV_LOCAL];
+  return flag === '1' || flag === 'true';
 }
 
-export function requireSupabasePublicEnv(rootDir) {
-  const env = loadEnvLocal(rootDir);
-  const url = env.SUPABASE_URL || '';
-  const key = env.SUPABASE_PUBLISHABLE_KEY || '';
-  if (!url.startsWith('https://')) {
-    throw new Error('SUPABASE_URL must be set in .env.local and start with https://');
+/**
+ * Read .env.local when present. Missing file → {}. Never creates the file.
+ * Never considers or requires SUPABASE_SERVICE_ROLE_KEY.
+ */
+export function loadEnvLocal(rootDir) {
+  if (shouldIgnoreEnvLocalFile()) return {};
+  const filePath = path.join(rootDir, '.env.local');
+  return parseEnvFile(filePath) || {};
+}
+
+/**
+ * Merge .env.local into process.env for unset/empty keys only.
+ */
+export function mergeEnvLocalIntoProcess(rootDir) {
+  const file = loadEnvLocal(rootDir);
+  for (const [key, value] of Object.entries(file)) {
+    if (process.env[key] === undefined || process.env[key] === '') {
+      process.env[key] = value;
+    }
   }
-  if (!key.startsWith('sb_publishable_') && !key.startsWith('eyJ')) {
-    // Allow legacy anon JWT during transition; prefer sb_publishable_
-    throw new Error('SUPABASE_PUBLISHABLE_KEY must be set in .env.local (sb_publishable_…)');
-  }
-  if (Object.keys(env).some((k) => k.startsWith('NEXT_PUBLIC_SUPABASE_'))) {
+  return file;
+}
+
+export function isValidSupabaseUrl(url) {
+  return typeof url === 'string' && /^https:\/\/\S+$/.test(url.trim());
+}
+
+export function isValidPublishableKey(key) {
+  if (typeof key !== 'string') return false;
+  const trimmed = key.trim();
+  if (!trimmed) return false;
+  // Allow legacy anon JWT during transition; prefer sb_publishable_
+  return trimmed.startsWith('sb_publishable_') || trimmed.startsWith('eyJ');
+}
+
+/**
+ * Live network tests gate. Never uses SUPABASE_SERVICE_ROLE_KEY.
+ * @param {NodeJS.ProcessEnv | Record<string, string | undefined>} [env]
+ */
+export function hasLiveSupabaseEnv(env = process.env) {
+  return isValidSupabaseUrl(env.SUPABASE_URL || '')
+    && isValidPublishableKey(env.SUPABASE_PUBLISHABLE_KEY || '');
+}
+
+/**
+ * Resolve public Supabase credentials from process.env + optional .env.local.
+ * Returns null when live env is unavailable (no throw).
+ */
+export function resolveSupabasePublicEnv(rootDir) {
+  const file = mergeEnvLocalIntoProcess(rootDir);
+  if (Object.keys(file).some((k) => k.startsWith('NEXT_PUBLIC_SUPABASE_'))) {
     throw new Error('NEXT_PUBLIC_SUPABASE_* variables are not used in this project');
   }
-  return { url, publishableKey: key };
+  if (Object.keys(process.env).some((k) => k.startsWith('NEXT_PUBLIC_SUPABASE_'))) {
+    throw new Error('NEXT_PUBLIC_SUPABASE_* variables are not used in this project');
+  }
+  if (!hasLiveSupabaseEnv()) return null;
+  return {
+    url: String(process.env.SUPABASE_URL).trim(),
+    publishableKey: String(process.env.SUPABASE_PUBLISHABLE_KEY).trim(),
+  };
+}
+
+/**
+ * For preview/admin scripts that must have live credentials.
+ */
+export function requireSupabasePublicEnv(rootDir) {
+  const resolved = resolveSupabasePublicEnv(rootDir);
+  if (!resolved) {
+    throw new Error(
+      'SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY must be set (via .env.local or environment) with a valid https URL and publishable key',
+    );
+  }
+  return resolved;
+}
+
+/**
+ * Skip helper for tests that hit the real Supabase project.
+ * @returns {boolean} true when the test was skipped
+ */
+export function skipWithoutLiveSupabase(t, rootDir) {
+  mergeEnvLocalIntoProcess(rootDir);
+  if (!hasLiveSupabaseEnv()) {
+    t.skip('live Supabase env unavailable');
+    return true;
+  }
+  return false;
 }
 
 /** Admin-only. Never pass this key into browser config. */
 export function requireSupabaseServiceRoleEnv(rootDir) {
-  const env = loadEnvLocal(rootDir);
+  const env = mergeEnvLocalIntoProcess(rootDir);
   const { url } = requireSupabasePublicEnv(rootDir);
-  const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_SERVICE_ROLE_KEY || '';
   if (!serviceRoleKey) {
     throw new Error('SUPABASE_SERVICE_ROLE_KEY missing in .env.local (admin scripts only)');
   }

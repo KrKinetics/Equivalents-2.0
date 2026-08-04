@@ -7,8 +7,11 @@ import { spawn } from 'node:child_process';
 import puppeteer from 'puppeteer';
 import { createClient } from '@supabase/supabase-js';
 import {
+  hasLiveSupabaseEnv,
   loadCoachPasswordsLocal,
+  mergeEnvLocalIntoProcess,
   requireSupabasePublicEnv,
+  skipWithoutLiveSupabase,
 } from '../scripts/load-env-local.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -98,10 +101,7 @@ async function waitWorkspaceReady(page) {
 }
 
 test('same-origin preview serves portal, workspace calculator, and public config', async (t) => {
-  if (!fs.existsSync(path.join(ROOT, '.env.local'))) {
-    t.skip('.env.local missing — skip live preview boot');
-    return;
-  }
+  if (skipWithoutLiveSupabase(t, ROOT)) return;
   const child = spawn(process.execPath, ['scripts/coach-workspace-preview.mjs'], {
     cwd: ROOT,
     env: { ...process.env, COACH_PORTAL_PORT: '4197' },
@@ -124,8 +124,9 @@ test('same-origin preview serves portal, workspace calculator, and public config
 });
 
 test('KR client selector switches clients; dirty confirm cancel/continue; Elevate isolated', async (t) => {
-  if (!fs.existsSync(path.join(ROOT, '.env.local'))) {
-    t.skip('.env.local missing');
+  mergeEnvLocalIntoProcess(ROOT);
+  if (!hasLiveSupabaseEnv()) {
+    t.skip('live Supabase env unavailable');
     return;
   }
   let kr;

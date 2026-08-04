@@ -16,6 +16,7 @@ import {
   coachPasswordsLocalPath,
   loadCoachPasswordsLocal,
   requireSupabasePublicEnv,
+  skipWithoutLiveSupabase,
 } from '../scripts/load-env-local.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -52,6 +53,7 @@ async function membershipFor(supabase, userId) {
 }
 
 test('live: KR cannot open Elevate client; Elevate cannot open KR client', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   if (!fs.existsSync(coachPasswordsLocalPath(root))) {
     t.skip('.coach-passwords.local missing');
     return;

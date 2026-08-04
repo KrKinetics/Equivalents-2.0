@@ -12,6 +12,7 @@ import {
   coachPasswordsLocalPath,
   loadCoachPasswordsLocal,
   requireSupabasePublicEnv,
+  skipWithoutLiveSupabase,
 } from '../scripts/load-env-local.mjs';
 import { createSupabaseClientDossierStore } from '../src/coach/services/storage/supabase-client-dossier-store.mjs';
 import { validateDossierPayload } from '../src/coach/services/storage/dossier-schema.mjs';
@@ -104,7 +105,8 @@ test('invalid payload is refused by validator before network', () => {
   assert.equal(validateDossierPayload(samplePayload('ok')).ok, true);
 });
 
-test('live: anon cannot read or write client_dossiers', async () => {
+test('live: anon cannot read or write client_dossiers', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   const supabase = anonClient();
   const store = createSupabaseClientDossierStore(supabase);
   const { data, error } = await supabase.from('client_dossiers').select('id').limit(5);
@@ -121,6 +123,7 @@ test('live: anon cannot read or write client_dossiers', async () => {
 });
 
 test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   if (!fs.existsSync(coachPasswordsLocalPath(root))) {
     t.skip('.coach-passwords.local missing');
     return;
@@ -233,7 +236,8 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
   assert.ok(moveErr, 'expected org move to fail');
 });
 
-test('live: save without session is refused', async () => {
+test('live: save without session is refused', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
   const supabase = anonClient();
   const { data: sessionData } = await supabase.auth.getSession();
   assert.equal(sessionData.session, null);
