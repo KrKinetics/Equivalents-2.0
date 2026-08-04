@@ -14,7 +14,7 @@
       <h1>Tableau de bord</h1>
       <button id="logout" type="button" class="secondary">Déconnexion</button>
     </div>
-    <p class="lead">Organisation connectée, rôle et clients fictifs isolés par RLS.</p>
+    <p class="lead">Organisation connectée, rôle et clients isolés et protégés par organisation.</p>
 
     <section class="card">
       <h2 style="margin-top:0;font-size:1.1rem;">Session</h2>
@@ -23,12 +23,12 @@
     </section>
 
     <section class="card">
-      <h2 style="margin-top:0;font-size:1.1rem;">Nouveau client fictif</h2>
+      <h2 style="margin-top:0;font-size:1.1rem;">Nouveau client</h2>
       <form id="create-form">
         <label for="full_name">Nom</label>
-        <input id="full_name" name="full_name" required maxlength="120" placeholder="Client démo">
+        <input id="full_name" name="full_name" required maxlength="120" placeholder="Nom complet du client">
         <label for="notes">Notes</label>
-        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Données de test uniquement"></textarea>
+        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Notes internes — facultatif"></textarea>
         <button type="submit">Créer</button>
       </form>
     </section>

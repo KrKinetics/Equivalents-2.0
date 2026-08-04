@@ -73,7 +73,7 @@ async function loadClients() {
     .order('created_at', { ascending: false });
   if (error) throw error;
   if (!data?.length) {
-    clientsBody.innerHTML = '<tr><td colspan="3" class="empty">Aucun client fictif pour cette organisation.</td></tr>';
+    clientsBody.innerHTML = '<tr><td colspan="3" class="empty">Aucun client pour cette organisation.</td></tr>';
     return;
   }
   clientsBody.innerHTML = data.map((row) => {
@@ -131,7 +131,7 @@ async function boot() {
   membership = await loadMembership(session.user.id);
   renderMeta(session, membership);
   await loadClients();
-  setStatus('Session active — isolation RLS par organisation.', 'ok');
+  setStatus('Session active — accès sécurisé à votre organisation.', 'ok');
 
   createForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -145,7 +145,7 @@ async function boot() {
       await createClient(fullName, notes);
       createForm.reset();
       await loadClients();
-      setStatus('Client fictif créé dans votre organisation seulement.', 'ok');
+      setStatus('Client créé dans votre organisation seulement.', 'ok');
     } catch (err) {
       setStatus(`Création refusée : ${err.message || err}`, 'error');
     }
@@ -156,11 +156,11 @@ async function boot() {
     if (!row) return;
     const id = row.getAttribute('data-id');
     if (event.target.classList.contains('btn-delete')) {
-      if (!confirm('Supprimer ce client fictif ?')) return;
+      if (!confirm('Supprimer ce client ?')) return;
       try {
         await deleteClient(id);
         await loadClients();
-        setStatus('Client fictif supprimé.', 'ok');
+        setStatus('Client supprimé.', 'ok');
       } catch (err) {
         setStatus(`Suppression refusée : ${err.message || err}`, 'error');
       }
@@ -169,14 +169,14 @@ async function boot() {
     if (event.target.classList.contains('btn-edit')) {
       const currentName = row.children[0].textContent;
       const currentNotes = row.children[1].textContent;
-      const fullName = prompt('Nom du client fictif :', currentName);
+      const fullName = prompt('Nom du client :', currentName);
       if (fullName == null) return;
       const notes = prompt('Notes :', currentNotes);
       if (notes == null) return;
       try {
         await updateClient(id, fullName.trim(), notes.trim());
         await loadClients();
-        setStatus('Client fictif mis à jour.', 'ok');
+        setStatus('Client mis à jour.', 'ok');
       } catch (err) {
         setStatus(`Modification refusée : ${err.message || err}`, 'error');
       }

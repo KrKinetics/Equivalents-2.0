@@ -12,7 +12,7 @@ const EMPTY_BANQUE = Object.freeze({
  * @returns {object}
  */
 export function buildWorkspaceStubProfile(input) {
-  const fullName = String(input.fullName || '').trim() || 'Client fictif';
+  const fullName = String(input.fullName || '').trim() || 'Client';
   const notes = typeof input.notes === 'string' ? input.notes.trim() : '';
   return {
     version: 3,
@@ -35,8 +35,8 @@ export function buildWorkspaceStubProfile(input) {
     proteinesPct: 25,
     jourReposActif: false,
     coachNotes: notes
-      ? `Dossier workspace fictif — ${notes}`
-      : 'Dossier workspace fictif — à compléter avec le coach.',
+      ? `Dossier client — ${notes}`
+      : 'Dossier client — à compléter avec le coach.',
     workspaceMeta: {
       clientId: input.clientId || null,
       organizationSlug: input.organizationSlug || null,
