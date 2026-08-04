@@ -29,7 +29,7 @@ test('login page has a real return link to the public KR Kinetics site', () => {
   );
   assert.doesNotMatch(html, /public-site-return[^>]*target=/i);
   assert.doesNotMatch(html, /history\.back\s*\(/);
-  assert.equal(PUBLIC_SITE_URL, 'https://site-web-test-gules.vercel.app/fr');
+  assert.equal(PUBLIC_SITE_URL, 'https://www.krkinetics.com/fr');
   assert.equal(PUBLIC_SITE_RETURN_LABEL, '← Retour au site KR Kinetics');
   assert.match(css, /\.public-site-return:hover\b/);
   assert.match(css, /\.public-site-return:focus-visible\b/);
