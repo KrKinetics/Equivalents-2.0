@@ -5,6 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DEFAULT_PORTAL_ORIGIN,
+  MAGIC_LINK_UNIFORM_MESSAGE,
   buildSignInWithOtpPayload,
   formatLoginFailure,
   readPublicSupabaseConfig,
@@ -77,7 +78,7 @@ test('present config is non-empty without logging secrets', () => {
   assert.ok(cfg.publishableKey.length > 0);
 });
 
-test('Supabase error is displayed', async () => {
+test('Supabase errors map to uniform Magic Link message (anti-enumeration)', async () => {
   const supabase = {
     auth: {
       async signInWithOtp() {
@@ -86,9 +87,15 @@ test('Supabase error is displayed', async () => {
     },
   };
   await assert.rejects(() => requestMagicLink(supabase, 'x@y.z'), /rate limit/i);
-  const formatted = formatLoginFailure(new Error('Email rate limit exceeded'));
-  assert.equal(formatted.kind, 'supabase');
-  assert.match(formatted.message, /Limite d’envoi|rate/i);
+  for (const msg of [
+    'Email rate limit exceeded',
+    'Signups not allowed for otp',
+    'User not found',
+  ]) {
+    const formatted = formatLoginFailure(new Error(msg));
+    assert.equal(formatted.kind, 'supabase');
+    assert.equal(formatted.message, MAGIC_LINK_UNIFORM_MESSAGE);
+  }
 });
 
 test('success path returns without throwing', async () => {

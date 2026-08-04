@@ -77,9 +77,12 @@ test('vercel.json keeps required routes without catch-all HTML rewrite', () => {
   assert.equal(cfg.buildCommand, 'npm run coach:vercel:build');
   assert.equal(cfg.outputDirectory, 'dist/coach-vercel');
   assert.ok(Array.isArray(cfg.rewrites));
-  assert.equal(cfg.rewrites.length, 1);
-  assert.equal(cfg.rewrites[0].source, '/workspace');
-  assert.equal(cfg.rewrites[0].destination, '/workspace/index.html');
+  assert.ok(
+    cfg.rewrites.some((r) => r.source === '/workspace' && r.destination === '/workspace/index.html'),
+  );
+  assert.ok(
+    cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' && r.destination === '/api/coach-data'),
+  );
   // No SPA fallback that would turn missing assets into 200 HTML.
   assert.equal(
     cfg.rewrites.some((r) => r.source === '/(.*)' || r.source === '/:path*' || r.destination === '/index.html'),
@@ -103,7 +106,6 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'config.js',
     'assets/workspace-bootstrap.mjs',
     'assets/portal.css',
-    'workspace/coach-data.json',
     'workspace/assets/logo-kr-kinetics-horizontal.png',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/services/storage/supabase-client-dossier-store.mjs',
@@ -133,6 +135,8 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
   assert.equal(fs.existsSync(path.join(outDir, '.env.local')), false);
   assert.equal(fs.existsSync(path.join(outDir, 'node_modules')), false);
   assert.equal(fs.existsSync(path.join(outDir, 'tests')), false);
+  // Phase 1: food bank must not be a public static asset.
+  assert.equal(fs.existsSync(path.join(outDir, 'workspace', 'coach-data.json')), false);
 });
 
 test('buildCoachVercelBundle fails when public env is absent', () => {

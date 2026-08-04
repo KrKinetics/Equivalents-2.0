@@ -110,17 +110,41 @@ test('same-origin preview serves portal, workspace calculator, and public config
   t.after(() => { child.kill('SIGTERM'); });
   await waitForMatch(child, /Coach workspace \(same-origin\)/);
 
-  const portal = await (await fetch('http://127.0.0.1:4197/dashboard.html')).text();
-  assert.match(portal, /Clients de mon organisation/);
+  const login = await (await fetch('http://127.0.0.1:4197/login.html')).text();
+  assert.match(login, /Connexion Coach/);
 
-  const workspace = await (await fetch('http://127.0.0.1:4197/workspace/')).text();
-  assert.match(workspace, /workspace-bootstrap\.mjs/);
-  assert.match(workspace, FORM_RE);
+  const dashAnon = await fetch('http://127.0.0.1:4197/dashboard.html', {
+    redirect: 'manual',
+    headers: { Accept: 'text/html' },
+  });
+  assert.ok([302, 401].includes(dashAnon.status), `dashboard anon status ${dashAnon.status}`);
 
-  const bootstrap = await (await fetch('http://127.0.0.1:4197/assets/workspace-bootstrap.mjs')).text();
-  assert.match(bootstrap, /renderWorkspaceClientMenu|fetchOrganizationClients/);
-  assert.doesNotMatch(bootstrap, /← Retour au portail|workspace-return-portal/);
-  assert.doesNotMatch(bootstrap, /listProfileKeys\s*\(/);
+  const workspaceAnon = await fetch('http://127.0.0.1:4197/workspace/', {
+    redirect: 'manual',
+    headers: { Accept: 'text/html' },
+  });
+  assert.ok([302, 401].includes(workspaceAnon.status), `workspace anon status ${workspaceAnon.status}`);
+
+  const coachDataAnon = await fetch('http://127.0.0.1:4197/workspace/coach-data.json', {
+    redirect: 'manual',
+  });
+  assert.ok(
+    [401, 403, 404].includes(coachDataAnon.status),
+    `coach-data anon status ${coachDataAnon.status}`,
+  );
+
+  const apiDataAnon = await fetch('http://127.0.0.1:4197/api/coach-data');
+  assert.equal(apiDataAnon.status, 401);
+
+  // bootstrap module itself is protected; assert source on disk still contains expected APIs
+  const bootstrapDisk = fs.readFileSync(
+    path.join(ROOT, 'coach-portal/assets/workspace-bootstrap.mjs'),
+    'utf8',
+  );
+  assert.match(bootstrapDisk, /renderWorkspaceClientMenu|fetchOrganizationClients/);
+  assert.doesNotMatch(bootstrapDisk, /← Retour au portail|workspace-return-portal/);
+  assert.doesNotMatch(bootstrapDisk, /listProfileKeys\s*\(/);
+  void FORM_RE;
 });
 
 test('KR client selector switches clients; dirty confirm cancel/continue; Elevate isolated', async (t) => {

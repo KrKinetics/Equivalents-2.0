@@ -2837,7 +2837,11 @@ window.COACH_DATA = null;
 
 async function chargerCoachData() {
     try {
-        const res = await fetch('./coach-data.json', { cache: 'no-store' });
+        // Portal/workspace: authenticated API (Phase 1). Offline coach:preview may fall back to local JSON.
+        let res = await fetch('/api/coach-data', { cache: 'no-store', credentials: 'include' });
+        if (!res.ok) {
+            res = await fetch('./coach-data.json', { cache: 'no-store' });
+        }
         if (!res.ok) throw new Error('HTTP ' + res.status);
         window.COACH_DATA = await res.json();
         initialiserGuideEquivalents();

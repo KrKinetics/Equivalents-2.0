@@ -1,11 +1,12 @@
 import {
+  bindServerSessionCookieSync,
   getPortalSupabase,
   recoverSession,
   redirectClean,
 } from './auth-session.js';
 import {
   DEFAULT_PORTAL_ORIGIN,
-  formatLoginFailure,
+  MAGIC_LINK_UNIFORM_MESSAGE,
   readPublicSupabaseConfig,
   requestMagicLink,
   resolveEmailRedirectTo,
@@ -15,6 +16,7 @@ import {
   formatPasswordLoginFailure,
   signInWithPassword,
 } from './login-password.mjs';
+import { syncServerSessionCookie } from './session-cookie.mjs';
 
 const form = document.getElementById('login-form');
 const emailInput = document.getElementById('email');
@@ -103,17 +105,20 @@ async function handlePasswordLogin(supabase, email) {
     return;
   }
   setStatus(PASSWORD_SUCCESS_MESSAGE, 'ok');
+  await syncServerSessionCookie(session);
   redirectClean(safeNextPath());
 }
 
 async function handleMagicLink(supabase, email) {
+  // Anti-enumeration: always show the same success copy (invited, unknown, rate-limit, provider errors).
   setStatus('Envoi du lien magique…');
   const redirectTo = resolveEmailRedirectTo(window.location.href) || DEFAULT_PORTAL_ORIGIN;
-  await requestMagicLink(supabase, email, redirectTo);
-  setStatus(
-    'Demande envoyée. Vérifiez votre boîte de courriel (invitation seulement — aucun compte public).',
-    'ok',
-  );
+  try {
+    await requestMagicLink(supabase, email, redirectTo);
+  } catch {
+    // Swallow all provider outcomes for Magic Link UX uniformity.
+  }
+  setStatus(MAGIC_LINK_UNIFORM_MESSAGE, 'ok');
 }
 
 async function onSubmit(event) {
@@ -139,10 +144,12 @@ async function onSubmit(event) {
       await handleMagicLink(supabase, email);
     }
   } catch (err) {
-    showCaughtError(
-      err,
-      authMode === 'password' ? formatPasswordLoginFailure : formatLoginFailure,
-    );
+    if (authMode === 'magic') {
+      // Defense in depth: Magic Link never surfaces distinct provider outcomes.
+      setStatus(MAGIC_LINK_UNIFORM_MESSAGE, 'ok');
+    } else {
+      showCaughtError(err, formatPasswordLoginFailure);
+    }
   } finally {
     submitBtn.disabled = false;
   }
@@ -168,6 +175,7 @@ async function boot() {
 
   try {
     const supabase = getPortalSupabase();
+    bindServerSessionCookieSync(supabase);
     const session = await recoverSession(supabase);
     if (session) {
       redirectClean(safeNextPath());

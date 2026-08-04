@@ -119,6 +119,10 @@ export function assertDeployTreeSafe(outDir) {
     '.env.production',
     '.coach-passwords.local',
   ]);
+  const publicCoachData = path.join(outDir, 'workspace', 'coach-data.json');
+  if (fs.existsSync(publicCoachData)) {
+    throw new Error('Deploy tree must not include public workspace/coach-data.json (use /api/coach-data)');
+  }
   const stack = [outDir];
   while (stack.length) {
     const dir = stack.pop();
