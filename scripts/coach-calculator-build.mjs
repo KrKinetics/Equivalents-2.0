@@ -214,12 +214,19 @@ window.COACH_DATA = null;
 
 async function chargerCoachData() {
     try {
-        // Portal/workspace: authenticated API (Phase 1). Offline coach:preview may fall back to local JSON.
-        let res = await fetch('/api/coach-data', { cache: 'no-store', credentials: 'include' });
-        if (!res.ok) {
-            res = await fetch('./coach-data.json', { cache: 'no-store' });
+        // Portal /workspace: authenticated API first (static bank is not published).
+        // Standalone coach-calculator (local nutrition tests / offline): local JSON first
+        // so browsers do not log a failed /api/coach-data 404 before the fallback succeeds.
+        const underWorkspace = location.pathname.includes('/workspace');
+        const urls = underWorkspace
+            ? ['/api/coach-data', './coach-data.json']
+            : ['./coach-data.json', '/api/coach-data'];
+        let res = null;
+        for (const url of urls) {
+            res = await fetch(url, { cache: 'no-store', credentials: 'include' });
+            if (res.ok) break;
         }
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res || !res.ok) throw new Error('HTTP ' + (res ? res.status : '0'));
         window.COACH_DATA = await res.json();
         initialiserGuideEquivalents();
     } catch (err) {

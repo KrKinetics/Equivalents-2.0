@@ -21,6 +21,7 @@ This phase is **not** the final protection of nutrition IP against an authorized
 3. **`GET /api/coach-data`** returns the food bank only to authenticated org members (`Cache-Control: private, no-store`).
 4. **Static tree** no longer contains `workspace/coach-data.json`.
 5. Browser `requireSession` remains as defense in depth.
+6. Calculator load order: under `/workspace` prefer `/api/coach-data`; standalone `coach-calculator/` prefers local `./coach-data.json` (offline tests / preview) then the API.
 
 ### Protected routes
 

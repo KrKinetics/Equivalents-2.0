@@ -127,6 +127,7 @@ test('vercel bundle excludes public workspace/coach-data.json and keeps no servi
   assert.doesNotMatch(config, /service_role|SERVICE_ROLE/);
   const html = fs.readFileSync(path.join(outDir, 'workspace', 'index.html'), 'utf8');
   assert.match(html, /\/api\/coach-data/);
+  assert.match(html, /pathname\.includes\('\/workspace'\)/);
 });
 
 test('clients organization_id immutability migration is present', () => {
