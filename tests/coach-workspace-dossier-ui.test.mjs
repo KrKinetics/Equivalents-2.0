@@ -182,6 +182,7 @@ test('access denied lock clears athlete_* and leaves only dashboard return', () 
 test('bootstrap wires client selector + dirty confirm; dashboard form stays server HTML', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/workspace-bootstrap.mjs'), 'utf8');
   const preview = fs.readFileSync(path.join(root, 'scripts/coach-workspace-preview.mjs'), 'utf8');
+  const deployLib = fs.readFileSync(path.join(root, 'scripts/coach-portal-deploy-lib.mjs'), 'utf8');
   const workflow = fs.readFileSync(path.join(root, '.github/workflows/nutrition-data-tests.yml'), 'utf8');
   assert.match(src, /renderWorkspaceClientMenu/);
   assert.match(src, /shouldProceedWorkspaceClientSwitch/);
@@ -196,8 +197,9 @@ test('bootstrap wires client selector + dirty confirm; dashboard form stays serv
   assert.doesNotMatch(src, /← Retour au portail|workspace-return-portal|history\.back\(/);
   assert.doesNotMatch(src, /listProfileKeys\s*\(/);
   assert.doesNotMatch(src, /WORKSPACE_DOSSIER_OPTION_PREFIX|workspace-dossier:/);
-  assert.match(preview, /action="\/dashboard\.html"/);
-  assert.match(preview, /← Changer de client/);
+  assert.match(preview, /injectWorkspaceBootstrap/);
+  assert.match(deployLib, /action="\/dashboard\.html"/);
+  assert.match(deployLib, /← Changer de client/);
   assert.match(workflow, /coach-auth-tests:/);
   assert.match(workflow, /npm run test:coach-auth/);
   assert.match(workflow, /nutrition-tests:/);
