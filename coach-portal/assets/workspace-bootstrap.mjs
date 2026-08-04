@@ -323,7 +323,7 @@ async function enterAccessDeniedState() {
 async function bootWorkspace() {
   const clientId = clientIdFromLocation();
   if (!clientId) {
-    renderBanner(null, 'Ouvrez un client fictif depuis le portail (bouton « Ouvrir le dossier »).', 'error');
+    renderBanner(null, 'Ouvrez un client depuis le portail (bouton « Ouvrir le dossier »).', 'error');
     return;
   }
 
