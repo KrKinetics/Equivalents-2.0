@@ -9,13 +9,15 @@ import { brandIdFromOrganizationSlug } from '/src/coach/workspace/org-brand.mjs'
 import {
   assertWorkspaceClientAccess,
   parseClientIdParam,
+  workspaceOpenPath,
 } from '/src/coach/workspace/workspace-access.mjs';
 import {
   resolveWorkspaceOpenState,
-  selectWorkspaceDossierInMenu,
+  renderWorkspaceClientMenu,
+  shouldProceedWorkspaceClientSwitch,
   waitForWorkspaceCalculatorReady,
-  workspaceDossierOptionValue,
-  WORKSPACE_DOSSIER_OPTION_PREFIX,
+  canonicalizePersistedDossierPayload,
+  isPersistedDossierDirty,
 } from '/src/coach/workspace/workspace-dossier-ui.mjs';
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
@@ -67,18 +69,15 @@ function setPersistStatus(message, kind = 'ok') {
   status.style.color = kind === 'error' ? '#fecaca' : kind === 'busy' ? '#fde68a' : '#86efac';
 }
 
-function portalReturnLinkHtml() {
-  return `<a href="/dashboard.html" id="workspace-return-portal" style="color:#93c5fd;font-weight:700;white-space:nowrap;">← Retour au portail</a>`;
-}
-
 function renderBanner(ctx, message, kind = 'ok') {
   const el = ensureBanner();
   const color = kind === 'error' ? '#fecaca' : '#e2e8f0';
   const border = kind === 'error' ? '#dc2626' : '#ED1136';
   el.style.borderBottomColor = border;
   el.style.color = color;
+  // Portal return control is server-injected HTML; banner innerHTML must not own it.
   if (!ctx) {
-    el.innerHTML = `<span>${escapeHtml(message)}</span>${portalReturnLinkHtml()}`;
+    el.innerHTML = `<span>${escapeHtml(message)}</span>`;
     return;
   }
   el.innerHTML = `
@@ -88,7 +87,6 @@ function renderBanner(ctx, message, kind = 'ok') {
       · Marque PDF : <strong>${escapeHtml(ctx.brandId === 'elevate' ? 'Elevate Fitness' : 'KR Kinetics')}</strong>
       · Rôle : ${escapeHtml(ctx.role)}
     </span>
-    ${portalReturnLinkHtml()}
   `;
   ensureStatusSlot(el);
   if (message) setPersistStatus(message, kind === 'error' ? 'error' : kind === 'busy' ? 'busy' : 'ok');
@@ -128,6 +126,26 @@ async function fetchClient(supabase, clientId) {
   return data;
 }
 
+/** Clients visible to the current session via RLS (same org only). */
+async function fetchOrganizationClients(supabase, organizationId) {
+  const { data, error } = await supabase
+    .from('clients')
+    .select('id, full_name, organization_id, is_fictional')
+    .eq('organization_id', organizationId)
+    .eq('is_fictional', true)
+    .order('full_name', { ascending: true });
+  if (error) throw error;
+  return data || [];
+}
+
+function ensureCurrentClientListed(clients, ctx) {
+  if (clients.some((row) => row.id === ctx.clientId)) return clients;
+  return [
+    ...clients,
+    { id: ctx.clientId, full_name: ctx.fullName, organization_id: ctx.organizationId, is_fictional: true },
+  ];
+}
+
 function applyWorkspacePayload(payload, ctx) {
   const prepared = attachWorkspaceMeta(payload, {
     clientId: ctx.clientId,
@@ -136,28 +154,63 @@ function applyWorkspacePayload(payload, ctx) {
   });
   const displayName = String(prepared.nom || ctx.fullName).trim() || ctx.fullName;
   window.appliquerProfilData(prepared, displayName);
-  selectWorkspaceDossierInMenu(document.getElementById('liste_profils'), {
-    clientId: ctx.clientId,
-    label: displayName,
-  });
+  const select = document.getElementById('liste_profils');
+  if (select) select.value = ctx.clientId;
   return displayName;
 }
 
 /**
- * Workspace persistence: Supabase SoT for save/load; JSON import/export stay UI-only until Save.
+ * Workspace persistence + org client selector (replaces offline profile picker).
  */
-function installWorkspacePersistence(supabase, ctx, userId) {
+function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
   const dossierStore = createSupabaseClientDossierStore(supabase);
   const localStore = window.CoachClientProfileStore;
+  /** @type {object|null} last successfully loaded/saved canonical dossier payload */
+  let cleanPayload = null;
+  const clients = ensureCurrentClientListed(orgClients, ctx);
+
+  /** Same payload shape written to Supabase — excludes client selector / chrome. */
+  function getPersistedDossierPayload() {
+    const nom = (document.getElementById('nom_athlete')?.value || '').trim() || ctx.fullName;
+    const raw = window.getProfilData(nom);
+    return attachWorkspaceMeta(raw, {
+      clientId: ctx.clientId,
+      organizationSlug: ctx.organizationSlug,
+      fullName: ctx.fullName,
+    });
+  }
+
+  function refreshClientMenu() {
+    const select = document.getElementById('liste_profils');
+    renderWorkspaceClientMenu(select, {
+      clients,
+      selectedClientId: ctx.clientId,
+    });
+    if (select) select.onchange = () => window.chargerProfil();
+  }
+
+  function markCleanFromCurrent() {
+    cleanPayload = canonicalizePersistedDossierPayload(getPersistedDossierPayload());
+  }
+
+  function isDirty() {
+    return isPersistedDossierDirty(cleanPayload, getPersistedDossierPayload());
+  }
 
   // Block ambiguous localStorage writes while workspace SoT is active.
   if (localStore && typeof localStore.saveProfile === 'function') {
     localStore.saveProfile = function workspaceBlockLocalSave() {
       throw new Error(
-        'En mode workspace, utilisez « Sauvegarder » (Supabase). La sauvegarde localStorage est désactivée.',
+        'En mode workspace, utilisez « Sauvegarder » pour persister dans Supabase. La sauvegarde localStorage est désactivée.',
       );
     };
   }
+
+  // Never re-list offline calculator profiles into the workspace menu.
+  window.initProfils = function workspaceInitProfils() {
+    refreshClientMenu();
+  };
+  refreshClientMenu();
 
   window.sauvegarderProfil = async function workspaceSauvegarderProfil() {
     try {
@@ -166,59 +219,46 @@ function installWorkspacePersistence(supabase, ctx, userId) {
       if (document.getElementById('nom_athlete')) {
         document.getElementById('nom_athlete').value = nom;
       }
-      const raw = window.getProfilData(nom);
-      const payload = attachWorkspaceMeta(raw, {
-        clientId: ctx.clientId,
-        organizationSlug: ctx.organizationSlug,
-        fullName: ctx.fullName,
-      });
+      const payload = getPersistedDossierPayload();
       await dossierStore.saveClientDossier(ctx.clientId, payload, {
         organizationId: ctx.organizationId,
         userId,
       });
-      selectWorkspaceDossierInMenu(document.getElementById('liste_profils'), {
-        clientId: ctx.clientId,
-        label: nom,
-      });
+      // Only after Supabase success: rebuild menu, then freeze canonical clean snapshot.
+      refreshClientMenu();
+      markCleanFromCurrent();
       setPersistStatus('Dossier sauvegardé', 'ok');
     } catch (err) {
+      // Keep previous cleanPayload — failed save must remain dirty if form differs.
       const msg = err?.message || String(err);
       setPersistStatus(`Erreur de sauvegarde : ${msg}`, 'error');
       window.alert(`Impossible de sauvegarder le dossier : ${msg}`);
     }
   };
 
-  // Prefer explicit listener so onclick cannot keep a stale localStorage save path.
   const saveBtn = document.querySelector('button[onclick*="sauvegarderProfil"]');
   if (saveBtn) {
     saveBtn.setAttribute('onclick', 'sauvegarderProfil()');
   }
 
-  window.chargerProfil = async function workspaceChargerProfil() {
+  // Select change = switch active client (full navigation loads the other dossier).
+  window.chargerProfil = function workspaceChargerProfil() {
     const select = document.getElementById('liste_profils');
-    const key = select?.value || '';
-    if (!key) return;
-    if (key.startsWith(WORKSPACE_DOSSIER_OPTION_PREFIX)) {
-      try {
-        setPersistStatus('Chargement du dossier…', 'busy');
-        const existing = await dossierStore.loadClientDossier(ctx.clientId);
-        const resolved = resolveWorkspaceOpenState(existing, ctx.stub);
-        applyWorkspacePayload(resolved.payload, ctx);
-        setPersistStatus(resolved.status, resolved.statusKind);
-      } catch (err) {
-        setPersistStatus(`Erreur de chargement : ${err.message || err}`, 'error');
-      }
+    const nextId = parseClientIdParam(select?.value || '');
+    const decision = shouldProceedWorkspaceClientSwitch({
+      currentClientId: ctx.clientId,
+      nextClientId: nextId || '',
+      isDirty: isDirty(),
+      confirm: (msg) => window.confirm(msg),
+    });
+    if (!decision.proceed) {
+      if (select) select.value = ctx.clientId;
       return;
     }
-    // Do not silently hydrate this Supabase client from unrelated localStorage athletes.
-    setPersistStatus(
-      'En workspace, seul le dossier Supabase de ce client est la source de vérité. Utilisez Importer JSON puis Sauvegarder si besoin.',
-      'error',
-    );
-    selectWorkspaceDossierInMenu(select, { clientId: ctx.clientId, label: ctx.fullName });
+    // Full navigation clears previous client UI and reloads the target dossier.
+    window.location.assign(workspaceOpenPath(nextId));
   };
 
-  // Import JSON: hydrate UI only; persist requires explicit Sauvegarder (Supabase SoT).
   const fileInput = document.getElementById('import-profil');
   if (fileInput) {
     fileInput.onchange = async (event) => {
@@ -242,6 +282,7 @@ function installWorkspacePersistence(supabase, ctx, userId) {
           }),
           { ...ctx, fullName: nom },
         );
+        // Import is UI-only until Save — leave dirty.
         setPersistStatus('JSON importé dans l’UI — cliquez Sauvegarder pour persister dans Supabase.', 'ok');
       } catch (err) {
         const msg = err?.message || String(err);
@@ -253,7 +294,7 @@ function installWorkspacePersistence(supabase, ctx, userId) {
     };
   }
 
-  return dossierStore;
+  return { dossierStore, markCleanFromCurrent, refreshClientMenu, getPersistedDossierPayload, isDirty };
 }
 
 async function bootWorkspace() {
@@ -289,11 +330,11 @@ async function bootWorkspace() {
     return;
   }
 
-  // Wait until calculator init (including DOMContentLoaded defaults) has settled.
   await waitForWorkspaceCalculatorReady(() => window);
   window.choisirPdfCreator(ctx.brandId);
 
-  const dossierStore = installWorkspacePersistence(supabase, ctx, session.user.id);
+  const orgClients = await fetchOrganizationClients(supabase, ctx.organizationId);
+  const workspace = installWorkspacePersistence(supabase, ctx, session.user.id, orgClients);
   window.__COACH_WORKSPACE_CONTEXT__ = Object.freeze({
     userId: session.user.id,
     organizationId: ctx.organizationId,
@@ -304,19 +345,22 @@ async function bootWorkspace() {
     brandId: ctx.brandId,
     fullName: ctx.fullName,
     persistence: 'supabase',
-    dossierOptionValue: workspaceDossierOptionValue(ctx.clientId),
   });
 
   renderBanner(ctx, 'Chargement du dossier…', 'busy');
   setPersistStatus('Chargement du dossier…', 'busy');
 
   try {
-    const existing = await dossierStore.loadClientDossier(ctx.clientId);
+    const existing = await workspace.dossierStore.loadClientDossier(ctx.clientId);
     const resolved = resolveWorkspaceOpenState(existing, ctx.stub);
     applyWorkspacePayload(resolved.payload, ctx);
+    workspace.refreshClientMenu();
+    workspace.markCleanFromCurrent();
     setPersistStatus(resolved.status, resolved.statusKind);
   } catch (err) {
     applyWorkspacePayload(ctx.stub, ctx);
+    workspace.refreshClientMenu();
+    workspace.markCleanFromCurrent();
     setPersistStatus(`Erreur de chargement : ${err.message || err}`, 'error');
   }
 }

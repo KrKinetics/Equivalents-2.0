@@ -69,12 +69,22 @@ function ensureCalculatorBuilt() {
 
 function injectWorkspaceBootstrap(html) {
   if (html.includes('workspace-bootstrap.mjs')) return html;
-  const snippet = `
+  const headSnippet = `
 <script src="/config.js"></script>
 <script type="module" src="/assets/workspace-bootstrap.mjs"></script>
 `;
-  if (html.includes('</head>')) return html.replace('</head>', `${snippet}</head>`);
-  return `${snippet}${html}`;
+  // Static form in final HTML — outside #workspace-context-banner (JS rewrites that node).
+  const changeClientForm = `
+<form action="/dashboard.html" method="get">
+  <button type="submit">← Changer de client</button>
+</form>
+`;
+  let out = html.includes('</head>')
+    ? html.replace('</head>', `${headSnippet}</head>`)
+    : `${headSnippet}${html}`;
+  // First <body> only (document root); do not touch PDF string templates later in the file.
+  if (out.includes('<body>')) return out.replace('<body>', `<body>\n${changeClientForm}`);
+  return out;
 }
 
 function sendFile(res, abs, { transformHtml } = {}) {
