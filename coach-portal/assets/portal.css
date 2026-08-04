@@ -23,6 +23,31 @@ body {
   margin: 0 auto;
   padding: 32px 20px 64px;
 }
+.public-site-return {
+  display: inline-block;
+  margin: 0 0 16px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.public-site-return:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+.public-site-return:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.public-site-return:focus:not(:focus-visible) {
+  outline: none;
+}
+.public-site-return:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 .brand {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
