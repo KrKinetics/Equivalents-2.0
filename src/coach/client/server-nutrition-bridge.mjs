@@ -1,12 +1,9 @@
 /**
- * Feature-flagged bridge: wires calculator UI to server nutrition APIs.
+ * Permanent Bloc 2 bridge: wires calculator UI to server nutrition + PDF APIs.
  *
- * When COACH_FEATURES.serverNutritionEngine is true:
  * - never downloads the full food bank
- * - never silently falls back to the legacy client engine on error
+ * - never silently falls back to the legacy client engine or client PDF on error
  * - shows a generic error and allows retry
- *
- * PDF remains client-side and consumes DOM/state filled from API results.
  */
 
 import {
@@ -16,11 +13,31 @@ import {
   calcPortionsApi,
   calcEquivalencesApi,
   foodDetailApi,
+  generatePdfApi,
   SERVER_NUTRITION_GENERIC_ERROR,
+  SERVER_PDF_GENERIC_ERROR,
 } from './server-nutrition-api.mjs';
 
 function featureOn() {
-  return Boolean(globalThis.COACH_FEATURES?.serverNutritionEngine);
+  // Bloc 2: server path is permanent. Prefer explicit flag when present.
+  if (globalThis.COACH_FEATURES && 'serverNutritionEngine' in globalThis.COACH_FEATURES) {
+    return Boolean(globalThis.COACH_FEATURES.serverNutritionEngine);
+  }
+  return true;
+}
+
+function notifyNutritionError(message = SERVER_NUTRITION_GENERIC_ERROR) {
+  // Workspace must never block on modal alerts (early DOMContentLoaded runs before context).
+  const onWorkspace = typeof location !== 'undefined' && /\/workspace/.test(location.pathname || '');
+  if (onWorkspace || globalThis.COACH_WORKSPACE_CONTEXT || globalThis.__COACH_WORKSPACE_CONTEXT__) {
+    const status = document.getElementById('workspace-persist-status');
+    if (status) {
+      status.textContent = message;
+      status.style.color = '#fecaca';
+    }
+    return;
+  }
+  window.alert(message);
 }
 
 function showGuideError(message = SERVER_NUTRITION_GENERIC_ERROR) {
@@ -171,7 +188,7 @@ async function calculerBesoinsServer() {
       globalThis.krUpdateScientificScope();
     }
   } catch {
-    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+    notifyNutritionError();
   }
 }
 
@@ -232,7 +249,7 @@ async function updateCiblesServer() {
     if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
     if (typeof globalThis.krUpdateScientificScope === 'function') globalThis.krUpdateScientificScope();
   } catch {
-    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+    notifyNutritionError();
   }
 }
 
@@ -285,14 +302,14 @@ async function calculerBanqueServer() {
     if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
     if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
   } catch {
-    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+    notifyNutritionError();
   }
 }
 
 async function suggererBanqueServer() {
   const targets = globalThis.targets || {};
   if (!targets.kcal) {
-    window.alert("Veuillez d'abord compléter le profil pour obtenir des cibles caloriques.");
+    notifyNutritionError("Veuillez d'abord compléter le profil pour obtenir des cibles caloriques.");
     return;
   }
   try {
@@ -306,7 +323,7 @@ async function suggererBanqueServer() {
     });
     await calculerBanqueServer();
   } catch {
-    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+    notifyNutritionError();
   }
 }
 
@@ -354,12 +371,84 @@ async function telechargerGuideEquivalentsHtmlServer() {
       + sectionsHtml.join('') + '</body></html>');
     w.document.close();
   } catch {
-    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+    notifyNutritionError();
+  }
+}
+
+async function exporterPDFServer() {
+  const btn = document.getElementById('btn-export-pdf');
+  const btnLabel = btn ? btn.textContent : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Génération PDF...';
+  }
+  try {
+    if (!document.getElementById('output-plan')?.value?.trim()
+      && typeof globalThis.genererPlanTextuel === 'function') {
+      globalThis.genererPlanTextuel();
+    }
+    const prepare = globalThis.__coachPrepareServerPdfDays;
+    if (typeof prepare !== 'function') {
+      throw new Error('PDF state collector unavailable');
+    }
+    const prepared = prepare();
+    const ctx = globalThis.COACH_WORKSPACE_CONTEXT
+      || globalThis.__COACH_WORKSPACE_CONTEXT__
+      || {};
+    if (!ctx.clientId || !ctx.organizationSlug) {
+      throw new Error('Workspace context missing');
+    }
+    const macroBase = readMacroInputForServer();
+    const [trainingMacros, restMacros] = await Promise.all([
+      calcMacrosApi({ ...macroBase, isRestDay: false }),
+      prepared.include_rest
+        ? calcMacrosApi({ ...macroBase, isRestDay: true })
+        : Promise.resolve(null),
+    ]);
+    const training = {
+      ...prepared.training,
+      targets: trainingMacros.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 },
+    };
+    const rest = prepared.include_rest && prepared.rest
+      ? {
+        ...prepared.rest,
+        targets: restMacros?.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 },
+      }
+      : null;
+    const { blob, filename } = await generatePdfApi({
+      organization_id: ctx.organizationId || undefined,
+      organization_slug: ctx.organizationSlug,
+      client_id: ctx.clientId,
+      locale: prepared.locale,
+      athlete_name: prepared.athlete_name,
+      goal_label: prepared.goal_label,
+      macro_ratio_label: prepared.macro_ratio_label,
+      coach_notes: prepared.coach_notes,
+      goal_multiplier: prepared.goal_multiplier,
+      include_rest: prepared.include_rest,
+      training,
+      rest,
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || 'Plan.pdf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2_000);
+  } catch {
+    window.alert(SERVER_PDF_GENERIC_ERROR);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = btnLabel;
+    }
   }
 }
 
 /**
- * Install bridge overrides. Safe no-op when feature flag is off.
+ * Install bridge overrides. Safe no-op when feature flag is explicitly off.
  */
 export function installServerNutritionBridge() {
   if (!featureOn()) return { installed: false };
@@ -372,25 +461,31 @@ export function installServerNutritionBridge() {
     calcMacrosApi,
     calcPortionsApi,
     calcEquivalencesApi,
+    generatePdfApi,
   });
 
   globalThis.chargerCoachData = chargerCoachDataServer;
   globalThis.filtrerGuideEquivalents = () => { void filtrerGuideEquivalentsServer(); };
-  globalThis.calculerBesoins = () => { void calculerBesoinsServer(); };
-  globalThis.updateCibles = () => { void updateCiblesServer(); };
-  globalThis.calculerBanque = () => { void calculerBanqueServer(); };
-  globalThis.suggererBanque = () => { void suggererBanqueServer(); };
+  // Return promises so workspace bootstrap can await settle before markClean.
+  globalThis.calculerBesoins = () => calculerBesoinsServer();
+  globalThis.updateCibles = () => updateCiblesServer();
+  globalThis.calculerBanque = () => calculerBanqueServer();
+  globalThis.suggererBanque = () => suggererBanqueServer();
   globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };
+  globalThis.exporterPDF = () => { void exporterPDFServer(); };
 
   // Prevent legacy full-bank fetch if anything still points at it.
-  const originalFetch = globalThis.fetch.bind(globalThis);
-  globalThis.fetch = async (input, init) => {
-    const url = String(input?.url || input || '');
-    if (url.includes('/api/coach-data') || url.endsWith('coach-data.json')) {
-      throw new Error('Full food bank fetch blocked in server nutrition path');
-    }
-    return originalFetch(input, init);
-  };
+  if (!globalThis.__COACH_BLOCK_FULL_BANK_FETCH__) {
+    globalThis.__COACH_BLOCK_FULL_BANK_FETCH__ = true;
+    const originalFetch = globalThis.fetch.bind(globalThis);
+    globalThis.fetch = async (input, init) => {
+      const url = String(input?.url || input || '');
+      if (url.includes('/api/coach-data') || /coach-data\.json(?:\?|$)/.test(url)) {
+        throw new Error('Full food bank fetch blocked in server nutrition path');
+      }
+      return originalFetch(input, init);
+    };
+  }
 
   return { installed: true };
 }
