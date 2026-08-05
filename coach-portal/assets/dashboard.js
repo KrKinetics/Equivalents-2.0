@@ -5,6 +5,7 @@ import {
   redirectPreservingAuthParams,
   redirectClean,
 } from './auth-session.js';
+import { clearLoginAutoRedirectGuard } from './login-redirect.mjs';
 import { workspaceOpenPath } from '/src/coach/workspace/workspace-access.mjs';
 
 const statusEl = document.getElementById('status');
@@ -129,6 +130,7 @@ async function boot() {
   bindServerSessionCookieSync(supabase);
   const session = await requireSession();
   if (!session) return;
+  clearLoginAutoRedirectGuard(sessionStorage);
 
   membership = await loadMembership(session.user.id);
   renderMeta(session, membership);
@@ -192,6 +194,7 @@ async function boot() {
     } catch {
       // ignore cookie clear failures
     }
+    clearLoginAutoRedirectGuard(sessionStorage);
     await supabase.auth.signOut();
     redirectClean('./login.html');
   });

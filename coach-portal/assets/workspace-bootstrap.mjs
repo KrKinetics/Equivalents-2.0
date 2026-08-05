@@ -199,6 +199,20 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
     return isPersistedDossierDirty(cleanPayload, getPersistedDossierPayload());
   }
 
+  // Test/diagnostics only — never logged to network.
+  window.__coachWorkspaceDirtyProbe = function workspaceDirtyProbe() {
+    const current = getPersistedDossierPayload();
+    const dirty = isPersistedDossierDirty(cleanPayload, current);
+    return {
+      dirty,
+      hasClean: cleanPayload != null,
+      cleanAge: cleanPayload?.age ?? null,
+      currentAge: current?.age ?? null,
+      cleanNotes: cleanPayload?.coachNotes ?? null,
+      currentNotes: current?.coachNotes ?? null,
+    };
+  };
+
   // Block ambiguous localStorage writes while workspace SoT is active.
   if (localStore && typeof localStore.saveProfile === 'function') {
     localStore.saveProfile = function workspaceBlockLocalSave() {
@@ -305,11 +319,7 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
 async function enterAccessDeniedState() {
   renderBanner(null, WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
   setPersistStatus(WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
-  try {
-    await waitForWorkspaceCalculatorReady(() => window, 8000);
-  } catch {
-    // Calculator may be incomplete; still lock whatever is in the DOM.
-  }
+  // Lock immediately so automation waiting on the banner cannot race past an unlocked UI.
   lockWorkspaceAccessDenied(document);
   // Neutralize historical calculator entry points that might rehydrate local profiles.
   window.initProfils = function workspaceDeniedInitProfils() {};
@@ -318,6 +328,12 @@ async function enterAccessDeniedState() {
   window.supprimerProfil = function workspaceDeniedDelete() {};
   window.appliquerProfilData = function workspaceDeniedApply() {};
   window.importerProfilJSON = function workspaceDeniedImport() {};
+  try {
+    await waitForWorkspaceCalculatorReady(() => window, 8000);
+  } catch {
+    // Calculator may be incomplete; re-apply lock after late DOMContentLoaded handlers.
+  }
+  lockWorkspaceAccessDenied(document);
 }
 
 async function bootWorkspace() {
@@ -376,9 +392,14 @@ async function bootWorkspace() {
   if (window.COACH_FEATURES?.serverNutritionEngine && typeof window.chargerCoachData === 'function') {
     try {
       const maybePromise = window.chargerCoachData();
-      if (maybePromise && typeof maybePromise.then === 'function') await maybePromise;
+      if (maybePromise && typeof maybePromise.then === 'function') {
+        await Promise.race([
+          maybePromise.catch(() => {}),
+          new Promise((resolve) => setTimeout(resolve, 8000)),
+        ]);
+      }
     } catch {
-      // Bridge surfaces a generic retry UI; do not fall back to /api/coach-data.
+      // Bridge surfaces a generic retry UI; do not fall back to full-bank routes.
     }
   }
 
@@ -389,15 +410,44 @@ async function bootWorkspace() {
     const existing = await workspace.dossierStore.loadClientDossier(ctx.clientId);
     const resolved = resolveWorkspaceOpenState(existing, ctx.stub);
     applyWorkspacePayload(resolved.payload, ctx);
+    await settleServerNutritionAfterApply();
     workspace.refreshClientMenu();
     workspace.markCleanFromCurrent();
     setPersistStatus(resolved.status, resolved.statusKind);
   } catch (err) {
     applyWorkspacePayload(ctx.stub, ctx);
+    await settleServerNutritionAfterApply();
     workspace.refreshClientMenu();
     workspace.markCleanFromCurrent();
     setPersistStatus(`Erreur de chargement : ${err.message || err}`, 'error');
   }
+}
+
+/** Wait for async server nutrition side-effects before freezing the clean dossier snapshot. */
+async function settleServerNutritionAfterApply() {
+  if (!window.COACH_FEATURES?.serverNutritionEngine) return;
+  const withTimeout = (promise, ms) => Promise.race([
+    Promise.resolve(promise).catch(() => {}),
+    new Promise((resolve) => setTimeout(resolve, ms)),
+  ]);
+  try {
+    const maybe = typeof window.calculerBesoins === 'function' ? window.calculerBesoins() : null;
+    if (maybe && typeof maybe.then === 'function') await withTimeout(maybe, 8000);
+  } catch {
+    // Generic UI errors are handled by the bridge; dirty baseline still needs a settle point.
+  }
+  // Allow any queued DOM writes (repartition / eau) then re-capture once stable.
+  await new Promise((resolve) => {
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve()));
+    } else {
+      setTimeout(resolve, 0);
+    }
+  });
+  try {
+    const again = typeof window.updateCibles === 'function' ? window.updateCibles() : null;
+    if (again && typeof again.then === 'function') await withTimeout(again, 5000);
+  } catch { /* ignore */ }
 }
 
 bootWorkspace().catch(async (err) => {

@@ -34,6 +34,13 @@ import {
   scorePortions,
   suggestBanque,
 } from '../coach/calculations/portions.mjs';
+import {
+  REPART_PRESETS,
+  PRO_AUTO_EXCLUDED,
+  buildAutoRepartition,
+  resolveRepartPreset,
+  buildPresetEntrainement,
+} from '../coach/calculations/repartition-presets.mjs';
 
 export {
   CATS,
@@ -60,6 +67,11 @@ export {
   distribuerPortions,
   scorePortions,
   suggestBanque,
+  REPART_PRESETS,
+  PRO_AUTO_EXCLUDED,
+  buildAutoRepartition,
+  resolveRepartPreset,
+  buildPresetEntrainement,
 };
 
 export const FEATURE_DA_ENABLED = false;
@@ -335,7 +347,10 @@ export function computeHydration(kcal, manualAddL = 0) {
 }
 
 export function assertNoForbiddenPdfContent(text) {
-  const haystack = String(text ?? '').toLowerCase();
+  // Strip data-URIs so random base64 never false-positives on short markers like "branch".
+  const haystack = String(text ?? '')
+    .replace(/data:[^;]+;base64,[A-Za-z0-9+/=\s]+/gi, '')
+    .toLowerCase();
   for (const marker of FORBIDDEN_PDF_MARKERS) {
     if (haystack.includes(marker.toLowerCase())) {
       throw new Error(`Forbidden PDF marker detected: ${marker}`);

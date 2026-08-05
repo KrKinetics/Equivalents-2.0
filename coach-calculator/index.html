@@ -2787,7 +2787,57 @@ function nettoyerIframePDF() {
     if (iframe) iframe.remove();
 }
 
+function collectJourDayForServerPdf(jourKey) {
+    const d = joursData[jourKey] || createEmptyJourData();
+    const banque = {};
+    CATS.forEach(cat => { banque[cat] = parseFloat(d.banque[cat]) || 0; });
+    const repartition = [];
+    for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {
+        repartition.push(parseFloat(d.repartition[i]) || 0);
+    }
+    const timingRaw = getTimingInfoForSnapshot(jourKey, d);
+    const timing = { active: !!timingRaw.active };
+    if (timingRaw.heure) timing.heure = timingRaw.heure;
+    if (timingRaw.heureLabel) timing.heureLabel = String(timingRaw.heureLabel).slice(0, 120);
+    if (timingRaw.summary) timing.summary = String(timingRaw.summary).slice(0, 120);
+    if (Number.isInteger(timingRaw.preIdx)) timing.preIdx = timingRaw.preIdx;
+    if (Number.isInteger(timingRaw.postIdx)) timing.postIdx = timingRaw.postIdx;
+    const out = {
+        banque,
+        repartition,
+        eauAjout: Math.max(0, parseFloat(d.eauAjout) || 0),
+        eauManuel: !!d.eauManuel,
+        repartitionSelonEntrainement: d.repartitionSelonEntrainement !== false,
+        timing,
+    };
+    if (d.eauLitres != null && d.eauLitres !== '') out.eauLitres = parseFloat(d.eauLitres) || 0;
+    if (typeof d.heureEntrainement === 'string' && /^\d{2}:\d{2}$/.test(d.heureEntrainement)) {
+        out.heureEntrainement = d.heureEntrainement;
+    }
+    return out;
+}
+
+/** Collect day state for authenticated server PDF generation (no HTML / no local render). */
+window.__coachPrepareServerPdfDays = function __coachPrepareServerPdfDays() {
+    captureJourActif();
+    const l = PDF_LABELS[pdfLang] || PDF_LABELS.fr;
+    const nom = (document.getElementById('nom_athlete').value || '').trim() || l.defaultAthlete || 'Athlete';
+    return {
+        locale: pdfLang === 'en' ? 'en' : 'fr',
+        athlete_name: String(nom).slice(0, 120),
+        goal_label: String(getActiveGoalLabel() || '—').slice(0, 120),
+        macro_ratio_label: String(getMacroRatioLabel() || '—').slice(0, 120),
+        coach_notes: String(getCoachNotes() || '').slice(0, 4000),
+        include_rest: !!jourReposActif,
+        goal_multiplier: selectedGoalMultiplier,
+        training: collectJourDayForServerPdf('entrainement'),
+        rest: jourReposActif ? collectJourDayForServerPdf('repos') : null,
+    };
+};
+
 function exporterPDF() {
+    // Portal / workspace: server PDF bridge overrides this function.
+    // Standalone local calculator keeps the legacy client renderer for offline tests.
     if (!document.getElementById('output-plan').value.trim()) genererPlanTextuel();
 
     const l = PDF_LABELS[pdfLang];

@@ -59,7 +59,7 @@ test('requirePublicSupabaseBuildEnv fails clearly when vars missing or invalid',
   );
 });
 
-test('buildConfigJsSource is public-only and never includes service_role', () => {
+test('buildConfigJsSource is public-only and defaults serverNutritionEngine true', () => {
   const source = buildConfigJsSource({
     url: FAKE_PUBLIC.SUPABASE_URL,
     publishableKey: FAKE_PUBLIC.SUPABASE_PUBLISHABLE_KEY,
@@ -67,7 +67,7 @@ test('buildConfigJsSource is public-only and never includes service_role', () =>
   assertConfigJsIsPublicOnly(source);
   assert.match(source, /COACH_SUPABASE/);
   assert.match(source, /COACH_FEATURES/);
-  assert.match(source, /serverNutritionEngine":false/);
+  assert.match(source, /serverNutritionEngine":true/);
   assert.match(source, /example\.supabase\.co/);
   assert.doesNotMatch(source, /SERVICE_ROLE|service_role|undefined/);
 });
@@ -79,7 +79,7 @@ test('injectWorkspaceBootstrap can add server nutrition bridge when flagged', ()
   assert.match(out, /workspace-bootstrap\.mjs/);
 });
 
-test('vercel.json keeps required routes without catch-all HTML rewrite', () => {
+test('vercel.json keeps required routes without catch-all HTML rewrite or legacy coach-data', () => {
   const yml = fs.readFileSync(path.join(root, 'vercel.json'), 'utf8');
   const cfg = JSON.parse(yml);
   assert.equal(cfg.framework, null);
@@ -89,9 +89,11 @@ test('vercel.json keeps required routes without catch-all HTML rewrite', () => {
   assert.ok(
     cfg.rewrites.some((r) => r.source === '/workspace' && r.destination === '/workspace/index.html'),
   );
-  assert.ok(
-    cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' && r.destination === '/api/coach-data'),
+  assert.equal(
+    cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' || r.destination === '/api/coach-data'),
+    false,
   );
+  assert.ok(cfg.functions?.['api/coach-generate-pdf.js']);
   // No SPA fallback that would turn missing assets into 200 HTML.
   assert.equal(
     cfg.rewrites.some((r) => r.source === '/(.*)' || r.source === '/:path*' || r.destination === '/index.html'),
@@ -100,12 +102,13 @@ test('vercel.json keeps required routes without catch-all HTML rewrite', () => {
   assert.doesNotMatch(yml, /SERVICE_ROLE|secrets\.|sb_publishable_[a-z0-9]{16,}/i);
 });
 
-test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes secrets', () => {
+test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes secrets, server nutrition always ON', () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'coach-vercel-'));
-  const { outDir } = buildCoachVercelBundle({
+  const { outDir, serverNutritionEngine } = buildCoachVercelBundle({
     outDir: tmp,
     env: FAKE_PUBLIC,
   });
+  assert.equal(serverNutritionEngine, true);
 
   const mustExist = [
     'index.html',
@@ -118,6 +121,7 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'workspace/assets/logo-kr-kinetics-horizontal.png',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/services/storage/supabase-client-dossier-store.mjs',
+    'src/coach/client/server-nutrition-bridge.mjs',
   ];
   for (const rel of mustExist) {
     assert.equal(fs.existsSync(path.join(outDir, rel)), true, rel);
@@ -126,9 +130,12 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
   const workspaceHtml = fs.readFileSync(path.join(outDir, 'workspace/index.html'), 'utf8');
   assert.match(workspaceHtml, /workspace-bootstrap\.mjs/);
   assert.match(workspaceHtml, /action="\/dashboard\.html"/);
+  assert.match(workspaceHtml, /data-coach-server-nutrition="1"/);
+  assert.match(workspaceHtml, /server-nutrition-bridge\.mjs/);
 
   const config = fs.readFileSync(path.join(outDir, 'config.js'), 'utf8');
   assertConfigJsIsPublicOnly(config);
+  assert.match(config, /serverNutritionEngine":true/);
   assert.doesNotMatch(config, /SERVICE_ROLE|service_role/);
 
   // Ctrl+R target: static workspace index is a real file (query string preserved by host).

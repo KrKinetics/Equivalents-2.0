@@ -1,14 +1,14 @@
 # Coach Phase 2 (2C–2E) — Server nutrition engine
 
-**Status:** Draft PR feature branch  
-**Feature flag:** `COACH_FEATURE_SERVER_NUTRITION=1` → `window.COACH_FEATURES.serverNutritionEngine`  
+**Status:** Merged (Bloc 1) — superseded for PDF/legacy removal by Bloc 2  
+**See also:** `docs/coach-phase2-server-pdf-remove-legacy.md`  
 **Base:** post–PR #27 (`feat/security-phase2b-golden-auth-infra`)
 
 ## Goal
 
 Move food search, food detail, energy (EER/IOM/NASEM/TDEE), calorie goals, macros, portions/averages, and equivalences to authenticated server routes so the Preview server path no longer downloads the full food bank or inlined formula matrices.
 
-PDF remains **client-side** for this block; it consumes UI state filled from API results.
+Bloc 1 kept PDF client-side and `/api/coach-data` for rollback. **Bloc 2** makes the server path permanent, adds server PDF, and removes the full-bank endpoint.
 
 ## Architecture
 

@@ -254,6 +254,80 @@
         ],
         "sum": 5
       }
+    },
+    {
+      "id": "auto-repartition-classique-from-suggest-2800",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "buildAutoRepartition",
+      "input": {
+        "mode": "classique",
+        "banque": {
+          "leg": 2,
+          "fru": 2,
+          "lai": 1,
+          "pro": 12.5,
+          "fec": 13,
+          "lip": 6,
+          "whey": 0
+        }
+      },
+      "expected": {
+        "mode": "classique",
+        "categorySums": {
+          "pro": 12.5,
+          "fec": 13,
+          "leg": 2,
+          "fru": 2,
+          "lai": 1,
+          "lip": 6,
+          "whey": 0
+        },
+        "plannedTotals": {
+          "pro": 173,
+          "glu": 302,
+          "lip": 82,
+          "kcal": 2638
+        },
+        "repartition": [
+          0, 3, 0.5, 0.5, 0.5, 1.5, 0,
+          0, 1.5, 0, 0.5, 0, 0.5, 0,
+          5.5, 3.5, 0.5, 0, 0, 1.5, 0,
+          0, 2, 0.5, 0.5, 0, 0.5, 0,
+          6, 2.5, 0.5, 0, 0.5, 1.5, 0,
+          1, 0.5, 0, 0.5, 0, 0.5, 0
+        ]
+      }
+    },
+    {
+      "id": "auto-repartition-equilibre-elevate",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "buildAutoRepartition",
+      "input": {
+        "mode": "equilibre",
+        "banque": {
+          "leg": 2,
+          "fru": 2,
+          "lai": 1,
+          "pro": 12.5,
+          "fec": 13,
+          "lip": 6,
+          "whey": 0
+        }
+      },
+      "expected": {
+        "mode": "equilibre",
+        "categorySums": {
+          "pro": 12.5,
+          "fec": 13,
+          "leg": 2,
+          "fru": 2,
+          "lai": 1,
+          "lip": 6,
+          "whey": 0
+        }
+      }
     }
   ]
 }

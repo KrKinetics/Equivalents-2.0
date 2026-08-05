@@ -31,7 +31,7 @@ export const SERVER_NUTRITION_HEAD_SNIPPET = `
  * @param {string} html
  * @param {{ serverNutritionEngine?: boolean }} [opts]
  */
-export function injectWorkspaceBootstrap(html, { serverNutritionEngine = false } = {}) {
+export function injectWorkspaceBootstrap(html, { serverNutritionEngine = true } = {}) {
   if (typeof html !== 'string') throw new Error('injectWorkspaceBootstrap requires HTML string');
   let out = html;
   const alreadyBootstrapped = out.includes('workspace-bootstrap.mjs');
@@ -86,7 +86,7 @@ export function requirePublicSupabaseBuildEnv(env = process.env) {
  * Browser-facing config.js source. Publishable values only.
  * @param {{ url: string, publishableKey: string, serverNutritionEngine?: boolean }} opts
  */
-export function buildConfigJsSource({ url, publishableKey, serverNutritionEngine = false }) {
+export function buildConfigJsSource({ url, publishableKey, serverNutritionEngine = true }) {
   const { url: safeUrl, publishableKey: safeKey } = requirePublicSupabaseBuildEnv({
     SUPABASE_URL: url,
     SUPABASE_PUBLISHABLE_KEY: publishableKey,
@@ -119,15 +119,30 @@ export function stripClientNutritionFormulas(html) {
   }
   global.CoachSharedEngine = {
     FEATURE_DA_ENABLED: false,
-    createEmptyJourData: function () { return { banque: {}, repartition: [], eauAjout: 0, eauManuel: false, eauLitres: null, heureEntrainement: null, repartitionSelonEntrainement: true }; },
+    createEmptyJourData: function () {
+      return {
+        banque: { pro: 0, fec: 0, leg: 0, fru: 0, lai: 0, lip: 0, whey: 0 },
+        repartition: new Array(42).fill(0),
+        eauAjout: 0, eauManuel: false, eauLitres: null, heureEntrainement: null, repartitionSelonEntrainement: true,
+      };
+    },
     normalizeProteinesParKg: function (v) { var n = parseFloat(v); return isNaN(n) ? 2 : Math.min(3.5, Math.max(0.5, Math.round(n * 10) / 10)); },
     normalizeProteinesPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 25 : Math.min(60, Math.max(10, Math.round(n))); },
     normalizeMacroPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 0 : Math.min(90, Math.max(5, Math.round(n))); },
+    // Atwater display helpers only (same as server macros.mjs). Not portion/NASEM IP.
     kcalFromMacros: function (p, g, l) { return Math.round((Number(p)||0)*4 + (Number(g)||0)*4 + (Number(l)||0)*9); },
-    macroPercentagesFromGrams: function () { return blocked('macroPercentagesFromGrams'); },
+    macroPercentagesFromGrams: function (pro, glu, lip) {
+      var p = Number(pro) || 0, g = Number(glu) || 0, l = Number(lip) || 0;
+      var total = Math.round(p * 4 + g * 4 + l * 9);
+      if (!total) return { pro: 0, glu: 0, lip: 0 };
+      var proPct = Math.round((p * 4 / total) * 100);
+      var gluPct = Math.round((g * 4 / total) * 100);
+      return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+    },
     roundHalf: function (n) { return Math.round((Number(n)||0) * 2) / 2; },
     getPortionTotals: function () { return blocked('getPortionTotals'); },
     computeBanqueTotals: function () { return blocked('computeBanqueTotals'); },
+    // Bridge replaces this with server planned_totals cache after banque settle.
     computePlannedTotalsFromRepartition: function () { return { pro: 0, glu: 0, lip: 0, kcal: 0 }; },
     isJourClientPlanConfigured: function () { return true; },
     scorePortions: function () { return blocked('scorePortions'); },
@@ -139,7 +154,71 @@ export function stripClientNutritionFormulas(html) {
 </script>`,
   );
 
-  // Neutralize NASEM coefficient matrices if still present in KR science block.
+  // Neutralize legacy category averages and meal presets (server provides via API).
+  out = out.replace(
+    /const MOYENNES\s*=\s*\{[\s\S]*?\};/g,
+    'const MOYENNES = Object.freeze({ pro:{p:0,g:0,l:0},fec:{p:0,g:0,l:0},leg:{p:0,g:0,l:0},fru:{p:0,g:0,l:0},lai:{p:0,g:0,l:0},lip:{p:0,g:0,l:0},whey:{p:0,g:0,l:0} }); /* stripped: server nutrition path */',
+  );
+  // Lexical MOYENNES stays zeroed; meal recap must read server moyennes from globalThis.
+  out = out.replace(
+    /\bMOYENNES\[/g,
+    '(globalThis.MOYENNES||MOYENNES)[',
+  );
+
+  // Share calculator state with the ES module bridge (let is not visible on globalThis).
+  out = out.replace(
+    /let currentTDEE = 0;/,
+    'var currentTDEE = 0;',
+  );
+  out = out.replace(
+    /let selectedGoalMultiplier = 1\.0;/,
+    'var selectedGoalMultiplier = 1.0;',
+  );
+  out = out.replace(
+    /let pdfCreator = 'kr';/,
+    "var pdfCreator = 'kr';",
+  );
+  out = out.replace(
+    /let pdfLang = 'fr';/,
+    "var pdfLang = 'fr';",
+  );
+  out = out.replace(
+    /let jourReposActif = true;/,
+    'var jourReposActif = true;',
+  );
+  out = out.replace(
+    /let targets = \{ kcal: 0, pro: 0, glu: 0, lip: 0 \};/,
+    'var targets = { kcal: 0, pro: 0, glu: 0, lip: 0 };',
+  );
+  out = out.replace(
+    /let activeJour = 'entrainement';/,
+    "var activeJour = 'entrainement';",
+  );
+  out = out.replace(
+    /let joursData = \{ entrainement: null, repos: null \};/,
+    'var joursData = { entrainement: null, repos: null };',
+  );
+  out = replaceFunctionSpan(
+    out,
+    'const REPART_PRESETS = {',
+    'function createEmptyJourData',
+    'const REPART_PRESETS = Object.freeze({}); /* stripped: server nutrition path */\n\n',
+  );
+
+  // Remove legacy chargerCoachData fetch URLs that advertise /api/coach-data.
+  out = out.replace(
+    /const underWorkspace = location\.pathname\.includes\('\/workspace'\);\s*const urls = underWorkspace[\s\S]*?: \['\.\/coach-data\.json', '\/api\/coach-data'\];/,
+    'const urls = []; /* stripped: server nutrition bridge loads data via /api/coach-* */',
+  );
+  out = out.replace(
+    /\/api\/coach-data/g,
+    '/api/coach-legacy-removed',
+  );
+  out = out.replace(
+    /console\.error\('coach-data\.json:', err\);/g,
+    "console.error('coach data load:', err);",
+  );
+
   out = out.replace(
     /const NASEM_COEFFICIENTS\s*=\s*\{[\s\S]*?\n\};/m,
     'const NASEM_COEFFICIENTS = Object.freeze({}); /* stripped: server nutrition path */',
@@ -189,6 +268,21 @@ export function stripClientNutritionFormulas(html) {
     'bmr = 0; tdee = 0; /* stripped: server nutrition path */',
   );
 
+  // Neutralize dual-brand client PDF entrypoint (server bridge owns exporterPDF).
+  out = out.replace(
+    /exporterPDF\s*=\s*function\s*\(\)\s*\{[\s\S]*?\n\};/,
+    `exporterPDF = function () {
+    throw new Error('Client PDF disabled — use /api/coach-generate-pdf');
+};`,
+  );
+
+  // Avoid fire-and-forget nutrition recalcs after appliquerProfilData (race markClean).
+  // Workspace bootstrap awaits server calculerBesoins after apply instead.
+  out = out.replace(
+    /\n\s*calculerBesoins\(\);\s*\n\s*calculerBanque\(\);\s*\n\s*if \(!eauManuel\) updateEau\(\);\s*\n\s*calculerRepartition\(\);\s*\n\s*setJourReposActif/,
+    '\n    /* stripped: workspace awaits server calculerBesoins after apply */\n    setJourReposActif',
+  );
+
   // Mark server path so audits can detect formula absence markers.
   if (!out.includes('data-coach-server-nutrition="1"')) {
     out = out.replace('<html', '<html data-coach-server-nutrition="1"');
@@ -217,6 +311,7 @@ export function htmlContainsEnergyFormulaIp(html) {
   if (/1004\.82,\s*-10\.83,\s*6\.52,\s*15\.91/.test(html)) return true;
   if (/662\s*-\s*\(9\.53\s*\*\s*age\)[\s\S]{0,80}15\.91[\s\S]{0,40}539\.6/.test(html)) return true;
   if (/function krNasem2023Eer\([\s\S]{200,}15\.91/.test(html)) return true;
+  if (/pro:\s*\{\s*p:\s*9,\s*g:\s*0,\s*l:\s*2\s*\}/.test(html)) return true;
   return false;
 }
 
@@ -263,7 +358,7 @@ export function assertDeployTreeSafe(outDir) {
   ]);
   const publicCoachData = path.join(outDir, 'workspace', 'coach-data.json');
   if (fs.existsSync(publicCoachData)) {
-    throw new Error('Deploy tree must not include public workspace/coach-data.json (use /api/coach-data)');
+    throw new Error('Deploy tree must not include public workspace/coach-data.json (bank must load server-side via authenticated minimal APIs only)');
   }
   const stack = [outDir];
   while (stack.length) {

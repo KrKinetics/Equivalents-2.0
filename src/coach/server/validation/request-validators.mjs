@@ -15,8 +15,10 @@ const PROTEIN_MODES = new Set(['gkg', 'pct']);
 const MACRO_MODES = new Set(['preset', 'custom']);
 const PORTION_ACTIONS = new Set([
   'moyennes', 'banque_totals', 'suggest', 'score', 'distribute',
-  'planned_totals', 'reconcile', 'portion_totals',
+  'planned_totals', 'reconcile', 'portion_totals', 'macro_percentages',
+  'auto_repartition',
 ]);
+const REPART_MODES = new Set(['classique', 'equilibre', 'performance', 'entrainement']);
 const CATS = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
 
 function fail(message = 'bad_request') {
@@ -229,6 +231,8 @@ export function validatePortionsBody(body) {
     'organization_id', 'organization_slug',
     'action', 'banque', 'targets', 'portions', 'total', 'weights',
     'repartition', 'reconcileInput',
+    'mode', 'heureEntrainement',
+    'pro', 'glu', 'lip',
   ]);
   const unk = assertNoUnknown(body, allowed);
   if (unk) return unk;
@@ -250,6 +254,20 @@ export function validatePortionsBody(body) {
     const t = finiteNumber(body.total, 0, 500);
     if (t == null) return fail('invalid_total');
   }
+  if (body.mode != null) {
+    if (typeof body.mode !== 'string' || !REPART_MODES.has(body.mode)) return fail('invalid_mode');
+  }
+  if (body.heureEntrainement != null && body.heureEntrainement !== '') {
+    if (typeof body.heureEntrainement !== 'string' || !/^\d{2}:\d{2}$/.test(body.heureEntrainement)) {
+      return fail('invalid_heureEntrainement');
+    }
+  }
+  for (const macroKey of ['pro', 'glu', 'lip']) {
+    if (body[macroKey] != null) {
+      const n = finiteNumber(body[macroKey], 0, 2000);
+      if (n == null) return fail(`invalid_${macroKey}`);
+    }
+  }
 
   return {
     ok: true,
@@ -263,6 +281,13 @@ export function validatePortionsBody(body) {
       total: body.total,
       weights: body.weights,
       repartition: body.repartition,
+      mode: body.mode,
+      heureEntrainement: body.heureEntrainement == null || body.heureEntrainement === ''
+        ? null
+        : body.heureEntrainement,
+      pro: body.pro,
+      glu: body.glu,
+      lip: body.lip,
       reconcileInput: body.reconcileInput,
     },
   };

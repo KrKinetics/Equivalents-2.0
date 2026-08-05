@@ -4,7 +4,7 @@
  * - Portal:  http://127.0.0.1:4190/
  * - Workspace: http://127.0.0.1:4190/workspace/?client_id=<uuid>
  * - /config.js: publishable Supabase values only (never service_role)
- * - /api/coach-data: authenticated full bank (Phase 1 temporary)
+ * - /api/coach-*: server nutrition + PDF routes (same handlers as Vercel)
  * - Protected routes require HttpOnly coach_access_token cookie
  *
  * Usage:
@@ -16,11 +16,13 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { requireSupabasePublicEnv } from './load-env-local.mjs';
 import {
   buildConfigJsSource,
   injectWorkspaceBootstrap,
+  stripClientNutritionFormulas,
 } from './coach-portal-deploy-lib.mjs';
 import {
   buildClearCookie,
@@ -31,10 +33,21 @@ import {
 } from '../src/coach/security/portal-auth.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const requireCjs = createRequire(import.meta.url);
 const portalDir = path.join(root, 'coach-portal');
 const calcDir = path.join(root, 'coach-calculator');
 const PORT = Number(process.env.COACH_PORTAL_PORT || 4190);
 const HOST = process.env.COACH_PORTAL_HOST || '127.0.0.1';
+
+const COACH_API_HANDLERS = Object.freeze([
+  'coach-food-search',
+  'coach-food-detail',
+  'coach-calc-energy',
+  'coach-calc-macros',
+  'coach-calc-portions',
+  'coach-calc-equivalences',
+  'coach-generate-pdf',
+]);
 
 const { url, publishableKey } = requireSupabasePublicEnv(root);
 
@@ -55,7 +68,14 @@ function mime(filePath) {
 }
 
 function configJs() {
-  return buildConfigJsSource({ url, publishableKey });
+  return buildConfigJsSource({ url, publishableKey, serverNutritionEngine: true });
+}
+
+function transformWorkspaceHtml(html) {
+  return injectWorkspaceBootstrap(
+    stripClientNutritionFormulas(html),
+    { serverNutritionEngine: true },
+  );
 }
 
 function calculatorReady() {
@@ -136,6 +156,24 @@ async function assertCoachAccess(req) {
   });
 }
 
+function notFoundJson(res) {
+  res.writeHead(404, {
+    'Content-Type': 'application/json',
+    'Cache-Control': 'private, no-store',
+  });
+  res.end(JSON.stringify({ error: 'not_found' }));
+}
+
+async function invokeCoachApiHandler(apiName, req, res) {
+  const abs = path.join(root, 'api', `${apiName}.js`);
+  if (!fs.existsSync(abs)) {
+    notFoundJson(res);
+    return;
+  }
+  const handler = requireCjs(abs);
+  await handler(req, res);
+}
+
 function deny(res, req, urlPath, status = 401) {
   const acceptsHtml = String(req.headers.accept || '').includes('text/html');
   const isDocument = urlPath.endsWith('.html')
@@ -210,31 +248,17 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (urlPath === '/api/coach-data' || urlPath === '/workspace/coach-data.json') {
-      if (method !== 'GET') {
-        res.writeHead(405, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'method_not_allowed' }));
+      notFoundJson(res);
+      return;
+    }
+
+    if (urlPath.startsWith('/api/coach-')) {
+      const apiName = urlPath.slice('/api/'.length);
+      if (COACH_API_HANDLERS.includes(apiName)) {
+        await invokeCoachApiHandler(apiName, req, res);
         return;
       }
-      const verified = await assertCoachAccess(req);
-      if (!verified.ok) {
-        res.writeHead(verified.status, {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'private, no-store',
-        });
-        res.end(JSON.stringify({ error: 'unauthorized' }));
-        return;
-      }
-      const abs = path.join(calcDir, 'coach-data.json');
-      if (!fs.existsSync(abs)) {
-        res.writeHead(503, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'coach_data_unavailable' }));
-        return;
-      }
-      res.writeHead(200, {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Cache-Control': 'private, no-store',
-      });
-      fs.createReadStream(abs).pipe(res);
+      notFoundJson(res);
       return;
     }
 
@@ -258,6 +282,7 @@ const server = http.createServer(async (req, res) => {
     if (
       urlPath.startsWith('/src/coach/workspace/')
       || urlPath.startsWith('/src/coach/services/')
+      || urlPath.startsWith('/src/coach/client/')
     ) {
       const abs = resolveUnder(path.join(root, 'src', 'coach'), urlPath.slice('/src/coach'.length));
       if (!abs || !abs.endsWith('.mjs')) {
@@ -271,15 +296,14 @@ const server = http.createServer(async (req, res) => {
 
     if (urlPath === '/workspace' || urlPath === '/workspace/') {
       const abs = path.join(calcDir, 'index.html');
-      sendFile(res, abs, { transformHtml: injectWorkspaceBootstrap });
+      sendFile(res, abs, { transformHtml: transformWorkspaceHtml });
       return;
     }
 
     if (urlPath.startsWith('/workspace/')) {
       const calcRel = urlPath.slice('/workspace'.length);
       if (calcRel === '/coach-data.json') {
-        res.writeHead(404, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'not_found' }));
+        notFoundJson(res);
         return;
       }
       const abs = resolveUnder(calcDir, calcRel === '/' ? '/index.html' : calcRel);
@@ -289,7 +313,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       const transformHtml = abs.endsWith(`${path.sep}index.html`)
-        ? injectWorkspaceBootstrap
+        ? transformWorkspaceHtml
         : undefined;
       sendFile(res, abs, { transformHtml });
       return;
@@ -314,5 +338,5 @@ server.listen(PORT, HOST, () => {
   console.log(`Coach workspace (same-origin): http://${HOST}:${PORT}/`);
   console.log(`Calculator workspace: http://${HOST}:${PORT}/workspace/`);
   console.log('Public config loaded from .env.local (values not printed).');
-  console.log('Protected routes require /api/session cookie (Phase 1 containment).');
+  console.log('Protected routes require /api/session cookie.');
 });

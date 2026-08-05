@@ -210,11 +210,15 @@ export function waitForWorkspaceCalculatorReady(getGlobals = () => globalThis, t
     const tick = () => {
       const g = getGlobals();
       const domReady = g.document?.readyState === 'interactive' || g.document?.readyState === 'complete';
+      // Bloc 2: calculator APIs ready; food bank bootstrap may complete after auth context.
+      const foodsReady = Number(g.COACH_DATA?.totalFoods) > 0
+        || g.COACH_DATA?.serverNutrition === true
+        || g.COACH_FEATURES?.serverNutritionEngine === true;
       const apiReady = typeof g.appliquerProfilData === 'function'
         && typeof g.getProfilData === 'function'
         && typeof g.sauvegarderProfil === 'function'
         && typeof g.choisirPdfCreator === 'function'
-        && g.COACH_DATA?.totalFoods === 287;
+        && foodsReady;
       if (domReady && apiReady) {
         if (typeof g.requestAnimationFrame === 'function') {
           g.requestAnimationFrame(() => g.requestAnimationFrame(() => resolve()));

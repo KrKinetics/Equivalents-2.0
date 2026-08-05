@@ -613,6 +613,9 @@ global.CoachSharedEngine = { suggestBanque() { return NASEM_COEFFICIENTS; } };
   const out = stripClientNutritionFormulas(sample);
   assert.match(out, /data-coach-server-nutrition="1"/);
   assert.match(out, /Client engine disabled/);
+  // Display Atwater % helper stays available; portion/NASEM IP stays blocked.
+  assert.match(out, /macroPercentagesFromGrams:\s*function\s*\(pro,\s*glu,\s*lip\)/);
+  assert.doesNotMatch(out, /macroPercentagesFromGrams:\s*function\s*\(\)\s*\{\s*return blocked/);
   assert.equal(out.includes('suggestBanque() { return NASEM_COEFFICIENTS'), false);
   assert.equal(htmlContainsEnergyFormulaIp(out), false);
   assert.match(out, /Client NASEM disabled/);
