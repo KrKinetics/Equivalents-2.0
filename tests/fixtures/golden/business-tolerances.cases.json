@@ -1,0 +1,90 @@
+{
+  "contractVersion": "2B.1",
+  "notes": [
+    "These are BUSINESS tolerances (dual-brand / PDF variance), not engine parity.",
+    "Do not use them to mask same-engine regressions before/after server migration."
+  ],
+  "pdfVarianceThresholds": {
+    "kcal": 50,
+    "pro": 5,
+    "glu": 5,
+    "lip": 5
+  },
+  "dualBrand": {
+    "energyPct": 0.02,
+    "energyFloorKcal": 50,
+    "macroPct": 0.06,
+    "macroFloorG": 5,
+    "formula": "energyTolerance = max(50, round(target.kcal * 0.02)); macroTolerance(v) = max(5, round(v * 0.06))"
+  },
+  "cases": [
+    {
+      "id": "pdf-variance-within",
+      "kind": "pdfVarianceThresholds",
+      "target": {
+        "kcal": 3238,
+        "pro": 168,
+        "glu": 385,
+        "lip": 114
+      },
+      "actual": {
+        "kcal": 3250,
+        "pro": 169,
+        "glu": 387,
+        "lip": 114
+      },
+      "expectedWithin": true
+    },
+    {
+      "id": "pdf-variance-outside",
+      "kind": "pdfVarianceThresholds",
+      "target": {
+        "kcal": 100,
+        "pro": 10,
+        "glu": 10,
+        "lip": 4
+      },
+      "actual": {
+        "kcal": 250,
+        "pro": 25,
+        "glu": 25,
+        "lip": 10
+      },
+      "expectedWithin": false
+    },
+    {
+      "id": "dual-brand-within-2pct",
+      "kind": "withinCoachTolerance",
+      "target": {
+        "kcal": 3000,
+        "pro": 150,
+        "glu": 300,
+        "lip": 80
+      },
+      "actual": {
+        "kcal": 3050,
+        "pro": 155,
+        "glu": 310,
+        "lip": 82
+      },
+      "expectedWithin": true
+    },
+    {
+      "id": "dual-brand-outside",
+      "kind": "withinCoachTolerance",
+      "target": {
+        "kcal": 3000,
+        "pro": 150,
+        "glu": 300,
+        "lip": 80
+      },
+      "actual": {
+        "kcal": 3200,
+        "pro": 180,
+        "glu": 360,
+        "lip": 100
+      },
+      "expectedWithin": false
+    }
+  ]
+}

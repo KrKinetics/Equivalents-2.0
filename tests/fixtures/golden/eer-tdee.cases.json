@@ -1,0 +1,240 @@
+{
+  "contractVersion": "2B.1",
+  "cases": [
+    {
+      "id": "nasem-male-30-modere-kr",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "H",
+        "age": 30,
+        "poidsKg": 83.91468824559335,
+        "hauteurM": 1.8,
+        "activite": "modere",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2781,
+        "tdee": 3189,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "nasem-female-37-modere-elevate",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "F",
+        "age": 37,
+        "poidsKg": 63.5029,
+        "hauteurM": 1.6,
+        "activite": "modere",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 1984,
+        "tdee": 2281,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "nasem-male-40-modere",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "H",
+        "age": 40,
+        "poidsKg": 68.0389,
+        "hauteurM": 1.7272,
+        "activite": "modere",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2402,
+        "tdee": 2780,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "nasem-female-75-sedentaire",
+      "brand": "elevate",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "F",
+        "age": 75,
+        "poidsKg": 60,
+        "hauteurM": 1.6,
+        "activite": "sedentaire",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 1677,
+        "tdee": 1677,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "nasem-youth-male-17-forces-nasem",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "H",
+        "age": 17,
+        "poidsKg": 70,
+        "hauteurM": 1.75,
+        "activite": "modere",
+        "method": "iom2005"
+      },
+      "notes": "Youth always forces NASEM even when IOM requested",
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2832,
+        "tdee": 3342,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "iom-male-30-modere-compat",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "H",
+        "age": 30,
+        "poidsKg": 83.91468824559335,
+        "hauteurM": 1.8,
+        "activite": "modere",
+        "method": "iom2005"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2682,
+        "tdee": 3259,
+        "method": "iom2005"
+      }
+    },
+    {
+      "id": "iom-female-30-modere-compat",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "F",
+        "age": 30,
+        "poidsKg": 83.91468824559335,
+        "hauteurM": 1.8,
+        "activite": "modere",
+        "method": "iom2005"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2239,
+        "tdee": 2804,
+        "method": "iom2005"
+      }
+    },
+    {
+      "id": "nasem-male-actif",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "H",
+        "age": 28,
+        "poidsKg": 82,
+        "hauteurM": 1.78,
+        "activite": "actif",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 2763,
+        "tdee": 3524,
+        "method": "nasem2023"
+      }
+    },
+    {
+      "id": "nasem-female-leger",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "computeEerTdee",
+      "input": {
+        "sexe": "F",
+        "age": 32,
+        "poidsKg": 58,
+        "hauteurM": 1.65,
+        "activite": "leger",
+        "method": "nasem2023"
+      },
+      "units": {
+        "energy": "kcal",
+        "weight": "kg",
+        "height": "m"
+      },
+      "rounding": "Math.round on bmr/tdee for contract comparison",
+      "contractVersion": "2B.1",
+      "expected": {
+        "bmr": 1984,
+        "tdee": 2145,
+        "method": "nasem2023"
+      }
+    }
+  ]
+}

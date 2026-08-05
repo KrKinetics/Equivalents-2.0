@@ -1,0 +1,259 @@
+{
+  "contractVersion": "2B.1",
+  "moyennes": {
+    "pro": {
+      "p": 9,
+      "g": 0,
+      "l": 2
+    },
+    "fec": {
+      "p": 3,
+      "g": 18,
+      "l": 1
+    },
+    "leg": {
+      "p": 2,
+      "g": 7,
+      "l": 0
+    },
+    "fru": {
+      "p": 1,
+      "g": 15,
+      "l": 2
+    },
+    "lai": {
+      "p": 7,
+      "g": 10,
+      "l": 2
+    },
+    "lip": {
+      "p": 1,
+      "g": 2,
+      "l": 6
+    },
+    "whey": {
+      "p": 22,
+      "g": 2,
+      "l": 2
+    }
+  },
+  "pdfVarianceThresholds": {
+    "kcal": 50,
+    "pro": 5,
+    "glu": 5,
+    "lip": 5
+  },
+  "cases": [
+    {
+      "id": "banque-totals-known",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeBanqueTotals",
+      "input": {
+        "banque": {
+          "pro": "10",
+          "fec": "16.5",
+          "leg": "2",
+          "fru": "2.5",
+          "lai": "1.5",
+          "lip": "11.5",
+          "whey": "0"
+        }
+      },
+      "expected": {
+        "pro": 168,
+        "glu": 387,
+        "lip": 114,
+        "kcal": 3246
+      }
+    },
+    {
+      "id": "banque-totals-sample",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "computeBanqueTotals",
+      "input": {
+        "banque": {
+          "pro": "2",
+          "fec": "3",
+          "leg": "2",
+          "fru": "1",
+          "lai": "1",
+          "lip": "1",
+          "whey": "0.5"
+        }
+      },
+      "expected": {
+        "pro": 51,
+        "glu": 96,
+        "lip": 18,
+        "kcal": 750
+      }
+    },
+    {
+      "id": "planned-from-repartition",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computePlannedTotalsFromRepartition",
+      "input": {
+        "repartition": {
+          "0": "3",
+          "1": "5",
+          "2": "1",
+          "3": "1",
+          "4": "0.5",
+          "5": "4",
+          "6": "0",
+          "7": "0",
+          "8": "0",
+          "9": "0",
+          "10": "0",
+          "11": "0",
+          "12": "0",
+          "13": "0",
+          "14": "4",
+          "15": "6",
+          "16": "1",
+          "17": "1.5",
+          "18": "1",
+          "19": "4",
+          "20": "0",
+          "21": "0",
+          "22": "0",
+          "23": "0",
+          "24": "0",
+          "25": "0",
+          "26": "0",
+          "27": "0",
+          "28": "3",
+          "29": "5.5",
+          "30": "0",
+          "31": "0",
+          "32": "0",
+          "33": "3.5",
+          "34": "0",
+          "35": "0",
+          "36": "0",
+          "37": "0",
+          "38": "0",
+          "39": "0",
+          "40": "0",
+          "41": "0"
+        }
+      },
+      "expected": {
+        "pro": 169,
+        "glu": 387,
+        "lip": 114,
+        "kcal": 3250
+      }
+    },
+    {
+      "id": "reconcile-within-threshold",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "reconcilePlanTotals",
+      "input": {
+        "targets": {
+          "kcal": 3238,
+          "pro": 168,
+          "glu": 385,
+          "lip": 114
+        },
+        "banqueTotals": {
+          "pro": 168,
+          "glu": 387,
+          "lip": 114,
+          "kcal": 3246
+        },
+        "plannedTotals": {
+          "pro": 169,
+          "glu": 387,
+          "lip": 114,
+          "kcal": 3250
+        }
+      },
+      "expected": {
+        "varianceVsTarget": {
+          "kcal": 12,
+          "pro": 1,
+          "glu": 2,
+          "lip": 0
+        },
+        "banqueVsTarget": {
+          "kcal": 8,
+          "pro": 0,
+          "glu": 2,
+          "lip": 0
+        },
+        "plannedVsBanque": {
+          "kcal": 4,
+          "pro": 1,
+          "glu": 0,
+          "lip": 0
+        },
+        "withinThreshold": true,
+        "thresholds": {
+          "kcal": 50,
+          "pro": 5,
+          "glu": 5,
+          "lip": 5
+        }
+      }
+    },
+    {
+      "id": "suggest-banque-2800",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "suggestBanque",
+      "input": {
+        "targets": {
+          "kcal": 2800,
+          "pro": 170,
+          "glu": 300,
+          "lip": 80
+        }
+      },
+      "expected": {
+        "banque": {
+          "leg": 2,
+          "fru": 2,
+          "lai": 1,
+          "pro": 12.5,
+          "fec": 13,
+          "lip": 6,
+          "whey": 0
+        },
+        "score": 50.3
+      }
+    },
+    {
+      "id": "distribuer-portions-5",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "distribuerPortions",
+      "input": {
+        "total": 5,
+        "weights": [
+          0.3,
+          0.05,
+          0.25,
+          0.1,
+          0.25,
+          0.05
+        ]
+      },
+      "expected": {
+        "portions": [
+          1.5,
+          0,
+          1,
+          0.5,
+          1.5,
+          0.5
+        ],
+        "sum": 5
+      }
+    }
+  ]
+}

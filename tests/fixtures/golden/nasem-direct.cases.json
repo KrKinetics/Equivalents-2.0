@@ -1,0 +1,47 @@
+{
+  "contractVersion": "2B.1",
+  "cases": [
+    {
+      "id": "direct-youth-h-17",
+      "engine": "computeNasem2023Eer",
+      "input": {
+        "sexe": "H",
+        "age": 17,
+        "poidsKg": 70,
+        "hauteurCm": 175,
+        "activite": "modere"
+      },
+      "expected": {
+        "eer": 3342
+      }
+    },
+    {
+      "id": "direct-adult-f-37",
+      "engine": "computeNasem2023Eer",
+      "input": {
+        "sexe": "F",
+        "age": 37,
+        "poidsKg": 63.5029,
+        "hauteurCm": 160,
+        "activite": "modere"
+      },
+      "expected": {
+        "eer": 2281
+      }
+    },
+    {
+      "id": "direct-iom-male",
+      "engine": "computeIom2005Eer",
+      "input": {
+        "sexe": "H",
+        "age": 30,
+        "poidsKg": 83.91468824559335,
+        "hauteurM": 1.8,
+        "activite": "modere"
+      },
+      "expected": {
+        "eer": 3259
+      }
+    }
+  ]
+}

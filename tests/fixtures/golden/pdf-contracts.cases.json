@@ -1,0 +1,87 @@
+{
+  "contractVersion": "2B.1",
+  "engine": "pdf-field-contracts (no binary hash)",
+  "notes": "Binary PDF bytes are non-deterministic (html2canvas). Contracts lock labels/markers/brands.",
+  "forbiddenMarkers": [
+    "A/D-A",
+    "hybrid-da",
+    "rollup",
+    "provisoire",
+    "diagnostic",
+    "branch",
+    "refactor",
+    "release-candidate",
+    "legacy-a"
+  ],
+  "brands": {
+    "kr": {
+      "id": "kr",
+      "displayName": "KR Kinetics",
+      "slug": "KR_Kinetics",
+      "guidePath": "./guides/kr-kinetics-equivalents-client-fr.pdf",
+      "orgSlug": "kr-kinetics"
+    },
+    "elevate": {
+      "id": "elevate",
+      "displayName": "Elevate Fitness",
+      "slug": "Elevate_Fitness",
+      "guidePath": "./guides/elevate-fitness-equivalents-client-fr.pdf",
+      "orgSlug": "elevate-fitness"
+    }
+  },
+  "orgSlugToBrandId": {
+    "kr-kinetics": "kr",
+    "elevate-fitness": "elevate"
+  },
+  "locales": [
+    "fr",
+    "en"
+  ],
+  "cases": [
+    {
+      "id": "pdf-text-fr-allowed",
+      "brand": "kr",
+      "locale": "fr",
+      "input": {
+        "text": "Plan alimentaire KR Kinetics — maintien — protéines glucides lipides"
+      },
+      "expected": {
+        "forbidden": false
+      }
+    },
+    {
+      "id": "pdf-text-en-allowed",
+      "brand": "elevate",
+      "locale": "en",
+      "input": {
+        "text": "Nutrition plan Elevate Fitness — maintenance — protein carbs fat"
+      },
+      "expected": {
+        "forbidden": false
+      }
+    },
+    {
+      "id": "pdf-text-forbidden-rollup",
+      "brand": "kr",
+      "locale": "fr",
+      "input": {
+        "text": "Section interne rollup visible"
+      },
+      "expected": {
+        "forbidden": true
+      }
+    }
+  ],
+  "pdfFieldsRequired": [
+    "clientName",
+    "date",
+    "goalLabel",
+    "macroRatio",
+    "targets",
+    "banqueTotals",
+    "plannedTotals",
+    "hydration",
+    "brandId",
+    "locale"
+  ]
+}
