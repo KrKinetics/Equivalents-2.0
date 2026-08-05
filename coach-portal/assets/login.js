@@ -17,6 +17,12 @@ import {
   signInWithPassword,
 } from './login-password.mjs';
 import { syncServerSessionCookie } from './session-cookie.mjs';
+import {
+  beginLoginAutoRedirect,
+  clearLoginAutoRedirectGuard,
+  resolveSafeNextPath,
+  shouldAutoRedirectAfterSessionRecover,
+} from './login-redirect.mjs';
 
 const form = document.getElementById('login-form');
 const emailInput = document.getElementById('email');
@@ -68,15 +74,40 @@ function missingConfigMessage() {
   return 'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).';
 }
 
-/** Same-origin relative next path only (workspace or dashboard). */
 function safeNextPath() {
-  const next = new URLSearchParams(window.location.search).get('next');
-  if (!next || !next.startsWith('/')) return './dashboard.html';
-  if (next.startsWith('//') || next.includes('://')) return './dashboard.html';
-  if (next.startsWith('/workspace/') || next === '/dashboard.html' || next.startsWith('/dashboard.html?')) {
-    return next;
+  return resolveSafeNextPath(window.location.search);
+}
+
+/**
+ * Navigate away from login only when the HttpOnly cookie sync succeeded and
+ * we are not already bouncing login ↔ protected page.
+ * Auth events (INITIAL_SESSION / TOKEN_REFRESHED / SIGNED_OUT) never navigate.
+ */
+async function redirectAfterAuthenticatedSession(session, { clearGuardFirst = false } = {}) {
+  if (!session?.access_token) return false;
+  const cookieSynced = await syncServerSessionCookie(session);
+  if (clearGuardFirst) clearLoginAutoRedirectGuard(sessionStorage);
+  const allowRedirect = beginLoginAutoRedirect(sessionStorage);
+  if (!shouldAutoRedirectAfterSessionRecover({
+    hasSession: true,
+    cookieSynced,
+    allowRedirect,
+  })) {
+    if (!cookieSynced) {
+      setStatus(
+        'Session navigateur détectée, mais le cookie serveur est indisponible. Reconnectez-vous.',
+        'error',
+      );
+    } else if (!allowRedirect) {
+      setStatus(
+        'Redirection interrompue pour éviter une boucle. Reconnectez-vous ou rechargez la page.',
+        'error',
+      );
+    }
+    return false;
   }
-  return './dashboard.html';
+  redirectClean(safeNextPath());
+  return true;
 }
 
 function showCaughtError(err, formatter) {
@@ -105,8 +136,8 @@ async function handlePasswordLogin(supabase, email) {
     return;
   }
   setStatus(PASSWORD_SUCCESS_MESSAGE, 'ok');
-  await syncServerSessionCookie(session);
-  redirectClean(safeNextPath());
+  // On failure, redirectAfterAuthenticatedSession sets a stable error (no reload).
+  await redirectAfterAuthenticatedSession(session, { clearGuardFirst: true });
 }
 
 async function handleMagicLink(supabase, email) {
@@ -176,9 +207,10 @@ async function boot() {
   try {
     const supabase = getPortalSupabase();
     bindServerSessionCookieSync(supabase);
+    // recoverSession may sync the cookie; redirect still re-checks sync + loop guard.
     const session = await recoverSession(supabase);
     if (session) {
-      redirectClean(safeNextPath());
+      await redirectAfterAuthenticatedSession(session);
     }
   } catch (err) {
     setStatus(`Erreur JavaScript : ${err?.message || String(err)}`, 'error');

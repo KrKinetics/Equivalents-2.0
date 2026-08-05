@@ -17,9 +17,13 @@ function requireConfig() {
   return { url: cfg.url, publishableKey: cfg.publishableKey };
 }
 
+let clientSingleton = null;
+
+/** One browser client per page — avoids duplicate onAuthStateChange / refresh loops. */
 export function getSupabase() {
+  if (clientSingleton) return clientSingleton;
   const cfg = requireConfig();
-  return createClient(cfg.url, cfg.publishableKey, {
+  clientSingleton = createClient(cfg.url, cfg.publishableKey, {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
@@ -27,4 +31,5 @@ export function getSupabase() {
       flowType: 'pkce',
     },
   });
+  return clientSingleton;
 }
