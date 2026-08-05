@@ -19,6 +19,9 @@ export const SERVER_NUTRITION_GENERIC_ERROR =
 export const SERVER_NUTRITION_RATE_LIMIT_ERROR =
   'Trop de demandes rapprochées. Attendez quelques secondes puis réessayez.';
 
+export const SERVER_NUTRITION_RATE_BACKEND_ERROR =
+  'Le service est temporairement indisponible. Réessayez dans quelques secondes.';
+
 export const SERVER_NUTRITION_VALIDATION_ERROR =
   'Certaines données du plan doivent être recalculées.';
 
@@ -46,6 +49,9 @@ export const SERVER_PDF_INCONSISTENT_PLAN_ERROR =
 export function formatServerNutritionError(status, publicError = '') {
   const code = String(publicError || '');
   if (status === 429 || code === 'rate_limited') return SERVER_NUTRITION_RATE_LIMIT_ERROR;
+  if (code === 'rate_limit_unavailable' || code === 'rate_limit_misconfigured') {
+    return SERVER_NUTRITION_RATE_BACKEND_ERROR;
+  }
   if (
     status === 400
     || status === 413

@@ -32,12 +32,13 @@ Applied via `vercel.json` + Edge `middleware.js` path-scoped headers.
   - `calc-portions` = **180/min** (was 20 — blocked normal Classique/Équilibré + portion edits)
   - PDF = 8/min, magic-link = 5/15min
 - Buckets keyed by hashed session token + hashed IP (not raw email)
-- Default backend: in-memory per isolate
-- Optional: `COACH_RATE_LIMIT_BACKEND=supabase` + migration `20260805140000_coach_rate_limit_buckets.sql`
-- **Production migration not applied** until explicit approval
+- Default backend: in-memory per isolate **outside Production**
+- Production: `COACH_RATE_LIMIT_BACKEND=supabase` required; `memory` / unset → `503 rate_limit_misconfigured`
+- When backend is `supabase`, RPC failure → `503 rate_limit_unavailable` (**no memory fallback**)
+- Optional migration: `20260805140000_coach_rate_limit_buckets.sql` (**not applied**)
 - Rollback SQL provided beside the migration
 - UI: debounced `calculerBanque`, coalesced `planned_totals`, single-flight `repartirAutomatique`
-- 429 surfaces a dedicated message (not “service indisponible”)
+- 429 / 503 rate-limit codes use dedicated user messages
 
 ## Auth
 

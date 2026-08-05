@@ -17,6 +17,8 @@ export const PUBLIC_ERROR = Object.freeze({
   inconsistent_plan: Object.freeze({ status: 422, error: 'inconsistent_plan' }),
   payload_too_large: Object.freeze({ status: 413, error: 'payload_too_large' }),
   rate_limited: Object.freeze({ status: 429, error: 'rate_limited' }),
+  rate_limit_unavailable: Object.freeze({ status: 503, error: 'rate_limit_unavailable' }),
+  rate_limit_misconfigured: Object.freeze({ status: 503, error: 'rate_limit_misconfigured' }),
   misconfigured: Object.freeze({ status: 500, error: 'misconfigured' }),
   internal_error: Object.freeze({ status: 500, error: 'internal_error' }),
   unavailable: Object.freeze({ status: 503, error: 'unavailable' }),

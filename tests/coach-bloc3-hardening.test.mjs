@@ -128,6 +128,8 @@ test('public error catalog includes Bloc 3 codes', () => {
   assert.equal(PUBLIC_ERROR.unsupported_media_type.status, 415);
   assert.equal(PUBLIC_ERROR.internal_error.status, 500);
   assert.equal(PUBLIC_ERROR.rate_limited.status, 429);
+  assert.equal(PUBLIC_ERROR.rate_limit_unavailable.status, 503);
+  assert.equal(PUBLIC_ERROR.rate_limit_misconfigured.status, 503);
 });
 
 test('rate-limit migration SQL exists and is reversible (not applied by tests)', () => {

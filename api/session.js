@@ -58,10 +58,13 @@ module.exports = async function handler(req, res) {
     }),
   });
   if (!limited.ok) {
+    const { randomUUID } = await import('node:crypto');
+    const requestId = randomUUID();
     res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
+    res.setHeader('X-Request-Id', requestId);
     res.statusCode = limited.status;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    res.end(JSON.stringify({ error: limited.error }));
+    res.end(JSON.stringify({ error: limited.error, requestId }));
     return;
   }
 

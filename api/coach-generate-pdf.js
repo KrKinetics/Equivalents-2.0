@@ -109,8 +109,16 @@ module.exports = async function handler(req, res) {
     if (!limited.ok) {
       res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
       log({ event: 'reject', stage: 'rate_limit', status: limited.status });
-      logCoachEvent({ event: 'rate_limited', route: 'generate-pdf', requestId, status: 429 });
-      return respondJson(limited.status, { error: limited.error });
+      logCoachEvent({
+        event: limited.status === 429 ? 'rate_limited' : 'rate_limit_backend_error',
+        route: 'generate-pdf',
+        requestId,
+        stage: 'rate_limit',
+        status: limited.status,
+        backend: limited.backend,
+        category: limited.category || 'unknown',
+      });
+      return respondJson(limited.status, { error: limited.error, requestId });
     }
 
     stage = 'parse_body';

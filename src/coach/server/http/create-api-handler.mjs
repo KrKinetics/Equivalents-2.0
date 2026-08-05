@@ -81,14 +81,18 @@ export function createCoachApiHandler({
     if (!limited.ok) {
       res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
       res.statusCode = limited.status;
+      res.setHeader('X-Request-Id', requestId);
       logCoachEvent({
-        event: 'rate_limited',
+        event: limited.status === 429 ? 'rate_limited' : 'rate_limit_backend_error',
         route: routeName,
         requestId,
-        status: 429,
+        stage: 'rate_limit',
+        status: limited.status,
+        backend: limited.backend,
+        category: limited.category || 'unknown',
         ms: Date.now() - started,
       });
-      res.end(JSON.stringify({ error: limited.error }));
+      res.end(JSON.stringify({ error: limited.error, requestId }));
       return;
     }
 
