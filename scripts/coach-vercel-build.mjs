@@ -67,13 +67,9 @@ export function buildCoachVercelBundle(options = {}) {
   const env = options.env || process.env;
   const targetDir = options.outDir || outDir;
   const { url, publishableKey } = requirePublicSupabaseBuildEnv(env);
-  // Preview Draft PRs enable the server nutrition path by default.
-  // Production stays OFF unless COACH_FEATURE_SERVER_NUTRITION=1.
-  // Explicit COACH_FEATURE_SERVER_NUTRITION=0 forces OFF even on Preview.
-  const flag = String(env.COACH_FEATURE_SERVER_NUTRITION || '').trim();
-  const vercelEnv = String(env.VERCEL_ENV || '').trim();
-  const serverNutritionEngine = flag === '1'
-    || (flag !== '0' && vercelEnv === 'preview');
+  // Bloc 2: server nutrition + server PDF are always on for deployable surfaces.
+  // Rollback = git revert (no feature-flag OFF path in production builds).
+  const serverNutritionEngine = true;
 
   if (!fs.existsSync(portalDir)) throw new Error('coach-portal/ missing');
   ensureCalculatorBuilt();
@@ -85,17 +81,12 @@ export function buildCoachVercelBundle(options = {}) {
 
   const workspaceDir = path.join(targetDir, 'workspace');
   copyTree(calcDir, workspaceDir);
-  // Never publish coach-data.json as a static asset.
-  // Legacy path: authenticated clients may still use /api/coach-data when the feature flag is off.
-  // Server nutrition path: UI must use minimal /api/coach-* routes only.
+  // Never publish coach-data.json as a static asset — bank loads server-side only.
   const leakedCoachData = path.join(workspaceDir, 'coach-data.json');
   if (fs.existsSync(leakedCoachData)) fs.unlinkSync(leakedCoachData);
 
   const workspaceIndex = path.join(workspaceDir, 'index.html');
-  let workspaceHtml = fs.readFileSync(workspaceIndex, 'utf8');
-  if (serverNutritionEngine) {
-    workspaceHtml = stripClientNutritionFormulas(workspaceHtml);
-  }
+  let workspaceHtml = stripClientNutritionFormulas(fs.readFileSync(workspaceIndex, 'utf8'));
   const injected = injectWorkspaceBootstrap(workspaceHtml, { serverNutritionEngine });
   writeFile(workspaceIndex, injected);
 
@@ -107,12 +98,10 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'services'),
     path.join(targetDir, 'src', 'coach', 'services'),
   );
-  if (serverNutritionEngine) {
-    copyTree(
-      path.join(root, 'src', 'coach', 'client'),
-      path.join(targetDir, 'src', 'coach', 'client'),
-    );
-  }
+  copyTree(
+    path.join(root, 'src', 'coach', 'client'),
+    path.join(targetDir, 'src', 'coach', 'client'),
+  );
 
   const configJs = buildConfigJsSource({ url, publishableKey, serverNutritionEngine });
   writeFile(path.join(targetDir, 'config.js'), configJs);
@@ -141,19 +130,17 @@ export function buildCoachVercelBundle(options = {}) {
   if (!injected.includes('action="/dashboard.html"')) {
     throw new Error('workspace/index.html missing dashboard return form');
   }
-  if (serverNutritionEngine) {
-    if (!injected.includes('server-nutrition-bridge.mjs')) {
-      throw new Error('server nutrition path missing bridge injection');
-    }
-    if (!injected.includes('data-coach-server-nutrition="1"')) {
-      throw new Error('server nutrition path missing strip marker');
-    }
-    if (htmlContainsEnergyFormulaIp(injected)) {
-      throw new Error('server nutrition path still embeds energy formula coefficients');
-    }
-    if (!fs.existsSync(path.join(targetDir, 'src/coach/client/server-nutrition-bridge.mjs'))) {
-      throw new Error('server nutrition client bridge missing from deploy tree');
-    }
+  if (!injected.includes('server-nutrition-bridge.mjs')) {
+    throw new Error('server nutrition path missing bridge injection');
+  }
+  if (!injected.includes('data-coach-server-nutrition="1"')) {
+    throw new Error('server nutrition path missing strip marker');
+  }
+  if (htmlContainsEnergyFormulaIp(injected)) {
+    throw new Error('server nutrition path still embeds energy formula coefficients');
+  }
+  if (!fs.existsSync(path.join(targetDir, 'src/coach/client/server-nutrition-bridge.mjs'))) {
+    throw new Error('server nutrition client bridge missing from deploy tree');
   }
 
   assertDeployTreeSafe(targetDir);
@@ -170,7 +157,7 @@ function main() {
   // Log only non-secret facts.
   console.log(`Coach Vercel bundle ready: ${path.relative(root, built)}`);
   console.log(`Public Supabase host configured: ${urlHost}`);
-  console.log(`Server nutrition engine feature: ${serverNutritionEngine ? 'ON' : 'OFF'}`);
+  console.log('Server nutrition engine: ON (permanent Bloc 2 path)');
   console.log('config.js written (values not printed).');
 }
 

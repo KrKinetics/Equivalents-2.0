@@ -5,9 +5,6 @@
   "buildCommand": "npm run coach:vercel:build",
   "outputDirectory": "dist/coach-vercel",
   "functions": {
-    "api/coach-data.js": {
-      "includeFiles": "coach-calculator/coach-data.json"
-    },
     "api/coach-food-search.js": {
       "includeFiles": "coach-calculator/coach-data.json"
     },
@@ -25,13 +22,14 @@
     },
     "api/coach-calc-portions.js": {
       "includeFiles": "src/lib/**"
+    },
+    "api/coach-generate-pdf.js": {
+      "includeFiles": "coach-calculator/assets/logo-*.{png,jpg}",
+      "maxDuration": 60,
+      "memory": 1024
     }
   },
   "rewrites": [
-    {
-      "source": "/workspace/coach-data.json",
-      "destination": "/api/coach-data"
-    },
     {
       "source": "/workspace",
       "destination": "/workspace/index.html"

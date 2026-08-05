@@ -2,9 +2,7 @@
  * Server-side Coach portal auth helpers (Node / serverless).
  * Uses the caller's JWT + publishable key only — never service_role.
  *
- * PHASE 1 note: /api/coach-data still returns the full food bank to
- * authenticated org members. Phase 2 must replace this with minimal
- * calculation / search endpoints.
+ * Food bank data is served only via authenticated minimal /api/coach-* routes.
  */
 
 export const COACH_ACCESS_COOKIE = 'coach_access_token';

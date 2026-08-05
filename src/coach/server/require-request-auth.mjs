@@ -10,7 +10,7 @@
  * Never uses the Supabase service role secret. Never trusts client-supplied role or organization_id alone.
  * Public errors are uniform (no account/org enumeration).
  *
- * /api/coach-data remains the temporary Phase-1 full-bank endpoint until Phase 2G.
+ * Legacy /api/coach-data full-bank endpoint removed in Bloc 2 — use minimal /api/coach-* routes.
  */
 
 import {
