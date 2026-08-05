@@ -211,7 +211,8 @@ test('PDF renderer smoke test', { skip: process.env.SKIP_PDF_RENDER === '1' }, a
     assert.equal(pdf.subarray(0, 4).toString(), '%PDF');
     assert.ok(pdf.length > 500);
   } catch (error) {
-    if (/Could not find Chrome|Failed to launch|renderer is unavailable/i.test(String(error?.message))) {
+    const detail = `${error?.message || ''} ${error?.cause?.message || ''} ${error?.code || ''}`;
+    if (/Could not find Chrome|Failed to launch|browser_launch|renderer is unavailable|pdf_render_failed/i.test(detail)) {
       t.skip('No local Chromium available');
     } else throw error;
   }

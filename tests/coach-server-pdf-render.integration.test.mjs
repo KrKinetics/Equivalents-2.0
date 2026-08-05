@@ -62,9 +62,12 @@ async function canRunLocalPuppeteer() {
   }
 }
 
-const runServerlessChromium = process.env.VERCEL === '1'
+// Sparticuz headless shell is Linux/serverless only. Ignore polluted local VERCEL=1 on Windows.
+const runServerlessChromium = process.platform === 'linux' && (
+  process.env.VERCEL === '1'
   || process.env.FORCE_VERCEL_PDF_TEST === '1'
-  || (process.platform === 'linux' && process.env.CI === 'true');
+  || process.env.CI === 'true'
+);
 
 const localPuppeteerReady = await canRunLocalPuppeteer();
 
@@ -83,8 +86,10 @@ test('filename + HTML contracts remain brand/locale safe before render', async (
   const htmlEn = await buildHtml({ locale: 'en', brandId: 'elevate', includeRest: true });
   assert.match(htmlFr, /KR Kinetics/);
   assert.match(htmlEn, /Elevate Fitness/);
-  assert.equal((htmlFr.match(/<section class="pdf-a4-page"/g) || []).length, 2);
-  assert.equal((htmlEn.match(/<section class="pdf-a4-page"/g) || []).length, 2);
+  assert.match(htmlFr, /data-pdf-brand="kr"/);
+  assert.match(htmlEn, /data-pdf-brand="elevate"/);
+  assert.equal((htmlFr.match(/<section class="pdf-a4-page\b/g) || []).length, 2);
+  assert.equal((htmlEn.match(/<section class="pdf-a4-page\b/g) || []).length, 2);
   assert.equal(
     buildPdfFilename({ locale: 'fr', brandSlug: 'kr', athleteName: 'José', dateIso: '2026-08-04' }),
     'Plan_KR_Kinetics_José_2026-08-04.pdf',
