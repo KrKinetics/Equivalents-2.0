@@ -1,8 +1,8 @@
-# Bloc 3 — Final hardening (Draft)
+# Bloc 3 — Final hardening (Closed)
 
 **Base commit:** `1119630` (Bloc 2 Production)  
-**Branch:** `security/final-hardening-block3`  
-**Status:** Draft PR — do not merge until Preview validation.
+**Merge commit:** `4d70ccc` (PR #30)  
+**Status:** Merged — Production validated; distributed rate limiting active.
 
 ## Goals
 
@@ -33,10 +33,10 @@ Applied via `vercel.json` + Edge `middleware.js` path-scoped headers.
   - PDF = 8/min, magic-link = 5/15min
 - Buckets keyed by hashed session token + hashed IP (not raw email)
 - Default backend: in-memory per isolate **outside Production**
-- Production: `COACH_RATE_LIMIT_BACKEND=supabase` required; `memory` / unset → `503 rate_limit_misconfigured`
+- Production + Preview: `COACH_RATE_LIMIT_BACKEND=supabase` (never `memory` in Production)
 - When backend is `supabase`, RPC failure → `503 rate_limit_unavailable` (**no memory fallback**)
-- Optional migration: `20260805140000_coach_rate_limit_buckets.sql` (**not applied**)
-- Rollback SQL provided beside the migration
+- Migration applied: `20260805140000_coach_rate_limit_buckets.sql`
+- Rollback: `supabase/rollbacks/20260805140000_coach_rate_limit_buckets_rollback.sql`
 - UI: debounced `calculerBanque`, coalesced `planned_totals`, single-flight `repartirAutomatique`
 - 429 / 503 rate-limit codes use dedicated user messages
 
@@ -54,9 +54,9 @@ Applied via `vercel.json` + Edge `middleware.js` path-scoped headers.
 
 Patches GHSA-7p8r-x3mc-p8w7 without major `ajv` upgrade. Coach HTTP validators do not use `ajv`/`fast-uri` on the request path.
 
-## Residual risks
+## Residual risks (registered — not corrected in Bloc 3 closure)
 
-1. Workspace calculator still needs `unsafe-inline` for event-handler attributes
-2. Distributed rate limit inactive until Supabase migration approved
-3. In-memory limits reset on cold start / differ across isolates
+1. **Workspace CSP residual `unsafe-inline`** — calculator still needs `script-src`/`style-src` `'unsafe-inline'` for legacy `onclick`/`onchange` attributes
+2. **Malformed Bearer → 503 instead of 401** — invalid JWT forwarded to the rate-limit RPC triggers fail-closed `rate_limit_unavailable` before auth classification
+3. **Production UI path not fully re-automated** — Production validated via API/security smoke + Preview manual UI; full interactive Classique/Équilibré/mobile browser journey on Production was not replayed end-to-end in automation
 4. No COOP/COEP (would risk PDF download / Supabase auth flows)
