@@ -7,6 +7,24 @@
   "functions": {
     "api/coach-data.js": {
       "includeFiles": "coach-calculator/coach-data.json"
+    },
+    "api/coach-food-search.js": {
+      "includeFiles": "coach-calculator/coach-data.json"
+    },
+    "api/coach-food-detail.js": {
+      "includeFiles": "coach-calculator/coach-data.json"
+    },
+    "api/coach-calc-equivalences.js": {
+      "includeFiles": "coach-calculator/coach-data.json"
+    },
+    "api/coach-calc-energy.js": {
+      "includeFiles": "src/lib/**"
+    },
+    "api/coach-calc-macros.js": {
+      "includeFiles": "src/lib/**"
+    },
+    "api/coach-calc-portions.js": {
+      "includeFiles": "src/lib/**"
     }
   },
   "rewrites": [
