@@ -6,6 +6,7 @@ dist/coach-vercel/
 .vercel/
 
 # Temporary extraction and verification artifacts
+tmp/
 _xlsx_tmp/
 _plan.zip
 extract-output.txt
