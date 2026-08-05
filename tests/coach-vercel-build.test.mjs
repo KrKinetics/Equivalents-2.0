@@ -66,8 +66,17 @@ test('buildConfigJsSource is public-only and never includes service_role', () =>
   });
   assertConfigJsIsPublicOnly(source);
   assert.match(source, /COACH_SUPABASE/);
+  assert.match(source, /COACH_FEATURES/);
+  assert.match(source, /serverNutritionEngine":false/);
   assert.match(source, /example\.supabase\.co/);
   assert.doesNotMatch(source, /SERVICE_ROLE|service_role|undefined/);
+});
+
+test('injectWorkspaceBootstrap can add server nutrition bridge when flagged', () => {
+  const html = '<!DOCTYPE html><html><head><title>t</title></head><body><h1>Calc</h1></body></html>';
+  const out = injectWorkspaceBootstrap(html, { serverNutritionEngine: true });
+  assert.match(out, /server-nutrition-bridge\.mjs/);
+  assert.match(out, /workspace-bootstrap\.mjs/);
 });
 
 test('vercel.json keeps required routes without catch-all HTML rewrite', () => {
