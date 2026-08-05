@@ -34,6 +34,13 @@ import {
   scorePortions,
   suggestBanque,
 } from '../coach/calculations/portions.mjs';
+import {
+  REPART_PRESETS,
+  PRO_AUTO_EXCLUDED,
+  buildAutoRepartition,
+  resolveRepartPreset,
+  buildPresetEntrainement,
+} from '../coach/calculations/repartition-presets.mjs';
 
 export {
   CATS,
@@ -60,6 +67,11 @@ export {
   distribuerPortions,
   scorePortions,
   suggestBanque,
+  REPART_PRESETS,
+  PRO_AUTO_EXCLUDED,
+  buildAutoRepartition,
+  resolveRepartPreset,
+  buildPresetEntrainement,
 };
 
 export const FEATURE_DA_ENABLED = false;

@@ -159,6 +159,41 @@ export function stripClientNutritionFormulas(html) {
     /const MOYENNES\s*=\s*\{[\s\S]*?\};/g,
     'const MOYENNES = Object.freeze({ pro:{p:0,g:0,l:0},fec:{p:0,g:0,l:0},leg:{p:0,g:0,l:0},fru:{p:0,g:0,l:0},lai:{p:0,g:0,l:0},lip:{p:0,g:0,l:0},whey:{p:0,g:0,l:0} }); /* stripped: server nutrition path */',
   );
+  // Lexical MOYENNES stays zeroed; meal recap must read server moyennes from globalThis.
+  out = out.replace(
+    /\bMOYENNES\[/g,
+    '(globalThis.MOYENNES||MOYENNES)[',
+  );
+
+  // Share calculator state with the ES module bridge (let is not visible on globalThis).
+  out = out.replace(
+    /let currentTDEE = 0;/,
+    'var currentTDEE = 0;',
+  );
+  out = out.replace(
+    /let selectedGoalMultiplier = 1\.0;/,
+    'var selectedGoalMultiplier = 1.0;',
+  );
+  out = out.replace(
+    /let pdfLang = 'fr';/,
+    "var pdfLang = 'fr';",
+  );
+  out = out.replace(
+    /let jourReposActif = true;/,
+    'var jourReposActif = true;',
+  );
+  out = out.replace(
+    /let targets = \{ kcal: 0, pro: 0, glu: 0, lip: 0 \};/,
+    'var targets = { kcal: 0, pro: 0, glu: 0, lip: 0 };',
+  );
+  out = out.replace(
+    /let activeJour = 'entrainement';/,
+    "var activeJour = 'entrainement';",
+  );
+  out = out.replace(
+    /let joursData = \{ entrainement: null, repos: null \};/,
+    'var joursData = { entrainement: null, repos: null };',
+  );
   out = replaceFunctionSpan(
     out,
     'const REPART_PRESETS = {',

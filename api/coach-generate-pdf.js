@@ -49,6 +49,7 @@ module.exports = async function handler(req, res) {
       { buildPdfFilename },
       { brandIdFromOrganizationSlug },
       { loadBrandLogoDataUri },
+      { assertPlanReadyForPdf },
     ] = await Promise.all([
       import('../src/coach/server/http/cors.mjs'),
       import('../src/coach/server/http/rate-limit.mjs'),
@@ -64,6 +65,7 @@ module.exports = async function handler(req, res) {
       import('../src/coach/server/pdf/filename.mjs'),
       import('../src/coach/workspace/org-brand.mjs'),
       import('../src/coach/server/pdf/resolve-logo.mjs'),
+      import('../src/coach/server/pdf/assert-plan-ready.mjs'),
     ]);
 
     const respondJson = (status, body) => {
@@ -151,6 +153,14 @@ module.exports = async function handler(req, res) {
     if (!clientAccess.ok) {
       log({ event: 'reject', stage: 'client_access', status: 403 });
       return respondJson(PUBLIC_ERROR.forbidden.status, { error: 'forbidden' });
+    }
+
+    stage = 'plan_ready';
+    const readiness = assertPlanReadyForPdf(validated.value);
+    if (!readiness.ok) {
+      const code = readiness.error === 'inconsistent_plan' ? 'inconsistent_plan' : 'plan_not_ready';
+      log({ event: 'reject', stage: 'plan_ready', status: readiness.status, code });
+      return respondJson(PUBLIC_ERROR[code].status, { error: PUBLIC_ERROR[code].error });
     }
 
     stage = 'snapshot';

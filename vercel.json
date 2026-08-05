@@ -21,10 +21,10 @@
       "includeFiles": "src/lib/**"
     },
     "api/coach-calc-portions.js": {
-      "includeFiles": "src/lib/**"
+      "includeFiles": "{src/lib/**,src/coach/**}"
     },
     "api/coach-generate-pdf.js": {
-      "includeFiles": "coach-calculator/assets/logo-*",
+      "includeFiles": "{coach-calculator/assets/logo-*,src/coach/server/pdf/embedded-logos.mjs}",
       "maxDuration": 60,
       "memory": 1536
     }

@@ -175,6 +175,28 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
         });
         return;
       }
+      if (body.action === 'auto_repartition') {
+        const repartition = [
+          0, 1.5, 0.5, 0.5, 0.5, 1, 0,
+          0, 0.5, 0, 0.5, 0, 0.5, 0,
+          2, 1.5, 0.5, 0, 0, 0.5, 0,
+          0, 1, 0.5, 0.5, 0, 0.5, 0,
+          1.5, 1, 0.5, 0, 0.5, 0.5, 0,
+          0.5, 0.5, 0, 0.5, 0, 0, 0,
+        ];
+        req.respond({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            repartition,
+            mode: body.mode || 'classique',
+            plannedTotals: { pro: 120, glu: 180, lip: 60, kcal: 1800 },
+            percentages: { pro: 27, glu: 40, lip: 33 },
+            banqueTotals: { pro: 120, glu: 180, lip: 60, kcal: 1800 },
+          }),
+        });
+        return;
+      }
     }
     if (u.includes('/api/coach-calc-macros')) {
       req.respond({
@@ -245,10 +267,48 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
     globalThis.targets = { kcal: 2000, pro: 150, glu: 200, lip: 67 };
   });
 
-  // Ensure moyennes + planned totals path ran.
-  await page.evaluate(async () => {
-    if (typeof window.calculerBanque === 'function') await window.calculerBanque();
+  await page.waitForFunction(
+    () => window.COACH_SERVER_NUTRITION?.enabled === true
+      && typeof window.suggererBanque === 'function'
+      && typeof window.repartirAutomatique === 'function',
+    { timeout: 10_000 },
+  );
+
+  // Auto portions: suggest banque + server meal repartition into canonical state.
+  const suggestResult = await page.evaluate(async () => {
+    const before = String(window.suggererBanque);
+    try {
+      await window.suggererBanque();
+      return {
+        ok: true,
+        bridge: before.includes('suggererBanqueServer') || before.includes('calcPortionsApi') || before.includes('native'),
+        targetsKcal: Number(window.targets?.kcal) || 0,
+        uiBanque: Array.from(document.querySelectorAll('.target-input'))
+          .reduce((a, el) => a + (parseFloat(el.value) || 0), 0),
+      };
+    } catch (err) {
+      return { ok: false, error: String(err?.message || err), targetsKcal: Number(window.targets?.kcal) || 0 };
+    }
   });
+  assert.equal(suggestResult.ok, true, `suggest failed: ${suggestResult.error || ''}`);
+  assert.ok(suggestResult.targetsKcal > 0, 'targets visible on window');
+  assert.ok(suggestResult.uiBanque > 0, `banque UI filled, got ${suggestResult.uiBanque}`);
+
+  const canonical = await page.evaluate(() => {
+    const day = window.joursData?.entrainement || {};
+    const rep = Array.isArray(day.repartition) ? day.repartition : [];
+    return {
+      banqueSum: Object.values(day.banque || {}).reduce((a, b) => a + (parseFloat(b) || 0), 0),
+      repSum: rep.reduce((a, b) => a + (parseFloat(b) || 0), 0),
+      plannedKcal: Number(day.plannedTotals?.kcal) || Number(window.__COACH_PLANNED_TOTALS?.entrainement?.kcal) || 0,
+      uiRepSum: Array.from(document.querySelectorAll('.rep-input'))
+        .reduce((a, el) => a + (parseFloat(el.value) || 0), 0),
+    };
+  });
+  assert.ok(canonical.banqueSum > 0, 'banque filled');
+  assert.ok(canonical.repSum > 0, 'canonical repartition filled');
+  assert.ok(canonical.uiRepSum > 0, 'UI meal portions filled');
+  assert.ok(canonical.plannedKcal > 0, 'planned totals non-zero');
 
   await page.evaluate(() => {
     const btn = document.querySelector('.btn-primary[onclick="genererPlanTextuel()"]')
@@ -264,8 +324,8 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
   assert.ok(planText.trim().length > 40, `expected plan text, got length ${planText.length}`);
   assert.equal(legacyHits.length, 0, `legacy requests: ${legacyHits.join(' | ')}`);
 
-  // PDF download path
-  const pdfResult = await page.evaluate(async () => {
+  // Empty plan must be refused by API stub path (server returns 409 in real stack).
+  const emptyPdf = await page.evaluate(async () => {
     const res = await fetch('/api/coach-generate-pdf', {
       method: 'POST',
       credentials: 'include',
@@ -284,7 +344,59 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
           banque: { pro: 2, fec: 3, leg: 1, fru: 1, lai: 0, lip: 1, whey: 0 },
           repartition: Array(42).fill(0),
           targets: { kcal: 2000, pro: 150, glu: 200, lip: 67 },
-          timing: { active: false, heure: '', heureLabel: '', summary: '', preIdx: -1, postIdx: -1 },
+          timing: { active: false },
+        },
+        rest: null,
+      }),
+    });
+    return { status: res.status };
+  });
+  // Browser stub still returns 200 for any PDF body — assert client gate instead.
+  assert.ok(emptyPdf.status === 200 || emptyPdf.status === 409);
+
+  // Zero both DOM and canonical state so captureJourActif cannot revive portions.
+  await page.evaluate(() => {
+    document.querySelectorAll('.rep-input').forEach((el) => { el.value = '0'; });
+    window.joursData.entrainement.repartition = Array(42).fill(0);
+    window.joursData.entrainement.plannedTotals = { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    if (window.__COACH_PLANNED_TOTALS) {
+      window.__COACH_PLANNED_TOTALS.entrainement = { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    }
+  });
+  await page.evaluate(async () => {
+    await window.exporterPDF();
+  });
+  await new Promise((r) => setTimeout(r, 500));
+  const planReadyAlerts = alerts.filter((m) => /pas prêt|incomplet|incohérent/i.test(m));
+  assert.ok(planReadyAlerts.length > 0, `expected plan-not-ready user message, alerts=${alerts.join(' | ')}`);
+
+  // Restore distributed plan and export PDF successfully.
+  await page.evaluate(async () => {
+    if (typeof window.suggererBanque === 'function') await window.suggererBanque();
+  });
+  await new Promise((r) => setTimeout(r, 600));
+
+  const pdfResult = await page.evaluate(async () => {
+    const day = window.joursData.entrainement;
+    const res = await fetch('/api/coach-generate-pdf', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/pdf' },
+      body: JSON.stringify({
+        organization_slug: 'kr-kinetics',
+        client_id: '00000000-0000-4000-8000-000000000001',
+        locale: 'fr',
+        athlete_name: 'Test',
+        goal_label: 'Maintien',
+        macro_ratio_label: '25 / 45 / 30',
+        coach_notes: '',
+        goal_multiplier: 1,
+        include_rest: false,
+        training: {
+          banque: day.banque,
+          repartition: day.repartition.map((v) => Number(v) || 0),
+          targets: { kcal: 2000, pro: 150, glu: 200, lip: 67 },
+          timing: { active: false },
         },
         rest: null,
       }),

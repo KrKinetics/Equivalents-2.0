@@ -121,6 +121,29 @@ function cacheMacroPercentages(totals, percentages) {
   };
 }
 
+function fingerprintRepartition(repartition) {
+  if (!Array.isArray(repartition) && typeof repartition !== 'object') return '';
+  const vals = [];
+  const len = Array.isArray(repartition) ? repartition.length : 42;
+  for (let i = 0; i < len; i += 1) vals.push(String(Number(repartition[i]) || 0));
+  return vals.join('|');
+}
+
+/**
+ * Canonical nutrition day state lives on joursData[jour]:
+ * banque, repartition, banqueTotals, plannedTotals (server-authored).
+ */
+function writeCanonicalDayTotals(jourKey, { banqueTotals, plannedTotals, percentages } = {}) {
+  const day = globalThis.joursData?.[jourKey];
+  if (!day) return;
+  if (banqueTotals) day.banqueTotals = { ...banqueTotals };
+  if (plannedTotals) {
+    day.plannedTotals = { ...plannedTotals };
+    day.__plannedTotalsFp = fingerprintRepartition(day.repartition);
+  }
+  if (percentages && plannedTotals) cacheMacroPercentages(plannedTotals, percentages);
+}
+
 /** Refresh server planned totals so getJourSnapshot / plan text are not stuck at zeros. */
 async function refreshPlannedTotalsFromServer() {
   const jours = globalThis.joursData || {};
@@ -132,22 +155,64 @@ async function refreshPlannedTotalsFromServer() {
       action: 'planned_totals',
       repartition: day.repartition,
     });
-    cache[key] = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
-    cacheMacroPercentages(cache[key], res.percentages);
+    const totals = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    cache[key] = totals;
+    writeCanonicalDayTotals(key, {
+      plannedTotals: totals,
+      percentages: res.percentages,
+    });
   }
   globalThis.__COACH_PLANNED_TOTALS = cache;
   const engine = globalThis.CoachSharedEngine;
   if (engine) {
     engine.computePlannedTotalsFromRepartition = function computePlannedTotalsFromServerCache(repartition) {
+      const fp = fingerprintRepartition(repartition);
       for (const key of ['entrainement', 'repos']) {
         const day = globalThis.joursData?.[key];
-        if (day && day.repartition === repartition) {
-          return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
+        if (!day) continue;
+        if (day.plannedTotals && day.__plannedTotalsFp === fp) {
+          return { ...day.plannedTotals };
+        }
+        if (day.repartition === repartition || fingerprintRepartition(day.repartition) === fp) {
+          return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || day.plannedTotals || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
         }
       }
       return { pro: 0, glu: 0, lip: 0, kcal: 0 };
     };
   }
+}
+
+function readBanqueFromUi() {
+  const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+  const banque = {};
+  CATS.forEach((cat) => {
+    const el = document.querySelector(`.target-input[data-cat="${cat}"]`);
+    banque[cat] = el ? (parseFloat(el.value) || 0) : 0;
+  });
+  return banque;
+}
+
+function applyRepartitionToUi(repartition) {
+  const inputs = document.querySelectorAll('.rep-input');
+  inputs.forEach((inp, idx) => {
+    inp.value = repartition[idx] != null ? repartition[idx] : 0;
+  });
+}
+
+function syncCanonicalDayFromUi(jourKey) {
+  if (typeof globalThis.captureJourActif === 'function') globalThis.captureJourActif();
+  const key = jourKey || globalThis.activeJour || 'entrainement';
+  const day = globalThis.joursData?.[key];
+  if (!day) return day;
+  // Normalize numeric types for save/PDF (UI may store strings).
+  const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+  CATS.forEach((cat) => {
+    day.banque[cat] = parseFloat(day.banque[cat]) || 0;
+  });
+  for (let i = 0; i < (day.repartition?.length || 0); i += 1) {
+    day.repartition[i] = parseFloat(day.repartition[i]) || 0;
+  }
+  return day;
 }
 
 async function chargerCoachDataServer() {
@@ -294,8 +359,10 @@ async function updateCiblesServer() {
   try {
     const input = readMacroInputForServer();
     const res = await calcMacrosApi(input);
-    globalThis.targets = res.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };
-    const targets = globalThis.targets;
+    const nextTargets = res.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };
+    // Deploy strip promotes `targets` to var so this updates UI + bridge together.
+    globalThis.targets = nextTargets;
+    const targets = nextTargets;
     if (res.percentages) {
       cacheMacroPercentages(targets, res.percentages);
       globalThis.__COACH_SERVER_TARGET_PCT = { ...res.percentages };
@@ -336,16 +403,15 @@ async function updateCiblesServer() {
 
 async function calculerBanqueServer() {
   const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
-  const banque = {};
-  CATS.forEach((cat) => {
-    const el = document.querySelector(`.target-input[data-cat="${cat}"]`);
-    banque[cat] = el ? (parseFloat(el.value) || 0) : 0;
-  });
+  const banque = readBanqueFromUi();
   try {
     const moyennes = await ensureMoyennes();
     const totalsRes = await calcPortionsApi({ action: 'banque_totals', banque });
     const totals = totalsRes.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
     cacheMacroPercentages(totals, totalsRes.percentages);
+    syncCanonicalDayFromUi();
+    const active = globalThis.activeJour || 'entrainement';
+    writeCanonicalDayTotals(active, { banqueTotals: totals, percentages: totalsRes.percentages });
     await refreshPlannedTotalsFromServer();
     installServerMacroPercentageHelpers();
 
@@ -390,6 +456,72 @@ async function calculerBanqueServer() {
   }
 }
 
+/**
+ * Apply server auto_repartition into UI + canonical joursData, then refresh planned totals.
+ */
+async function applyAutoRepartitionServer(mode = 'classique') {
+  const banque = readBanqueFromUi();
+  let banqueTotal = 0;
+  Object.values(banque).forEach((v) => { banqueTotal += Number(v) || 0; });
+  if (banqueTotal <= 0) {
+    notifyNutritionError('Remplissez d’abord la banque (Section 3) ou utilisez le calcul automatique des portions.');
+    return false;
+  }
+  const heureEl = document.getElementById('heure-entrainement');
+  const res = await calcPortionsApi({
+    action: 'auto_repartition',
+    banque,
+    mode,
+    heureEntrainement: heureEl?.value || null,
+  });
+  if (!Array.isArray(res.repartition) || !res.repartition.length) {
+    throw new Error('auto_repartition_empty');
+  }
+  applyRepartitionToUi(res.repartition);
+  const day = syncCanonicalDayFromUi();
+  if (day) {
+    day.repartition = res.repartition.map((v) => Number(v) || 0);
+    writeCanonicalDayTotals(globalThis.activeJour || 'entrainement', {
+      banqueTotals: res.banqueTotals,
+      plannedTotals: res.plannedTotals,
+      percentages: res.percentages,
+    });
+  }
+  if (res.plannedTotals) {
+    const key = globalThis.activeJour || 'entrainement';
+    if (!globalThis.__COACH_PLANNED_TOTALS) globalThis.__COACH_PLANNED_TOTALS = Object.create(null);
+    globalThis.__COACH_PLANNED_TOTALS[key] = { ...res.plannedTotals };
+  }
+  await refreshPlannedTotalsFromServer();
+  installServerMacroPercentageHelpers();
+  if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
+  if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
+  return true;
+}
+
+async function repartirAutomatiqueServer(mode) {
+  try {
+    if (mode === 'entrainement') {
+      if (globalThis.activeJour !== 'entrainement') {
+        window.alert('Le mode « Selon entraînement » s\'applique au jour Entraînement. Basculez l\'onglet correspondant.');
+        return;
+      }
+      if (typeof globalThis.isRepartitionSelonEntrainementActive === 'function'
+        && !globalThis.isRepartitionSelonEntrainementActive()) {
+        window.alert('Activez le ciblage selon l\'entraînement pour utiliser ce mode, ou utilisez « Classique » / « Équilibré ».');
+        return;
+      }
+      if (!document.getElementById('heure-entrainement')?.value) {
+        window.alert('Indiquez l\'heure d\'entraînement avant d\'appliquer cette répartition.');
+        return;
+      }
+    }
+    await applyAutoRepartitionServer(mode || 'classique');
+  } catch {
+    notifyNutritionError();
+  }
+}
+
 async function suggererBanqueServer() {
   const targets = globalThis.targets || {};
   if (!targets.kcal) {
@@ -406,6 +538,8 @@ async function suggererBanqueServer() {
       if (el) el.value = best[cat];
     });
     await calculerBanqueServer();
+    // Auto portions must also create meal repartition (canonical + UI), not banque alone.
+    await applyAutoRepartitionServer('classique');
   } catch {
     notifyNutritionError();
   }
@@ -516,6 +650,8 @@ async function exporterPDFServer() {
     if (typeof prepare !== 'function') {
       throw new Error('PDF state collector unavailable');
     }
+    syncCanonicalDayFromUi();
+    await refreshPlannedTotalsFromServer();
     const prepared = prepare();
     const ctx = globalThis.COACH_WORKSPACE_CONTEXT
       || globalThis.__COACH_WORKSPACE_CONTEXT__
@@ -540,6 +676,20 @@ async function exporterPDFServer() {
         targets: restMacros?.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 },
       }
       : null;
+    // Client-side coherence gate (same invariants as server assertPlanReadyForPdf).
+    const hasRep = (day) => Array.isArray(day?.repartition) && day.repartition.some((v) => Number(v) > 0);
+    const hasBanque = (day) => day?.banque && Object.values(day.banque).some((v) => Number(v) > 0);
+    const plannedKcal = Number(globalThis.joursData?.entrainement?.plannedTotals?.kcal) || 0;
+    if ((hasBanque(training) || Number(training.targets?.kcal) > 0) && !hasRep(training)) {
+      throw new Error(
+        'Le plan alimentaire n’est pas prêt. Générez ou complétez la répartition des portions avant d’exporter le PDF.',
+      );
+    }
+    if (hasRep(training) && plannedKcal === 0 && hasBanque(training)) {
+      throw new Error(
+        'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.',
+      );
+    }
     const { blob, filename } = await generatePdfApi({
       organization_id: ctx.organizationId || undefined,
       organization_slug: ctx.organizationSlug,
@@ -598,15 +748,17 @@ export function installServerNutritionBridge() {
   globalThis.updateCibles = () => updateCiblesServer();
   globalThis.calculerBanque = () => calculerBanqueServer();
   globalThis.suggererBanque = () => suggererBanqueServer();
+  globalThis.repartirAutomatique = (mode) => repartirAutomatiqueServer(mode);
   globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };
-  globalThis.exporterPDF = () => { void exporterPDFServer(); };
+  globalThis.exporterPDF = () => exporterPDFServer();
 
   // Preserve dual-brand / inline plan generator, then wrap so buttons never hit disabled engine.
   if (typeof globalThis.genererPlanTextuel === 'function'
-    && globalThis.genererPlanTextuel !== genererPlanTextuelServer) {
+    && globalThis.genererPlanTextuel !== genererPlanTextuelServer
+    && !globalThis.__coachGenererPlanTextuelLegacy) {
     globalThis.__coachGenererPlanTextuelLegacy = globalThis.genererPlanTextuel;
   }
-  globalThis.genererPlanTextuel = () => { void genererPlanTextuelServer(); };
+  globalThis.genererPlanTextuel = () => genererPlanTextuelServer();
 
   // Prevent legacy full-bank fetch if anything still points at it.
   if (!globalThis.__COACH_BLOCK_FULL_BANK_FETCH__) {

@@ -19,7 +19,15 @@ export const SERVER_NUTRITION_GENERIC_ERROR =
 export const SERVER_PDF_GENERIC_ERROR =
   'La génération PDF est temporairement indisponible. Réessayez.';
 
-export function formatServerPdfError(requestId) {
+export const SERVER_PDF_PLAN_NOT_READY_ERROR =
+  'Le plan alimentaire n’est pas prêt. Générez ou complétez la répartition des portions avant d’exporter le PDF.';
+
+export const SERVER_PDF_INCONSISTENT_PLAN_ERROR =
+  'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.';
+
+export function formatServerPdfError(requestId, publicError) {
+  if (publicError === 'plan_not_ready') return SERVER_PDF_PLAN_NOT_READY_ERROR;
+  if (publicError === 'inconsistent_plan') return SERVER_PDF_INCONSISTENT_PLAN_ERROR;
   const id = String(requestId || '').trim();
   if (!id) return SERVER_PDF_GENERIC_ERROR;
   return `${SERVER_PDF_GENERIC_ERROR} Code : ${id.slice(0, 8)}`;
@@ -94,7 +102,7 @@ export async function generatePdfApi(body = {}) {
       if (data?.requestId) requestId = String(data.requestId);
       if (data?.stage) stage = String(data.stage);
     } catch { /* ignore */ }
-    const err = new Error(formatServerPdfError(requestId));
+    const err = new Error(formatServerPdfError(requestId, publicError));
     err.status = res.status;
     err.publicError = publicError;
     err.requestId = requestId;

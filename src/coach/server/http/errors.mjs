@@ -9,6 +9,8 @@ export const PUBLIC_ERROR = Object.freeze({
   bad_request: Object.freeze({ status: 400, error: 'bad_request' }),
   not_found: Object.freeze({ status: 404, error: 'not_found' }),
   method_not_allowed: Object.freeze({ status: 405, error: 'method_not_allowed' }),
+  plan_not_ready: Object.freeze({ status: 409, error: 'plan_not_ready' }),
+  inconsistent_plan: Object.freeze({ status: 422, error: 'inconsistent_plan' }),
   payload_too_large: Object.freeze({ status: 413, error: 'payload_too_large' }),
   rate_limited: Object.freeze({ status: 429, error: 'rate_limited' }),
   misconfigured: Object.freeze({ status: 500, error: 'misconfigured' }),

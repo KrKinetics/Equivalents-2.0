@@ -26,6 +26,9 @@ import {
   suggestBanque,
   scorePortions,
   distribuerPortions,
+  buildAutoRepartition,
+  CATS,
+  MEAL_COUNT,
   computePlannedTotalsFromRepartition,
   reconcilePlanTotals,
   kcalFromMacros,
@@ -174,6 +177,33 @@ test('strict parity: moyennes, portions, banque, suggestBanque, reconcile', () =
       const portions = distribuerPortions(c.input.total, c.input.weights);
       assert.deepEqual(portions, c.expected.portions, c.id);
       assert.equal(portions.reduce((a, b) => a + b, 0), c.expected.sum, c.id);
+    } else if (c.engine === 'buildAutoRepartition') {
+      const built = buildAutoRepartition(c.input);
+      assert.ok(built, c.id);
+      assert.equal(built.mode, c.expected.mode, c.id);
+      assert.equal(built.repartition.length, MEAL_COUNT * CATS.length, c.id);
+      const sums = {};
+      for (const cat of CATS) {
+        let s = 0;
+        const ci = CATS.indexOf(cat);
+        for (let m = 0; m < MEAL_COUNT; m += 1) s += built.repartition[m * CATS.length + ci];
+        sums[cat] = Math.round(s * 10) / 10;
+      }
+      assert.deepEqual(sums, c.expected.categorySums, c.id);
+      if (c.expected.repartition) {
+        assert.deepEqual(built.repartition, c.expected.repartition, c.id);
+      }
+      if (c.expected.plannedTotals) {
+        assert.deepEqual(
+          computePlannedTotalsFromRepartition(built.repartition),
+          c.expected.plannedTotals,
+          c.id,
+        );
+      }
+      // Invariant: positive banque must not yield null planned totals.
+      const planned = computePlannedTotalsFromRepartition(built.repartition);
+      assert.ok(planned.kcal > 0, `${c.id}: planned kcal`);
+      assert.ok(!Number.isNaN(planned.pro + planned.glu + planned.lip), `${c.id}: no NaN`);
     }
   }
 });

@@ -15,6 +15,7 @@ import {
   roundHalf,
   macroPercentagesFromGrams,
   kcalFromMacros,
+  buildAutoRepartition,
 } from '../../../lib/coach-calculator-engine.mjs';
 
 function withPercentages(totals) {
@@ -25,7 +26,7 @@ function withPercentages(totals) {
 
 /**
  * @param {{
- *   action: 'moyennes'|'banque_totals'|'suggest'|'score'|'distribute'|'planned_totals'|'reconcile'|'portion_totals'|'macro_percentages',
+ *   action: 'moyennes'|'banque_totals'|'suggest'|'score'|'distribute'|'planned_totals'|'reconcile'|'portion_totals'|'macro_percentages'|'auto_repartition',
  *   banque?: object,
  *   targets?: object,
  *   portions?: object,
@@ -33,6 +34,8 @@ function withPercentages(totals) {
  *   weights?: number[],
  *   repartition?: unknown,
  *   reconcileInput?: object,
+ *   mode?: string,
+ *   heureEntrainement?: string|null,
  *   pro?: number,
  *   glu?: number,
  *   lip?: number,
@@ -66,6 +69,24 @@ export function calculatePortions(input) {
       return {
         portions,
         sum: portions.reduce((a, b) => a + b, 0),
+      };
+    }
+
+    case 'auto_repartition': {
+      const built = buildAutoRepartition({
+        banque: input.banque || {},
+        mode: input.mode || 'classique',
+        heureEntrainement: input.heureEntrainement,
+      });
+      if (!built) return { error: 'bad_request' };
+      const planned = withPercentages(computePlannedTotalsFromRepartition(built.repartition));
+      const banqueTotals = withPercentages(computeBanqueTotals(input.banque || {}));
+      return {
+        repartition: built.repartition,
+        mode: built.mode,
+        plannedTotals: planned.totals,
+        percentages: planned.percentages,
+        banqueTotals: banqueTotals.totals,
       };
     }
 
@@ -103,4 +124,5 @@ export {
   reconcilePlanTotals,
   getPortionTotals,
   roundHalf,
+  buildAutoRepartition,
 };
