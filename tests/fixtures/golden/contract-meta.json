@@ -1,0 +1,10 @@
+{
+  "contractVersion": "2B.1",
+  "generatedBy": "scripts/regenerate-golden-fixtures.mjs",
+  "engine": "src/lib/coach-calculator-engine.mjs",
+  "immutability": "Do not edit by hand to pass tests. Regenerate only with COACH_REGENERATE_GOLDEN=1 after explicit métier review.",
+  "comparisonModes": {
+    "strictEngineParity": "Exact equality for deterministic engine outputs",
+    "businessTolerances": "Separate suite for dual-brand ±2%/±6% and PDF_VARIANCE_THRESHOLDS"
+  }
+}

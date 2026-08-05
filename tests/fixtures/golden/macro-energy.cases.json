@@ -1,0 +1,17 @@
+{
+  "contractVersion": "2B.1",
+  "cases": [
+    {
+      "id": "atwater-4-4-9",
+      "engine": "kcalFromMacros",
+      "input": {
+        "pro": 168,
+        "glu": 387,
+        "lip": 114
+      },
+      "expected": {
+        "kcal": 3246
+      }
+    }
+  ]
+}

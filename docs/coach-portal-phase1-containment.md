@@ -47,13 +47,14 @@ Phase 2+ should vendor Supabase JS, extract inline scripts, then enforce CSP (re
 
 ## Phase 2 plan (formulas + banque server-side)
 
-1. Replace `/api/coach-data` with minimal endpoints, for example:
+1. **Phase 2B (done in branch):** immutable golden fixtures + `src/coach/server/require-request-auth.mjs` — see `docs/coach-phase2b-golden-auth.md`. No UI wiring; `/api/coach-data` unchanged until 2G.
+2. Replace `/api/coach-data` with minimal endpoints, for example:
    - food search (paginated, field-limited)
    - macro / EER calculation
    - PDF generation (bytes only)
-2. Remove full `coach-data.json` from the client runtime path.
-3. Keep RLS + org checks on every endpoint.
-4. Compare calculator outputs against Phase 1 golden fixtures before switching traffic.
+3. Remove full `coach-data.json` from the client runtime path.
+4. Keep RLS + org checks on every endpoint (`requireRequestAuth` on each `/api/*` handler).
+5. Compare calculator outputs against golden fixtures before switching traffic.
 
 ## Migrations
 

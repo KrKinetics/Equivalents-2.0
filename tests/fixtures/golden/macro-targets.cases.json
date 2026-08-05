@@ -1,0 +1,421 @@
+{
+  "contractVersion": "2B.1",
+  "cases": [
+    {
+      "id": "iom-male-goal-perte-severe",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 0.8,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": false
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 290,
+        "lip": 86,
+        "kcal": 2606
+      }
+    },
+    {
+      "id": "iom-male-goal-perte-legere",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 0.9,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": false
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 339,
+        "lip": 100,
+        "kcal": 2928
+      }
+    },
+    {
+      "id": "iom-male-goal-maintien",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": false
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 388,
+        "lip": 115,
+        "kcal": 3259
+      }
+    },
+    {
+      "id": "iom-male-goal-prise-legere",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1.1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": false
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 437,
+        "lip": 129,
+        "kcal": 3581
+      }
+    },
+    {
+      "id": "iom-male-goal-prise-severe",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1.2,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": false
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 486,
+        "lip": 144,
+        "kcal": 3912
+      }
+    },
+    {
+      "id": "preset-1-30,40,30",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "30,40,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Perte légère"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 370,
+        "lip": 123,
+        "kcal": 3259
+      }
+    },
+    {
+      "id": "preset-2-40,35,25",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "40,35,25",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Perte sévère"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 377,
+        "lip": 120,
+        "kcal": 3260
+      }
+    },
+    {
+      "id": "preset-3-25,45,30",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Maintien"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 388,
+        "lip": 115,
+        "kcal": 3259
+      }
+    },
+    {
+      "id": "preset-4-33,33,33",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "33,33,33",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Équilibré"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 323,
+        "lip": 144,
+        "kcal": 3260
+      }
+    },
+    {
+      "id": "preset-5-25,50,25",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,50,25",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Prise légère"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 431,
+        "lip": 96,
+        "kcal": 3260
+      }
+    },
+    {
+      "id": "preset-6-20,55,25",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "20,55,25",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Prise sévère"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 445,
+        "lip": 90,
+        "kcal": 3262
+      }
+    },
+    {
+      "id": "preset-7-15,60,25",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "15,60,25",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Performance"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 457,
+        "lip": 85,
+        "kcal": 3265
+      }
+    },
+    {
+      "id": "preset-8-45,35,20",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "45,35,20",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "presetName": "Lipides réduits"
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 412,
+        "lip": 105,
+        "kcal": 3265
+      }
+    },
+    {
+      "id": "rest-day-carb-cycle",
+      "brand": "elevate",
+      "locale": "en",
+      "engine": "computeMacroTargets",
+      "input": {
+        "tdee": 3259.053362484238,
+        "goalMultiplier": 1,
+        "weightKg": 83.91468824559335,
+        "macroRatio": "25,45,30",
+        "proteinMode": "gkg",
+        "gPerKg": 2,
+        "isRestDay": true
+      },
+      "units": {
+        "energy": "kcal",
+        "macros": "g"
+      },
+      "rounding": "engine integer grams / derived kcal",
+      "contractVersion": "2B.1",
+      "expected": {
+        "pro": 168,
+        "glu": 320,
+        "lip": 145,
+        "kcal": 3257
+      }
+    },
+    {
+      "id": "protein-gkg-and-pct-samples",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeProteinGrams",
+      "input": {},
+      "contractVersion": "2B.1",
+      "expected": {
+        "gkg_2": 160,
+        "gkg_1_5": 120,
+        "gkg_clamped_low": 64,
+        "pct_25": 156
+      }
+    },
+    {
+      "id": "hydration-samples",
+      "brand": "kr",
+      "locale": "fr",
+      "engine": "computeHydration",
+      "contractVersion": "2B.1",
+      "expected": {
+        "h3258": {
+          "auto": 3.3,
+          "ajout": 0,
+          "total": 3.3
+        },
+        "h3258_add": {
+          "auto": 3.3,
+          "ajout": 0.5,
+          "total": 3.8
+        },
+        "h0_add": {
+          "auto": 0,
+          "ajout": 1,
+          "total": 1
+        }
+      }
+    }
+  ]
+}
