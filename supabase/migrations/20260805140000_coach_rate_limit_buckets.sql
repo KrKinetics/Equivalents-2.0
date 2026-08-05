@@ -1,5 +1,6 @@
 -- Bloc 3 — distributed rate-limit buckets (NOT applied to Production until explicit approval).
--- Rollback: see 20260805140000_coach_rate_limit_buckets_rollback.sql
+-- Rollback: see ../rollbacks/20260805140000_coach_rate_limit_buckets_rollback.sql
+-- (kept outside migrations/ so `db push` never applies the drop)
 -- Retention: rows older than 24h are safe to delete (cleanup job optional).
 
 create table if not exists public.coach_rate_buckets (

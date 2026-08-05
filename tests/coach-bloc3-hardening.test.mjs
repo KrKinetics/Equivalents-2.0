@@ -134,7 +134,7 @@ test('public error catalog includes Bloc 3 codes', () => {
 
 test('rate-limit migration SQL exists and is reversible (not applied by tests)', () => {
   const mig = path.join(root, 'supabase/migrations/20260805140000_coach_rate_limit_buckets.sql');
-  const rb = path.join(root, 'supabase/migrations/20260805140000_coach_rate_limit_buckets_rollback.sql');
+  const rb = path.join(root, 'supabase/rollbacks/20260805140000_coach_rate_limit_buckets_rollback.sql');
   assert.ok(fs.existsSync(mig));
   assert.ok(fs.existsSync(rb));
   const sql = fs.readFileSync(mig, 'utf8');
