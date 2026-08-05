@@ -75,11 +75,12 @@ test('resolveChromiumExecutable rejects non-https remote pack URL when no bin', 
   void resolveChromiumExecutable;
 });
 
-test('vercel.json packages chromium bin + logos for PDF function', () => {
+test('vercel.json PDF function keeps logos, duration, and memory without bundling 60MB bin', () => {
   const cfg = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
   const pdf = cfg.functions['api/coach-generate-pdf.js'];
   assert.ok(pdf);
-  assert.match(String(pdf.includeFiles), /@sparticuz\/chromium\/bin/);
+  // Chromium .br binaries are ~62MB — too large for reliable includeFiles; remote pack is used on Vercel.
+  assert.doesNotMatch(String(pdf.includeFiles || ''), /@sparticuz\/chromium\/bin/);
   assert.match(String(pdf.includeFiles), /logo-/);
   assert.ok(Number(pdf.maxDuration) >= 60);
   assert.ok(Number(pdf.memory) >= 1536);

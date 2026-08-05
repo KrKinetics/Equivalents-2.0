@@ -49,8 +49,8 @@ No local PDF fallback. No full-bank fallback on error.
 - Runtime: **Node.js 22.x** (not Edge) via `package.json` `engines.node = 22.x`.
 - Stack: `puppeteer-core` + `@sparticuz/chromium` with `headless: "shell"`.
 - `@sparticuz/chromium@149` treats `VERCEL` + Node ≥ 20 as AL2023 — **no** manual `AWS_LAMBDA_JS_RUNTIME` dashboard variable is required.
-- Packaging: `vercel.json` `includeFiles` must include `node_modules/@sparticuz/chromium/bin/**` and brand logos. If the bin is missing at runtime, the function downloads the pinned remote pack (`chromium-v149.0.0-pack.x64.tar` from GitHub) — override with `CHROMIUM_REMOTE_PACK_URL` only if needed.
-- Function: `maxDuration` 60s, memory 3008 MB.
+- Packaging: brand logos via `includeFiles`. Chromium binaries are **not** bundled (≈62 MiB `.br` exceeds reliable function packaging). On Vercel the function downloads the pinned remote pack (`chromium-v149.0.0-pack.x64.tar`) at cold start — override with `CHROMIUM_REMOTE_PACK_URL` only if needed.
+- Function: `maxDuration` 60s, memory 1536 MB.
 - Logs / errors: structured JSON with `requestId` + stage; `X-Request-Id` header; JSON body `{ error, requestId, stage }`. Never logs JWT, cookies, notes, or HTML.
 - Preview smoke: `COACH_PREVIEW_URL=… node scripts/coach-preview-pdf-smoke.mjs` (needs `VERCEL_AUTOMATION_BYPASS_SECRET` when Deployment Protection is on).
 
