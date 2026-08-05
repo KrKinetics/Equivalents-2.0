@@ -75,6 +75,81 @@ async function ensureMoyennes() {
   return res.moyennes;
 }
 
+/**
+ * Keep CoachSharedEngine.macroPercentagesFromGrams usable for plan/PDF labels.
+ * Prefer last server-computed percentages when grams match cached targets/totals.
+ * Never calls blocked legacy suggestBanque / NASEM paths.
+ */
+function installServerMacroPercentageHelpers() {
+  const engine = globalThis.CoachSharedEngine;
+  if (!engine || engine.__coachServerMacroPctInstalled) return;
+
+  function fromServerCache(pro, glu, lip) {
+    const cache = globalThis.__COACH_MACRO_PCT_CACHE;
+    if (!cache) return null;
+    const key = `${Math.round(Number(pro) || 0)}:${Math.round(Number(glu) || 0)}:${Math.round(Number(lip) || 0)}`;
+    return cache[key] ? { ...cache[key] } : null;
+  }
+
+  function displayPercentages(pro, glu, lip) {
+    const cached = fromServerCache(pro, glu, lip);
+    if (cached) return cached;
+    // Same Atwater energy-share formatting as server macros.mjs (display only).
+    const p = Number(pro) || 0;
+    const g = Number(glu) || 0;
+    const l = Number(lip) || 0;
+    const total = Math.round(p * 4 + g * 4 + l * 9);
+    if (!total) return { pro: 0, glu: 0, lip: 0 };
+    const proPct = Math.round((p * 4 / total) * 100);
+    const gluPct = Math.round((g * 4 / total) * 100);
+    return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+  }
+
+  engine.macroPercentagesFromGrams = displayPercentages;
+  globalThis.macroPercentagesFromGrams = displayPercentages;
+  engine.__coachServerMacroPctInstalled = true;
+}
+
+function cacheMacroPercentages(totals, percentages) {
+  if (!totals || !percentages) return;
+  if (!globalThis.__COACH_MACRO_PCT_CACHE) globalThis.__COACH_MACRO_PCT_CACHE = Object.create(null);
+  const key = `${Math.round(Number(totals.pro) || 0)}:${Math.round(Number(totals.glu) || 0)}:${Math.round(Number(totals.lip) || 0)}`;
+  globalThis.__COACH_MACRO_PCT_CACHE[key] = {
+    pro: percentages.pro,
+    glu: percentages.glu,
+    lip: percentages.lip,
+  };
+}
+
+/** Refresh server planned totals so getJourSnapshot / plan text are not stuck at zeros. */
+async function refreshPlannedTotalsFromServer() {
+  const jours = globalThis.joursData || {};
+  const cache = Object.create(null);
+  for (const key of ['entrainement', 'repos']) {
+    const day = jours[key];
+    if (!day?.repartition) continue;
+    const res = await calcPortionsApi({
+      action: 'planned_totals',
+      repartition: day.repartition,
+    });
+    cache[key] = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    cacheMacroPercentages(cache[key], res.percentages);
+  }
+  globalThis.__COACH_PLANNED_TOTALS = cache;
+  const engine = globalThis.CoachSharedEngine;
+  if (engine) {
+    engine.computePlannedTotalsFromRepartition = function computePlannedTotalsFromServerCache(repartition) {
+      for (const key of ['entrainement', 'repos']) {
+        const day = globalThis.joursData?.[key];
+        if (day && day.repartition === repartition) {
+          return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
+        }
+      }
+      return { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    };
+  }
+}
+
 async function chargerCoachDataServer() {
   try {
     // Bootstrap categories only — one empty search page, never the full bank.
@@ -221,12 +296,18 @@ async function updateCiblesServer() {
     const res = await calcMacrosApi(input);
     globalThis.targets = res.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };
     const targets = globalThis.targets;
+    if (res.percentages) {
+      cacheMacroPercentages(targets, res.percentages);
+      globalThis.__COACH_SERVER_TARGET_PCT = { ...res.percentages };
+    }
+    installServerMacroPercentageHelpers();
     const kg = input.weightKg;
     const proPerKg = kg > 0 ? (targets.pro / kg).toFixed(1) : '0';
     const ratioLabel = typeof globalThis.getMacroRatioLabel === 'function'
       ? globalThis.getMacroRatioLabel()
       : '';
-    const proPct = targets.kcal > 0 ? Math.round((targets.pro * 4 / targets.kcal) * 100) : 0;
+    const proPct = res.percentages?.pro
+      ?? (targets.kcal > 0 ? Math.round((targets.pro * 4 / targets.kcal) * 100) : 0);
 
     const setText = (id, value) => {
       const el = document.getElementById(id);
@@ -264,6 +345,9 @@ async function calculerBanqueServer() {
     const moyennes = await ensureMoyennes();
     const totalsRes = await calcPortionsApi({ action: 'banque_totals', banque });
     const totals = totalsRes.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    cacheMacroPercentages(totals, totalsRes.percentages);
+    await refreshPlannedTotalsFromServer();
+    installServerMacroPercentageHelpers();
 
     // Per-category display uses moyennes values from the server (not formula code).
     CATS.forEach((cat) => {
@@ -375,6 +459,42 @@ async function telechargerGuideEquivalentsHtmlServer() {
   }
 }
 
+async function genererPlanTextuelServer() {
+  installServerMacroPercentageHelpers();
+  try {
+    await ensureMoyennes();
+    if (globalThis.currentTDEE) await updateCiblesServer();
+    else await refreshPlannedTotalsFromServer();
+    // Prefer preset ratio label from UI; fall back to server target percentages.
+    const originalGetClientLabel = globalThis.getClientMacroDistributionLabel;
+    if (typeof originalGetClientLabel === 'function') {
+      globalThis.getClientMacroDistributionLabel = function safeMacroLabel(snapshot) {
+        try {
+          return originalGetClientLabel(snapshot);
+        } catch {
+          const pct = globalThis.__COACH_SERVER_TARGET_PCT;
+          if (pct && globalThis.pdfLang === 'en') {
+            return `${pct.pro}% protein · ${pct.glu}% carbs · ${pct.lip}% fat`;
+          }
+          if (pct) {
+            return `${pct.pro} % protéines · ${pct.glu} % glucides · ${pct.lip} % lipides`;
+          }
+          if (typeof globalThis.getMacroRatioLabel === 'function') {
+            return String(globalThis.getMacroRatioLabel() || '—');
+          }
+          return '—';
+        }
+      };
+    }
+    const legacy = globalThis.__coachGenererPlanTextuelLegacy;
+    if (typeof legacy === 'function') {
+      legacy.call(globalThis);
+    }
+  } catch (err) {
+    notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
 async function exporterPDFServer() {
   const btn = document.getElementById('btn-export-pdf');
   const btnLabel = btn ? btn.textContent : '';
@@ -383,9 +503,14 @@ async function exporterPDFServer() {
     btn.textContent = '⏳ Génération PDF...';
   }
   try {
-    if (!document.getElementById('output-plan')?.value?.trim()
-      && typeof globalThis.genererPlanTextuel === 'function') {
-      globalThis.genererPlanTextuel();
+    installServerMacroPercentageHelpers();
+    // Plan textarea is UX-only — never block PDF on client plan text generation.
+    if (!document.getElementById('output-plan')?.value?.trim()) {
+      try {
+        await genererPlanTextuelServer();
+      } catch {
+        // PDF payload does not require the text plan.
+      }
     }
     const prepare = globalThis.__coachPrepareServerPdfDays;
     if (typeof prepare !== 'function') {
@@ -464,6 +589,8 @@ export function installServerNutritionBridge() {
     generatePdfApi,
   });
 
+  installServerMacroPercentageHelpers();
+
   globalThis.chargerCoachData = chargerCoachDataServer;
   globalThis.filtrerGuideEquivalents = () => { void filtrerGuideEquivalentsServer(); };
   // Return promises so workspace bootstrap can await settle before markClean.
@@ -473,6 +600,13 @@ export function installServerNutritionBridge() {
   globalThis.suggererBanque = () => suggererBanqueServer();
   globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };
   globalThis.exporterPDF = () => { void exporterPDFServer(); };
+
+  // Preserve dual-brand / inline plan generator, then wrap so buttons never hit disabled engine.
+  if (typeof globalThis.genererPlanTextuel === 'function'
+    && globalThis.genererPlanTextuel !== genererPlanTextuelServer) {
+    globalThis.__coachGenererPlanTextuelLegacy = globalThis.genererPlanTextuel;
+  }
+  globalThis.genererPlanTextuel = () => { void genererPlanTextuelServer(); };
 
   // Prevent legacy full-bank fetch if anything still points at it.
   if (!globalThis.__COACH_BLOCK_FULL_BANK_FETCH__) {

@@ -9,6 +9,7 @@ import {
   computeHydration,
   adjustComplementaryCustomMacro,
   kcalFromMacros,
+  macroPercentagesFromGrams,
 } from '../../../lib/coach-calculator-engine.mjs';
 
 /**
@@ -20,8 +21,14 @@ export function calculateMacroTargets(input) {
     input?.hydrationKcal != null ? input.hydrationKcal : targets.kcal,
     input?.manualAddL ?? 0,
   );
+  const percentages = macroPercentagesFromGrams(
+    targets.pro || 0,
+    targets.glu || 0,
+    targets.lip || 0,
+  );
   return {
     targets,
+    percentages,
     hydration,
     goalKcal: Math.round((parseFloat(input?.tdee) || 0) * (parseFloat(input?.goalMultiplier) || 1)),
   };

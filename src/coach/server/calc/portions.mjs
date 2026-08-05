@@ -13,11 +13,19 @@ import {
   reconcilePlanTotals,
   getPortionTotals,
   roundHalf,
+  macroPercentagesFromGrams,
+  kcalFromMacros,
 } from '../../../lib/coach-calculator-engine.mjs';
+
+function withPercentages(totals) {
+  const t = totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+  const percentages = macroPercentagesFromGrams(t.pro || 0, t.glu || 0, t.lip || 0);
+  return { totals: t, percentages };
+}
 
 /**
  * @param {{
- *   action: 'moyennes'|'banque_totals'|'suggest'|'score'|'distribute'|'planned_totals'|'reconcile'|'portion_totals',
+ *   action: 'moyennes'|'banque_totals'|'suggest'|'score'|'distribute'|'planned_totals'|'reconcile'|'portion_totals'|'macro_percentages',
  *   banque?: object,
  *   targets?: object,
  *   portions?: object,
@@ -25,6 +33,9 @@ import {
  *   weights?: number[],
  *   repartition?: unknown,
  *   reconcileInput?: object,
+ *   pro?: number,
+ *   glu?: number,
+ *   lip?: number,
  * }} input
  */
 export function calculatePortions(input) {
@@ -37,7 +48,7 @@ export function calculatePortions(input) {
       return { moyennes: { ...MOYENNES } };
 
     case 'banque_totals':
-      return { totals: computeBanqueTotals(input.banque || {}) };
+      return withPercentages(computeBanqueTotals(input.banque || {}));
 
     case 'suggest': {
       const banque = suggestBanque(input.targets || {});
@@ -59,13 +70,23 @@ export function calculatePortions(input) {
     }
 
     case 'planned_totals':
-      return { totals: computePlannedTotalsFromRepartition(input.repartition) };
+      return withPercentages(computePlannedTotalsFromRepartition(input.repartition));
+
+    case 'macro_percentages': {
+      const pro = Number(input?.pro) || 0;
+      const glu = Number(input?.glu) || 0;
+      const lip = Number(input?.lip) || 0;
+      return {
+        percentages: macroPercentagesFromGrams(pro, glu, lip),
+        kcal: kcalFromMacros(pro, glu, lip),
+      };
+    }
 
     case 'reconcile':
       return { reconcile: reconcilePlanTotals(input.reconcileInput || input) };
 
     case 'portion_totals':
-      return { totals: getPortionTotals(input.portions || {}) };
+      return withPercentages(getPortionTotals(input.portions || {}));
 
     default:
       return { error: 'bad_request' };

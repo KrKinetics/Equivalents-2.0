@@ -129,11 +129,20 @@ export function stripClientNutritionFormulas(html) {
     normalizeProteinesParKg: function (v) { var n = parseFloat(v); return isNaN(n) ? 2 : Math.min(3.5, Math.max(0.5, Math.round(n * 10) / 10)); },
     normalizeProteinesPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 25 : Math.min(60, Math.max(10, Math.round(n))); },
     normalizeMacroPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 0 : Math.min(90, Math.max(5, Math.round(n))); },
+    // Atwater display helpers only (same as server macros.mjs). Not portion/NASEM IP.
     kcalFromMacros: function (p, g, l) { return Math.round((Number(p)||0)*4 + (Number(g)||0)*4 + (Number(l)||0)*9); },
-    macroPercentagesFromGrams: function () { return blocked('macroPercentagesFromGrams'); },
+    macroPercentagesFromGrams: function (pro, glu, lip) {
+      var p = Number(pro) || 0, g = Number(glu) || 0, l = Number(lip) || 0;
+      var total = Math.round(p * 4 + g * 4 + l * 9);
+      if (!total) return { pro: 0, glu: 0, lip: 0 };
+      var proPct = Math.round((p * 4 / total) * 100);
+      var gluPct = Math.round((g * 4 / total) * 100);
+      return { pro: proPct, glu: gluPct, lip: Math.max(0, 100 - proPct - gluPct) };
+    },
     roundHalf: function (n) { return Math.round((Number(n)||0) * 2) / 2; },
     getPortionTotals: function () { return blocked('getPortionTotals'); },
     computeBanqueTotals: function () { return blocked('computeBanqueTotals'); },
+    // Bridge replaces this with server planned_totals cache after banque settle.
     computePlannedTotalsFromRepartition: function () { return { pro: 0, glu: 0, lip: 0, kcal: 0 }; },
     isJourClientPlanConfigured: function () { return true; },
     scorePortions: function () { return blocked('scorePortions'); },
