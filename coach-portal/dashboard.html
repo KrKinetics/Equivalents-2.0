@@ -10,20 +10,20 @@
 <body>
   <main class="wrap">
     <p class="brand">Espace privé — invitation seulement</p>
-    <div class="row" style="justify-content: space-between; margin-bottom: 12px;">
+    <div class="row dash-header">
       <h1>Tableau de bord</h1>
       <button id="logout" type="button" class="secondary">Déconnexion</button>
     </div>
     <p class="lead">Organisation connectée, rôle et clients isolés et protégés par organisation.</p>
 
     <section class="card">
-      <h2 style="margin-top:0;font-size:1.1rem;">Session</h2>
+      <h2 class="card-title">Session</h2>
       <dl id="session-meta" class="meta"></dl>
       <div id="status" class="status hidden" role="status"></div>
     </section>
 
     <section class="card">
-      <h2 style="margin-top:0;font-size:1.1rem;">Nouveau client</h2>
+      <h2 class="card-title">Nouveau client</h2>
       <form id="create-form">
         <label for="full_name">Nom</label>
         <input id="full_name" name="full_name" required maxlength="120" placeholder="Nom complet du client">
@@ -34,7 +34,7 @@
     </section>
 
     <section class="card">
-      <h2 style="margin-top:0;font-size:1.1rem;">Clients de mon organisation</h2>
+      <h2 class="card-title">Clients de mon organisation</h2>
       <table>
         <thead>
           <tr><th>Nom</th><th>Notes</th><th>Actions</th></tr>

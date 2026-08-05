@@ -1,17 +1,24 @@
 /**
  * Set / clear HttpOnly session cookie for Coach portal server gates.
  * Body/Bearer carries the user JWT already issued by Supabase Auth.
- * Never accepts or returns service_role.
+ * Never accepts or returns service_role. Never returns internal auth reasons.
  */
 
-async function loadAuth() {
-  return import('../src/coach/security/portal-auth.mjs');
+async function loadModules() {
+  const [auth, rate, errors, parse] = await Promise.all([
+    import('../src/coach/security/portal-auth.mjs'),
+    import('../src/coach/server/http/rate-limit.mjs'),
+    import('../src/coach/server/http/errors.mjs'),
+    import('../src/coach/server/http/parse-json-body.mjs'),
+  ]);
+  return { auth, rate, errors, parse };
 }
 
 function corsHeaders(auth, req) {
   const origin = auth.allowedCorsOrigin(req.headers.origin || '');
   const headers = {
     'Cache-Control': 'private, no-store',
+    'X-Content-Type-Options': 'nosniff',
     Vary: 'Origin',
   };
   if (origin) {
@@ -29,13 +36,32 @@ function isSecureRequest(req) {
 }
 
 module.exports = async function handler(req, res) {
-  const auth = await loadAuth();
+  const { auth, rate, errors, parse } = await loadModules();
   const headers = corsHeaders(auth, req);
   Object.entries(headers).forEach(([k, v]) => res.setHeader(k, v));
 
   if (req.method === 'OPTIONS') {
     res.statusCode = 204;
     res.end();
+    return;
+  }
+
+  const identityKey = rate.buildRateIdentityKey({ req });
+  const limited = await rate.checkDistributedRateLimit({
+    routeName: 'session',
+    identityKey,
+    supabaseUrl: process.env.SUPABASE_URL || '',
+    publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
+    accessToken: auth.readAccessToken({
+      cookieHeader: req.headers.cookie,
+      authorization: req.headers.authorization,
+    }),
+  });
+  if (!limited.ok) {
+    res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
+    res.statusCode = limited.status;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.end(JSON.stringify({ error: limited.error }));
     return;
   }
 
@@ -51,26 +77,25 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    res.statusCode = 405;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ error: 'method_not_allowed' }));
+    res.statusCode = errors.PUBLIC_ERROR.method_not_allowed.status;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.end(JSON.stringify(errors.publicErrorBody(errors.PUBLIC_ERROR.method_not_allowed)));
     return;
   }
 
-  let body = req.body;
-  if (typeof body === 'string') {
-    try {
-      body = JSON.parse(body || '{}');
-    } catch {
-      body = {};
-    }
+  const parsed = await parse.parseJsonBody(req, { requireJsonContentType: false });
+  if (!parsed.ok) {
+    res.statusCode = parsed.status;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.end(JSON.stringify(errors.publicErrorBody(parsed)));
+    return;
   }
-  body = body && typeof body === 'object' ? body : {};
+  const body = parsed.body || {};
 
   const accessToken = auth.readAccessToken({
     cookieHeader: req.headers.cookie,
     authorization: req.headers.authorization,
-  }) || body.access_token || null;
+  }) || (typeof body.access_token === 'string' ? body.access_token : null);
 
   const verified = await auth.requireCoachSession({
     accessToken,
@@ -78,13 +103,22 @@ module.exports = async function handler(req, res) {
     publishableKey,
   });
   if (!verified.ok) {
-    res.statusCode = verified.status;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ error: verified.reason }));
+    // Anti-enumeration: never echo verified.reason to the browser.
+    const status = verified.status === 403
+      ? errors.PUBLIC_ERROR.forbidden.status
+      : errors.PUBLIC_ERROR.unauthorized.status;
+    const code = verified.status === 403
+      ? errors.PUBLIC_ERROR.forbidden
+      : errors.PUBLIC_ERROR.unauthorized;
+    res.statusCode = status;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.end(JSON.stringify(errors.publicErrorBody(code)));
     return;
   }
 
-  const maxAgeSec = Number(body.expires_in) > 0 ? Number(body.expires_in) : 3600;
+  const maxAgeSec = Number(body.expires_in) > 0 && Number(body.expires_in) <= 86400
+    ? Number(body.expires_in)
+    : 3600;
   res.setHeader('Set-Cookie', auth.buildSetCookie(accessToken, { maxAgeSec, secure }));
   res.statusCode = 204;
   res.end();

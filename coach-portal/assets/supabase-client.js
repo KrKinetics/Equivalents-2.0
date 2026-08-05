@@ -1,9 +1,9 @@
 /**
  * Browser Supabase client for the Coach portal.
  * Expects window.COACH_SUPABASE = { url, publishableKey } from /config.js
- * (injected by npm run coach:portal — never read .env.local in the browser).
+ * Uses a same-origin vendored bundle (no esm.sh) for enforced CSP.
  */
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
+import { createClient } from './vendor/supabase-bundle.mjs';
 
 function requireConfig() {
   const cfg = window.COACH_SUPABASE;

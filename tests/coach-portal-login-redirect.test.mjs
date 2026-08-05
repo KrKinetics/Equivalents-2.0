@@ -82,7 +82,7 @@ test('clearLoginAutoRedirectGuard resets loop state', () => {
   assert.equal(beginLoginAutoRedirect(storage, 60), true);
 });
 
-test('login.html is public; middleware matcher must not protect it', () => {
+test('login.html is public; middleware may match it for CSP but must not auth-gate it', () => {
   assert.equal(isPublicPath('/login.html'), true);
   assert.equal(isProtectedPath('/login.html'), false);
   assert.equal(isProtectedPath('/assets/login.js'), false);
@@ -90,11 +90,14 @@ test('login.html is public; middleware matcher must not protect it', () => {
   assert.equal(isProtectedPath('/assets/login-redirect.mjs'), false);
 
   const mw = fs.readFileSync(path.join(ROOT, 'middleware.js'), 'utf8');
-  const matcher = mw.match(/matcher:\s*\[([\s\S]*?)\]/)?.[1] || '';
   assert.match(mw, /matcher:\s*\[/);
-  assert.doesNotMatch(matcher, /login\.html/);
-  // Redirect *to* login is expected for protected routes; matcher must not include it.
-  assert.match(mw, /new URL\('\/login\.html'/);
+  // login.html is in the matcher for enforced CSP headers only.
+  assert.match(mw, /'\/login\.html'/);
+  // Auth gate must skip login — public branch returns next() before verifyToken.
+  const publicGateIdx = mw.indexOf("pathname === '/login.html'");
+  const verifyIdx = mw.indexOf('await verifyToken(token)');
+  assert.ok(publicGateIdx > 0, 'login.html public gate present');
+  assert.ok(verifyIdx > publicGateIdx, 'verifyToken runs only after public login gate');
 });
 
 test('login boot never reloads on auth events alone', () => {
