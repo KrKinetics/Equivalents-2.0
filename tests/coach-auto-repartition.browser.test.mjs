@@ -91,8 +91,12 @@ let balancedPayload;
 
 before(async () => {
   mergeEnvLocalIntoProcess(ROOT);
+  // CI has no .env.local — use shape-valid public placeholders for the offline bundle build.
   process.env.SUPABASE_URL = process.env.SUPABASE_URL || 'https://example.supabase.co';
-  process.env.SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || 'pub-test';
+  if (!process.env.SUPABASE_PUBLISHABLE_KEY
+    || !/^(sb_publishable_|eyJ)/.test(process.env.SUPABASE_PUBLISHABLE_KEY)) {
+    process.env.SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ci_test_key_not_real';
+  }
   classicPayload = calculatePortions({
     action: 'auto_repartition', banque: SAMPLE_BANQUE, mode: 'classique',
   });
