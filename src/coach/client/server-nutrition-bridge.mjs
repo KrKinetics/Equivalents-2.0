@@ -437,8 +437,8 @@ async function exporterPDFServer() {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 2_000);
-  } catch {
-    window.alert(SERVER_PDF_GENERIC_ERROR);
+  } catch (err) {
+    window.alert(err?.message || SERVER_PDF_GENERIC_ERROR);
   } finally {
     if (btn) {
       btn.disabled = false;

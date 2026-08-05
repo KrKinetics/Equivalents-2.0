@@ -22,9 +22,16 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    if (process.env.VERCEL && !process.env.AWS_LAMBDA_JS_RUNTIME) {
-      process.env.AWS_LAMBDA_JS_RUNTIME = 'nodejs22.x';
-    }
+    // Node version comes from package.json engines (22.x). @sparticuz/chromium@149
+    // treats VERCEL + Node >= 20 as AL2023 — no manual AWS_LAMBDA_JS_RUNTIME required.
+    log({
+      event: 'pdf_start',
+      stage: 'bootstrap',
+      node: process.versions.node,
+      arch: process.arch,
+      region: process.env.VERCEL_REGION || null,
+      vercelEnv: process.env.VERCEL_ENV || null,
+    });
 
     stage = 'imports';
     const [
@@ -210,19 +217,26 @@ module.exports = async function handler(req, res) {
     });
     res.end(pdf);
   } catch (error) {
+    const failStage = String(error?.stage || stage || 'unknown').slice(0, 64);
     const code = String(error?.code || error?.message || 'unavailable').slice(0, 120);
     log({
       event: 'pdf_failed',
-      stage,
+      stage: failStage,
       status: 503,
       code,
       message: String(error?.message || error).slice(0, 240),
+      node: process.versions.node,
+      region: process.env.VERCEL_REGION || null,
     });
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Request-Id', requestId);
     res.statusCode = 503;
-    res.end(JSON.stringify({ error: 'unavailable', requestId }));
+    res.end(JSON.stringify({
+      error: 'unavailable',
+      requestId,
+      stage: failStage,
+    }));
   }
 };

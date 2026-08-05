@@ -19,6 +19,12 @@ export const SERVER_NUTRITION_GENERIC_ERROR =
 export const SERVER_PDF_GENERIC_ERROR =
   'La génération PDF est temporairement indisponible. Réessayez.';
 
+export function formatServerPdfError(requestId) {
+  const id = String(requestId || '').trim();
+  if (!id) return SERVER_PDF_GENERIC_ERROR;
+  return `${SERVER_PDF_GENERIC_ERROR} Code : ${id.slice(0, 8)}`;
+}
+
 function orgFields() {
   const ctx = globalThis.COACH_WORKSPACE_CONTEXT
     || globalThis.__COACH_WORKSPACE_CONTEXT__
@@ -80,13 +86,19 @@ export async function generatePdfApi(body = {}) {
 
   if (!res.ok) {
     let publicError = 'unavailable';
+    let requestId = res.headers.get('x-request-id') || '';
+    let stage = '';
     try {
       const data = await res.json();
       publicError = data?.error || publicError;
+      if (data?.requestId) requestId = String(data.requestId);
+      if (data?.stage) stage = String(data.stage);
     } catch { /* ignore */ }
-    const err = new Error(SERVER_PDF_GENERIC_ERROR);
+    const err = new Error(formatServerPdfError(requestId));
     err.status = res.status;
     err.publicError = publicError;
+    err.requestId = requestId;
+    err.stage = stage;
     throw err;
   }
 

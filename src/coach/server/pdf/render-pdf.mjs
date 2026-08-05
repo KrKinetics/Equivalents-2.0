@@ -7,10 +7,12 @@
  */
 
 import { randomUUID } from 'node:crypto';
+import fs from 'node:fs';
 import path from 'node:path';
+import { resolveChromiumExecutable } from './chromium-launch.mjs';
 
 /**
- * @typedef {'import_chromium'|'import_puppeteer'|'executable_path'|'launch'|'new_page'|'set_content'|'pdf'|'close'|'ok'} PdfRenderStage
+ * @typedef {'chromium_import'|'puppeteer_import'|'executable_path'|'browser_launch'|'page_creation'|'set_content'|'pdf_buffer'|'browser_close'|'ok'} PdfRenderStage
  */
 
 /**
@@ -22,14 +24,10 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
   const requestId = opts.requestId || randomUUID();
   const log = typeof opts.log === 'function' ? opts.log : () => {};
   /** @type {PdfRenderStage} */
-  let stage = 'import_chromium';
+  let stage = 'chromium_import';
   let browser;
 
   const isServerless = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
-  // Must be set before importing @sparticuz/chromium so AL2023 shared libs resolve on Vercel.
-  if (isServerless && !process.env.AWS_LAMBDA_JS_RUNTIME) {
-    process.env.AWS_LAMBDA_JS_RUNTIME = 'nodejs22.x';
-  }
 
   try {
     let puppeteer;
@@ -37,35 +35,53 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
     let launchOptions;
 
     if (isServerless) {
-      stage = 'import_chromium';
+      stage = 'chromium_import';
       const [{ default: chromium }, puppeteerCore] = await Promise.all([
         import('@sparticuz/chromium'),
         import('puppeteer-core'),
       ]);
-      stage = 'import_puppeteer';
+      stage = 'puppeteer_import';
       puppeteer = puppeteerCore.default || puppeteerCore;
 
-      if (typeof chromium.setGraphicsMode === 'function') {
-        chromium.setGraphicsMode(false);
-      } else if ('graphicsMode' in chromium) {
-        chromium.graphicsMode = false;
+      // Disable WebGL / swiftshader extract — PDF print does not need GPU.
+      try {
+        chromium.setGraphicsMode = false;
+      } catch {
+        // ignore older shapes
       }
 
       stage = 'executable_path';
-      const executablePath = await chromium.executablePath();
-      if (!executablePath) {
+      const resolved = await resolveChromiumExecutable(chromium);
+      if (!resolved.executablePath || !fs.existsSync(resolved.executablePath)) {
         const err = new Error('chromium_executable_missing');
         err.code = 'chromium_executable_missing';
         throw err;
       }
-      const execDir = path.dirname(executablePath);
+      log({
+        requestId,
+        event: 'chromium_resolved',
+        stage,
+        source: resolved.source,
+        bundledBinPresent: resolved.bundledBinPresent,
+        remoteHost: resolved.remoteHost,
+        exeBase: path.basename(resolved.executablePath),
+        node: process.versions.node,
+        arch: process.arch,
+        platform: process.platform,
+        vercel: Boolean(process.env.VERCEL),
+        region: process.env.VERCEL_REGION || null,
+      });
+
+      const execDir = path.dirname(resolved.executablePath);
       process.env.LD_LIBRARY_PATH = [execDir, process.env.LD_LIBRARY_PATH].filter(Boolean).join(path.delimiter);
 
-      stage = 'launch';
-      const args = await puppeteer.defaultArgs({
-        args: chromium.args,
-        headless: 'shell',
-      });
+      stage = 'browser_launch';
+      const args = typeof puppeteer.defaultArgs === 'function'
+        ? await puppeteer.defaultArgs({
+          args: chromium.args,
+          headless: 'shell',
+        })
+        : chromium.args;
       launchOptions = {
         args,
         defaultViewport: {
@@ -73,14 +89,14 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
           height: 1123,
           deviceScaleFactor: 1,
         },
-        executablePath,
+        executablePath: resolved.executablePath,
         headless: 'shell',
       };
     } else {
-      stage = 'import_puppeteer';
+      stage = 'puppeteer_import';
       const local = await import('puppeteer');
       puppeteer = local.default || local;
-      stage = 'launch';
+      stage = 'browser_launch';
       launchOptions = {
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -93,12 +109,12 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
     }
 
     browser = await puppeteer.launch(launchOptions);
-    stage = 'new_page';
+    stage = 'page_creation';
     const page = await browser.newPage();
     stage = 'set_content';
     // Self-contained HTML (data-URI logos): networkidle0 can hang on serverless.
     await page.setContent(String(html), { waitUntil: 'domcontentloaded', timeout: 30_000 });
-    stage = 'pdf';
+    stage = 'pdf_buffer';
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
@@ -115,7 +131,7 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
     log({
       requestId,
       event: 'pdf_render_ok',
-      stage,
+      stage: 'response_send',
       bytes: buffer.length,
       serverless: isServerless,
     });
@@ -129,20 +145,24 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
       code: String(code).slice(0, 80),
       message: String(error?.message || error).slice(0, 240),
       serverless: isServerless,
+      node: process.versions.node,
+      region: process.env.VERCEL_REGION || null,
     });
     const wrapped = new Error(`pdf_render_failed:${stage}`);
     wrapped.code = `pdf_render_failed:${stage}`;
+    wrapped.stage = stage;
     wrapped.cause = error;
     throw wrapped;
   } finally {
     if (browser) {
       try {
+        stage = 'browser_close';
         await browser.close();
       } catch (closeError) {
         log({
           requestId,
           event: 'pdf_browser_close_failed',
-          stage: 'close',
+          stage: 'browser_close',
           message: String(closeError?.message || closeError).slice(0, 160),
         });
       }

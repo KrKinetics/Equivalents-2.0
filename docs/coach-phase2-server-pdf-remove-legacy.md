@@ -46,11 +46,13 @@ No local PDF fallback. No full-bank fallback on error.
 
 ## PDF runtime (Vercel)
 
-- Runtime: **Node.js 22.x** (not Edge). `package.json` sets `engines.node = 22.x`.
-- Stack: `puppeteer-core` + `@sparticuz/chromium` with `headless: "shell"` and `await puppeteer.defaultArgs(...)`.
-- Set project env `AWS_LAMBDA_JS_RUNTIME=nodejs22.x` on Preview + Production (required for AL2023 shared libs; also set in-function before Chromium import).
-- Function: `maxDuration` 60s, memory 1536 MB, `includeFiles` for `coach-calculator/assets/logo-*`.
-- Logs: structured JSON with `requestId` + stage. Never logs JWT, cookies, notes, or HTML.
+- Runtime: **Node.js 22.x** (not Edge) via `package.json` `engines.node = 22.x`.
+- Stack: `puppeteer-core` + `@sparticuz/chromium` with `headless: "shell"`.
+- `@sparticuz/chromium@149` treats `VERCEL` + Node ≥ 20 as AL2023 — **no** manual `AWS_LAMBDA_JS_RUNTIME` dashboard variable is required.
+- Packaging: `vercel.json` `includeFiles` must include `node_modules/@sparticuz/chromium/bin/**` and brand logos. If the bin is missing at runtime, the function downloads the pinned remote pack (`chromium-v149.0.0-pack.x64.tar` from GitHub) — override with `CHROMIUM_REMOTE_PACK_URL` only if needed.
+- Function: `maxDuration` 60s, memory 3008 MB.
+- Logs / errors: structured JSON with `requestId` + stage; `X-Request-Id` header; JSON body `{ error, requestId, stage }`. Never logs JWT, cookies, notes, or HTML.
+- Preview smoke: `COACH_PREVIEW_URL=… node scripts/coach-preview-pdf-smoke.mjs` (needs `VERCEL_AUTOMATION_BYPASS_SECRET` when Deployment Protection is on).
 
 ## Rollback
 
