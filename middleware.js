@@ -1,6 +1,7 @@
 /**
  * Vercel Edge Middleware — server gate for Coach portal protected resources.
  * Validates HttpOnly coach_access_token against Supabase Auth + memberships.
+ * Applies path-scoped Content-Security-Policy (enforced).
  * Does not use service_role. Does not log tokens.
  */
 
@@ -10,9 +11,16 @@ import {
   isProtectedPath,
   parseCookies,
 } from './src/coach/security/portal-auth.mjs';
+import {
+  buildPortalCspPolicy,
+  buildWorkspaceCspPolicy,
+} from './src/coach/server/http/csp-policy.mjs';
 
 export const config = {
   matcher: [
+    '/',
+    '/index.html',
+    '/login.html',
     '/dashboard.html',
     '/workspace',
     '/workspace/:path*',
@@ -21,6 +29,19 @@ export const config = {
     '/assets/workspace-bootstrap.mjs',
   ],
 };
+
+function securityHeadersFor(pathname) {
+  const csp = pathname.startsWith('/workspace')
+    ? buildWorkspaceCspPolicy()
+    : buildPortalCspPolicy();
+  return {
+    'Content-Security-Policy': csp,
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'X-Frame-Options': 'DENY',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+  };
+}
 
 async function verifyToken(accessToken) {
   const supabaseUrl = process.env.SUPABASE_URL || '';
@@ -50,7 +71,8 @@ async function verifyToken(accessToken) {
 
 export default async function middleware(request) {
   const url = new URL(request.url);
-  const pathname = url.pathname;
+  const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
+  const sec = securityHeadersFor(pathname);
 
   // Hard-block static coach-data even if a file leaked into the deploy tree.
   if (pathname === '/workspace/coach-data.json') {
@@ -59,18 +81,28 @@ export default async function middleware(request) {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'private, no-store',
+        ...sec,
       },
     });
   }
 
+  // Public portal pages: attach CSP, no auth gate.
+  if (
+    pathname === '/login.html'
+    || pathname === '/index.html'
+    || pathname === '/'
+  ) {
+    return next({ headers: sec });
+  }
+
   if (!isProtectedPath(pathname)) {
-    return next();
+    return next({ headers: sec });
   }
 
   const cookies = parseCookies(request.headers.get('cookie') || '');
   const token = cookies[COACH_ACCESS_COOKIE] || '';
   const ok = await verifyToken(token);
-  if (ok) return next();
+  if (ok) return next({ headers: sec });
 
   const looksLikeAsset = pathname.startsWith('/workspace/')
     && pathname !== '/workspace/'
@@ -82,11 +114,18 @@ export default async function middleware(request) {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'private, no-store',
+        ...sec,
       },
     });
   }
 
   const login = new URL('/login.html', url.origin);
   login.searchParams.set('next', `${pathname}${url.search}`);
-  return Response.redirect(login.toString(), 302);
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: login.toString(),
+      ...securityHeadersFor('/login.html'),
+    },
+  });
 }

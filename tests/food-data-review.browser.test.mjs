@@ -723,6 +723,8 @@ test('real verify button creates an exact importable transaction', async () => {
       transactionLength: transaction.length,
       transactionIds: [...new Set(transaction.map((entry) => entry.transactionId))],
       actions: [...new Set(transaction.map((entry) => entry.action))],
+      timestamps: [...new Set(transaction.map((entry) => entry.timestamp))],
+      verifiedAt: food.verification.verifiedAt,
       exactOldValues: transaction.every(
         (entry) =>
           Object.hasOwn(expectedOldValues, entry.path) &&
@@ -742,6 +744,7 @@ test('real verify button creates an exact importable transaction', async () => {
   assert.equal(result.transactionLength, 5);
   assert.equal(result.transactionIds.length, 1);
   assert.deepEqual(result.actions, ['verify']);
+  assert.deepEqual(result.timestamps, [result.verifiedAt]);
   assert.equal(result.exactOldValues, true);
   assert.equal(result.exactNewValues, true);
   assert.equal(result.importOk, true, JSON.stringify(result.importErrors));

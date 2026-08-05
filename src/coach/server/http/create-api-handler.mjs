@@ -3,28 +3,31 @@
  *
  * Gates (deny by default):
  * 1. CORS / method
- * 2. Rate limit
- * 3. Body size + strict JSON
+ * 2. Distributed/memory rate limit (per route profile)
+ * 3. Content-Type + body size + strict JSON
  * 4. requireRequestAuth (session, JWT, user, membership, org, role)
  * 5. Payload validation
  * 6. Business handler
  * 7. Minimal JSON response + Cache-Control: private, no-store
  */
 
+import { randomUUID } from 'node:crypto';
 import {
   requireRequestAuth,
   publicAuthResponseBody,
 } from '../require-request-auth.mjs';
+import { readAccessToken } from '../../security/portal-auth.mjs';
 import { buildCorsHeaders } from './cors.mjs';
 import { parseJsonBody } from './parse-json-body.mjs';
-import { checkRateLimit } from './rate-limit.mjs';
+import { buildRateIdentityKey, checkDistributedRateLimit } from './rate-limit.mjs';
 import { PUBLIC_ERROR, publicErrorBody } from './errors.mjs';
+import { logCoachEvent } from './redact.mjs';
 
 /**
  * @param {object} options
  * @param {string} options.routeName
  * @param {(body: object) => object} options.validate
- * @param {(ctx: { auth: object, input: object, req: import('http').IncomingMessage }) => Promise<object>|object} options.handle
+ * @param {(ctx: { auth: object, input: object, req: import('http').IncomingMessage, requestId: string }) => Promise<object>|object} options.handle
  * @param {string[]} [options.methods]
  */
 export function createCoachApiHandler({
@@ -36,11 +39,14 @@ export function createCoachApiHandler({
   const allowMethods = ['OPTIONS', ...methods];
 
   return async function handler(req, res) {
+    const requestId = randomUUID();
+    const started = Date.now();
     const cors = buildCorsHeaders(req, allowMethods);
     Object.entries(cors).forEach(([k, v]) => res.setHeader(k, v));
     res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Request-Id', requestId);
 
     if (req.method === 'OPTIONS') {
       res.statusCode = 204;
@@ -54,14 +60,39 @@ export function createCoachApiHandler({
       return;
     }
 
-    const clientKey = String(
-      req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
-    ).split(',')[0].trim();
-    const limited = checkRateLimit(`${routeName}:${clientKey}`);
+    const accessToken = readAccessToken({
+      cookieHeader: req.headers.cookie,
+      authorization: req.headers.authorization,
+    });
+    // Prefer hashed session token over raw IP so NAT/shared Preview SSO does not
+    // collapse every coach into one bucket. Token is hashed inside buildRateIdentityKey
+    // and never written to logs/response.
+    const identityKey = buildRateIdentityKey({
+      req,
+      userId: accessToken || null,
+    });
+    const limited = await checkDistributedRateLimit({
+      routeName,
+      identityKey,
+      supabaseUrl: process.env.SUPABASE_URL || '',
+      publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
+      accessToken,
+    });
     if (!limited.ok) {
       res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
       res.statusCode = limited.status;
-      res.end(JSON.stringify({ error: limited.error }));
+      res.setHeader('X-Request-Id', requestId);
+      logCoachEvent({
+        event: limited.status === 429 ? 'rate_limited' : 'rate_limit_backend_error',
+        route: routeName,
+        requestId,
+        stage: 'rate_limit',
+        status: limited.status,
+        backend: limited.backend,
+        category: limited.category || 'unknown',
+        ms: Date.now() - started,
+      });
+      res.end(JSON.stringify({ error: limited.error, requestId }));
       return;
     }
 
@@ -74,8 +105,11 @@ export function createCoachApiHandler({
 
     const validated = validate(parsed.body);
     if (!validated.ok) {
-      res.statusCode = PUBLIC_ERROR.bad_request.status;
-      res.end(JSON.stringify(publicErrorBody(PUBLIC_ERROR.bad_request)));
+      const code = validated.error === 'validation_failed'
+        ? PUBLIC_ERROR.validation_failed
+        : PUBLIC_ERROR.bad_request;
+      res.statusCode = code.status;
+      res.end(JSON.stringify(publicErrorBody(code)));
       return;
     }
 
@@ -93,6 +127,13 @@ export function createCoachApiHandler({
 
     if (!auth.ok) {
       res.statusCode = auth.status;
+      logCoachEvent({
+        event: 'auth_reject',
+        route: routeName,
+        requestId,
+        status: auth.status,
+        ms: Date.now() - started,
+      });
       res.end(JSON.stringify(publicAuthResponseBody(auth)));
       return;
     }
@@ -102,6 +143,7 @@ export function createCoachApiHandler({
         auth,
         input: validated.value,
         req,
+        requestId,
       });
       if (result && result.__httpError) {
         res.statusCode = result.status || 400;
@@ -109,9 +151,22 @@ export function createCoachApiHandler({
         return;
       }
       res.statusCode = 200;
+      logCoachEvent({
+        event: 'ok',
+        route: routeName,
+        requestId,
+        status: 200,
+        ms: Date.now() - started,
+      });
       res.end(JSON.stringify(result));
     } catch {
-      // Never leak internal errors / stack / food bank contents.
+      logCoachEvent({
+        event: 'handler_error',
+        route: routeName,
+        requestId,
+        status: 503,
+        ms: Date.now() - started,
+      });
       res.statusCode = PUBLIC_ERROR.unavailable.status;
       res.end(JSON.stringify(publicErrorBody(PUBLIC_ERROR.unavailable)));
     }

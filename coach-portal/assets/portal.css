@@ -161,3 +161,11 @@ th { color: var(--muted); font-size: 0.85rem; }
   color: #fff;
   border-color: var(--primary);
 }
+.dash-header {
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.card-title {
+  margin-top: 0;
+  font-size: 1.1rem;
+}

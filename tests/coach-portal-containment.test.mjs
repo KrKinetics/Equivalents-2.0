@@ -149,14 +149,19 @@ test('vercel.json sets containment headers without legacy coach-data routes', ()
   assert.ok(sources.includes('/(.*)'));
   const globalHeaders = cfg.headers.find((h) => h.source === '/(.*)').headers;
   const keys = globalHeaders.map((h) => h.key);
-  assert.ok(keys.includes('Content-Security-Policy-Report-Only'));
+  assert.ok(keys.includes('Content-Security-Policy'));
+  assert.ok(!keys.includes('Content-Security-Policy-Report-Only'));
   assert.ok(keys.includes('X-Frame-Options'));
   assert.ok(keys.includes('Permissions-Policy'));
   assert.ok(keys.includes('Strict-Transport-Security'));
-  const csp = globalHeaders.find((h) => h.key === 'Content-Security-Policy-Report-Only').value;
+  const csp = globalHeaders.find((h) => h.key === 'Content-Security-Policy').value;
   assert.match(csp, /frame-ancestors 'none'/);
   assert.doesNotMatch(csp, /unsafe-eval/);
-  assert.match(csp, /unsafe-inline/); // documented temporary for inline calculator scripts
+  assert.doesNotMatch(csp, /unsafe-inline/); // portal shell is strict
+  assert.doesNotMatch(csp, /esm\.sh/);
+  const workspaceHeaders = cfg.headers.find((h) => h.source === '/workspace/(.*)').headers;
+  const workspaceCsp = workspaceHeaders.find((h) => h.key === 'Content-Security-Policy').value;
+  assert.match(workspaceCsp, /script-src 'self' 'unsafe-inline'/); // residual calculator onclick
   assert.equal(
     cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' || r.destination === '/api/coach-data'),
     false,

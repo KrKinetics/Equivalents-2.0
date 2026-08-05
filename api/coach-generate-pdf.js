@@ -36,11 +36,12 @@ module.exports = async function handler(req, res) {
     stage = 'imports';
     const [
       { buildCorsHeaders },
-      { checkRateLimit },
+      { checkDistributedRateLimit, buildRateIdentityKey },
       { parseJsonBody },
       { PUBLIC_ERROR, publicErrorBody },
       { requireRequestAuth, publicAuthResponseBody },
       { readAccessToken },
+      { logCoachEvent },
       { validatePdfRequestBody },
       { authorizeClientAccess },
       { buildPlanSnapshot },
@@ -57,6 +58,7 @@ module.exports = async function handler(req, res) {
       import('../src/coach/server/http/errors.mjs'),
       import('../src/coach/server/require-request-auth.mjs'),
       import('../src/coach/security/portal-auth.mjs'),
+      import('../src/coach/server/http/redact.mjs'),
       import('../src/coach/server/validation/pdf-request.mjs'),
       import('../src/coach/server/pdf/authorize-client-access.mjs'),
       import('../src/coach/server/pdf/build-plan-snapshot.mjs'),
@@ -93,12 +95,30 @@ module.exports = async function handler(req, res) {
     }
 
     stage = 'rate_limit';
-    const clientKey = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
-    const limited = checkRateLimit(`generate-pdf:${clientKey}`);
+    const identityKey = buildRateIdentityKey({ req });
+    const limited = await checkDistributedRateLimit({
+      routeName: 'generate-pdf',
+      identityKey,
+      supabaseUrl: process.env.SUPABASE_URL || '',
+      publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
+      accessToken: readAccessToken({
+        cookieHeader: req.headers.cookie,
+        authorization: req.headers.authorization,
+      }),
+    });
     if (!limited.ok) {
       res.setHeader('Retry-After', String(limited.retryAfterSec || 60));
       log({ event: 'reject', stage: 'rate_limit', status: limited.status });
-      return respondJson(limited.status, { error: limited.error });
+      logCoachEvent({
+        event: limited.status === 429 ? 'rate_limited' : 'rate_limit_backend_error',
+        route: 'generate-pdf',
+        requestId,
+        stage: 'rate_limit',
+        status: limited.status,
+        backend: limited.backend,
+        category: limited.category || 'unknown',
+      });
+      return respondJson(limited.status, { error: limited.error, requestId });
     }
 
     stage = 'parse_body';

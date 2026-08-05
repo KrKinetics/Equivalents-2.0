@@ -721,6 +721,9 @@ document.getElementById('btnVerify').onclick = () => {
     action: 'verify',
     transactionId,
     administrative: true,
+    // Must match verification.verifiedAt — a second new Date() in applyFoodChange
+    // can cross a millisecond boundary and trip VERIFICATION_HISTORY_MISMATCH.
+    at,
   });
   setFoodStatus(food, 'verified');
   food.verification.verifiedAt = at;

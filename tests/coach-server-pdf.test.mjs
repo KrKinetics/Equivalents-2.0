@@ -175,7 +175,12 @@ test('PDF endpoint rejects unauthenticated and invalid payloads before PDF strea
   const handler = (await import('../api/coach-generate-pdf.js')).default;
 
   const noAuth = mockRes();
-  await handler({ method: 'POST', headers: {}, body: validBody, socket: {} }, noAuth.res);
+  await handler({
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: validBody,
+    socket: {},
+  }, noAuth.res);
   assert.equal(noAuth.result.statusCode, 401);
   assert.match(String(noAuth.result.body), /"error":"unauthorized"/);
   assert.equal(noAuth.result.headers['Cache-Control'], 'private, no-store');
@@ -185,7 +190,7 @@ test('PDF endpoint rejects unauthenticated and invalid payloads before PDF strea
   const badJson = mockRes();
   await handler({
     method: 'POST',
-    headers: { cookie: 'coach_access_token=x' },
+    headers: { cookie: 'coach_access_token=x', 'content-type': 'application/json' },
     body: { ...validBody, extra: true },
     socket: {},
   }, badJson.res);

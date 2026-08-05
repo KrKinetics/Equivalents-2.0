@@ -53,19 +53,19 @@ test('wrong password is refused with explicit message', async () => {
     Object.assign(new Error('Invalid login credentials'), { status: 400 }),
   );
   assert.equal(formatted.kind, 'invalid');
-  assert.match(formatted.message, /Identifiants invalides/i);
+  assert.match(formatted.message, /Connexion impossible/i);
 });
 
-test('unknown / unauthorized account is refused', () => {
+test('unknown / unauthorized account shares anti-enumeration copy', () => {
   const formatted = formatPasswordLoginFailure(new Error('Signups not allowed for otp'));
-  assert.equal(formatted.kind, 'unauthorized');
-  assert.match(formatted.message, /non autorisé/i);
+  assert.equal(formatted.kind, 'invalid');
+  assert.match(formatted.message, /Connexion impossible/i);
 });
 
-test('unconfirmed account message is explicit', () => {
+test('unconfirmed account shares anti-enumeration copy', () => {
   const formatted = formatPasswordLoginFailure(new Error('Email not confirmed'));
   assert.equal(formatted.kind, 'unconfirmed');
-  assert.match(formatted.message, /non confirmé/i);
+  assert.match(formatted.message, /Connexion impossible/i);
 });
 
 test('success message is explicit', () => {

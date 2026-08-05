@@ -1,5 +1,6 @@
 /**
  * Email/password login helpers (Node-testable; never logs secrets).
+ * Anti-enumeration: unknown account and wrong password share one public message.
  */
 
 export function buildSignInWithPasswordPayload(email, password) {
@@ -19,6 +20,10 @@ export async function signInWithPassword(supabase, email, password) {
   return data?.session ?? null;
 }
 
+/** Uniform failure copy — does not distinguish unknown vs wrong password. */
+export const PASSWORD_AUTH_FAILURE_MESSAGE =
+  'Connexion impossible. Vérifiez vos identifiants ou contactez l’administrateur.';
+
 export function formatPasswordLoginFailure(err) {
   const msg = err?.message || String(err);
   const status = err?.status ?? err?.statusCode;
@@ -30,29 +35,26 @@ export function formatPasswordLoginFailure(err) {
     };
   }
   if (/email not confirmed|not confirmed/i.test(msg)) {
+    // Same public copy as invalid credentials (anti-enumeration).
     return {
       kind: 'unconfirmed',
-      message: 'Compte non confirmé. Utilisez d’abord le lien d’invitation ou un Magic Link, puis réessayez.',
+      message: PASSWORD_AUTH_FAILURE_MESSAGE,
     };
   }
   if (
     /invalid login credentials|invalid credentials|wrong password|invalid email or password/i.test(msg)
     || (status === 400 && /invalid|credentials|password/i.test(msg))
+    || /signups? not allowed|user not found|unable to validate|not authorized|forbidden/i.test(msg)
   ) {
     return {
       kind: 'invalid',
-      message: 'Identifiants invalides. Vérifiez le courriel et le mot de passe.',
+      message: PASSWORD_AUTH_FAILURE_MESSAGE,
     };
   }
-  if (/signups? not allowed|user not found|unable to validate|not authorized|forbidden/i.test(msg)) {
-    return {
-      kind: 'unauthorized',
-      message: 'Compte non autorisé. Seuls les utilisateurs invités peuvent se connecter.',
-    };
-  }
+  // Never echo raw provider messages to the UI.
   return {
     kind: 'unexpected',
-    message: `Erreur inattendue : ${msg}`,
+    message: PASSWORD_AUTH_FAILURE_MESSAGE,
   };
 }
 

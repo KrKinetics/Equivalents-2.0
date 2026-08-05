@@ -16,6 +16,21 @@ const ROUTES = Object.freeze({
 export const SERVER_NUTRITION_GENERIC_ERROR =
   'Le service nutritionnel est temporairement indisponible. Réessayez.';
 
+export const SERVER_NUTRITION_RATE_LIMIT_ERROR =
+  'Trop de demandes rapprochées. Attendez quelques secondes puis réessayez.';
+
+export const SERVER_NUTRITION_RATE_BACKEND_ERROR =
+  'Le service est temporairement indisponible. Réessayez dans quelques secondes.';
+
+export const SERVER_NUTRITION_VALIDATION_ERROR =
+  'Certaines données du plan doivent être recalculées.';
+
+export const SERVER_NUTRITION_AUTH_ERROR =
+  'Votre session a expiré. Reconnectez-vous puis réessayez.';
+
+export const SERVER_NUTRITION_FORBIDDEN_ERROR =
+  'Accès refusé pour cette organisation.';
+
 export const SERVER_PDF_GENERIC_ERROR =
   'La génération PDF est temporairement indisponible. Réessayez.';
 
@@ -25,9 +40,41 @@ export const SERVER_PDF_PLAN_NOT_READY_ERROR =
 export const SERVER_PDF_INCONSISTENT_PLAN_ERROR =
   'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.';
 
+/**
+ * Map HTTP status / public error code to a stable user-facing message.
+ * Internal codes stay on the Error object (publicError) for diagnostics.
+ * @param {number} status
+ * @param {string} [publicError]
+ */
+export function formatServerNutritionError(status, publicError = '') {
+  const code = String(publicError || '');
+  if (status === 429 || code === 'rate_limited') return SERVER_NUTRITION_RATE_LIMIT_ERROR;
+  if (code === 'rate_limit_unavailable' || code === 'rate_limit_misconfigured') {
+    return SERVER_NUTRITION_RATE_BACKEND_ERROR;
+  }
+  if (
+    status === 400
+    || status === 413
+    || status === 415
+    || status === 422
+    || code === 'validation_failed'
+    || code === 'malformed_request'
+    || code === 'bad_request'
+    || code === 'payload_too_large'
+    || code === 'unsupported_media_type'
+  ) {
+    return SERVER_NUTRITION_VALIDATION_ERROR;
+  }
+  if (status === 401 || code === 'unauthorized') return SERVER_NUTRITION_AUTH_ERROR;
+  if (status === 403 || code === 'forbidden') return SERVER_NUTRITION_FORBIDDEN_ERROR;
+  if (status === 409 || code === 'conflict') return SERVER_NUTRITION_VALIDATION_ERROR;
+  return SERVER_NUTRITION_GENERIC_ERROR;
+}
+
 export function formatServerPdfError(requestId, publicError) {
   if (publicError === 'plan_not_ready') return SERVER_PDF_PLAN_NOT_READY_ERROR;
   if (publicError === 'inconsistent_plan') return SERVER_PDF_INCONSISTENT_PLAN_ERROR;
+  if (publicError === 'rate_limited') return SERVER_NUTRITION_RATE_LIMIT_ERROR;
   const id = String(requestId || '').trim();
   if (!id) return SERVER_PDF_GENERIC_ERROR;
   return `${SERVER_PDF_GENERIC_ERROR} Code : ${id.slice(0, 8)}`;
@@ -67,9 +114,12 @@ export async function coachNutritionPost(route, body = {}) {
   }
 
   if (!res.ok) {
-    const err = new Error(SERVER_NUTRITION_GENERIC_ERROR);
+    const publicError = data?.error || 'nutrition_service_error';
+    const err = new Error(formatServerNutritionError(res.status, publicError));
     err.status = res.status;
-    err.publicError = data?.error || 'unavailable';
+    err.publicError = publicError;
+    err.requestId = data?.requestId || res.headers.get('x-request-id') || '';
+    err.retryAfter = res.headers.get('Retry-After') || '';
     throw err;
   }
   return data;
@@ -87,7 +137,6 @@ export async function generatePdfApi(body = {}) {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/pdf',
     },
     body: JSON.stringify({ ...orgFields(), ...body }),
   });

@@ -214,14 +214,40 @@ export function validateMacrosBody(body) {
   };
 }
 
-function validateBanqueMap(banque) {
+/**
+ * Normalize banque map (string decimals, commas) before range checks.
+ * @returns {{ ok: true, value: Record<string, number> } | { ok: false, error: string, message: string }}
+ */
+function normalizeBanqueMap(banque) {
   if (!banque || typeof banque !== 'object' || Array.isArray(banque)) return fail('invalid_banque');
+  const out = Object.create(null);
   for (const key of Object.keys(banque)) {
     if (!CATS.includes(key)) return fail('unexpected_banque_key');
-    const n = Number(banque[key]);
+    const raw = banque[key];
+    const n = typeof raw === 'string'
+      ? Number(String(raw).trim().replace(',', '.'))
+      : Number(raw);
     if (!Number.isFinite(n) || n < 0 || n > 500) return fail('invalid_banque_value');
+    out[key] = n;
   }
-  return null;
+  return { ok: true, value: out };
+}
+
+/**
+ * Normalize 42-cell meal repartition (legacy dossiers may send strings).
+ */
+function normalizeRepartition(repartition) {
+  if (repartition == null) return { ok: true, value: undefined };
+  if (!Array.isArray(repartition) || repartition.length > 42) return fail('invalid_repartition');
+  const out = [];
+  for (const cell of repartition) {
+    const n = typeof cell === 'string'
+      ? Number(String(cell).trim().replace(',', '.'))
+      : Number(cell);
+    if (!Number.isFinite(n) || n < 0 || n > 500) return fail('invalid_repartition');
+    out.push(n);
+  }
+  return { ok: true, value: out };
 }
 
 export function validatePortionsBody(body) {
@@ -240,10 +266,14 @@ export function validatePortionsBody(body) {
   if (!org.ok) return org;
   if (!PORTION_ACTIONS.has(body.action)) return fail('invalid_action');
 
-  if (body.banque != null) {
-    const bErr = validateBanqueMap(body.banque);
-    if (bErr) return bErr;
+  let banque = body.banque;
+  if (banque != null) {
+    const normalized = normalizeBanqueMap(banque);
+    if (!normalized.ok) return normalized;
+    banque = normalized.value;
   }
+  const repartitionNorm = normalizeRepartition(body.repartition);
+  if (!repartitionNorm.ok) return repartitionNorm;
   if (body.weights != null) {
     if (!Array.isArray(body.weights) || body.weights.length > 20) return fail('invalid_weights');
     for (const w of body.weights) {
@@ -275,12 +305,12 @@ export function validatePortionsBody(body) {
       organization_id: org.organization_id,
       organization_slug: org.organization_slug,
       action: body.action,
-      banque: body.banque,
+      banque,
       targets: body.targets,
       portions: body.portions,
       total: body.total,
       weights: body.weights,
-      repartition: body.repartition,
+      repartition: repartitionNorm.value,
       mode: body.mode,
       heureEntrainement: body.heureEntrainement == null || body.heureEntrainement === ''
         ? null
