@@ -175,6 +175,10 @@ export function stripClientNutritionFormulas(html) {
     'var selectedGoalMultiplier = 1.0;',
   );
   out = out.replace(
+    /let pdfCreator = 'kr';/,
+    "var pdfCreator = 'kr';",
+  );
+  out = out.replace(
     /let pdfLang = 'fr';/,
     "var pdfLang = 'fr';",
   );

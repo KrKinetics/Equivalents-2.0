@@ -9,7 +9,9 @@ const TIMING_KEYS = new Set(['active', 'heure', 'heureLabel', 'summary', 'preIdx
 const BODY_KEYS = new Set([
   'organization_id', 'organization_slug', 'client_id', 'locale', 'athlete_name', 'goal_label',
   'macro_ratio_label', 'coach_notes', 'goal_multiplier', 'include_rest', 'training', 'rest',
+  'pdf_brand',
 ]);
+const PDF_BRANDS = new Set(['kr', 'elevate']);
 
 function fail() { return { ok: false, error: 'bad_request' }; }
 function object(value) { return value && typeof value === 'object' && !Array.isArray(value); }
@@ -52,6 +54,9 @@ export function validatePdfRequestBody(body) {
   if (typeof body.coach_notes !== 'string' || body.coach_notes.length > 4000 || /\0|<script|javascript:/i.test(body.coach_notes)) return fail();
   if (body.goal_multiplier !== undefined && !finite(body.goal_multiplier, 0.5, 1.5)) return fail();
   if (body.include_rest !== undefined && typeof body.include_rest !== 'boolean') return fail();
+  if (body.pdf_brand !== undefined && body.pdf_brand !== null && body.pdf_brand !== '') {
+    if (typeof body.pdf_brand !== 'string' || !PDF_BRANDS.has(body.pdf_brand)) return fail();
+  }
   if (!validateDay(body.training)) return fail();
   if (body.rest !== undefined && body.rest !== null && !validateDay(body.rest)) return fail();
   return {
@@ -61,6 +66,7 @@ export function validatePdfRequestBody(body) {
       organization_id: body.organization_id || null,
       include_rest: body.include_rest === true,
       rest: body.rest || null,
+      pdf_brand: body.pdf_brand || null,
     },
   };
 }

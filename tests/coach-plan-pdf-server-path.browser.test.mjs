@@ -435,4 +435,5 @@ test('frontend bridge never invokes blocked legacy APIs by name in source', () =
   assert.doesNotMatch(bridge, /blocked\('macroPercentagesFromGrams'\)/);
   assert.match(bridge, /genererPlanTextuelServer/);
   assert.match(bridge, /installServerMacroPercentageHelpers/);
+  assert.match(bridge, /pdf_brand:\s*pdfBrand/);
 });

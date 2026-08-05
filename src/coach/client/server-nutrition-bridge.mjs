@@ -690,6 +690,7 @@ async function exporterPDFServer() {
         'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.',
       );
     }
+    const pdfBrand = globalThis.pdfCreator === 'elevate' ? 'elevate' : 'kr';
     const { blob, filename } = await generatePdfApi({
       organization_id: ctx.organizationId || undefined,
       organization_slug: ctx.organizationSlug,
@@ -701,6 +702,7 @@ async function exporterPDFServer() {
       coach_notes: prepared.coach_notes,
       goal_multiplier: prepared.goal_multiplier,
       include_rest: prepared.include_rest,
+      pdf_brand: pdfBrand,
       training,
       rest,
     });

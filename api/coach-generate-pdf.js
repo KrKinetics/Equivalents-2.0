@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
       { buildPdfDocumentHtml },
       { renderHtmlToPdfBuffer },
       { buildPdfFilename },
-      { brandIdFromOrganizationSlug },
+      { resolvePdfBrand },
       { loadBrandLogoDataUri },
       { assertPlanReadyForPdf },
     ] = await Promise.all([
@@ -63,7 +63,7 @@ module.exports = async function handler(req, res) {
       import('../src/coach/server/pdf/build-pdf-html.mjs'),
       import('../src/coach/server/pdf/render-pdf.mjs'),
       import('../src/coach/server/pdf/filename.mjs'),
-      import('../src/coach/workspace/org-brand.mjs'),
+      import('../src/coach/server/pdf/themes.mjs'),
       import('../src/coach/server/pdf/resolve-logo.mjs'),
       import('../src/coach/server/pdf/assert-plan-ready.mjs'),
     ]);
@@ -132,11 +132,27 @@ module.exports = async function handler(req, res) {
     }
 
     stage = 'brand';
-    const brandId = brandIdFromOrganizationSlug(auth.organizationSlug);
-    if (!brandId) {
-      log({ event: 'reject', stage: 'brand', status: 403 });
+    // Explicit UI creator selection controls PDF theme; org controls data access only.
+    const brandResolution = resolvePdfBrand({
+      selectedBrand: validated.value.pdf_brand,
+      organizationSlug: auth.organizationSlug,
+    });
+    if (!brandResolution.ok) {
+      log({
+        event: 'reject',
+        stage: 'brand',
+        status: brandResolution.status,
+        code: brandResolution.error,
+        selected: validated.value.pdf_brand || null,
+        orgSlug: auth.organizationSlug || null,
+      });
+      if (brandResolution.status === 400) {
+        return respondJson(PUBLIC_ERROR.bad_request.status, { error: 'bad_request' });
+      }
       return respondJson(PUBLIC_ERROR.forbidden.status, { error: 'forbidden' });
     }
+    const brandId = brandResolution.brandId;
+    const theme = brandResolution.theme;
 
     stage = 'client_access';
     const accessToken = readAccessToken({
@@ -188,9 +204,16 @@ module.exports = async function handler(req, res) {
     const dateStr = validated.value.locale === 'fr'
       ? new Intl.DateTimeFormat('fr-CA').format(date)
       : dateIso;
+    if (!logo?.dataUri || !logo.bytes) {
+      const err = new Error('logo_empty');
+      err.code = 'logo_empty';
+      err.stage = 'logo';
+      throw err;
+    }
     const html = buildPdfDocumentHtml({
       locale: validated.value.locale,
       brandId,
+      theme,
       athleteName: validated.value.athlete_name || clientAccess.client.full_name,
       dateStr,
       goalLabel: validated.value.goal_label,
@@ -200,6 +223,19 @@ module.exports = async function handler(req, res) {
       restSnapshot,
       logoDataUri: logo.dataUri,
     });
+    // Guard against silent brand overwrite / contamination.
+    if (brandId === 'elevate' && /KR Kinetics/i.test(html)) {
+      const err = new Error('brand_contamination_kr');
+      err.code = 'brand_contamination';
+      err.stage = 'html';
+      throw err;
+    }
+    if (brandId === 'kr' && /Elevate Fitness/i.test(html)) {
+      const err = new Error('brand_contamination_elevate');
+      err.code = 'brand_contamination';
+      err.stage = 'html';
+      throw err;
+    }
 
     stage = 'render';
     const pdf = await renderHtmlToPdfBuffer(html, { requestId, log });
@@ -214,12 +250,15 @@ module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`);
     res.setHeader('X-Request-Id', requestId);
+    res.setHeader('X-Pdf-Brand', brandId);
     res.statusCode = 200;
     log({
       event: 'pdf_ok',
       stage: 'response',
       status: 200,
       brandId,
+      orgBrandId: brandResolution.orgBrandId,
+      selectedBrand: validated.value.pdf_brand || null,
       locale: validated.value.locale,
       bytes: pdf.length,
       pages: restSnapshot ? 2 : 1,

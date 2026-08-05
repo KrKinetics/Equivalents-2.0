@@ -97,9 +97,20 @@ test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () =
     assert.doesNotMatch(html, /<b>Safe text<\/b>/);
     assert.doesNotMatch(html, /service_role|SUPABASE_SERVICE|eyJ[A-Za-z0-9_-]{20,}\./i);
     assert.doesNotMatch(html, /coach_access_token|Bearer /i);
-    if (c.brandId === 'elevate') assert.doesNotMatch(html, /KR Kinetics/);
-    if (c.brandId === 'kr') assert.doesNotMatch(html, /Elevate Fitness/);
-    const pageCount = (html.match(/<section class="pdf-a4-page"/g) || []).length;
+    assert.match(html, /Préparé par|Prepared by/);
+    assert.match(html, new RegExp(`data-pdf-brand="${c.brandId}"`));
+    assert.match(html, /pdf-brand-header/);
+    assert.match(html, /pdf-brand-rule/);
+    if (c.brandId === 'elevate') {
+      assert.doesNotMatch(html, /KR Kinetics/);
+      assert.match(html, /#D4A94F|#050505/);
+    }
+    if (c.brandId === 'kr') {
+      assert.doesNotMatch(html, /Elevate Fitness/);
+      assert.match(html, /#ED1136|#071B41/);
+    }
+    assert.doesNotMatch(html, /filter:brightness\(0\)\s*invert\(1\)/);
+    const pageCount = (html.match(/<section class="pdf-a4-page/g) || []).length;
     assert.equal(pageCount, 1);
   }
 });
@@ -111,7 +122,7 @@ test('PDF with rest day yields two pages when rest has planned kcal', () => {
     locale: 'fr', brandId: 'kr', athleteName: 'Ana', dateStr: '2026-08-04',
     goalLabel: 'Maintien', ratioLabel: '25/45/30', trainingSnapshot: training, restSnapshot: rest,
   });
-  assert.equal((html.match(/<section class="pdf-a4-page"/g) || []).length, 2);
+  assert.equal((html.match(/<section class="pdf-a4-page/g) || []).length, 2);
 });
 
 test('PDF filename follows brand and locale conventions', () => {
