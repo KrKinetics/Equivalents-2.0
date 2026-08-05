@@ -370,6 +370,17 @@ async function bootWorkspace() {
     fullName: ctx.fullName,
     persistence: 'supabase',
   });
+  window.COACH_WORKSPACE_CONTEXT = window.__COACH_WORKSPACE_CONTEXT__;
+
+  // Server nutrition path: refresh guide after org context is known (no full-bank fallback).
+  if (window.COACH_FEATURES?.serverNutritionEngine && typeof window.chargerCoachData === 'function') {
+    try {
+      const maybePromise = window.chargerCoachData();
+      if (maybePromise && typeof maybePromise.then === 'function') await maybePromise;
+    } catch {
+      // Bridge surfaces a generic retry UI; do not fall back to /api/coach-data.
+    }
+  }
 
   renderBanner(ctx, 'Chargement du dossier…', 'busy');
   setPersistStatus('Chargement du dossier…', 'busy');

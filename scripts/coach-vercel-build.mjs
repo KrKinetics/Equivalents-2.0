@@ -26,6 +26,8 @@ import {
   injectWorkspaceBootstrap,
   requirePublicSupabaseBuildEnv,
   rmrf,
+  stripClientNutritionFormulas,
+  htmlContainsEnergyFormulaIp,
 } from './coach-portal-deploy-lib.mjs';
 import { mergeEnvLocalIntoProcess } from './load-env-local.mjs';
 
@@ -65,6 +67,13 @@ export function buildCoachVercelBundle(options = {}) {
   const env = options.env || process.env;
   const targetDir = options.outDir || outDir;
   const { url, publishableKey } = requirePublicSupabaseBuildEnv(env);
+  // Preview Draft PRs enable the server nutrition path by default.
+  // Production stays OFF unless COACH_FEATURE_SERVER_NUTRITION=1.
+  // Explicit COACH_FEATURE_SERVER_NUTRITION=0 forces OFF even on Preview.
+  const flag = String(env.COACH_FEATURE_SERVER_NUTRITION || '').trim();
+  const vercelEnv = String(env.VERCEL_ENV || '').trim();
+  const serverNutritionEngine = flag === '1'
+    || (flag !== '0' && vercelEnv === 'preview');
 
   if (!fs.existsSync(portalDir)) throw new Error('coach-portal/ missing');
   ensureCalculatorBuilt();
@@ -76,13 +85,18 @@ export function buildCoachVercelBundle(options = {}) {
 
   const workspaceDir = path.join(targetDir, 'workspace');
   copyTree(calcDir, workspaceDir);
-  // Phase 1 containment: never publish coach-data.json as a static asset.
-  // Authenticated clients load it via /api/coach-data (still full bank — Phase 2 will minimize).
+  // Never publish coach-data.json as a static asset.
+  // Legacy path: authenticated clients may still use /api/coach-data when the feature flag is off.
+  // Server nutrition path: UI must use minimal /api/coach-* routes only.
   const leakedCoachData = path.join(workspaceDir, 'coach-data.json');
   if (fs.existsSync(leakedCoachData)) fs.unlinkSync(leakedCoachData);
 
   const workspaceIndex = path.join(workspaceDir, 'index.html');
-  const injected = injectWorkspaceBootstrap(fs.readFileSync(workspaceIndex, 'utf8'));
+  let workspaceHtml = fs.readFileSync(workspaceIndex, 'utf8');
+  if (serverNutritionEngine) {
+    workspaceHtml = stripClientNutritionFormulas(workspaceHtml);
+  }
+  const injected = injectWorkspaceBootstrap(workspaceHtml, { serverNutritionEngine });
   writeFile(workspaceIndex, injected);
 
   copyTree(
@@ -93,8 +107,14 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'services'),
     path.join(targetDir, 'src', 'coach', 'services'),
   );
+  if (serverNutritionEngine) {
+    copyTree(
+      path.join(root, 'src', 'coach', 'client'),
+      path.join(targetDir, 'src', 'coach', 'client'),
+    );
+  }
 
-  const configJs = buildConfigJsSource({ url, publishableKey });
+  const configJs = buildConfigJsSource({ url, publishableKey, serverNutritionEngine });
   writeFile(path.join(targetDir, 'config.js'), configJs);
 
   // Required route entry points
@@ -121,17 +141,36 @@ export function buildCoachVercelBundle(options = {}) {
   if (!injected.includes('action="/dashboard.html"')) {
     throw new Error('workspace/index.html missing dashboard return form');
   }
+  if (serverNutritionEngine) {
+    if (!injected.includes('server-nutrition-bridge.mjs')) {
+      throw new Error('server nutrition path missing bridge injection');
+    }
+    if (!injected.includes('data-coach-server-nutrition="1"')) {
+      throw new Error('server nutrition path missing strip marker');
+    }
+    if (htmlContainsEnergyFormulaIp(injected)) {
+      throw new Error('server nutrition path still embeds energy formula coefficients');
+    }
+    if (!fs.existsSync(path.join(targetDir, 'src/coach/client/server-nutrition-bridge.mjs'))) {
+      throw new Error('server nutrition client bridge missing from deploy tree');
+    }
+  }
 
   assertDeployTreeSafe(targetDir);
-  return { outDir: targetDir, urlHost: new URL(url).host };
+  return {
+    outDir: targetDir,
+    urlHost: new URL(url).host,
+    serverNutritionEngine,
+  };
 }
 
 function main() {
   mergeEnvLocalIntoProcess(root);
-  const { outDir: built, urlHost } = buildCoachVercelBundle();
+  const { outDir: built, urlHost, serverNutritionEngine } = buildCoachVercelBundle();
   // Log only non-secret facts.
   console.log(`Coach Vercel bundle ready: ${path.relative(root, built)}`);
   console.log(`Public Supabase host configured: ${urlHost}`);
+  console.log(`Server nutrition engine feature: ${serverNutritionEngine ? 'ON' : 'OFF'}`);
   console.log('config.js written (values not printed).');
 }
 

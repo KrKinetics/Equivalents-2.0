@@ -1,0 +1,407 @@
+/**
+ * Feature-flagged bridge: wires calculator UI to server nutrition APIs.
+ *
+ * When COACH_FEATURES.serverNutritionEngine is true:
+ * - never downloads the full food bank
+ * - never silently falls back to the legacy client engine on error
+ * - shows a generic error and allows retry
+ *
+ * PDF remains client-side and consumes DOM/state filled from API results.
+ */
+
+import {
+  searchFoodsApi,
+  calcEnergyApi,
+  calcMacrosApi,
+  calcPortionsApi,
+  calcEquivalencesApi,
+  foodDetailApi,
+  SERVER_NUTRITION_GENERIC_ERROR,
+} from './server-nutrition-api.mjs';
+
+function featureOn() {
+  return Boolean(globalThis.COACH_FEATURES?.serverNutritionEngine);
+}
+
+function showGuideError(message = SERVER_NUTRITION_GENERIC_ERROR) {
+  const el = document.getElementById('guide-count');
+  if (el) el.textContent = message;
+  const tbody = document.getElementById('guide-tbody');
+  if (tbody) {
+    tbody.innerHTML = `<tr><td colspan="7" class="left">${escapeHtml(message)} `
+      + `<button type="button" id="server-nutrition-retry">Réessayer</button></td></tr>`;
+    document.getElementById('server-nutrition-retry')?.addEventListener('click', () => {
+      void filtrerGuideEquivalentsServer();
+    });
+  }
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
+function fmtNum(v) {
+  if (v === null || v === undefined || Number.isNaN(Number(v))) return '—';
+  return String(Math.round(Number(v) * 10) / 10);
+}
+
+async function ensureMoyennes() {
+  if (globalThis.__COACH_SERVER_MOYENNES) return globalThis.__COACH_SERVER_MOYENNES;
+  const res = await calcPortionsApi({ action: 'moyennes' });
+  globalThis.__COACH_SERVER_MOYENNES = res.moyennes;
+  // Keep legacy identifier for any remaining UI references without shipping formulas.
+  if (typeof globalThis.MOYENNES === 'undefined' || globalThis.COACH_FEATURES?.serverNutritionEngine) {
+    globalThis.MOYENNES = res.moyennes;
+  }
+  return res.moyennes;
+}
+
+async function chargerCoachDataServer() {
+  try {
+    // Bootstrap categories only — one empty search page, never the full bank.
+    const page = await searchFoodsApi({ q: '', limit: 1, offset: 0 });
+    globalThis.COACH_DATA = {
+      totalFoods: page.total,
+      verifiedFoods: page.total,
+      featureDaEnabled: false,
+      guide: {
+        sections: (page.categories || []).map((c) => ({
+          id: c.id,
+          titleFr: c.labelFr,
+          titleEn: c.labelEn,
+          foods: [],
+        })),
+      },
+      foods: [],
+      serverNutrition: true,
+    };
+    await ensureMoyennes();
+    initialiserGuideEquivalentsServer();
+  } catch {
+    globalThis.COACH_DATA = null;
+    showGuideError();
+  }
+}
+
+function initialiserGuideEquivalentsServer() {
+  const data = globalThis.COACH_DATA;
+  if (!data) return;
+  const sel = document.getElementById('guide-filter-cat');
+  const da = document.getElementById('guide-da-flag');
+  if (da) da.textContent = 'désactivé';
+  if (sel) {
+    const cats = (data.guide?.sections || []).map((s) => ({ id: s.id, label: s.titleFr || s.id }));
+    sel.innerHTML = '<option value="">Toutes les catégories</option>'
+      + cats.map((c) => `<option value="${escapeHtml(c.id)}">${escapeHtml(c.label)}</option>`).join('');
+  }
+  void filtrerGuideEquivalentsServer();
+}
+
+async function filtrerGuideEquivalentsServer() {
+  const tbody = document.getElementById('guide-tbody');
+  const countEl = document.getElementById('guide-count');
+  if (!tbody) return;
+  const q = (document.getElementById('guide-search')?.value || '').trim();
+  const cat = document.getElementById('guide-filter-cat')?.value || '';
+  try {
+    const page = await searchFoodsApi({ q, category: cat, limit: 50, offset: 0 });
+    const sectionTitle = Object.fromEntries(
+      (globalThis.COACH_DATA?.guide?.sections || []).map((s) => [s.id, s.titleFr || s.id]),
+    );
+    tbody.innerHTML = (page.results || []).map((f) => {
+      const n = f.nutrients || {};
+      return '<tr>'
+        + `<td class="left"><strong>${escapeHtml(f.nameFr)}</strong><br>`
+        + `<span style="color:#64748b;font-size:0.8em;">${escapeHtml(f.nameEn)}</span></td>`
+        + `<td>${escapeHtml(f.portionFr)}</td>`
+        + `<td>${fmtNum(n.proteinG)}</td>`
+        + `<td>${fmtNum(n.carbsG)}</td>`
+        + `<td>${fmtNum(n.fatG)}</td>`
+        + `<td>${fmtNum(n.declaredKcal)}</td>`
+        + `<td>${escapeHtml(sectionTitle[f.displayCategory] || f.displayCategory || '')}</td>`
+        + '</tr>';
+    }).join('');
+    if (countEl) {
+      countEl.textContent = `${page.results.length} / ${page.total} (serveur, max 50)`;
+    }
+  } catch {
+    showGuideError();
+  }
+}
+
+async function calculerBesoinsServer() {
+  const sexe = document.getElementById('sexe')?.value;
+  const age = parseFloat(document.getElementById('age')?.value) || 0;
+  const act = document.getElementById('activite')?.value;
+  const kg = typeof globalThis.getPoidsKg === 'function' ? globalThis.getPoidsKg() : 0;
+  const metres = typeof globalThis.getGrandeurM === 'function' ? globalThis.getGrandeurM() : 0;
+  if (kg <= 0 || metres <= 0 || age <= 0) return;
+
+  let method = globalThis.KR_energyEquationVersion || 'nasem2023';
+  if (age < 19 && method === 'iom2005') {
+    method = 'nasem2023';
+    globalThis.KR_energyEquationVersion = method;
+    const methodSelect = document.getElementById('energy-method');
+    if (methodSelect) methodSelect.value = method;
+  }
+
+  try {
+    const result = await calcEnergyApi({
+      sexe,
+      age,
+      poidsKg: kg,
+      hauteurM: metres,
+      activite: act,
+      method,
+    });
+    globalThis.currentTDEE = Math.max(0, result.tdee);
+    document.getElementById('bmr-out').textContent = String(Math.round(result.bmr));
+    document.getElementById('tdee-out').textContent = String(Math.round(result.tdee));
+    document.getElementById('poids-kg-out').textContent = kg.toFixed(1);
+    const g = result.goals || {};
+    document.getElementById('kcal-80').textContent = g.perteSevere == null ? '—' : String(Math.round(g.perteSevere));
+    document.getElementById('kcal-90').textContent = g.perteLegere == null ? '—' : String(Math.round(g.perteLegere));
+    document.getElementById('kcal-100').textContent = String(Math.round(g.maintien ?? result.tdee));
+    document.getElementById('kcal-110').textContent = g.priseLegere == null ? '—' : String(Math.round(g.priseLegere));
+    document.getElementById('kcal-120').textContent = g.priseSevere == null ? '—' : String(Math.round(g.priseSevere));
+    await updateCiblesServer();
+    if (typeof globalThis.krUpdateScientificScope === 'function') {
+      globalThis.krUpdateScientificScope();
+    }
+  } catch {
+    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
+function readMacroInputForServer() {
+  const kg = typeof globalThis.getPoidsKg === 'function' ? globalThis.getPoidsKg() : 0;
+  const proteinMode = globalThis.proteinesMode || 'gkg';
+  const macroMode = globalThis.macroMode || 'preset';
+  const isRestDay = globalThis.activeJour === 'repos';
+  return {
+    tdee: globalThis.currentTDEE || 0,
+    goalMultiplier: globalThis.selectedGoalMultiplier || 1,
+    weightKg: kg,
+    proteinMode,
+    gPerKg: typeof globalThis.getProteinesParKg === 'function' ? globalThis.getProteinesParKg() : 2,
+    pct: typeof globalThis.getProteinesPct === 'function' ? globalThis.getProteinesPct() : 25,
+    macroMode,
+    macroRatio: typeof globalThis.getMacroRatioValue === 'function'
+      ? globalThis.getMacroRatioValue()
+      : (document.getElementById('macro-ratio')?.value || '25,45,30'),
+    customG: typeof globalThis.getMacroCustomG === 'function' ? globalThis.getMacroCustomG() : 45,
+    customL: typeof globalThis.getMacroCustomL === 'function' ? globalThis.getMacroCustomL() : 30,
+    isRestDay,
+  };
+}
+
+async function updateCiblesServer() {
+  if (!globalThis.currentTDEE) return;
+  try {
+    const input = readMacroInputForServer();
+    const res = await calcMacrosApi(input);
+    globalThis.targets = res.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 };
+    const targets = globalThis.targets;
+    const kg = input.weightKg;
+    const proPerKg = kg > 0 ? (targets.pro / kg).toFixed(1) : '0';
+    const ratioLabel = typeof globalThis.getMacroRatioLabel === 'function'
+      ? globalThis.getMacroRatioLabel()
+      : '';
+    const proPct = targets.kcal > 0 ? Math.round((targets.pro * 4 / targets.kcal) * 100) : 0;
+
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+    setText('cible-kcal', `${targets.kcal} kcal`);
+    const macrosEl = document.getElementById('cible-macros');
+    if (macrosEl) {
+      macrosEl.innerHTML = `${targets.pro}g Pro | ${targets.glu}g Glu | ${targets.lip}g Lip`;
+    }
+    setText('pro-per-kg', `${proPerKg} g/kg`);
+    setText('dash-goal-label', typeof globalThis.getActiveGoalLabel === 'function'
+      ? globalThis.getActiveGoalLabel()
+      : '');
+    setText('dash-ratio-label', String(ratioLabel).split('(')[0].trim());
+    setText('macro-pro-pct', `${proPct} %`);
+
+    await calculerBanqueServer();
+    if (typeof globalThis.updateJourTabsUI === 'function') globalThis.updateJourTabsUI();
+    if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
+    if (typeof globalThis.krUpdateScientificScope === 'function') globalThis.krUpdateScientificScope();
+  } catch {
+    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
+async function calculerBanqueServer() {
+  const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+  const banque = {};
+  CATS.forEach((cat) => {
+    const el = document.querySelector(`.target-input[data-cat="${cat}"]`);
+    banque[cat] = el ? (parseFloat(el.value) || 0) : 0;
+  });
+  try {
+    const moyennes = await ensureMoyennes();
+    const totalsRes = await calcPortionsApi({ action: 'banque_totals', banque });
+    const totals = totalsRes.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+
+    // Per-category display uses moyennes values from the server (not formula code).
+    CATS.forEach((cat) => {
+      const val = banque[cat] || 0;
+      const m = moyennes[cat] || { p: 0, g: 0, l: 0 };
+      const cPro = val * m.p;
+      const cGlu = val * m.g;
+      const cLip = val * m.l;
+      const cKcal = Math.round(cPro * 4 + cGlu * 4 + cLip * 9);
+      const details = document.getElementById(`banque-details-${cat}`);
+      if (details) {
+        details.innerHTML = `<span style="color:#ef4444;font-weight:600;">${cPro}g P</span> · `
+          + `<span style="color:#eab308;font-weight:600;">${cGlu}g G</span> · `
+          + `<span style="color:#f97316;font-weight:600;">${cLip}g L</span><br>`
+          + `<strong style="color:var(--primary);font-size:1.05em;">${cKcal} kcal</strong>`;
+      }
+    });
+
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+    setText('gen-pro', `${totals.pro} g`);
+    setText('gen-glu', `${totals.glu} g`);
+    setText('gen-lip', `${totals.lip} g`);
+    setText('gen-kcal', `${totals.kcal} kcal`);
+
+    const targets = globalThis.targets || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+    if (typeof globalThis.updateDiff === 'function') {
+      globalThis.updateDiff('pro', targets.pro, totals.pro);
+      globalThis.updateDiff('glu', targets.glu, totals.glu);
+      globalThis.updateDiff('lip', targets.lip, totals.lip);
+      globalThis.updateDiff('kcal', targets.kcal, totals.kcal);
+    }
+    if (typeof globalThis.updateEau === 'function') globalThis.updateEau();
+    if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
+    if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
+  } catch {
+    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
+async function suggererBanqueServer() {
+  const targets = globalThis.targets || {};
+  if (!targets.kcal) {
+    window.alert("Veuillez d'abord compléter le profil pour obtenir des cibles caloriques.");
+    return;
+  }
+  try {
+    const res = await calcPortionsApi({ action: 'suggest', targets });
+    const best = res.banque;
+    if (!best) return;
+    const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+    CATS.forEach((cat) => {
+      const el = document.querySelector(`.target-input[data-cat="${cat}"]`);
+      if (el) el.value = best[cat];
+    });
+    await calculerBanqueServer();
+  } catch {
+    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
+async function telechargerGuideEquivalentsHtmlServer() {
+  try {
+    const meta = await calcEquivalencesApi({ category: '', limit: 1, offset: 0 });
+    const cats = meta.categories || [];
+    const sectionsHtml = [];
+    for (const cat of cats) {
+      let offset = 0;
+      const rows = [];
+      let total = Infinity;
+      while (offset < total && offset < 500) {
+        const page = await calcEquivalencesApi({
+          category: cat.id,
+          limit: 50,
+          offset,
+        });
+        total = page.total;
+        rows.push(...(page.results || []));
+        offset += page.limit;
+        if (!(page.results || []).length) break;
+      }
+      const tableRows = rows.map((f) => {
+        const v = f.values || {};
+        return `<tr><td>${escapeHtml(f.nameFr)}</td><td>${escapeHtml(f.portionFr)}</td>`
+          + `<td>${fmtNum(v.prot)}</td><td>${fmtNum(v.gluc)}</td>`
+          + `<td>${fmtNum(v.lip)}</td><td>${fmtNum(v.cal)}</td></tr>`;
+      }).join('');
+      sectionsHtml.push(
+        `<h2>${escapeHtml(cat.labelFr)}</h2>`
+        + '<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;width:100%;font-size:12px;margin-bottom:18px;">'
+        + '<thead><tr><th>Aliment</th><th>Portion</th><th>P</th><th>G</th><th>L</th><th>kcal</th></tr></thead><tbody>'
+        + tableRows + '</tbody></table>',
+      );
+    }
+    const w = window.open('', '_blank');
+    if (!w) {
+      window.alert('Autorisez les pop-ups pour ouvrir le guide.');
+      return;
+    }
+    w.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Équivalents alimentaires</title>'
+      + '<style>body{font-family:Segoe UI,Arial,sans-serif;padding:24px;color:#111B33;} h1{color:#071B41;} table th{background:#071B41;color:#fff;}</style></head><body>'
+      + '<h1>Tableau des équivalents alimentaires</h1>'
+      + sectionsHtml.join('') + '</body></html>');
+    w.document.close();
+  } catch {
+    window.alert(SERVER_NUTRITION_GENERIC_ERROR);
+  }
+}
+
+/**
+ * Install bridge overrides. Safe no-op when feature flag is off.
+ */
+export function installServerNutritionBridge() {
+  if (!featureOn()) return { installed: false };
+
+  globalThis.COACH_SERVER_NUTRITION = Object.freeze({
+    enabled: true,
+    searchFoodsApi,
+    foodDetailApi,
+    calcEnergyApi,
+    calcMacrosApi,
+    calcPortionsApi,
+    calcEquivalencesApi,
+  });
+
+  globalThis.chargerCoachData = chargerCoachDataServer;
+  globalThis.filtrerGuideEquivalents = () => { void filtrerGuideEquivalentsServer(); };
+  globalThis.calculerBesoins = () => { void calculerBesoinsServer(); };
+  globalThis.updateCibles = () => { void updateCiblesServer(); };
+  globalThis.calculerBanque = () => { void calculerBanqueServer(); };
+  globalThis.suggererBanque = () => { void suggererBanqueServer(); };
+  globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };
+
+  // Prevent legacy full-bank fetch if anything still points at it.
+  const originalFetch = globalThis.fetch.bind(globalThis);
+  globalThis.fetch = async (input, init) => {
+    const url = String(input?.url || input || '');
+    if (url.includes('/api/coach-data') || url.endsWith('coach-data.json')) {
+      throw new Error('Full food bank fetch blocked in server nutrition path');
+    }
+    return originalFetch(input, init);
+  };
+
+  return { installed: true };
+}
+
+// Install as soon as the module evaluates so DOMContentLoaded uses server overrides.
+if (typeof document !== 'undefined' && featureOn()) {
+  installServerNutritionBridge();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Re-assert overrides after late inline scripts (KR science block).
+      installServerNutritionBridge();
+    }, { once: true });
+  }
+}
