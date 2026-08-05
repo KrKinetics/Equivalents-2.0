@@ -1354,6 +1354,47 @@ test('normal UI-style verify transaction has exact values and is importable/appl
   assert.equal(assertApplyGovernance(current, incoming).ok, true);
 });
 
+test('verify history timestamp must equal verification.verifiedAt', () => {
+  const verifiedAt = '2026-08-05T12:00:00.000Z';
+  const historyAt = '2026-08-05T12:00:00.001Z';
+  const mismatched = cleanFood({ id: 'verify-ts-mismatch' });
+  applyFoodChange(mismatched, {
+    patches: [
+      { path: 'status', value: 'verified' },
+      { path: 'verification.status', value: 'verified' },
+      { path: 'verification.verifiedAt', value: verifiedAt },
+      { path: 'verification.verifiedBy', value: 'UI Nutrition Reviewer' },
+      { path: 'verification.datasetVersion', value: '1.0.1' },
+    ],
+    by: 'UI Nutrition Reviewer',
+    action: 'verify',
+    transactionId: 'verify-ts-mismatch',
+    administrative: true,
+    at: historyAt,
+  });
+  const mismatch = validateVerifyTransaction(mismatched, { requireTransactionId: true });
+  assert.equal(mismatch.ok, false);
+  assert.equal(mismatch.code, 'VERIFICATION_HISTORY_MISMATCH');
+
+  const aligned = cleanFood({ id: 'verify-ts-aligned' });
+  applyFoodChange(aligned, {
+    patches: [
+      { path: 'status', value: 'verified' },
+      { path: 'verification.status', value: 'verified' },
+      { path: 'verification.verifiedAt', value: verifiedAt },
+      { path: 'verification.verifiedBy', value: 'UI Nutrition Reviewer' },
+      { path: 'verification.datasetVersion', value: '1.0.1' },
+    ],
+    by: 'UI Nutrition Reviewer',
+    action: 'verify',
+    transactionId: 'verify-ts-aligned',
+    administrative: true,
+    at: verifiedAt,
+  });
+  const ok = validateVerifyTransaction(aligned, { requireTransactionId: true });
+  assert.equal(ok.ok, true, ok.message);
+});
+
 test('generic verify history entry is refused', () => {
   const food = asVerified(cleanFood({ id: 'generic-verify' }));
   food.history = [
