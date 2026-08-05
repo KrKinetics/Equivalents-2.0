@@ -141,12 +141,13 @@ test('rate-limit migration SQL exists and is reversible (not applied by tests)',
   assert.doesNotMatch(sql, /service_role.*grant execute on function public.coach_consume_rate_limit/i);
 });
 
-test('buildRateIdentityKey uses hashed IP not raw address in key suffix', () => {
+test('buildRateIdentityKey uses hashed IP/user/org — never raw address or ids', () => {
   const key = buildRateIdentityKey({
     req: { headers: { 'x-forwarded-for': '203.0.113.9' }, socket: {} },
     userId: 'user-1',
     organizationId: 'org-1',
   });
   assert.doesNotMatch(key, /203\.0\.113\.9/);
-  assert.match(key, /^u:user-1:o:org-1:ip_/);
+  assert.doesNotMatch(key, /user-1|org-1/);
+  assert.match(key, /^u_[0-9a-f]+:o_[0-9a-f]+:ip_[0-9a-f]+$/);
 });

@@ -16,6 +16,7 @@ import {
   generatePdfApi,
   SERVER_NUTRITION_GENERIC_ERROR,
   SERVER_PDF_GENERIC_ERROR,
+  formatServerNutritionError,
 } from './server-nutrition-api.mjs';
 
 function featureOn() {
@@ -27,15 +28,15 @@ function featureOn() {
 }
 
 function notifyNutritionError(message = SERVER_NUTRITION_GENERIC_ERROR) {
-  // Workspace must never block on modal alerts (early DOMContentLoaded runs before context).
+  // Prefer non-blocking workspace status; fall back to alert when chrome is absent.
   const onWorkspace = typeof location !== 'undefined' && /\/workspace/.test(location.pathname || '');
   if (onWorkspace || globalThis.COACH_WORKSPACE_CONTEXT || globalThis.__COACH_WORKSPACE_CONTEXT__) {
     const status = document.getElementById('workspace-persist-status');
     if (status) {
       status.textContent = message;
       status.style.color = '#fecaca';
+      return;
     }
-    return;
   }
   window.alert(message);
 }
@@ -144,42 +145,61 @@ function writeCanonicalDayTotals(jourKey, { banqueTotals, plannedTotals, percent
   if (percentages && plannedTotals) cacheMacroPercentages(plannedTotals, percentages);
 }
 
-/** Refresh server planned totals so getJourSnapshot / plan text are not stuck at zeros. */
-async function refreshPlannedTotalsFromServer() {
-  const jours = globalThis.joursData || {};
-  const cache = Object.create(null);
-  for (const key of ['entrainement', 'repos']) {
-    const day = jours[key];
-    if (!day?.repartition) continue;
-    const res = await calcPortionsApi({
-      action: 'planned_totals',
-      repartition: day.repartition,
-    });
-    const totals = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
-    cache[key] = totals;
-    writeCanonicalDayTotals(key, {
-      plannedTotals: totals,
-      percentages: res.percentages,
-    });
+let plannedTotalsRefreshInflight = null;
+
+/**
+ * Refresh server planned totals so getJourSnapshot / plan text are not stuck at zeros.
+ * Skips days whose fingerprint already matches cached plannedTotals (avoids burning
+ * the calc-portions rate budget after auto_repartition / banque settle).
+ */
+async function refreshPlannedTotalsFromServer({ force = false } = {}) {
+  if (plannedTotalsRefreshInflight && !force) {
+    return plannedTotalsRefreshInflight;
   }
-  globalThis.__COACH_PLANNED_TOTALS = cache;
-  const engine = globalThis.CoachSharedEngine;
-  if (engine) {
-    engine.computePlannedTotalsFromRepartition = function computePlannedTotalsFromServerCache(repartition) {
-      const fp = fingerprintRepartition(repartition);
-      for (const key of ['entrainement', 'repos']) {
-        const day = globalThis.joursData?.[key];
-        if (!day) continue;
-        if (day.plannedTotals && day.__plannedTotalsFp === fp) {
-          return { ...day.plannedTotals };
-        }
-        if (day.repartition === repartition || fingerprintRepartition(day.repartition) === fp) {
-          return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || day.plannedTotals || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
-        }
+  plannedTotalsRefreshInflight = (async () => {
+    const jours = globalThis.joursData || {};
+    const cache = Object.create(null);
+    for (const key of ['entrainement', 'repos']) {
+      const day = jours[key];
+      if (!day?.repartition) continue;
+      const fp = fingerprintRepartition(day.repartition);
+      if (!force && day.plannedTotals && day.__plannedTotalsFp === fp) {
+        cache[key] = { ...day.plannedTotals };
+        continue;
       }
-      return { pro: 0, glu: 0, lip: 0, kcal: 0 };
-    };
-  }
+      const res = await calcPortionsApi({
+        action: 'planned_totals',
+        repartition: day.repartition,
+      });
+      const totals = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+      cache[key] = totals;
+      writeCanonicalDayTotals(key, {
+        plannedTotals: totals,
+        percentages: res.percentages,
+      });
+    }
+    globalThis.__COACH_PLANNED_TOTALS = cache;
+    const engine = globalThis.CoachSharedEngine;
+    if (engine) {
+      engine.computePlannedTotalsFromRepartition = function computePlannedTotalsFromServerCache(repartition) {
+        const fp = fingerprintRepartition(repartition);
+        for (const key of ['entrainement', 'repos']) {
+          const day = globalThis.joursData?.[key];
+          if (!day) continue;
+          if (day.plannedTotals && day.__plannedTotalsFp === fp) {
+            return { ...day.plannedTotals };
+          }
+          if (day.repartition === repartition || fingerprintRepartition(day.repartition) === fp) {
+            return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || day.plannedTotals || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
+          }
+        }
+        return { pro: 0, glu: 0, lip: 0, kcal: 0 };
+      };
+    }
+  })().finally(() => {
+    plannedTotalsRefreshInflight = null;
+  });
+  return plannedTotalsRefreshInflight;
 }
 
 function readBanqueFromUi() {
@@ -327,8 +347,8 @@ async function calculerBesoinsServer() {
     if (typeof globalThis.krUpdateScientificScope === 'function') {
       globalThis.krUpdateScientificScope();
     }
-  } catch {
-    notifyNutritionError();
+  } catch (err) {
+    notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
   }
 }
 
@@ -396,68 +416,95 @@ async function updateCiblesServer() {
     if (typeof globalThis.updateJourTabsUI === 'function') globalThis.updateJourTabsUI();
     if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
     if (typeof globalThis.krUpdateScientificScope === 'function') globalThis.krUpdateScientificScope();
-  } catch {
-    notifyNutritionError();
+  } catch (err) {
+    notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
   }
 }
 
+let banqueDebounceTimer = null;
+let banqueDebounceWaiters = [];
+let banqueInflight = null;
+
 async function calculerBanqueServer() {
-  const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
-  const banque = readBanqueFromUi();
-  try {
-    const moyennes = await ensureMoyennes();
-    const totalsRes = await calcPortionsApi({ action: 'banque_totals', banque });
-    const totals = totalsRes.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
-    cacheMacroPercentages(totals, totalsRes.percentages);
-    syncCanonicalDayFromUi();
-    const active = globalThis.activeJour || 'entrainement';
-    writeCanonicalDayTotals(active, { banqueTotals: totals, percentages: totalsRes.percentages });
-    await refreshPlannedTotalsFromServer();
-    installServerMacroPercentageHelpers();
+  if (banqueInflight) return banqueInflight;
+  banqueInflight = (async () => {
+    const CATS = globalThis.CATS || ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
+    const banque = readBanqueFromUi();
+    try {
+      const moyennes = await ensureMoyennes();
+      const totalsRes = await calcPortionsApi({ action: 'banque_totals', banque });
+      const totals = totalsRes.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+      cacheMacroPercentages(totals, totalsRes.percentages);
+      syncCanonicalDayFromUi();
+      const active = globalThis.activeJour || 'entrainement';
+      writeCanonicalDayTotals(active, { banqueTotals: totals, percentages: totalsRes.percentages });
+      await refreshPlannedTotalsFromServer();
+      installServerMacroPercentageHelpers();
 
-    // Per-category display uses moyennes values from the server (not formula code).
-    CATS.forEach((cat) => {
-      const val = banque[cat] || 0;
-      const m = moyennes[cat] || { p: 0, g: 0, l: 0 };
-      const cPro = val * m.p;
-      const cGlu = val * m.g;
-      const cLip = val * m.l;
-      const cKcal = Math.round(cPro * 4 + cGlu * 4 + cLip * 9);
-      const details = document.getElementById(`banque-details-${cat}`);
-      if (details) {
-        details.innerHTML = `<span style="color:#ef4444;font-weight:600;">${cPro}g P</span> · `
-          + `<span style="color:#eab308;font-weight:600;">${cGlu}g G</span> · `
-          + `<span style="color:#f97316;font-weight:600;">${cLip}g L</span><br>`
-          + `<strong style="color:var(--primary);font-size:1.05em;">${cKcal} kcal</strong>`;
+      // Per-category display uses moyennes values from the server (not formula code).
+      CATS.forEach((cat) => {
+        const val = banque[cat] || 0;
+        const m = moyennes[cat] || { p: 0, g: 0, l: 0 };
+        const cPro = val * m.p;
+        const cGlu = val * m.g;
+        const cLip = val * m.l;
+        const cKcal = Math.round(cPro * 4 + cGlu * 4 + cLip * 9);
+        const details = document.getElementById(`banque-details-${cat}`);
+        if (details) {
+          details.innerHTML = `<span style="color:#ef4444;font-weight:600;">${cPro}g P</span> · `
+            + `<span style="color:#eab308;font-weight:600;">${cGlu}g G</span> · `
+            + `<span style="color:#f97316;font-weight:600;">${cLip}g L</span><br>`
+            + `<strong style="color:var(--primary);font-size:1.05em;">${cKcal} kcal</strong>`;
+        }
+      });
+
+      const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+      setText('gen-pro', `${totals.pro} g`);
+      setText('gen-glu', `${totals.glu} g`);
+      setText('gen-lip', `${totals.lip} g`);
+      setText('gen-kcal', `${totals.kcal} kcal`);
+
+      const targets = globalThis.targets || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+      if (typeof globalThis.updateDiff === 'function') {
+        globalThis.updateDiff('pro', targets.pro, totals.pro);
+        globalThis.updateDiff('glu', targets.glu, totals.glu);
+        globalThis.updateDiff('lip', targets.lip, totals.lip);
+        globalThis.updateDiff('kcal', targets.kcal, totals.kcal);
       }
-    });
-
-    const setText = (id, value) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = value;
-    };
-    setText('gen-pro', `${totals.pro} g`);
-    setText('gen-glu', `${totals.glu} g`);
-    setText('gen-lip', `${totals.lip} g`);
-    setText('gen-kcal', `${totals.kcal} kcal`);
-
-    const targets = globalThis.targets || { pro: 0, glu: 0, lip: 0, kcal: 0 };
-    if (typeof globalThis.updateDiff === 'function') {
-      globalThis.updateDiff('pro', targets.pro, totals.pro);
-      globalThis.updateDiff('glu', targets.glu, totals.glu);
-      globalThis.updateDiff('lip', targets.lip, totals.lip);
-      globalThis.updateDiff('kcal', targets.kcal, totals.kcal);
+      if (typeof globalThis.updateEau === 'function') globalThis.updateEau();
+      if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
+      if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
+    } catch (err) {
+      notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
+    } finally {
+      banqueInflight = null;
     }
-    if (typeof globalThis.updateEau === 'function') globalThis.updateEau();
-    if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
-    if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();
-  } catch {
-    notifyNutritionError();
-  }
+  })();
+  return banqueInflight;
+}
+
+/** Debounce UI oninput bursts — one settle after typing, not one request per keystroke. */
+function calculerBanqueFromUi() {
+  return new Promise((resolve) => {
+    banqueDebounceWaiters.push(resolve);
+    if (banqueDebounceTimer) clearTimeout(banqueDebounceTimer);
+    banqueDebounceTimer = setTimeout(() => {
+      banqueDebounceTimer = null;
+      const waiters = banqueDebounceWaiters;
+      banqueDebounceWaiters = [];
+      void calculerBanqueServer().finally(() => {
+        waiters.forEach((w) => w());
+      });
+    }, 280);
+  });
 }
 
 /**
  * Apply server auto_repartition into UI + canonical joursData, then refresh planned totals.
+ * One network calc per click: auto_repartition already returns plannedTotals for the active day.
  */
 async function applyAutoRepartitionServer(mode = 'classique') {
   const banque = readBanqueFromUi();
@@ -468,30 +515,33 @@ async function applyAutoRepartitionServer(mode = 'classique') {
     return false;
   }
   const heureEl = document.getElementById('heure-entrainement');
+  const heureRaw = heureEl?.value || null;
   const res = await calcPortionsApi({
     action: 'auto_repartition',
     banque,
     mode,
-    heureEntrainement: heureEl?.value || null,
+    heureEntrainement: heureRaw || null,
   });
   if (!Array.isArray(res.repartition) || !res.repartition.length) {
-    throw new Error('auto_repartition_empty');
+    throw new Error(formatServerNutritionError(500, 'nutrition_service_error'));
   }
   applyRepartitionToUi(res.repartition);
-  const day = syncCanonicalDayFromUi();
+  const activeKey = globalThis.activeJour || 'entrainement';
+  const day = syncCanonicalDayFromUi(activeKey);
   if (day) {
     day.repartition = res.repartition.map((v) => Number(v) || 0);
-    writeCanonicalDayTotals(globalThis.activeJour || 'entrainement', {
+    day.repartitionMode = mode;
+    writeCanonicalDayTotals(activeKey, {
       banqueTotals: res.banqueTotals,
       plannedTotals: res.plannedTotals,
       percentages: res.percentages,
     });
   }
   if (res.plannedTotals) {
-    const key = globalThis.activeJour || 'entrainement';
     if (!globalThis.__COACH_PLANNED_TOTALS) globalThis.__COACH_PLANNED_TOTALS = Object.create(null);
-    globalThis.__COACH_PLANNED_TOTALS[key] = { ...res.plannedTotals };
+    globalThis.__COACH_PLANNED_TOTALS[activeKey] = { ...res.plannedTotals };
   }
+  // Repos (or other day) may still need a planned_totals fetch; active day is cache-hit.
   await refreshPlannedTotalsFromServer();
   installServerMacroPercentageHelpers();
   if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
@@ -499,27 +549,35 @@ async function applyAutoRepartitionServer(mode = 'classique') {
   return true;
 }
 
+let repartirInflight = null;
+
 async function repartirAutomatiqueServer(mode) {
-  try {
-    if (mode === 'entrainement') {
-      if (globalThis.activeJour !== 'entrainement') {
-        window.alert('Le mode « Selon entraînement » s\'applique au jour Entraînement. Basculez l\'onglet correspondant.');
-        return;
+  if (repartirInflight) return repartirInflight;
+  repartirInflight = (async () => {
+    try {
+      if (mode === 'entrainement') {
+        if (globalThis.activeJour !== 'entrainement') {
+          window.alert('Le mode « Selon entraînement » s\'applique au jour Entraînement. Basculez l\'onglet correspondant.');
+          return;
+        }
+        if (typeof globalThis.isRepartitionSelonEntrainementActive === 'function'
+          && !globalThis.isRepartitionSelonEntrainementActive()) {
+          window.alert('Activez le ciblage selon l\'entraînement pour utiliser ce mode, ou utilisez « Classique » / « Équilibré ».');
+          return;
+        }
+        if (!document.getElementById('heure-entrainement')?.value) {
+          window.alert('Indiquez l\'heure d\'entraînement avant d\'appliquer cette répartition.');
+          return;
+        }
       }
-      if (typeof globalThis.isRepartitionSelonEntrainementActive === 'function'
-        && !globalThis.isRepartitionSelonEntrainementActive()) {
-        window.alert('Activez le ciblage selon l\'entraînement pour utiliser ce mode, ou utilisez « Classique » / « Équilibré ».');
-        return;
-      }
-      if (!document.getElementById('heure-entrainement')?.value) {
-        window.alert('Indiquez l\'heure d\'entraînement avant d\'appliquer cette répartition.');
-        return;
-      }
+      await applyAutoRepartitionServer(mode || 'classique');
+    } catch (err) {
+      notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
+    } finally {
+      repartirInflight = null;
     }
-    await applyAutoRepartitionServer(mode || 'classique');
-  } catch {
-    notifyNutritionError();
-  }
+  })();
+  return repartirInflight;
 }
 
 async function suggererBanqueServer() {
@@ -540,8 +598,8 @@ async function suggererBanqueServer() {
     await calculerBanqueServer();
     // Auto portions must also create meal repartition (canonical + UI), not banque alone.
     await applyAutoRepartitionServer('classique');
-  } catch {
-    notifyNutritionError();
+  } catch (err) {
+    notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
   }
 }
 
@@ -588,8 +646,8 @@ async function telechargerGuideEquivalentsHtmlServer() {
       + '<h1>Tableau des équivalents alimentaires</h1>'
       + sectionsHtml.join('') + '</body></html>');
     w.document.close();
-  } catch {
-    notifyNutritionError();
+  } catch (err) {
+    notifyNutritionError(err?.message || SERVER_NUTRITION_GENERIC_ERROR);
   }
 }
 
@@ -748,7 +806,9 @@ export function installServerNutritionBridge() {
   // Return promises so workspace bootstrap can await settle before markClean.
   globalThis.calculerBesoins = () => calculerBesoinsServer();
   globalThis.updateCibles = () => updateCiblesServer();
-  globalThis.calculerBanque = () => calculerBanqueServer();
+  // UI oninput → debounced; programmatic callers (updateCibles / suggest) use immediate path.
+  globalThis.calculerBanque = () => calculerBanqueFromUi();
+  globalThis.__coachCalculerBanqueImmediate = () => calculerBanqueServer();
   globalThis.suggererBanque = () => suggererBanqueServer();
   globalThis.repartirAutomatique = (mode) => repartirAutomatiqueServer(mode);
   globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };

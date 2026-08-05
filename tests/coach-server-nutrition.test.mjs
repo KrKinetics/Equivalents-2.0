@@ -516,16 +516,16 @@ test('http handler: method not allowed + rate limit', async () => {
   assert.equal(resGet.statusCode, 405);
 
   await withAuthEnv(async () => {
-    for (let i = 0; i < RATE_LIMIT_MAX_REQUESTS; i += 1) {
+    // Burn the default profile bucket for this isolate/route.
+    for (let i = 0; i < RATE_LIMIT_MAX_REQUESTS + 2; i += 1) {
       const res = mockRes();
-      // Use unique route key already set; burn the bucket.
       await handler(mockReq({ body: { q: 'a' } }), res);
-      if (res.statusCode === 429) break;
+      if (res.statusCode === 429) {
+        assert.equal(res.json.error, 'rate_limited');
+        return;
+      }
     }
-    const limited = mockRes();
-    await handler(mockReq({ body: { q: 'a' } }), limited);
-    assert.equal(limited.statusCode, 429);
-    assert.equal(limited.json.error, 'rate_limited');
+    assert.fail('expected rate_limited before exhausting loop');
   });
 });
 

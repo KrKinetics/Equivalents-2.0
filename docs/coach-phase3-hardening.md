@@ -28,11 +28,16 @@ Applied via `vercel.json` + Edge `middleware.js` path-scoped headers.
 
 ## Rate limiting
 
-- Profiles in `rate-limit-profiles.mjs` (PDF = 8/min, magic-link profile = 5/15min, etc.)
+- Profiles in `rate-limit-profiles.mjs`
+  - `calc-portions` = **180/min** (was 20 — blocked normal Classique/Équilibré + portion edits)
+  - PDF = 8/min, magic-link = 5/15min
+- Buckets keyed by hashed session token + hashed IP (not raw email)
 - Default backend: in-memory per isolate
 - Optional: `COACH_RATE_LIMIT_BACKEND=supabase` + migration `20260805140000_coach_rate_limit_buckets.sql`
 - **Production migration not applied** until explicit approval
 - Rollback SQL provided beside the migration
+- UI: debounced `calculerBanque`, coalesced `planned_totals`, single-flight `repartirAutomatique`
+- 429 surfaces a dedicated message (not “service indisponible”)
 
 ## Auth
 

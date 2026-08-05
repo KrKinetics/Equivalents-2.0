@@ -60,16 +60,23 @@ export function createCoachApiHandler({
       return;
     }
 
-    const identityKey = buildRateIdentityKey({ req });
+    const accessToken = readAccessToken({
+      cookieHeader: req.headers.cookie,
+      authorization: req.headers.authorization,
+    });
+    // Prefer hashed session token over raw IP so NAT/shared Preview SSO does not
+    // collapse every coach into one bucket. Token is hashed inside buildRateIdentityKey
+    // and never written to logs/response.
+    const identityKey = buildRateIdentityKey({
+      req,
+      userId: accessToken || null,
+    });
     const limited = await checkDistributedRateLimit({
       routeName,
       identityKey,
       supabaseUrl: process.env.SUPABASE_URL || '',
       publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
-      accessToken: readAccessToken({
-        cookieHeader: req.headers.cookie,
-        authorization: req.headers.authorization,
-      }),
+      accessToken,
     });
     if (!limited.ok) {
       res.setHeader('Retry-After', String(limited.retryAfterSec || 60));

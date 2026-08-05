@@ -68,8 +68,13 @@ export function buildRateIdentityKey({ req, userId = null, organizationId = null
     || 'unknown',
   ).split(',')[0].trim();
   const ipHash = hashRateIdentity(rawIp);
-  if (userId && organizationId) return `u:${userId}:o:${organizationId}:${ipHash}`;
-  if (userId) return `u:${userId}:${ipHash}`;
+  // Hash opaque session/user markers so bucket keys never embed raw tokens/emails.
+  const userPart = userId ? hashRateIdentity(String(userId)).replace(/^ip_/, 'u_') : null;
+  const orgPart = organizationId
+    ? hashRateIdentity(String(organizationId)).replace(/^ip_/, 'o_')
+    : null;
+  if (userPart && orgPart) return `${userPart}:${orgPart}:${ipHash}`;
+  if (userPart) return `${userPart}:${ipHash}`;
   return ipHash;
 }
 
@@ -117,4 +122,5 @@ export function resetRateLimitBuckets() {
 }
 
 export const RATE_LIMIT_WINDOW_MS = 60_000;
-export const RATE_LIMIT_MAX_REQUESTS = 60;
+/** Default profile max — keep in sync with rate-limit-profiles.default.max */
+export const RATE_LIMIT_MAX_REQUESTS = 120;
