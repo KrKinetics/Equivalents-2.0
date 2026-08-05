@@ -79,7 +79,7 @@ async function signInOrg(org) {
 }
 
 async function loginPortal(page, entry) {
-  await page.goto('http://127.0.0.1:4198/login.html', { waitUntil: 'networkidle0', timeout: 30000 });
+  await page.goto('http://127.0.0.1:4198/login.html', { waitUntil: 'load', timeout: 30000 });
   await page.click('#mode-password');
   await page.evaluate(() => {
     document.getElementById('email').value = '';
@@ -88,16 +88,24 @@ async function loginPortal(page, entry) {
   await page.type('#email', entry.email, { delay: 5 });
   await page.type('#password', entry.password, { delay: 5 });
   await Promise.all([
-    page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 }),
+    page.waitForNavigation({ waitUntil: 'load', timeout: 30000 }),
     page.click('#submit'),
   ]);
 }
 
 async function waitWorkspaceReady(page) {
+  // Require persist-status settle (not the early banner "Dossier : …") so markClean has run.
   await page.waitForFunction(() => {
-    const t = `${document.getElementById('workspace-persist-status')?.textContent || ''} ${document.getElementById('workspace-context-banner')?.innerText || ''}`;
-    return /Dossier chargé|Aucun dossier sauvegardé|Dossier\s*:/.test(t);
+    const status = document.getElementById('workspace-persist-status')?.textContent || '';
+    return /Dossier chargé|Aucun dossier sauvegardé|Erreur de chargement|Accès refusé/.test(status);
   }, { timeout: 60000 });
+}
+
+async function waitWorkspaceCleanBaseline(page) {
+  await page.waitForFunction(() => (
+    typeof window.__coachWorkspaceDirtyProbe === 'function'
+    && window.__coachWorkspaceDirtyProbe().hasClean === true
+  ), { timeout: 60000 });
 }
 
 test('same-origin preview serves portal, workspace calculator, and public config', async (t) => {
@@ -128,13 +136,12 @@ test('same-origin preview serves portal, workspace calculator, and public config
   const coachDataAnon = await fetch('http://127.0.0.1:4197/workspace/coach-data.json', {
     redirect: 'manual',
   });
-  assert.ok(
-    [401, 403, 404].includes(coachDataAnon.status),
-    `coach-data anon status ${coachDataAnon.status}`,
-  );
+  assert.equal(coachDataAnon.status, 404);
+  assert.deepEqual(await coachDataAnon.json(), { error: 'not_found' });
 
   const apiDataAnon = await fetch('http://127.0.0.1:4197/api/coach-data');
-  assert.equal(apiDataAnon.status, 401);
+  assert.equal(apiDataAnon.status, 404);
+  assert.deepEqual(await apiDataAnon.json(), { error: 'not_found' });
 
   // bootstrap module itself is protected; assert source on disk still contains expected APIs
   const bootstrapDisk = fs.readFileSync(
@@ -192,9 +199,11 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   await loginPortal(page, kr.entry);
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${source.id}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    // Server nutrition keeps authenticated API traffic open; do not wait for networkidle.
+    { waitUntil: 'load', timeout: 60000 },
   );
   await waitWorkspaceReady(page);
+  await waitWorkspaceCleanBaseline(page);
 
   const menu = await page.evaluate(() => {
     const select = document.getElementById('liste_profils');
@@ -233,12 +242,12 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
     let prompted = false;
     const onDialog = async (dialog) => {
       prompted = true;
-      await dialog.dismiss();
+      try { await dialog.dismiss(); } catch { /* already handled */ }
     };
     page.on('dialog', onDialog);
     try {
       await Promise.all([
-        page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 }),
+        page.waitForNavigation({ waitUntil: 'load', timeout: 60000 }),
         switchClient(nextId),
       ]);
       await sleep(200);
@@ -249,46 +258,86 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   }
 
   // Clean switch: menu-only change must not prompt.
+  const dirtyProbe = await page.evaluate(() => (
+    typeof window.__coachWorkspaceDirtyProbe === 'function'
+      ? window.__coachWorkspaceDirtyProbe()
+      : { dirty: 'probe-missing' }
+  ));
+  if (dirtyProbe.dirty) {
+    assert.fail(`workspace unexpectedly dirty before clean switch: ${JSON.stringify(dirtyProbe)}`);
+  }
   await switchExpectingNoDialog(target.id, 'clean switch must not confirm');
   assert.match(page.url(), new RegExp(`client_id=${target.id}`));
   await waitWorkspaceReady(page);
+  await waitWorkspaceCleanBaseline(page);
 
   // Return to source, edit, save, then switch — no confirm after successful save.
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${source.id}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    // Server nutrition keeps authenticated API traffic open; do not wait for networkidle.
+    { waitUntil: 'load', timeout: 60000 },
   );
   await waitWorkspaceReady(page);
+  await waitWorkspaceCleanBaseline(page);
   await page.evaluate(() => {
     const age = document.getElementById('age');
     if (age) age.value = String(Number(age.value || '30') + 3);
   });
   await page.click('button[onclick*="sauvegarderProfil"]');
-  await page.waitForFunction(
-    () => /Dossier sauvegardé/.test(document.getElementById('workspace-persist-status')?.textContent || ''),
-    { timeout: 30000 },
+  try {
+    await page.waitForFunction(
+      () => /Dossier sauvegardé|Erreur de sauvegarde/.test(
+        document.getElementById('workspace-persist-status')?.textContent || '',
+      ),
+      { timeout: 45000 },
+    );
+  } catch (err) {
+    const st = await page.evaluate(() => document.getElementById('workspace-persist-status')?.textContent || '');
+    assert.fail(`save did not settle; status=${st}; ${err}`);
+  }
+  const saveStatus = await page.evaluate(
+    () => document.getElementById('workspace-persist-status')?.textContent || '',
   );
+  assert.match(saveStatus, /Dossier sauvegardé/, `save failed: ${saveStatus}`);
   await switchExpectingNoDialog(target.id, 'post-save switch must not confirm');
   assert.match(page.url(), new RegExp(`client_id=${target.id}`));
   await waitWorkspaceReady(page);
+  await waitWorkspaceCleanBaseline(page);
 
   // Back to source: dirty cancel keeps current client and edits.
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${source.id}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    // Server nutrition keeps authenticated API traffic open; do not wait for networkidle.
+    { waitUntil: 'load', timeout: 60000 },
   );
   await waitWorkspaceReady(page);
+  await waitWorkspaceCleanBaseline(page);
   const ageBefore = await page.evaluate(() => document.getElementById('age')?.value || '');
+  const ageEdited = await page.evaluate(() => {
+    const age = document.getElementById('age');
+    if (!age) return null;
+    // Avoid oninput calculerBesoins races: change value without events, dirty reads DOM via getProfilData.
+    age.value = String(Number(age.value || '30') + 7);
+    return age.value;
+  });
+  assert.ok(ageEdited);
+  assert.notEqual(ageEdited, ageBefore);
+  const dirtyAfterEdit = await page.evaluate(() => (
+    typeof window.__coachWorkspaceDirtyProbe === 'function'
+      ? window.__coachWorkspaceDirtyProbe()
+      : { dirty: 'probe-missing' }
+  ));
+  assert.equal(dirtyAfterEdit.dirty, true, `expected dirty after age edit: ${JSON.stringify(dirtyAfterEdit)} domAge=${ageEdited}`);
   {
+    let sawDirtyConfirm = false;
     const onDialog = async (dialog) => {
       assert.match(dialog.message(), /modifications ne sont pas sauvegardées/i);
-      await dialog.dismiss();
+      sawDirtyConfirm = true;
+      try { await dialog.dismiss(); } catch { /* already handled */ }
     };
     page.on('dialog', onDialog);
     try {
       await page.evaluate((nextId) => {
-        const age = document.getElementById('age');
-        if (age) age.value = String(Number(age.value || '30') + 7);
         const select = document.getElementById('liste_profils');
         select.value = nextId;
         select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -297,6 +346,7 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
     } finally {
       page.off('dialog', onDialog);
     }
+    assert.equal(sawDirtyConfirm, true, 'dirty cancel must show confirm dialog');
   }
   const afterCancel = await page.evaluate(() => ({
     path: location.pathname + location.search,
@@ -313,7 +363,7 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
     page.on('dialog', onDialog);
     try {
       await Promise.all([
-        page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 }),
+        page.waitForNavigation({ waitUntil: 'load', timeout: 60000 }),
         switchClient(target.id),
       ]);
     } finally {
@@ -336,7 +386,7 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   assert.match(afterSwitch.nom, /test KR final/i);
 
   // Ctrl+R keeps URL client selected.
-  await page.reload({ waitUntil: 'networkidle0', timeout: 60000 });
+  await page.reload({ waitUntil: 'load', timeout: 60000 });
   await waitWorkspaceReady(page);
   const afterReload = await page.evaluate(() => ({
     href: location.href,
@@ -360,7 +410,7 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   await loginPortal(page, elevate.entry);
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${elevate.clients[0].id}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    { waitUntil: 'load', timeout: 60000 },
   );
   await waitWorkspaceReady(page);
   const elevMenu = await page.evaluate(() => ({
@@ -375,7 +425,8 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   // Cross-org URL refused — generic lock, no KR dossier leak.
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${source.id}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    // Server nutrition keeps authenticated API traffic open; do not wait for networkidle.
+    { waitUntil: 'load', timeout: 60000 },
   );
   await page.waitForFunction(
     () => /Accès refusé ou client introuvable/.test(
@@ -411,7 +462,7 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
   const fakeId = '00000000-0000-4000-8000-000000000099';
   await page.goto(
     `http://127.0.0.1:4198/workspace/?client_id=${fakeId}`,
-    { waitUntil: 'networkidle0', timeout: 60000 },
+    { waitUntil: 'load', timeout: 60000 },
   );
   await page.waitForFunction(
     () => /Accès refusé ou client introuvable/.test(

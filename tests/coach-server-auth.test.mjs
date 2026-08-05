@@ -309,9 +309,6 @@ test('golden and auth fixtures contain no secrets', () => {
   }
 });
 
-test('api/coach-data.js unchanged contract still streams full bank (Phase 1 temporary)', () => {
-  const src = fs.readFileSync(path.join(root, 'api', 'coach-data.js'), 'utf8');
-  assert.match(src, /createReadStream/);
-  assert.match(src, /requireCoachSession/);
-  assert.doesNotMatch(src, /requireRequestAuth/);
+test('api/coach-data.js removed — legacy full-bank endpoint no longer exists', () => {
+  assert.equal(fs.existsSync(path.join(root, 'api', 'coach-data.js')), false);
 });

@@ -119,15 +119,18 @@ test('requireCoachSession accepts valid user with membership (mocked)', async ()
 
 test('vercel bundle excludes public workspace/coach-data.json and keeps no service_role', () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'coach-contain-'));
-  const { outDir } = buildCoachVercelBundle({ outDir: tmp, env: FAKE_PUBLIC });
+  const { outDir, serverNutritionEngine } = buildCoachVercelBundle({ outDir: tmp, env: FAKE_PUBLIC });
+  assert.equal(serverNutritionEngine, true);
   assert.equal(fs.existsSync(path.join(outDir, 'workspace', 'coach-data.json')), false);
   assert.equal(fs.existsSync(path.join(outDir, 'workspace', 'index.html')), true);
   assertDeployTreeSafe(outDir);
   const config = fs.readFileSync(path.join(outDir, 'config.js'), 'utf8');
   assert.doesNotMatch(config, /service_role|SERVICE_ROLE/);
+  assert.match(config, /serverNutritionEngine":true/);
   const html = fs.readFileSync(path.join(outDir, 'workspace', 'index.html'), 'utf8');
-  assert.match(html, /\/api\/coach-data/);
-  assert.match(html, /pathname\.includes\('\/workspace'\)/);
+  assert.match(html, /data-coach-server-nutrition="1"/);
+  assert.match(html, /server-nutrition-bridge\.mjs/);
+  assert.doesNotMatch(html, /\/api\/coach-data/);
 });
 
 test('clients organization_id immutability migration is present', () => {
@@ -140,7 +143,7 @@ test('clients organization_id immutability migration is present', () => {
   assert.match(sql, /set search_path = public/i);
 });
 
-test('vercel.json sets containment headers and coach-data rewrite', () => {
+test('vercel.json sets containment headers without legacy coach-data routes', () => {
   const cfg = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
   const sources = cfg.headers.map((h) => h.source);
   assert.ok(sources.includes('/(.*)'));
@@ -154,8 +157,10 @@ test('vercel.json sets containment headers and coach-data rewrite', () => {
   assert.match(csp, /frame-ancestors 'none'/);
   assert.doesNotMatch(csp, /unsafe-eval/);
   assert.match(csp, /unsafe-inline/); // documented temporary for inline calculator scripts
-  assert.ok(
-    cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' && r.destination === '/api/coach-data'),
+  assert.equal(
+    cfg.rewrites.some((r) => r.source === '/workspace/coach-data.json' || r.destination === '/api/coach-data'),
+    false,
   );
-  assert.ok(cfg.functions?.['api/coach-data.js']?.includeFiles);
+  assert.equal(cfg.functions?.['api/coach-data.js'], undefined);
+  assert.ok(cfg.functions?.['api/coach-generate-pdf.js']?.includeFiles);
 });
