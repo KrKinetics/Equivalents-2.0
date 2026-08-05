@@ -44,6 +44,14 @@ No local PDF fallback. No full-bank fallback on error.
 - Existing clients/dossiers open, save, reload as before
 - KR Kinetics / Elevate isolation via org membership + slug→brand mapping
 
+## PDF runtime (Vercel)
+
+- Runtime: **Node.js 22.x** (not Edge). `package.json` sets `engines.node = 22.x`.
+- Stack: `puppeteer-core` + `@sparticuz/chromium` with `headless: "shell"` and `await puppeteer.defaultArgs(...)`.
+- Set project env `AWS_LAMBDA_JS_RUNTIME=nodejs22.x` on Preview + Production (required for AL2023 shared libs; also set in-function before Chromium import).
+- Function: `maxDuration` 60s, memory 1536 MB, `includeFiles` for `coach-calculator/assets/logo-*`.
+- Logs: structured JSON with `requestId` + stage. Never logs JWT, cookies, notes, or HTML.
+
 ## Rollback
 
 1. `git revert <bloc-2-merge-sha>`

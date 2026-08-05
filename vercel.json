@@ -24,9 +24,9 @@
       "includeFiles": "src/lib/**"
     },
     "api/coach-generate-pdf.js": {
-      "includeFiles": "coach-calculator/assets/logo-*.{png,jpg}",
+      "includeFiles": "coach-calculator/assets/logo-*",
       "maxDuration": 60,
-      "memory": 1024
+      "memory": 1536
     }
   },
   "rewrites": [

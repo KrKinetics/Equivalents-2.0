@@ -335,7 +335,10 @@ export function computeHydration(kcal, manualAddL = 0) {
 }
 
 export function assertNoForbiddenPdfContent(text) {
-  const haystack = String(text ?? '').toLowerCase();
+  // Strip data-URIs so random base64 never false-positives on short markers like "branch".
+  const haystack = String(text ?? '')
+    .replace(/data:[^;]+;base64,[A-Za-z0-9+/=\s]+/gi, '')
+    .toLowerCase();
   for (const marker of FORBIDDEN_PDF_MARKERS) {
     if (haystack.includes(marker.toLowerCase())) {
       throw new Error(`Forbidden PDF marker detected: ${marker}`);

@@ -166,9 +166,10 @@ test('PDF endpoint rejects unauthenticated and invalid payloads before PDF strea
   const noAuth = mockRes();
   await handler({ method: 'POST', headers: {}, body: validBody, socket: {} }, noAuth.res);
   assert.equal(noAuth.result.statusCode, 401);
-  assert.equal(noAuth.result.body, JSON.stringify({ error: 'unauthorized' }));
+  assert.match(String(noAuth.result.body), /"error":"unauthorized"/);
   assert.equal(noAuth.result.headers['Cache-Control'], 'private, no-store');
   assert.equal(noAuth.result.headers['X-Content-Type-Options'], 'nosniff');
+  assert.ok(noAuth.result.headers['X-Request-Id']);
 
   const badJson = mockRes();
   await handler({
