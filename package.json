@@ -36,7 +36,8 @@
     "coach:workspace": "node scripts/coach-workspace-preview.mjs",
     "coach:vercel:build": "node scripts/coach-vercel-build.mjs",
     "coach:set-passwords": "node scripts/coach-set-user-passwords.mjs",
-    "test:coach-auth": "node --test tests/coach-auth-migration.test.mjs tests/coach-auth-env.test.mjs tests/coach-auth-security.test.mjs tests/coach-portal-auth-callback.test.mjs tests/coach-portal-login-otp.test.mjs tests/coach-portal-login-password.test.mjs tests/coach-auth-password-live.test.mjs tests/coach-portal-session-guard.test.mjs tests/coach-portal-copy.test.mjs tests/coach-workspace-access.test.mjs tests/coach-workspace-preview.test.mjs tests/coach-workspace-cross-org-live.test.mjs tests/coach-workspace-dossier-ui.test.mjs tests/coach-dossier-schema.test.mjs tests/coach-dossier-migration.test.mjs tests/coach-dossier-persistence-live.test.mjs tests/coach-vercel-build.test.mjs",
+    "lint": "node --check api/session.js && node --check api/coach-data.js && node scripts/lint-middleware-structure.mjs && node --check scripts/coach-workspace-preview.mjs && node --check src/coach/security/portal-auth.mjs",
+    "test:coach-auth": "node --test tests/coach-auth-migration.test.mjs tests/coach-auth-env.test.mjs tests/coach-auth-security.test.mjs tests/coach-portal-auth-callback.test.mjs tests/coach-portal-login-otp.test.mjs tests/coach-portal-login-password.test.mjs tests/coach-auth-password-live.test.mjs tests/coach-portal-session-guard.test.mjs tests/coach-portal-copy.test.mjs tests/coach-portal-containment.test.mjs tests/coach-workspace-access.test.mjs tests/coach-workspace-preview.test.mjs tests/coach-workspace-cross-org-live.test.mjs tests/coach-workspace-dossier-ui.test.mjs tests/coach-dossier-schema.test.mjs tests/coach-dossier-migration.test.mjs tests/coach-dossier-persistence-live.test.mjs tests/coach-vercel-build.test.mjs",
     "coach:capture": "node scripts/coach-calculator-owner-artifacts.mjs",
     "coach:owner-zip": "node scripts/coach-calculator-owner-zip.mjs",
     "coach:science-zip": "node scripts/coach-calculator-science-owner-zip.mjs",
@@ -58,6 +59,7 @@
   "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.112.0",
+    "@vercel/edge": "^1.3.2",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "pdf-parse": "^2.4.5",

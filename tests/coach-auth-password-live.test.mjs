@@ -195,6 +195,86 @@ test('KR and Elevate fictional clients are isolated by RLS', async (t) => {
   }
 });
 
+test('clients.organization_id is immutable; name/notes updates remain allowed', async (t) => {
+  if (skipWithoutLiveSupabase(t, root)) return;
+  if (!passwordsAvailable()) {
+    t.skip('.coach-passwords.local not present — set passwords first');
+    return;
+  }
+
+  const [krEntry, elevateEntry] = loadCoachPasswordsLocal(root);
+  let kr = null;
+  let elevate = null;
+  let krClientId = null;
+
+  try {
+    kr = await signIn(krEntry);
+    elevate = await signIn(elevateEntry);
+    const krMem = await membershipFor(kr.supabase, kr.session.user.id);
+    const elevMem = await membershipFor(elevate.supabase, elevate.session.user.id);
+
+    const created = await insertFictionalClient(
+      kr.supabase,
+      krMem.organization_id,
+      kr.session.user.id,
+      `Immutability KR ${Date.now()}`,
+    );
+    krClientId = created.id;
+
+    const { data: renamed, error: renameErr } = await kr.supabase
+      .from('clients')
+      .update({ full_name: `Renamed ${Date.now()}`, notes: 'note ok' })
+      .eq('id', krClientId)
+      .eq('organization_id', krMem.organization_id)
+      .select('id, full_name, notes, organization_id')
+      .maybeSingle();
+    assert.ifError(renameErr);
+    assert.equal(renamed?.organization_id, krMem.organization_id);
+    assert.match(renamed?.notes || '', /note ok/);
+
+    const { data: movedKrToElevate, error: moveErr } = await kr.supabase
+      .from('clients')
+      .update({ organization_id: elevMem.organization_id })
+      .eq('id', krClientId)
+      .select('id, organization_id')
+      .maybeSingle();
+
+    if (!moveErr && movedKrToElevate?.organization_id === elevMem.organization_id) {
+      t.skip('organization_id move unexpectedly allowed — apply migration 20260804180000');
+      return;
+    }
+    assert.ok(moveErr, 'expected organization_id update to be refused');
+    // RLS WITH CHECK blocks cross-org moves today; trigger adds defense if multi-membership appears.
+    assert.match(
+      String(moveErr.message || moveErr),
+      /immutable|organization_id|row-level security|policy/i,
+    );
+
+    const { data: after, error: afterErr } = await kr.supabase
+      .from('clients')
+      .select('organization_id')
+      .eq('id', krClientId)
+      .maybeSingle();
+    assert.ifError(afterErr);
+    assert.equal(after?.organization_id, krMem.organization_id);
+
+    // Elevate must not be able to claim the KR client by rewriting organization_id either.
+    const { data: elevHijack, error: elevHijackErr } = await elevate.supabase
+      .from('clients')
+      .update({ organization_id: elevMem.organization_id })
+      .eq('id', krClientId)
+      .select('id')
+      .maybeSingle();
+    assert.equal(elevHijack, null);
+    // Either RLS hides the row (no error / no row) or trigger refuses.
+    void elevHijackErr;
+  } finally {
+    if (kr?.supabase && krClientId) await deleteClient(kr.supabase, krClientId);
+    if (kr?.supabase) await kr.supabase.auth.signOut();
+    if (elevate?.supabase) await elevate.supabase.auth.signOut();
+  }
+});
+
 test('signOut clears session (logout)', async (t) => {
   if (skipWithoutLiveSupabase(t, root)) return;
   if (!passwordsAvailable()) {

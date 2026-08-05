@@ -1,4 +1,5 @@
 import {
+  bindServerSessionCookieSync,
   getPortalSupabase,
   recoverSession,
   redirectPreservingAuthParams,
@@ -125,6 +126,7 @@ async function deleteClient(id) {
 async function boot() {
   setStatus('');
   supabase = getPortalSupabase();
+  bindServerSessionCookieSync(supabase);
   const session = await requireSession();
   if (!session) return;
 
@@ -184,6 +186,12 @@ async function boot() {
   });
 
   logoutBtn.addEventListener('click', async () => {
+    try {
+      const { clearServerSessionCookie } = await import('./session-cookie.mjs');
+      await clearServerSessionCookie();
+    } catch {
+      // ignore cookie clear failures
+    }
     await supabase.auth.signOut();
     redirectClean('./login.html');
   });

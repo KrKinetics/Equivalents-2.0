@@ -4,6 +4,8 @@
  * - Portal:  http://127.0.0.1:4190/
  * - Workspace: http://127.0.0.1:4190/workspace/?client_id=<uuid>
  * - /config.js: publishable Supabase values only (never service_role)
+ * - /api/coach-data: authenticated full bank (Phase 1 temporary)
+ * - Protected routes require HttpOnly coach_access_token cookie
  *
  * Usage:
  *   npm run coach:portal
@@ -20,6 +22,13 @@ import {
   buildConfigJsSource,
   injectWorkspaceBootstrap,
 } from './coach-portal-deploy-lib.mjs';
+import {
+  buildClearCookie,
+  buildSetCookie,
+  isProtectedPath,
+  readAccessToken,
+  requireCoachSession,
+} from '../src/coach/security/portal-auth.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const portalDir = path.join(root, 'coach-portal');
@@ -79,39 +88,173 @@ function sendFile(res, abs, { transformHtml } = {}) {
     html = transformHtml(html);
     res.writeHead(200, {
       'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'no-store',
+      'Cache-Control': 'private, no-store',
     });
     res.end(html);
     return;
   }
-  res.writeHead(200, { 'Content-Type': mime(abs), 'Cache-Control': 'no-store' });
+  res.writeHead(200, {
+    'Content-Type': mime(abs),
+    'Cache-Control': 'private, no-store',
+  });
   fs.createReadStream(abs).pipe(res);
 }
 
 function resolveUnder(rootDir, urlPath) {
   const rel = urlPath.replace(/^\/+/, '');
   const abs = path.normalize(path.join(rootDir, rel));
-  if (!abs.startsWith(rootDir)) return null;
+  const rootWithSep = rootDir.endsWith(path.sep) ? rootDir : rootDir + path.sep;
+  if (abs !== rootDir && !abs.startsWith(rootWithSep)) return null;
   return abs;
+}
+
+function readJsonBody(req) {
+  return new Promise((resolve) => {
+    const chunks = [];
+    req.on('data', (c) => chunks.push(c));
+    req.on('end', () => {
+      const raw = Buffer.concat(chunks).toString('utf8');
+      if (!raw) return resolve({});
+      try {
+        resolve(JSON.parse(raw));
+      } catch {
+        resolve({});
+      }
+    });
+  });
+}
+
+async function assertCoachAccess(req) {
+  const accessToken = readAccessToken({
+    cookieHeader: req.headers.cookie,
+    authorization: req.headers.authorization,
+  });
+  return requireCoachSession({
+    accessToken,
+    supabaseUrl: url,
+    publishableKey,
+  });
+}
+
+function deny(res, req, urlPath, status = 401) {
+  const acceptsHtml = String(req.headers.accept || '').includes('text/html');
+  const isDocument = urlPath.endsWith('.html')
+    || urlPath === '/workspace'
+    || urlPath === '/workspace/'
+    || urlPath === '/dashboard.html';
+  if (acceptsHtml && isDocument) {
+    const next = encodeURIComponent(`${urlPath}`);
+    res.writeHead(302, {
+      Location: `/login.html?next=${next}`,
+      'Cache-Control': 'private, no-store',
+    });
+    res.end();
+    return;
+  }
+  res.writeHead(status, {
+    'Content-Type': 'application/json',
+    'Cache-Control': 'private, no-store',
+  });
+  res.end(JSON.stringify({ error: 'unauthorized' }));
 }
 
 ensureCalculatorBuilt();
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   try {
     const rawUrl = req.url || '/';
     const urlPath = decodeURIComponent(rawUrl.split('?')[0]);
+    const method = (req.method || 'GET').toUpperCase();
+
+    if (urlPath === '/api/session' && method === 'OPTIONS') {
+      res.writeHead(204, { 'Cache-Control': 'private, no-store' });
+      res.end();
+      return;
+    }
+
+    if (urlPath === '/api/session' && method === 'DELETE') {
+      res.writeHead(204, {
+        'Set-Cookie': buildClearCookie({ secure: false }),
+        'Cache-Control': 'private, no-store',
+      });
+      res.end();
+      return;
+    }
+
+    if (urlPath === '/api/session' && method === 'POST') {
+      const body = await readJsonBody(req);
+      const accessToken = readAccessToken({
+        cookieHeader: req.headers.cookie,
+        authorization: req.headers.authorization,
+      }) || body.access_token || null;
+      const verified = await requireCoachSession({
+        accessToken,
+        supabaseUrl: url,
+        publishableKey,
+      });
+      if (!verified.ok) {
+        res.writeHead(verified.status, {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'private, no-store',
+        });
+        res.end(JSON.stringify({ error: verified.reason }));
+        return;
+      }
+      const maxAgeSec = Number(body.expires_in) > 0 ? Number(body.expires_in) : 3600;
+      res.writeHead(204, {
+        'Set-Cookie': buildSetCookie(accessToken, { maxAgeSec, secure: false }),
+        'Cache-Control': 'private, no-store',
+      });
+      res.end();
+      return;
+    }
+
+    if (urlPath === '/api/coach-data' || urlPath === '/workspace/coach-data.json') {
+      if (method !== 'GET') {
+        res.writeHead(405, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'method_not_allowed' }));
+        return;
+      }
+      const verified = await assertCoachAccess(req);
+      if (!verified.ok) {
+        res.writeHead(verified.status, {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'private, no-store',
+        });
+        res.end(JSON.stringify({ error: 'unauthorized' }));
+        return;
+      }
+      const abs = path.join(calcDir, 'coach-data.json');
+      if (!fs.existsSync(abs)) {
+        res.writeHead(503, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'coach_data_unavailable' }));
+        return;
+      }
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'private, no-store',
+      });
+      fs.createReadStream(abs).pipe(res);
+      return;
+    }
 
     if (urlPath === '/config.js') {
       res.writeHead(200, {
         'Content-Type': 'text/javascript; charset=utf-8',
-        'Cache-Control': 'no-store',
+        'Cache-Control': 'private, no-store',
       });
       res.end(configJs());
       return;
     }
 
-    // Expose only pure coach modules needed by the browser workspace bootstrap.
+    if (isProtectedPath(urlPath)) {
+      const verified = await assertCoachAccess(req);
+      if (!verified.ok) {
+        deny(res, req, urlPath, verified.status === 403 ? 403 : 401);
+        return;
+      }
+    }
+
     if (
       urlPath.startsWith('/src/coach/workspace/')
       || urlPath.startsWith('/src/coach/services/')
@@ -134,6 +277,11 @@ const server = http.createServer((req, res) => {
 
     if (urlPath.startsWith('/workspace/')) {
       const calcRel = urlPath.slice('/workspace'.length);
+      if (calcRel === '/coach-data.json') {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'not_found' }));
+        return;
+      }
       const abs = resolveUnder(calcDir, calcRel === '/' ? '/index.html' : calcRel);
       if (!abs) {
         res.writeHead(403);
@@ -166,4 +314,5 @@ server.listen(PORT, HOST, () => {
   console.log(`Coach workspace (same-origin): http://${HOST}:${PORT}/`);
   console.log(`Calculator workspace: http://${HOST}:${PORT}/workspace/`);
   console.log('Public config loaded from .env.local (values not printed).');
+  console.log('Protected routes require /api/session cookie (Phase 1 containment).');
 });

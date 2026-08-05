@@ -76,6 +76,11 @@ export function buildCoachVercelBundle(options = {}) {
 
   const workspaceDir = path.join(targetDir, 'workspace');
   copyTree(calcDir, workspaceDir);
+  // Phase 1 containment: never publish coach-data.json as a static asset.
+  // Authenticated clients load it via /api/coach-data (still full bank — Phase 2 will minimize).
+  const leakedCoachData = path.join(workspaceDir, 'coach-data.json');
+  if (fs.existsSync(leakedCoachData)) fs.unlinkSync(leakedCoachData);
+
   const workspaceIndex = path.join(workspaceDir, 'index.html');
   const injected = injectWorkspaceBootstrap(fs.readFileSync(workspaceIndex, 'utf8'));
   writeFile(workspaceIndex, injected);

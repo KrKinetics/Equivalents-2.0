@@ -4,6 +4,10 @@
 
 export const DEFAULT_PORTAL_ORIGIN = 'http://127.0.0.1:4190/';
 
+/** Uniform UI copy — must not reveal whether an email has an account. */
+export const MAGIC_LINK_UNIFORM_MESSAGE =
+  'Si ce courriel est autorisé, un lien de connexion a été envoyé. Vérifiez votre boîte de courriel (invitation seulement — aucun compte public).';
+
 export function resolveEmailRedirectTo(locationHref) {
   return new URL('./', locationHref).href;
 }
@@ -36,19 +40,9 @@ export function formatLoginFailure(err) {
       message: 'Configuration locale absente. Démarrez le portail avec npm run coach:portal (config.js).',
     };
   }
-  if (/rate limit/i.test(msg)) {
-    return {
-      kind: 'supabase',
-      message: 'Limite d’envoi atteinte. Attendez avant de redemander un lien (aucun nouvel envoi automatique).',
-    };
-  }
-  if (/signups? not allowed|user not found|unable to validate/i.test(msg)) {
-    return {
-      kind: 'supabase',
-      message: 'Connexion refusée : seuls les utilisateurs invités peuvent se connecter.',
-    };
-  }
-  return { kind: 'supabase', message: `Erreur Supabase : ${msg}` };
+  // Anti-enumeration: invited, unknown, rate-limit, and provider errors share one message.
+  void msg;
+  return { kind: 'supabase', message: MAGIC_LINK_UNIFORM_MESSAGE };
 }
 
 /**
