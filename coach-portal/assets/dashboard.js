@@ -71,6 +71,20 @@ function formatDate(value) {
   }).format(new Date(value));
 }
 
+/** Display-only North American phone formatting. Does not alter stored values. */
+function formatPhoneDisplay(value) {
+  if (value == null || value === '') return '';
+  const raw = String(value).trim();
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `${digits.slice(1, 4)} ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  }
+  return raw;
+}
+
 async function copyText(value) {
   try {
     await navigator.clipboard.writeText(value);
@@ -184,13 +198,14 @@ async function loadClients() {
     const openHref = workspaceOpenPath(row.id);
     const invite = latestInviteByClient.get(row.id);
     const submitted = invite?.status === 'submitted';
-    const primaryLabel = invite && !submitted ? 'Nouveau lien' : 'Créer le lien';
+    // After any existing invite (including submitted), the primary action replaces the link.
+    const primaryLabel = invite ? 'Nouveau lien' : 'Créer le lien';
     return `
       <tr data-id="${escapeHtml(row.id)}">
         <td class="client-name-cell"><strong>${escapeHtml(row.full_name)}</strong></td>
         <td class="dashboard-contact">
           <strong>${escapeHtml(row.email || 'Courriel à confirmer')}</strong>
-          ${row.phone ? `<span>${escapeHtml(row.phone)}</span>` : ''}
+          ${row.phone ? `<span>${escapeHtml(formatPhoneDisplay(row.phone))}</span>` : ''}
         </td>
         <td class="client-notes-cell">${escapeHtml(row.notes || '—')}</td>
         <td>${intakeStatusMarkup(invite)}</td>
@@ -257,10 +272,14 @@ async function createIntakeLink(clientId) {
   return { link, copied, expiresAt: created.expires_at };
 }
 
-function formatAnswer(value) {
-  if (Array.isArray(value)) return value.map((item) => formatAnswer(item)).join(' · ');
+function formatAnswer(value, key = '') {
+  if (Array.isArray(value)) return value.map((item) => formatAnswer(item, key)).join(' · ');
   if (value === true) return 'Oui';
   if (value === false) return 'Non';
+  if (key === 'phone') {
+    const formatted = formatPhoneDisplay(value);
+    return formatted || '—';
+  }
   const text = String(value || '—');
   return ANSWER_DISPLAY_ALIASES[text] || text;
 }
@@ -286,7 +305,7 @@ async function showIntakeResponse(clientId) {
     .map(([key, label]) => `
       <div class="response-item">
         <dt>${escapeHtml(label)}</dt>
-        <dd>${escapeHtml(formatAnswer(data.answers[key]))}</dd>
+        <dd>${escapeHtml(formatAnswer(data.answers[key], key))}</dd>
       </div>
     `).join('');
   intakeDialog.showModal();

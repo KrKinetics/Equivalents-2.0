@@ -58,6 +58,11 @@ test('coach dashboard creates links, displays status, and reads submitted answer
   assert.match(dashboardJs, /btn-compact/);
   assert.match(dashboardJs, /ANSWER_DISPLAY_ALIASES/);
   assert.match(dashboardJs, /Perte de masse adipeuse/);
+  assert.match(dashboardJs, /const primaryLabel = invite \? 'Nouveau lien' : 'Créer le lien'/);
+  assert.match(dashboardJs, /function formatPhoneDisplay/);
+  assert.match(dashboardJs, /\$\{digits\.slice\(0, 3\)\} \$\{digits\.slice\(3, 6\)\}-\$\{digits\.slice\(6\)\}/);
+  assert.match(dashboardJs, /formatPhoneDisplay\(row\.phone\)/);
+  assert.match(dashboardJs, /formatAnswer\(data\.answers\[key\], key\)/);
   assert.match(css, /\.client-actions/);
   assert.match(css, /\.btn-danger-ghost/);
 });
