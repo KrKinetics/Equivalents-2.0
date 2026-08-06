@@ -23,11 +23,19 @@ test('client intake is a four-step, short, branded experience', () => {
   assert.match(intakeHtml, /Environ 3 à 5 min/);
   assert.equal((intakeHtml.match(/class="intake-step(?: hidden)?" data-step="\d"/g) || []).length, 4);
   assert.match(intakeHtml, /PRÉPARONS NOTRE RENCONTRE/);
+  assert.match(intakeHtml, /logo-kr-kinetics-horizontal\.png/);
+  assert.match(intakeHtml, /Perte de masse adipeuse/);
+  assert.doesNotMatch(intakeHtml, /Perdre du poids/);
   assert.match(intakeJs, /organization_slug/);
-  assert.match(intakeJs, /document\.body\.dataset\.brand = isElevate \? 'elevate' : 'kr'/);
+  assert.match(intakeJs, /logo-elevate-fitness\.jpg/);
+  assert.match(intakeJs, /ANSWER_DISPLAY_ALIASES/);
+  assert.match(intakeJs, /document\.body\.dataset\.brand = brandId/);
   assert.match(css, /--brand-primary: #071b41/);
   assert.match(css, /--brand-accent: #ed1136/);
   assert.match(css, /\.intake-page\[data-brand="elevate"\]/);
+  assert.match(css, /\.intake-brand-logo/);
+  assert.ok(fs.existsSync(path.join(root, 'coach-portal/assets/logo-kr-kinetics-horizontal.png')));
+  assert.ok(fs.existsSync(path.join(root, 'coach-portal/assets/logo-elevate-fitness.jpg')));
 });
 
 test('intake autosaves, resumes, enforces max three challenges, and submits via token RPCs', () => {
@@ -42,10 +50,16 @@ test('intake autosaves, resumes, enforces max three challenges, and submits via 
 test('coach dashboard creates links, displays status, and reads submitted answers', () => {
   assert.match(dashboardHtml, /Pré-entrevue/);
   assert.match(dashboardHtml, /intake-dialog/);
+  assert.match(dashboardHtml, /clients-table/);
   assert.match(dashboardJs, /create_client_intake_invite/);
   assert.match(dashboardJs, /client_intake_responses/);
   assert.match(dashboardJs, /intake\.html\?token=/);
   assert.match(dashboardJs, /navigator\.clipboard\.writeText/);
+  assert.match(dashboardJs, /btn-compact/);
+  assert.match(dashboardJs, /ANSWER_DISPLAY_ALIASES/);
+  assert.match(dashboardJs, /Perte de masse adipeuse/);
+  assert.match(css, /\.client-actions/);
+  assert.match(css, /\.btn-danger-ghost/);
 });
 
 test('intake files are shipped publicly while coach workspace stays protected', () => {

@@ -8,14 +8,14 @@
   <script src="/config.js"></script>
 </head>
 <body>
-  <main class="wrap">
+  <main class="wrap dash-wrap">
     <p class="brand">Espace privé — invitation seulement</p>
     <div class="row dash-header">
       <div>
         <h1>Tableau de bord</h1>
-        <p class="lead">Clients, pré-entrevues et dossiers dans un seul espace sécurisé.</p>
+        <p class="lead dash-lead">Clients, pré-entrevues et dossiers dans un seul espace sécurisé.</p>
       </div>
-      <button id="logout" type="button" class="secondary">Déconnexion</button>
+      <button id="logout" type="button" class="btn-compact btn-ghost">Déconnexion</button>
     </div>
 
     <section class="card">
@@ -43,17 +43,23 @@
       </form>
     </section>
 
-    <section class="card">
-      <div class="row dash-header">
+    <section class="card clients-card">
+      <div class="clients-card-header">
         <div>
           <h2 class="card-title">Clients de mon organisation</h2>
-          <p class="lead">Générez un lien individuel, puis consultez les réponses avant l’entrevue.</p>
+          <p class="lead dash-lead">Générez un lien individuel, puis consultez les réponses avant l’entrevue.</p>
         </div>
       </div>
       <div class="table-scroll">
-        <table>
+        <table class="clients-table">
           <thead>
-            <tr><th>Client</th><th>Coordonnées</th><th>Notes</th><th>Pré-entrevue</th><th>Actions</th></tr>
+            <tr>
+              <th>Client</th>
+              <th>Coordonnées</th>
+              <th>Notes</th>
+              <th>Pré-entrevue</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody id="clients-body">
             <tr><td colspan="5" class="empty">Chargement…</td></tr>
