@@ -19,6 +19,9 @@
     <section class="card">
       <h2 class="card-title">Session</h2>
       <dl id="session-meta" class="meta"></dl>
+      <p id="reviews-master-link" class="hidden">
+        <a class="btn-open" href="./reviews.html">Approuver les avis clients</a>
+      </p>
       <div id="status" class="status hidden" role="status"></div>
     </section>
 
@@ -36,15 +39,12 @@
     <section class="card">
       <h2 class="card-title">Clients de mon organisation</h2>
       <table>
-        <thead>
-          <tr><th>Nom</th><th>Notes</th><th>Actions</th></tr>
-        </thead>
-        <tbody id="clients-body">
-          <tr><td colspan="3" class="empty">Chargement…</td></tr>
-        </tbody>
+        <thead><tr><th>Nom</th><th>Notes</th><th>Actions</th></tr></thead>
+        <tbody id="clients-body"><tr><td colspan="3" class="empty">Chargement…</td></tr></tbody>
       </table>
     </section>
   </main>
   <script type="module" src="./assets/dashboard.js"></script>
+  <script type="module" src="./assets/reviews-master-link.js"></script>
 </body>
 </html>
