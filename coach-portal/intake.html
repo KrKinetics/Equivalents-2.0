@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Préparation à notre rencontre | KR Kinetics</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body class="intake-page" data-brand="kr">
+  <main class="intake-shell">
+    <header class="intake-brandbar" aria-label="Marque">
+      <div class="intake-brand-lockup">
+        <img
+          id="brand-logo"
+          class="intake-brand-logo"
+          src="./assets/logo-kr-kinetics-horizontal.png"
+          alt="KR Kinetics"
+          width="220"
+          height="56"
+        >
+      </div>
+      <span class="intake-duration">Environ 3 à 5 min</span>
+    </header>
+
+    <section id="loading-card" class="intake-card intake-state-card" aria-live="polite">
+      <div class="intake-spinner" aria-hidden="true"></div>
+      <h1>Préparation de votre formulaire</h1>
+      <p>Un instant, nous validons votre lien sécurisé.</p>
+    </section>
+
+    <section id="error-card" class="intake-card intake-state-card hidden" role="alert">
+      <span class="intake-state-icon" aria-hidden="true">!</span>
+      <h1>Ce lien n’est pas disponible</h1>
+      <p id="error-message">Le lien est invalide, expiré ou a été remplacé.</p>
+      <p class="intake-help">Communiquez avec votre coach afin de recevoir un nouveau lien.</p>
+    </section>
+
+    <section id="done-card" class="intake-card intake-state-card hidden" aria-live="polite">
+      <span class="intake-state-icon intake-state-success" aria-hidden="true">✓</span>
+      <p class="intake-eyebrow">C’EST TERMINÉ</p>
+      <h1>Merci, vos réponses ont bien été reçues.</h1>
+      <p>Votre coach pourra les consulter avant la rencontre afin d’aller directement à l’essentiel.</p>
+    </section>
+
+    <form id="intake-form" class="intake-card hidden" novalidate>
+      <div class="intake-intro">
+        <p class="intake-eyebrow">PRÉPARONS NOTRE RENCONTRE</p>
+        <h1>Bonjour <span id="client-name">!</span></h1>
+        <p>Ces quelques questions permettront à votre coach de mieux comprendre votre situation avant l’entrevue.</p>
+      </div>
+
+      <div class="intake-progress" aria-label="Progression du formulaire">
+        <div class="intake-progress-meta">
+          <span id="step-label">Étape 1 sur 4</span>
+          <span id="save-status" aria-live="polite">Lien sécurisé</span>
+        </div>
+        <div class="intake-progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <ol class="intake-step-list">
+          <li class="is-active">Objectif</li>
+          <li>Quotidien</li>
+          <li>Santé</li>
+          <li>Entrevue</li>
+        </ol>
+      </div>
+
+      <div id="form-error" class="status error hidden" role="alert"></div>
+
+      <section class="intake-step" data-step="1">
+        <div class="intake-section-heading">
+          <span>01</span>
+          <div><h2>Votre objectif</h2><p>Commençons par ce qui vous amène ici.</p></div>
+        </div>
+
+        <div class="intake-grid intake-grid-2">
+          <div class="field-group">
+            <label for="email">Courriel <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="160" required placeholder="vous@exemple.com">
+          </div>
+          <div class="field-group">
+            <label for="phone">Téléphone <span class="optional">Facultatif</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="514 555-0000">
+          </div>
+        </div>
+
+        <fieldset class="choice-field" data-required="objective_primary">
+          <legend>Quel est votre objectif principal? <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid">
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Perte de masse adipeuse"><span>Perte de masse adipeuse</span></label>
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Prendre de la masse musculaire"><span>Prendre de la masse musculaire</span></label>
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Améliorer ma composition corporelle"><span>Améliorer ma composition corporelle</span></label>
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Améliorer mon énergie et mes habitudes"><span>Améliorer mon énergie et mes habitudes</span></label>
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Améliorer mes performances"><span>Améliorer mes performances</span></label>
+            <label class="choice-card"><input type="radio" name="objective_primary" value="Mieux structurer mon alimentation"><span>Mieux structurer mon alimentation</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field-group">
+          <label for="objective_detail">En une phrase, qu’aimeriez-vous accomplir? <span aria-hidden="true">*</span></label>
+          <textarea id="objective_detail" name="objective_detail" rows="3" maxlength="240" required placeholder="Ex. : retrouver une routine réaliste et perdre environ 15 lb."></textarea>
+          <small class="field-hint">Une réponse courte suffit.</small>
+        </div>
+
+        <div class="field-group">
+          <label for="deadline">Avez-vous une échéance ou un événement en tête? <span class="optional">Facultatif</span></label>
+          <input id="deadline" name="deadline" maxlength="160" placeholder="Ex. : compétition, voyage, mariage ou aucune échéance">
+        </div>
+      </section>
+
+      <section class="intake-step hidden" data-step="2">
+        <div class="intake-section-heading">
+          <span>02</span>
+          <div><h2>Votre quotidien</h2><p>Trois repères pour comprendre vos contraintes réelles.</p></div>
+        </div>
+
+        <fieldset class="choice-field" data-required="activity_level">
+          <legend>Votre niveau d’activité physique actuel <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="activity_level" value="Très peu actif"><span>Très peu actif</span></label>
+            <label class="choice-card"><input type="radio" name="activity_level" value="Légèrement actif"><span>Légèrement actif</span></label>
+            <label class="choice-card"><input type="radio" name="activity_level" value="Modérément actif"><span>Modérément actif</span></label>
+            <label class="choice-card"><input type="radio" name="activity_level" value="Très actif"><span>Très actif</span></label>
+            <label class="choice-card"><input type="radio" name="activity_level" value="Entraînement sportif régulier"><span>Entraînement sportif régulier</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="choice-field" data-required="work_type">
+          <legend>Votre travail est principalement… <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="work_type" value="Assis ou peu actif"><span>Assis ou peu actif</span></label>
+            <label class="choice-card"><input type="radio" name="work_type" value="Partiellement actif"><span>Partiellement actif</span></label>
+            <label class="choice-card"><input type="radio" name="work_type" value="Très actif physiquement"><span>Très actif physiquement</span></label>
+            <label class="choice-card"><input type="radio" name="work_type" value="Variable"><span>Variable</span></label>
+            <label class="choice-card"><input type="radio" name="work_type" value="Ne s’applique pas"><span>Ne s’applique pas</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="choice-field" data-required="schedule">
+          <legend>Votre horaire est généralement… <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="schedule" value="Régulier"><span>Régulier</span></label>
+            <label class="choice-card"><input type="radio" name="schedule" value="Variable"><span>Variable</span></label>
+            <label class="choice-card"><input type="radio" name="schedule" value="Quarts de soir ou de nuit"><span>Quarts de soir ou de nuit</span></label>
+            <label class="choice-card"><input type="radio" name="schedule" value="Ne s’applique pas"><span>Ne s’applique pas</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="intake-step hidden" data-step="3">
+        <div class="intake-section-heading">
+          <span>03</span>
+          <div><h2>Santé et alimentation</h2><p>Seulement ce qui peut influencer votre accompagnement.</p></div>
+        </div>
+
+        <fieldset class="choice-field" data-required="medications_status">
+          <legend>Prenez-vous des médicaments ou suppléments pertinents? <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="medications_status" value="Non"><span>Non</span></label>
+            <label class="choice-card"><input type="radio" name="medications_status" value="Oui"><span>Oui</span></label>
+            <label class="choice-card"><input type="radio" name="medications_status" value="Je préfère en discuter"><span>Je préfère en discuter</span></label>
+          </div>
+        </fieldset>
+        <div class="field-group conditional hidden" data-condition-name="medications_status" data-condition-value="Oui">
+          <label for="medications_details">Lesquels?</label>
+          <input id="medications_details" name="medications_details" required maxlength="300" placeholder="Réponse brève">
+        </div>
+
+        <fieldset class="choice-field" data-required="allergies_status">
+          <legend>Avez-vous des allergies ou intolérances alimentaires? <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="allergies_status" value="Non"><span>Non</span></label>
+            <label class="choice-card"><input type="radio" name="allergies_status" value="Oui"><span>Oui</span></label>
+          </div>
+        </fieldset>
+        <div class="field-group conditional hidden" data-condition-name="allergies_status" data-condition-value="Oui">
+          <label for="allergies_details">Lesquelles?</label>
+          <input id="allergies_details" name="allergies_details" required maxlength="300" placeholder="Réponse brève">
+        </div>
+
+        <fieldset class="choice-field" data-required="restriction_status">
+          <legend>Avez-vous une blessure, restriction médicale ou condition à considérer? <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="radio" name="restriction_status" value="Non"><span>Non</span></label>
+            <label class="choice-card"><input type="radio" name="restriction_status" value="Oui"><span>Oui</span></label>
+            <label class="choice-card"><input type="radio" name="restriction_status" value="Je préfère en discuter"><span>Je préfère en discuter</span></label>
+          </div>
+        </fieldset>
+        <div class="field-group conditional hidden" data-condition-name="restriction_status" data-condition-value="Oui">
+          <label for="restriction_details">Décrivez-la brièvement.</label>
+          <input id="restriction_details" name="restriction_details" required maxlength="300" placeholder="Réponse brève">
+        </div>
+
+        <fieldset class="choice-field challenges-field">
+          <legend>Quels sont vos principaux défis? <span aria-hidden="true">*</span> <small>Maximum 3</small></legend>
+          <div class="choice-grid choice-grid-compact">
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Manque de temps"><span>Manque de temps</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Manque de préparation"><span>Manque de préparation</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Horaire irrégulier"><span>Horaire irrégulier</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Fringales ou faim"><span>Fringales ou faim</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Portions"><span>Portions</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Repas au restaurant"><span>Repas au restaurant</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Manque d’idées"><span>Manque d’idées</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Constance"><span>Constance</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Alimentation émotionnelle"><span>Alimentation émotionnelle</span></label>
+            <label class="choice-card"><input type="checkbox" name="challenges" value="Contexte familial ou social"><span>Contexte familial ou social</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field-group">
+          <label for="foods_avoid">Aliments que vous ne mangez pas ou souhaitez éviter <span class="optional">Facultatif</span></label>
+          <input id="foods_avoid" name="foods_avoid" maxlength="300" placeholder="Préférences, convictions ou aliments non appréciés">
+        </div>
+      </section>
+
+      <section class="intake-step hidden" data-step="4">
+        <div class="intake-section-heading">
+          <span>04</span>
+          <div><h2>Notre première rencontre</h2><p>Une dernière question pour établir la priorité.</p></div>
+        </div>
+
+        <div class="field-group">
+          <label for="interview_priority">Quelle est la chose la plus importante à aborder? <span aria-hidden="true">*</span></label>
+          <textarea id="interview_priority" name="interview_priority" rows="4" maxlength="500" required placeholder="Ce que vous voulez absolument clarifier ou obtenir pendant la rencontre."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="other_info">Autre information utile avant la rencontre <span class="optional">Facultatif</span></label>
+          <textarea id="other_info" name="other_info" rows="4" maxlength="800" placeholder="Tout élément qui n’a pas été couvert plus haut."></textarea>
+        </div>
+
+        <label class="consent-card">
+          <input id="consent" name="consent" type="checkbox" value="true" required>
+          <span>Je confirme que les informations fournies sont exactes au meilleur de ma connaissance. Je comprends qu’elles servent à préparer la rencontre et ne remplacent pas un avis médical.</span>
+        </label>
+      </section>
+
+      <footer class="intake-actions">
+        <button id="back-button" type="button" class="secondary hidden">Retour</button>
+        <button id="next-button" type="button">Continuer</button>
+        <button id="submit-button" type="submit" class="intake-submit hidden">Envoyer mes réponses</button>
+      </footer>
+    </form>
+
+    <p class="intake-privacy">Renseignements confidentiels · Lien sécurisé et individuel</p>
+  </main>
+  <script type="module" src="./assets/intake.js"></script>
+</body>
+</html>
