@@ -1,0 +1,38 @@
+name: Apply coach intake patch
+
+on:
+  push:
+    branches:
+      - agent/coach-pre-interview-intake
+    paths:
+      - scripts/apply-coach-intake-patch.sh
+      - .github/workflows/apply-coach-intake-patch.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/coach-pre-interview-intake
+          fetch-depth: 0
+      - name: Apply generated patch
+        run: bash scripts/apply-coach-intake-patch.sh
+      - name: Validate patch
+        run: |
+          node --check coach-portal/assets/intake.js
+          node --check coach-portal/assets/dashboard.js
+          node --check scripts/coach-workspace-preview.mjs
+          node --check scripts/coach-vercel-build.mjs
+          node --check middleware.js
+          node --test tests/coach-intake-ui.test.mjs tests/coach-intake-migration.test.mjs
+      - name: Commit generated files
+        run: |
+          git config user.name "KR Kinetics Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: add branded pre-interview intake"
+          git push origin HEAD:agent/coach-pre-interview-intake
