@@ -1,6 +1,6 @@
 import { getPortalSupabase, recoverSession } from './auth-session.js';
 
-const MASTER_USER_ID = '14376851-b293-49a3-b0cb-d97117b2a27f';
+const MASTER_USER_ID = '143f2b15-5d24-4992-b648-42c43bd1e802';
 const link = document.getElementById('reviews-master-link');
 
 async function revealForMaster() {
