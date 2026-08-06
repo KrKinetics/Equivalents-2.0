@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "npm ci",
-  "buildCommand": "npm run coach:vercel:build",
+  "buildCommand": "bash scripts/apply-coach-intake-patch.sh && npm run coach:vercel:build",
   "outputDirectory": "dist/coach-vercel",
   "functions": {
     "api/coach-food-search.js": {
@@ -47,6 +47,13 @@
       "source": "/login.html",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store" }
+      ]
+    },
+    {
+      "source": "/intake.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "private, no-store" },
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     },
     {
