@@ -49,7 +49,7 @@ function render() {
       <label>Note<select name="rating">${[1,2,3,4,5].map((n) => `<option value="${n}"${n === Number(row.rating) ? ' selected' : ''}>${n}/5</option>`).join('')}</select></label>
       <label>Commentaire<textarea name="comment" rows="7" maxlength="1000">${escapeHtml(row.comment)}</textarea></label>
       <label>Note interne<textarea name="moderationNote" rows="2" maxlength="1000">${escapeHtml(row.moderation_note || '')}</textarea></label>
-      <label class="row"><input type="checkbox" name="featured" ${row.featured ? 'checked' : ''}> Mettre en vedette</label>
+      <label class="review-featured-toggle"><input type="checkbox" name="featured" ${row.featured ? 'checked' : ''}><span>Mettre en vedette</span></label>
       <div class="row">
         <button type="button" data-action="approved">Approuver / enregistrer</button>
         <button type="button" class="danger" data-action="rejected">Refuser</button>
