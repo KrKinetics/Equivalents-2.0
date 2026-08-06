@@ -21,11 +21,13 @@ export const config = {
     '/',
     '/index.html',
     '/login.html',
+    '/intake.html',
     '/dashboard.html',
     '/workspace',
     '/workspace/:path*',
     '/src/coach/:path*',
     '/assets/dashboard.js',
+    '/assets/intake.js',
     '/assets/workspace-bootstrap.mjs',
   ],
 };
@@ -86,10 +88,12 @@ export default async function middleware(request) {
     });
   }
 
-  // Public portal pages: attach CSP, no auth gate.
+  // Public portal pages: attach CSP, no coach authentication gate.
   if (
     pathname === '/login.html'
     || pathname === '/index.html'
+    || pathname === '/intake.html'
+    || pathname === '/assets/intake.js'
     || pathname === '/'
   ) {
     return next({ headers: sec });

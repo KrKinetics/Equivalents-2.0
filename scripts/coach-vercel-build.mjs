@@ -2,10 +2,10 @@
  * Assemble a static Coach portal tree for Vercel Preview.
  *
  * Output: dist/coach-vercel/
- *   /                  ← coach-portal
- *   /workspace/        ← coach-calculator + injected bootstrap
- *   /src/coach/...     ← browser modules used by dashboard/workspace
- *   /config.js         ← publishable Supabase values only
+ *   /                  <- coach-portal
+ *   /workspace/        <- coach-calculator + injected bootstrap
+ *   /src/coach/...     <- browser modules used by dashboard/workspace
+ *   /config.js         <- publishable Supabase values only
  *
  * Env (required): SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY
  * Local convenience: loads .env.local when present (never commits it).
@@ -86,7 +86,7 @@ export function buildCoachVercelBundle(options = {}) {
   if (fs.existsSync(leakedCoachData)) fs.unlinkSync(leakedCoachData);
 
   const workspaceIndex = path.join(workspaceDir, 'index.html');
-  let workspaceHtml = stripClientNutritionFormulas(fs.readFileSync(workspaceIndex, 'utf8'));
+  const workspaceHtml = stripClientNutritionFormulas(fs.readFileSync(workspaceIndex, 'utf8'));
   const injected = injectWorkspaceBootstrap(workspaceHtml, { serverNutritionEngine });
   writeFile(workspaceIndex, injected);
 
@@ -111,11 +111,13 @@ export function buildCoachVercelBundle(options = {}) {
     'index.html',
     'login.html',
     'dashboard.html',
+    'intake.html',
     'workspace/index.html',
     'config.js',
     'assets/workspace-bootstrap.mjs',
     'assets/login.js',
     'assets/dashboard.js',
+    'assets/intake.js',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/services/storage/dossier-schema.mjs',
   ]) {

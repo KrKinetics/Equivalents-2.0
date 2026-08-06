@@ -11,10 +11,12 @@
   <main class="wrap">
     <p class="brand">Espace privé — invitation seulement</p>
     <div class="row dash-header">
-      <h1>Tableau de bord</h1>
+      <div>
+        <h1>Tableau de bord</h1>
+        <p class="lead">Clients, pré-entrevues et dossiers dans un seul espace sécurisé.</p>
+      </div>
       <button id="logout" type="button" class="secondary">Déconnexion</button>
     </div>
-    <p class="lead">Organisation connectée, rôle et clients isolés et protégés par organisation.</p>
 
     <section class="card">
       <h2 class="card-title">Session</h2>
@@ -25,26 +27,56 @@
     <section class="card">
       <h2 class="card-title">Nouveau client</h2>
       <form id="create-form">
-        <label for="full_name">Nom</label>
-        <input id="full_name" name="full_name" required maxlength="120" placeholder="Nom complet du client">
-        <label for="notes">Notes</label>
-        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Notes internes — facultatif"></textarea>
-        <button type="submit">Créer</button>
+        <div class="intake-grid intake-grid-2">
+          <div>
+            <label for="full_name">Nom</label>
+            <input id="full_name" name="full_name" required maxlength="120" placeholder="Nom complet du client">
+          </div>
+          <div>
+            <label for="email">Courriel <span class="optional">Facultatif</span></label>
+            <input id="email" name="email" type="email" maxlength="160" placeholder="client@exemple.com">
+          </div>
+        </div>
+        <label for="notes">Notes <span class="optional">Facultatif</span></label>
+        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Notes internes"></textarea>
+        <button type="submit">Créer le client</button>
       </form>
     </section>
 
     <section class="card">
-      <h2 class="card-title">Clients de mon organisation</h2>
-      <table>
-        <thead>
-          <tr><th>Nom</th><th>Notes</th><th>Actions</th></tr>
-        </thead>
-        <tbody id="clients-body">
-          <tr><td colspan="3" class="empty">Chargement…</td></tr>
-        </tbody>
-      </table>
+      <div class="row dash-header">
+        <div>
+          <h2 class="card-title">Clients de mon organisation</h2>
+          <p class="lead">Générez un lien individuel, puis consultez les réponses avant l’entrevue.</p>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Client</th><th>Coordonnées</th><th>Notes</th><th>Pré-entrevue</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="clients-body">
+            <tr><td colspan="5" class="empty">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
+
+  <dialog id="intake-dialog" aria-labelledby="intake-dialog-title">
+    <div class="dialog-body">
+      <div class="dialog-header">
+        <div>
+          <p class="brand">Pré-entrevue soumise</p>
+          <h2 id="intake-dialog-title">Réponses du client</h2>
+          <p id="intake-dialog-meta" class="lead"></p>
+        </div>
+        <button id="intake-dialog-close" type="button" class="secondary dialog-close" aria-label="Fermer">Fermer</button>
+      </div>
+      <dl id="intake-response" class="response-grid"></dl>
+    </div>
+  </dialog>
+
   <script type="module" src="./assets/dashboard.js"></script>
 </body>
 </html>

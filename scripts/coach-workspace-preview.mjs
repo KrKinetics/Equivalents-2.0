@@ -3,6 +3,7 @@
  *
  * - Portal:  http://127.0.0.1:4190/
  * - Workspace: http://127.0.0.1:4190/workspace/?client_id=<uuid>
+ * - Intake: http://127.0.0.1:4190/intake.html?token=<opaque-token>
  * - /config.js: publishable Supabase values only (never service_role)
  * - /api/coach-*: server nutrition + PDF routes (same handlers as Vercel)
  * - Protected routes require HttpOnly coach_access_token cookie
@@ -196,6 +197,10 @@ function deny(res, req, urlPath, status = 401) {
   res.end(JSON.stringify({ error: 'unauthorized' }));
 }
 
+function isPublicIntakePath(urlPath) {
+  return urlPath === '/intake.html' || urlPath === '/assets/intake.js';
+}
+
 ensureCalculatorBuilt();
 
 const server = http.createServer(async (req, res) => {
@@ -271,7 +276,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    if (isProtectedPath(urlPath)) {
+    if (isProtectedPath(urlPath) && !isPublicIntakePath(urlPath)) {
       const verified = await assertCoachAccess(req);
       if (!verified.ok) {
         deny(res, req, urlPath, verified.status === 403 ? 403 : 401);
@@ -319,7 +324,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    let portalRel = urlPath === '/' ? '/index.html' : urlPath;
+    const portalRel = urlPath === '/' ? '/index.html' : urlPath;
     const abs = resolveUnder(portalDir, portalRel);
     if (!abs) {
       res.writeHead(403);

@@ -13,9 +13,36 @@ const metaEl = document.getElementById('session-meta');
 const clientsBody = document.getElementById('clients-body');
 const createForm = document.getElementById('create-form');
 const logoutBtn = document.getElementById('logout');
+const intakeDialog = document.getElementById('intake-dialog');
+const intakeDialogTitle = document.getElementById('intake-dialog-title');
+const intakeDialogMeta = document.getElementById('intake-dialog-meta');
+const intakeResponse = document.getElementById('intake-response');
+const intakeDialogClose = document.getElementById('intake-dialog-close');
 
 let supabase;
 let membership = null;
+let clientRows = new Map();
+
+const RESPONSE_LABELS = Object.freeze({
+  email: 'Courriel',
+  phone: 'Téléphone',
+  objective_primary: 'Objectif principal',
+  objective_detail: 'Résultat recherché',
+  deadline: 'Échéance ou événement',
+  activity_level: 'Niveau d’activité',
+  work_type: 'Type de travail',
+  schedule: 'Horaire',
+  medications_status: 'Médicaments ou suppléments',
+  medications_details: 'Détails — médicaments',
+  allergies_status: 'Allergies ou intolérances',
+  allergies_details: 'Détails — allergies',
+  restriction_status: 'Blessure, restriction ou condition',
+  restriction_details: 'Détails — restriction',
+  challenges: 'Principaux défis',
+  foods_avoid: 'Aliments évités',
+  interview_priority: 'Priorité pour la première rencontre',
+  other_info: 'Autre information utile',
+});
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
@@ -29,6 +56,24 @@ function escapeHtml(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function formatDate(value) {
+  if (!value) return '—';
+  return new Intl.DateTimeFormat('fr-CA', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(value));
+}
+
+async function copyText(value) {
+  try {
+    await navigator.clipboard.writeText(value);
+    return true;
+  } catch {
+    window.prompt('Copiez ce lien sécurisé :', value);
+    return false;
+  }
 }
 
 async function requireSession() {
@@ -67,49 +112,97 @@ function renderMeta(session, mem) {
   `;
 }
 
+function intakeStatusMarkup(invite) {
+  if (!invite) return '<span class="status-chip">Aucun lien</span>';
+  const isExpired = invite.expires_at && new Date(invite.expires_at) <= new Date();
+  if (isExpired && invite.status !== 'submitted') return '<span class="status-chip">Expiré</span>';
+  const labels = {
+    pending: 'Lien non ouvert',
+    opened: 'En cours',
+    submitted: 'Soumis',
+    revoked: 'Remplacé',
+  };
+  return `<span class="status-chip ${escapeHtml(invite.status)}">${escapeHtml(labels[invite.status] || invite.status)}</span>`;
+}
+
 async function loadClients() {
-  const { data, error } = await supabase
-    .from('clients')
-    .select('id, full_name, notes, organization_id, is_fictional, created_at')
-    .eq('organization_id', membership.organizationId)
-    .order('created_at', { ascending: false });
-  if (error) throw error;
-  if (!data?.length) {
-    clientsBody.innerHTML = '<tr><td colspan="3" class="empty">Aucun client pour cette organisation.</td></tr>';
+  const [{ data: clients, error: clientsError }, { data: invites, error: invitesError }] = await Promise.all([
+    supabase
+      .from('clients')
+      .select('id, full_name, email, phone, notes, organization_id, is_fictional, created_at')
+      .eq('organization_id', membership.organizationId)
+      .order('created_at', { ascending: false }),
+    supabase
+      .from('client_intake_invites')
+      .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at')
+      .eq('organization_id', membership.organizationId)
+      .order('created_at', { ascending: false }),
+  ]);
+  if (clientsError) throw clientsError;
+  if (invitesError) throw invitesError;
+
+  const latestInviteByClient = new Map();
+  for (const invite of invites || []) {
+    if (!latestInviteByClient.has(invite.client_id)) latestInviteByClient.set(invite.client_id, invite);
+  }
+
+  clientRows = new Map((clients || []).map((client) => [client.id, client]));
+
+  if (!clients?.length) {
+    clientsBody.innerHTML = '<tr><td colspan="5" class="empty">Aucun client pour cette organisation.</td></tr>';
     return;
   }
-  clientsBody.innerHTML = data.map((row) => {
+
+  clientsBody.innerHTML = clients.map((row) => {
     const openHref = workspaceOpenPath(row.id);
+    const invite = latestInviteByClient.get(row.id);
+    const submitted = invite?.status === 'submitted';
     return `
-    <tr data-id="${escapeHtml(row.id)}">
-      <td>${escapeHtml(row.full_name)}</td>
-      <td>${escapeHtml(row.notes || '')}</td>
-      <td class="row">
-        <a class="btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
-        <button type="button" class="secondary btn-edit">Modifier</button>
-        <button type="button" class="danger btn-delete">Supprimer</button>
-      </td>
-    </tr>
-  `;
+      <tr data-id="${escapeHtml(row.id)}">
+        <td><strong>${escapeHtml(row.full_name)}</strong></td>
+        <td class="dashboard-contact">
+          <strong>${escapeHtml(row.email || 'Courriel à confirmer')}</strong>
+          ${escapeHtml(row.phone || '')}
+        </td>
+        <td>${escapeHtml(row.notes || '')}</td>
+        <td>
+          ${intakeStatusMarkup(invite)}
+          <div class="dashboard-contact">${invite ? `Créé ${escapeHtml(formatDate(invite.created_at))}` : 'Aucune pré-entrevue créée'}</div>
+        </td>
+        <td class="row">
+          <button type="button" class="btn-intake">${invite && !submitted ? 'Nouveau lien' : 'Créer le lien'}</button>
+          ${submitted ? '<button type="button" class="secondary btn-intake-view">Voir réponses</button>' : ''}
+          <a class="btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
+          <button type="button" class="secondary btn-edit">Modifier</button>
+          <button type="button" class="danger btn-delete">Supprimer</button>
+        </td>
+      </tr>
+    `;
   }).join('');
 }
 
-async function createClient(fullName, notes) {
+async function createClient(fullName, email, notes) {
   const { data: { user } } = await supabase.auth.getUser();
   const { error } = await supabase.from('clients').insert({
     organization_id: membership.organizationId,
     created_by: user.id,
     full_name: fullName,
+    email: email || null,
     notes: notes || '',
     is_fictional: true,
   });
   if (error) throw error;
 }
 
-async function updateClient(id, fullName, notes) {
+async function updateClient(id, fullName, email, notes) {
   const { error } = await supabase
     .from('clients')
-    .update({ full_name: fullName, notes, updated_at: new Date().toISOString() })
+    .update({
+      full_name: fullName,
+      email: email || null,
+      notes,
+      updated_at: new Date().toISOString(),
+    })
     .eq('id', id)
     .eq('organization_id', membership.organizationId);
   if (error) throw error;
@@ -122,6 +215,53 @@ async function deleteClient(id) {
     .eq('id', id)
     .eq('organization_id', membership.organizationId);
   if (error) throw error;
+}
+
+async function createIntakeLink(clientId) {
+  const { data, error } = await supabase.rpc('create_client_intake_invite', {
+    p_client_id: clientId,
+    p_expires_in_days: 14,
+  });
+  if (error) throw error;
+  const created = Array.isArray(data) ? data[0] : data;
+  if (!created?.token) throw new Error('Le serveur n’a pas retourné le lien sécurisé.');
+  const link = `${window.location.origin}/intake.html?token=${encodeURIComponent(created.token)}`;
+  const copied = await copyText(link);
+  return { link, copied, expiresAt: created.expires_at };
+}
+
+function formatAnswer(value) {
+  if (Array.isArray(value)) return value.join(' · ');
+  if (value === true) return 'Oui';
+  if (value === false) return 'Non';
+  return String(value || '—');
+}
+
+async function showIntakeResponse(clientId) {
+  const client = clientRows.get(clientId);
+  const { data, error } = await supabase
+    .from('client_intake_responses')
+    .select('answers, submitted_at, updated_at, status')
+    .eq('organization_id', membership.organizationId)
+    .eq('client_id', clientId)
+    .eq('status', 'submitted')
+    .order('submitted_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data) throw new Error('Aucune réponse soumise pour ce client.');
+
+  intakeDialogTitle.textContent = client?.full_name || 'Réponses du client';
+  intakeDialogMeta.textContent = `Soumis le ${formatDate(data.submitted_at || data.updated_at)}`;
+  intakeResponse.innerHTML = Object.entries(RESPONSE_LABELS)
+    .filter(([key]) => data.answers?.[key] !== undefined && data.answers?.[key] !== '')
+    .map(([key, label]) => `
+      <div class="response-item">
+        <dt>${escapeHtml(label)}</dt>
+        <dd>${escapeHtml(formatAnswer(data.answers[key]))}</dd>
+      </div>
+    `).join('');
+  intakeDialog.showModal();
 }
 
 async function boot() {
@@ -140,13 +280,14 @@ async function boot() {
   createForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const fullName = document.getElementById('full_name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const notes = document.getElementById('notes').value.trim();
     if (!fullName) {
       setStatus('Le nom du client est requis.', 'error');
       return;
     }
     try {
-      await createClient(fullName, notes);
+      await createClient(fullName, email, notes);
       createForm.reset();
       await loadClients();
       setStatus('Client créé dans votre organisation seulement.', 'ok');
@@ -159,6 +300,33 @@ async function boot() {
     const row = event.target.closest('tr[data-id]');
     if (!row) return;
     const id = row.getAttribute('data-id');
+
+    if (event.target.classList.contains('btn-intake')) {
+      event.target.disabled = true;
+      try {
+        const result = await createIntakeLink(id);
+        await loadClients();
+        setStatus(
+          `${result.copied ? 'Lien copié dans le presse-papiers' : 'Lien généré'} — valide jusqu’au ${formatDate(result.expiresAt)}.`,
+          'ok',
+        );
+      } catch (err) {
+        setStatus(`Création du lien refusée : ${err.message || err}`, 'error');
+      } finally {
+        event.target.disabled = false;
+      }
+      return;
+    }
+
+    if (event.target.classList.contains('btn-intake-view')) {
+      try {
+        await showIntakeResponse(id);
+      } catch (err) {
+        setStatus(`Lecture impossible : ${err.message || err}`, 'error');
+      }
+      return;
+    }
+
     if (event.target.classList.contains('btn-delete')) {
       if (!confirm('Supprimer ce client ?')) return;
       try {
@@ -170,15 +338,17 @@ async function boot() {
       }
       return;
     }
+
     if (event.target.classList.contains('btn-edit')) {
-      const currentName = row.children[0].textContent;
-      const currentNotes = row.children[1].textContent;
-      const fullName = prompt('Nom du client :', currentName);
+      const current = clientRows.get(id);
+      const fullName = prompt('Nom du client :', current?.full_name || '');
       if (fullName == null) return;
-      const notes = prompt('Notes :', currentNotes);
+      const email = prompt('Courriel :', current?.email || '');
+      if (email == null) return;
+      const notes = prompt('Notes :', current?.notes || '');
       if (notes == null) return;
       try {
-        await updateClient(id, fullName.trim(), notes.trim());
+        await updateClient(id, fullName.trim(), email.trim(), notes.trim());
         await loadClients();
         setStatus('Client mis à jour.', 'ok');
       } catch (err) {
@@ -192,13 +362,18 @@ async function boot() {
       const { clearServerSessionCookie } = await import('./session-cookie.mjs');
       await clearServerSessionCookie();
     } catch {
-      // ignore cookie clear failures
+      // Ignore cookie clear failures and complete the client sign-out.
     }
     clearLoginAutoRedirectGuard(sessionStorage);
     await supabase.auth.signOut();
     redirectClean('./login.html');
   });
 }
+
+intakeDialogClose.addEventListener('click', () => intakeDialog.close());
+intakeDialog.addEventListener('click', (event) => {
+  if (event.target === intakeDialog) intakeDialog.close();
+});
 
 boot().catch((err) => {
   setStatus(err.message || String(err), 'error');
