@@ -7,6 +7,12 @@ on:
     paths:
       - scripts/apply-coach-intake-patch.sh
       - .github/workflows/apply-coach-intake-patch.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/apply-coach-intake-patch.sh
+      - .github/workflows/apply-coach-intake-patch.yml
 
 permissions:
   contents: write
