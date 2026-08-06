@@ -44,6 +44,11 @@ const RESPONSE_LABELS = Object.freeze({
   other_info: 'Autre information utile',
 });
 
+/** Legacy stored values remapped for coach display only. */
+const ANSWER_DISPLAY_ALIASES = Object.freeze({
+  'Perdre du poids': 'Perte de masse adipeuse',
+});
+
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
   statusEl.className = `status ${kind}`.trim();
@@ -64,6 +69,20 @@ function formatDate(value) {
     dateStyle: 'medium',
     timeStyle: 'short',
   }).format(new Date(value));
+}
+
+/** Display-only North American phone formatting. Does not alter stored values. */
+function formatPhoneDisplay(value) {
+  if (value == null || value === '') return '';
+  const raw = String(value).trim();
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `${digits.slice(1, 4)} ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  }
+  return raw;
 }
 
 async function copyText(value) {
@@ -113,16 +132,38 @@ function renderMeta(session, mem) {
 }
 
 function intakeStatusMarkup(invite) {
-  if (!invite) return '<span class="status-chip">Aucun lien</span>';
+  if (!invite) {
+    return `
+      <div class="intake-status-block">
+        <span class="status-chip">Aucun lien</span>
+      </div>
+    `;
+  }
   const isExpired = invite.expires_at && new Date(invite.expires_at) <= new Date();
-  if (isExpired && invite.status !== 'submitted') return '<span class="status-chip">Expiré</span>';
+  if (isExpired && invite.status !== 'submitted') {
+    return `
+      <div class="intake-status-block">
+        <span class="status-chip">Expiré</span>
+        <span class="intake-status-meta">Expiré ${escapeHtml(formatDate(invite.expires_at))}</span>
+      </div>
+    `;
+  }
   const labels = {
     pending: 'Lien non ouvert',
     opened: 'En cours',
     submitted: 'Soumis',
     revoked: 'Remplacé',
   };
-  return `<span class="status-chip ${escapeHtml(invite.status)}">${escapeHtml(labels[invite.status] || invite.status)}</span>`;
+  const metaDate = invite.status === 'submitted'
+    ? invite.submitted_at || invite.updated_at || invite.created_at
+    : invite.opened_at || invite.created_at;
+  const metaPrefix = invite.status === 'submitted' ? 'Soumis' : invite.status === 'opened' ? 'Ouvert' : 'Créé';
+  return `
+    <div class="intake-status-block">
+      <span class="status-chip ${escapeHtml(invite.status)}">${escapeHtml(labels[invite.status] || invite.status)}</span>
+      <span class="intake-status-meta">${escapeHtml(metaPrefix)} ${escapeHtml(formatDate(metaDate))}</span>
+    </div>
+  `;
 }
 
 async function loadClients() {
@@ -157,24 +198,25 @@ async function loadClients() {
     const openHref = workspaceOpenPath(row.id);
     const invite = latestInviteByClient.get(row.id);
     const submitted = invite?.status === 'submitted';
+    // After any existing invite (including submitted), the primary action replaces the link.
+    const primaryLabel = invite ? 'Nouveau lien' : 'Créer le lien';
     return `
       <tr data-id="${escapeHtml(row.id)}">
-        <td><strong>${escapeHtml(row.full_name)}</strong></td>
+        <td class="client-name-cell"><strong>${escapeHtml(row.full_name)}</strong></td>
         <td class="dashboard-contact">
           <strong>${escapeHtml(row.email || 'Courriel à confirmer')}</strong>
-          ${escapeHtml(row.phone || '')}
+          ${row.phone ? `<span>${escapeHtml(formatPhoneDisplay(row.phone))}</span>` : ''}
         </td>
-        <td>${escapeHtml(row.notes || '')}</td>
+        <td class="client-notes-cell">${escapeHtml(row.notes || '—')}</td>
+        <td>${intakeStatusMarkup(invite)}</td>
         <td>
-          ${intakeStatusMarkup(invite)}
-          <div class="dashboard-contact">${invite ? `Créé ${escapeHtml(formatDate(invite.created_at))}` : 'Aucune pré-entrevue créée'}</div>
-        </td>
-        <td class="row">
-          <button type="button" class="btn-intake">${invite && !submitted ? 'Nouveau lien' : 'Créer le lien'}</button>
-          ${submitted ? '<button type="button" class="secondary btn-intake-view">Voir réponses</button>' : ''}
-          <a class="btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
-          <button type="button" class="secondary btn-edit">Modifier</button>
-          <button type="button" class="danger btn-delete">Supprimer</button>
+          <div class="client-actions">
+            <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
+            ${submitted ? '<button type="button" class="btn-compact btn-secondary btn-intake-view">Voir réponses</button>' : ''}
+            <a class="btn-compact btn-secondary btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
+            <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
+            <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+          </div>
         </td>
       </tr>
     `;
@@ -230,11 +272,16 @@ async function createIntakeLink(clientId) {
   return { link, copied, expiresAt: created.expires_at };
 }
 
-function formatAnswer(value) {
-  if (Array.isArray(value)) return value.join(' · ');
+function formatAnswer(value, key = '') {
+  if (Array.isArray(value)) return value.map((item) => formatAnswer(item, key)).join(' · ');
   if (value === true) return 'Oui';
   if (value === false) return 'Non';
-  return String(value || '—');
+  if (key === 'phone') {
+    const formatted = formatPhoneDisplay(value);
+    return formatted || '—';
+  }
+  const text = String(value || '—');
+  return ANSWER_DISPLAY_ALIASES[text] || text;
 }
 
 async function showIntakeResponse(clientId) {
@@ -258,7 +305,7 @@ async function showIntakeResponse(clientId) {
     .map(([key, label]) => `
       <div class="response-item">
         <dt>${escapeHtml(label)}</dt>
-        <dd>${escapeHtml(formatAnswer(data.answers[key]))}</dd>
+        <dd>${escapeHtml(formatAnswer(data.answers[key], key))}</dd>
       </div>
     `).join('');
   intakeDialog.showModal();

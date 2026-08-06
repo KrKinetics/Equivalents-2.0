@@ -7,8 +7,24 @@ const errorMessage = document.getElementById('error-message');
 const doneCard = document.getElementById('done-card');
 const form = document.getElementById('intake-form');
 const clientName = document.getElementById('client-name');
-const brandName = document.getElementById('brand-name');
+const brandLogo = document.getElementById('brand-logo');
 const progressBar = document.getElementById('progress-bar');
+
+const BRAND_LOGOS = Object.freeze({
+  kr: Object.freeze({
+    src: './assets/logo-kr-kinetics-horizontal.png',
+    alt: 'KR Kinetics',
+  }),
+  elevate: Object.freeze({
+    src: './assets/logo-elevate-fitness.jpg',
+    alt: 'Elevate Fitness',
+  }),
+});
+
+/** Legacy answer values mapped to current form labels. */
+const ANSWER_DISPLAY_ALIASES = Object.freeze({
+  'Perdre du poids': 'Perte de masse adipeuse',
+});
 const stepLabel = document.getElementById('step-label');
 const saveStatus = document.getElementById('save-status');
 const formError = document.getElementById('form-error');
@@ -73,6 +89,11 @@ function readAnswers() {
   return answers;
 }
 
+function normalizeAnswerValue(value) {
+  if (typeof value !== 'string') return value;
+  return ANSWER_DISPLAY_ALIASES[value] || value;
+}
+
 function applyAnswers(answers = {}) {
   for (const [name, value] of Object.entries(answers)) {
     if (name === 'challenges' && Array.isArray(value)) {
@@ -85,10 +106,11 @@ function applyAnswers(answers = {}) {
       document.getElementById('consent').checked = value === true;
       continue;
     }
+    const normalized = normalizeAnswerValue(value);
     const controls = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
     controls.forEach((control) => {
-      if (control.type === 'radio') control.checked = control.value === value;
-      else if (control.type !== 'checkbox') control.value = value ?? '';
+      if (control.type === 'radio') control.checked = control.value === normalized;
+      else if (control.type !== 'checkbox') control.value = normalized ?? '';
     });
   }
   updateConditionalFields();
@@ -175,9 +197,14 @@ async function saveDraft({ quiet = false } = {}) {
 
 function setBrand(slug, name) {
   const isElevate = slug === 'elevate-fitness';
-  document.body.dataset.brand = isElevate ? 'elevate' : 'kr';
-  brandName.textContent = isElevate ? 'ELEVATE FITNESS' : 'KINETICS';
-  document.title = `Préparation à notre rencontre | ${name || (isElevate ? 'Elevate Fitness' : 'KR Kinetics')}`;
+  const brandId = isElevate ? 'elevate' : 'kr';
+  const brand = BRAND_LOGOS[brandId];
+  document.body.dataset.brand = brandId;
+  if (brandLogo && brand) {
+    brandLogo.src = brand.src;
+    brandLogo.alt = brand.alt;
+  }
+  document.title = `Préparation à notre rencontre | ${name || brand.alt}`;
 }
 
 async function boot() {
