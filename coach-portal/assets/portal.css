@@ -464,3 +464,21 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+.review-featured-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  cursor: pointer;
+}
+.review-featured-toggle input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  accent-color: var(--primary);
+}
+.review-featured-toggle span {
+  line-height: 1.3;
+}

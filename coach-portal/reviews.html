@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approbation des avis | KR Kinetics</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <p class="brand">KR Kinetics — compte maître seulement</p>
+    <div class="row dash-header">
+      <div>
+        <p><a href="./dashboard.html">← Tableau de bord</a></p>
+        <h1>Approbation des avis clients</h1>
+      </div>
+      <button id="logout" type="button" class="secondary">Déconnexion</button>
+    </div>
+    <p class="lead">Les avis restent privés jusqu’à ton approbation. Les comptes Coach standards n’ont aucun accès à cette zone.</p>
+    <div id="status" class="status hidden" role="status"></div>
+    <section class="card">
+      <div class="row">
+        <button type="button" data-filter="pending">À approuver</button>
+        <button type="button" class="secondary" data-filter="approved">Publiés</button>
+        <button type="button" class="secondary" data-filter="rejected">Refusés</button>
+        <button type="button" class="secondary" data-filter="all">Tous</button>
+      </div>
+    </section>
+    <section id="reviews-list" class="review-admin-list" aria-live="polite">
+      <p class="empty">Chargement…</p>
+    </section>
+  </main>
+  <script type="module" src="./assets/reviews-admin.js"></script>
+</body>
+</html>
