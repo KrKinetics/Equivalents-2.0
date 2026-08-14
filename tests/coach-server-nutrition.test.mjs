@@ -620,6 +620,9 @@ global.CoachSharedEngine = { suggestBanque() { return NASEM_COEFFICIENTS; } };
   assert.equal(htmlContainsEnergyFormulaIp(out), false);
   assert.match(out, /Client NASEM disabled/);
   assert.match(out, /Client IOM disabled/);
+  // Dossier compatibility helpers must survive the strip (not nutrition formulas).
+  assert.match(out, /migrateProfilData:\s*migrateProfilData/);
+  assert.match(out, /normalizeLegacyRepartition:\s*normalizeLegacyRepartition/);
 });
 
 test('security: coach-data.json is not under public portal assets path in repo contract', () => {

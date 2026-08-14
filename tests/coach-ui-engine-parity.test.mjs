@@ -231,9 +231,8 @@ test('parity: isJourClientPlanConfigured empty / banque-only / with meals', () =
 /** Legacy UI createEmptyJourData */
 function uiCreateEmptyJourData() {
   const banque = {};
-  const repartition = {};
   CATS.forEach((cat) => { banque[cat] = '0'; });
-  for (let i = 0; i < MEAL_COUNT * CATS.length; i++) repartition[i] = '0';
+  const repartition = new Array(MEAL_COUNT * CATS.length).fill(0);
   return {
     banque,
     repartition,

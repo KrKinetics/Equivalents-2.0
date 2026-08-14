@@ -15,6 +15,7 @@ import {
   foodDetailApi,
   generatePdfApi,
   SERVER_NUTRITION_GENERIC_ERROR,
+  SERVER_NUTRITION_VALIDATION_ERROR,
   SERVER_PDF_GENERIC_ERROR,
   formatServerNutritionError,
 } from './server-nutrition-api.mjs';
@@ -159,42 +160,60 @@ async function refreshPlannedTotalsFromServer({ force = false } = {}) {
   plannedTotalsRefreshInflight = (async () => {
     const jours = globalThis.joursData || {};
     const cache = Object.create(null);
+    const errors = [];
     for (const key of ['entrainement', 'repos']) {
       const day = jours[key];
       if (!day?.repartition) continue;
+      // Canonical contract is Array; skip non-array so one legacy day cannot abort the other.
+      if (!Array.isArray(day.repartition)) {
+        errors.push(new Error(SERVER_NUTRITION_VALIDATION_ERROR));
+        continue;
+      }
       const fp = fingerprintRepartition(day.repartition);
       if (!force && day.plannedTotals && day.__plannedTotalsFp === fp) {
         cache[key] = { ...day.plannedTotals };
         continue;
       }
-      const res = await calcPortionsApi({
-        action: 'planned_totals',
-        repartition: day.repartition,
-      });
-      const totals = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
-      cache[key] = totals;
-      writeCanonicalDayTotals(key, {
-        plannedTotals: totals,
-        percentages: res.percentages,
-      });
+      try {
+        const res = await calcPortionsApi({
+          action: 'planned_totals',
+          repartition: day.repartition,
+        });
+        const totals = res.totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+        cache[key] = totals;
+        writeCanonicalDayTotals(key, {
+          plannedTotals: totals,
+          percentages: res.percentages,
+        });
+      } catch (err) {
+        errors.push(err);
+      }
     }
-    globalThis.__COACH_PLANNED_TOTALS = cache;
+    // Preserve previously successful day caches when a sibling day fails.
+    const prior = globalThis.__COACH_PLANNED_TOTALS || {};
+    globalThis.__COACH_PLANNED_TOTALS = {
+      ...prior,
+      ...cache,
+    };
     const engine = globalThis.CoachSharedEngine;
     if (engine) {
       engine.computePlannedTotalsFromRepartition = function computePlannedTotalsFromServerCache(repartition) {
         const fp = fingerprintRepartition(repartition);
-        for (const key of ['entrainement', 'repos']) {
-          const day = globalThis.joursData?.[key];
+        for (const dayKey of ['entrainement', 'repos']) {
+          const day = globalThis.joursData?.[dayKey];
           if (!day) continue;
           if (day.plannedTotals && day.__plannedTotalsFp === fp) {
             return { ...day.plannedTotals };
           }
           if (day.repartition === repartition || fingerprintRepartition(day.repartition) === fp) {
-            return { ...(globalThis.__COACH_PLANNED_TOTALS?.[key] || day.plannedTotals || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
+            return { ...(globalThis.__COACH_PLANNED_TOTALS?.[dayKey] || day.plannedTotals || { pro: 0, glu: 0, lip: 0, kcal: 0 }) };
           }
         }
         return { pro: 0, glu: 0, lip: 0, kcal: 0 };
       };
+    }
+    if (errors.length) {
+      throw errors[0];
     }
   })().finally(() => {
     plannedTotalsRefreshInflight = null;
@@ -425,6 +444,18 @@ let banqueDebounceTimer = null;
 let banqueDebounceWaiters = [];
 let banqueInflight = null;
 
+export function applyBanqueTotalsToSummaryCards(totals) {
+  const t = totals || { pro: 0, glu: 0, lip: 0, kcal: 0 };
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  };
+  setText('gen-pro', `${t.pro} g`);
+  setText('gen-glu', `${t.glu} g`);
+  setText('gen-lip', `${t.lip} g`);
+  setText('gen-kcal', `${t.kcal} kcal`);
+}
+
 async function calculerBanqueServer() {
   if (banqueInflight) return banqueInflight;
   banqueInflight = (async () => {
@@ -438,7 +469,6 @@ async function calculerBanqueServer() {
       syncCanonicalDayFromUi();
       const active = globalThis.activeJour || 'entrainement';
       writeCanonicalDayTotals(active, { banqueTotals: totals, percentages: totalsRes.percentages });
-      await refreshPlannedTotalsFromServer();
       installServerMacroPercentageHelpers();
 
       // Per-category display uses moyennes values from the server (not formula code).
@@ -458,14 +488,8 @@ async function calculerBanqueServer() {
         }
       });
 
-      const setText = (id, value) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = value;
-      };
-      setText('gen-pro', `${totals.pro} g`);
-      setText('gen-glu', `${totals.glu} g`);
-      setText('gen-lip', `${totals.lip} g`);
-      setText('gen-kcal', `${totals.kcal} kcal`);
+      // PRIMARY: render successful banque_totals immediately — before any secondary refresh.
+      applyBanqueTotalsToSummaryCards(totals);
 
       const targets = globalThis.targets || { pro: 0, glu: 0, lip: 0, kcal: 0 };
       if (typeof globalThis.updateDiff === 'function') {
@@ -474,6 +498,14 @@ async function calculerBanqueServer() {
         globalThis.updateDiff('lip', targets.lip, totals.lip);
         globalThis.updateDiff('kcal', targets.kcal, totals.kcal);
       }
+
+      // SECONDARY: planned totals for other days must not erase valid bank cards.
+      try {
+        await refreshPlannedTotalsFromServer();
+      } catch (secondaryErr) {
+        notifyNutritionError(secondaryErr?.message || SERVER_NUTRITION_GENERIC_ERROR);
+      }
+
       if (typeof globalThis.updateEau === 'function') globalThis.updateEau();
       if (typeof globalThis.calculerRepartition === 'function') globalThis.calculerRepartition();
       if (typeof globalThis.updateEtatPlan === 'function') globalThis.updateEtatPlan();

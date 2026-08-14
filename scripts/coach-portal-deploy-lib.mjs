@@ -110,6 +110,7 @@ export function stripClientNutritionFormulas(html) {
   let out = html;
 
   // Replace shared engine block with a stub (no coefficients / suggestBanque logic).
+  // Compatibility helpers (legacy repartition → Array) remain — they are not nutrition IP.
   out = out.replace(
     /<script id="coach-shared-engine">[\s\S]*?<\/script>/i,
     `<script id="coach-shared-engine">
@@ -117,18 +118,108 @@ export function stripClientNutritionFormulas(html) {
   function blocked(name) {
     throw new Error('Client engine disabled (' + name + ') — use server nutrition APIs');
   }
+  function normalizeLegacyRepartition(repartition) {
+    if (Array.isArray(repartition)) return { ok: true, value: repartition, changed: false };
+    if (repartition == null) return { ok: true, value: repartition, changed: false };
+    if (typeof repartition !== 'object') return { ok: false, reason: 'invalid_repartition_type' };
+    var keys = Object.keys(repartition);
+    for (var ki = 0; ki < keys.length; ki++) {
+      var key = keys[ki];
+      if (!/^(?:0|[1-9]\\d?)$/.test(key)) return { ok: false, reason: 'invalid_repartition_key' };
+      var idx = Number(key);
+      if (!Number.isInteger(idx) || idx < 0 || idx >= 42) return { ok: false, reason: 'invalid_repartition_key' };
+    }
+    var outArr = new Array(42).fill(0);
+    for (var kj = 0; kj < keys.length; kj++) {
+      var k2 = keys[kj];
+      var i2 = Number(k2);
+      var raw = repartition[k2];
+      var n = typeof raw === 'string' ? Number(String(raw).trim().replace(',', '.')) : Number(raw);
+      if (!Number.isFinite(n) || n < 0 || n > 500) return { ok: false, reason: 'invalid_repartition_value' };
+      outArr[i2] = n;
+    }
+    return { ok: true, value: outArr, changed: true };
+  }
+  function withCanonicalRepartition(jour) {
+    if (!jour || typeof jour !== 'object') return jour;
+    var normalized = normalizeLegacyRepartition(jour.repartition);
+    if (!normalized.ok || !normalized.changed) return jour;
+    return Object.assign({}, jour, { repartition: normalized.value });
+  }
+  function createEmptyJourData() {
+    return {
+      banque: { pro: '0', fec: '0', leg: '0', fru: '0', lai: '0', lip: '0', whey: '0' },
+      repartition: new Array(42).fill(0),
+      heureEntrainement: '17:30',
+      repartitionSelonEntrainement: true,
+      eauLitres: '0',
+      eauAjout: '0',
+      eauManuel: false,
+    };
+  }
+  function normalizeMacroPct(value) {
+    var n = parseFloat(value);
+    return isNaN(n) ? 45 : Math.min(80, Math.max(5, Math.round(n)));
+  }
+  function normalizeProteinesParKg(value) {
+    var n = parseFloat(value);
+    return isNaN(n) ? 2 : Math.min(3.5, Math.max(0.8, Math.round(n * 10) / 10));
+  }
+  function normalizeProteinesPct(value) {
+    var n = parseFloat(value);
+    return isNaN(n) ? 25 : Math.min(50, Math.max(10, Math.round(n)));
+  }
+  function migrateProfilData(data) {
+    if (data && data.jours && data.jours.entrainement && data.jours.repos) {
+      return Object.assign({}, data, {
+        activeJour: data.activeJour || 'entrainement',
+        macroMode: data.macroMode === 'custom' ? 'custom' : 'preset',
+        macroCustomG: normalizeMacroPct(data.macroCustomG),
+        macroCustomL: normalizeMacroPct(data.macroCustomL),
+        proteinesMode: data.proteinesMode === 'pct' ? 'pct' : 'gkg',
+        proteinesParKg: normalizeProteinesParKg(data.proteinesParKg),
+        proteinesPct: normalizeProteinesPct(data.proteinesPct),
+        jourReposActif: data.jourReposActif !== false,
+        coachNotes: typeof data.coachNotes === 'string' ? data.coachNotes : '',
+        jours: {
+          entrainement: withCanonicalRepartition(Object.assign({}, createEmptyJourData(), data.jours.entrainement)),
+          repos: withCanonicalRepartition(Object.assign({}, createEmptyJourData(), data.jours.repos)),
+        },
+      });
+    }
+    var ent = createEmptyJourData();
+    if (data && data.banque) ent.banque = Object.assign({}, ent.banque, data.banque);
+    if (data && data.repartition) {
+      var merged = Object.assign({}, ent.repartition, data.repartition);
+      var norm = normalizeLegacyRepartition(merged);
+      ent.repartition = norm.ok ? norm.value : data.repartition;
+    }
+    ent.heureEntrainement = (data && data.heureEntrainement) || '17:30';
+    ent.eauLitres = (data && data.eauLitres) || '0';
+    ent.eauAjout = (data && data.eauAjout) || '0';
+    ent.eauManuel = !!(data && data.eauManuel);
+    return Object.assign({}, data, {
+      version: 2,
+      activeJour: (data && (data.typeJour || data.activeJour)) || 'entrainement',
+      macroMode: data && data.macroMode === 'custom' ? 'custom' : 'preset',
+      macroCustomG: normalizeMacroPct(data && data.macroCustomG),
+      macroCustomL: normalizeMacroPct(data && data.macroCustomL),
+      proteinesMode: data && data.proteinesMode === 'pct' ? 'pct' : 'gkg',
+      proteinesParKg: normalizeProteinesParKg(data && data.proteinesParKg),
+      proteinesPct: normalizeProteinesPct(data && data.proteinesPct),
+      jourReposActif: !(data && data.jourReposActif === false),
+      coachNotes: data && typeof data.coachNotes === 'string' ? data.coachNotes : '',
+      jours: { entrainement: withCanonicalRepartition(ent), repos: createEmptyJourData() },
+    });
+  }
   global.CoachSharedEngine = {
     FEATURE_DA_ENABLED: false,
-    createEmptyJourData: function () {
-      return {
-        banque: { pro: 0, fec: 0, leg: 0, fru: 0, lai: 0, lip: 0, whey: 0 },
-        repartition: new Array(42).fill(0),
-        eauAjout: 0, eauManuel: false, eauLitres: null, heureEntrainement: null, repartitionSelonEntrainement: true,
-      };
-    },
-    normalizeProteinesParKg: function (v) { var n = parseFloat(v); return isNaN(n) ? 2 : Math.min(3.5, Math.max(0.5, Math.round(n * 10) / 10)); },
-    normalizeProteinesPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 25 : Math.min(60, Math.max(10, Math.round(n))); },
-    normalizeMacroPct: function (v) { var n = parseFloat(v); return isNaN(n) ? 0 : Math.min(90, Math.max(5, Math.round(n))); },
+    createEmptyJourData: createEmptyJourData,
+    normalizeLegacyRepartition: normalizeLegacyRepartition,
+    migrateProfilData: migrateProfilData,
+    normalizeProteinesParKg: normalizeProteinesParKg,
+    normalizeProteinesPct: normalizeProteinesPct,
+    normalizeMacroPct: normalizeMacroPct,
     // Atwater display helpers only (same as server macros.mjs). Not portion/NASEM IP.
     kcalFromMacros: function (p, g, l) { return Math.round((Number(p)||0)*4 + (Number(g)||0)*4 + (Number(l)||0)*9); },
     macroPercentagesFromGrams: function (pro, glu, lip) {
