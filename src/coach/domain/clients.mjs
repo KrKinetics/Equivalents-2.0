@@ -44,11 +44,67 @@ export function normalizeMacroPct(value) {
   return Math.min(MAX_MACRO_PCT, Math.max(MIN_MACRO_PCT, Math.round(n)));
 }
 
+const REPARTITION_CELL_COUNT = MEAL_COUNT * CATS.length;
+const LEGACY_REPARTITION_KEY_RE = /^(?:0|[1-9]\d?)$/;
+
+/**
+ * Convert a recognized legacy indexed repartition object into the canonical
+ * Array representation used by the Coach API contract.
+ *
+ * - Valid Arrays are returned unchanged.
+ * - Only plain objects whose keys are integer indices in [0, 41] are accepted.
+ * - Numeric strings (optional comma decimals) are coerced safely.
+ * - Malformed structures are rejected (ok: false) without mutation.
+ */
+export function normalizeLegacyRepartition(repartition) {
+  if (Array.isArray(repartition)) {
+    return { ok: true, value: repartition, changed: false };
+  }
+  if (repartition == null) {
+    return { ok: true, value: repartition, changed: false };
+  }
+  if (typeof repartition !== 'object') {
+    return { ok: false, reason: 'invalid_repartition_type' };
+  }
+
+  const keys = Object.keys(repartition);
+  for (const key of keys) {
+    if (!LEGACY_REPARTITION_KEY_RE.test(key)) {
+      return { ok: false, reason: 'invalid_repartition_key' };
+    }
+    const idx = Number(key);
+    if (!Number.isInteger(idx) || idx < 0 || idx >= REPARTITION_CELL_COUNT) {
+      return { ok: false, reason: 'invalid_repartition_key' };
+    }
+  }
+
+  const out = new Array(REPARTITION_CELL_COUNT).fill(0);
+  for (const key of keys) {
+    const idx = Number(key);
+    const raw = repartition[key];
+    const n = typeof raw === 'string'
+      ? Number(String(raw).trim().replace(',', '.'))
+      : Number(raw);
+    if (!Number.isFinite(n) || n < 0 || n > 500) {
+      return { ok: false, reason: 'invalid_repartition_value' };
+    }
+    out[idx] = n;
+  }
+  return { ok: true, value: out, changed: true };
+}
+
+function withCanonicalRepartition(jour) {
+  if (!jour || typeof jour !== 'object') return jour;
+  const normalized = normalizeLegacyRepartition(jour.repartition);
+  if (!normalized.ok) return jour;
+  if (!normalized.changed) return jour;
+  return { ...jour, repartition: normalized.value };
+}
+
 export function createEmptyJourData() {
   const banque = {};
-  const repartition = {};
   for (const cat of CATS) banque[cat] = '0';
-  for (let i = 0; i < MEAL_COUNT * CATS.length; i++) repartition[i] = '0';
+  const repartition = new Array(REPARTITION_CELL_COUNT).fill(0);
   return {
     banque,
     repartition,
@@ -74,15 +130,26 @@ export function migrateProfilData(data) {
       jourReposActif: data.jourReposActif !== false,
       coachNotes: typeof data.coachNotes === 'string' ? data.coachNotes : '',
       jours: {
-        entrainement: { ...createEmptyJourData(), ...data.jours.entrainement },
-        repos: { ...createEmptyJourData(), ...data.jours.repos },
+        entrainement: withCanonicalRepartition({
+          ...createEmptyJourData(),
+          ...data.jours.entrainement,
+        }),
+        repos: withCanonicalRepartition({
+          ...createEmptyJourData(),
+          ...data.jours.repos,
+        }),
       },
     };
   }
 
   const ent = createEmptyJourData();
   if (data?.banque) ent.banque = { ...ent.banque, ...data.banque };
-  if (data?.repartition) ent.repartition = { ...ent.repartition, ...data.repartition };
+  if (data?.repartition) {
+    // Merge legacy indexed values onto the empty template, then canonicalize.
+    const merged = { ...ent.repartition, ...data.repartition };
+    const normalized = normalizeLegacyRepartition(merged);
+    ent.repartition = normalized.ok ? normalized.value : data.repartition;
+  }
   ent.heureEntrainement = data?.heureEntrainement || '17:30';
   ent.eauLitres = data?.eauLitres || '0';
   ent.eauAjout = data?.eauAjout || '0';
@@ -100,6 +167,9 @@ export function migrateProfilData(data) {
     proteinesPct: normalizeProteinesPct(data?.proteinesPct),
     jourReposActif: data?.jourReposActif !== false,
     coachNotes: typeof data?.coachNotes === 'string' ? data.coachNotes : '',
-    jours: { entrainement: ent, repos: createEmptyJourData() },
+    jours: {
+      entrainement: withCanonicalRepartition(ent),
+      repos: createEmptyJourData(),
+    },
   };
 }

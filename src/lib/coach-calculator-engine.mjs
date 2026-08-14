@@ -16,6 +16,7 @@ import {
   normalizeMacroPct,
   createEmptyJourData,
   migrateProfilData,
+  normalizeLegacyRepartition,
 } from '../coach/domain/clients.mjs';
 import { kcalFromMacros, macroPercentagesFromGrams } from '../coach/calculations/macros.mjs';
 import {
@@ -53,6 +54,7 @@ export {
   normalizeMacroPct,
   createEmptyJourData,
   migrateProfilData,
+  normalizeLegacyRepartition,
   kcalFromMacros,
   macroPercentagesFromGrams,
   MOYENNES,

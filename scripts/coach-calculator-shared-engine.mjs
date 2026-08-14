@@ -66,6 +66,8 @@ global.CoachSharedEngine = {
   computePlannedTotalsFromRepartition: computePlannedTotalsFromRepartition,
   isJourClientPlanConfigured: isJourClientPlanConfigured,
   createEmptyJourData: createEmptyJourData,
+  migrateProfilData: migrateProfilData,
+  normalizeLegacyRepartition: normalizeLegacyRepartition,
   normalizeProteinesPct: normalizeProteinesPct,
   normalizeMacroPct: normalizeMacroPct,
   roundHalf: roundHalf,
@@ -163,6 +165,40 @@ export function applySharedEnginePatches(html) {
     'createEmptyJourData',
   );
 
+  // Prefer engine migrate (legacy object → canonical Array) when a local copy remains.
+  html = replaceIfLegacy(
+    html,
+    /function migrateProfilData\(data\) \{[\s\S]*?\nfunction evaluerJourData\(/,
+    `function migrateProfilData(data) {
+    return window.CoachSharedEngine.migrateProfilData(data);
+}
+
+function evaluerJourData(`,
+  );
+
+  // Keep canonical Array repartition across profile apply (never re-spread into {}).
+  html = replaceIfLegacy(
+    html,
+    `repartition: { ...entBase.repartition, ...migrated.jours.entrainement.repartition }
+    };
+    joursData.repos = {
+        ...repBase, ...migrated.jours.repos,
+        banque: { ...repBase.banque, ...migrated.jours.repos.banque },
+        repartition: { ...repBase.repartition, ...(migrated.jours.repos.repartition || {}) }
+    };`,
+    `repartition: Array.isArray(migrated.jours.entrainement.repartition)
+            ? migrated.jours.entrainement.repartition.slice()
+            : (migrated.jours.entrainement.repartition ?? entBase.repartition)
+    };
+    joursData.repos = {
+        ...repBase, ...migrated.jours.repos,
+        banque: { ...repBase.banque, ...migrated.jours.repos.banque },
+        repartition: Array.isArray(migrated.jours.repos.repartition)
+            ? migrated.jours.repos.repartition.slice()
+            : (migrated.jours.repos.repartition ?? repBase.repartition)
+    };`,
+  );
+
   html = mustReplace(
     html,
     rx(`function normalizeProteinesPct\\(value\\) \\{\n    const n = parseFloat\\(value\\);\n    if \\(isNaN\\(n\\)\\) return DEFAULT_PROTEIN_PCT;\n    return Math\\.min\\(MAX_PROTEIN_PCT, Math\\.max\\(MIN_PROTEIN_PCT, Math\\.round\\(n\\)\\)\\);\n\\}`),
@@ -232,6 +268,7 @@ function resetBanque(`,
     'CoachSharedEngine.isJourClientPlanConfigured',
     'CoachSharedEngine.macroPercentagesFromGrams',
     'CoachSharedEngine.createEmptyJourData',
+    'CoachSharedEngine.migrateProfilData',
     'CoachSharedEngine.normalizeProteinesPct',
     'CoachSharedEngine.normalizeMacroPct',
     'CoachSharedEngine.roundHalf',
