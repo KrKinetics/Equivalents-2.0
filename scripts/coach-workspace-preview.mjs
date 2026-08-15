@@ -48,6 +48,7 @@ const COACH_API_HANDLERS = Object.freeze([
   'coach-calc-portions',
   'coach-calc-equivalences',
   'coach-generate-pdf',
+  'coach-send-intake-invite',
 ]);
 
 const { url, publishableKey } = requireSupabasePublicEnv(root);

@@ -3,11 +3,12 @@
  * Never log tokens, cookies, passwords, magic links, PII, bank dumps, or PDF HTML.
  */
 
-const SENSITIVE_KEY = /^(authorization|cookie|password|access_token|refresh_token|token|apikey|api_key|service_role|coach_notes|notes|email|html|body|raw)$/i;
+const SENSITIVE_KEY = /^(authorization|cookie|password|access_token|refresh_token|token|apikey|api_key|service_role|coach_notes|notes|email|html|body|raw|invite_url|from|recipient_email|mail_from|text)$/i;
 const JWT_RE = /eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9._-]+/g;
 const BEARER_RE = /Bearer\s+[A-Za-z0-9._~+/=-]+/gi;
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
 const UUID_RE = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi;
+const INTAKE_URL_RE = /intake\.html\?token=[^\s"'<>]+/gi;
 
 /**
  * @param {unknown} value
@@ -21,6 +22,7 @@ export function redactForLog(value, depth = 0) {
     return value
       .replace(JWT_RE, '[redacted-jwt]')
       .replace(BEARER_RE, 'Bearer [redacted]')
+      .replace(INTAKE_URL_RE, 'intake.html?token=[redacted]')
       .replace(EMAIL_RE, '[redacted-email]')
       .replace(UUID_RE, '[redacted-id]')
       .slice(0, 500);
