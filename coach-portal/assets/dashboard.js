@@ -17,6 +17,7 @@ import {
   parseServiceType,
   serviceLabelFr,
 } from '/src/coach/domain/client-service-entitlements.mjs';
+import { runIntakeInviteButtonAction } from '/src/coach/client/intake-invite-gesture.mjs';
 
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
@@ -491,20 +492,22 @@ async function boot() {
 
     if (event.target.classList.contains('btn-intake')) {
       if (intakeInFlight.has(id)) return;
-      intakeInFlight.add(id);
       const button = event.target;
       const originalLabel = button.textContent;
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');
       button.textContent = 'Envoi…';
       try {
-        const result = await sendIntakeInvite(id);
-        await loadClients();
-        applyInviteResult(result);
-      } catch {
-        setStatus('Création du lien refusée.', 'error');
+        await runIntakeInviteButtonAction({
+          clientId: id,
+          inFlight: intakeInFlight,
+          send: () => sendIntakeInvite(id),
+          applyResult: applyInviteResult,
+          refresh: loadClients,
+          setStatus,
+          getStatus: () => statusEl.textContent || '',
+        });
       } finally {
-        intakeInFlight.delete(id);
         if (button.isConnected) {
           button.disabled = false;
           button.removeAttribute('aria-busy');
