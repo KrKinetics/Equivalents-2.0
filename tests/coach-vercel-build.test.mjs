@@ -120,6 +120,7 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'assets/portal.css',
     'workspace/assets/logo-kr-kinetics-horizontal.png',
     'src/coach/workspace/workspace-access.mjs',
+    'src/coach/domain/client-service-entitlements.mjs',
     'src/coach/services/storage/supabase-client-dossier-store.mjs',
     'src/coach/client/server-nutrition-bridge.mjs',
   ];

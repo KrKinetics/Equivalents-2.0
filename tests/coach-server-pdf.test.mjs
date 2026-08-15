@@ -145,7 +145,7 @@ test('client access is organization-scoped and fictional-only', async () => {
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Demo', is_fictional: true }],
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Demo', is_fictional: true, service_type: 'nutrition' }],
     }),
   });
   assert.deepEqual(good, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Demo' } });
@@ -155,7 +155,7 @@ test('client access is organization-scoped and fictional-only', async () => {
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: true }],
+      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: true, service_type: 'nutrition' }],
     }),
   });
   assert.deepEqual(wrongOrg, { ok: false, error: 'forbidden' });
@@ -165,10 +165,30 @@ test('client access is organization-scoped and fictional-only', async () => {
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: false }],
+      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: false, service_type: 'nutrition' }],
     }),
   });
   assert.deepEqual(nonFictional, { ok: false, error: 'forbidden' });
+
+  const programming = await authorizeClientAccess({
+    accessToken: 'jwt', organizationId: 'org', clientId: 'client', supabaseUrl: 'https://example.test',
+    publishableKey: 'key',
+    fetchImpl: async () => ({
+      ok: true,
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Prog', is_fictional: true, service_type: 'programming' }],
+    }),
+  });
+  assert.deepEqual(programming, { ok: false, error: 'forbidden' });
+
+  const complete = await authorizeClientAccess({
+    accessToken: 'jwt', organizationId: 'org', clientId: 'client', supabaseUrl: 'https://example.test',
+    publishableKey: 'key',
+    fetchImpl: async () => ({
+      ok: true,
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Complet', is_fictional: true, service_type: 'complete' }],
+    }),
+  });
+  assert.deepEqual(complete, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Complet' } });
 });
 
 test('PDF endpoint rejects unauthenticated and invalid payloads before PDF stream', async () => {

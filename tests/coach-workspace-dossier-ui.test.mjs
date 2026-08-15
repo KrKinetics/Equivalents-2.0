@@ -192,6 +192,8 @@ test('bootstrap wires client selector + dirty confirm; dashboard form stays serv
   assert.match(src, /WORKSPACE_ACCESS_DENIED_MESSAGE/);
   assert.match(src, /isPersistedDossierDirty|canonicalizePersistedDossierPayload/);
   assert.match(src, /fetchOrganizationClients/);
+  assert.match(src, /nutritionEligibleClients/);
+  assert.match(src, /NUTRITION_ENTITLEMENT_DENIED_CODE|NUTRITION_ENTITLEMENT_DENIED_MESSAGE/);
   assert.match(src, /workspaceOpenPath/);
   assert.match(src, /workspaceInitProfils/);
   assert.doesNotMatch(src, /← Retour au portail|workspace-return-portal|history\.back\(/);

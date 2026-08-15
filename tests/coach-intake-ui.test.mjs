@@ -50,7 +50,7 @@ test('intake autosaves, resumes, enforces max three challenges, and submits via 
 test('coach dashboard creates links, displays status, and reads submitted answers', () => {
   assert.match(dashboardHtml, /Pré-entrevue/);
   assert.match(dashboardHtml, /intake-dialog/);
-  assert.match(dashboardHtml, /clients-table/);
+  assert.match(dashboardHtml, /clients-groups/);
   assert.match(dashboardJs, /create_client_intake_invite/);
   assert.match(dashboardJs, /client_intake_responses/);
   assert.match(dashboardJs, /intake\.html\?token=/);

@@ -61,6 +61,7 @@ async function insertFictionalClient(supabase, organizationId, userId, fullName)
       full_name: fullName,
       notes: 'rls-isolation-probe',
       is_fictional: true,
+      service_type: 'nutrition',
     })
     .select('id, organization_id, full_name')
     .single();

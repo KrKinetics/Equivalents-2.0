@@ -78,7 +78,8 @@ test('live: KR cannot open Elevate client; Elevate cannot open KR client', async
     full_name: `WS KR ${stamp}`,
     notes: 'workspace-cross-org',
     is_fictional: true,
-  }).select('id, full_name, notes, organization_id, is_fictional').single();
+    service_type: 'nutrition',
+  }).select('id, full_name, notes, organization_id, is_fictional, service_type').single();
   assert.ifError(krInsErr);
 
   const { data: elevClient, error: elevInsErr } = await elevate.supabase.from('clients').insert({
@@ -87,7 +88,8 @@ test('live: KR cannot open Elevate client; Elevate cannot open KR client', async
     full_name: `WS Elevate ${stamp}`,
     notes: 'workspace-cross-org',
     is_fictional: true,
-  }).select('id, full_name, notes, organization_id, is_fictional').single();
+    service_type: 'nutrition',
+  }).select('id, full_name, notes, organization_id, is_fictional, service_type').single();
   assert.ifError(elevInsErr);
 
   t.after(async () => {

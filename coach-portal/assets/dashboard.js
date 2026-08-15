@@ -7,10 +7,20 @@ import {
 } from './auth-session.js';
 import { clearLoginAutoRedirectGuard } from './login-redirect.mjs';
 import { workspaceOpenPath } from '/src/coach/workspace/workspace-access.mjs';
+import {
+  NUTRITION_WORKSPACE_CTA_LABEL,
+  SERVICE_CHANGE_CONFIRMATION,
+  SERVICE_GROUP_HEADINGS_FR,
+  SERVICE_GROUP_ORDER,
+  clientHasNutritionAccess,
+  groupClientsByService,
+  parseServiceType,
+  serviceLabelFr,
+} from '/src/coach/domain/client-service-entitlements.mjs';
 
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
-const clientsBody = document.getElementById('clients-body');
+const clientsGroups = document.getElementById('clients-groups');
 const createForm = document.getElementById('create-form');
 const logoutBtn = document.getElementById('logout');
 const intakeDialog = document.getElementById('intake-dialog');
@@ -18,6 +28,13 @@ const intakeDialogTitle = document.getElementById('intake-dialog-title');
 const intakeDialogMeta = document.getElementById('intake-dialog-meta');
 const intakeResponse = document.getElementById('intake-response');
 const intakeDialogClose = document.getElementById('intake-dialog-close');
+const editDialog = document.getElementById('edit-client-dialog');
+const editForm = document.getElementById('edit-client-form');
+const editDialogClose = document.getElementById('edit-client-dialog-close');
+const editCancel = document.getElementById('edit-client-cancel');
+const editServiceConfirm = document.getElementById('edit-service-confirm');
+const editServiceConfirmCheck = document.getElementById('edit_service_confirm_check');
+const editServiceType = document.getElementById('edit_service_type');
 
 let supabase;
 let membership = null;
@@ -83,6 +100,18 @@ function formatPhoneDisplay(value) {
     return `${digits.slice(1, 4)} ${digits.slice(4, 7)}-${digits.slice(7)}`;
   }
   return raw;
+}
+
+function clientCountLabel(count) {
+  return count === 1 ? '1 client' : `${count} clients`;
+}
+
+function syncServiceChangeConfirm() {
+  const original = parseServiceType(document.getElementById('edit_original_service').value);
+  const next = parseServiceType(editServiceType.value);
+  const changed = Boolean(original && next && original !== next);
+  editServiceConfirm.classList.toggle('hidden', !changed);
+  if (!changed) editServiceConfirmCheck.checked = false;
 }
 
 async function copyText(value) {
@@ -166,13 +195,71 @@ function intakeStatusMarkup(invite) {
   `;
 }
 
+function clientRowMarkup(row, invite) {
+  const submitted = invite?.status === 'submitted';
+  const primaryLabel = invite ? 'Nouveau lien' : 'Créer le lien';
+  const nutritionCta = clientHasNutritionAccess(row.service_type)
+    ? `<a class="btn-compact btn-secondary btn-open" href="${escapeHtml(workspaceOpenPath(row.id))}">${escapeHtml(NUTRITION_WORKSPACE_CTA_LABEL)}</a>`
+    : '';
+  return `
+    <tr data-id="${escapeHtml(row.id)}" data-service="${escapeHtml(parseServiceType(row.service_type) || '')}">
+      <td class="client-name-cell">
+        <strong>${escapeHtml(row.full_name)}</strong>
+        <span class="service-badge">${escapeHtml(serviceLabelFr(row.service_type))}</span>
+      </td>
+      <td class="dashboard-contact">
+        <strong>${escapeHtml(row.email || 'Courriel à confirmer')}</strong>
+        ${row.phone ? `<span>${escapeHtml(formatPhoneDisplay(row.phone))}</span>` : ''}
+      </td>
+      <td class="client-notes-cell">${escapeHtml(row.notes || '—')}</td>
+      <td>${intakeStatusMarkup(invite)}</td>
+      <td>
+        <div class="client-actions">
+          <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
+          ${submitted ? '<button type="button" class="btn-compact btn-secondary btn-intake-view">Voir réponses</button>' : ''}
+          ${nutritionCta}
+          <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
+          <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+function renderClientGroup(serviceType, clients, latestInviteByClient) {
+  const rows = clients.length
+    ? clients.map((row) => clientRowMarkup(row, latestInviteByClient.get(row.id))).join('')
+    : '<tr><td colspan="5" class="empty">Aucun client</td></tr>';
+  return `
+    <section class="client-service-group" data-service="${escapeHtml(serviceType)}" aria-labelledby="service-heading-${escapeHtml(serviceType)}">
+      <div class="client-service-group-header">
+        <h3 id="service-heading-${escapeHtml(serviceType)}">${escapeHtml(SERVICE_GROUP_HEADINGS_FR[serviceType])}</h3>
+        <span class="client-count">${escapeHtml(clientCountLabel(clients.length))}</span>
+      </div>
+      <div class="table-scroll">
+        <table class="clients-table">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Coordonnées</th>
+              <th>Notes</th>
+              <th>Pré-entrevue</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
 async function loadClients() {
   const [{ data: clients, error: clientsError }, { data: invites, error: invitesError }] = await Promise.all([
     supabase
       .from('clients')
-      .select('id, full_name, email, phone, notes, organization_id, is_fictional, created_at')
-      .eq('organization_id', membership.organizationId)
-      .order('created_at', { ascending: false }),
+      .select('id, full_name, email, phone, notes, organization_id, is_fictional, service_type, created_at')
+      .eq('organization_id', membership.organizationId),
     supabase
       .from('client_intake_invites')
       .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at')
@@ -188,42 +275,15 @@ async function loadClients() {
   }
 
   clientRows = new Map((clients || []).map((client) => [client.id, client]));
-
-  if (!clients?.length) {
-    clientsBody.innerHTML = '<tr><td colspan="5" class="empty">Aucun client pour cette organisation.</td></tr>';
-    return;
-  }
-
-  clientsBody.innerHTML = clients.map((row) => {
-    const openHref = workspaceOpenPath(row.id);
-    const invite = latestInviteByClient.get(row.id);
-    const submitted = invite?.status === 'submitted';
-    // After any existing invite (including submitted), the primary action replaces the link.
-    const primaryLabel = invite ? 'Nouveau lien' : 'Créer le lien';
-    return `
-      <tr data-id="${escapeHtml(row.id)}">
-        <td class="client-name-cell"><strong>${escapeHtml(row.full_name)}</strong></td>
-        <td class="dashboard-contact">
-          <strong>${escapeHtml(row.email || 'Courriel à confirmer')}</strong>
-          ${row.phone ? `<span>${escapeHtml(formatPhoneDisplay(row.phone))}</span>` : ''}
-        </td>
-        <td class="client-notes-cell">${escapeHtml(row.notes || '—')}</td>
-        <td>${intakeStatusMarkup(invite)}</td>
-        <td>
-          <div class="client-actions">
-            <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
-            ${submitted ? '<button type="button" class="btn-compact btn-secondary btn-intake-view">Voir réponses</button>' : ''}
-            <a class="btn-compact btn-secondary btn-open" href="${escapeHtml(openHref)}">Ouvrir le dossier</a>
-            <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
-            <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }).join('');
+  const grouped = groupClientsByService(clients || []);
+  clientsGroups.innerHTML = SERVICE_GROUP_ORDER
+    .map((serviceType) => renderClientGroup(serviceType, grouped[serviceType], latestInviteByClient))
+    .join('');
 }
 
-async function createClient(fullName, email, notes) {
+async function createClient(fullName, email, notes, serviceType) {
+  const code = parseServiceType(serviceType);
+  if (!code) throw new Error('Le service du client est requis.');
   const { data: { user } } = await supabase.auth.getUser();
   const { error } = await supabase.from('clients').insert({
     organization_id: membership.organizationId,
@@ -231,18 +291,22 @@ async function createClient(fullName, email, notes) {
     full_name: fullName,
     email: email || null,
     notes: notes || '',
+    service_type: code,
     is_fictional: true,
   });
   if (error) throw error;
 }
 
-async function updateClient(id, fullName, email, notes) {
+async function updateClient(id, fullName, email, notes, serviceType) {
+  const code = parseServiceType(serviceType);
+  if (!code) throw new Error('Le service du client est requis.');
   const { error } = await supabase
     .from('clients')
     .update({
       full_name: fullName,
       email: email || null,
       notes,
+      service_type: code,
       updated_at: new Date().toISOString(),
     })
     .eq('id', id)
@@ -311,6 +375,23 @@ async function showIntakeResponse(clientId) {
   intakeDialog.showModal();
 }
 
+function openEditDialog(client) {
+  document.getElementById('edit_client_id').value = client.id;
+  document.getElementById('edit_original_service').value = parseServiceType(client.service_type) || '';
+  document.getElementById('edit_full_name').value = client.full_name || '';
+  document.getElementById('edit_email').value = client.email || '';
+  document.getElementById('edit_notes').value = client.notes || '';
+  editServiceType.value = parseServiceType(client.service_type) || '';
+  editServiceConfirmCheck.checked = false;
+  syncServiceChangeConfirm();
+  editDialog.showModal();
+  document.getElementById('edit_full_name').focus();
+}
+
+function closeEditDialog() {
+  if (editDialog.open) editDialog.close();
+}
+
 async function boot() {
   setStatus('');
   supabase = getPortalSupabase();
@@ -329,12 +410,17 @@ async function boot() {
     const fullName = document.getElementById('full_name').value.trim();
     const email = document.getElementById('email').value.trim();
     const notes = document.getElementById('notes').value.trim();
+    const serviceType = document.getElementById('service_type').value;
     if (!fullName) {
       setStatus('Le nom du client est requis.', 'error');
       return;
     }
+    if (!parseServiceType(serviceType)) {
+      setStatus('Choisissez le service du client.', 'error');
+      return;
+    }
     try {
-      await createClient(fullName, email, notes);
+      await createClient(fullName, email, notes, serviceType);
       createForm.reset();
       await loadClients();
       setStatus('Client créé dans votre organisation seulement.', 'ok');
@@ -343,7 +429,7 @@ async function boot() {
     }
   });
 
-  clientsBody.addEventListener('click', async (event) => {
+  clientsGroups.addEventListener('click', async (event) => {
     const row = event.target.closest('tr[data-id]');
     if (!row) return;
     const id = row.getAttribute('data-id');
@@ -388,20 +474,54 @@ async function boot() {
 
     if (event.target.classList.contains('btn-edit')) {
       const current = clientRows.get(id);
-      const fullName = prompt('Nom du client :', current?.full_name || '');
-      if (fullName == null) return;
-      const email = prompt('Courriel :', current?.email || '');
-      if (email == null) return;
-      const notes = prompt('Notes :', current?.notes || '');
-      if (notes == null) return;
-      try {
-        await updateClient(id, fullName.trim(), email.trim(), notes.trim());
-        await loadClients();
-        setStatus('Client mis à jour.', 'ok');
-      } catch (err) {
-        setStatus(`Modification refusée : ${err.message || err}`, 'error');
+      if (!current) {
+        setStatus('Client introuvable. Rechargez le tableau de bord.', 'error');
+        return;
+      }
+      openEditDialog(current);
+    }
+  });
+
+  editServiceType.addEventListener('change', syncServiceChangeConfirm);
+
+  editForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const id = document.getElementById('edit_client_id').value;
+    const fullName = document.getElementById('edit_full_name').value.trim();
+    const email = document.getElementById('edit_email').value.trim();
+    const notes = document.getElementById('edit_notes').value.trim();
+    const originalService = parseServiceType(document.getElementById('edit_original_service').value);
+    const nextService = parseServiceType(editServiceType.value);
+    if (!fullName) {
+      setStatus('Le nom du client est requis.', 'error');
+      return;
+    }
+    if (!nextService) {
+      setStatus('Choisissez le service du client.', 'error');
+      return;
+    }
+    if (originalService && originalService !== nextService) {
+      if (!editServiceConfirmCheck.checked) {
+        editServiceConfirm.classList.remove('hidden');
+        setStatus(SERVICE_CHANGE_CONFIRMATION, 'error');
+        editServiceConfirmCheck.focus();
+        return;
       }
     }
+    try {
+      await updateClient(id, fullName, email, notes, nextService);
+      closeEditDialog();
+      await loadClients();
+      setStatus('Client mis à jour.', 'ok');
+    } catch (err) {
+      setStatus(`Modification refusée : ${err.message || err}`, 'error');
+    }
+  });
+
+  editDialogClose.addEventListener('click', closeEditDialog);
+  editCancel.addEventListener('click', closeEditDialog);
+  editDialog.addEventListener('click', (event) => {
+    if (event.target === editDialog) closeEditDialog();
   });
 
   logoutBtn.addEventListener('click', async () => {

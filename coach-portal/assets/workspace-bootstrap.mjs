@@ -8,6 +8,8 @@ import { getPortalSupabase, recoverSession, redirectClean } from './auth-session
 import { brandIdFromOrganizationSlug } from '/src/coach/workspace/org-brand.mjs';
 import {
   assertWorkspaceClientAccess,
+  NUTRITION_ENTITLEMENT_DENIED_CODE,
+  NUTRITION_ENTITLEMENT_DENIED_MESSAGE,
   parseClientIdParam,
   workspaceOpenPath,
 } from '/src/coach/workspace/workspace-access.mjs';
@@ -21,6 +23,7 @@ import {
   lockWorkspaceAccessDenied,
   WORKSPACE_ACCESS_DENIED_MESSAGE,
 } from '/src/coach/workspace/workspace-dossier-ui.mjs';
+import { nutritionEligibleClients } from '/src/coach/domain/client-service-entitlements.mjs';
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
 
@@ -121,7 +124,7 @@ async function loadMembership(supabase, userId) {
 async function fetchClient(supabase, clientId) {
   const { data, error } = await supabase
     .from('clients')
-    .select('id, full_name, notes, organization_id, is_fictional')
+    .select('id, full_name, notes, organization_id, is_fictional, service_type')
     .eq('id', clientId)
     .maybeSingle();
   if (error) throw error;
@@ -132,12 +135,12 @@ async function fetchClient(supabase, clientId) {
 async function fetchOrganizationClients(supabase, organizationId) {
   const { data, error } = await supabase
     .from('clients')
-    .select('id, full_name, organization_id, is_fictional')
+    .select('id, full_name, organization_id, is_fictional, service_type')
     .eq('organization_id', organizationId)
     .eq('is_fictional', true)
     .order('full_name', { ascending: true });
   if (error) throw error;
-  return data || [];
+  return nutritionEligibleClients(data || []);
 }
 
 function ensureCurrentClientListed(clients, ctx) {
@@ -316,11 +319,11 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
 /**
  * Full lock after denied/missing access — generic copy only, no client/org disclosure.
  */
-async function enterAccessDeniedState() {
-  renderBanner(null, WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
-  setPersistStatus(WORKSPACE_ACCESS_DENIED_MESSAGE, 'error');
+async function enterAccessDeniedState(message = WORKSPACE_ACCESS_DENIED_MESSAGE) {
+  renderBanner(null, message, 'error');
+  setPersistStatus(message, 'error');
   // Lock immediately so automation waiting on the banner cannot race past an unlocked UI.
-  lockWorkspaceAccessDenied(document);
+  lockWorkspaceAccessDenied(document, message);
   // Neutralize historical calculator entry points that might rehydrate local profiles.
   window.initProfils = function workspaceDeniedInitProfils() {};
   window.sauvegarderProfil = function workspaceDeniedSave() {};
@@ -333,13 +336,13 @@ async function enterAccessDeniedState() {
   } catch {
     // Calculator may be incomplete; re-apply lock after late DOMContentLoaded handlers.
   }
-  lockWorkspaceAccessDenied(document);
+  lockWorkspaceAccessDenied(document, message);
 }
 
 async function bootWorkspace() {
   const clientId = clientIdFromLocation();
   if (!clientId) {
-    renderBanner(null, 'Ouvrez un client depuis le portail (bouton « Ouvrir le dossier »).', 'error');
+    renderBanner(null, 'Ouvrez un client depuis le portail (bouton « Ouvrir la structure alimentaire »).', 'error');
     return;
   }
 
@@ -365,8 +368,12 @@ async function bootWorkspace() {
   let ctx;
   try {
     ctx = assertWorkspaceClientAccess({ client, membership });
-  } catch {
-    await enterAccessDeniedState();
+  } catch (err) {
+    const entitlementDenied = err?.code === NUTRITION_ENTITLEMENT_DENIED_CODE
+      || err?.message === NUTRITION_ENTITLEMENT_DENIED_MESSAGE;
+    await enterAccessDeniedState(
+      entitlementDenied ? NUTRITION_ENTITLEMENT_DENIED_MESSAGE : WORKSPACE_ACCESS_DENIED_MESSAGE,
+    );
     return;
   }
 
