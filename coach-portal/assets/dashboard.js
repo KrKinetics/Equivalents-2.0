@@ -17,6 +17,7 @@ import {
   parseServiceType,
   serviceLabelFr,
 } from '/src/coach/domain/client-service-entitlements.mjs';
+import { runIntakeInviteButtonAction } from '/src/coach/client/intake-invite-gesture.mjs';
 
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
@@ -195,9 +196,21 @@ function intakeStatusMarkup(invite) {
   `;
 }
 
+function looksLikeClientEmail(value) {
+  const email = String(value || '').trim().toLowerCase();
+  return Boolean(email) && email.length <= 160 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+}
+
+function intakeActionLabel(row, invite) {
+  if (looksLikeClientEmail(row?.email)) {
+    return invite ? 'Renvoyer un nouveau lien' : 'Envoyer le lien';
+  }
+  return invite ? 'Nouveau lien' : 'Créer le lien';
+}
+
 function clientRowMarkup(row, invite) {
   const submitted = invite?.status === 'submitted';
-  const primaryLabel = invite ? 'Nouveau lien' : 'Créer le lien';
+  const primaryLabel = intakeActionLabel(row, invite);
   const nutritionCta = clientHasNutritionAccess(row.service_type)
     ? `<a class="btn-compact btn-secondary btn-open" href="${escapeHtml(workspaceOpenPath(row.id))}">${escapeHtml(NUTRITION_WORKSPACE_CTA_LABEL)}</a>`
     : '';
@@ -323,17 +336,59 @@ async function deleteClient(id) {
   if (error) throw error;
 }
 
-async function createIntakeLink(clientId) {
-  const { data, error } = await supabase.rpc('create_client_intake_invite', {
-    p_client_id: clientId,
-    p_expires_in_days: 14,
+async function sendIntakeInvite(clientId) {
+  const res = await fetch('/api/coach-send-intake-invite', {
+    method: 'POST',
+    credentials: 'include',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      client_id: clientId,
+      organization_id: membership.organizationId,
+      organization_slug: membership.organization?.slug || null,
+    }),
   });
-  if (error) throw error;
-  const created = Array.isArray(data) ? data[0] : data;
-  if (!created?.token) throw new Error('Le serveur n’a pas retourné le lien sécurisé.');
-  const link = `${window.location.origin}/intake.html?token=${encodeURIComponent(created.token)}`;
-  const copied = await copyText(link);
-  return { link, copied, expiresAt: created.expires_at };
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
+  }
+  if (!res.ok) {
+    const err = new Error('Création du lien refusée.');
+    err.status = res.status;
+    err.publicError = data?.error || '';
+    throw err;
+  }
+  return data;
+}
+
+async function applyInviteResult(result) {
+  if (result?.email_sent === true) {
+    const to = typeof result.recipient_email === 'string' ? result.recipient_email : '';
+    setStatus(to ? `Invitation envoyée à ${to}.` : 'Invitation envoyée.', 'ok');
+    return;
+  }
+  if (result?.invite_url) {
+    await copyText(result.invite_url);
+  }
+  if (
+    result?.email_delivery === 'skipped_missing_email'
+    || result?.email_delivery === 'skipped_invalid_email'
+  ) {
+    setStatus(
+      'Aucun courriel valide n’est enregistré pour ce client. Le lien a été créé — copiez-le manuellement.',
+      'error',
+    );
+    return;
+  }
+  setStatus(
+    'Le lien a été créé, mais le courriel n’a pas pu être envoyé.',
+    'error',
+  );
 }
 
 function formatAnswer(value, key = '') {
@@ -429,24 +484,35 @@ async function boot() {
     }
   });
 
+  const intakeInFlight = new Set();
   clientsGroups.addEventListener('click', async (event) => {
     const row = event.target.closest('tr[data-id]');
     if (!row) return;
     const id = row.getAttribute('data-id');
 
     if (event.target.classList.contains('btn-intake')) {
-      event.target.disabled = true;
+      if (intakeInFlight.has(id)) return;
+      const button = event.target;
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      button.textContent = 'Envoi…';
       try {
-        const result = await createIntakeLink(id);
-        await loadClients();
-        setStatus(
-          `${result.copied ? 'Lien copié dans le presse-papiers' : 'Lien généré'} — valide jusqu’au ${formatDate(result.expiresAt)}.`,
-          'ok',
-        );
-      } catch (err) {
-        setStatus(`Création du lien refusée : ${err.message || err}`, 'error');
+        await runIntakeInviteButtonAction({
+          clientId: id,
+          inFlight: intakeInFlight,
+          send: () => sendIntakeInvite(id),
+          applyResult: applyInviteResult,
+          refresh: loadClients,
+          setStatus,
+          getStatus: () => statusEl.textContent || '',
+        });
       } finally {
-        event.target.disabled = false;
+        if (button.isConnected) {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+          button.textContent = originalLabel;
+        }
       }
       return;
     }

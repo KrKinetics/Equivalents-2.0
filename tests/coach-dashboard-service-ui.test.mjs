@@ -90,7 +90,8 @@ test('nutrition CTA is helper-gated and programming has no fake tool button', ()
 
 test('intake actions remain available for every service group', () => {
   assert.match(dashboardJs, /btn-intake/);
-  assert.match(dashboardJs, /create_client_intake_invite/);
+  assert.match(dashboardJs, /\/api\/coach-send-intake-invite/);
+  assert.doesNotMatch(dashboardJs, /create_client_intake_invite/);
   assert.doesNotMatch(
     dashboardJs,
     /clientHasNutritionAccess\(row\.service_type\)[\s\S]{0,80}btn-intake/,
@@ -98,6 +99,8 @@ test('intake actions remain available for every service group', () => {
   assert.match(dashboardJs, /function clientRowMarkup/);
   assert.match(dashboardJs, /Créer le lien/);
   assert.match(dashboardJs, /Nouveau lien/);
+  assert.match(dashboardJs, /Envoyer le lien/);
+  assert.match(dashboardJs, /Renvoyer un nouveau lien/);
 });
 
 test('edit client uses an accessible dialog and confirms service changes', () => {

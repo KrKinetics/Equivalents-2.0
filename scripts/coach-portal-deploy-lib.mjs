@@ -413,6 +413,9 @@ export function assertConfigJsIsPublicOnly(source) {
   if (/SERVICE_ROLE|service_role|serviceRole/i.test(source)) {
     throw new Error('config.js must never include service_role');
   }
+  if (/RESEND_API_KEY|COACH_MAIL_FROM|COACH_MAIL_TEST_RECIPIENTS/i.test(source)) {
+    throw new Error('config.js must never include mail secrets');
+  }
   if (/undefined/.test(source)) {
     throw new Error('config.js must not contain undefined');
   }
