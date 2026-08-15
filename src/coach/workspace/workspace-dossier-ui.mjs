@@ -128,8 +128,8 @@ export const WORKSPACE_DASHBOARD_RETURN_LABEL = 'Retour au tableau de bord';
  * Leaves only the server-rendered dashboard return form usable.
  * @param {Document} [doc]
  */
-export function lockWorkspaceAccessDenied(doc = globalThis.document) {
-  if (!doc?.body) return { message: WORKSPACE_ACCESS_DENIED_MESSAGE };
+export function lockWorkspaceAccessDenied(doc = globalThis.document, message = WORKSPACE_ACCESS_DENIED_MESSAGE) {
+  if (!doc?.body) return { message };
 
   const select = doc.getElementById('liste_profils');
   if (select) {
@@ -198,7 +198,7 @@ export function lockWorkspaceAccessDenied(doc = globalThis.document) {
     });
   }
 
-  return { message: WORKSPACE_ACCESS_DENIED_MESSAGE };
+  return { message };
 }
 
 /**

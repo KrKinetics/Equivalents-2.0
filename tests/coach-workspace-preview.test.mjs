@@ -74,8 +74,33 @@ async function signInOrg(org) {
     .eq('is_fictional', true)
     .order('full_name', { ascending: true });
   assert.ifError(cErr);
-  await supabase.auth.signOut();
-  return { entry, clients: clients || [] };
+  return {
+    entry,
+    supabase,
+    userId: data.session.user.id,
+    organizationId: mem.organization_id,
+    clients: clients || [],
+  };
+}
+
+async function ensureNamedClients(session, names) {
+  const created = [];
+  const clients = [...session.clients];
+  for (const fullName of names) {
+    if (clients.some((row) => row.full_name === fullName)) continue;
+    const { data, error } = await session.supabase.from('clients').insert({
+      organization_id: session.organizationId,
+      created_by: session.userId,
+      full_name: fullName,
+      notes: 'workspace-preview-fixture',
+      is_fictional: true,
+      service_type: 'nutrition',
+    }).select('id, full_name').single();
+    assert.ifError(error);
+    clients.push(data);
+    created.push(data.id);
+  }
+  return { clients, created };
 }
 
 async function loginPortal(page, entry) {
@@ -169,11 +194,30 @@ test('KR client selector switches clients; dirty confirm cancel/continue; Elevat
     t.skip('.coach-passwords.local missing or incomplete');
     return;
   }
+  t.after(async () => {
+    await kr?.supabase?.auth.signOut();
+    await elevate?.supabase?.auth.signOut();
+  });
   const executablePath = chromePath();
   if (!executablePath) {
     t.skip('Chrome executable not found for Puppeteer');
     return;
   }
+
+  const krEnsured = await ensureNamedClients(kr, [
+    'Test persistance KR',
+    'test KR final',
+    'Client test KR',
+  ]);
+  kr.clients = krEnsured.clients;
+  const elevEnsured = await ensureNamedClients(elevate, ['Client test Elevate']);
+  elevate.clients = elevEnsured.clients;
+  t.after(async () => {
+    for (const id of [...krEnsured.created, ...elevEnsured.created].reverse()) {
+      const owner = krEnsured.created.includes(id) ? kr.supabase : elevate.supabase;
+      await owner.from('clients').delete().eq('id', id);
+    }
+  });
 
   const byName = (list, re) => list.find((c) => re.test(c.full_name));
   const source = byName(kr.clients, /Test persistance KR/i);

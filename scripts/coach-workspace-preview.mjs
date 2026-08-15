@@ -286,6 +286,7 @@ const server = http.createServer(async (req, res) => {
 
     if (
       urlPath.startsWith('/src/coach/workspace/')
+      || urlPath.startsWith('/src/coach/domain/')
       || urlPath.startsWith('/src/coach/services/')
       || urlPath.startsWith('/src/coach/client/')
     ) {

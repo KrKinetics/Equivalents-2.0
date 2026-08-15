@@ -7,6 +7,8 @@ import {
 import { buildWorkspaceStubProfile } from '../src/coach/workspace/workspace-client-stub.mjs';
 import {
   assertWorkspaceClientAccess,
+  NUTRITION_ENTITLEMENT_DENIED_CODE,
+  NUTRITION_ENTITLEMENT_DENIED_MESSAGE,
   parseClientIdParam,
   workspaceOpenPath,
 } from '../src/coach/workspace/workspace-access.mjs';
@@ -44,6 +46,7 @@ test('KR membership cannot open Elevate client (access guard)', () => {
     notes: 'demo',
     organization_id: ELEVATE_MEM.organizationId,
     is_fictional: true,
+    service_type: 'nutrition',
   };
   assert.throws(
     () => assertWorkspaceClientAccess({ client: elevateClient, membership: KR_MEM }),
@@ -58,6 +61,7 @@ test('Elevate membership cannot open KR client (access guard)', () => {
     notes: 'demo',
     organization_id: KR_MEM.organizationId,
     is_fictional: true,
+    service_type: 'nutrition',
   };
   assert.throws(
     () => assertWorkspaceClientAccess({ client: krClient, membership: ELEVATE_MEM }),
@@ -72,6 +76,7 @@ test('same-org fictional client opens with matching brand stub', () => {
     notes: 'fictif',
     organization_id: KR_MEM.organizationId,
     is_fictional: true,
+    service_type: 'nutrition',
   };
   const ctx = assertWorkspaceClientAccess({ client, membership: KR_MEM });
   assert.equal(ctx.brandId, 'kr');
@@ -92,6 +97,50 @@ test('non-fictional clients are refused', () => {
   assert.throws(
     () => assertWorkspaceClientAccess({ client, membership: KR_MEM }),
     /clients fictifs/i,
+  );
+});
+
+test('programming-only clients are denied nutrition workspace with a specific message', () => {
+  const client = {
+    id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
+    full_name: 'Client Programmation',
+    organization_id: KR_MEM.organizationId,
+    is_fictional: true,
+    service_type: 'programming',
+  };
+  try {
+    assertWorkspaceClientAccess({ client, membership: KR_MEM });
+    assert.fail('expected nutrition entitlement denial');
+  } catch (err) {
+    assert.equal(err.code, NUTRITION_ENTITLEMENT_DENIED_CODE);
+    assert.equal(err.message, NUTRITION_ENTITLEMENT_DENIED_MESSAGE);
+  }
+});
+
+test('complete clients may open the nutrition workspace', () => {
+  const client = {
+    id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
+    full_name: 'Client Complet',
+    notes: 'fictif',
+    organization_id: KR_MEM.organizationId,
+    is_fictional: true,
+    service_type: 'complete',
+  };
+  const ctx = assertWorkspaceClientAccess({ client, membership: KR_MEM });
+  assert.equal(ctx.fullName, 'Client Complet');
+  assert.equal(ctx.serviceType, 'complete');
+});
+
+test('missing service_type fails closed for nutrition workspace', () => {
+  const client = {
+    id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
+    full_name: 'Sans service',
+    organization_id: KR_MEM.organizationId,
+    is_fictional: true,
+  };
+  assert.throws(
+    () => assertWorkspaceClientAccess({ client, membership: KR_MEM }),
+    (err) => err.code === NUTRITION_ENTITLEMENT_DENIED_CODE,
   );
 });
 

@@ -13,7 +13,7 @@
     <div class="row dash-header">
       <div>
         <h1>Tableau de bord</h1>
-        <p class="lead dash-lead">Clients, pré-entrevues et dossiers dans un seul espace sécurisé.</p>
+        <p class="lead dash-lead">Clients classés par service, pré-entrevues et structure alimentaire.</p>
       </div>
       <button id="logout" type="button" class="btn-compact btn-ghost">Déconnexion</button>
     </div>
@@ -40,8 +40,15 @@
             <input id="email" name="email" type="email" maxlength="160" placeholder="client@exemple.com">
           </div>
         </div>
-        <label for="notes">Notes <span class="optional">Facultatif</span></label>
-        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Notes internes"></textarea>
+        <label for="notes">Notes internes <span class="optional">Facultatif</span></label>
+        <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Notes internes — facultatif"></textarea>
+        <label for="service_type">Service</label>
+        <select id="service_type" name="service_type" required>
+          <option value="">Choisir le service</option>
+          <option value="nutrition">Structure alimentaire</option>
+          <option value="programming">Programmation</option>
+          <option value="complete">Prise en charge complète</option>
+        </select>
         <button type="submit">Créer le client</button>
       </form>
     </section>
@@ -53,21 +60,8 @@
           <p class="lead dash-lead">Générez un lien individuel, puis consultez les réponses avant l’entrevue.</p>
         </div>
       </div>
-      <div class="table-scroll">
-        <table class="clients-table">
-          <thead>
-            <tr>
-              <th>Client</th>
-              <th>Coordonnées</th>
-              <th>Notes</th>
-              <th>Pré-entrevue</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="clients-body">
-            <tr><td colspan="5" class="empty">Chargement…</td></tr>
-          </tbody>
-        </table>
+      <div id="clients-groups" class="clients-groups">
+        <p class="empty">Chargement…</p>
       </div>
     </section>
   </main>
@@ -83,6 +77,47 @@
         <button id="intake-dialog-close" type="button" class="secondary dialog-close" aria-label="Fermer">Fermer</button>
       </div>
       <dl id="intake-response" class="response-grid"></dl>
+    </div>
+  </dialog>
+
+  <dialog id="edit-client-dialog" aria-labelledby="edit-client-dialog-title">
+    <div class="dialog-body">
+      <div class="dialog-header">
+        <div>
+          <p class="brand">Fiche client</p>
+          <h2 id="edit-client-dialog-title">Modifier le client</h2>
+          <p class="lead">Le service détermine les outils accessibles. Les données déjà enregistrées restent conservées.</p>
+        </div>
+        <button id="edit-client-dialog-close" type="button" class="secondary dialog-close" aria-label="Fermer">Fermer</button>
+      </div>
+      <form id="edit-client-form">
+        <input id="edit_client_id" type="hidden">
+        <input id="edit_original_service" type="hidden">
+        <label for="edit_full_name">Nom</label>
+        <input id="edit_full_name" name="full_name" required maxlength="120">
+        <label for="edit_email">Courriel <span class="optional">Facultatif</span></label>
+        <input id="edit_email" name="email" type="email" maxlength="160">
+        <label for="edit_notes">Notes internes <span class="optional">Facultatif</span></label>
+        <textarea id="edit_notes" name="notes" rows="3" maxlength="500"></textarea>
+        <label for="edit_service_type">Service</label>
+        <select id="edit_service_type" name="service_type" required>
+          <option value="">Choisir le service</option>
+          <option value="nutrition">Structure alimentaire</option>
+          <option value="programming">Programmation</option>
+          <option value="complete">Prise en charge complète</option>
+        </select>
+        <div id="edit-service-confirm" class="service-change-confirm hidden" role="region" aria-live="polite">
+          <p>Le changement de service modifiera les outils accessibles pour ce client. Les données existantes ne seront pas supprimées.</p>
+          <label class="service-change-check">
+            <input id="edit_service_confirm_check" type="checkbox">
+            <span>Je confirme le changement de service</span>
+          </label>
+        </div>
+        <div class="dialog-actions">
+          <button id="edit-client-cancel" type="button" class="secondary">Annuler</button>
+          <button type="submit">Enregistrer</button>
+        </div>
+      </form>
     </div>
   </dialog>
 

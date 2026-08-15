@@ -3,8 +3,13 @@
  * No secrets; browser/Node callers supply an already-authenticated Supabase client.
  */
 
+import { clientHasNutritionAccess } from '../domain/client-service-entitlements.mjs';
 import { brandIdFromOrganizationSlug } from './org-brand.mjs';
 import { buildWorkspaceStubProfile } from './workspace-client-stub.mjs';
+
+export const NUTRITION_ENTITLEMENT_DENIED_CODE = 'nutrition_entitlement_denied';
+export const NUTRITION_ENTITLEMENT_DENIED_MESSAGE =
+  'Ce client n’a pas accès à la structure alimentaire.';
 
 /**
  * @param {unknown} value
@@ -21,7 +26,7 @@ export function parseClientIdParam(value) {
 
 /**
  * @param {{
- *   client: { id: string, full_name: string, notes?: string|null, organization_id: string, is_fictional?: boolean } | null,
+ *   client: { id: string, full_name: string, notes?: string|null, organization_id: string, is_fictional?: boolean, service_type?: unknown } | null,
  *   membership: { organizationId: string, organization: { slug: string, name: string }, role: string },
  * }} args
  */
@@ -42,6 +47,11 @@ export function assertWorkspaceClientAccess({ client, membership }) {
   if (client.is_fictional !== true) {
     throw new Error('Seuls les clients fictifs peuvent être ouverts dans ce jalon.');
   }
+  if (!clientHasNutritionAccess(client.service_type)) {
+    const err = new Error(NUTRITION_ENTITLEMENT_DENIED_MESSAGE);
+    err.code = NUTRITION_ENTITLEMENT_DENIED_CODE;
+    throw err;
+  }
   return {
     brandId,
     organizationId: membership.organizationId,
@@ -51,6 +61,7 @@ export function assertWorkspaceClientAccess({ client, membership }) {
     clientId: client.id,
     fullName: client.full_name,
     notes: client.notes || '',
+    serviceType: client.service_type,
     stub: buildWorkspaceStubProfile({
       fullName: client.full_name,
       notes: client.notes || '',

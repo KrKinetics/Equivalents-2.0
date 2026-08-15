@@ -95,6 +95,10 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(targetDir, 'src', 'coach', 'workspace'),
   );
   copyTree(
+    path.join(root, 'src', 'coach', 'domain'),
+    path.join(targetDir, 'src', 'coach', 'domain'),
+  );
+  copyTree(
     path.join(root, 'src', 'coach', 'services'),
     path.join(targetDir, 'src', 'coach', 'services'),
   );
@@ -119,6 +123,7 @@ export function buildCoachVercelBundle(options = {}) {
     'assets/dashboard.js',
     'assets/intake.js',
     'src/coach/workspace/workspace-access.mjs',
+    'src/coach/domain/client-service-entitlements.mjs',
     'src/coach/services/storage/dossier-schema.mjs',
   ]) {
     if (!fs.existsSync(path.join(targetDir, rel))) {

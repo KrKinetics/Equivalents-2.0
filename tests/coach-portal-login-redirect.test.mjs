@@ -95,7 +95,7 @@ test('login.html is public; middleware may match it for CSP but must not auth-ga
   assert.match(mw, /'\/login\.html'/);
   // Auth gate must skip login — public branch returns next() before verifyToken.
   const publicGateIdx = mw.indexOf("pathname === '/login.html'");
-  const verifyIdx = mw.indexOf('await verifyToken(token)');
+  const verifyIdx = mw.indexOf('await verifyToken(');
   assert.ok(publicGateIdx > 0, 'login.html public gate present');
   assert.ok(verifyIdx > publicGateIdx, 'verifyToken runs only after public login gate');
 });

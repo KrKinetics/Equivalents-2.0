@@ -143,6 +143,7 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     full_name: `Dossier KR ${stamp}`,
     notes: 'persist-live',
     is_fictional: true,
+    service_type: 'nutrition',
   }).select('id').single();
   assert.ifError(krInsErr);
 
@@ -152,6 +153,7 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     full_name: `Dossier Elevate ${stamp}`,
     notes: 'persist-live',
     is_fictional: true,
+    service_type: 'nutrition',
   }).select('id').single();
   assert.ifError(elevInsErr);
 

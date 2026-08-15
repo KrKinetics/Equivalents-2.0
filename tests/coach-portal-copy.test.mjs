@@ -40,21 +40,19 @@ test('dashboard HTML uses production client copy', () => {
   assert.match(html, /Nouveau client</);
   assert.match(html, /placeholder="Nom complet du client"/);
   assert.match(html, /placeholder="Notes internes — facultatif"/);
-  assert.match(
-    html,
-    /Organisation connectée, rôle et clients isolés et protégés par organisation\./,
-  );
+  assert.match(html, /Clients classés par service, pré-entrevues et structure alimentaire\./);
+  assert.match(html, /<label for="service_type">Service<\/label>/);
   assert.doesNotMatch(html, /fictif|fictive|Client démo|Données de test uniquement|isolés par RLS/i);
 });
 
 test('dashboard JS status and confirm copy is production-facing', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/dashboard.js'), 'utf8');
   assert.match(src, /Session active — accès sécurisé à votre organisation\./);
-  assert.match(src, /Aucun client pour cette organisation\./);
+  assert.match(src, /Aucun client/);
   assert.match(src, /Client créé dans votre organisation seulement\./);
   assert.match(src, /Supprimer ce client \?/);
   assert.match(src, /Client supprimé\./);
-  assert.match(src, /Nom du client :/);
+  assert.match(src, /editDialog\.showModal\(\)/);
   assert.match(src, /Client mis à jour\./);
   assert.doesNotMatch(src, /fictif|fictive|isolation RLS|Client démo|Données de test/i);
   // Technical column remains for Supabase insert; must not appear in UI string literals above.

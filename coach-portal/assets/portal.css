@@ -121,12 +121,60 @@ th { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.04em; text-trans
 .clients-card { padding: 18px 18px 12px; }
 .clients-card-header { margin-bottom: 8px; }
 .clients-card-header .card-title { margin-bottom: 0; }
+.clients-groups { display: grid; gap: 18px; margin-top: 14px; }
+.client-service-group {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.client-service-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 16px 10px;
+  background: var(--primary);
+  color: #fff;
+}
+.client-service-group[data-service="nutrition"] .client-service-group-header {
+  border-bottom: 3px solid var(--accent);
+}
+.client-service-group[data-service="programming"] .client-service-group-header {
+  background: #123056;
+  border-bottom: 3px solid #8ea0b8;
+}
+.client-service-group[data-service="complete"] .client-service-group-header {
+  border-bottom: 3px solid #c6a15b;
+}
+.client-service-group-header h3 {
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+.client-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+}
 .clients-table { min-width: 920px; }
 .clients-table th { padding: 8px 10px; font-size: 0.72rem; }
 .clients-table td { padding: 12px 10px; font-size: 0.92rem; }
 .client-name-cell { min-width: 140px; }
 .client-name-cell strong { font-size: 0.95rem; }
 .client-notes-cell { max-width: 220px; color: var(--muted); font-size: 0.86rem; line-height: 1.4; }
+.service-badge {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 .status-chip {
   display: inline-flex;
   align-items: center;
@@ -153,7 +201,7 @@ th { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.04em; text-trans
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
-  max-width: 340px;
+  max-width: 420px;
 }
 .btn-compact,
 a.btn-compact {
@@ -220,6 +268,42 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
 .dialog-header h2 { margin: 0 0 4px; color: var(--primary); font-size: 1.25rem; }
 .dialog-header .lead { margin: 0; font-size: 0.88rem; }
 .dialog-close { padding: 6px 10px; font-size: 0.78rem; }
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+.service-change-confirm {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  background: #fff7ed;
+  color: #9a3412;
+}
+.service-change-confirm p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.service-change-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  font-weight: 650;
+  color: var(--text);
+}
+.service-change-check input {
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  padding: 0;
+  flex: 0 0 17px;
+  accent-color: var(--accent);
+}
 .response-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
