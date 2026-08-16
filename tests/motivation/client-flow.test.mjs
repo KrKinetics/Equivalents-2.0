@@ -32,12 +32,15 @@ test('expired or incompatible links fail closed in the public page', () => {
 });
 
 test('QA tool is coach-only preview and can process official analysis', () => {
+  const middleware = fs.readFileSync(path.join(root, 'middleware.js'), 'utf8');
   assert.match(qaHtml, /QA — Profil motivationnel/);
   assert.match(qaJs, /previewTools/);
   assert.match(qaJs, /\/api\/coach-send-motivation-invite/);
   assert.match(qaJs, /\/api\/coach-process-motivation-assessment/);
   assert.match(qaJs, /is_fictional/);
   assert.doesNotMatch(qaJs, /SUPABASE_SERVICE_ROLE|service_role/);
+  assert.match(middleware, /'\/motivation-qa\.html'/);
+  assert.match(middleware, /'\/assets\/motivation-qa\.js'/);
 });
 
 test('dashboard habits card remains untouched for Phase 2C', () => {

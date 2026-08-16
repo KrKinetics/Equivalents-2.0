@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { sendMotivationInvite } from '../../src/coach/server/motivation/send-motivation-invite.mjs';
 import { buildMotivationInviteUrl, PRODUCTION_INTAKE_ORIGIN } from '../../src/coach/server/motivation/build-motivation-origin.mjs';
@@ -16,6 +17,7 @@ import {
 } from '../../src/coach/motivation/versions/motivation-versions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const require = createRequire(import.meta.url);
 const ORG = '11111111-1111-1111-1111-111111111111';
 const CLIENT_ID = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const OPAQUE_TOKEN = 'opaque_motivation_token_value_24ch';
@@ -167,13 +169,34 @@ test('motivation invite logs never include the raw token', () => {
   assert.equal(redacted.includes('MOT_AUTO_01'), false);
 });
 
+test('single motivation function stays within the Vercel Hobby limit', () => {
+  const files = fs.readdirSync(path.join(root, 'api')).filter((name) => name.endsWith('.js'));
+  assert.ok(files.length <= 12, files.join(','));
+  assert.ok(files.includes('coach-motivation.js'));
+  const { resolveMotivationApiOp } = require(path.join(root, 'api/coach-motivation.js'));
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-send-motivation-invite' }), 'send-invite');
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=send-invite' }), 'send-invite');
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-process-motivation-assessment' }), 'process-assessment');
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=process-assessment' }), 'process-assessment');
+});
+
 test('motivation API routes stay off the service role and reuse intake auth', () => {
-  const inviteApi = fs.readFileSync(path.join(root, 'api/coach-send-motivation-invite.js'), 'utf8');
-  const processApi = fs.readFileSync(path.join(root, 'api/coach-process-motivation-assessment.js'), 'utf8');
-  assert.match(inviteApi, /createCoachApiHandler/);
-  assert.match(processApi, /processSubmittedMotivationAssessment/);
-  assert.doesNotMatch(inviteApi, /SERVICE_ROLE|service_role/);
-  assert.doesNotMatch(processApi, /SERVICE_ROLE|service_role/);
+  const api = fs.readFileSync(path.join(root, 'api/coach-motivation.js'), 'utf8');
+  const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  assert.match(api, /createCoachApiHandler/);
+  assert.match(api, /sendMotivationInvite/);
+  assert.match(api, /processSubmittedMotivationAssessment/);
+  assert.doesNotMatch(api, /SERVICE_ROLE|service_role/);
   assert.equal(getRateLimitProfile('send-motivation-invite').max, 8);
   assert.equal(getRateLimitProfile('process-motivation-assessment').max, 8);
+  assert.ok(vercel.rewrites.some((row) => (
+    row.source === '/api/coach-send-motivation-invite'
+    && row.destination === '/api/coach-motivation?op=send-invite'
+  )));
+  assert.ok(vercel.rewrites.some((row) => (
+    row.source === '/api/coach-process-motivation-assessment'
+    && row.destination === '/api/coach-motivation?op=process-assessment'
+  )));
+  assert.equal(fs.existsSync(path.join(root, 'api/coach-send-motivation-invite.js')), false);
+  assert.equal(fs.existsSync(path.join(root, 'api/coach-process-motivation-assessment.js')), false);
 });

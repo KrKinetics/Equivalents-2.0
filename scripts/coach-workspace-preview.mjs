@@ -54,6 +54,11 @@ const COACH_API_HANDLERS = Object.freeze([
   'coach-process-motivation-assessment',
 ]);
 
+const COACH_API_HANDLER_FILES = Object.freeze({
+  'coach-send-motivation-invite': 'coach-motivation',
+  'coach-process-motivation-assessment': 'coach-motivation',
+});
+
 const { url, publishableKey } = requireSupabasePublicEnv(root);
 
 function mime(filePath) {
@@ -175,7 +180,8 @@ function notFoundJson(res) {
 }
 
 async function invokeCoachApiHandler(apiName, req, res) {
-  const abs = path.join(root, 'api', `${apiName}.js`);
+  const fileName = COACH_API_HANDLER_FILES[apiName] || apiName;
+  const abs = path.join(root, 'api', `${fileName}.js`);
   if (!fs.existsSync(abs)) {
     notFoundJson(res);
     return;

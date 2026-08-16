@@ -22,6 +22,8 @@ export const config = {
     '/index.html',
     '/login.html',
     '/intake.html',
+    '/motivation.html',
+    '/motivation-qa.html',
     '/dashboard.html',
     '/pre-interview-report.html',
     '/reviews.html',
@@ -31,6 +33,8 @@ export const config = {
     '/assets/dashboard.js',
     '/assets/pre-interview-report.js',
     '/assets/intake.js',
+    '/assets/motivation.js',
+    '/assets/motivation-qa.js',
     '/assets/reviews-admin.js',
     '/assets/workspace-bootstrap.mjs',
   ],
@@ -97,6 +101,8 @@ export default async function middleware(request) {
     || pathname === '/index.html'
     || pathname === '/intake.html'
     || pathname === '/assets/intake.js'
+    || pathname === '/motivation.html'
+    || pathname === '/assets/motivation.js'
     || pathname === '/'
   ) {
     return next({ headers: sec });

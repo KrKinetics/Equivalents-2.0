@@ -38,6 +38,14 @@
     {
       "source": "/workspace",
       "destination": "/workspace/index.html"
+    },
+    {
+      "source": "/api/coach-send-motivation-invite",
+      "destination": "/api/coach-motivation?op=send-invite"
+    },
+    {
+      "source": "/api/coach-process-motivation-assessment",
+      "destination": "/api/coach-motivation?op=process-assessment"
     }
   ],
   "headers": [
