@@ -35,8 +35,9 @@ class KrLayout {
     this.left = KR_V42_PAGE.marginX;
     this.width = KR_V42_PAGE.width - KR_V42_PAGE.marginX * 2;
     this.bottom = KR_V42_PAGE.height - KR_V42_PAGE.footerHeight;
-    this.y = KR_V42_PAGE.headerHeight + 8;
+    this.y = 36;
     this.overflows = [];
+    this.logoPlacements = [];
   }
 
   setFont(bold = false, size = KR_V42_TYPE.body, color = KR_V42_COLORS.text) {
@@ -71,6 +72,7 @@ class KrLayout {
     if (logoPath) {
       try {
         this.doc.image(logoPath, this.left, 10, { width: 58 });
+        this.logoPlacements.push({ page: this.page, role: 'header' });
       } catch {
         // keep header text if the asset cannot be painted
       }
@@ -178,6 +180,7 @@ function drawHero(layout, display, logoPath) {
       const logoWidth = 150;
       const logoHeight = logoWidth * (302 / 993);
       layout.doc.image(logoPath, layout.left, layout.y, { width: logoWidth });
+      layout.logoPlacements.push({ page: layout.page, role: 'hero' });
       layout.y += logoHeight + 12;
     } catch {
       // title still renders without the mark
@@ -469,8 +472,7 @@ export async function renderCoachReportPdfV42Kr({ display, generatedAt = new Dat
     clientName: vm.clientName,
     generatedAt,
   });
-  layout.drawHeader();
-  layout.y = KR_V42_PAGE.headerHeight + 12;
+  layout.y = 36;
   drawHero(layout, vm, logoPath);
   drawQuickRead(layout, vm.quickRead);
   drawSummary(layout, vm.summary);
@@ -493,5 +495,11 @@ export async function renderCoachReportPdfV42Kr({ display, generatedAt = new Dat
   if (layout.overflows.length && (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development')) {
     throw new Error(`PDF layout overflow: ${layout.overflows[0].text}`);
   }
-  return { buffer, pageCount, renderer: MOTIVATION_PDF_RENDERER_ID, logoPath };
+  return {
+    buffer,
+    pageCount,
+    renderer: MOTIVATION_PDF_RENDERER_ID,
+    logoPath,
+    logoPlacements: layout.logoPlacements,
+  };
 }

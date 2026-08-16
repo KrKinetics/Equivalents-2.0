@@ -152,13 +152,65 @@ function fourWeekCards(report) {
   }).filter(Boolean);
 }
 
+function obstacleSourceCode(item) {
+  if (!item || typeof item === 'string') return '';
+  if (Array.isArray(item.directSourceCodes) && item.directSourceCodes.length) {
+    return text(item.directSourceCodes.find((code) => /^NUT_OBS_/i.test(String(code))) || item.directSourceCodes[0]);
+  }
+  return text(
+    item.questionCode
+    || item.sourceQuestionCode
+    || item.sourceCode
+    || item.code
+    || item.source,
+  );
+}
+
+function isNutritionObstacleSource(code) {
+  return /^NUT_OBS_/i.test(text(code));
+}
+
+function splitObstacleLabels(value) {
+  return text(value)
+    .split(',')
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+/**
+ * Nutrition obstacles only when the snapshot names a NUT_OBS_* source.
+ * Generic OBS_* items stay out of this subsection — omit if provenance is ambiguous.
+ */
+function nutritionObstacleItems(report) {
+  const coded = [
+    ...(Array.isArray(report?.declaredObstacles) ? report.declaredObstacles : []),
+    ...(Array.isArray(report?.normalizedObstacles) ? report.normalizedObstacles : []),
+    ...(Array.isArray(report?.nutrition?.obstacles) ? report.nutrition.obstacles : []),
+  ].filter((item) => isNutritionObstacleSource(obstacleSourceCode(item)));
+
+  const fromAnswers = [
+    ...(Array.isArray(report?.directAnswers) ? report.directAnswers : []),
+    ...(Array.isArray(report?.openAnswers) ? report.openAnswers : []),
+    ...(Array.isArray(report?.normalizedOpenAnswers) ? report.normalizedOpenAnswers : []),
+  ].filter((row) => isNutritionObstacleSource(row?.questionCode || row?.code));
+
+  const labels = [
+    ...coded,
+    ...fromAnswers.flatMap((row) => splitObstacleLabels(
+      row.displayValue
+      || row.originalAnswer
+      || row.text
+      || row.value
+      || row.normalizedText,
+    )),
+  ];
+  return list(labels);
+}
+
 function nutritionBlock(report, plan) {
   const lecture = paragraphs(report.nutrition?.narrativeSections);
   const structure = text(plan.nutritionApproach);
-  const obstacles = list([
-    ...list(report.declaredObstacles),
-    ...list(report.normalizedObstacles),
-  ]);
+  const obstacles = nutritionObstacleItems(report);
   const actions = list(report.nutrition?.priorityActions || plan.nutritionActions);
   if (!lecture.length && !structure && !obstacles.length && !actions.length) return null;
   return { lecture, structure, obstacles, actions };

@@ -86,6 +86,31 @@ test('renderMotivationPdf uses the current KR v4.2 renderer, not v31', async () 
   assert.equal(KR_V42_COLORS.accent, '#ed1136');
 });
 
+test('v4.2 PDF page 1 has a single hero logo and continuation pages keep the small mark', async () => {
+  const renderer = fs.readFileSync(path.join(root, 'src/coach/motivation/lib/pdf/render-v42-kr.mjs'), 'utf8');
+  assert.match(renderer, /drawHero\(layout, vm, logoPath\)/);
+  assert.doesNotMatch(
+    renderer,
+    /layout\.drawHeader\(\);\s*[\s\S]{0,80}drawHero/,
+  );
+
+  const { result } = analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
+    assessmentId: 'asm_pdf_logo',
+    clientName: 'Client test KR',
+    completedAt: new Date('2026-08-16T12:00:00.000Z'),
+  });
+  const rendered = await renderMotivationPdf(result.report, {
+    clientName: 'Client test KR',
+    analysisVersion: 1,
+  });
+  const page1 = (rendered.logoPlacements || []).filter((row) => row.page === 1);
+  assert.equal(page1.length, 1);
+  assert.equal(page1[0].role, 'hero');
+  const later = (rendered.logoPlacements || []).filter((row) => row.page > 1);
+  assert.ok(later.length >= 1);
+  assert.ok(later.every((row) => row.role === 'header'));
+});
+
 test('KR v4.2 PDF preserves French unicode without rewriting verbatim', async () => {
   const phrase = 'évaluerez-vous préparation – adhésion récupération qualité';
   const verbatim = 'je veuxdes abdo — déjà prêt à l’œuvre';

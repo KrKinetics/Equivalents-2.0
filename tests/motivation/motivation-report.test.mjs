@@ -248,6 +248,59 @@ test('coach report hierarchy uses existing snapshot values only', () => {
   ]);
 });
 
+test('nutrition subsection keeps only NUT_OBS_* obstacles and never generic OBS_*', () => {
+  const snapshot = {
+    schemaVersion: REPORT_MODEL_V42,
+    declaredObstacles: [
+      { rawLabel: 'horaire chargé', category: 'other' },
+      { rawLabel: 'Manque de temps', category: 'other' },
+    ],
+    normalizedObstacles: [
+      { normalizedLabel: 'horaire chargé', canonicalId: 'other_other' },
+      { normalizedLabel: 'Manque de temps', canonicalId: 'other_other' },
+    ],
+    directAnswers: [
+      { questionCode: 'OBS_01', questionText: 'Obstacles entraînement', displayValue: 'horaire chargé' },
+      { questionCode: 'NUT_OBS_01', questionText: 'Obstacles alimentaires', displayValue: 'Manque de temps' },
+    ],
+    openAnswers: [
+      { questionCode: 'OBS_01', originalAnswer: 'horaire chargé' },
+    ],
+    nutrition: {
+      narrativeSections: [{ paragraphs: ['Lecture nutrition existante.'] }],
+    },
+    initialPlan: { nutritionApproach: 'Approche flexible.' },
+  };
+  const before = JSON.stringify(snapshot);
+  const vm = buildMotivationReportViewModel({ report: snapshot, clientName: 'Client test KR' });
+  assert.equal(JSON.stringify(snapshot), before);
+  assert.ok(vm.nutrition);
+  assert.ok(vm.nutrition.obstacles.includes('Manque de temps'));
+  assert.equal(vm.nutrition.obstacles.some((item) => /horaire chargé/i.test(item)), false);
+  const html = buildMotivationReportMarkup(vm);
+  const start = html.indexOf('data-section="nutrition"');
+  const next = html.indexOf('data-section="', start + 20);
+  const nutritionHtml = html.slice(start, next === -1 ? undefined : next);
+  assert.match(nutritionHtml, /Manque de temps/);
+  assert.doesNotMatch(nutritionHtml, /horaire chargé/);
+
+  const submission = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
+    clientName: 'Client test KR',
+    assessmentId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+  });
+  const analyzed = analyzeMotivationAssessment({
+    questionnaireVersion: QUESTIONNAIRE_V41,
+    rulesetVersion: RULESET_V41,
+    reportModelVersion: REPORT_MODEL_V42,
+    answers: submission.answers,
+    presentedQuestionCodes: submission.presentedQuestionCodes,
+    clientName: 'Client test KR',
+  });
+  const live = buildMotivationReportViewModel({ report: analyzed.report });
+  assert.ok(live.nutrition?.obstacles.some((item) => /Manque de temps/i.test(item)));
+  assert.equal(live.nutrition?.obstacles.some((item) => /horaire chargé/i.test(item)), false);
+});
+
 test('process API maps not_submitted to 409 and exposes analyzed_at', () => {
   const { motivationProcessHttpStatus } = require(path.join(root, 'api/coach-motivation.js'));
   const api = fs.readFileSync(path.join(root, 'api/coach-motivation.js'), 'utf8');

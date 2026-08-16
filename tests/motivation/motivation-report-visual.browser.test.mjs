@@ -18,7 +18,7 @@ import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motiv
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const portal = path.join(root, 'coach-portal');
-const outDir = path.join(root, 'reports', 'motivation-2c4-visual');
+const outDir = path.join(root, 'tmp', 'motivation-2c4-visual');
 
 function resolveChromePath() {
   const candidates = [
