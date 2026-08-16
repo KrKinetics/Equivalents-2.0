@@ -1,0 +1,166 @@
+/** Adaptive confirmation bank metadata for questionnaire-v4.1 (runtime-safe). */
+export const MAX_ADAPTIVE_QUESTIONS = 4;
+export const MAX_ADAPTIVE_PER_DOMAIN = 1;
+export const QUESTIONNAIRE_V41_ADAPTIVE_MAX = MAX_ADAPTIVE_QUESTIONS;
+export const QUESTIONNAIRE_V41_BASE_COUNT = 34;
+export const QUESTIONNAIRE_V41_TOTAL_MAX = 38;
+export const V41_ADAPTIVE_BANK_CODES = [
+    "MOT_AUTO_02",
+    "MOT_RES_02",
+    "EFF_03",
+    "RIG_02",
+    "EFFORT_03",
+    "LT_01",
+    "STRUCT_01",
+    "EXPL_03",
+    "CHOICE_02",
+    "COACH_02",
+    "CONS_02",
+    "CONS_03",
+    "NUT_ROLE_02",
+    "NUT_PERF_02",
+    "NUT_PLAN_01",
+    "NUT_FLEX_04",
+    "NUT_COMP_02",
+    "NUT_STRUCT_02",
+    "NUT_SIGNAL_02",
+];
+export const V41_ADAPTIVE_CANDIDATES = [
+    {
+        code: "RIG_02",
+        domainId: "all_or_nothing",
+        priority: "critical",
+        affectedDecisionIds: ["all_or_nothing_protocol", "recovery_protocol"],
+    },
+    {
+        code: "EFF_03",
+        domainId: "adherence_maintenance",
+        priority: "critical",
+        affectedDecisionIds: ["follow_up_frequency", "recovery_protocol", "training_structure"],
+    },
+    {
+        code: "CONS_02",
+        domainId: "adherence_recovery_signal",
+        priority: "critical",
+        affectedDecisionIds: ["follow_up_frequency", "recovery_protocol"],
+    },
+    {
+        code: "CONS_03",
+        domainId: "adherence_history",
+        priority: "high",
+        affectedDecisionIds: ["follow_up_frequency", "training_structure"],
+    },
+    {
+        code: "NUT_COMP_02",
+        domainId: "compensatory_food",
+        priority: "critical",
+        affectedDecisionIds: ["food_recovery_protocol"],
+    },
+    {
+        code: "NUT_PLAN_01",
+        domainId: "nutrition_planning",
+        priority: "high",
+        affectedDecisionIds: ["food_planning_approach", "food_structure"],
+    },
+    {
+        code: "NUT_STRUCT_02",
+        domainId: "nutrition_structure",
+        priority: "high",
+        affectedDecisionIds: ["food_structure", "food_planning_approach"],
+    },
+    {
+        code: "NUT_FLEX_04",
+        domainId: "food_flexibility",
+        priority: "high",
+        affectedDecisionIds: ["food_recovery_protocol"],
+    },
+    {
+        code: "MOT_AUTO_02",
+        domainId: "autonomous_value_without_results",
+        priority: "high",
+        affectedDecisionIds: ["follow_up_frequency", "communication_style"],
+    },
+    {
+        code: "MOT_RES_02",
+        domainId: "results_delay_sensitivity",
+        priority: "high",
+        affectedDecisionIds: ["follow_up_frequency", "communication_style"],
+    },
+    {
+        code: "EFFORT_03",
+        domainId: "delay_tolerance",
+        priority: "high",
+        affectedDecisionIds: ["follow_up_frequency"],
+    },
+    {
+        code: "LT_01",
+        domainId: "long_term_projection",
+        priority: "high",
+        affectedDecisionIds: ["follow_up_frequency", "training_structure"],
+    },
+    {
+        code: "CHOICE_02",
+        domainId: "choice_interest",
+        priority: "moderate",
+        affectedDecisionIds: ["choice_approach"],
+    },
+    {
+        code: "STRUCT_01",
+        domainId: "structure_need",
+        priority: "moderate",
+        affectedDecisionIds: ["training_structure"],
+    },
+    {
+        code: "EXPL_03",
+        domainId: "explanation_need",
+        priority: "moderate",
+        affectedDecisionIds: ["communication_style"],
+    },
+    {
+        code: "COACH_02",
+        domainId: "coach_receptivity",
+        priority: "moderate",
+        affectedDecisionIds: ["communication_style"],
+    },
+    {
+        code: "NUT_ROLE_02",
+        domainId: "nutrition_value",
+        priority: "moderate",
+        affectedDecisionIds: ["food_planning_approach"],
+    },
+    {
+        code: "NUT_PERF_02",
+        domainId: "performance_fueling",
+        priority: "moderate",
+        affectedDecisionIds: ["food_planning_approach"],
+    },
+    {
+        code: "NUT_SIGNAL_02",
+        domainId: "hunger_signals",
+        priority: "moderate",
+        affectedDecisionIds: ["food_structure"],
+    },
+];
+/** Domain priority for deterministic ranking (lower index = higher priority). */
+export const V41_DOMAIN_SELECTION_PRIORITY = [
+    "all_or_nothing",
+    "adherence_maintenance",
+    "adherence_recovery_signal",
+    "adherence_history",
+    "adherence_recovery",
+    "compensatory_food",
+    "nutrition_planning",
+    "nutrition_structure",
+    "food_flexibility",
+    "results_delay_sensitivity",
+    "autonomous_value_without_results",
+    "delay_tolerance",
+    "long_term_projection",
+    "choice_interest",
+    "structure_need",
+    "explanation_need",
+    "coach_receptivity",
+    "nutrition_value",
+    "performance_fueling",
+    "hunger_signals",
+];
