@@ -21,6 +21,9 @@ import {
   KR_V42_PACKAGED_LOGO,
 } from '../../src/coach/motivation/lib/pdf/kr-v42-logo.mjs';
 import { KR_V42_COLORS } from '../../src/coach/motivation/lib/pdf/theme-v42-kr.mjs';
+import { formatCoachDateTime } from '../../src/coach/motivation/lib/report-timestamp.mjs';
+import { buildMotivationReportMarkup } from '../../src/coach/motivation/report/build-motivation-report-html.mjs';
+import { buildMotivationReportViewModel } from '../../src/coach/motivation/report/motivation-report-view-model.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -109,6 +112,84 @@ test('v4.2 PDF page 1 has a single hero logo and continuation pages keep the sma
   const later = (rendered.logoPlacements || []).filter((row) => row.page > 1);
   assert.ok(later.length >= 1);
   assert.ok(later.every((row) => row.role === 'header'));
+});
+
+test('PDF timestamps use America/Toronto and match the web report', async () => {
+  const submittedAt = '2026-08-16T19:55:00.000Z';
+  const analyzedAt = '2026-08-16T20:38:00.000Z';
+  const expectedSubmitted = formatCoachDateTime(submittedAt);
+  const expectedAnalyzed = formatCoachDateTime(analyzedAt);
+  assert.match(expectedSubmitted, /15 h 55/);
+  assert.match(expectedAnalyzed, /16 h 38/);
+
+  const src = fs.readFileSync(path.join(root, 'src/coach/motivation/lib/pdf/render-v42-kr.mjs'), 'utf8');
+  const helper = fs.readFileSync(path.join(root, 'src/coach/motivation/lib/report-timestamp.mjs'), 'utf8');
+  assert.match(src, /formatCoachDateTime/);
+  assert.match(helper, /America\/Toronto/);
+  assert.match(helper, /timeZone:\s*timezone/);
+
+  const html = buildMotivationReportMarkup(buildMotivationReportViewModel({
+    report: { schemaVersion: 'report-model-v4.2' },
+    clientName: 'Client test KR',
+    submittedAt,
+    analyzedAt,
+  }));
+  assert.match(html, new RegExp(expectedSubmitted.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.match(html, new RegExp(expectedAnalyzed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+
+  const rendered = await renderCoachReportPdfV42Kr({
+    display: {
+      clientName: 'Client test KR',
+      submittedAt,
+      analyzedAt,
+      analysisVersion: 1,
+      technical: {
+        questionnaireVersion: 'questionnaire-v4.1',
+        submittedAt,
+        analyzedAt,
+      },
+    },
+  });
+  const text = (await extractPdfPagesText(rendered.buffer)).map((page) => page.text).join('\n');
+  assert.match(text, /15 h 55/);
+  assert.match(text, /16 h 38/);
+  assert.doesNotMatch(text, /19 h 55/);
+  assert.doesNotMatch(text, /20 h 38/);
+});
+
+test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () => {
+  const { result } = analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
+    assessmentId: 'asm_pdf_pages',
+    clientName: 'Client test KR',
+    completedAt: new Date('2026-08-16T19:55:00.000Z'),
+  });
+  const rendered = await renderMotivationPdf(result.report, {
+    clientName: 'Client test KR',
+    analysisVersion: 1,
+    submittedAt: '2026-08-16T19:55:00.000Z',
+    analyzedAt: '2026-08-16T20:38:00.000Z',
+    contentHash: 'a'.repeat(64),
+  });
+  assert.equal(rendered.pageCount, 5);
+  const pages = await extractPdfPagesText(rendered.buffer);
+  assert.equal(pages.length, 5);
+  for (const page of pages) {
+    assert.equal(isEffectivelyBlankPage(page.text), false, `blank page ${page.pageNumber}`);
+    const body = page.text
+      .replace(/Confidentiel — usage Coach KR Kinetics/gi, ' ')
+      .replace(/\d+\s*\/\s*\d+/g, ' ')
+      .replace(/Profil motivationnel/gi, ' ')
+      .replace(/KR Kinetics/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    assert.ok(body.length >= 80, `thin page ${page.pageNumber}: ${body.slice(0, 60)}`);
+    const onlyAnalyse = /^Analyse\b/i.test(body) && body.length < 80;
+    assert.equal(onlyAnalyse, false, `orphan Analyse page ${page.pageNumber}`);
+  }
+  const last = pages[pages.length - 1].text;
+  assert.match(last, /Informations techniques/i);
+  assert.match(last, /Questionnaire|Ruleset|Empreinte|Soumission/i);
+  assert.ok(last.length > 120);
 });
 
 test('KR v4.2 PDF preserves French unicode without rewriting verbatim', async () => {

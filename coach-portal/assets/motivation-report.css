@@ -32,12 +32,28 @@
   box-shadow: 0 12px 32px rgba(7, 27, 65, 0.06);
 }
 
+.motivation-hero-brand {
+  background: var(--primary, #071b41);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
 .motivation-hero-logo,
+.motivation-hero-brand .intake-report-logo-wrap,
 .motivation-report .intake-report-logo-wrap {
   display: flex;
   align-items: center;
   min-height: 40px;
   margin-bottom: 10px;
+}
+
+.motivation-hero-brand .motivation-hero-logo,
+.motivation-hero-brand .intake-report-logo-wrap {
+  margin-bottom: 0;
 }
 
 .motivation-report .intake-report-logo-wrap img,

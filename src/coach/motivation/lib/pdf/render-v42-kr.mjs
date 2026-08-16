@@ -7,6 +7,7 @@ import PDFDocument from 'pdfkit';
 import { resolveFontFile, resolvePdfAsset } from './components/layout.mjs';
 import { PDF_FONTS } from './theme.mjs';
 import { KR_V42_BRAND, KR_V42_COLORS, KR_V42_PAGE, KR_V42_TYPE } from './theme-v42-kr.mjs';
+import { formatCoachDateTime } from '../report-timestamp.mjs';
 
 export const MOTIVATION_PDF_RENDERER_ID = 'renderCoachReportPdfV42Kr';
 
@@ -71,7 +72,14 @@ class KrLayout {
     const { logoPath, clientName } = this.meta;
     if (logoPath) {
       try {
-        this.doc.image(logoPath, this.left, 10, { width: 58 });
+        const logoW = 58;
+        const logoH = logoW * (302 / 993);
+        const padX = 6;
+        const padY = 4;
+        this.doc
+          .roundedRect(this.left, 8, logoW + padX * 2, logoH + padY * 2, 3)
+          .fill(KR_V42_COLORS.primary);
+        this.doc.image(logoPath, this.left + padX, 8 + padY, { width: logoW });
         this.logoPlacements.push({ page: this.page, role: 'header' });
       } catch {
         // keep header text if the asset cannot be painted
@@ -179,9 +187,16 @@ function drawHero(layout, display, logoPath) {
     try {
       const logoWidth = 150;
       const logoHeight = logoWidth * (302 / 993);
-      layout.doc.image(logoPath, layout.left, layout.y, { width: logoWidth });
+      const padX = 12;
+      const padY = 10;
+      const boxW = logoWidth + padX * 2;
+      const boxH = logoHeight + padY * 2;
+      layout.doc
+        .roundedRect(layout.left, layout.y, boxW, boxH, 6)
+        .fill(KR_V42_COLORS.primary);
+      layout.doc.image(logoPath, layout.left + padX, layout.y + padY, { width: logoWidth });
       layout.logoPlacements.push({ page: layout.page, role: 'hero' });
-      layout.y += logoHeight + 12;
+      layout.y += boxH + 12;
     } catch {
       // title still renders without the mark
     }
@@ -230,15 +245,7 @@ function drawHero(layout, display, logoPath) {
 }
 
 function formatPdfDate(value) {
-  if (!value) return '';
-  try {
-    return new Intl.DateTimeFormat('fr-CA', {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    }).format(new Date(value));
-  } catch {
-    return String(value);
-  }
+  return formatCoachDateTime(value);
 }
 
 function drawQuickRead(layout, items) {
@@ -437,11 +444,42 @@ function drawTechnical(layout, technical) {
     ['Analyse', formatPdfDate(technical?.analyzedAt)],
   ].filter(([, value]) => value);
   if (!rows.length) return;
-  layout.ensure(120);
-  layout.sectionTitle('Informations techniques');
-  for (const [label, value] of rows) {
-    layout.text(`${label} : ${value}`, { size: 8, color: KR_V42_COLORS.muted, gapAfter: 3 });
+
+  const pad = 8;
+  const innerW = layout.width - pad * 2;
+  const title = 'Informations techniques';
+  const titleH = layout.heightOf(title.toUpperCase(), innerW, {
+    bold: true,
+    size: 8,
+    lineGap: 1,
+  });
+  const measured = rows.map(([label, value]) => {
+    const line = `${label} : ${value}`;
+    return {
+      line,
+      height: layout.heightOf(line, innerW, { size: 7.5, lineGap: 1 }),
+    };
+  });
+  const blockH = pad + titleH + 6 + measured.reduce((sum, row) => sum + row.height + 2, 0) + pad;
+  layout.ensure(blockH + 2);
+
+  const start = layout.y;
+  layout.doc
+    .save()
+    .roundedRect(layout.left, start, layout.width, blockH, 5)
+    .fillAndStroke(KR_V42_COLORS.bg, KR_V42_COLORS.border)
+    .restore();
+
+  let y = start + pad;
+  layout.setFont(true, 8, KR_V42_COLORS.primary);
+  layout.doc.text(t(title).toUpperCase(), layout.left + pad, y, { width: innerW, lineGap: 1 });
+  y += titleH + 6;
+  for (const row of measured) {
+    layout.setFont(false, 7.5, KR_V42_COLORS.muted);
+    layout.doc.text(t(row.line), layout.left + pad, y, { width: innerW, lineGap: 1 });
+    y += row.height + 2;
   }
+  layout.y = start + blockH + 6;
 }
 
 export async function renderCoachReportPdfV42Kr({ display, generatedAt = new Date() } = {}) {

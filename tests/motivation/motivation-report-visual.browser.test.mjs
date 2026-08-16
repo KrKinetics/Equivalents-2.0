@@ -209,6 +209,9 @@ test('web report is scannable at 1440 and 390 without horizontal scroll', async 
   await desktop.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
   await desktop.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
   await desktop.screenshot({ path: path.join(outDir, 'web-desktop-1440-top.png'), fullPage: false });
+  await captureSection(desktop, '[data-section="vigilance"]', 'web-desktop-1440-vigilance.png');
+  assert.equal(await captureSection(desktop, '[data-section="interview"]', 'web-desktop-1440-interview.png'), true);
+  assert.equal(await captureSection(desktop, '[data-section="nutrition"]', 'web-desktop-1440-nutrition.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="dimensions"]', 'web-desktop-1440-dimensions.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="four-week-plan"]', 'web-desktop-1440-plan.png'), true);
   const desktopMetrics = await desktop.evaluate(() => ({
@@ -251,6 +254,8 @@ test('PDF pages render for visual inspection', async (t) => {
   const first = await page.evaluate(async () => window.renderPdfPage(1));
   assert.ok(first.pages >= 2);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
+  await page.evaluate(async () => window.renderPdfPage(2));
+  await page.screenshot({ path: path.join(outDir, 'pdf-page-2.png') });
   const pagesText = await page.evaluate(async () => {
     const res = await fetch('/report.pdf');
     const data = new Uint8Array(await res.arrayBuffer());

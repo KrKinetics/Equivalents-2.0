@@ -2,8 +2,26 @@
  * Single report timestamp helper — America/Toronto by default.
  * Used for visible date, filename, PDF metadata, and tests.
  */
+
+export const COACH_REPORT_TIMEZONE = 'America/Toronto';
+
+/**
+ * Visible Coach date/time. Web and PDF must use this so hours stay aligned.
+ * Example: "16 août 2026, 15 h 55"
+ */
+export function formatCoachDateTime(value, timezone = COACH_REPORT_TIMEZONE) {
+    if (value == null || value === '') return '';
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return new Intl.DateTimeFormat('fr-CA', {
+        timeZone: timezone,
+        dateStyle: 'medium',
+        timeStyle: 'short',
+    }).format(date);
+}
+
 export function getReportTimestamp(params) {
-    const timezone = params.timezone ?? "America/Toronto";
+    const timezone = params.timezone ?? COACH_REPORT_TIMEZONE;
     const date = params.date;
     const displayDate = new Intl.DateTimeFormat("fr-CA", {
         timeZone: timezone,

@@ -3,7 +3,7 @@
  * Never scores. Never runs the rules engine. Never invents interpretation.
  */
 
-import { dedupeDisplayItems } from './dedupe-display-items.mjs';
+import { dedupeDisplayItems, normalizeDisplayKey } from './dedupe-display-items.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -207,9 +207,32 @@ function nutritionObstacleItems(report) {
   return list(labels);
 }
 
+function validationQuestionKeys(report) {
+  const rows = [
+    ...(Array.isArray(report?.conflicts) ? report.conflicts : []),
+    ...(Array.isArray(report?.findings) ? report.findings : []),
+  ];
+  return new Set(
+    rows.map((item) => normalizeDisplayKey(item?.validationQuestion)).filter(Boolean),
+  );
+}
+
+function statementFromSnapshotItem(item) {
+  if (item == null) return '';
+  if (typeof item === 'string') return item.trim();
+  return text(item.title || item.label || item.text || item.message || item.value);
+}
+
+function structureAlreadyInLecture(structure, lecture) {
+  const needle = normalizeDisplayKey(structure);
+  if (!needle) return false;
+  return lecture.some((line) => normalizeDisplayKey(line).includes(needle));
+}
+
 function nutritionBlock(report, plan) {
   const lecture = paragraphs(report.nutrition?.narrativeSections);
-  const structure = text(plan.nutritionApproach);
+  const structureRaw = text(plan.nutritionApproach);
+  const structure = structureAlreadyInLecture(structureRaw, lecture) ? '' : structureRaw;
   const obstacles = nutritionObstacleItems(report);
   const actions = list(report.nutrition?.priorityActions || plan.nutritionActions);
   if (!lecture.length && !structure && !obstacles.length && !actions.length) return null;
@@ -261,24 +284,18 @@ export function buildMotivationReportViewModel(input = {}) {
   ]);
   addSection(sections, 'strengths', 'Forces', { items: strengthItems });
 
+  const excludedValidation = validationQuestionKeys(report);
   const vigilanceItems = list([
     ...list(plan.mainRisks),
     ...list(report.initialApproachWarnings),
-    ...list(report.findings),
-    ...list(report.conflicts).concat(
-      Array.isArray(report.conflicts)
-        ? report.conflicts.map((item) => text(item.validationQuestion)).filter(Boolean)
-        : [],
-    ),
-  ]);
+    ...list((report.findings || []).map(statementFromSnapshotItem)),
+    ...list((report.conflicts || []).map(statementFromSnapshotItem)),
+  ]).filter((item) => !excludedValidation.has(normalizeDisplayKey(item)));
   addSection(sections, 'vigilance', 'Points de vigilance', { items: vigilanceItems });
 
   addSection(sections, 'conflicts', 'Contradictions', {
-    lines: list(report.conflicts).concat(
-      Array.isArray(report.conflicts)
-        ? report.conflicts.map((item) => text(item.validationQuestion)).filter(Boolean)
-        : [],
-    ),
+    lines: list((report.conflicts || []).map(statementFromSnapshotItem))
+      .filter((item) => !excludedValidation.has(normalizeDisplayKey(item))),
   });
 
   addSection(sections, 'obstacles', 'Obstacles', {
@@ -305,10 +322,11 @@ export function buildMotivationReportViewModel(input = {}) {
     items: decisionItems,
   });
 
+  const nutrition = nutritionBlock(report, plan);
   addSection(sections, 'nutrition', 'Nutrition', {
     lines: [
-      ...paragraphs(report.nutrition?.narrativeSections),
-      text(plan.nutritionApproach),
+      ...(nutrition?.lecture || []),
+      nutrition?.structure || '',
     ].filter(Boolean),
   });
 
@@ -412,7 +430,7 @@ export function buildMotivationReportViewModel(input = {}) {
     vigilance: vigilanceItems,
     interviewQuestions: interviewItems,
     dimensions: dimensionItems(report),
-    nutrition: nutritionBlock(report, plan),
+    nutrition,
     fourWeekPlan: weekCards,
     verbatims: verbatimItems(report),
     technical,

@@ -3,6 +3,8 @@
  * Formats a view-model only — never recalculates the engine.
  */
 
+import { formatCoachDateTime } from '../lib/report-timestamp.mjs';
+
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
     '&': '&amp;',
@@ -14,15 +16,7 @@ function esc(value) {
 }
 
 function formatDate(value) {
-  if (!value) return '';
-  try {
-    return new Intl.DateTimeFormat('fr-CA', {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    }).format(new Date(value));
-  } catch {
-    return String(value);
-  }
+  return formatCoachDateTime(value);
 }
 
 function barPercent(score) {
@@ -35,7 +29,7 @@ function barPercent(score) {
 
 function heroMarkup(vm, logoSrc) {
   const logo = logoSrc
-    ? `<div class="intake-report-logo-wrap motivation-hero-logo"><img src="${esc(logoSrc)}" alt="KR Kinetics"></div>`
+    ? `<div class="motivation-hero-brand"><div class="intake-report-logo-wrap motivation-hero-logo"><img src="${esc(logoSrc)}" alt="KR Kinetics"></div></div>`
     : '';
   const submitted = formatDate(vm.submittedAt || vm.hero?.submittedAt);
   const analyzed = formatDate(vm.analyzedAt || vm.hero?.analyzedAt);

@@ -126,7 +126,9 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/report/motivation-report-path.mjs',
     'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/motivation-report-view-model.mjs',
+    'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/build-motivation-report-html.mjs',
+    'src/coach/motivation/lib/report-timestamp.mjs',
     'src/coach/client/motivation-dashboard.mjs',
   ]) {
     const from = path.join(root, ...rel.split('/'));
@@ -167,7 +169,9 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/report/motivation-report-path.mjs',
     'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/motivation-report-view-model.mjs',
+    'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/build-motivation-report-html.mjs',
+    'src/coach/motivation/lib/report-timestamp.mjs',
     'src/coach/client/motivation-dashboard.mjs',
     'src/coach/motivation/client/official-bundle.mjs',
     'src/coach/motivation/client/public-questionnaire.mjs',

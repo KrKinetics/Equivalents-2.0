@@ -10,6 +10,7 @@ import {
   publicMotivationReportMessage,
 } from '../../src/coach/motivation/report/motivation-report-view-model.mjs';
 import { buildMotivationReportMarkup } from '../../src/coach/motivation/report/build-motivation-report-html.mjs';
+import { formatCoachDateTime } from '../../src/coach/motivation/lib/report-timestamp.mjs';
 import { isProtectedPath } from '../../src/coach/security/portal-auth.mjs';
 import {
   PROFILE_A_STABLE,
@@ -246,6 +247,66 @@ test('coach report hierarchy uses existing snapshot values only', () => {
     'Définir ce que signifie « qualité » alimentaire.',
     'Clarifier l’horaire.',
   ]);
+});
+
+test('web timestamps use America/Toronto and match the shared formatter', () => {
+  const submittedAt = '2026-08-16T19:55:00.000Z';
+  const analyzedAt = '2026-08-16T20:38:00.000Z';
+  assert.match(formatCoachDateTime(submittedAt), /15 h 55/);
+  assert.match(formatCoachDateTime(analyzedAt), /16 h 38/);
+  assert.doesNotMatch(formatCoachDateTime(submittedAt), /19 h 55/);
+  const html = buildMotivationReportMarkup(buildMotivationReportViewModel({
+    report: { schemaVersion: REPORT_MODEL_V42 },
+    clientName: 'Client test KR',
+    submittedAt,
+    analyzedAt,
+  }));
+  assert.match(html, /15 h 55/);
+  assert.match(html, /16 h 38/);
+  assert.doesNotMatch(html, /19 h 55|20 h 38/);
+  const src = fs.readFileSync(
+    path.join(root, 'src/coach/motivation/report/build-motivation-report-html.mjs'),
+    'utf8',
+  );
+  assert.match(src, /formatCoachDateTime/);
+});
+
+test('vigilance keeps findings only and never injects validationQuestion', () => {
+  const validation = 'Lorsque vous parlez d’un manque de planification, la difficulté concerne-t-elle surtout la préparation?';
+  const interview = 'Quelle version minimale seriez-vous prêt à faire après une semaine difficile?';
+  const snapshot = {
+    schemaVersion: REPORT_MODEL_V42,
+    initialPlan: {
+      mainRisks: ['Risque d’abandon après une semaine chargée.'],
+      priorityInterviewQuestions: [interview],
+      nutritionApproach: 'Approche flexible déjà décrite.',
+    },
+    findings: [{ title: 'Constat de reprise fragile.', validationQuestion: validation }],
+    conflicts: [{
+      message: 'Contradiction entre planification déclarée et calculée.',
+      validationQuestion: validation,
+    }],
+    nutrition: {
+      narrativeSections: [{ paragraphs: ['Approche flexible déjà décrite.'] }],
+    },
+  };
+  const before = JSON.stringify(snapshot);
+  const vm = buildMotivationReportViewModel({ report: snapshot, clientName: 'Client test KR' });
+  assert.equal(JSON.stringify(snapshot), before);
+  assert.ok(vm.vigilance.includes('Risque d’abandon après une semaine chargée.'));
+  assert.ok(vm.vigilance.includes('Constat de reprise fragile.'));
+  assert.ok(vm.vigilance.includes('Contradiction entre planification déclarée et calculée.'));
+  assert.equal(vm.vigilance.some((item) => item === validation), false);
+  assert.deepEqual(vm.interviewQuestions, [interview]);
+  assert.equal(vm.interviewQuestions.includes(validation), false);
+  assert.ok(vm.nutrition.lecture.includes('Approche flexible déjà décrite.'));
+  assert.equal(vm.nutrition.structure, '');
+  const html = buildMotivationReportMarkup(vm);
+  const vigStart = html.indexOf('data-section="vigilance"');
+  const vigNext = html.indexOf('data-section="', vigStart + 20);
+  const vigHtml = html.slice(vigStart, vigNext === -1 ? undefined : vigNext);
+  assert.doesNotMatch(vigHtml, /manque de planification/);
+  assert.doesNotMatch(html, /Structure suggérée/);
 });
 
 test('nutrition subsection keeps only NUT_OBS_* obstacles and never generic OBS_*', () => {
