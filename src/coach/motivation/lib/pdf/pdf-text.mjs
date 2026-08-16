@@ -50,8 +50,10 @@ export function isEffectivelyBlankPage(text) {
     const withoutChrome = normalized
         .replace(/Généré le[^P]*/gi, " ")
         .replace(/Usage interne coach/gi, " ")
+        .replace(/Confidentiel — usage Coach KR Kinetics/gi, " ")
         .replace(/Page\s+\d+\s*\/\s*\d+/gi, " ")
         .replace(/Rapport coach/gi, " ")
+        .replace(/Profil motivationnel/gi, " ")
         .replace(/KR Kinetics/gi, " ")
         .replace(/·/g, " ")
         .replace(/\s+/g, " ")

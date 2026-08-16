@@ -1,7 +1,9 @@
 /**
  * Display-only mapping of an official report-model-v4.2 snapshot.
- * Never scores, never runs the rules engine, never invents interpretation.
+ * Never scores. Never runs the rules engine. Never invents interpretation.
  */
+
+import { dedupeDisplayItems } from './dedupe-display-items.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -10,25 +12,25 @@ function text(value) {
 
 function list(value) {
   if (!Array.isArray(value)) return [];
-  return value
+  return dedupeDisplayItems(value
     .map((item) => {
       if (item == null) return '';
       if (typeof item === 'string') return item.trim();
       return text(item.title || item.label || item.text || item.message || item.value);
     })
-    .filter(Boolean);
+    .filter(Boolean));
 }
 
 function paragraphs(value) {
   if (!value) return [];
   if (typeof value === 'string') return value.trim() ? [value.trim()] : [];
   if (Array.isArray(value)) {
-    return value.flatMap((item) => {
+    return dedupeDisplayItems(value.flatMap((item) => {
       if (typeof item === 'string') return item.trim() ? [item.trim()] : [];
       if (item && Array.isArray(item.paragraphs)) return item.paragraphs.map(text).filter(Boolean);
       const line = text(item?.text || item?.message || item?.label);
       return line ? [line] : [];
-    });
+    }));
   }
   return [];
 }
@@ -42,21 +44,51 @@ function addSection(sections, id, title, body) {
   sections.push({ id, title, ...body, items, lines, rows });
 }
 
-function scoreRows(report) {
+function sourceScoreRows(report) {
   const sport = Array.isArray(report?.sport?.scores) ? report.sport.scores : [];
   const nutrition = Array.isArray(report?.nutrition?.scores) ? report.nutrition.scores : [];
   const domains = Array.isArray(report?.domainInterpretations) ? report.domainInterpretations : [];
-  const source = sport.length || nutrition.length
+  return sport.length || nutrition.length
     ? [...sport, ...nutrition]
     : domains;
-  return source.map((row) => {
+}
+
+function scoreRows(report) {
+  return sourceScoreRows(report).map((row) => {
     const label = text(row.label || row.dimension);
     if (!label) return null;
     const parts = [];
     if (row.score != null && row.score !== '') parts.push(String(row.score));
+    else if (row.technicalScore != null && row.technicalScore !== '') parts.push(String(row.technicalScore));
     if (row.level) parts.push(String(row.level));
     if (row.agreement?.classification) parts.push(String(row.agreement.classification));
+    else if (row.agreementLabel) parts.push(String(row.agreementLabel));
     return { label, value: parts.join(' · ') || '—' };
+  }).filter(Boolean);
+}
+
+function existingScore(row) {
+  if (row?.score != null && row.score !== '') return row.score;
+  if (row?.technicalScore != null && row.technicalScore !== '') return row.technicalScore;
+  return null;
+}
+
+function dimensionItems(report) {
+  return sourceScoreRows(report).map((row) => {
+    const label = text(row.label || row.dimension);
+    if (!label) return null;
+    const score = existingScore(row);
+    const evidence = text(
+      row.agreement?.classification
+      || row.agreementLabel
+      || row.classificationLabel,
+    );
+    return {
+      id: text(row.domainId || row.dimension || label),
+      label,
+      score,
+      evidenceBadge: evidence,
+    };
   }).filter(Boolean);
 }
 
@@ -65,10 +97,71 @@ function openAnswerRows(report) {
   if (!Array.isArray(answers)) return [];
   return answers.map((answer) => {
     const label = text(answer.label || answer.questionCode || answer.code || answer.id);
-    const value = text(answer.text || answer.value || answer.normalizedText || answer.answer);
+    const value = text(
+      answer.originalAnswer
+      || answer.text
+      || answer.value
+      || answer.normalizedText
+      || answer.answer,
+    );
     if (!label && !value) return null;
     return { label: label || 'Réponse ouverte', value };
   }).filter((row) => row && row.value);
+}
+
+function questionSource(report, code) {
+  const direct = Array.isArray(report?.directAnswers) ? report.directAnswers : [];
+  const match = direct.find((row) => text(row.questionCode) === text(code));
+  return text(match?.questionText) || text(code);
+}
+
+function verbatimItems(report) {
+  const answers = Array.isArray(report?.openAnswers) ? report.openAnswers : [];
+  return answers.map((answer) => {
+    const verbatim = text(answer.originalAnswer);
+    if (!verbatim || verbatim === 'Non répondu') return null;
+    return {
+      questionCode: text(answer.questionCode || answer.code),
+      questionText: questionSource(report, answer.questionCode || answer.code),
+      verbatim,
+    };
+  }).filter(Boolean);
+}
+
+function weekActions(week) {
+  if (Array.isArray(week?.coachActions) && week.coachActions.length) return list(week.coachActions);
+  if (Array.isArray(week?.actions) && week.actions.length) return list(week.actions);
+  return [];
+}
+
+function fourWeekCards(report) {
+  const weeks = Array.isArray(report?.fourWeekPlan?.weeks)
+    ? report.fourWeekPlan.weeks
+    : Array.isArray(report?.fourWeekPlanDetailed)
+      ? report.fourWeekPlanDetailed
+      : Array.isArray(report?.fourWeekFollowUp)
+        ? report.fourWeekFollowUp
+        : [];
+  return weeks.map((week, index) => {
+    const number = week.week != null ? Number(week.week) : index + 1;
+    const title = text(week.title || week.label || (Number.isFinite(number) ? `Semaine ${number}` : ''));
+    const focus = text(week.focus || week.objective);
+    const actions = weekActions(week);
+    if (!title && !focus && !actions.length) return null;
+    return { week: number, title, focus, actions };
+  }).filter(Boolean);
+}
+
+function nutritionBlock(report, plan) {
+  const lecture = paragraphs(report.nutrition?.narrativeSections);
+  const structure = text(plan.nutritionApproach);
+  const obstacles = list([
+    ...list(report.declaredObstacles),
+    ...list(report.normalizedObstacles),
+  ]);
+  const actions = list(report.nutrition?.priorityActions || plan.nutritionActions);
+  if (!lecture.length && !structure && !obstacles.length && !actions.length) return null;
+  return { lecture, structure, obstacles, actions };
 }
 
 /**
@@ -88,12 +181,11 @@ export function buildMotivationReportViewModel(input = {}) {
   const provenance = input.provenance || report.metadata || {};
   const sections = [];
 
-  addSection(sections, 'summary', 'Synthèse', {
-    lines: [
-      text(plan.profileSummary),
-      text(plan.portraitOperational) !== text(plan.profileSummary) ? text(plan.portraitOperational) : '',
-    ].filter(Boolean),
-  });
+  const summaryLines = [
+    text(plan.profileSummary),
+    text(plan.portraitOperational) !== text(plan.profileSummary) ? text(plan.portraitOperational) : '',
+  ].filter(Boolean);
+  addSection(sections, 'summary', 'Synthèse', { lines: summaryLines });
 
   addSection(sections, 'readiness', 'Niveau de préparation', {
     lines: [
@@ -108,23 +200,26 @@ export function buildMotivationReportViewModel(input = {}) {
     rows: scoreRows(report),
   });
 
-  addSection(sections, 'strengths', 'Forces', {
-    items: [
-      ...list(plan.mainStrengths),
-      ...list(report.probableStrengths),
-      ...list(report.confirmedStrengths),
-      ...list(plan.probableLevers),
-      ...list(report.declaredLevers),
-    ],
-  });
+  const strengthItems = list([
+    ...list(plan.mainStrengths),
+    ...list(report.probableStrengths),
+    ...list(report.confirmedStrengths),
+    ...list(plan.probableLevers),
+    ...list(report.declaredLevers),
+  ]);
+  addSection(sections, 'strengths', 'Forces', { items: strengthItems });
 
-  addSection(sections, 'vigilance', 'Points de vigilance', {
-    items: [
-      ...list(plan.mainRisks),
-      ...list(report.initialApproachWarnings),
-      ...list(report.findings),
-    ],
-  });
+  const vigilanceItems = list([
+    ...list(plan.mainRisks),
+    ...list(report.initialApproachWarnings),
+    ...list(report.findings),
+    ...list(report.conflicts).concat(
+      Array.isArray(report.conflicts)
+        ? report.conflicts.map((item) => text(item.validationQuestion)).filter(Boolean)
+        : [],
+    ),
+  ]);
+  addSection(sections, 'vigilance', 'Points de vigilance', { items: vigilanceItems });
 
   addSection(sections, 'conflicts', 'Contradictions', {
     lines: list(report.conflicts).concat(
@@ -135,10 +230,10 @@ export function buildMotivationReportViewModel(input = {}) {
   });
 
   addSection(sections, 'obstacles', 'Obstacles', {
-    items: [
+    items: list([
       ...list(report.declaredObstacles),
       ...list(report.normalizedObstacles),
-    ],
+    ]),
   });
 
   addSection(sections, 'coaching', 'Style d’encadrement', {
@@ -148,12 +243,14 @@ export function buildMotivationReportViewModel(input = {}) {
     ].filter(Boolean),
   });
 
+  const priorityItems = list(plan.priorities || plan.initialPriorities);
+  const decisionItems = list([
+    ...priorityItems,
+    ...list(plan.clarifications),
+    ...list(plan.mainDecisions),
+  ]);
   addSection(sections, 'recommendations', 'Recommandations Coach', {
-    items: [
-      ...list(plan.priorities || plan.initialPriorities),
-      ...list(plan.clarifications),
-      ...list(plan.mainDecisions),
-    ],
+    items: decisionItems,
   });
 
   addSection(sections, 'nutrition', 'Nutrition', {
@@ -176,15 +273,17 @@ export function buildMotivationReportViewModel(input = {}) {
     ].filter(Boolean),
   });
 
+  const weekCards = fourWeekCards(report);
   addSection(sections, 'plan', 'Plan et priorités', {
-    items: [
+    items: list([
       ...list(plan.firstFourWeeksActions),
       ...list(report.fourWeekPlan),
-    ],
+    ]),
   });
 
+  const interviewItems = list(plan.priorityInterviewQuestions || report.priorityInterviewQuestions);
   addSection(sections, 'interview', 'Questions d’entrevue', {
-    items: list(plan.priorityInterviewQuestions || report.priorityInterviewQuestions),
+    items: interviewItems,
   });
 
   addSection(sections, 'open', 'Réponses ouvertes', {
@@ -196,29 +295,76 @@ export function buildMotivationReportViewModel(input = {}) {
     lines: Array.isArray(followUp)
       ? followUp.flatMap((week) => {
         const title = text(week.title || week.label || (week.week != null ? `Semaine ${week.week}` : ''));
-        const actions = list(week.actions);
+        const actions = weekActions(week);
         if (!title && !actions.length) return [];
         return [title, ...actions];
       })
       : paragraphs(followUp),
   });
 
+  const preparation = text(
+    plan.preparationLabel
+    || readiness.preparationLabeled?.value
+    || readiness.overallLabel,
+  );
+  const structure = text(
+    plan.structureLabel
+    || readiness.structureLabeled?.value
+    || readiness.structureLabel,
+  );
+  const followUpLabel = text(plan.followUpLabel || readiness.followUpLabel);
+  const coachingStyle = text(
+    plan.choiceApproachLabel
+    || plan.choiceApproachLabeled?.value
+    || readiness.choiceApproachLabel
+    || plan.choiceApproach?.label,
+  );
+
+  const quickRead = [
+    preparation ? { id: 'preparation', label: 'Niveau de préparation', value: preparation } : null,
+    structure ? { id: 'structure', label: 'Structure recommandée', value: structure } : null,
+    followUpLabel ? { id: 'follow-up', label: 'Fréquence de suivi', value: followUpLabel } : null,
+    coachingStyle ? { id: 'coaching', label: 'Style d’encadrement', value: coachingStyle } : null,
+  ].filter(Boolean).slice(0, 4);
+
+  const technical = {
+    questionnaireVersion: text(provenance.questionnaireVersion || report.questionnaireVersion),
+    rulesetVersion: text(provenance.rulesetVersion || report.rulesetVersion),
+    reportModelVersion: text(
+      provenance.reportModelVersion || report.schemaVersion || report.metadata?.reportModelVersion,
+    ),
+    analysisVersion: input.analysisVersion ?? null,
+    contentHash: text(provenance.contentHash),
+    submittedAt: input.submittedAt || null,
+    analyzedAt: input.analyzedAt || null,
+  };
+
   return {
     title: 'Profil motivationnel',
     clientName: text(input.clientName || report.metadata?.clientName) || 'Client',
     submittedAt: input.submittedAt || report.metadata?.completedAt || null,
+    analyzedAt: input.analyzedAt || null,
+    analysisVersion: input.analysisVersion ?? null,
     sections,
-    provenance: {
-      questionnaireVersion: text(provenance.questionnaireVersion || report.questionnaireVersion),
-      rulesetVersion: text(provenance.rulesetVersion || report.rulesetVersion),
-      reportModelVersion: text(
-        provenance.reportModelVersion || report.schemaVersion || report.metadata?.reportModelVersion,
-      ),
-      analysisVersion: input.analysisVersion ?? null,
-      contentHash: text(provenance.contentHash),
-      submittedAt: input.submittedAt || null,
+    hero: {
+      title: 'Profil motivationnel',
+      clientName: text(input.clientName || report.metadata?.clientName) || 'Client',
+      submittedAt: input.submittedAt || report.metadata?.completedAt || null,
       analyzedAt: input.analyzedAt || null,
+      analysisVersion: input.analysisVersion ?? null,
     },
+    quickRead,
+    summary: summaryLines.slice(0, 4),
+    supports: strengthItems,
+    coachPriorities: decisionItems.slice(0, 5),
+    vigilance: vigilanceItems,
+    interviewQuestions: interviewItems,
+    dimensions: dimensionItems(report),
+    nutrition: nutritionBlock(report, plan),
+    fourWeekPlan: weekCards,
+    verbatims: verbatimItems(report),
+    technical,
+    provenance: technical,
   };
 }
 

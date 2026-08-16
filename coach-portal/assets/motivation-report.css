@@ -3,6 +3,12 @@
   display: none !important;
 }
 
+.motivation-report-page {
+  background: var(--bg, #f4f7fb);
+  color: var(--text, #111b33);
+  overflow-x: hidden;
+}
+
 .motivation-report-page #report-root {
   max-width: 1100px;
   margin: 0 auto;
@@ -11,54 +17,391 @@
 
 .motivation-report {
   max-width: 1100px;
+  margin: 0 auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--text, #111b33);
 }
 
-.motivation-report .intake-report-title {
+.motivation-hero {
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #d7e0ec);
+  border-radius: 16px;
+  padding: 22px 24px 20px;
+  box-shadow: 0 12px 32px rgba(7, 27, 65, 0.06);
+}
+
+.motivation-hero-logo,
+.motivation-report .intake-report-logo-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  margin-bottom: 10px;
+}
+
+.motivation-report .intake-report-logo-wrap img,
+.motivation-hero-logo img {
+  width: auto;
+  max-width: 220px;
+  height: auto;
+  max-height: 48px;
+  object-fit: contain;
+  display: block;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.motivation-kicker {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted, #64748b);
+}
+
+.motivation-title,
+.motivation-report .intake-report-title {
+  margin: 6px 0 0;
+  font-size: 1.55rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--primary, #071b41);
 }
 
+.motivation-client,
 .motivation-report .intake-report-client {
-  margin: 4px 0 0;
-  font-size: 1.05rem;
+  margin: 6px 0 0;
+  font-size: 1.15rem;
   font-weight: 650;
-  color: #e2e8f0;
+  color: var(--text, #111b33);
 }
 
-.motivation-report .intake-report-body {
+.motivation-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--muted, #64748b);
+  font-size: 0.92rem;
+}
+
+.motivation-hero-meta p {
+  margin: 0;
+}
+
+.motivation-hero-meta strong {
+  color: var(--text, #111b33);
+  font-weight: 650;
+}
+
+.motivation-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fff1f3;
+  color: var(--accent, #ed1136);
+  border: 1px solid #f8c9d1;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.motivation-report-body {
   display: grid;
   gap: 14px;
-  padding-top: 18px;
+  padding-top: 16px;
 }
 
+.motivation-card,
 .motivation-report .intake-report-section {
   margin: 0;
-  padding: 16px 18px;
-  border: 1px solid #d7e0ec;
-  border-radius: 12px;
-  background: #fff;
+  padding: 18px 20px;
+  border: 1px solid var(--border, #d7e0ec);
+  border-radius: 14px;
+  background: var(--card, #ffffff);
   box-shadow: 0 8px 24px rgba(7, 27, 65, 0.05);
+  scroll-margin-top: 72px;
+}
+
+.motivation-hero {
+  scroll-margin-top: 72px;
+}
+
+.motivation-section-title,
+.motivation-report .intake-report-section-title {
+  margin: 0 0 12px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border, #d7e0ec);
+  color: var(--primary, #071b41);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.motivation-prose {
+  margin: 0 0 10px;
+  color: var(--text, #111b33);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.motivation-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.motivation-quick-item {
+  padding: 12px 14px;
+  border: 1px solid var(--border, #d7e0ec);
+  border-radius: 12px;
+  background: var(--bg, #f4f7fb);
+  min-width: 0;
+}
+
+.motivation-quick-label {
+  margin: 0 0 4px;
+  color: var(--muted, #64748b);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motivation-quick-value {
+  margin: 0;
+  color: var(--primary, #071b41);
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.motivation-priority-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: coach-priority;
+}
+
+.motivation-priority-list li {
+  counter-increment: coach-priority;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #d7e0ec);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.motivation-priority-list li::before {
+  content: counter(coach-priority);
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary, #071b41);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motivation-vigilance-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.motivation-vigilance-item {
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent, #ed1136);
+  background: #fff7f8;
+  border-radius: 0 10px 10px 0;
+  color: var(--text, #111b33);
+}
+
+.motivation-checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.motivation-checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 0 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border, #d7e0ec);
+}
+
+.motivation-check {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  border: 1.5px solid var(--primary, #071b41);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.motivation-dimension-list {
+  display: grid;
+  gap: 14px;
+}
+
+.motivation-dimension-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.motivation-dimension-name {
+  margin: 0;
+  font-weight: 650;
+  color: var(--text, #111b33);
+}
+
+.motivation-dimension-score {
+  margin: 0;
+  font-weight: 800;
+  color: var(--primary, #071b41);
+}
+
+.motivation-dimension-track {
+  margin: 6px 0 6px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg, #f4f7fb);
+  border: 1px solid var(--border, #d7e0ec);
+  overflow: hidden;
+}
+
+.motivation-dimension-bar {
+  display: block;
+  height: 100%;
+  background: var(--primary, #071b41);
+  border-radius: inherit;
+}
+
+.motivation-evidence {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg, #f4f7fb);
+  color: var(--muted, #64748b);
+  border: 1px solid var(--border, #d7e0ec);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.motivation-week-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.motivation-week-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border, #d7e0ec);
+  border-radius: 12px;
+  background: var(--bg, #f4f7fb);
+}
+
+.motivation-week-kicker {
+  margin: 0 0 4px;
+  color: var(--accent, #ed1136);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.motivation-week-card h3 {
+  margin: 0 0 8px;
+  color: var(--primary, #071b41);
+  font-size: 1rem;
+}
+
+.motivation-verbatim {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border: 1px dashed var(--border, #d7e0ec);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.motivation-verbatim-kicker {
+  margin: 0 0 6px;
+  color: var(--muted, #64748b);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.motivation-verbatim-quote {
+  margin: 0 0 8px;
+  color: var(--text, #111b33);
+  font-style: italic;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.motivation-verbatim-source {
+  margin: 0;
+  color: var(--muted, #64748b);
+  font-size: 0.85rem;
 }
 
 .motivation-report-list {
   margin: 0 0 8px;
   padding-left: 1.2em;
-  color: #1e293b;
+  color: var(--text, #111b33);
 }
 
 .motivation-report-list li {
   margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.motivation-supports h3,
+.motivation-card h3 {
+  margin: 12px 0 8px;
+  color: var(--primary, #071b41);
+  font-size: 0.95rem;
 }
 
 .motivation-report-tech {
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
-.motivation-report-tech .intake-report-section-title {
-  letter-spacing: 0.08em;
+.motivation-report-tech summary {
+  cursor: pointer;
+  list-style: revert;
+}
+
+.motivation-report-footer,
+.motivation-report .intake-report-footer {
+  margin: 8px 4px 0;
+  padding: 14px 0 8px;
+  border-top: 1px solid var(--border, #d7e0ec);
+  text-align: center;
+  color: var(--muted, #64748b);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .motivation-report-error-card {
@@ -66,7 +409,7 @@
   margin: 12vh auto 0;
   padding: 28px 24px;
   background: #fff;
-  border: 1px solid #d7e0ec;
+  border: 1px solid var(--border, #d7e0ec);
   border-radius: 16px;
   box-shadow: 0 18px 40px rgba(7, 27, 65, 0.1);
   text-align: center;
@@ -74,7 +417,7 @@
 
 .motivation-report-error-card h1 {
   margin: 0 0 10px;
-  color: #071b41;
+  color: var(--primary, #071b41);
   font-size: 1.35rem;
 }
 
@@ -95,5 +438,19 @@
   .intake-report-toolbar {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .motivation-quick-grid,
+  .motivation-week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .motivation-title {
+    font-size: 1.3rem;
+  }
+
+  .motivation-card,
+  .motivation-hero {
+    padding: 16px;
   }
 }

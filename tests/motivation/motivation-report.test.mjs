@@ -154,6 +154,100 @@ test('technical section shows server submission and analysis dates, not a browse
   assert.equal(idempotent.provenance.analyzedAt, vm.provenance.analyzedAt);
 });
 
+test('view-model stays display-only and never imports scoring or rules', () => {
+  const src = fs.readFileSync(
+    path.join(root, 'src/coach/motivation/report/motivation-report-view-model.mjs'),
+    'utf8',
+  );
+  assert.match(src, /Never scores/);
+  assert.doesNotMatch(src, /from ['"].*scoring/);
+  assert.doesNotMatch(src, /from ['"].*rules/);
+  assert.doesNotMatch(src, /analyzeMotivationAssessment|evaluateRuleset|calculateDimensionScores/);
+});
+
+test('coach report hierarchy uses existing snapshot values only', () => {
+  const submission = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
+    clientName: 'Client test KR',
+    assessmentId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+  });
+  const analyzed = analyzeMotivationAssessment({
+    questionnaireVersion: QUESTIONNAIRE_V41,
+    rulesetVersion: RULESET_V41,
+    reportModelVersion: REPORT_MODEL_V42,
+    answers: submission.answers,
+    presentedQuestionCodes: submission.presentedQuestionCodes,
+    clientName: 'Client test KR',
+  });
+  const sport = analyzed.report.sport?.scores || [];
+  const nutrition = analyzed.report.nutrition?.scores || [];
+  const source = sport.length || nutrition.length
+    ? [...sport, ...nutrition]
+    : analyzed.report.domainInterpretations || [];
+  const vm = buildMotivationReportViewModel({
+    report: analyzed.report,
+    clientName: 'Client test KR',
+    analysisVersion: 1,
+    submittedAt: '2026-08-16T16:00:00.000Z',
+    analyzedAt: '2026-08-16T16:05:00.000Z',
+    provenance: analyzed.provenance,
+  });
+  assert.ok(vm.quickRead.length > 0 && vm.quickRead.length <= 4);
+  assert.ok(vm.coachPriorities.length > 0 && vm.coachPriorities.length <= 5);
+  assert.equal(vm.dimensions.length, source.length);
+  for (const [index, row] of vm.dimensions.entries()) {
+    const expected = source[index].score ?? source[index].technicalScore;
+    assert.equal(row.score, expected);
+  }
+  const html = buildMotivationReportMarkup(vm, {
+    logoSrc: './assets/logo-kr-kinetics-horizontal.png',
+  });
+  assert.match(html, /logo-kr-kinetics-horizontal\.png/);
+  assert.match(html, /data-section="quick-read"/);
+  assert.match(html, /data-section="priorities"/);
+  assert.match(html, /role="progressbar"/);
+  assert.match(html, /Verbatim client|verbatim client/i);
+  const firstScore = vm.dimensions.find((row) => row.score != null);
+  if (firstScore) {
+    assert.match(html, new RegExp(`aria-valuenow="${String(firstScore.score).replace('.', '\\.')}"`));
+  }
+  const order = [
+    'hero',
+    'quick-read',
+    'summary',
+    'priorities',
+    'vigilance',
+    'interview',
+    'dimensions',
+    'four-week-plan',
+    'verbatims',
+    'technical',
+  ];
+  let last = -1;
+  for (const id of order) {
+    const idx = html.indexOf(`data-section="${id}"`);
+    if (idx === -1) continue;
+    assert.ok(idx > last, id);
+    last = idx;
+  }
+  assert.ok(html.indexOf('data-section="technical"') > html.indexOf('data-section="dimensions"'));
+  const duped = buildMotivationReportViewModel({
+    report: {
+      schemaVersion: REPORT_MODEL_V42,
+      initialPlan: {
+        priorities: [
+          'Définir ce que signifie « qualité » alimentaire.',
+          'Définir ce que signifie « qualité » alimentaire.',
+          'Clarifier l’horaire.',
+        ],
+      },
+    },
+  });
+  assert.deepEqual(duped.coachPriorities, [
+    'Définir ce que signifie « qualité » alimentaire.',
+    'Clarifier l’horaire.',
+  ]);
+});
+
 test('process API maps not_submitted to 409 and exposes analyzed_at', () => {
   const { motivationProcessHttpStatus } = require(path.join(root, 'api/coach-motivation.js'));
   const api = fs.readFileSync(path.join(root, 'api/coach-motivation.js'), 'utf8');

@@ -1,10 +1,14 @@
 /**
  * Motivation PDF renderer. Auth/load/database stay outside this module.
+ * report-model-v4.2 uses the current KR renderer, not the historical v3.1 path.
  */
 
-import { renderCoachReportPdfV41 } from '../lib/pdf/render-v41.mjs';
+import { renderCoachReportPdfV42Kr, MOTIVATION_PDF_RENDERER_ID } from '../lib/pdf/render-v42-kr.mjs';
 import { isCoachReportSnapshotV42 } from '../report/v42/assemble.mjs';
 import { buildCoachReportFilename } from '../lib/pdf/filename.mjs';
+import { buildMotivationReportViewModel } from '../report/motivation-report-view-model.mjs';
+
+export { MOTIVATION_PDF_RENDERER_ID };
 
 /**
  * @param {object} reportSnapshot report-model-v4.2 snapshot
@@ -42,11 +46,24 @@ export function toMotivationPdfViewModel(reportSnapshot, extras = {}) {
 }
 
 export async function renderMotivationPdf(reportSnapshot, options = {}) {
-  const viewModel = toMotivationPdfViewModel(reportSnapshot, options);
-  return renderCoachReportPdfV41({
-    viewModel,
-    format: options.format ?? 'full',
-    includeDirectAnswers: options.includeDirectAnswers,
+  const snapshot = toMotivationPdfViewModel(reportSnapshot, options);
+  const display = buildMotivationReportViewModel({
+    report: snapshot,
+    clientName: snapshot.metadata?.clientName,
+    submittedAt: options.submittedAt ?? snapshot.metadata?.completedAt ?? null,
+    analyzedAt: options.analyzedAt ?? snapshot.metadata?.analyzedAt ?? null,
+    analysisVersion: options.analysisVersion ?? snapshot.metadata?.analysisVersion ?? null,
+    provenance: {
+      questionnaireVersion: snapshot.metadata?.questionnaireVersion,
+      rulesetVersion: snapshot.metadata?.rulesetVersion,
+      reportModelVersion: snapshot.schemaVersion || snapshot.metadata?.reportModelVersion,
+      contentHash: options.contentHash ?? snapshot.metadata?.contentHash ?? '',
+      submittedAt: options.submittedAt ?? snapshot.metadata?.completedAt ?? null,
+      analyzedAt: options.analyzedAt ?? snapshot.metadata?.analyzedAt ?? null,
+    },
+  });
+  return renderCoachReportPdfV42Kr({
+    display,
     generatedAt: options.generatedAt,
   });
 }

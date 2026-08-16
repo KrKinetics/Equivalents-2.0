@@ -48,6 +48,10 @@ export async function generateOfficialMotivationPdf({
       completedAt: processed.analysisSnapshot?.report?.metadata?.completedAt,
       questionnaireVersion: processed.provenance?.questionnaireVersion,
       rulesetVersion: processed.provenance?.rulesetVersion,
+      analysisVersion: processed.analysisVersion,
+      analyzedAt: processed.createdAt || processed.provenance?.analyzedAt || null,
+      submittedAt: processed.submittedAt || null,
+      contentHash: processed.provenance?.contentHash || '',
     });
     const pdf = Buffer.isBuffer(rendered) ? rendered : rendered?.buffer;
     if (!Buffer.isBuffer(pdf)) return { ok: false, error: 'unavailable' };
