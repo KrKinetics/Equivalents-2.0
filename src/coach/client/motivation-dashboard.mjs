@@ -10,24 +10,21 @@ export const MOTIVATION_RESEND_OPENED_CONFIRMATION = [
 ].join('\n');
 
 /**
- * Latest invite per client: newest created_at wins.
- * A revoked row never hides a newer or older active invite.
+ * Latest invite per client — same rule as intake latestInviteByClient.
+ * Callers must pass rows already ordered created_at DESC.
+ * The first row for a client is the reference, including a newest revoked.
+ * An older revoked never hides a newer active. A newest revoked never
+ * resurrects an older pending/opened.
  * @param {Array<{ client_id?: string, status?: string, created_at?: string }>} invites
  */
 export function latestMotivationInviteByClient(invites) {
-  const latestActive = new Map();
-  const latestAny = new Map();
+  const latest = new Map();
   for (const invite of invites || []) {
     const clientId = invite?.client_id;
     if (!clientId) continue;
-    if (!latestAny.has(clientId)) latestAny.set(clientId, invite);
-    if (invite.status === 'revoked') continue;
-    if (!latestActive.has(clientId)) latestActive.set(clientId, invite);
+    if (!latest.has(clientId)) latest.set(clientId, invite);
   }
-  for (const [clientId, invite] of latestAny) {
-    if (!latestActive.has(clientId)) latestActive.set(clientId, invite);
-  }
-  return latestActive;
+  return latest;
 }
 
 function isExpired(invite, now) {

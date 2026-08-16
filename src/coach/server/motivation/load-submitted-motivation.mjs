@@ -16,7 +16,7 @@ function restHeaders(publishableKey, accessToken) {
 /**
  * @returns {Promise<
  *   | { ok: true, client: object, invite: object, response: object }
- *   | { ok: false, error: 'forbidden' | 'not_found' }
+ *   | { ok: false, error: 'forbidden' | 'not_found' | 'not_submitted' }
  * >}
  */
 export async function loadSubmittedMotivationAssessment({
@@ -57,7 +57,7 @@ export async function loadSubmittedMotivationAssessment({
     const responseRows = await responseRes.json();
     const response = Array.isArray(responseRows) ? responseRows[0] : null;
     if (!response || response.status !== 'submitted' || !Array.isArray(response.answers)) {
-      return { ok: false, error: 'not_found' };
+      return { ok: false, error: 'not_submitted' };
     }
 
     const inviteParams = new URLSearchParams({
@@ -75,7 +75,7 @@ export async function loadSubmittedMotivationAssessment({
     const inviteRows = await inviteRes.json();
     const invite = Array.isArray(inviteRows) ? inviteRows[0] : null;
     if (!invite || invite.status !== 'submitted') {
-      return { ok: false, error: 'not_found' };
+      return { ok: false, error: 'not_submitted' };
     }
 
     return {

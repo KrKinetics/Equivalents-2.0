@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { motivationReportOpenPath, MOTIVATION_REPORT_PATH } from '../../src/coach/motivation/report/motivation-report-path.mjs';
 import {
@@ -22,6 +23,7 @@ import {
 } from '../../src/coach/motivation/versions/motivation-versions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const require = createRequire(import.meta.url);
 const CLIENT_ID = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
 
 test('report path contains only client_id', () => {
@@ -44,6 +46,11 @@ test('report page is coach-only and never runs the official engine', () => {
   assert.match(js, /\/api\/coach-process-motivation-assessment/);
   assert.match(js, /\/api\/coach-motivation-pdf/);
   assert.match(js, /Préparation de l’analyse/);
+  assert.match(js, /analyzed_at/);
+  assert.match(js, /submitted_at/);
+  assert.match(js, /publicMotivationReportMessage\(data\?\.error\)/);
+  assert.match(js, /publicMotivationReportMessage\('not_found'\)/);
+  assert.doesNotMatch(js, /analyzedAt:\s*new Date\(/);
   assert.match(middleware, /'\/motivation-report\.html'/);
   assert.doesNotMatch(js, /analyzeMotivationAssessment|calculateDimensionScores|evaluateRuleset/);
   assert.doesNotMatch(js, /analysis_snapshot|p_analysis_snapshot/);
@@ -114,4 +121,40 @@ test('public report errors stay generic', () => {
   assert.equal(publicMotivationReportMessage('hash_mismatch'), 'Version incompatible');
   assert.equal(publicMotivationReportMessage('unknown_engine'), 'Version incompatible');
   assert.equal(publicMotivationReportMessage('unavailable'), 'Analyse temporairement indisponible');
+});
+
+test('technical section shows server submission and analysis dates, not a browser clock', () => {
+  const vm = buildMotivationReportViewModel({
+    clientName: 'Alex Test',
+    analysisVersion: 1,
+    submittedAt: '2026-08-16T16:00:00.000Z',
+    analyzedAt: '2026-08-16T16:05:00.000Z',
+    provenance: {
+      questionnaireVersion: QUESTIONNAIRE_V41,
+      rulesetVersion: RULESET_V41,
+      reportModelVersion: REPORT_MODEL_V42,
+      contentHash: 'a'.repeat(64),
+    },
+    report: { schemaVersion: REPORT_MODEL_V42 },
+  });
+  assert.equal(vm.provenance.submittedAt, '2026-08-16T16:00:00.000Z');
+  assert.equal(vm.provenance.analyzedAt, '2026-08-16T16:05:00.000Z');
+  const html = buildMotivationReportMarkup(vm);
+  assert.match(html, /Soumission/);
+  assert.match(html, /Analyse/);
+  const idempotent = buildMotivationReportViewModel({
+    ...vm,
+    analyzedAt: '2026-08-16T16:05:00.000Z',
+  });
+  assert.equal(idempotent.provenance.analyzedAt, vm.provenance.analyzedAt);
+});
+
+test('process API maps not_submitted to 409 and exposes analyzed_at', () => {
+  const { motivationProcessHttpStatus } = require(path.join(root, 'api/coach-motivation.js'));
+  const api = fs.readFileSync(path.join(root, 'api/coach-motivation.js'), 'utf8');
+  assert.equal(motivationProcessHttpStatus('forbidden'), 403);
+  assert.equal(motivationProcessHttpStatus('not_found'), 404);
+  assert.equal(motivationProcessHttpStatus('not_submitted'), 409);
+  assert.match(api, /analyzed_at:\s*result\.createdAt/);
+  assert.match(api, /submitted_at:\s*result\.submittedAt/);
 });

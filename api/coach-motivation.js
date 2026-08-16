@@ -4,7 +4,9 @@
  *   POST /api/coach-send-motivation-invite
  *   POST /api/coach-process-motivation-assessment
  *   POST /api/coach-motivation-pdf
- * Vercel rewrites these onto this file so the project stays at 12 serverless functions.
+ * Vercel rewrites these onto this file so the project stays at 12 API function
+ * files. Vercel Preview reports nodejs:13 because Edge middleware is a separate
+ * runtime — same count as 2B (45220ae). Do not add another api/*.js file.
  * Never uses the database service role in this file.
  */
 
@@ -20,6 +22,13 @@ function resolveMotivationApiOp(req) {
     return 'pdf';
   }
   return null;
+}
+
+function motivationProcessHttpStatus(error) {
+  if (error === 'forbidden') return 403;
+  if (error === 'not_found') return 404;
+  if (error === 'not_submitted' || error === 'hash_mismatch' || error === 'unknown_engine') return 409;
+  return 503;
 }
 
 async function handleSendInvite(req, res) {
@@ -88,16 +97,18 @@ async function handleProcessAssessment(req, res) {
         publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
       });
       if (!result.ok) {
-        const status = result.error === 'forbidden' ? 403
-          : result.error === 'not_found' ? 404
-            : result.error === 'hash_mismatch' || result.error === 'unknown_engine' ? 409
-              : 503;
-        return { __httpError: true, status, error: result.error };
+        return {
+          __httpError: true,
+          status: motivationProcessHttpStatus(result.error),
+          error: result.error,
+        };
       }
       return {
         analysis_version: result.analysisVersion,
         idempotent: result.idempotent,
         report: result.analysisSnapshot?.report || null,
+        analyzed_at: result.createdAt || null,
+        submitted_at: result.submittedAt || null,
         provenance: result.provenance,
       };
     },
@@ -137,11 +148,11 @@ async function handleMotivationPdf(req, res) {
         publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
       });
       if (!result.ok) {
-        const status = result.error === 'forbidden' ? 403
-          : result.error === 'not_found' ? 404
-            : result.error === 'hash_mismatch' || result.error === 'unknown_engine' ? 409
-              : 503;
-        return { __httpError: true, status, error: result.error };
+        return {
+          __httpError: true,
+          status: motivationProcessHttpStatus(result.error),
+          error: result.error,
+        };
       }
       return {
         __pdf: true,
@@ -166,3 +177,4 @@ module.exports = async function handler(req, res) {
 };
 
 module.exports.resolveMotivationApiOp = resolveMotivationApiOp;
+module.exports.motivationProcessHttpStatus = motivationProcessHttpStatus;

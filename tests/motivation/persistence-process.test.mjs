@@ -215,6 +215,9 @@ test('process analysis creates version 1 for a submitted fictional client', asyn
   assert.equal(result.ok, true);
   assert.equal(result.analysisVersion, 1);
   assert.equal(result.idempotent, false);
+  assert.equal(result.createdAt, '2026-08-16T16:05:00.000Z');
+  assert.equal(result.provenance.analyzedAt, '2026-08-16T16:05:00.000Z');
+  assert.equal(result.submittedAt, '2026-08-16T16:00:00.000Z');
   assert.equal(result.analysisSnapshot.schemaVersion, REPORT_MODEL_V42);
   assert.equal(result.provenance.contentHash, ENGINE.contentHash);
   const persist = calls.find((call) => call.url.includes('persist_client_motivation_analysis'));
@@ -271,6 +274,45 @@ test('process analysis never issues an update against analysis versions', async 
       assert.equal(method, 'GET');
     }
   }
+});
+
+test('process analysis returns not_submitted when the authorized client has no submitted response', async () => {
+  const { fetchImpl, calls } = createFetchMock({ responseRow: null });
+  const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'not_submitted');
+  assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
+});
+
+test('process analysis does not distinguish a missing client from a hidden cross-org client', async () => {
+  const { fetchImpl, calls } = createFetchMock({ clientRow: null });
+  const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'forbidden');
+  assert.equal(calls.some((call) => call.url.includes('client_motivation_responses')), false);
+  assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
+});
+
+test('process analysis returns createdAt from the existing version on idempotent reopen', async () => {
+  const existing = {
+    id: ANALYSIS_ID,
+    analysis_version: 1,
+    questionnaire_version: ENGINE.questionnaireVersion,
+    ruleset_version: ENGINE.rulesetVersion,
+    report_model_version: ENGINE.reportModelVersion,
+    content_hash: ENGINE.contentHash,
+    analysis_snapshot: { schemaVersion: REPORT_MODEL_V42 },
+    created_at: '2026-08-16T16:05:00.000Z',
+  };
+  const { fetchImpl } = createFetchMock({ analyses: [existing] });
+  const first = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+  const second = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+  assert.equal(first.ok, true);
+  assert.equal(second.ok, true);
+  assert.equal(second.idempotent, true);
+  assert.equal(second.createdAt, '2026-08-16T16:05:00.000Z');
+  assert.equal(second.provenance.analyzedAt, '2026-08-16T16:05:00.000Z');
+  assert.equal(second.submittedAt, '2026-08-16T16:00:00.000Z');
 });
 
 test('process analysis denies a client from another organization', async () => {

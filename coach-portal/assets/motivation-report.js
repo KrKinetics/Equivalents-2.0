@@ -104,8 +104,8 @@ function renderOfficialReport(client, processed) {
   const viewModel = buildMotivationReportViewModel({
     report: processed.report,
     clientName: client.full_name,
-    submittedAt: processed.report?.metadata?.completedAt || null,
-    analyzedAt: processed.provenance?.analyzedAt || null,
+    submittedAt: processed.submitted_at || processed.report?.metadata?.completedAt || null,
+    analyzedAt: processed.analyzed_at || processed.provenance?.analyzedAt || null,
     analysisVersion: processed.analysis_version,
     provenance: processed.provenance,
   });

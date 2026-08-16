@@ -75,11 +75,30 @@ test('submitted invite shows Soumis and Ouvrir le rapport only', () => {
   assert.equal(motivationActionLabel({ email: 'alex@example.com' }, status), '');
 });
 
-test('latest invite prefers active over revoked and stays per client', () => {
+test('A: newer pending is the reference over an older revoked', () => {
+  const map = latestMotivationInviteByClient([
+    { client_id: CLIENT_A, status: 'pending', created_at: '2026-08-16T16:00:00.000Z' },
+    { client_id: CLIENT_A, status: 'revoked', created_at: '2026-08-16T15:00:00.000Z' },
+  ]);
+  assert.equal(map.get(CLIENT_A).status, 'pending');
+  assert.equal(map.get(CLIENT_A).created_at, '2026-08-16T16:00:00.000Z');
+});
+
+test('B: newer revoked is the reference and does not resurrect an older pending', () => {
   const map = latestMotivationInviteByClient([
     { client_id: CLIENT_A, status: 'revoked', created_at: '2026-08-16T16:00:00.000Z' },
     { client_id: CLIENT_A, status: 'pending', created_at: '2026-08-16T15:00:00.000Z' },
-    { client_id: CLIENT_B, status: 'opened', created_at: '2026-08-16T14:00:00.000Z' },
+  ]);
+  assert.equal(map.get(CLIENT_A).status, 'revoked');
+  assert.equal(map.get(CLIENT_A).created_at, '2026-08-16T16:00:00.000Z');
+});
+
+test('C: latest invite is isolated per client', () => {
+  const map = latestMotivationInviteByClient([
+    { client_id: CLIENT_A, status: 'pending', created_at: '2026-08-16T16:00:00.000Z' },
+    { client_id: CLIENT_B, status: 'opened', created_at: '2026-08-16T16:00:00.000Z' },
+    { client_id: CLIENT_A, status: 'revoked', created_at: '2026-08-16T15:00:00.000Z' },
+    { client_id: CLIENT_B, status: 'submitted', created_at: '2026-08-16T14:00:00.000Z' },
   ]);
   assert.equal(map.get(CLIENT_A).status, 'pending');
   assert.equal(map.get(CLIENT_B).status, 'opened');

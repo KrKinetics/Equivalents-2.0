@@ -47,18 +47,24 @@ function sameDefinitions(row, engine) {
 }
 
 function toResult(row, extras = {}) {
+  const createdAt = row.created_at || extras.createdAt || null;
+  const provenance = extras.provenance || {
+    questionnaireVersion: row.questionnaire_version,
+    rulesetVersion: row.ruleset_version,
+    reportModelVersion: row.report_model_version,
+    contentHash: row.content_hash,
+  };
   return {
     ok: true,
     analysisId: row.id,
     analysisVersion: row.analysis_version,
     idempotent: extras.idempotent === true,
-    createdAt: row.created_at || extras.createdAt || null,
+    createdAt,
+    submittedAt: extras.submittedAt || null,
     analysisSnapshot: extras.analysisSnapshot || row.analysis_snapshot || null,
-    provenance: extras.provenance || {
-      questionnaireVersion: row.questionnaire_version,
-      rulesetVersion: row.ruleset_version,
-      reportModelVersion: row.report_model_version,
-      contentHash: row.content_hash,
+    provenance: {
+      ...provenance,
+      analyzedAt: createdAt,
     },
   };
 }
@@ -66,7 +72,7 @@ function toResult(row, extras = {}) {
 /**
  * @returns {Promise<
  *   | { ok: true, analysisId: string, analysisVersion: number, idempotent: boolean, analysisSnapshot: object, provenance: object }
- *   | { ok: false, error: 'forbidden' | 'not_found' | 'hash_mismatch' | 'unknown_engine' | 'unavailable' }
+ *   | { ok: false, error: 'forbidden' | 'not_found' | 'not_submitted' | 'hash_mismatch' | 'unknown_engine' | 'unavailable' }
  * >}
  */
 export async function processSubmittedMotivationAssessment({
@@ -120,7 +126,7 @@ export async function processSubmittedMotivationAssessment({
   });
   const matching = existing.find((row) => sameDefinitions(row, engine));
   if (matching) {
-    return toResult(matching, { idempotent: true });
+    return toResult(matching, { idempotent: true, submittedAt: response.submitted_at });
   }
 
   let analyzed;
@@ -189,6 +195,7 @@ export async function processSubmittedMotivationAssessment({
     idempotent: persisted.idempotent,
     analysisSnapshot,
     provenance: analysisSnapshot.provenance,
+    submittedAt: response.submitted_at,
   });
 }
 
