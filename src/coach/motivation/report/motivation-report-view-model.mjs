@@ -4,6 +4,11 @@
  */
 
 import { dedupeDisplayItems, normalizeDisplayKey } from './dedupe-display-items.mjs';
+import { presentDomain } from './v43/dimension-presentation.mjs';
+import { buildAthleteOperatingBrief } from './v43/operating-brief.mjs';
+import { buildFirstClassConflictsV43 } from './v43/conflicts.mjs';
+import { buildSupportBlock } from './v43/strengths.mjs';
+import { DIMENSION_GROUP_DEFS } from '../lib/pdf/pdf-v42-display.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -73,23 +78,101 @@ function existingScore(row) {
   return null;
 }
 
+function domainLookup(report) {
+  const rows = [
+    ...(Array.isArray(report?.presentedDomains) ? report.presentedDomains : []),
+    ...(Array.isArray(report?.domainInterpretations) ? report.domainInterpretations : []),
+  ];
+  return new Map(rows.map((row) => [text(row.domainId || row.dimension), row]));
+}
+
 function dimensionItems(report) {
+  const lookup = domainLookup(report);
   return sourceScoreRows(report).map((row) => {
+    const id = text(row.domainId || row.dimension);
     const label = text(row.label || row.dimension);
     if (!label) return null;
-    const score = existingScore(row);
-    const evidence = text(
-      row.agreement?.classification
-      || row.agreementLabel
-      || row.classificationLabel,
-    );
+    const domain = lookup.get(id) || row;
+    const presented = domain.displayLabel
+      ? domain
+      : presentDomain({
+        ...domain,
+        domainId: id,
+        label,
+        itemCount: domain.itemCount ?? row.itemCount ?? row.agreement?.itemCount ?? 1,
+        agreement: domain.agreement?.agreementLevel || domain.agreement || 'insufficient',
+        evidenceStrength: domain.evidenceStrength || 'limited',
+        level: domain.level || 'uncertain',
+        technicalScore: existingScore(domain) ?? existingScore(row),
+        classificationLabel: domain.classificationLabel || row.agreementLabel,
+        affectedDecisionIds: domain.affectedDecisionIds || ['coaching'],
+      });
     return {
-      id: text(row.domainId || row.dimension || label),
+      id,
       label,
-      score,
-      evidenceBadge: evidence,
+      score: presented.displayScore,
+      technicalScore: presented.technicalScore,
+      evidenceBadge: presented.evidenceBadge,
+      displayLabel: presented.displayLabel,
+      signalDirection: presented.signalDirection,
+      coachMeaning: presented.coachMeaning,
+      itemCount: presented.itemCount,
+      changesCoaching: presented.changesCoaching,
     };
   }).filter(Boolean);
+}
+
+function portraitSections(report) {
+  if (Array.isArray(report?.portraitCoach?.sections) && report.portraitCoach.sections.length) {
+    return report.portraitCoach.sections.map((section) => ({
+      key: text(section.key),
+      title: text(section.title),
+      paragraphs: paragraphs(section.paragraphs || section),
+    })).filter((section) => section.title && section.paragraphs.length);
+  }
+  return paragraphs(report?.sport?.narrativeSections).length
+    ? (report.sport.narrativeSections || []).map((section) => ({
+      key: text(section.key),
+      title: text(section.title),
+      paragraphs: paragraphs(section.paragraphs),
+    })).filter((section) => section.title && section.paragraphs.length)
+    : [];
+}
+
+function interviewObjects(report) {
+  const rows = Array.isArray(report?.priorityInterviewQuestions)
+    ? report.priorityInterviewQuestions
+    : [];
+  return rows.slice(0, 5).map((item, index) => {
+    if (typeof item === 'string') {
+      return { text: item, whyItMatters: '', affectedDecision: '', priority: index + 1 };
+    }
+    return {
+      text: text(item.text || item.label),
+      whyItMatters: text(item.whyItMatters),
+      affectedDecision: text(item.affectedDecision),
+      sourceEvidence: item.sourceEvidence || [],
+      priority: item.priority || index + 1,
+    };
+  }).filter((item) => item.text);
+}
+
+function conflictCards(report) {
+  if (Array.isArray(report?.conflicts) && report.conflicts.some((item) => item.sourceA || item.title)) {
+    return report.conflicts.map((item) => ({
+      title: text(item.title) || 'CONTRADICTION À CLARIFIER',
+      sourceA: text(item.sourceA),
+      sourceB: text(item.sourceB),
+      coachImplication: text(item.coachImplication || item.message),
+      validationQuestion: text(item.validationQuestion),
+    })).filter((item) => item.sourceA || item.coachImplication);
+  }
+  return buildFirstClassConflictsV43({
+    domains: report.domainInterpretations || [],
+    obstacles: report.normalizedObstacles || [],
+    openAnswers: report.openAnswers || [],
+    existing: report.conflicts || [],
+  });
 }
 
 function openAnswerRows(report) {
@@ -271,14 +354,22 @@ export function buildMotivationReportViewModel(input = {}) {
     rows: scoreRows(report),
   });
 
+  const supportBlock = report.supportBlock || buildSupportBlock({
+    confirmedStrengths: report.confirmedStrengths,
+    probableStrengths: report.probableStrengths,
+    probableLevers: report.probableLevers,
+    declaredLevers: report.declaredLevers,
+  });
   const strengthItems = list([
+    supportBlock.summary,
+    ...list(supportBlock.items?.map((item) => item.title || item)),
     ...list(plan.mainStrengths),
     ...list(report.probableStrengths),
     ...list(report.confirmedStrengths),
     ...list(plan.probableLevers),
     ...list(report.declaredLevers),
-  ]);
-  addSection(sections, 'strengths', 'Forces', { items: strengthItems });
+  ]).filter((item) => !/Aucune force suffisamment appuyée/i.test(item));
+  addSection(sections, 'strengths', supportBlock.title || 'Appuis', { items: strengthItems });
 
   const excludedValidation = validationQuestionKeys(report);
   const vigilanceItems = list([
@@ -347,7 +438,10 @@ export function buildMotivationReportViewModel(input = {}) {
     ]),
   });
 
-  const interviewItems = list(plan.priorityInterviewQuestions || report.priorityInterviewQuestions);
+  const interviewDetailed = interviewObjects(report);
+  const interviewItems = interviewDetailed.length
+    ? interviewDetailed.map((item) => item.text)
+    : list(plan.priorityInterviewQuestions || report.priorityInterviewQuestions);
   addSection(sections, 'interview', 'Questions d’entrevue', {
     items: interviewItems,
   });
@@ -405,6 +499,60 @@ export function buildMotivationReportViewModel(input = {}) {
     analyzedAt: input.analyzedAt || null,
   };
 
+  const usability = report.usability || report.reportUsability || {};
+  const reportConfidence = report.reportConfidence || {
+    id: usability.level || usability.overall || 'usable_with_validation',
+    label: usability.level === 'strong' || usability.overall === 'strong'
+      ? 'SOLIDE'
+      : usability.level === 'limited' || usability.overall === 'limited'
+        ? 'LIMITÉ'
+        : 'UTILISABLE AVEC VALIDATION',
+    coachLabel: usability.level === 'strong' || usability.overall === 'strong'
+      ? 'Lecture Coach : solide'
+      : usability.level === 'limited' || usability.overall === 'limited'
+        ? 'Lecture Coach : limitée'
+        : 'Lecture Coach : utilisable avec validation',
+  };
+
+  const athleteOperatingBrief = report.athleteOperatingBrief || buildAthleteOperatingBrief({
+    openAnswers: report.openAnswers,
+    directAnswers: report.directAnswers,
+    domains: report.domainInterpretations,
+    readiness,
+    choiceApproach: plan.choiceApproach,
+    communicationApproach: plan.communicationApproach,
+    declaredObstacles: report.declaredObstacles,
+    conflicts: report.conflicts,
+    supportBlock,
+    usability,
+  });
+
+  const portrait = portraitSections(report);
+  const conflicts = conflictCards(report);
+  const buckets = report.riskBuckets || {
+    risksToPrevent: vigilanceItems.filter((item) => /risque|vigilance|tout-ou-rien|reprise/i.test(item)).slice(0, 4),
+    hypothesesToTest: list(plan.clarifications).slice(0, 5),
+    contradictionsToResolve: conflicts.map((item) => item.title || item.coachImplication),
+  };
+  const allDimensions = dimensionItems(report);
+  const decisionFactors = allDimensions.filter((row) => row.changesCoaching).slice(0, 8);
+  const dimensionGroups = DIMENSION_GROUP_DEFS.map((def) => ({
+    id: def.id,
+    title: def.title,
+    items: allDimensions.filter((row) => def.ids.includes(row.id)),
+  })).filter((group) => group.items.length);
+
+  const justifiedQuickRead = quickRead.map((item) => ({
+    ...item,
+    justification: item.id === 'preparation'
+      ? text(readiness.explanation || plan.followUpRationale)
+      : item.id === 'structure'
+        ? text(plan.structureLabel)
+        : item.id === 'follow-up'
+          ? text(plan.followUpRationale)
+          : text(plan.communicationApproach?.guidance || plan.choiceApproach?.summary),
+  }));
+
   return {
     title: 'Profil motivationnel',
     clientName: text(input.clientName || report.metadata?.clientName) || 'Client',
@@ -418,14 +566,24 @@ export function buildMotivationReportViewModel(input = {}) {
       submittedAt: input.submittedAt || report.metadata?.completedAt || null,
       analyzedAt: input.analyzedAt || null,
       analysisVersion: input.analysisVersion ?? null,
+      reportConfidence,
     },
-    quickRead,
+    reportConfidence,
+    quickRead: justifiedQuickRead,
     summary: summaryLines.slice(0, 4),
     supports: strengthItems,
+    supportBlock,
+    athleteOperatingBrief,
+    portraitCoach: portrait,
     coachPriorities: decisionItems.slice(0, 5),
     vigilance: vigilanceItems,
+    riskBuckets: buckets,
+    conflicts,
     interviewQuestions: interviewItems,
-    dimensions: dimensionItems(report),
+    interviewDetailed,
+    dimensions: allDimensions,
+    decisionFactors,
+    dimensionGroups,
     nutrition,
     fourWeekPlan: weekCards,
     verbatims: verbatimItems(report),

@@ -187,6 +187,9 @@ test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () =>
     const onlyAnalyse = /^Analyse\b/i.test(body) && body.length < 80;
     assert.equal(onlyAnalyse, false, `orphan Analyse page ${page.pageNumber}`);
   }
+  assert.equal(rendered.pageStats?.length, 5);
+  assert.ok((rendered.pageStats || []).every((row) => row.usedHeight > 0 && row.blockCount >= 1));
+  assert.ok(rendered.pageStats.slice(1, 4).every((row) => row.blockCount >= 2));
   const last = pages[pages.length - 1].text;
   assert.match(last, /Traçabilité|Tracabilite|Plan 4 semaines/i);
   assert.match(last, /Questionnaire|Ruleset|Empreinte|Soumission/i);

@@ -10,9 +10,9 @@ import { buildMotivationInviteEmail, MOTIVATION_INVITE_SUBJECT } from '../../src
 import { getRateLimitProfile } from '../../src/coach/server/http/rate-limit-profiles.mjs';
 import { redactForLog } from '../../src/coach/server/http/redact.mjs';
 import {
-  QUESTIONNAIRE_V41,
-  REPORT_MODEL_V42,
-  RULESET_V41,
+  QUESTIONNAIRE_V42,
+  REPORT_MODEL_V43,
+  RULESET_V42,
   resolveMotivationEngine,
 } from '../../src/coach/motivation/versions/motivation-versions.mjs';
 
@@ -24,9 +24,9 @@ const OPAQUE_TOKEN = 'opaque_motivation_token_value_24ch';
 const EXPIRES_AT = '2026-08-30T12:00:00.000Z';
 const CLIENT_EMAIL = 'client.test@example.com';
 const ENGINE = resolveMotivationEngine({
-  questionnaireVersion: QUESTIONNAIRE_V41,
-  rulesetVersion: RULESET_V41,
-  reportModelVersion: REPORT_MODEL_V42,
+  questionnaireVersion: QUESTIONNAIRE_V42,
+  rulesetVersion: RULESET_V42,
+  reportModelVersion: REPORT_MODEL_V43,
 });
 
 function jsonResponse(status, payload) {
@@ -94,9 +94,9 @@ test('server invitation pins official engine versions and hash', async () => {
   assert.match(result.invite_url, /motivation\.html\?token=/);
   const rpc = calls.find((call) => call.url.includes('create_client_motivation_invite'));
   const body = JSON.parse(rpc.init.body);
-  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V41);
-  assert.equal(body.p_ruleset_version, RULESET_V41);
-  assert.equal(body.p_report_model_version, REPORT_MODEL_V42);
+  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V42);
+  assert.equal(body.p_ruleset_version, RULESET_V42);
+  assert.equal(body.p_report_model_version, REPORT_MODEL_V43);
   assert.equal(body.p_content_hash, ENGINE.contentHash);
 });
 

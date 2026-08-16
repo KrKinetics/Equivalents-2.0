@@ -37,3 +37,14 @@ test('official browser bundle hash matches resolveMotivationEngine', () => {
     content_hash: '0'.repeat(64),
   }).ok, false);
 });
+
+test('official browser bundle also accepts the explicit v4.2 triple', async () => {
+  const { OFFICIAL_V42_CONTENT_HASH } = await import('../../src/coach/motivation/client/official-bundle.mjs');
+  const { QUESTIONNAIRE_V42, REPORT_MODEL_V43, RULESET_V42, resolveMotivationEngine } = await import('../../src/coach/motivation/versions/motivation-versions.mjs');
+  const engine = resolveMotivationEngine({
+    questionnaireVersion: QUESTIONNAIRE_V42,
+    rulesetVersion: RULESET_V42,
+    reportModelVersion: REPORT_MODEL_V43,
+  });
+  assert.equal(OFFICIAL_V42_CONTENT_HASH, engine.contentHash);
+});

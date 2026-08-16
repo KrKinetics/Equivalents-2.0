@@ -44,6 +44,9 @@ function heroMarkup(vm, logoSrc) {
         ${submitted ? `<p>Soumis le : <strong>${esc(submitted)}</strong></p>` : ''}
         ${analyzed ? `<p>Analysé le : <strong>${esc(analyzed)}</strong></p>` : ''}
         ${version != null ? `<span class="motivation-badge">Analyse v${esc(version)}</span>` : ''}
+        ${vm.reportConfidence?.coachLabel || vm.hero?.reportConfidence?.coachLabel
+          ? `<span class="motivation-badge motivation-badge-confidence">${esc(vm.reportConfidence?.coachLabel || vm.hero.reportConfidence.coachLabel)}</span>`
+          : ''}
       </div>
     </header>
   `;
@@ -59,6 +62,7 @@ function quickReadMarkup(items) {
           <article class="motivation-quick-item" data-quick="${esc(item.id)}">
             <p class="motivation-quick-label">${esc(item.label)}</p>
             <p class="motivation-quick-value">${esc(item.value)}</p>
+            ${item.justification ? `<p class="motivation-quick-why">${esc(item.justification)}</p>` : ''}
           </article>
         `).join('')}
       </div>
@@ -118,37 +122,55 @@ function interviewMarkup(items) {
   `;
 }
 
-function dimensionsMarkup(dimensions) {
-  if (!dimensions?.length) return '';
+function dimensionRowMarkup(row) {
+  const score = row.score;
+  const now = score == null || score === '' ? '' : String(score);
+  const shown = now || row.displayLabel || '—';
+  const pct = barPercent(row.technicalScore ?? score);
+  const direction = row.signalDirection || 'neutral';
+  return `
+    <div class="motivation-dimension" data-dimension="${esc(row.id || row.label)}" data-direction="${esc(direction)}">
+      <div class="motivation-dimension-head">
+        <p class="motivation-dimension-name">${esc(row.label)}</p>
+        <p class="motivation-dimension-score">${esc(shown)}</p>
+      </div>
+      <div
+        class="motivation-dimension-track"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        ${now === '' ? '' : `aria-valuenow="${esc(now)}"`}
+        aria-label="${esc(row.label)}"
+      >
+        <span class="motivation-dimension-bar motivation-dimension-bar-${esc(direction)}" style="width:${pct}%"></span>
+      </div>
+      ${row.coachMeaning ? `<p class="motivation-dimension-meaning">${esc(row.coachMeaning)}</p>` : ''}
+      ${row.evidenceBadge ? `<span class="motivation-evidence">${esc(row.evidenceBadge)}</span>` : ''}
+    </div>
+  `;
+}
+
+function dimensionsMarkup(vm) {
+  const factors = vm.decisionFactors?.length ? vm.decisionFactors : (vm.dimensions || []).slice(0, 8);
+  const groups = vm.dimensionGroups || [];
+  if (!factors.length && !groups.length) return '';
   return `
     <section class="motivation-card" data-section="dimensions">
-      <h2 class="motivation-section-title">Dimensions</h2>
+      <h2 class="motivation-section-title">Facteurs de décision</h2>
       <div class="motivation-dimension-list">
-        ${dimensions.map((row) => {
-          const score = row.score;
-          const now = score == null || score === '' ? '' : String(score);
-          const pct = barPercent(score);
-          return `
-            <div class="motivation-dimension" data-dimension="${esc(row.id || row.label)}">
-              <div class="motivation-dimension-head">
-                <p class="motivation-dimension-name">${esc(row.label)}</p>
-                <p class="motivation-dimension-score">${esc(now === '' ? '—' : now)}</p>
-              </div>
-              <div
-                class="motivation-dimension-track"
-                role="progressbar"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                ${now === '' ? '' : `aria-valuenow="${esc(now)}"`}
-                aria-label="${esc(row.label)}"
-              >
-                <span class="motivation-dimension-bar" style="width:${pct}%"></span>
-              </div>
-              ${row.evidenceBadge ? `<span class="motivation-evidence">${esc(row.evidenceBadge)}</span>` : ''}
-            </div>
-          `;
-        }).join('')}
+        ${factors.map(dimensionRowMarkup).join('')}
       </div>
+      ${groups.length ? `
+        <details class="motivation-all-dimensions">
+          <summary>Voir les 20 dimensions</summary>
+          ${groups.map((group) => `
+            <h3>${esc(group.title)}</h3>
+            <div class="motivation-dimension-list">
+              ${group.items.map(dimensionRowMarkup).join('')}
+            </div>
+          `).join('')}
+        </details>
+      ` : ''}
     </section>
   `;
 }
@@ -200,7 +222,7 @@ function verbatimMarkup(items) {
   if (!items?.length) return '';
   return `
     <section class="motivation-card" data-section="verbatims">
-      <h2 class="motivation-section-title">Réponses ouvertes</h2>
+      <h2 class="motivation-section-title">Voix de l'athlète</h2>
       ${items.map((item) => `
         <blockquote class="motivation-verbatim">
           <p class="motivation-verbatim-kicker">Verbatim client</p>
@@ -238,6 +260,96 @@ function technicalMarkup(provenance) {
   `;
 }
 
+function portraitMarkup(sections) {
+  if (!sections?.length) return '';
+  return `
+    <section class="motivation-card" data-section="portrait-coach">
+      <h2 class="motivation-section-title">Mode d'emploi de l'athlète</h2>
+      ${sections.map((section) => `
+        <article class="motivation-portrait-block">
+          <h3>${esc(section.title)}</h3>
+          ${(section.paragraphs || []).map((line) => `<p class="motivation-prose">${esc(line)}</p>`).join('')}
+        </article>
+      `).join('')}
+    </section>
+  `;
+}
+
+function briefMarkup(brief) {
+  if (!brief) return '';
+  const rows = [
+    ['Objectif prioritaire', brief.primaryGoal],
+    ['Pourquoi maintenant', brief.whyNow],
+    ['Définition de réussite', brief.successDefinition],
+    ['Reprise', brief.recoveryStrategy],
+    ['Structure', brief.structurePreference],
+    ['Choix', brief.choicePreference],
+    ['Communication', brief.communicationPreference],
+    ['Focus alimentaire', brief.nutritionFocus],
+  ].filter(([, value]) => value);
+  if (!rows.length) return '';
+  return `
+    <section class="motivation-card" data-section="operating-brief">
+      <h2 class="motivation-section-title">Synthèse opérationnelle</h2>
+      ${rows.map(([label, value]) => `
+        <div class="intake-report-row">
+          <p class="intake-report-label">${esc(label)}</p>
+          <p class="intake-report-answer">${esc(value)}</p>
+        </div>
+      `).join('')}
+    </section>
+  `;
+}
+
+function riskBucketsMarkup(buckets, conflicts) {
+  if (!buckets && !conflicts?.length) return '';
+  const blocks = [
+    ['Risques à prévenir', buckets?.risksToPrevent, 'risks'],
+    ['Hypothèses à tester', buckets?.hypothesesToTest, 'hypotheses'],
+    ['Contradictions à résoudre', buckets?.contradictionsToResolve, 'contradictions'],
+  ].filter(([, items]) => items?.length);
+  return `
+    <section class="motivation-card motivation-vigilance" data-section="risk-buckets">
+      <h2 class="motivation-section-title">Risques / hypothèses à valider</h2>
+      ${blocks.map(([title, items, id]) => `
+        <div class="motivation-risk-bucket" data-bucket="${esc(id)}">
+          <h3>${esc(title)}</h3>
+          <ul class="motivation-report-list">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
+        </div>
+      `).join('')}
+      ${(conflicts || []).map((item) => `
+        <article class="motivation-conflict">
+          <h3>${esc(item.title || 'CONTRADICTION À CLARIFIER')}</h3>
+          ${item.sourceA ? `<p class="motivation-prose"><strong>Source A.</strong> ${esc(item.sourceA)}</p>` : ''}
+          ${item.sourceB ? `<p class="motivation-prose"><strong>Source B.</strong> ${esc(item.sourceB)}</p>` : ''}
+          ${item.coachImplication ? `<p class="motivation-prose">${esc(item.coachImplication)}</p>` : ''}
+          ${item.validationQuestion ? `<p class="motivation-conflict-q">${esc(item.validationQuestion)}</p>` : ''}
+        </article>
+      `).join('')}
+    </section>
+  `;
+}
+
+function interviewDetailedMarkup(items) {
+  if (!items?.length) return '';
+  return `
+    <section class="motivation-card" data-section="interview">
+      <h2 class="motivation-section-title">Préparer l'entrevue</h2>
+      <ul class="motivation-checklist">
+        ${items.map((item) => `
+          <li>
+            <span class="motivation-check" aria-hidden="true"></span>
+            <span>
+              ${esc(item.text || item)}
+              ${item.whyItMatters ? `<small class="motivation-interview-why">${esc(item.whyItMatters)}</small>` : ''}
+            </span>
+          </li>
+        `).join('')}
+      </ul>
+    </section>
+  `;
+}
+
 export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
   const vm = viewModel || {};
   return `
@@ -245,17 +357,18 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
       ${heroMarkup(vm, logoSrc)}
       <div class="motivation-report-body">
         ${quickReadMarkup(vm.quickRead)}
-        ${summaryMarkup(vm.summary, vm.supports)}
+        ${portraitMarkup(vm.portraitCoach)}
+        ${briefMarkup(vm.athleteOperatingBrief)}
         ${numberedMarkup('priorities', 'Priorités Coach', vm.coachPriorities, 'motivation-priorities')}
-        ${vigilanceMarkup(vm.vigilance)}
-        ${interviewMarkup(vm.interviewQuestions)}
-        ${dimensionsMarkup(vm.dimensions)}
+        ${riskBucketsMarkup(vm.riskBuckets, vm.conflicts)}
+        ${interviewDetailedMarkup(vm.interviewDetailed?.length ? vm.interviewDetailed : vm.interviewQuestions)}
+        ${verbatimMarkup(vm.verbatims)}
+        ${dimensionsMarkup(vm)}
         ${nutritionMarkup(vm.nutrition)}
         ${weekPlanMarkup(vm.fourWeekPlan)}
-        ${verbatimMarkup(vm.verbatims)}
         ${technicalMarkup(vm.provenance || vm.technical || {})}
       </div>
-      <footer class="motivation-report-footer">Confidentiel — usage Coach KR Kinetics</footer>
+      <footer class="motivation-report-footer">Confidentiel — usage Coach KR Kinetics. Outil de coaching, non médical, non diagnostique.</footer>
     </article>
   `;
 }

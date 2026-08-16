@@ -62,6 +62,7 @@ export function resolvePresentedMotivationQuestions({ engine, presentedQuestionC
 
   const baseSet = new Set(engine.baseQuestionCodes);
   const adaptiveSet = new Set(engine.adaptiveQuestionCodes);
+  const narrativeSet = new Set(engine.narrativeQuestionCodes ?? []);
   const missingBase = engine.baseQuestionCodes.filter((code) => !seen.has(code));
   if (missingBase.length > 0) {
     throw new PresentedQuestionCodesError(
@@ -70,7 +71,9 @@ export function resolvePresentedMotivationQuestions({ engine, presentedQuestionC
     );
   }
 
-  const extraNonAdaptive = codes.filter((code) => !baseSet.has(code) && !adaptiveSet.has(code));
+  const extraNonAdaptive = codes.filter((code) => (
+    !baseSet.has(code) && !adaptiveSet.has(code) && !narrativeSet.has(code)
+  ));
   if (extraNonAdaptive.length > 0) {
     throw new PresentedQuestionCodesError(
       `Question codes are not part of ${engine.questionnaireVersion}: ${extraNonAdaptive.join(', ')}`,
@@ -79,10 +82,25 @@ export function resolvePresentedMotivationQuestions({ engine, presentedQuestionC
   }
 
   const adaptiveCodes = codes.filter((code) => adaptiveSet.has(code));
+  const narrativeCodes = codes.filter((code) => narrativeSet.has(code));
   if (adaptiveCodes.length > engine.adaptiveMax) {
     throw new PresentedQuestionCodesError(
       `Too many adaptive questions: ${adaptiveCodes.length} > ${engine.adaptiveMax}`,
       { adaptiveCodes },
+    );
+  }
+  const narrativeMax = engine.narrativeMax ?? 0;
+  if (narrativeCodes.length > narrativeMax) {
+    throw new PresentedQuestionCodesError(
+      `Too many narrative clarifications: ${narrativeCodes.length} > ${narrativeMax}`,
+      { narrativeCodes },
+    );
+  }
+  const hardMax = engine.hardQuestionMax ?? (engine.baseQuestionCodes.length + engine.adaptiveMax);
+  if (codes.length > hardMax) {
+    throw new PresentedQuestionCodesError(
+      `Too many presented questions: ${codes.length} > ${hardMax}`,
+      { presentedQuestionCodes: codes },
     );
   }
 
@@ -91,5 +109,6 @@ export function resolvePresentedMotivationQuestions({ engine, presentedQuestionC
     presentedQuestionCodes: codes,
     baseQuestionCodes: codes.filter((code) => baseSet.has(code)),
     adaptiveQuestionCodes: adaptiveCodes,
+    narrativeQuestionCodes: narrativeCodes,
   };
 }

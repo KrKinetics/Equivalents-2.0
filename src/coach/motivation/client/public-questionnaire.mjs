@@ -1,52 +1,124 @@
 /**
- * Browser-safe v4.1 questionnaire helpers. Display + adaptive selection only.
+ * Browser-safe questionnaire helpers. Display + adaptive selection only.
  * Never computes or returns an official report.
  */
 
 import {
   OFFICIAL_ADAPTIVE_MAX,
   OFFICIAL_BASE_COUNT,
+  OFFICIAL_V42_HARD_MAX,
+  OFFICIAL_V42_NARRATIVE_MAX,
+  OFFICIAL_V42_SCORING_ADAPTIVE_MAX,
   assertOfficialMotivationBundle,
 } from './official-bundle.mjs';
 import {
   SEED_QUESTIONS_V41,
   V41_BASE_CODES,
 } from '../questionnaire/seed-questions-v41.mjs';
+import {
+  SEED_QUESTIONS_V42,
+  V42_BASE_CODES,
+  V42_NARRATIVE_BANK_CODES,
+  V42_SCORING_ADAPTIVE_CODES,
+} from '../questionnaire/seed-questions-v42.mjs';
 import { toEngineQuestionInput } from '../engine/to-question-input.mjs';
 import { selectAdaptiveQuestionsV41 } from '../lib/adaptive-questions-v41.mjs';
+import { selectAdaptiveQuestionsV42 } from '../lib/adaptive-questions-v42.mjs';
 
-const QUESTION_INPUTS = SEED_QUESTIONS_V41.map((seed, index) => toEngineQuestionInput(seed, index));
-const QUESTION_BY_CODE = new Map(SEED_QUESTIONS_V41.map((question) => [question.code, question]));
+const V41_INPUTS = SEED_QUESTIONS_V41.map((seed, index) => toEngineQuestionInput(seed, index));
+const V41_BY_CODE = new Map(SEED_QUESTIONS_V41.map((question) => [question.code, question]));
+const V42_INPUTS = SEED_QUESTIONS_V42.map((seed, index) => toEngineQuestionInput(seed, index));
+const V42_BY_CODE = new Map(SEED_QUESTIONS_V42.map((question) => [question.code, toEngineQuestionInput(question, 0)]));
 
-export function getMotivationQuestion(code) {
-  return QUESTION_BY_CODE.get(code) || null;
+function runtimeFor(version) {
+  if (version === 'questionnaire-v4.2') {
+    return {
+      version: 'questionnaire-v4.2',
+      baseCodes: V42_BASE_CODES,
+      scoringCodes: V42_SCORING_ADAPTIVE_CODES,
+      narrativeCodes: V42_NARRATIVE_BANK_CODES,
+      questionsByCode: V42_BY_CODE,
+      questionInputs: V42_INPUTS,
+      baseCount: OFFICIAL_BASE_COUNT,
+      adaptiveMax: OFFICIAL_V42_SCORING_ADAPTIVE_MAX,
+      narrativeMax: OFFICIAL_V42_NARRATIVE_MAX,
+      hardMax: OFFICIAL_V42_HARD_MAX,
+    };
+  }
+  return {
+    version: 'questionnaire-v4.1',
+    baseCodes: V41_BASE_CODES,
+    scoringCodes: [],
+    narrativeCodes: [],
+    questionsByCode: V41_BY_CODE,
+    questionInputs: V41_INPUTS,
+    baseCount: OFFICIAL_BASE_COUNT,
+    adaptiveMax: OFFICIAL_ADAPTIVE_MAX,
+    narrativeMax: 0,
+    hardMax: OFFICIAL_BASE_COUNT + OFFICIAL_ADAPTIVE_MAX,
+  };
 }
 
-export function getBaseMotivationQuestions() {
-  return V41_BASE_CODES.map((code) => QUESTION_BY_CODE.get(code)).filter(Boolean);
+export function createQuestionnaireRuntime(inviteOrVersion) {
+  const version = typeof inviteOrVersion === 'string'
+    ? inviteOrVersion
+    : inviteOrVersion?.questionnaire_version || inviteOrVersion?.questionnaireVersion || 'questionnaire-v4.1';
+  return runtimeFor(version);
 }
 
-export function selectClientAdaptiveQuestions(answers) {
+export function getMotivationQuestion(code, runtime = runtimeFor('questionnaire-v4.1')) {
+  return runtime.questionsByCode.get(code) || V41_BY_CODE.get(code) || V42_BY_CODE.get(code) || null;
+}
+
+export function getBaseMotivationQuestions(runtime = runtimeFor('questionnaire-v4.1')) {
+  return runtime.baseCodes.map((code) => runtime.questionsByCode.get(code)).filter(Boolean);
+}
+
+export function selectClientAdaptiveQuestions(answers, runtime = runtimeFor('questionnaire-v4.1')) {
+  if (runtime.version === 'questionnaire-v4.2') {
+    return selectAdaptiveQuestionsV42({
+      questions: runtime.questionInputs,
+      answers,
+    }).scoring.map((question) => question.code);
+  }
   return selectAdaptiveQuestionsV41({
-    questions: QUESTION_INPUTS,
+    questions: runtime.questionInputs,
     answers,
-    max: OFFICIAL_ADAPTIVE_MAX,
+    max: runtime.adaptiveMax,
   }).map((question) => question.code);
 }
 
-export function presentedCodesFromAnswers(answers, existingCodes = []) {
-  const base = [...V41_BASE_CODES];
-  const adaptive = selectClientAdaptiveQuestions(
-    answers.filter((answer) => V41_BASE_CODES.includes(answer.questionCode)),
-  );
+export function selectClientNarrativeQuestions(answers, runtime = runtimeFor('questionnaire-v4.1')) {
+  if (runtime.version !== 'questionnaire-v4.2') return [];
+  return selectAdaptiveQuestionsV42({
+    questions: runtime.questionInputs,
+    answers,
+  }).narrative.map((question) => question.code);
+}
+
+export function presentedCodesFromAnswers(answers, existingCodes = [], runtime = runtimeFor('questionnaire-v4.1')) {
+  const base = [...runtime.baseCodes];
+  const baseAnswers = answers.filter((answer) => runtime.baseCodes.includes(answer.questionCode));
+  const adaptive = baseAnswers.length >= runtime.baseCodes.length
+    ? selectClientAdaptiveQuestions(baseAnswers, runtime)
+    : [];
+  const scoringAnswered = adaptive.every((code) => answers.some((answer) => answer.questionCode === code));
+  const narrative = runtime.version === 'questionnaire-v4.2' && adaptive.length >= 0 && (
+    adaptive.length === 0 || scoringAnswered
+  )
+    ? selectClientNarrativeQuestions(answers, runtime)
+    : [];
   const merged = [...base];
   for (const code of existingCodes) {
-    if (!merged.includes(code) && QUESTION_BY_CODE.has(code)) merged.push(code);
+    if (!merged.includes(code) && runtime.questionsByCode.has(code)) merged.push(code);
   }
   for (const code of adaptive) {
     if (!merged.includes(code)) merged.push(code);
   }
-  return merged.slice(0, OFFICIAL_BASE_COUNT + OFFICIAL_ADAPTIVE_MAX);
+  for (const code of narrative) {
+    if (!merged.includes(code)) merged.push(code);
+  }
+  return merged.slice(0, runtime.hardMax);
 }
 
 export function answerFromControl(question, value) {
@@ -86,4 +158,10 @@ export function isQuestionAnswered(question, answer) {
   return Number.isFinite(Number(answer.numericValue));
 }
 
-export { assertOfficialMotivationBundle, V41_BASE_CODES, OFFICIAL_BASE_COUNT, OFFICIAL_ADAPTIVE_MAX };
+export {
+  assertOfficialMotivationBundle,
+  V41_BASE_CODES,
+  V42_BASE_CODES,
+  OFFICIAL_BASE_COUNT,
+  OFFICIAL_ADAPTIVE_MAX,
+};

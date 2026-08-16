@@ -7,8 +7,14 @@ import { calculateDimensionScores, getScoreMap } from '../scoring/engine.mjs';
 import { calculateNutritionScores } from '../scoring/nutrition.mjs';
 import { evaluateRuleset } from '../rules/engine.mjs';
 import { assembleCoachReportSnapshotV42 } from '../report/v42/assemble.mjs';
+import { assembleCoachReportSnapshotV43 } from '../report/v43/assemble.mjs';
 import { selectAdaptiveQuestionsV41 } from '../lib/adaptive-questions-v41.mjs';
-import { resolveMotivationEngine } from '../versions/motivation-versions.mjs';
+import { selectAdaptiveQuestionsV42 } from '../lib/adaptive-questions-v42.mjs';
+import {
+  QUESTIONNAIRE_V42,
+  REPORT_MODEL_V43,
+  resolveMotivationEngine,
+} from '../versions/motivation-versions.mjs';
 import { buildEngineOptionLabels } from './to-question-input.mjs';
 import {
   AdaptiveSelectionMismatchError,
@@ -32,8 +38,8 @@ export class ExternalQuestionDefinitionsError extends Error {
  * a client who saw different adaptive items mid-questionnaire is validated
  * against the final base answers, not the live path they clicked through.
  */
-export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
-  const answers = baseAnswers.map((answer) => {
+function normalizeEngineAnswers(baseAnswers) {
+  return baseAnswers.map((answer) => {
     const code = String(answer.questionCode ?? answer.questionId ?? '').trim();
     return {
       ...answer,
@@ -41,10 +47,28 @@ export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
       questionId: answer.questionId ?? code,
     };
   });
+}
+
+export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
+  const answers = normalizeEngineAnswers(baseAnswers);
+  if (engine.questionnaireVersion === QUESTIONNAIRE_V42) {
+    return selectAdaptiveQuestionsV42({
+      questions: engine.questionInputs,
+      answers,
+    }).scoring.map((question) => question.code);
+  }
   return selectAdaptiveQuestionsV41({
     questions: engine.questionInputs,
     answers,
   }).map((question) => question.code);
+}
+
+export function expectedNarrativeQuestionCodes(engine, answers) {
+  if (engine.questionnaireVersion !== QUESTIONNAIRE_V42) return [];
+  return selectAdaptiveQuestionsV42({
+    questions: engine.questionInputs,
+    answers: normalizeEngineAnswers(answers),
+  }).narrative.map((question) => question.code);
 }
 
 export function assertAdaptiveSelectionMatches(engine, presented, answers) {
@@ -57,8 +81,18 @@ export function assertAdaptiveSelectionMatches(engine, presented, answers) {
   const actualSorted = [...actual].sort();
   if (expectedSorted.join('\0') !== actualSorted.join('\0')) {
     throw new AdaptiveSelectionMismatchError(
-      `Presented adaptive codes do not match the deterministic v4.1 selection. expected=${expected.join(',')} presented=${actual.join(',')}`,
+      `Presented adaptive codes do not match the deterministic selection. expected=${expected.join(',')} presented=${actual.join(',')}`,
       { expected, presented: actual },
+    );
+  }
+  const expectedNarrative = expectedNarrativeQuestionCodes(engine, answers);
+  const actualNarrative = [...(presented.narrativeQuestionCodes ?? [])];
+  const expectedNarrativeSorted = [...expectedNarrative].sort();
+  const actualNarrativeSorted = [...actualNarrative].sort();
+  if (expectedNarrativeSorted.join('\0') !== actualNarrativeSorted.join('\0')) {
+    throw new AdaptiveSelectionMismatchError(
+      `Presented narrative codes do not match the deterministic selection. expected=${expectedNarrative.join(',')} presented=${actualNarrative.join(',')}`,
+      { expected: expectedNarrative, presented: actualNarrative },
     );
   }
 }
@@ -108,7 +142,10 @@ export function analyzeMotivationAssessment(input) {
   });
   const optionLabels = buildEngineOptionLabels(presented.questions);
 
-  const report = assembleCoachReportSnapshotV42({
+  const assemble = engine.reportModelVersion === REPORT_MODEL_V43
+    ? assembleCoachReportSnapshotV43
+    : assembleCoachReportSnapshotV42;
+  const report = assemble({
     assessmentId: input.assessmentId ?? 'assessment',
     clientId: input.clientId ?? 'client',
     clientName: input.clientName ?? 'Client',
@@ -117,6 +154,7 @@ export function analyzeMotivationAssessment(input) {
     completedAt: input.completedAt ?? null,
     questionnaireVersion: engine.questionnaireVersion,
     rulesetVersion: engine.rulesetVersion,
+    reportModelVersion: engine.reportModelVersion,
     questions: presented.questions,
     answers,
     scoring,
@@ -134,6 +172,7 @@ export function analyzeMotivationAssessment(input) {
     report,
     presentedQuestionCodes: presented.presentedQuestionCodes,
     adaptiveQuestionCodes: presented.adaptiveQuestionCodes,
+    narrativeQuestionCodes: presented.narrativeQuestionCodes ?? [],
     provenance: {
       questionnaireVersion: engine.questionnaireVersion,
       rulesetVersion: engine.rulesetVersion,

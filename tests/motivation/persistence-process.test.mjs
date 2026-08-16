@@ -10,8 +10,11 @@ import { fileURLToPath } from 'node:url';
 
 import {
   QUESTIONNAIRE_V41,
+  QUESTIONNAIRE_V42,
   REPORT_MODEL_V42,
+  REPORT_MODEL_V43,
   RULESET_V41,
+  RULESET_V42,
   resolveMotivationEngine,
 } from '../../src/coach/motivation/versions/motivation-versions.mjs';
 import {
@@ -37,6 +40,11 @@ const ENGINE = resolveMotivationEngine({
   questionnaireVersion: QUESTIONNAIRE_V41,
   rulesetVersion: RULESET_V41,
   reportModelVersion: REPORT_MODEL_V42,
+});
+const CURRENT_ENGINE = resolveMotivationEngine({
+  questionnaireVersion: QUESTIONNAIRE_V42,
+  rulesetVersion: RULESET_V42,
+  reportModelVersion: REPORT_MODEL_V43,
 });
 const SUBMISSION = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
   assessmentId: RESPONSE_ID,
@@ -151,13 +159,13 @@ test('create invite pins current engine versions and hash for a member', async (
   const result = await createClientMotivationInvite({ ...BASE, fetchImpl });
   assert.equal(result.ok, true);
   assert.equal(result.token, OPAQUE_TOKEN);
-  assert.equal(result.contentHash, ENGINE.contentHash);
+  assert.equal(result.contentHash, CURRENT_ENGINE.contentHash);
   const rpc = calls.find((call) => call.url.includes('create_client_motivation_invite'));
   const body = JSON.parse(rpc.init.body);
-  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V41);
-  assert.equal(body.p_ruleset_version, RULESET_V41);
-  assert.equal(body.p_report_model_version, REPORT_MODEL_V42);
-  assert.equal(body.p_content_hash, ENGINE.contentHash);
+  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V42);
+  assert.equal(body.p_ruleset_version, RULESET_V42);
+  assert.equal(body.p_report_model_version, REPORT_MODEL_V43);
+  assert.equal(body.p_content_hash, CURRENT_ENGINE.contentHash);
   assert.equal(body.p_content_hash.length, 64);
 });
 

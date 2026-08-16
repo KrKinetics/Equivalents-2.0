@@ -470,3 +470,44 @@
     padding: 16px;
   }
 }
+
+.motivation-quick-why,
+.motivation-dimension-meaning,
+.motivation-interview-why {
+  margin: 6px 0 0;
+  color: var(--muted, #64748b);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.motivation-dimension-bar-risk { background: var(--accent, #ed1136); }
+.motivation-dimension-bar-supportive { background: var(--primary, #071b41); }
+.motivation-dimension-bar-context { background: #3d5a80; }
+.motivation-dimension-bar-neutral { background: #64748b; }
+
+.motivation-conflict {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #f2c9cf;
+  border-left: 3px solid var(--accent, #ed1136);
+  border-radius: 0 10px 10px 0;
+  background: #fff;
+}
+
+.motivation-conflict-q {
+  margin: 8px 0 0;
+  font-weight: 650;
+}
+
+.motivation-risk-bucket + .motivation-risk-bucket {
+  margin-top: 14px;
+}
+
+.motivation-all-dimensions {
+  margin-top: 16px;
+}
+
+.motivation-badge-confidence {
+  background: #e8eef8;
+  color: var(--primary, #071b41);
+}

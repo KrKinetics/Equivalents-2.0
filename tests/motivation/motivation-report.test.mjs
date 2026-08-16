@@ -197,7 +197,14 @@ test('coach report hierarchy uses existing snapshot values only', () => {
   assert.equal(vm.dimensions.length, source.length);
   for (const [index, row] of vm.dimensions.entries()) {
     const expected = source[index].score ?? source[index].technicalScore;
-    assert.equal(row.score, expected);
+    const itemCount = row.itemCount ?? source[index].itemCount ?? source[index].agreement?.itemCount;
+    if (itemCount === 1) {
+      assert.equal(row.score, null);
+      assert.equal(row.technicalScore, expected);
+      assert.match(String(row.evidenceBadge), /Donnée unique|unique/i);
+    } else {
+      assert.equal(row.score ?? row.technicalScore, expected);
+    }
   }
   const html = buildMotivationReportMarkup(vm, {
     logoSrc: './assets/logo-kr-kinetics-horizontal.png',
@@ -214,13 +221,14 @@ test('coach report hierarchy uses existing snapshot values only', () => {
   const order = [
     'hero',
     'quick-read',
-    'summary',
+    'portrait-coach',
+    'operating-brief',
     'priorities',
-    'vigilance',
+    'risk-buckets',
     'interview',
+    'verbatims',
     'dimensions',
     'four-week-plan',
-    'verbatims',
     'technical',
   ];
   let last = -1;

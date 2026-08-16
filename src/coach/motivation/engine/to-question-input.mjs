@@ -9,7 +9,7 @@ export function optionIdFor(code, index) {
 
 export function toEngineQuestionInput(seed, order) {
   const tags = [...(seed.tags ?? [])];
-  return {
+  const input = {
     id: seed.code,
     code: seed.code,
     text: seed.text,
@@ -28,6 +28,11 @@ export function toEngineQuestionInput(seed, order) {
     maxSelections: seed.maxSelections,
     options: seed.options ? [...seed.options] : undefined,
   };
+  if (seed.helper) input.helper = seed.helper;
+  if (seed.examples) input.examples = [...seed.examples];
+  if (seed.chips) input.chips = [...seed.chips];
+  if (seed.maxLength != null) input.maxLength = seed.maxLength;
+  return input;
 }
 
 export function buildEngineOptionLabels(questions) {

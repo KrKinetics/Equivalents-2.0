@@ -5,18 +5,18 @@
  */
 
 import {
-  QUESTIONNAIRE_V41,
-  REPORT_MODEL_V42,
-  RULESET_V41,
+  QUESTIONNAIRE_V42,
+  REPORT_MODEL_V43,
+  RULESET_V42,
   resolveMotivationEngine,
 } from '../../motivation/versions/motivation-versions.mjs';
 
 const EXPIRES_IN_DAYS = 14;
 
 const CURRENT_MOTIVATION_VERSIONS = Object.freeze({
-  questionnaireVersion: QUESTIONNAIRE_V41,
-  rulesetVersion: RULESET_V41,
-  reportModelVersion: REPORT_MODEL_V42,
+  questionnaireVersion: QUESTIONNAIRE_V42,
+  rulesetVersion: RULESET_V42,
+  reportModelVersion: REPORT_MODEL_V43,
 });
 
 /**

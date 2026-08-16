@@ -631,6 +631,32 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
   font-size: 0.88rem;
   line-height: 1.45;
 }
+.motivation-examples {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.motivation-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.motivation-chip {
+  border: 1px solid var(--border, #d7e0ec);
+  background: #fff;
+  color: var(--brand-primary, #071b41);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+.motivation-chip.is-selected {
+  background: var(--brand-primary, #071b41);
+  color: #fff;
+  border-color: var(--brand-primary, #071b41);
+}
 .motivation-page {
   overflow-x: hidden;
 }

@@ -118,15 +118,24 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'motivation', 'questionnaire'),
     path.join(targetDir, 'src', 'coach', 'motivation', 'questionnaire'),
   );
+  copyTree(
+    path.join(root, 'src', 'coach', 'motivation', 'report', 'v43'),
+    path.join(targetDir, 'src', 'coach', 'motivation', 'report', 'v43'),
+  );
   for (const rel of [
     'src/coach/motivation/engine/to-question-input.mjs',
     'src/coach/motivation/lib/adaptive-questions-v41.mjs',
+    'src/coach/motivation/lib/adaptive-questions-v42.mjs',
+    'src/coach/motivation/lib/narrative-clarifications-v42.mjs',
+    'src/coach/motivation/lib/pdf/pdf-v42-display.mjs',
     'src/coach/motivation/scoring/domain-interpretation-v41.mjs',
+    'src/coach/motivation/scoring/domain-interpretation-v42.mjs',
     'src/coach/motivation/scoring/normalize.mjs',
     'src/coach/motivation/report/motivation-report-path.mjs',
     'src/coach/motivation/report/motivation-report-view-model.mjs',
     'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/build-motivation-report-html.mjs',
+    'src/coach/motivation/report/v42/conflicts.mjs',
     'src/coach/motivation/lib/report-timestamp.mjs',
     'src/coach/client/motivation-dashboard.mjs',
   ]) {

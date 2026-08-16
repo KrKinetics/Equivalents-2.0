@@ -5,6 +5,7 @@
 
 import { renderCoachReportPdfV42Kr, MOTIVATION_PDF_RENDERER_ID } from '../lib/pdf/render-v42-kr.mjs';
 import { isCoachReportSnapshotV42 } from '../report/v42/assemble.mjs';
+import { isCoachReportSnapshotV43 } from '../report/v43/assertions.mjs';
 import { buildCoachReportFilename } from '../lib/pdf/filename.mjs';
 import { buildMotivationReportViewModel } from '../report/motivation-report-view-model.mjs';
 
@@ -19,7 +20,7 @@ export { MOTIVATION_PDF_RENDERER_ID };
  * Fills coach-only runtime fields that persistence will supply later.
  */
 export function toMotivationPdfViewModel(reportSnapshot, extras = {}) {
-  if (!isCoachReportSnapshotV42(reportSnapshot)) {
+  if (!isCoachReportSnapshotV42(reportSnapshot) && !isCoachReportSnapshotV43(reportSnapshot)) {
     throw new Error('MOTIVATION_PDF_REQUIRES_REPORT_MODEL_V42');
   }
   return {

@@ -6,6 +6,7 @@ import {
   assertOfficialMotivationBundle,
   answerFromControl,
   controlValueFromAnswer,
+  createQuestionnaireRuntime,
   getMotivationQuestion,
   isQuestionAnswered,
   presentedCodesFromAnswers,
@@ -36,6 +37,7 @@ const LIKERT_SCALE = [1, 2, 3, 4, 5];
 const SAVE_DEBOUNCE_MS = 700;
 
 let supabase;
+let questionnaireRuntime = createQuestionnaireRuntime('questionnaire-v4.1');
 let presentedCodes = [...V41_BASE_CODES];
 let answersByCode = new Map();
 let currentIndex = 0;
@@ -82,7 +84,7 @@ function snapshot() {
 
 function currentQuestion() {
   if (currentIndex >= presentedCodes.length) return null;
-  return getMotivationQuestion(presentedCodes[currentIndex]);
+  return getMotivationQuestion(presentedCodes[currentIndex], questionnaireRuntime);
 }
 
 function escapeHtml(value) {
@@ -158,15 +160,28 @@ function renderQuestion(question) {
   } else {
     const tag = type === 'short_text' ? 'input' : 'textarea';
     const required = question.required === false ? '' : 'required';
+    const maxLength = question.maxLength || (tag === 'input' ? 320 : 320);
     field = tag === 'input'
-      ? `<input name="${escapeHtml(question.code)}" type="text" maxlength="240" ${required} value="${escapeHtml(value)}">`
-      : `<textarea name="${escapeHtml(question.code)}" rows="4" maxlength="2000" ${required}>${escapeHtml(value)}</textarea>`;
+      ? `<input name="${escapeHtml(question.code)}" type="text" maxlength="${maxLength}" ${required} value="${escapeHtml(value)}">`
+      : `<textarea name="${escapeHtml(question.code)}" rows="3" maxlength="${maxLength}" ${required}>${escapeHtml(value)}</textarea>`;
+    if (question.chips?.length) {
+      field += `<div class="motivation-chips" data-chips="${escapeHtml(question.code)}" data-max="${question.maxSelections || 3}">
+        ${question.chips.map((chip) => `
+          <button type="button" class="motivation-chip" data-chip="${escapeHtml(chip)}">${escapeHtml(chip)}</button>
+        `).join('')}
+      </div>`;
+    }
   }
 
+  const examples = question.examples?.length
+    ? `<p class="motivation-examples">Exemples : ${question.examples.map((item) => escapeHtml(item)).join(' · ')}</p>`
+    : '';
   questionHost.innerHTML = `
     <div class="field-group">
       <label>${escapeHtml(question.text)}${requiredMark}</label>
-      ${question.description ? `<p class="motivation-help">${escapeHtml(question.description)}</p>` : ''}
+      ${question.helper ? `<p class="motivation-help">${escapeHtml(question.helper)}</p>` : ''}
+      ${question.description && !question.helper ? `<p class="motivation-help">${escapeHtml(question.description)}</p>` : ''}
+      ${examples}
       ${field}
     </div>
   `;
@@ -191,11 +206,11 @@ function collectCurrentAnswer() {
 }
 
 function maybeUnlockAdaptive() {
-  const baseAnswers = V41_BASE_CODES
+  const baseAnswers = questionnaireRuntime.baseCodes
     .map((code) => answersByCode.get(code))
     .filter(Boolean);
-  if (baseAnswers.length < V41_BASE_CODES.length) return;
-  presentedCodes = presentedCodesFromAnswers(persistedAnswers(), presentedCodes);
+  if (baseAnswers.length < questionnaireRuntime.baseCodes.length) return;
+  presentedCodes = presentedCodesFromAnswers(persistedAnswers(), presentedCodes, questionnaireRuntime);
 }
 
 function updateUi() {
@@ -293,13 +308,13 @@ function restoreFromPayload(data) {
       .map((answer) => [answer.questionCode, answer]),
   );
   const savedCodes = Array.isArray(data.presented_question_codes)
-    ? data.presented_question_codes.filter((code) => getMotivationQuestion(code))
+    ? data.presented_question_codes.filter((code) => getMotivationQuestion(code, questionnaireRuntime))
     : [];
-  presentedCodes = savedCodes.length ? savedCodes : [...V41_BASE_CODES];
+  presentedCodes = savedCodes.length ? savedCodes : [...questionnaireRuntime.baseCodes];
   maybeUnlockAdaptive();
   consentGiven = data.consent_given === true;
   const firstUnanswered = presentedCodes.findIndex((code) => {
-    const question = getMotivationQuestion(code);
+    const question = getMotivationQuestion(code, questionnaireRuntime);
     return question && !isQuestionAnswered(question, answersByCode.get(code));
   });
   currentIndex = firstUnanswered === -1 ? presentedCodes.length : firstUnanswered;
@@ -319,6 +334,7 @@ async function boot() {
       showError('Cette version du questionnaire n’est plus compatible. Demandez un nouveau lien à votre coach.');
       return;
     }
+    questionnaireRuntime = createQuestionnaireRuntime(data);
     clientName.textContent = data.client_name ? `${data.client_name}` : '';
     if (brandLogo) {
       brandLogo.src = './assets/logo-kr-kinetics-horizontal.png';
@@ -338,6 +354,26 @@ async function boot() {
   }
 }
 
+questionHost.addEventListener('click', (event) => {
+  const chip = event.target.closest('[data-chip]');
+  if (!chip) return;
+  const question = currentQuestion();
+  if (!question || !question.chips) return;
+  const field = questionHost.querySelector(`[name="${CSS.escape(question.code)}"]`);
+  if (!field) return;
+  const label = chip.getAttribute('data-chip') || '';
+  const max = Number(chip.parentElement?.dataset.max || question.maxSelections || 3);
+  const current = String(field.value || '')
+    .split(/[,;\n]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const exists = current.includes(label);
+  const next = exists ? current.filter((item) => item !== label) : [...current, label].slice(0, max);
+  field.value = next.join(', ');
+  chip.classList.toggle('is-selected', !exists && next.includes(label));
+  collectCurrentAnswer();
+  scheduleSave();
+});
 questionHost.addEventListener('change', () => {
   collectCurrentAnswer();
   maybeUnlockAdaptive();

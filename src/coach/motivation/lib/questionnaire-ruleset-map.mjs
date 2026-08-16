@@ -12,6 +12,7 @@ export const QUESTIONNAIRE_TO_RULESET = {
     "questionnaire-v3.3": "ruleset-v3.3",
     "questionnaire-v4": "ruleset-v4",
     "questionnaire-v4.1": "ruleset-v4.1",
+    "questionnaire-v4.2": "ruleset-v4.2",
 };
 export const RULESET_DB_IDS = {
     "ruleset-v1": "rset_v1",
@@ -22,6 +23,7 @@ export const RULESET_DB_IDS = {
     "ruleset-v3.3": "rset_v3_3",
     "ruleset-v4": "rset_v4",
     "ruleset-v4.1": "rset_v4_1",
+    "ruleset-v4.2": "rset_v4_2",
 };
 export function rulesetVersionForQuestionnaire(questionnaireVersion) {
     return QUESTIONNAIRE_TO_RULESET[questionnaireVersion] ?? "ruleset-v1";
@@ -40,6 +42,9 @@ export function isQuestionnaireV4(questionnaireVersion) {
 }
 export function isQuestionnaireV41(questionnaireVersion) {
     return questionnaireVersion === "questionnaire-v4.1";
+}
+export function isQuestionnaireV42(questionnaireVersion) {
+    return questionnaireVersion === "questionnaire-v4.2";
 }
 export function isReportModelV3Family(reportModelOrSchemaVersion) {
     if (!reportModelOrSchemaVersion)
