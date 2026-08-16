@@ -43,9 +43,14 @@ test('report page is coach-only and never runs the official engine', () => {
   assert.equal(isProtectedPath('/motivation-report.html'), true);
   assert.equal(isProtectedPath('/assets/motivation-report.js'), true);
   assert.match(html, /Exporter PDF/);
+  assert.match(html, /id="download-pdf"[^>]*hidden[^>]*disabled|id="download-pdf"[^>]*disabled[^>]*hidden/);
+  assert.match(html, /id="retry-report"/);
+  assert.match(html, /Analyse temporairement indisponible/);
   assert.match(js, /\/api\/coach-process-motivation-assessment/);
   assert.match(js, /\/api\/coach-motivation-pdf/);
   assert.match(js, /Préparation de l’analyse/);
+  assert.match(js, /setPdfAvailable\(false\)/);
+  assert.match(js, /Réessayer|retry-report/);
   assert.match(js, /analyzed_at/);
   assert.match(js, /submitted_at/);
   assert.match(js, /publicMotivationReportMessage\(data\?\.error\)/);

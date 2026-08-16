@@ -13,16 +13,38 @@ const KR_LOGO_SRC = './assets/logo-kr-kinetics-horizontal.png';
 
 const statusEl = document.getElementById('status');
 const reportRoot = document.getElementById('report-root');
+const reportError = document.getElementById('report-error');
+const retryBtn = document.getElementById('retry-report');
 const downloadBtn = document.getElementById('download-pdf');
 
 let supabase;
 let membership = null;
 let clientId = null;
+let client = null;
+let reportReady = false;
+let pdfBound = false;
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
   statusEl.className = `status ${kind}`.trim();
   statusEl.classList.toggle('hidden', !message);
+}
+
+function setPdfAvailable(available) {
+  reportReady = available === true;
+  downloadBtn.hidden = !reportReady;
+  downloadBtn.disabled = !reportReady;
+}
+
+function showReportError() {
+  reportRoot.innerHTML = '';
+  reportError.classList.remove('hidden');
+  setStatus('');
+  setPdfAvailable(false);
+}
+
+function hideReportError() {
+  reportError.classList.add('hidden');
 }
 
 function clientIdFromLocation(search = window.location.search) {
@@ -58,17 +80,17 @@ async function loadMembership(userId) {
 }
 
 async function loadAuthorizedClient(id) {
-  const { data: client, error } = await supabase
+  const { data: row, error } = await supabase
     .from('clients')
     .select('id, full_name, organization_id, is_fictional')
     .eq('id', id)
     .eq('organization_id', membership.organizationId)
     .maybeSingle();
   if (error) throw new Error(publicMotivationReportMessage('unavailable'));
-  if (!client || client.organization_id !== membership.organizationId) {
+  if (!row || row.organization_id !== membership.organizationId) {
     throw new Error(publicMotivationReportMessage('not_found'));
   }
-  return client;
+  return row;
 }
 
 async function processOfficialReport() {
@@ -100,10 +122,10 @@ async function processOfficialReport() {
   return data;
 }
 
-function renderOfficialReport(client, processed) {
+function renderOfficialReport(currentClient, processed) {
   const viewModel = buildMotivationReportViewModel({
     report: processed.report,
-    clientName: client.full_name,
+    clientName: currentClient.full_name,
     submittedAt: processed.submitted_at || processed.report?.metadata?.completedAt || null,
     analyzedAt: processed.analyzed_at || processed.provenance?.analyzedAt || null,
     analysisVersion: processed.analysis_version,
@@ -114,7 +136,7 @@ function renderOfficialReport(client, processed) {
 }
 
 async function downloadPdf() {
-  if (!clientId || !membership) return;
+  if (!clientId || !membership || !reportReady) return;
   downloadBtn.disabled = true;
   setStatus('Préparation du PDF…');
   try {
@@ -160,13 +182,49 @@ async function downloadPdf() {
   } catch {
     setStatus(publicMotivationReportMessage('unavailable'), 'error');
   } finally {
-    downloadBtn.disabled = false;
+    downloadBtn.disabled = !reportReady;
+  }
+}
+
+async function loadOfficialReport() {
+  hideReportError();
+  setPdfAvailable(false);
+  setStatus('Préparation de l’analyse...');
+  try {
+    const processed = await processOfficialReport();
+    renderOfficialReport(client, processed);
+    hideReportError();
+    setStatus('');
+    setPdfAvailable(true);
+  } catch (error) {
+    if (error?.code === 'not_found') {
+      hideReportError();
+      reportRoot.innerHTML = '';
+      setPdfAvailable(false);
+      setStatus(publicMotivationReportMessage('not_found'), 'error');
+      return;
+    }
+    if (error?.code === 'not_submitted') {
+      hideReportError();
+      reportRoot.innerHTML = '';
+      setPdfAvailable(false);
+      setStatus(publicMotivationReportMessage('not_submitted'), 'error');
+      return;
+    }
+    if (error?.code === 'forbidden') {
+      hideReportError();
+      reportRoot.innerHTML = '';
+      setPdfAvailable(false);
+      setStatus(publicMotivationReportMessage('forbidden'), 'error');
+      return;
+    }
+    showReportError();
   }
 }
 
 async function boot() {
   setStatus('');
-  downloadBtn.disabled = true;
+  setPdfAvailable(false);
   clientId = clientIdFromLocation();
   if (!clientId) {
     setStatus(publicMotivationReportMessage('invalid_client'), 'error');
@@ -180,18 +238,24 @@ async function boot() {
   clearLoginAutoRedirectGuard(sessionStorage);
 
   membership = await loadMembership(session.user.id);
-  const client = await loadAuthorizedClient(clientId);
-  setStatus('Préparation de l’analyse...');
-  const processed = await processOfficialReport();
-  renderOfficialReport(client, processed);
-  setStatus('');
-  downloadBtn.disabled = false;
-  downloadBtn.addEventListener('click', () => {
-    void downloadPdf();
-  });
+  client = await loadAuthorizedClient(clientId);
+  if (!pdfBound) {
+    downloadBtn.addEventListener('click', () => {
+      void downloadPdf();
+    });
+    retryBtn.addEventListener('click', () => {
+      void loadOfficialReport();
+    });
+    pdfBound = true;
+  }
+  await loadOfficialReport();
 }
 
 boot().catch((err) => {
-  setStatus(err.message || publicMotivationReportMessage('unavailable'), 'error');
-  downloadBtn.disabled = true;
+  if (err?.message === publicMotivationReportMessage('not_found')) {
+    setStatus(err.message, 'error');
+    setPdfAvailable(false);
+    return;
+  }
+  showReportError();
 });

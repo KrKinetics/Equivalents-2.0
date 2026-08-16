@@ -19,6 +19,18 @@ import {
   persistTrustedMotivationAnalysis,
   readMotivationServiceRoleKey,
 } from './persist-trusted-analysis.mjs';
+import { logCoachEvent } from '../http/redact.mjs';
+
+function logUnavailable(stage, error = null, extra = {}) {
+  logCoachEvent({
+    event: 'motivation_analysis_unavailable',
+    stage,
+    errorName: error?.name || extra.errorName || undefined,
+    errorMessage: error?.message ? String(error.message).slice(0, 180) : extra.errorMessage,
+    persistStatus: extra.persistStatus,
+  });
+  return { ok: false, error: 'unavailable' };
+}
 
 function userIdFromAccessToken(accessToken) {
   try {
@@ -110,7 +122,7 @@ export async function processSubmittedMotivationAssessment({
     if (error instanceof UnknownMotivationEngineError) {
       return { ok: false, error: 'unknown_engine' };
     }
-    return { ok: false, error: 'unavailable' };
+    return logUnavailable('engine', error);
   }
 
   if (invite.content_hash !== engine.contentHash) {
@@ -144,8 +156,8 @@ export async function processSubmittedMotivationAssessment({
       status: 'completed',
       completedAt: response.submitted_at ? new Date(response.submitted_at) : null,
     });
-  } catch {
-    return { ok: false, error: 'unavailable' };
+  } catch (error) {
+    return logUnavailable('analyze', error);
   }
 
   const analysisSnapshot = {
@@ -164,8 +176,11 @@ export async function processSubmittedMotivationAssessment({
 
   const coachUserId = createdByUserId || userIdFromAccessToken(accessToken);
   const role = serviceRoleKey || readMotivationServiceRoleKey(env).serviceRoleKey;
-  if (!coachUserId || !role) {
-    return { ok: false, error: 'unavailable' };
+  if (!role) {
+    return logUnavailable('service_role_missing');
+  }
+  if (!coachUserId) {
+    return logUnavailable('coach_user_missing');
   }
 
   const persisted = await persistTrustedMotivationAnalysis({
@@ -181,7 +196,14 @@ export async function processSubmittedMotivationAssessment({
     answers: response.answers,
     analysisSnapshot,
   });
-  if (!persisted.ok) return persisted;
+  if (!persisted.ok) {
+    if (persisted.error === 'unavailable') {
+      return logUnavailable(persisted.stage || 'persist', null, {
+        persistStatus: persisted.persistStatus,
+      });
+    }
+    return persisted;
+  }
 
   return toResult({
     id: persisted.id,

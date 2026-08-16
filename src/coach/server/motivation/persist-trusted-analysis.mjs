@@ -50,7 +50,7 @@ export async function persistTrustedMotivationAnalysis({
     || !engine
     || typeof fetchImpl !== 'function'
   ) {
-    return { ok: false, error: 'unavailable' };
+    return { ok: false, error: 'unavailable', stage: 'persist_params' };
   }
 
   const base = String(supabaseUrl).replace(/\/$/, '');
@@ -77,12 +77,16 @@ export async function persistTrustedMotivationAnalysis({
     }),
   });
   if (response.status === 401 || response.status === 403) {
-    return { ok: false, error: 'forbidden' };
+    return { ok: false, error: 'forbidden', stage: 'persist', persistStatus: response.status };
   }
-  if (!response.ok) return { ok: false, error: 'unavailable' };
+  if (!response.ok) {
+    return { ok: false, error: 'unavailable', stage: 'persist', persistStatus: response.status };
+  }
   const payload = await response.json();
   const row = Array.isArray(payload) ? payload[0] : payload;
-  if (!row?.id || !row.analysis_version) return { ok: false, error: 'unavailable' };
+  if (!row?.id || !row.analysis_version) {
+    return { ok: false, error: 'unavailable', stage: 'persist_payload' };
+  }
   return {
     ok: true,
     id: row.id,

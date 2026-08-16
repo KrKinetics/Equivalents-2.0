@@ -10,16 +10,24 @@
   <link rel="stylesheet" href="./assets/motivation-report.css">
   <script src="/config.js"></script>
 </head>
-<body class="intake-report-page">
+<body class="intake-report-page motivation-report-page">
   <div class="intake-report-toolbar" data-screen-only="true">
     <a class="btn-compact btn-ghost" href="./dashboard.html" id="back-dashboard">Retour au tableau de bord</a>
     <div class="intake-report-toolbar-actions">
-      <button type="button" class="btn-compact btn-primary" id="download-pdf">Exporter PDF</button>
+      <button type="button" class="btn-compact btn-primary" id="download-pdf" hidden disabled>Exporter PDF</button>
     </div>
   </div>
   <div class="intake-report-page-status">
     <div id="status" class="status hidden" role="status"></div>
   </div>
+  <section id="report-error" class="motivation-report-error-card hidden" role="alert">
+    <h1>Analyse temporairement indisponible</h1>
+    <p>Le questionnaire est bien soumis, mais le rapport n’a pas pu être préparé. Réessayez dans quelques instants.</p>
+    <div class="motivation-report-error-actions">
+      <button type="button" class="btn-compact btn-primary" id="retry-report">Réessayer</button>
+      <a class="btn-compact btn-ghost" href="./dashboard.html">Retour au tableau de bord</a>
+    </div>
+  </section>
   <div id="report-root"></div>
   <script type="module" src="./assets/motivation-report.js"></script>
 </body>

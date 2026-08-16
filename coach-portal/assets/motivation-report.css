@@ -1,3 +1,43 @@
+.motivation-report-page #report-root {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+.motivation-report {
+  max-width: 1100px;
+}
+
+.motivation-report .intake-report-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.motivation-report .intake-report-client {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: #e2e8f0;
+}
+
+.motivation-report .intake-report-body {
+  display: grid;
+  gap: 14px;
+  padding-top: 18px;
+}
+
+.motivation-report .intake-report-section {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid #d7e0ec;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(7, 27, 65, 0.05);
+}
+
 .motivation-report-list {
   margin: 0 0 8px;
   padding-left: 1.2em;
@@ -14,6 +54,36 @@
 
 .motivation-report-tech .intake-report-section-title {
   letter-spacing: 0.08em;
+}
+
+.motivation-report-error-card {
+  max-width: 520px;
+  margin: 12vh auto 0;
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid #d7e0ec;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(7, 27, 65, 0.1);
+  text-align: center;
+}
+
+.motivation-report-error-card h1 {
+  margin: 0 0 10px;
+  color: #071b41;
+  font-size: 1.35rem;
+}
+
+.motivation-report-error-card p {
+  margin: 0 0 18px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.motivation-report-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 @media (max-width: 720px) {

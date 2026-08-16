@@ -79,8 +79,9 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
       <header class="intake-report-header">
         ${logo}
         <p class="intake-report-kicker">KR Kinetics</p>
-        <h1 class="intake-report-client">${esc(vm.clientName || 'Client')}</h1>
-        <p class="intake-report-submitted">${esc(vm.title || 'Profil motivationnel')}${submitted ? ` · ${esc(submitted)}` : ''}</p>
+        <h1 class="intake-report-title">${esc(vm.title || 'Profil motivationnel')}</h1>
+        <p class="intake-report-client">${esc(vm.clientName || 'Client')}</p>
+        ${submitted ? `<p class="intake-report-submitted">${esc(submitted)}</p>` : ''}
       </header>
       <div class="intake-report-rule"></div>
       <div class="intake-report-body">

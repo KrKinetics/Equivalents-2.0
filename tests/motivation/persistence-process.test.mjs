@@ -232,16 +232,46 @@ test('process analysis creates version 1 for a submitted fictional client', asyn
 });
 
 test('process analysis refuses to persist without a server role key', async () => {
-  const { fetchImpl, calls } = createFetchMock();
-  const result = await processSubmittedMotivationAssessment({
-    ...BASE,
-    serviceRoleKey: '',
-    env: {},
-    fetchImpl,
-  });
-  assert.equal(result.ok, false);
-  assert.equal(result.error, 'unavailable');
-  assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
+  const logs = [];
+  const originalLog = console.log;
+  console.log = (line) => { logs.push(String(line)); };
+  try {
+    const { fetchImpl, calls } = createFetchMock();
+    const result = await processSubmittedMotivationAssessment({
+      ...BASE,
+      serviceRoleKey: '',
+      env: {},
+      fetchImpl,
+    });
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'unavailable');
+    assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
+    assert.ok(logs.some((line) => line.includes('motivation_analysis_unavailable') && line.includes('service_role_missing')));
+    assert.equal(logs.some((line) => /service_role_test|numericValue|answers/.test(line)), false);
+  } finally {
+    console.log = originalLog;
+  }
+});
+
+test('process analysis logs analyze stage when the engine throws', async () => {
+  const logs = [];
+  const originalLog = console.log;
+  console.log = (line) => { logs.push(String(line)); };
+  try {
+    const { fetchImpl, calls } = createFetchMock({
+      responseRow: submittedResponse({
+        answers: [{ questionCode: 'UNKNOWN_CODE', numericValue: 1 }],
+      }),
+    });
+    const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'unavailable');
+    assert.ok(logs.some((line) => line.includes('motivation_analysis_unavailable') && line.includes('"stage":"analyze"')));
+    assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
+    assert.equal(logs.some((line) => /numericValue|selectedOptions|"answers"/.test(line)), false);
+  } finally {
+    console.log = originalLog;
+  }
 });
 
 test('process analysis is idempotent for the same response and definitions', async () => {
