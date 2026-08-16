@@ -1,0 +1,58 @@
+/* KR Kinetics Coach dashboard — semantic action modules.
+ * Keeps each feature group visually distinct while presenting the modules
+ * left-to-right on desktop. Existing portal.css remains the base system.
+ */
+
+@media (min-width: 1080px) {
+  .dash-wrap {
+    max-width: 1460px;
+  }
+
+  .clients-table {
+    min-width: 1260px;
+  }
+
+  .client-actions-cell {
+    min-width: 620px;
+    width: 52%;
+  }
+
+  .client-action-groups {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.35fr) minmax(190px, 1fr) minmax(160px, 0.85fr);
+    column-gap: 14px;
+    row-gap: 10px;
+    align-items: start;
+    min-width: 590px;
+  }
+
+  .client-action-group {
+    min-width: 0;
+  }
+
+  .client-action-group + .client-action-group {
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+  }
+
+  .client-action-group-controls {
+    align-items: flex-start;
+  }
+
+  .client-management-actions {
+    grid-column: 1 / -1;
+    margin-top: 2px;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 1079px) {
+  .client-action-groups {
+    min-width: 248px;
+  }
+
+  .client-action-group + .client-action-group {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
