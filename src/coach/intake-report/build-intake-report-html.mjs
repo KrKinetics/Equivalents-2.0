@@ -129,8 +129,9 @@ export function buildIntakeReportDocumentHtml({
 
 /**
  * Chromium page.pdf options for the intake report (not the nutrition plan).
- * Continuation chrome lives in the header margin; page 1 hero covers it via
- * a negative header offset so the approved first page is unchanged.
+ * Page 1 keeps the full KR hero. Continuation pages reserve clean top whitespace;
+ * pagination + confidentiality live in the footer so no Chromium margin header can
+ * overlap the hero banner.
  * @param {{ footerText?: string, logoSrc?: string }} [opts]
  */
 export function getIntakeReportPdfOptions({ footerText, logoSrc } = {}) {
@@ -143,17 +144,17 @@ export function getIntakeReportPdfOptions({ footerText, logoSrc } = {}) {
     printBackground: true,
     preferCSSPageSize: true,
     displayHeaderFooter: true,
-    headerTemplate: `<div style="width:100%;box-sizing:border-box;padding:3mm 28px 0;font-family:Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
-          ${logo}
-          <span style="font-size:8px;letter-spacing:.11em;font-weight:700;color:#071B41;text-transform:uppercase;white-space:nowrap;">RAPPORT DE PRÉ-ENTREVUE — SUITE</span>
-        </div>
-        <span style="font-size:8px;color:#071B41;white-space:nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
+    // Intentionally hidden. Chromium cannot reliably suppress a margin header on
+    // page 1 only; keeping continuation chrome here caused the KR hero overlap.
+    // The semantic markers remain for backward contract compatibility.
+    headerTemplate: `<div style="display:none;color:#071B41;border-color:#ED1136;">${logo}<span>RAPPORT DE PRÉ-ENTREVUE — SUITE</span><span class="pageNumber"></span><span class="totalPages"></span></div>`,
+    footerTemplate: `<div style="width:100%;box-sizing:border-box;padding:0 16mm 2mm;font-family:Arial,Helvetica,sans-serif;color:#5b6b80;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
+      <div style="height:1px;background:#d7e0ec;margin-bottom:4px;"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:8px;">
+        <span>${footer}</span>
+        <span style="color:#071B41;white-space:nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
       </div>
-      <div style="height:2px;background:#ED1136;margin-top:3px;"></div>
     </div>`,
-    footerTemplate: `<div style="width:100%;text-align:center;font-size:8px;color:#5b6b80;font-family:Arial,Helvetica,sans-serif;padding:0 16mm;">${footer}</div>`,
     margin: { top: '0mm', right: '0mm', bottom: '12mm', left: '0mm' },
     timeout: 30_000,
   };
