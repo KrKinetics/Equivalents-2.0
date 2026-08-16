@@ -34,6 +34,8 @@ function setPdfAvailable(available) {
   reportReady = available === true;
   downloadBtn.hidden = !reportReady;
   downloadBtn.disabled = !reportReady;
+  downloadBtn.classList.toggle('hidden', !reportReady);
+  downloadBtn.setAttribute('aria-hidden', reportReady ? 'false' : 'true');
 }
 
 function showReportError() {

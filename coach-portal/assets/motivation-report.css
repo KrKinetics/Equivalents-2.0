@@ -1,3 +1,8 @@
+.motivation-report-page #download-pdf[hidden],
+.motivation-report-page #download-pdf.hidden {
+  display: none !important;
+}
+
 .motivation-report-page #report-root {
   max-width: 1100px;
   margin: 0 auto;

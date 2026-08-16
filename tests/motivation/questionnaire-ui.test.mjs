@@ -56,10 +56,15 @@ test('motivation form uses a questionnaire-specific max width', () => {
 });
 
 test('report PDF stays disabled until an official report is loaded and errors offer retry', () => {
+  const reportCss = fs.readFileSync(path.join(root, 'coach-portal/assets/motivation-report.css'), 'utf8');
   assert.match(reportHtml, /id="download-pdf"[^>]*\bhidden\b/);
   assert.match(reportHtml, /id="download-pdf"[^>]*\bdisabled\b/);
+  assert.match(reportHtml, /class="[^"]*\bhidden\b/);
   assert.match(reportHtml, /id="retry-report"/);
   assert.match(reportHtml, /Analyse temporairement indisponible/);
   assert.match(reportJs, /setPdfAvailable\(false\)/);
+  assert.match(reportJs, /classList\.toggle\('hidden', !reportReady\)/);
   assert.match(reportJs, /showReportError/);
+  assert.match(reportCss, /#download-pdf\[hidden\]/);
+  assert.match(reportCss, /display:\s*none\s*!important/);
 });

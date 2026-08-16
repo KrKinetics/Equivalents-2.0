@@ -68,6 +68,28 @@ function startServer() {
       res.end(FIXTURE);
       return;
     }
+    if (url.pathname === '/motivation-report-ui.html') {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/portal.css">
+  <link rel="stylesheet" href="./assets/motivation-report.css">
+</head>
+<body class="intake-report-page motivation-report-page">
+  <div class="intake-report-toolbar">
+    <a class="btn-compact btn-ghost" href="./dashboard.html">Retour au tableau de bord</a>
+    <div class="intake-report-toolbar-actions">
+      <button type="button" class="btn-compact btn-primary hidden" id="download-pdf" hidden disabled aria-hidden="true">Exporter PDF</button>
+    </div>
+  </div>
+  <div id="status" class="status error">Accès refusé</div>
+</body>
+</html>`);
+      return;
+    }
     const rel = url.pathname.replace(/^\//, '');
     const abs = path.normalize(path.join(portal, rel));
     if (!abs.startsWith(portal) || !fs.existsSync(abs)) {
@@ -137,5 +159,32 @@ test('Chromium shows a visible Précédent button and compact radios', { skip: !
   assert.ok(metrics.optHeight >= 44, String(metrics.optHeight));
   assert.equal(metrics.likertCount, 5);
   assert.equal(metrics.scrollOverflow, false);
+  await page.close();
+});
+
+test('Chromium hides Exporter PDF on Accès refusé', { skip: !puppeteerReady }, async () => {
+  if (!browser) return;
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1100, height: 800, deviceScaleFactor: 1 });
+  await page.goto(`${origin}/motivation-report-ui.html`, { waitUntil: 'networkidle0' });
+  const metrics = await page.evaluate(() => {
+    const btn = document.getElementById('download-pdf');
+    const style = getComputedStyle(btn);
+    const box = btn.getBoundingClientRect();
+    return {
+      display: style.display,
+      hidden: btn.hidden,
+      disabled: btn.disabled,
+      width: box.width,
+      height: box.height,
+      text: btn.textContent.trim(),
+    };
+  });
+  assert.equal(metrics.text, 'Exporter PDF');
+  assert.equal(metrics.hidden, true);
+  assert.equal(metrics.disabled, true);
+  assert.equal(metrics.display, 'none');
+  assert.equal(metrics.width, 0);
+  assert.equal(metrics.height, 0);
   await page.close();
 });
