@@ -93,6 +93,21 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+function choiceColumns(options) {
+  const items = Array.isArray(options) ? options : [];
+  return items.length >= 4 && items.every((option) => String(option).length <= 36) ? '2' : '1';
+}
+
+function choiceCard({ type, name, option, index, checked }) {
+  const id = `${name}-${index}`;
+  return `
+    <label class="motivation-choice-card" for="${escapeHtml(id)}">
+      <input id="${escapeHtml(id)}" type="${type}" name="${escapeHtml(name)}" value="${escapeHtml(option)}" ${checked ? 'checked' : ''}>
+      <span>${escapeHtml(option)}</span>
+    </label>
+  `;
+}
+
 function renderQuestion(question) {
   const stored = answersByCode.get(question.code);
   const value = controlValueFromAnswer(question, stored);
@@ -103,32 +118,42 @@ function renderQuestion(question) {
   if (type === 'likert') {
     field = `<fieldset class="motivation-likert" data-required="${escapeHtml(question.code)}">
       <legend class="visually-hidden">${escapeHtml(question.text)}</legend>
-      ${LIKERT_SCALE.map((n, i) => `
-        <label>
-          <input type="radio" name="${escapeHtml(question.code)}" value="${n}" ${String(value) === String(n) ? 'checked' : ''}>
-          <span class="motivation-likert-n">${n}</span>
-          <span class="motivation-likert-l">${escapeHtml(LIKERT_LABELS[i])}</span>
-        </label>
-      `).join('')}
+      <div class="motivation-likert-scale">
+        ${LIKERT_SCALE.map((n, i) => `
+          <label class="motivation-likert-opt">
+            <input type="radio" name="${escapeHtml(question.code)}" value="${n}" ${String(value) === String(n) ? 'checked' : ''}>
+            <span class="motivation-likert-n">${n}</span>
+            <span class="visually-hidden">${escapeHtml(LIKERT_LABELS[i])}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="motivation-likert-ends" aria-hidden="true">
+        <span>${escapeHtml(LIKERT_LABELS[0])}</span>
+        <span>${escapeHtml(LIKERT_LABELS[4])}</span>
+      </div>
     </fieldset>`;
   } else if (type === 'single_choice') {
-    field = `<fieldset class="motivation-choices" data-required="${escapeHtml(question.code)}">
-      ${(question.options || []).map((option) => `
-        <label>
-          <input type="radio" name="${escapeHtml(question.code)}" value="${escapeHtml(option)}" ${value === option ? 'checked' : ''}>
-          <span>${escapeHtml(option)}</span>
-        </label>
-      `).join('')}
+    const options = question.options || [];
+    field = `<fieldset class="motivation-choices" data-required="${escapeHtml(question.code)}" data-columns="${choiceColumns(options)}">
+      ${options.map((option, index) => choiceCard({
+        type: 'radio',
+        name: question.code,
+        option,
+        index,
+        checked: value === option,
+      })).join('')}
     </fieldset>`;
   } else if (type === 'multiple_choice') {
     const selected = Array.isArray(value) ? value : [];
-    field = `<fieldset class="motivation-choices" data-max="${question.maxSelections || 3}">
-      ${(question.options || []).map((option) => `
-        <label>
-          <input type="checkbox" name="${escapeHtml(question.code)}" value="${escapeHtml(option)}" ${selected.includes(option) ? 'checked' : ''}>
-          <span>${escapeHtml(option)}</span>
-        </label>
-      `).join('')}
+    const options = question.options || [];
+    field = `<fieldset class="motivation-choices" data-max="${question.maxSelections || 3}" data-columns="${choiceColumns(options)}">
+      ${options.map((option, index) => choiceCard({
+        type: 'checkbox',
+        name: question.code,
+        option,
+        index,
+        checked: selected.includes(option),
+      })).join('')}
     </fieldset>`;
   } else {
     const tag = type === 'short_text' ? 'input' : 'textarea';

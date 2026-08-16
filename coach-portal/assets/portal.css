@@ -582,6 +582,8 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
     z-index: 4;
   }
   .intake-actions button { min-width: 0; flex: 1; }
+  .motivation-page .intake-shell { width: min(100% - 20px, 840px); }
+  .motivation-likert-opt { min-height: 48px; padding: 8px 2px; }
   table { min-width: 760px; }
 }
 
@@ -629,6 +631,25 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
   font-size: 0.88rem;
   line-height: 1.45;
 }
+.motivation-page {
+  overflow-x: hidden;
+}
+.motivation-page .intake-shell {
+  width: min(840px, calc(100% - 32px));
+}
+.motivation-page .intake-intro {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+.motivation-page .intake-intro h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+.motivation-page .intake-progress {
+  margin-bottom: 14px;
+}
+.motivation-page .intake-progress-track {
+  margin: 6px 0 8px;
+}
 .motivation-likert,
 .motivation-choices {
   display: grid;
@@ -636,26 +657,126 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
   border: 0;
   padding: 0;
   margin: 0;
+  min-width: 0;
 }
-.motivation-likert label,
-.motivation-choices label,
+.motivation-likert {
+  display: block;
+}
+.motivation-likert-scale {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.motivation-likert-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 52px;
+  margin: 0 0 0;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.motivation-likert-opt:has(input:checked) {
+  border-color: var(--brand-accent);
+  background: color-mix(in srgb, var(--brand-accent) 8%, white);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand-accent) 35%, transparent);
+}
+.motivation-likert-n {
+  min-width: 1.2em;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  line-height: 1;
+}
+.motivation-likert-l { color: #334155; font-size: 0.9rem; }
+.motivation-likert-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.motivation-choices[data-columns="2"] {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .motivation-choices[data-columns="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.motivation-choice-card,
 .motivation-consent-box {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  padding: 10px 12px;
+  margin: 0;
+  padding: 12px 14px;
+  min-height: 44px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: #fff;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
 }
-.motivation-likert-n {
-  min-width: 1.2em;
-  font-weight: 800;
-  color: var(--brand-primary);
+.motivation-choice-card span,
+.motivation-consent-box span {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
 }
-.motivation-likert-l { color: #334155; font-size: 0.9rem; }
+.motivation-choice-card:has(input:checked) {
+  border-color: var(--brand-accent);
+  background: color-mix(in srgb, var(--brand-accent) 7%, white);
+}
+.motivation-page .motivation-likert input[type="radio"],
+.motivation-page .motivation-choices input[type="radio"],
+.motivation-page .motivation-choices input[type="checkbox"],
+.motivation-page .motivation-consent-box input[type="checkbox"],
+.motivation-page .field-group .motivation-likert input[type="radio"],
+.motivation-page .field-group .motivation-choices input[type="radio"],
+.motivation-page .field-group .motivation-choices input[type="checkbox"] {
+  width: 18px;
+  min-width: 18px;
+  max-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  appearance: auto;
+  accent-color: var(--brand-accent);
+}
 .motivation-consent { margin-top: 8px; }
 .motivation-consent-box { align-items: flex-start; }
+.motivation-page .intake-actions button.motivation-btn-back {
+  background: #fff;
+  color: var(--brand-primary);
+  border: 1px solid #8aa0c2;
+}
+.motivation-page .intake-actions button.motivation-btn-next {
+  background: var(--brand-primary);
+  color: #fff;
+  border: 0;
+}
+.motivation-page .intake-actions button.motivation-btn-submit {
+  background: var(--brand-accent);
+  color: #fff;
+  border: 0;
+}
 .motivation-qa-url,
 .motivation-qa-json {
   overflow: auto;
