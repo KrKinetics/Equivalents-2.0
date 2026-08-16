@@ -86,13 +86,19 @@ export function requirePublicSupabaseBuildEnv(env = process.env) {
  * Browser-facing config.js source. Publishable values only.
  * @param {{ url: string, publishableKey: string, serverNutritionEngine?: boolean }} opts
  */
-export function buildConfigJsSource({ url, publishableKey, serverNutritionEngine = true }) {
+export function buildConfigJsSource({
+  url,
+  publishableKey,
+  serverNutritionEngine = true,
+  previewTools = false,
+} = {}) {
   const { url: safeUrl, publishableKey: safeKey } = requirePublicSupabaseBuildEnv({
     SUPABASE_URL: url,
     SUPABASE_PUBLISHABLE_KEY: publishableKey,
   });
   const features = {
     serverNutritionEngine: Boolean(serverNutritionEngine),
+    previewTools: Boolean(previewTools),
   };
   return `window.COACH_SUPABASE = Object.freeze(${JSON.stringify({
     url: safeUrl,

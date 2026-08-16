@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>QA Profil motivationnel | KR Kinetics</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body class="wrap">
+  <main class="card">
+    <p class="eyebrow">OUTIL DE PRÉVISUALISATION</p>
+    <h1>QA — Profil motivationnel</h1>
+    <p id="qa-banner" class="status">Outil Coach hors Production. Clients fictifs seulement.</p>
+    <p id="session-meta" class="muted"></p>
+    <div id="blocked-card" class="hidden">
+      <p>Cet outil n’est pas disponible en Production.</p>
+    </div>
+    <div id="qa-app" class="hidden">
+      <label for="client-select">Client fictif</label>
+      <select id="client-select"></select>
+      <div class="intake-actions">
+        <button id="invite-button" type="button">Créer l’invitation</button>
+        <button id="open-form-button" type="button" class="secondary" disabled>Ouvrir le questionnaire</button>
+        <button id="refresh-button" type="button" class="secondary">Actualiser le statut</button>
+        <button id="analyze-button" type="button" disabled>Analyser officiellement</button>
+      </div>
+      <p id="invite-url" class="motivation-qa-url"></p>
+      <pre id="status-json" class="motivation-qa-json"></pre>
+      <pre id="report-json" class="motivation-qa-json"></pre>
+    </div>
+  </main>
+  <script type="module" src="./assets/motivation-qa.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Profil motivationnel | KR Kinetics</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <script src="/config.js"></script>
+</head>
+<body class="intake-page motivation-page" data-brand="kr">
+  <main class="intake-shell">
+    <header class="intake-brandbar" aria-label="Marque">
+      <div class="intake-brand-lockup">
+        <img
+          id="brand-logo"
+          class="intake-brand-logo"
+          src="./assets/logo-kr-kinetics-horizontal.png"
+          alt="KR Kinetics"
+          width="220"
+          height="56"
+        >
+      </div>
+      <span class="intake-duration">Environ 8 à 12 min</span>
+    </header>
+
+    <section id="loading-card" class="intake-card intake-state-card" aria-live="polite">
+      <div class="intake-spinner" aria-hidden="true"></div>
+      <h1>Préparation de votre Profil motivationnel</h1>
+      <p>Un instant, nous validons votre lien sécurisé.</p>
+    </section>
+
+    <section id="error-card" class="intake-card intake-state-card hidden" role="alert">
+      <span class="intake-state-icon" aria-hidden="true">!</span>
+      <h1>Ce lien n’est pas disponible</h1>
+      <p id="error-message">Le lien est invalide, expiré ou a été remplacé.</p>
+      <p class="intake-help">Communiquez avec votre coach afin de recevoir un nouveau lien.</p>
+    </section>
+
+    <section id="done-card" class="intake-card intake-state-card hidden" aria-live="polite">
+      <span class="intake-state-icon intake-state-success" aria-hidden="true">✓</span>
+      <p class="intake-eyebrow">C’EST TERMINÉ</p>
+      <h1>Merci. Votre Profil motivationnel a été transmis à votre coach.</h1>
+      <p>Votre coach KR Kinetics pourra l’utiliser pour personnaliser votre accompagnement.</p>
+    </section>
+
+    <form id="motivation-form" class="intake-card hidden" novalidate>
+      <div class="intake-intro">
+        <p class="intake-eyebrow">PROFIL MOTIVATIONNEL</p>
+        <h1>Bonjour <span id="client-name"></span></h1>
+        <p>Ces questions aident votre coach à mieux comprendre ce qui soutient votre constance. Il n’y a pas de bonne ou de mauvaise réponse. Ce n’est pas un diagnostic médical ou psychologique.</p>
+      </div>
+
+      <div class="intake-progress" aria-label="Progression du formulaire">
+        <div class="intake-progress-meta">
+          <span id="step-label">Question 1</span>
+          <span id="save-status" aria-live="polite">Lien sécurisé</span>
+        </div>
+        <div class="intake-progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <p id="section-label" class="motivation-section-label"></p>
+      </div>
+
+      <div id="form-error" class="status error hidden" role="alert"></div>
+      <div id="question-host" class="motivation-question-host"></div>
+
+      <section id="consent-step" class="motivation-consent hidden">
+        <div class="intake-section-heading">
+          <span>OK</span>
+          <div>
+            <h2>Avant d’envoyer</h2>
+            <p>Votre consentement est requis pour transmettre le profil à votre coach.</p>
+          </div>
+        </div>
+        <label class="motivation-consent-box">
+          <input id="consent" name="consent" type="checkbox">
+          <span>
+            Je comprends que mes réponses servent à personnaliser mon accompagnement KR Kinetics,
+            que ce questionnaire n’est pas un diagnostic médical ou psychologique,
+            et que les résultats sont destinés à mon coach.
+          </span>
+        </label>
+      </section>
+
+      <div class="intake-actions">
+        <button id="back-button" type="button" class="secondary hidden">Précédent</button>
+        <button id="next-button" type="button">Suivant</button>
+        <button id="submit-button" type="submit" class="hidden">Envoyer à mon coach</button>
+      </div>
+    </form>
+  </main>
+  <script type="module" src="./assets/motivation.js"></script>
+</body>
+</html>

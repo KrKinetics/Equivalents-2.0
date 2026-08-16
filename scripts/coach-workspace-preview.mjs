@@ -50,6 +50,8 @@ const COACH_API_HANDLERS = Object.freeze([
   'coach-generate-pdf',
   'coach-generate-intake-report-pdf',
   'coach-send-intake-invite',
+  'coach-send-motivation-invite',
+  'coach-process-motivation-assessment',
 ]);
 
 const { url, publishableKey } = requireSupabasePublicEnv(root);
@@ -71,7 +73,12 @@ function mime(filePath) {
 }
 
 function configJs() {
-  return buildConfigJsSource({ url, publishableKey, serverNutritionEngine: true });
+  return buildConfigJsSource({
+    url,
+    publishableKey,
+    serverNutritionEngine: true,
+    previewTools: true,
+  });
 }
 
 function transformWorkspaceHtml(html) {
@@ -201,7 +208,11 @@ function deny(res, req, urlPath, status = 401) {
 }
 
 function isPublicIntakePath(urlPath) {
-  return urlPath === '/intake.html' || urlPath === '/assets/intake.js';
+  return urlPath === '/intake.html'
+    || urlPath === '/assets/intake.js'
+    || urlPath === '/motivation.html'
+    || urlPath === '/assets/motivation.js'
+    || urlPath.startsWith('/src/coach/motivation/');
 }
 
 ensureCalculatorBuilt();
@@ -293,6 +304,7 @@ const server = http.createServer(async (req, res) => {
       || urlPath.startsWith('/src/coach/services/')
       || urlPath.startsWith('/src/coach/client/')
       || urlPath.startsWith('/src/coach/intake-report/')
+      || urlPath.startsWith('/src/coach/motivation/')
     ) {
       const abs = resolveUnder(path.join(root, 'src', 'coach'), urlPath.slice('/src/coach'.length));
       if (!abs || !abs.endsWith('.mjs')) {

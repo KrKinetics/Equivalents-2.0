@@ -606,3 +606,64 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
 .review-featured-toggle span {
   line-height: 1.3;
 }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.motivation-section-label {
+  margin: 0;
+  color: var(--brand-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.motivation-help {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.motivation-likert,
+.motivation-choices {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.motivation-likert label,
+.motivation-choices label,
+.motivation-consent-box {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+.motivation-likert-n {
+  min-width: 1.2em;
+  font-weight: 800;
+  color: var(--brand-primary);
+}
+.motivation-likert-l { color: #334155; font-size: 0.9rem; }
+.motivation-consent { margin-top: 8px; }
+.motivation-consent-box { align-items: flex-start; }
+.motivation-qa-url,
+.motivation-qa-json {
+  overflow: auto;
+  max-height: 320px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #0f172a0d;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

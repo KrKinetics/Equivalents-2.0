@@ -24,6 +24,8 @@ export const RATE_LIMIT_PROFILES = Object.freeze({
   'generate-pdf': Object.freeze({ max: 8, windowMs: 60_000 }),
   'generate-intake-report-pdf': Object.freeze({ max: 8, windowMs: 60_000 }),
   'send-intake-invite': Object.freeze({ max: 8, windowMs: 60_000 }),
+  'send-motivation-invite': Object.freeze({ max: 8, windowMs: 60_000 }),
+  'process-motivation-assessment': Object.freeze({ max: 8, windowMs: 60_000 }),
   session: Object.freeze({ max: 40, windowMs: 60_000 }),
   'auth-login': Object.freeze({ max: 10, windowMs: 60_000 }),
   'auth-magic-link': Object.freeze({ max: 5, windowMs: 15 * 60_000 }),

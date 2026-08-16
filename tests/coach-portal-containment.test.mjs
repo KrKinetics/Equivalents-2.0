@@ -41,10 +41,17 @@ test('protected path matrix covers dashboard, workspace, coach modules', () => {
   assert.equal(isProtectedPath('/assets/pre-interview-report.js'), true);
   assert.equal(isProtectedPath('/pre-interview-report.html'), true);
   assert.equal(isProtectedPath('/assets/workspace-bootstrap.mjs'), true);
+  assert.equal(isProtectedPath('/motivation-qa.html'), true);
+  assert.equal(isProtectedPath('/assets/motivation-qa.js'), true);
+  assert.equal(isProtectedPath('/motivation.html'), false);
+  assert.equal(isProtectedPath('/assets/motivation.js'), false);
+  assert.equal(isProtectedPath('/src/coach/motivation/client/official-bundle.mjs'), false);
   assert.equal(isProtectedPath('/login.html'), false);
   assert.equal(isProtectedPath('/config.js'), false);
   assert.equal(isPublicPath('/login.html'), true);
   assert.equal(isPublicPath('/assets/login.js'), true);
+  assert.equal(isPublicPath('/motivation.html'), true);
+  assert.equal(isPublicPath('/src/coach/motivation/client/public-questionnaire.mjs'), true);
 });
 
 test('Magic Link formatter never distinguishes invited vs unknown vs rate-limit', () => {

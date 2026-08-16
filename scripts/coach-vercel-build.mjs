@@ -110,8 +110,18 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'intake-report'),
     path.join(targetDir, 'src', 'coach', 'intake-report'),
   );
+  copyTree(
+    path.join(root, 'src', 'coach', 'motivation'),
+    path.join(targetDir, 'src', 'coach', 'motivation'),
+  );
 
-  const configJs = buildConfigJsSource({ url, publishableKey, serverNutritionEngine });
+  const previewTools = String(process.env.VERCEL_ENV || '').toLowerCase() !== 'production';
+  const configJs = buildConfigJsSource({
+    url,
+    publishableKey,
+    serverNutritionEngine,
+    previewTools,
+  });
   writeFile(path.join(targetDir, 'config.js'), configJs);
 
   // Required route entry points
@@ -121,6 +131,8 @@ export function buildCoachVercelBundle(options = {}) {
     'dashboard.html',
     'pre-interview-report.html',
     'intake.html',
+    'motivation.html',
+    'motivation-qa.html',
     'workspace/index.html',
     'config.js',
     'assets/workspace-bootstrap.mjs',
@@ -128,6 +140,10 @@ export function buildCoachVercelBundle(options = {}) {
     'assets/dashboard.js',
     'assets/pre-interview-report.js',
     'assets/intake.js',
+    'assets/motivation.js',
+    'assets/motivation-qa.js',
+    'src/coach/motivation/client/official-bundle.mjs',
+    'src/coach/motivation/client/public-questionnaire.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',
