@@ -112,9 +112,10 @@ function dashboardHtml() {
             <a class="btn-compact btn-secondary btn-intake-report" href="${REPORT_HREF}" target="_blank" rel="noopener">Ouvrir le rapport</a>
           </div>
         </section>
-        <section class="client-action-group" data-group="habits">
-          <h4 class="client-action-group-title">Questionnaire d’habitudes</h4>
-          <p class="client-action-group-pending">À venir</p>
+        <section class="client-action-group" data-group="motivation">
+          <h4 class="client-action-group-title">Profil motivationnel</h4>
+          <span class="status-chip">Aucun lien</span>
+          <button type="button" class="btn-compact btn-primary btn-motivation">Envoyer le lien</button>
         </section>
         <div class="client-management-actions">
           <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
@@ -271,8 +272,7 @@ test('submitted row opens the report and does not show Voir réponses', async ()
   const row = await page.$eval('.client-action-groups', (el) => el.textContent.replace(/\s+/g, ' ').trim());
   assert.match(row, /Questionnaire d’entrevue/);
   assert.match(row, /Ouvrir le rapport/);
-  assert.match(row, /Questionnaire d’habitudes/);
-  assert.match(row, /À venir/);
+  assert.match(row, /Profil motivationnel/);
   assert.doesNotMatch(row, /Voir réponses/);
   assert.equal(await page.$('.btn-intake-view'), null);
 

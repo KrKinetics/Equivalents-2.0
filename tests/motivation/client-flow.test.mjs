@@ -43,9 +43,10 @@ test('QA tool is coach-only preview and can process official analysis', () => {
   assert.match(middleware, /'\/assets\/motivation-qa\.js'/);
 });
 
-test('dashboard habits card remains untouched for Phase 2C', () => {
-  assert.match(dashboardJs, /Questionnaire d’habitudes/);
-  assert.match(dashboardJs, /À venir/);
-  assert.doesNotMatch(dashboardJs, /coach-send-motivation-invite/);
+test('dashboard Profil motivationnel replaces the habits placeholder', () => {
+  assert.match(dashboardJs, /Profil motivationnel/);
+  assert.match(dashboardJs, /coach-send-motivation-invite/);
+  assert.doesNotMatch(dashboardJs, /Questionnaire d’habitudes/);
+  assert.doesNotMatch(dashboardJs, /À venir/);
   assert.doesNotMatch(dashboardJs, /motivation-qa/);
 });

@@ -8,6 +8,13 @@ import {
 import { clearLoginAutoRedirectGuard } from './login-redirect.mjs';
 import { workspaceOpenPath } from '/src/coach/workspace/workspace-access.mjs';
 import { intakeReportOpenPath } from '/src/coach/intake-report/intake-report-path.mjs';
+import { motivationReportOpenPath } from '/src/coach/motivation/report/motivation-report-path.mjs';
+import {
+  MOTIVATION_RESEND_OPENED_CONFIRMATION,
+  latestMotivationInviteByClient,
+  motivationActionLabel,
+  resolveMotivationInviteStatus,
+} from '/src/coach/client/motivation-dashboard.mjs';
 import {
   NUTRITION_WORKSPACE_CTA_LABEL,
   SERVICE_CHANGE_CONFIRMATION,
@@ -36,6 +43,7 @@ const editServiceType = document.getElementById('edit_service_type');
 let supabase;
 let membership = null;
 let clientRows = new Map();
+let motivationInviteRows = new Map();
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
@@ -178,9 +186,31 @@ function intakeActionLabel(row, invite) {
   return invite ? 'Nouveau lien' : 'Créer le lien';
 }
 
-function clientRowMarkup(row, invite) {
+function motivationStatusMarkup(invite) {
+  const status = resolveMotivationInviteStatus(invite);
+  if (!invite) {
+    return `
+      <div class="intake-status-block">
+        <span class="status-chip">Aucun lien</span>
+      </div>
+    `;
+  }
+  const meta = status.metaPrefix && status.metaDate
+    ? `<span class="intake-status-meta">${escapeHtml(status.metaPrefix)} ${escapeHtml(formatDate(status.metaDate))}</span>`
+    : '';
+  return `
+    <div class="intake-status-block">
+      <span class="status-chip ${escapeHtml(status.key)}">${escapeHtml(status.label)}</span>
+      ${meta}
+    </div>
+  `;
+}
+
+function clientRowMarkup(row, invite, motivationInvite) {
   const submitted = invite?.status === 'submitted';
   const primaryLabel = intakeActionLabel(row, invite);
+  const motivationStatus = resolveMotivationInviteStatus(motivationInvite);
+  const motivationLabel = motivationActionLabel(row, motivationStatus);
   const nutritionCta = clientHasNutritionAccess(row.service_type)
     ? `<a class="btn-compact btn-secondary btn-open" href="${escapeHtml(workspaceOpenPath(row.id))}">${escapeHtml(NUTRITION_WORKSPACE_CTA_LABEL)}</a>`
     : '';
@@ -210,9 +240,13 @@ function clientRowMarkup(row, invite) {
             <h4 class="client-action-group-title">Structure alimentaire</h4>
             <div class="client-action-group-controls">${nutritionCta}</div>
           </section>` : ''}
-          <section class="client-action-group" data-group="habits">
-            <h4 class="client-action-group-title">Questionnaire d’habitudes</h4>
-            <p class="client-action-group-pending">À venir</p>
+          <section class="client-action-group" data-group="motivation">
+            <h4 class="client-action-group-title">Profil motivationnel</h4>
+            ${motivationStatusMarkup(motivationInvite)}
+            <div class="client-action-group-controls">
+              ${motivationLabel ? `<button type="button" class="btn-compact btn-primary btn-motivation">${escapeHtml(motivationLabel)}</button>` : ''}
+              ${motivationStatus.showReport ? `<a class="btn-compact btn-secondary btn-motivation-report" href="${escapeHtml(motivationReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
+            </div>
           </section>
           <div class="client-management-actions">
             <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
@@ -224,9 +258,13 @@ function clientRowMarkup(row, invite) {
   `;
 }
 
-function renderClientGroup(serviceType, clients, latestInviteByClient) {
+function renderClientGroup(serviceType, clients, latestInviteByClient, latestMotivationByClient) {
   const rows = clients.length
-    ? clients.map((row) => clientRowMarkup(row, latestInviteByClient.get(row.id))).join('')
+    ? clients.map((row) => clientRowMarkup(
+      row,
+      latestInviteByClient.get(row.id),
+      latestMotivationByClient.get(row.id),
+    )).join('')
     : '<tr><td colspan="5" class="empty">Aucun client</td></tr>';
   return `
     <section class="client-service-group" data-service="${escapeHtml(serviceType)}" aria-labelledby="service-heading-${escapeHtml(serviceType)}">
@@ -253,7 +291,11 @@ function renderClientGroup(serviceType, clients, latestInviteByClient) {
 }
 
 async function loadClients() {
-  const [{ data: clients, error: clientsError }, { data: invites, error: invitesError }] = await Promise.all([
+  const [
+    { data: clients, error: clientsError },
+    { data: invites, error: invitesError },
+    { data: motivationInvites, error: motivationError },
+  ] = await Promise.all([
     supabase
       .from('clients')
       .select('id, full_name, email, phone, notes, organization_id, is_fictional, service_type, created_at')
@@ -263,19 +305,32 @@ async function loadClients() {
       .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at')
       .eq('organization_id', membership.organizationId)
       .order('created_at', { ascending: false }),
+    supabase
+      .from('client_motivation_invites')
+      .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at, updated_at')
+      .eq('organization_id', membership.organizationId)
+      .order('created_at', { ascending: false }),
   ]);
   if (clientsError) throw clientsError;
   if (invitesError) throw invitesError;
+  if (motivationError) throw motivationError;
 
   const latestInviteByClient = new Map();
   for (const invite of invites || []) {
     if (!latestInviteByClient.has(invite.client_id)) latestInviteByClient.set(invite.client_id, invite);
   }
+  const latestMotivationByClient = latestMotivationInviteByClient(motivationInvites || []);
 
   clientRows = new Map((clients || []).map((client) => [client.id, client]));
+  motivationInviteRows = latestMotivationByClient;
   const grouped = groupClientsByService(clients || []);
   clientsGroups.innerHTML = SERVICE_GROUP_ORDER
-    .map((serviceType) => renderClientGroup(serviceType, grouped[serviceType], latestInviteByClient))
+    .map((serviceType) => renderClientGroup(
+      serviceType,
+      grouped[serviceType],
+      latestInviteByClient,
+      latestMotivationByClient,
+    ))
     .join('');
 }
 
@@ -319,6 +374,36 @@ async function deleteClient(id) {
     .eq('id', id)
     .eq('organization_id', membership.organizationId);
   if (error) throw error;
+}
+
+async function sendMotivationInvite(clientId) {
+  const res = await fetch('/api/coach-send-motivation-invite', {
+    method: 'POST',
+    credentials: 'include',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      client_id: clientId,
+      organization_id: membership.organizationId,
+      organization_slug: membership.organization?.slug || null,
+    }),
+  });
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
+  }
+  if (!res.ok) {
+    const err = new Error('Création du lien refusée.');
+    err.status = res.status;
+    err.publicError = data?.error || '';
+    throw err;
+  }
+  return data;
 }
 
 async function sendIntakeInvite(clientId) {
@@ -431,6 +516,7 @@ async function boot() {
   });
 
   const intakeInFlight = new Set();
+  const motivationInFlight = new Set();
   clientsGroups.addEventListener('click', async (event) => {
     const row = event.target.closest('tr[data-id]');
     if (!row) return;
@@ -463,7 +549,38 @@ async function boot() {
       return;
     }
 
-    if (event.target.closest('.btn-intake-report')) {
+    if (event.target.closest('.btn-intake-report') || event.target.closest('.btn-motivation-report')) {
+      return;
+    }
+
+    if (event.target.classList.contains('btn-motivation')) {
+      if (motivationInFlight.has(id)) return;
+      const current = resolveMotivationInviteStatus(motivationInviteRows.get(id));
+      if (current.confirmReplace && !window.confirm(MOTIVATION_RESEND_OPENED_CONFIRMATION)) {
+        return;
+      }
+      const button = event.target;
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      button.textContent = 'Envoi…';
+      try {
+        await runIntakeInviteButtonAction({
+          clientId: id,
+          inFlight: motivationInFlight,
+          send: () => sendMotivationInvite(id),
+          applyResult: applyInviteResult,
+          refresh: loadClients,
+          setStatus,
+          getStatus: () => statusEl.textContent || '',
+        });
+      } finally {
+        if (button.isConnected) {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+          button.textContent = originalLabel;
+        }
+      }
       return;
     }
 
