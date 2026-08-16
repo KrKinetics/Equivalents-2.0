@@ -8,6 +8,7 @@ dist/coach-vercel/
 # Temporary extraction and verification artifacts
 tmp/
 reports/motivation-2c4-visual/
+reports/motivation-2d-visual/
 _xlsx_tmp/
 _plan.zip
 extract-output.txt

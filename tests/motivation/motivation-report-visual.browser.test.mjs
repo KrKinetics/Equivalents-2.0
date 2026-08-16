@@ -18,7 +18,7 @@ import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motiv
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const portal = path.join(root, 'coach-portal');
-const outDir = path.join(root, 'tmp', 'motivation-2c4-visual');
+const outDir = path.join(root, 'reports', 'motivation-2d-visual');
 
 function resolveChromePath() {
   const candidates = [
@@ -209,8 +209,11 @@ test('web report is scannable at 1440 and 390 without horizontal scroll', async 
   await desktop.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
   await desktop.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
   await desktop.screenshot({ path: path.join(outDir, 'web-desktop-1440-top.png'), fullPage: false });
-  await captureSection(desktop, '[data-section="vigilance"]', 'web-desktop-1440-vigilance.png');
+  await captureSection(desktop, '[data-section="portrait-coach"]', 'web-desktop-1440-portrait.png');
+  await captureSection(desktop, '[data-section="operating-brief"]', 'web-desktop-1440-brief.png');
+  await captureSection(desktop, '[data-section="risk-buckets"]', 'web-desktop-1440-risks.png');
   assert.equal(await captureSection(desktop, '[data-section="interview"]', 'web-desktop-1440-interview.png'), true);
+  assert.equal(await captureSection(desktop, '[data-section="verbatims"]', 'web-desktop-1440-voice.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="nutrition"]', 'web-desktop-1440-nutrition.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="dimensions"]', 'web-desktop-1440-dimensions.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="four-week-plan"]', 'web-desktop-1440-plan.png'), true);
@@ -218,12 +221,23 @@ test('web report is scannable at 1440 and 390 without horizontal scroll', async 
     overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     logo: Boolean(document.querySelector('.motivation-hero img, .intake-report-logo-wrap img')),
     quick: Boolean(document.querySelector('[data-section="quick-read"]')),
+    voiceBeforeDimensions: (() => {
+      const voice = document.querySelector('[data-section="verbatims"]');
+      const dims = document.querySelector('[data-section="dimensions"]');
+      if (!voice || !dims) return false;
+      return Boolean(voice.compareDocumentPosition(dims) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })(),
+    accordion: Boolean(document.querySelector('.motivation-all-dimensions')),
+    technicalOpen: Boolean(document.querySelector('[data-section="technical"] details[open]')),
     pdf: document.getElementById('download-pdf')?.textContent.trim(),
     pdfDisabled: document.getElementById('download-pdf')?.disabled,
   }));
   assert.equal(desktopMetrics.overflow, false);
   assert.equal(desktopMetrics.logo, true);
   assert.equal(desktopMetrics.quick, true);
+  assert.equal(desktopMetrics.voiceBeforeDimensions, true);
+  assert.equal(desktopMetrics.accordion, true);
+  assert.equal(desktopMetrics.technicalOpen, false);
   assert.equal(desktopMetrics.pdf, 'Exporter PDF');
   assert.equal(desktopMetrics.pdfDisabled, false);
   await desktop.close();
@@ -252,7 +266,7 @@ test('PDF pages render for visual inspection', async (t) => {
   await page.goto(`${origin}/pdf-preview.html`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(() => typeof window.renderPdfPage === 'function');
   const first = await page.evaluate(async () => window.renderPdfPage(1));
-  assert.ok(first.pages >= 2);
+  assert.equal(first.pages, 5);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
   await page.evaluate(async () => window.renderPdfPage(2));
   await page.screenshot({ path: path.join(outDir, 'pdf-page-2.png') });
@@ -281,6 +295,6 @@ test('PDF pages render for visual inspection', async (t) => {
   await page.screenshot({ path: path.join(outDir, 'pdf-page-plan.png') });
   await page.evaluate(async (n) => window.renderPdfPage(n), first.pages);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-last.png') });
-  assert.ok(pageCount >= 2);
+  assert.equal(pageCount, 5);
   await page.close();
 });
