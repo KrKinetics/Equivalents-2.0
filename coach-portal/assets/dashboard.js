@@ -25,11 +25,6 @@ const metaEl = document.getElementById('session-meta');
 const clientsGroups = document.getElementById('clients-groups');
 const createForm = document.getElementById('create-form');
 const logoutBtn = document.getElementById('logout');
-const intakeDialog = document.getElementById('intake-dialog');
-const intakeDialogTitle = document.getElementById('intake-dialog-title');
-const intakeDialogMeta = document.getElementById('intake-dialog-meta');
-const intakeResponse = document.getElementById('intake-response');
-const intakeDialogClose = document.getElementById('intake-dialog-close');
 const editDialog = document.getElementById('edit-client-dialog');
 const editForm = document.getElementById('edit-client-form');
 const editDialogClose = document.getElementById('edit-client-dialog-close');
@@ -41,32 +36,6 @@ const editServiceType = document.getElementById('edit_service_type');
 let supabase;
 let membership = null;
 let clientRows = new Map();
-
-const RESPONSE_LABELS = Object.freeze({
-  email: 'Courriel',
-  phone: 'Téléphone',
-  objective_primary: 'Objectif principal',
-  objective_detail: 'Résultat recherché',
-  deadline: 'Échéance ou événement',
-  activity_level: 'Niveau d’activité',
-  work_type: 'Type de travail',
-  schedule: 'Horaire',
-  medications_status: 'Médicaments ou suppléments',
-  medications_details: 'Détails — médicaments',
-  allergies_status: 'Allergies ou intolérances',
-  allergies_details: 'Détails — allergies',
-  restriction_status: 'Blessure, restriction ou condition',
-  restriction_details: 'Détails — restriction',
-  challenges: 'Principaux défis',
-  foods_avoid: 'Aliments évités',
-  interview_priority: 'Priorité pour la première rencontre',
-  other_info: 'Autre information utile',
-});
-
-/** Legacy stored values remapped for coach display only. */
-const ANSWER_DISPLAY_ALIASES = Object.freeze({
-  'Perdre du poids': 'Perte de masse adipeuse',
-});
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
@@ -231,7 +200,6 @@ function clientRowMarkup(row, invite) {
         <div class="client-actions">
           <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
           ${submitted ? `<a class="btn-compact btn-secondary btn-intake-report" href="${escapeHtml(intakeReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
-          ${submitted ? '<button type="button" class="btn-compact btn-secondary btn-intake-view">Voir réponses</button>' : ''}
           ${nutritionCta}
           <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
           <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
@@ -393,45 +361,6 @@ async function applyInviteResult(result) {
   );
 }
 
-function formatAnswer(value, key = '') {
-  if (Array.isArray(value)) return value.map((item) => formatAnswer(item, key)).join(' · ');
-  if (value === true) return 'Oui';
-  if (value === false) return 'Non';
-  if (key === 'phone') {
-    const formatted = formatPhoneDisplay(value);
-    return formatted || '—';
-  }
-  const text = String(value || '—');
-  return ANSWER_DISPLAY_ALIASES[text] || text;
-}
-
-async function showIntakeResponse(clientId) {
-  const client = clientRows.get(clientId);
-  const { data, error } = await supabase
-    .from('client_intake_responses')
-    .select('answers, submitted_at, updated_at, status')
-    .eq('organization_id', membership.organizationId)
-    .eq('client_id', clientId)
-    .eq('status', 'submitted')
-    .order('submitted_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  if (error) throw error;
-  if (!data) throw new Error('Aucune réponse soumise pour ce client.');
-
-  intakeDialogTitle.textContent = client?.full_name || 'Réponses du client';
-  intakeDialogMeta.textContent = `Soumis le ${formatDate(data.submitted_at || data.updated_at)}`;
-  intakeResponse.innerHTML = Object.entries(RESPONSE_LABELS)
-    .filter(([key]) => data.answers?.[key] !== undefined && data.answers?.[key] !== '')
-    .map(([key, label]) => `
-      <div class="response-item">
-        <dt>${escapeHtml(label)}</dt>
-        <dd>${escapeHtml(formatAnswer(data.answers[key], key))}</dd>
-      </div>
-    `).join('');
-  intakeDialog.showModal();
-}
-
 function openEditDialog(client) {
   document.getElementById('edit_client_id').value = client.id;
   document.getElementById('edit_original_service').value = parseServiceType(client.service_type) || '';
@@ -519,15 +448,6 @@ async function boot() {
       return;
     }
 
-    if (event.target.classList.contains('btn-intake-view')) {
-      try {
-        await showIntakeResponse(id);
-      } catch (err) {
-        setStatus(`Lecture impossible : ${err.message || err}`, 'error');
-      }
-      return;
-    }
-
     if (event.target.closest('.btn-intake-report')) {
       return;
     }
@@ -608,11 +528,6 @@ async function boot() {
     redirectClean('./login.html');
   });
 }
-
-intakeDialogClose.addEventListener('click', () => intakeDialog.close());
-intakeDialog.addEventListener('click', (event) => {
-  if (event.target === intakeDialog) intakeDialog.close();
-});
 
 boot().catch((err) => {
   setStatus(err.message || String(err), 'error');

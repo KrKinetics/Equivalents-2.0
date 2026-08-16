@@ -47,17 +47,15 @@ test('intake autosaves, resumes, enforces max three challenges, and submits via 
   assert.match(intakeJs, /field\.required = visible/);
 });
 
-test('coach dashboard creates links, displays status, and reads submitted answers', () => {
+test('coach dashboard creates links, displays status, and opens the submitted report', () => {
   assert.match(dashboardHtml, /Pré-entrevue/);
   assert.match(dashboardHtml, /intake-dialog/);
   assert.match(dashboardHtml, /clients-groups/);
   assert.match(dashboardJs, /\/api\/coach-send-intake-invite/);
   assert.doesNotMatch(dashboardJs, /create_client_intake_invite/);
-  assert.match(dashboardJs, /client_intake_responses/);
+  assert.doesNotMatch(dashboardJs, /client_intake_responses/);
   assert.match(dashboardJs, /navigator\.clipboard\.writeText/);
   assert.match(dashboardJs, /btn-compact/);
-  assert.match(dashboardJs, /ANSWER_DISPLAY_ALIASES/);
-  assert.match(dashboardJs, /Perte de masse adipeuse/);
   assert.match(dashboardJs, /function intakeActionLabel/);
   assert.match(dashboardJs, /Envoyer le lien/);
   assert.match(dashboardJs, /Renvoyer un nouveau lien/);
@@ -68,8 +66,10 @@ test('coach dashboard creates links, displays status, and reads submitted answer
   assert.match(dashboardJs, /function formatPhoneDisplay/);
   assert.match(dashboardJs, /\$\{digits\.slice\(0, 3\)\} \$\{digits\.slice\(3, 6\)\}-\$\{digits\.slice\(6\)\}/);
   assert.match(dashboardJs, /formatPhoneDisplay\(row\.phone\)/);
-  assert.match(dashboardJs, /formatAnswer\(data\.answers\[key\], key\)/);
   assert.match(dashboardJs, /btn-intake-report/);
+  assert.match(dashboardJs, /Ouvrir le rapport/);
+  assert.doesNotMatch(dashboardJs, /Voir réponses/);
+  assert.doesNotMatch(dashboardJs, /btn-intake-view/);
   assert.match(dashboardJs, /target="_blank"/);
   assert.match(dashboardJs, /intakeReportOpenPath/);
   assert.match(css, /\.client-actions/);

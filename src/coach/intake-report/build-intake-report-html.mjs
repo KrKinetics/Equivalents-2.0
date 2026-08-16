@@ -5,14 +5,14 @@
  * PDF paginates on A4 without clipping answers.
  */
 
-import { getPdfTheme } from '../server/pdf/themes.mjs';
+import { INTAKE_REPORT_THEME } from './intake-report-theme.mjs';
 
-const KR_NAVY = '#071B41';
-const KR_NAVY_SECONDARY = '#0B285B';
-const KR_RED = '#ED1136';
-const KR_SEPARATOR = '#d7e0ec';
-const KR_MUTED = '#64748b';
-const KR_TEXT = '#1e293b';
+const KR_NAVY = INTAKE_REPORT_THEME.navy;
+const KR_NAVY_SECONDARY = INTAKE_REPORT_THEME.navySecondary;
+const KR_RED = INTAKE_REPORT_THEME.red;
+const KR_SEPARATOR = INTAKE_REPORT_THEME.separator;
+const KR_MUTED = INTAKE_REPORT_THEME.muted;
+const KR_TEXT = INTAKE_REPORT_THEME.text;
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
@@ -29,7 +29,7 @@ function esc(value) {
  * @param {'screen'|'pdf'} mode
  */
 export function getIntakeReportCss(mode = 'screen') {
-  const theme = getPdfTheme('kr');
+  const theme = INTAKE_REPORT_THEME;
   const isPdf = mode === 'pdf';
   const pageRules = isPdf
     ? `@page{size:A4;margin:12mm 12mm 16mm}

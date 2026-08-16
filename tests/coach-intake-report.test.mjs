@@ -503,6 +503,22 @@ test('PDF endpoint loads server answers for programming clients and can render',
   assert.doesNotMatch(pdf.toString('latin1'), /opaque_invite_token_value_24ch/);
 });
 
+test('report HTML builder stays browser-safe and does not import server PDF themes', () => {
+  const builder = fs.readFileSync(path.join(root, 'src/coach/intake-report/build-intake-report-html.mjs'), 'utf8');
+  const theme = fs.readFileSync(path.join(root, 'src/coach/intake-report/intake-report-theme.mjs'), 'utf8');
+  const reportJs = fs.readFileSync(path.join(root, 'coach-portal/assets/pre-interview-report.js'), 'utf8');
+  assert.match(builder, /intake-report-theme\.mjs/);
+  assert.doesNotMatch(builder, /server\/pdf/);
+  assert.doesNotMatch(builder, /getPdfTheme/);
+  assert.doesNotMatch(reportJs, /server\/pdf/);
+  assert.match(theme, /#071B41/);
+  assert.match(theme, /#0B285B/);
+  assert.match(theme, /#ED1136/);
+  assert.match(theme, /linear-gradient\(135deg,#071B41 0%,#0B285B 68%,#071B41 100%\)/);
+  assert.match(theme, /#cbd8eb/);
+  assert.doesNotMatch(theme, /elevate|piePro|build-pdf-html/);
+});
+
 test('dashboard keeps the modal and adds a new-tab report CTA for every service', () => {
   const dashboardJs = fs.readFileSync(path.join(root, 'coach-portal/assets/dashboard.js'), 'utf8');
   const reportHtml = fs.readFileSync(path.join(root, 'coach-portal/pre-interview-report.html'), 'utf8');
@@ -510,8 +526,9 @@ test('dashboard keeps the modal and adds a new-tab report CTA for every service'
   const api = fs.readFileSync(path.join(root, 'api/coach-generate-intake-report-pdf.js'), 'utf8');
   const preview = fs.readFileSync(path.join(root, 'scripts/coach-workspace-preview.mjs'), 'utf8');
   const vercel = fs.readFileSync(path.join(root, 'vercel.json'), 'utf8');
-  assert.match(dashboardJs, /btn-intake-view/);
-  assert.match(dashboardJs, /Voir réponses/);
+  assert.match(dashboardJs, /Ouvrir le rapport/);
+  assert.doesNotMatch(dashboardJs, /Voir réponses/);
+  assert.doesNotMatch(dashboardJs, /btn-intake-view/);
   assert.match(dashboardJs, /btn-intake-report/);
   assert.match(dashboardJs, /target="_blank"/);
   assert.match(dashboardJs, /rel="noopener"/);

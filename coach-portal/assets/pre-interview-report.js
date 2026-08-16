@@ -115,7 +115,8 @@ async function downloadPdf() {
         organization_slug: membership.organization?.slug || null,
       }),
     });
-    if (!res.ok) {
+    const contentType = String(res.headers.get('Content-Type') || '');
+    if (!res.ok || !contentType.includes('application/pdf')) {
       setStatus('Téléchargement du PDF refusé.', 'error');
       return;
     }

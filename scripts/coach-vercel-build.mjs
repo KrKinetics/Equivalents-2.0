@@ -130,6 +130,8 @@ export function buildCoachVercelBundle(options = {}) {
     'assets/intake.js',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
+    'src/coach/intake-report/intake-report-theme.mjs',
+    'src/coach/intake-report/build-intake-report-html.mjs',
     'src/coach/domain/client-service-entitlements.mjs',
     'src/coach/services/storage/dossier-schema.mjs',
   ]) {

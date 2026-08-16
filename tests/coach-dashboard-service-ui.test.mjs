@@ -103,7 +103,8 @@ test('intake actions remain available for every service group', () => {
   assert.match(dashboardJs, /Renvoyer un nouveau lien/);
   assert.match(dashboardJs, /btn-intake-report/);
   assert.match(dashboardJs, /Ouvrir le rapport/);
-  assert.match(dashboardJs, /Voir réponses/);
+  assert.doesNotMatch(dashboardJs, /Voir réponses/);
+  assert.doesNotMatch(dashboardJs, /btn-intake-view/);
 });
 
 test('edit client uses an accessible dialog and confirms service changes', () => {
