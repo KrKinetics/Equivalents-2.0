@@ -150,6 +150,25 @@ export function createCoachApiHandler({
         res.end(JSON.stringify({ error: result.error || 'bad_request' }));
         return;
       }
+      if (result && result.__pdf) {
+        const filename = result.filename || 'rapport-coach-motivation.pdf';
+        const pdf = Buffer.isBuffer(result.pdf) ? result.pdf : Buffer.from(result.pdf || []);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader(
+          'Content-Disposition',
+          `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
+        );
+        logCoachEvent({
+          event: 'ok',
+          route: routeName,
+          requestId,
+          status: 200,
+          ms: Date.now() - started,
+        });
+        res.end(pdf);
+        return;
+      }
       res.statusCode = 200;
       logCoachEvent({
         event: 'ok',

@@ -52,11 +52,13 @@ const COACH_API_HANDLERS = Object.freeze([
   'coach-send-intake-invite',
   'coach-send-motivation-invite',
   'coach-process-motivation-assessment',
+  'coach-motivation-pdf',
 ]);
 
 const COACH_API_HANDLER_FILES = Object.freeze({
   'coach-send-motivation-invite': 'coach-motivation',
   'coach-process-motivation-assessment': 'coach-motivation',
+  'coach-motivation-pdf': 'coach-motivation',
 });
 
 const { url, publishableKey } = requireSupabasePublicEnv(root);

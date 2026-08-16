@@ -30,6 +30,7 @@ export function isProtectedPath(urlPath) {
   const p = urlPath.split('?')[0];
   if (p === '/dashboard.html') return true;
   if (p === '/pre-interview-report.html') return true;
+  if (p === '/motivation-report.html') return true;
   if (p === '/motivation-qa.html') return true;
   if (p === '/workspace' || p.startsWith('/workspace/')) return true;
   if (p.startsWith('/src/coach/motivation/')) return false;
@@ -37,6 +38,7 @@ export function isProtectedPath(urlPath) {
   if (p.startsWith('/assets/motivation-qa')) return true;
   if (p.startsWith('/assets/dashboard')) return true;
   if (p.startsWith('/assets/pre-interview-report')) return true;
+  if (p.startsWith('/assets/motivation-report')) return true;
   if (p.startsWith('/assets/workspace-bootstrap')) return true;
   return false;
 }

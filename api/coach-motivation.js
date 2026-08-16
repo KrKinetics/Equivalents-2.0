@@ -3,7 +3,8 @@
  * Public URLs stay:
  *   POST /api/coach-send-motivation-invite
  *   POST /api/coach-process-motivation-assessment
- * Vercel rewrites both onto this file so the project stays at 12 serverless functions.
+ *   POST /api/coach-motivation-pdf
+ * Vercel rewrites these onto this file so the project stays at 12 serverless functions.
  * Never uses the database service role in this file.
  */
 
@@ -14,6 +15,9 @@ function resolveMotivationApiOp(req) {
   }
   if (url.includes('process-motivation-assessment') || /[?&]op=process-assessment(?:&|$)/.test(url)) {
     return 'process-assessment';
+  }
+  if (url.includes('motivation-pdf') || /[?&]op=pdf(?:&|$)/.test(url)) {
+    return 'pdf';
   }
   return null;
 }
@@ -102,10 +106,59 @@ async function handleProcessAssessment(req, res) {
   return route(req, res);
 }
 
+async function handleMotivationPdf(req, res) {
+  const { createCoachApiHandler } = await import(
+    '../src/coach/server/http/create-api-handler.mjs'
+  );
+  const { validateMotivationInviteBody } = await import(
+    '../src/coach/server/motivation/validate-motivation-invite-request.mjs'
+  );
+  const { generateOfficialMotivationPdf } = await import(
+    '../src/coach/server/motivation/generate-motivation-pdf.mjs'
+  );
+  const { readAccessToken } = await import(
+    '../src/coach/security/portal-auth.mjs'
+  );
+
+  const route = createCoachApiHandler({
+    routeName: 'generate-motivation-pdf',
+    validate: validateMotivationInviteBody,
+    async handle({ auth, input, req: request }) {
+      const accessToken = readAccessToken({
+        cookieHeader: request.headers.cookie,
+        authorization: request.headers.authorization,
+      });
+      const result = await generateOfficialMotivationPdf({
+        accessToken,
+        organizationId: auth.organizationId,
+        clientId: input.client_id,
+        createdByUserId: auth.userId,
+        supabaseUrl: process.env.SUPABASE_URL || '',
+        publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
+      });
+      if (!result.ok) {
+        const status = result.error === 'forbidden' ? 403
+          : result.error === 'not_found' ? 404
+            : result.error === 'hash_mismatch' || result.error === 'unknown_engine' ? 409
+              : 503;
+        return { __httpError: true, status, error: result.error };
+      }
+      return {
+        __pdf: true,
+        pdf: result.pdf,
+        filename: result.filename,
+      };
+    },
+  });
+
+  return route(req, res);
+}
+
 module.exports = async function handler(req, res) {
   const op = resolveMotivationApiOp(req);
   if (op === 'send-invite') return handleSendInvite(req, res);
   if (op === 'process-assessment') return handleProcessAssessment(req, res);
+  if (op === 'pdf') return handleMotivationPdf(req, res);
   res.statusCode = 404;
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'private, no-store');

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil motivationnel | KR Kinetics</title>
+  <link rel="stylesheet" href="./assets/portal.css">
+  <link rel="stylesheet" href="./assets/intake-report-document.css">
+  <link rel="stylesheet" href="./assets/pre-interview-report-chrome.css">
+  <link rel="stylesheet" href="./assets/motivation-report.css">
+  <script src="/config.js"></script>
+</head>
+<body class="intake-report-page">
+  <div class="intake-report-toolbar" data-screen-only="true">
+    <a class="btn-compact btn-ghost" href="./dashboard.html" id="back-dashboard">Retour au tableau de bord</a>
+    <div class="intake-report-toolbar-actions">
+      <button type="button" class="btn-compact btn-primary" id="download-pdf">Exporter PDF</button>
+    </div>
+  </div>
+  <div class="intake-report-page-status">
+    <div id="status" class="status hidden" role="status"></div>
+  </div>
+  <div id="report-root"></div>
+  <script type="module" src="./assets/motivation-report.js"></script>
+</body>
+</html>

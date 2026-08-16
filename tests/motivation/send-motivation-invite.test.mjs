@@ -178,6 +178,8 @@ test('single motivation function stays within the Vercel Hobby limit', () => {
   assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=send-invite' }), 'send-invite');
   assert.equal(resolveMotivationApiOp({ url: '/api/coach-process-motivation-assessment' }), 'process-assessment');
   assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=process-assessment' }), 'process-assessment');
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation-pdf' }), 'pdf');
+  assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=pdf' }), 'pdf');
 });
 
 test('motivation API routes stay off the service role and reuse intake auth', () => {
@@ -196,6 +198,10 @@ test('motivation API routes stay off the service role and reuse intake auth', ()
   assert.ok(vercel.rewrites.some((row) => (
     row.source === '/api/coach-process-motivation-assessment'
     && row.destination === '/api/coach-motivation?op=process-assessment'
+  )));
+  assert.ok(vercel.rewrites.some((row) => (
+    row.source === '/api/coach-motivation-pdf'
+    && row.destination === '/api/coach-motivation?op=pdf'
   )));
   assert.equal(fs.existsSync(path.join(root, 'api/coach-send-motivation-invite.js')), false);
   assert.equal(fs.existsSync(path.join(root, 'api/coach-process-motivation-assessment.js')), false);

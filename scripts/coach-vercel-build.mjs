@@ -123,6 +123,10 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/lib/adaptive-questions-v41.mjs',
     'src/coach/motivation/scoring/domain-interpretation-v41.mjs',
     'src/coach/motivation/scoring/normalize.mjs',
+    'src/coach/motivation/report/motivation-report-path.mjs',
+    'src/coach/motivation/report/motivation-report-view-model.mjs',
+    'src/coach/motivation/report/build-motivation-report-html.mjs',
+    'src/coach/client/motivation-dashboard.mjs',
   ]) {
     const from = path.join(root, ...rel.split('/'));
     const to = path.join(targetDir, ...rel.split('/'));
@@ -148,6 +152,7 @@ export function buildCoachVercelBundle(options = {}) {
     'intake.html',
     'motivation.html',
     'motivation-qa.html',
+    'motivation-report.html',
     'workspace/index.html',
     'config.js',
     'assets/workspace-bootstrap.mjs',
@@ -157,6 +162,11 @@ export function buildCoachVercelBundle(options = {}) {
     'assets/intake.js',
     'assets/motivation.js',
     'assets/motivation-qa.js',
+    'assets/motivation-report.js',
+    'src/coach/motivation/report/motivation-report-path.mjs',
+    'src/coach/motivation/report/motivation-report-view-model.mjs',
+    'src/coach/motivation/report/build-motivation-report-html.mjs',
+    'src/coach/client/motivation-dashboard.mjs',
     'src/coach/motivation/client/official-bundle.mjs',
     'src/coach/motivation/client/public-questionnaire.mjs',
     'src/coach/workspace/workspace-access.mjs',

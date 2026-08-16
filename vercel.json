@@ -32,6 +32,10 @@
       "includeFiles": "{coach-calculator/assets/logo-*,src/coach/server/pdf/embedded-logos.mjs}",
       "maxDuration": 60,
       "memory": 1536
+    },
+    "api/coach-motivation.js": {
+      "includeFiles": "src/coach/motivation/lib/pdf/**",
+      "maxDuration": 60
     }
   },
   "rewrites": [
@@ -46,6 +50,10 @@
     {
       "source": "/api/coach-process-motivation-assessment",
       "destination": "/api/coach-motivation?op=process-assessment"
+    },
+    {
+      "source": "/api/coach-motivation-pdf",
+      "destination": "/api/coach-motivation?op=pdf"
     }
   ],
   "headers": [
@@ -87,6 +95,13 @@
       "source": "/dashboard.html",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store" }
+      ]
+    },
+    {
+      "source": "/motivation-report.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "private, no-store" },
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     },
     {
