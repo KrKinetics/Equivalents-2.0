@@ -8,6 +8,14 @@ import { resolveFontFile, resolvePdfAsset } from './components/layout.mjs';
 import { PDF_FONTS } from './theme.mjs';
 import { KR_V42_BRAND, KR_V42_COLORS, KR_V42_PAGE, KR_V42_TYPE } from './theme-v42-kr.mjs';
 import { formatCoachDateTime } from '../report-timestamp.mjs';
+import {
+  EVIDENCE_LEGEND,
+  displayKeys,
+  excludeExact,
+  groupDimensions,
+  isEmphasizedDimension,
+  splitNutritionBlocks,
+} from './pdf-v42-display.mjs';
 
 export const MOTIVATION_PDF_RENDERER_ID = 'renderCoachReportPdfV42Kr';
 
@@ -26,6 +34,10 @@ function t(value) {
     .replace(/\u2022/g, '•')
     .replace(/…/g, '...')
     .replace(/\t/g, ' ');
+}
+
+function formatPdfDate(value) {
+  return formatCoachDateTime(value);
 }
 
 class KrLayout {
@@ -65,7 +77,7 @@ class KrLayout {
     this.doc.addPage();
     this.page += 1;
     this.drawHeader();
-    this.y = KR_V42_PAGE.headerHeight + 10;
+    this.y = KR_V42_PAGE.headerHeight + 12;
   }
 
   drawHeader() {
@@ -77,27 +89,27 @@ class KrLayout {
         const padX = 6;
         const padY = 4;
         this.doc
-          .roundedRect(this.left, 8, logoW + padX * 2, logoH + padY * 2, 3)
+          .roundedRect(this.left, 10, logoW + padX * 2, logoH + padY * 2, 3)
           .fill(KR_V42_COLORS.primary);
-        this.doc.image(logoPath, this.left + padX, 8 + padY, { width: logoW });
+        this.doc.image(logoPath, this.left + padX, 10 + padY, { width: logoW });
         this.logoPlacements.push({ page: this.page, role: 'header' });
       } catch {
         // keep header text if the asset cannot be painted
       }
     }
-    this.setFont(true, 8, KR_V42_COLORS.primary);
-    this.doc.text(t(KR_V42_BRAND.reportTitle), this.left + 92, 12, {
+    this.setFont(true, 9, KR_V42_COLORS.primary);
+    this.doc.text(t(KR_V42_BRAND.reportTitle), this.left + 92, 14, {
       width: 280,
       lineBreak: false,
     });
-    this.setFont(false, 7.5, KR_V42_COLORS.muted);
-    this.doc.text(t(clientName || 'Profil motivationnel'), this.left + 92, 22, {
+    this.setFont(false, 8, KR_V42_COLORS.muted);
+    this.doc.text(t(clientName || 'Profil motivationnel'), this.left + 92, 26, {
       width: 280,
       lineBreak: false,
     });
     this.doc
-      .moveTo(this.left, 34)
-      .lineTo(this.left + this.width, 34)
+      .moveTo(this.left, 40)
+      .lineTo(this.left + this.width, 40)
       .strokeColor(KR_V42_COLORS.border)
       .lineWidth(0.8)
       .stroke();
@@ -131,141 +143,95 @@ class KrLayout {
     this.y += n;
   }
 
-  text(value, options = {}) {
-    const text = t(value);
-    if (!text) return;
-    const size = options.size ?? KR_V42_TYPE.body;
-    const bold = options.bold === true;
-    const color = options.color ?? KR_V42_COLORS.text;
-    const width = options.width ?? this.width;
-    const x = options.x ?? this.left;
-    const lineGap = options.lineGap ?? 2;
-    this.setFont(bold, size, color);
-    const height = this.doc.heightOfString(text, { width, lineGap });
-    this.ensure(height + 2);
-    if (this.y + height > this.bottom + 0.5) {
-      this.overflows.push({ page: this.page, text: text.slice(0, 48) });
-    }
-    this.doc.text(text, x, this.y, { width, lineGap, align: options.align });
-    this.y = this.doc.y + (options.gapAfter ?? 4);
+  fillCard(x, y, w, h, fill = KR_V42_COLORS.card) {
+    this.doc
+      .save()
+      .roundedRect(x, y, w, h, 6)
+      .fillAndStroke(fill, KR_V42_COLORS.border)
+      .restore();
+  }
+
+  pageKicker(title) {
+    this.setFont(true, KR_V42_TYPE.kicker, KR_V42_COLORS.accent);
+    this.doc.text(t(title).toUpperCase(), this.left, this.y, { width: this.width });
+    this.y = this.doc.y + 4;
   }
 
   sectionTitle(title) {
-    const height = 22;
-    this.ensure(height + 56);
+    const height = 20;
+    this.ensure(height + 48);
     this.setFont(true, KR_V42_TYPE.section, KR_V42_COLORS.primary);
-    this.doc.text(t(title).toUpperCase(), this.left, this.y, { width: this.width });
+    this.doc.text(t(title), this.left, this.y, { width: this.width });
     const ruleY = this.doc.y + 3;
     this.doc
       .moveTo(this.left, ruleY)
-      .lineTo(this.left + 36, ruleY)
+      .lineTo(this.left + 28, ruleY)
       .strokeColor(KR_V42_COLORS.accent)
-      .lineWidth(1.6)
+      .lineWidth(1.8)
       .stroke();
-    this.y = ruleY + 10;
+    this.y = ruleY + 8;
   }
 
-  card(draw, minHeight = 36) {
-    this.ensure(minHeight);
-    const start = this.y;
-    this.y += 8;
-    draw();
-    const height = Math.max(minHeight, this.y - start + 4);
-    this.doc
-      .save()
-      .roundedRect(this.left, start, this.width, height, 6)
-      .strokeColor(KR_V42_COLORS.border)
-      .lineWidth(0.8)
-      .stroke()
-      .restore();
-    this.y = start + height + 8;
+  subsection(title) {
+    this.setFont(true, KR_V42_TYPE.subsection, KR_V42_COLORS.primary);
+    this.doc.text(t(title), this.left, this.y, { width: this.width });
+    this.y = this.doc.y + 5;
   }
 }
 
 function drawHero(layout, display, logoPath) {
+  const bandH = 128;
+  layout.doc.rect(0, 0, KR_V42_PAGE.width, bandH).fill(KR_V42_COLORS.primary);
+  let y = 16;
   if (logoPath) {
     try {
-      const logoWidth = 150;
+      const logoWidth = 168;
       const logoHeight = logoWidth * (302 / 993);
-      const padX = 12;
-      const padY = 10;
-      const boxW = logoWidth + padX * 2;
-      const boxH = logoHeight + padY * 2;
-      layout.doc
-        .roundedRect(layout.left, layout.y, boxW, boxH, 6)
-        .fill(KR_V42_COLORS.primary);
-      layout.doc.image(logoPath, layout.left + padX, layout.y + padY, { width: logoWidth });
+      layout.doc.image(logoPath, layout.left, y, { width: logoWidth });
       layout.logoPlacements.push({ page: layout.page, role: 'hero' });
-      layout.y += boxH + 12;
+      y += logoHeight + 10;
     } catch {
-      // title still renders without the mark
+      y += 8;
     }
   }
-  layout.text(KR_V42_BRAND.reportTitle.toUpperCase(), {
-    bold: true,
-    size: 16,
-    color: KR_V42_COLORS.primary,
-    gapAfter: 2,
-  });
-  layout.text(KR_V42_BRAND.reportSubtitle, {
-    size: 10,
-    color: KR_V42_COLORS.muted,
-    gapAfter: 8,
-  });
-  layout.text(`Client : ${display.clientName || 'Client'}`, {
-    bold: true,
-    size: 12,
-    color: KR_V42_COLORS.text,
-    gapAfter: 3,
-  });
-  if (display.submittedAt) {
-    layout.text(`Soumis : ${formatPdfDate(display.submittedAt)}`, {
-      size: KR_V42_TYPE.meta,
-      color: KR_V42_COLORS.muted,
-      gapAfter: 2,
-    });
+  layout.setFont(true, KR_V42_TYPE.title, KR_V42_COLORS.white);
+  layout.doc.text(t(KR_V42_BRAND.reportTitle), layout.left, y, { width: layout.width });
+  y = layout.doc.y + 2;
+  layout.setFont(false, KR_V42_TYPE.subtitle, '#d7e0ec');
+  layout.doc.text(t(KR_V42_BRAND.reportSubtitle), layout.left, y, { width: layout.width });
+  y = layout.doc.y + 8;
+  layout.setFont(true, 12, KR_V42_COLORS.white);
+  layout.doc.text(t(display.clientName || 'Client'), layout.left, y, { width: layout.width });
+  y = layout.doc.y + 4;
+  const meta = [
+    display.submittedAt ? `Soumission : ${formatPdfDate(display.submittedAt)}` : '',
+    display.analyzedAt ? `Analyse : ${formatPdfDate(display.analyzedAt)}` : '',
+    display.analysisVersion != null ? `Version : v${display.analysisVersion}` : '',
+  ].filter(Boolean).join('   ·   ');
+  if (meta) {
+    layout.setFont(false, KR_V42_TYPE.meta, '#d7e0ec');
+    layout.doc.text(t(meta), layout.left, y, { width: layout.width });
+    y = layout.doc.y + 6;
   }
-  if (display.analyzedAt) {
-    layout.text(`Analysé : ${formatPdfDate(display.analyzedAt)}`, {
-      size: KR_V42_TYPE.meta,
-      color: KR_V42_COLORS.muted,
-      gapAfter: 2,
-    });
-  }
-  if (display.analysisVersion != null) {
-    layout.text(`Analyse : v${display.analysisVersion}`, {
-      size: KR_V42_TYPE.meta,
-      color: KR_V42_COLORS.accent,
-      bold: true,
-      gapAfter: 10,
-    });
-  } else {
-    layout.gap(6);
-  }
-}
-
-function formatPdfDate(value) {
-  return formatCoachDateTime(value);
+  layout.y = Math.max(bandH + 14, y + 8);
 }
 
 function drawQuickRead(layout, items) {
   if (!items?.length) return;
   layout.sectionTitle('Lecture rapide');
   const colW = (layout.width - 10) / 2;
-  const rowH = 46;
+  const rowH = 48;
   for (let i = 0; i < items.length; i += 2) {
     layout.ensure(rowH + 8);
     const y = layout.y;
     const pair = [items[i], items[i + 1]].filter(Boolean);
     pair.forEach((item, col) => {
       const x = layout.left + col * (colW + 10);
-      layout.doc
-        .roundedRect(x, y, colW, rowH, 5)
-        .fillAndStroke(KR_V42_COLORS.bg, KR_V42_COLORS.border);
+      layout.fillCard(x, y, colW, rowH, KR_V42_COLORS.bg);
       layout.setFont(true, 7.5, KR_V42_COLORS.muted);
-      layout.doc.text(t(item.label).toUpperCase(), x + 8, y + 7, { width: colW - 16 });
-      layout.setFont(true, 9.5, KR_V42_COLORS.primary);
-      layout.doc.text(t(item.value), x + 8, y + 20, { width: colW - 16, lineGap: 1 });
+      layout.doc.text(t(item.label).toUpperCase(), x + 9, y + 8, { width: colW - 18 });
+      layout.setFont(true, 10, KR_V42_COLORS.primary);
+      layout.doc.text(t(item.value), x + 9, y + 22, { width: colW - 18, lineGap: 1 });
     });
     layout.y = y + rowH + 8;
   }
@@ -274,212 +240,353 @@ function drawQuickRead(layout, items) {
 function drawSummary(layout, lines) {
   if (!lines?.length) return;
   layout.sectionTitle('Synthèse');
-  for (const line of lines.slice(0, 4)) {
-    layout.text(line, { size: 10, lineGap: 3, gapAfter: 6 });
-  }
+  const body = lines.slice(0, 4).map((line) => t(line)).join('\n\n');
+  const h = Math.max(56, layout.heightOf(body, layout.width - 24, { size: 10, lineGap: 3 }) + 20);
+  layout.ensure(h);
+  layout.fillCard(layout.left, layout.y, layout.width, h);
+  layout.setFont(false, 10, KR_V42_COLORS.text);
+  layout.doc.text(body, layout.left + 12, layout.y + 10, {
+    width: layout.width - 24,
+    lineGap: 3,
+  });
+  layout.y += h + 10;
 }
 
-function drawPriorities(layout, items) {
-  if (!items?.length) return;
+function drawPriorityList(layout, items, limit = 3) {
+  const rows = (items || []).slice(0, limit);
+  if (!rows.length) return;
   layout.sectionTitle('Priorités Coach');
-  items.slice(0, 5).forEach((item, index) => {
+  rows.forEach((item, index) => {
     const text = t(item);
-    const h = Math.max(22, layout.heightOf(text, layout.width - 28, { size: 9.5 }) + 10);
+    const h = Math.max(26, layout.heightOf(text, layout.width - 40, { size: 9.5 }) + 12);
     layout.ensure(h + 6);
     const y = layout.y;
-    layout.doc.circle(layout.left + 8, y + 8, 7).fill(KR_V42_COLORS.primary);
+    layout.fillCard(layout.left, y, layout.width, h);
+    layout.doc.circle(layout.left + 16, y + h / 2, 8).fill(KR_V42_COLORS.primary);
     layout.setFont(true, 8, KR_V42_COLORS.white);
-    layout.doc.text(String(index + 1), layout.left + 4, y + 4, { width: 8, align: 'center' });
+    layout.doc.text(String(index + 1), layout.left + 12, y + h / 2 - 5, { width: 8, align: 'center' });
     layout.setFont(false, 9.5, KR_V42_COLORS.text);
-    layout.doc.text(text, layout.left + 24, y + 2, { width: layout.width - 24, lineGap: 2 });
-    layout.y = Math.max(layout.doc.y, y + h) + 6;
+    layout.doc.text(text, layout.left + 32, y + 6, { width: layout.width - 44, lineGap: 2 });
+    layout.y = y + h + 6;
   });
 }
 
-function drawVigilance(layout, items) {
-  if (!items?.length) return;
-  layout.sectionTitle('Points de vigilance');
-  for (const item of items) {
+function drawSupportList(layout, items) {
+  const rows = (items || []).slice(0, 4);
+  if (!rows.length) return;
+  layout.sectionTitle('Principaux appuis');
+  const body = rows.map((item) => `•  ${t(item)}`).join('\n');
+  const h = layout.heightOf(body, layout.width - 24, { size: 9.5, lineGap: 3 }) + 16;
+  layout.ensure(h);
+  layout.fillCard(layout.left, layout.y, layout.width, h, KR_V42_COLORS.bg);
+  layout.setFont(false, 9.5, KR_V42_COLORS.text);
+  layout.doc.text(body, layout.left + 12, layout.y + 8, { width: layout.width - 24, lineGap: 3 });
+  layout.y += h + 10;
+}
+
+function drawVigilance(layout, items, limit = 3) {
+  const rows = (items || []).slice(0, limit);
+  if (!rows.length) return;
+  layout.sectionTitle('Vigilances majeures');
+  for (const item of rows) {
     const text = t(item);
-    const h = Math.max(24, layout.heightOf(text, layout.width - 16, { size: 9.5 }) + 12);
+    const h = Math.max(28, layout.heightOf(text, layout.width - 28, { size: 9.5 }) + 14);
     layout.ensure(h + 6);
     const y = layout.y;
-    layout.doc.rect(layout.left, y, 3, h).fill(KR_V42_COLORS.accent);
-    layout.doc.roundedRect(layout.left + 3, y, layout.width - 3, h, 3).fill(KR_V42_COLORS.bg);
+    layout.doc.rect(layout.left, y, 4, h).fill(KR_V42_COLORS.accent);
+    layout.doc.roundedRect(layout.left + 4, y, layout.width - 4, h, 4).fill('#fff7f8');
     layout.setFont(false, 9.5, KR_V42_COLORS.text);
-    layout.doc.text(text, layout.left + 12, y + 5, { width: layout.width - 20, lineGap: 2 });
+    layout.doc.text(text, layout.left + 14, y + 7, { width: layout.width - 26, lineGap: 2 });
     layout.y = y + h + 6;
   }
 }
 
-function drawInterview(layout, items) {
-  if (!items?.length) return;
-  layout.sectionTitle('À clarifier en entrevue');
-  for (const item of items) {
-    const text = t(item);
-    const h = Math.max(16, layout.heightOf(text, layout.width - 20, { size: 9.5 }) + 4);
-    layout.ensure(h + 4);
-    layout.doc
-      .rect(layout.left, layout.y + 2, 8, 8)
-      .strokeColor(KR_V42_COLORS.primary)
-      .lineWidth(1)
-      .stroke();
-    layout.setFont(false, 9.5, KR_V42_COLORS.text);
-    layout.doc.text(text, layout.left + 16, layout.y, { width: layout.width - 16, lineGap: 2 });
-    layout.y = Math.max(layout.doc.y, layout.y + h) + 5;
-  }
+function drawPage1(layout, vm, logoPath) {
+  drawHero(layout, vm, logoPath);
+  drawQuickRead(layout, vm.quickRead);
+  drawSummary(layout, vm.summary);
+  drawPriorityList(layout, vm.coachPriorities, 3);
+  drawSupportList(layout, vm.supports);
+  drawVigilance(layout, vm.vigilance, 3);
 }
 
-function drawDimensions(layout, dimensions) {
-  if (!dimensions?.length) return;
+function drawDimensionRow(layout, row, x, width) {
+  const emphasized = isEmphasizedDimension(row);
+  const label = t(row.label);
+  const score = row.score == null || row.score === '' ? '—' : String(row.score);
+  const badge = t(row.evidenceBadge);
+  const start = layout.y;
+  layout.setFont(emphasized, 8, KR_V42_COLORS.text);
+  layout.doc.text(label, x, start, { width: width - 118, lineBreak: false });
+  if (badge) {
+    layout.setFont(false, 6.5, KR_V42_COLORS.muted);
+    layout.doc.text(badge, x + width - 114, start + 1, { width: 72, lineBreak: false });
+  }
+  layout.setFont(true, emphasized ? 9.5 : 8.5, KR_V42_COLORS.primary);
+  layout.doc.text(score, x, start, { width, align: 'right', lineBreak: false });
+  const barY = start + 11;
+  const barH = emphasized ? 5 : 3.5;
+  const n = Number(row.score);
+  const pct = Number.isFinite(n) ? Math.max(0, Math.min(100, n)) / 100 : 0;
+  layout.doc.roundedRect(x, barY, width, barH, 2).fill(KR_V42_COLORS.bg);
+  if (pct > 0) {
+    layout.doc.roundedRect(x, barY, Math.max(2, width * pct), barH, 2).fill(KR_V42_COLORS.primary);
+  }
+  layout.y = barY + barH + (emphasized ? 5 : 4);
+}
+
+function drawPortrait(layout, dimensions) {
+  const groups = groupDimensions(dimensions);
+  if (!groups.length) return;
+  layout.pageKicker('Portrait motivationnel');
   layout.sectionTitle('Dimensions');
-  for (const row of dimensions) {
-    const score = row.score;
-    const labelH = layout.heightOf(row.label, layout.width - 48, { bold: true, size: 9 });
-    layout.ensure(labelH + 22);
-    layout.setFont(true, 9, KR_V42_COLORS.text);
-    layout.doc.text(t(row.label), layout.left, layout.y, { width: layout.width - 48 });
-    layout.setFont(true, 10, KR_V42_COLORS.primary);
-    layout.doc.text(score == null || score === '' ? '—' : String(score), layout.left, layout.y, {
-      width: layout.width,
-      align: 'right',
-    });
-    layout.y += labelH + 3;
-    const n = Number(score);
-    const pct = Number.isFinite(n) ? Math.max(0, Math.min(100, n)) / 100 : 0;
-    layout.doc.roundedRect(layout.left, layout.y, layout.width, 7, 3).fill(KR_V42_COLORS.bg);
-    if (pct > 0) {
-      layout.doc.roundedRect(layout.left, layout.y, Math.max(2, layout.width * pct), 7, 3).fill(KR_V42_COLORS.primary);
+  const legend = EVIDENCE_LEGEND.map((item) => `${item.badge} : ${item.note}`).join('   ·   ');
+  layout.setFont(false, 7.5, KR_V42_COLORS.muted);
+  layout.doc.text(t(`Badges de preuve déjà présents — ${legend}`), layout.left, layout.y, {
+    width: layout.width,
+  });
+  layout.y = layout.doc.y + 8;
+
+  for (const group of groups) {
+    layout.ensure(28);
+    layout.subsection(group.title);
+    for (const row of group.items) {
+      layout.ensure(18);
+      drawDimensionRow(layout, row, layout.left, layout.width);
     }
-    layout.y += 11;
-    if (row.evidenceBadge) {
-      layout.text(row.evidenceBadge, {
-        size: 7.5,
-        color: KR_V42_COLORS.muted,
-        gapAfter: 8,
-      });
-    } else {
-      layout.gap(6);
-    }
+    layout.gap(2);
   }
 }
 
-function drawNutrition(layout, nutrition) {
-  if (!nutrition) return;
-  const has = nutrition.lecture?.length || nutrition.structure || nutrition.obstacles?.length || nutrition.actions?.length;
-  if (!has) return;
+function drawInterviewPrep(layout, vm) {
+  const used = displayKeys([
+    ...(vm.vigilance || []),
+    ...(vm.verbatims || []).map((item) => item.verbatim),
+  ]);
+  const questions = excludeExact(vm.interviewQuestions, used);
+  const priorities = excludeExact(vm.coachPriorities, displayKeys(questions));
+  const vigilance = excludeExact(vm.vigilance, displayKeys(questions));
+
+  layout.pageKicker('Préparer l’entrevue');
+  if (priorities.length) {
+    layout.sectionTitle('Priorités Coach');
+    priorities.slice(0, 5).forEach((item, index) => {
+      layout.setFont(true, 9, KR_V42_COLORS.primary);
+      layout.doc.text(`${index + 1}.`, layout.left, layout.y, { width: 14 });
+      layout.setFont(false, 9.5, KR_V42_COLORS.text);
+      layout.doc.text(t(item), layout.left + 16, layout.y, { width: layout.width - 16, lineGap: 2 });
+      layout.y = layout.doc.y + 5;
+    });
+    layout.gap(4);
+  }
+  if (vigilance.length) {
+    drawVigilance(layout, vigilance, 6);
+  }
+  if (questions.length) {
+    layout.sectionTitle('À clarifier en entrevue');
+    for (const item of questions) {
+      const text = t(item);
+      const h = Math.max(18, layout.heightOf(text, layout.width - 22, { size: 9.5 }) + 6);
+      layout.ensure(h + 4);
+      layout.doc
+        .rect(layout.left, layout.y + 3, 8, 8)
+        .strokeColor(KR_V42_COLORS.primary)
+        .lineWidth(1)
+        .stroke();
+      layout.setFont(false, 9.5, KR_V42_COLORS.text);
+      layout.doc.text(text, layout.left + 16, layout.y, { width: layout.width - 16, lineGap: 2 });
+      layout.y = Math.max(layout.doc.y, layout.y + h) + 4;
+    }
+  }
+
+  const voice = vm.verbatims || [];
+  if (!voice.length) return;
+  layout.sectionTitle('Voix du client');
+  for (const item of voice) {
+    const quote = `« ${t(item.verbatim)} »`;
+    const source = `Question source : ${t(item.questionText || item.questionCode)}`;
+    const quoteH = layout.heightOf(quote, layout.width - 28, { size: 10, lineGap: 3 });
+    const sourceH = layout.heightOf(source, layout.width - 28, { size: 7.5 });
+    const h = 28 + quoteH + sourceH;
+    layout.ensure(h + 8);
+    const y = layout.y;
+    layout.doc.rect(layout.left, y, 4, h).fill(KR_V42_COLORS.primary);
+    layout.fillCard(layout.left + 4, y, layout.width - 4, h, KR_V42_COLORS.bg);
+    layout.setFont(true, 7, KR_V42_COLORS.muted);
+    layout.doc.text('VERBATIM CLIENT', layout.left + 16, y + 6, { width: layout.width - 28 });
+    layout.setFont(false, 10, KR_V42_COLORS.text);
+    layout.doc.text(quote, layout.left + 16, y + 18, { width: layout.width - 28, lineGap: 3 });
+    layout.setFont(false, 7.5, KR_V42_COLORS.muted);
+    layout.doc.text(source, layout.left + 16, y + 20 + quoteH, { width: layout.width - 28 });
+    layout.y = y + h + 8;
+  }
+}
+
+function drawNutritionStrategy(layout, nutrition) {
+  const blocks = splitNutritionBlocks(nutrition);
+  if (!blocks) return;
+  layout.pageKicker('Nutrition / stratégie');
   layout.sectionTitle('Nutrition');
-  if (nutrition.lecture?.length) {
-    layout.text('Lecture nutrition', { bold: true, size: 9, color: KR_V42_COLORS.primary, gapAfter: 3 });
-    for (const line of nutrition.lecture) layout.text(line, { gapAfter: 5 });
-  }
-  if (nutrition.structure) {
-    layout.text('Structure suggérée', { bold: true, size: 9, color: KR_V42_COLORS.primary, gapAfter: 3 });
-    layout.text(nutrition.structure, { gapAfter: 5 });
-  }
-  if (nutrition.obstacles?.length) {
-    layout.text('Obstacles', { bold: true, size: 9, color: KR_V42_COLORS.primary, gapAfter: 3 });
-    for (const item of nutrition.obstacles) layout.text(`• ${item}`, { gapAfter: 3 });
-  }
-  if (nutrition.actions?.length) {
-    layout.text('Actions prioritaires', { bold: true, size: 9, color: KR_V42_COLORS.primary, gapAfter: 3 });
-    for (const item of nutrition.actions) layout.text(`• ${item}`, { gapAfter: 3 });
-  }
-}
 
-function drawWeeks(layout, weeks) {
-  if (!weeks?.length) return;
-  layout.sectionTitle('Plan 4 semaines');
-  for (const week of weeks) {
-    const actions = week.actions || [];
-    const body = [week.focus, ...actions].filter(Boolean).join('\n');
-    const h = 28 + layout.heightOf(body || ' ', layout.width - 16, { size: 9 });
-    layout.ensure(Math.min(h, 80));
-    layout.text(week.title || `Semaine ${week.week}`, {
-      bold: true,
-      size: 10,
-      color: KR_V42_COLORS.primary,
-      gapAfter: 2,
-    });
-    if (week.focus) {
-      layout.text(week.focus, { size: 9, color: KR_V42_COLORS.muted, gapAfter: 4 });
+  if (blocks.lecture?.length) {
+    layout.subsection('Lecture nutrition');
+    for (const line of blocks.lecture) {
+      const h = layout.heightOf(line, layout.width - 24, { size: 9.5, lineGap: 3 }) + 16;
+      layout.ensure(h);
+      layout.fillCard(layout.left, layout.y, layout.width, h);
+      layout.setFont(false, 9.5, KR_V42_COLORS.text);
+      layout.doc.text(t(line), layout.left + 12, layout.y + 8, {
+        width: layout.width - 24,
+        lineGap: 3,
+      });
+      layout.y += h + 8;
     }
-    for (const action of actions) {
-      layout.text(`• ${action}`, { size: 9.5, gapAfter: 3 });
+  }
+
+  if (blocks.signals?.length) {
+    layout.subsection('Signaux importants');
+    const colW = (layout.width - 8) / 2;
+    for (let i = 0; i < blocks.signals.length; i += 2) {
+      const pair = [blocks.signals[i], blocks.signals[i + 1]].filter(Boolean);
+      const heights = pair.map((line) => (
+        Math.max(36, layout.heightOf(line, colW - 16, { size: 8.5, lineGap: 2 }) + 14)
+      ));
+      const rowH = Math.max(...heights);
+      layout.ensure(rowH + 6);
+      pair.forEach((line, col) => {
+        const x = layout.left + col * (colW + 8);
+        layout.fillCard(x, layout.y, colW, rowH, KR_V42_COLORS.bg);
+        layout.setFont(false, 8.5, KR_V42_COLORS.text);
+        layout.doc.text(t(line), x + 8, layout.y + 7, { width: colW - 16, lineGap: 2 });
+      });
+      layout.y += rowH + 6;
     }
-    layout.gap(6);
+  }
+
+  if (blocks.structure) {
+    layout.subsection('Structure suggérée');
+    const h = layout.heightOf(blocks.structure, layout.width - 24, { size: 9.5, lineGap: 3 }) + 16;
+    layout.ensure(h);
+    layout.fillCard(layout.left, layout.y, layout.width, h);
+    layout.setFont(false, 9.5, KR_V42_COLORS.text);
+    layout.doc.text(t(blocks.structure), layout.left + 12, layout.y + 8, {
+      width: layout.width - 24,
+      lineGap: 3,
+    });
+    layout.y += h + 8;
+  }
+
+  if (blocks.obstacles?.length) {
+    layout.subsection('Obstacles');
+    for (const item of blocks.obstacles) {
+      const label = t(item);
+      const w = Math.min(layout.width, layout.heightOf(label, layout.width, { size: 8, bold: true }) + 80);
+      const h = 22;
+      layout.ensure(h + 4);
+      layout.doc.roundedRect(layout.left, layout.y, Math.max(88, w), h, 11).fill('#fff1f3');
+      layout.setFont(true, 8, KR_V42_COLORS.accent);
+      layout.doc.text(label, layout.left + 10, layout.y + 6, { width: layout.width - 20 });
+      layout.y += h + 6;
+    }
+  }
+
+  if (blocks.actions?.length) {
+    layout.subsection('Points à confirmer');
+    for (const item of blocks.actions) {
+      layout.setFont(false, 9.5, KR_V42_COLORS.text);
+      layout.doc.text(`•  ${t(item)}`, layout.left, layout.y, { width: layout.width, lineGap: 2 });
+      layout.y = layout.doc.y + 4;
+    }
   }
 }
 
-function drawVerbatims(layout, items) {
-  if (!items?.length) return;
-  layout.sectionTitle('Réponses ouvertes');
-  for (const item of items) {
-    const quote = `« ${item.verbatim} »`;
-    const h = 28 + layout.heightOf(quote, layout.width - 16, { size: 9.5 });
-    layout.ensure(Math.min(h, 70));
-    layout.text('VERBATIM CLIENT', {
-      bold: true,
-      size: 7.5,
-      color: KR_V42_COLORS.muted,
-      gapAfter: 3,
-    });
-    layout.text(quote, { size: 9.5, gapAfter: 3 });
-    layout.text(`Question source : ${item.questionText || item.questionCode}`, {
-      size: 8,
-      color: KR_V42_COLORS.muted,
-      gapAfter: 10,
+function weekCardHeight(layout, week, width) {
+  const title = t(week.title || `Semaine ${week.week}`);
+  const focus = t(week.focus || '');
+  const actions = (week.actions || []).map((item) => `•  ${t(item)}`).join('\n');
+  return 28
+    + layout.heightOf(title, width - 16, { bold: true, size: 9.5 })
+    + (focus ? layout.heightOf(focus, width - 16, { size: 8, lineGap: 2 }) + 4 : 0)
+    + (actions ? layout.heightOf(actions, width - 16, { size: 8.5, lineGap: 2 }) + 6 : 0)
+    + 10;
+}
+
+function drawWeekCard(layout, week, x, y, width, height) {
+  layout.fillCard(x, y, width, height);
+  layout.setFont(true, 7, KR_V42_COLORS.accent);
+  layout.doc.text(`SEMAINE ${week.week ?? ''}`.trim(), x + 8, y + 7, { width: width - 16 });
+  layout.setFont(true, 9.5, KR_V42_COLORS.primary);
+  layout.doc.text(t(week.title || `Semaine ${week.week}`), x + 8, y + 18, { width: width - 16 });
+  let cursor = layout.doc.y + 3;
+  if (week.focus) {
+    layout.setFont(false, 8, KR_V42_COLORS.muted);
+    layout.doc.text(t(week.focus), x + 8, cursor, { width: width - 16, lineGap: 2 });
+    cursor = layout.doc.y + 4;
+  }
+  if (week.actions?.length) {
+    layout.setFont(false, 8.5, KR_V42_COLORS.text);
+    layout.doc.text(week.actions.map((item) => `•  ${t(item)}`).join('\n'), x + 8, cursor, {
+      width: width - 16,
+      lineGap: 2,
     });
   }
 }
 
-function drawTechnical(layout, technical) {
+function drawActionPlan(layout, weeks, leftoverVoice, technical) {
+  layout.pageKicker('Plan d’action');
+  if (weeks?.length) {
+    layout.sectionTitle('Plan 4 semaines');
+    const colW = (layout.width - 10) / 2;
+    const cards = weeks.slice(0, 4);
+    for (let i = 0; i < cards.length; i += 2) {
+      const pair = [cards[i], cards[i + 1]].filter(Boolean);
+      const heights = pair.map((week) => weekCardHeight(layout, week, colW));
+      const rowH = Math.max(...heights);
+      layout.ensure(rowH + 8);
+      pair.forEach((week, col) => {
+        drawWeekCard(
+          layout,
+          week,
+          layout.left + col * (colW + 10),
+          layout.y,
+          colW,
+          rowH,
+        );
+      });
+      layout.y += rowH + 10;
+    }
+  }
+
+  if (leftoverVoice?.length) {
+    layout.sectionTitle('Réponses ouvertes');
+    for (const item of leftoverVoice) {
+      layout.setFont(false, 9, KR_V42_COLORS.text);
+      layout.doc.text(`« ${t(item.verbatim)} »`, layout.left, layout.y, { width: layout.width });
+      layout.y = layout.doc.y + 6;
+    }
+  }
+
   const rows = [
     ['Questionnaire', technical?.questionnaireVersion],
     ['Ruleset', technical?.rulesetVersion],
     ['Modèle de rapport', technical?.reportModelVersion],
     ['Version d’analyse', technical?.analysisVersion != null ? String(technical.analysisVersion) : ''],
-    ['Empreinte', technical?.contentHash],
     ['Soumission', formatPdfDate(technical?.submittedAt)],
     ['Analyse', formatPdfDate(technical?.analyzedAt)],
   ].filter(([, value]) => value);
-  if (!rows.length) return;
-
-  const pad = 8;
-  const innerW = layout.width - pad * 2;
-  const title = 'Informations techniques';
-  const titleH = layout.heightOf(title.toUpperCase(), innerW, {
-    bold: true,
-    size: 8,
-    lineGap: 1,
-  });
-  const measured = rows.map(([label, value]) => {
-    const line = `${label} : ${value}`;
-    return {
-      line,
-      height: layout.heightOf(line, innerW, { size: 7.5, lineGap: 1 }),
-    };
-  });
-  const blockH = pad + titleH + 6 + measured.reduce((sum, row) => sum + row.height + 2, 0) + pad;
-  layout.ensure(blockH + 2);
-
-  const start = layout.y;
-  layout.doc
-    .save()
-    .roundedRect(layout.left, start, layout.width, blockH, 5)
-    .fillAndStroke(KR_V42_COLORS.bg, KR_V42_COLORS.border)
-    .restore();
-
-  let y = start + pad;
-  layout.setFont(true, 8, KR_V42_COLORS.primary);
-  layout.doc.text(t(title).toUpperCase(), layout.left + pad, y, { width: innerW, lineGap: 1 });
-  y += titleH + 6;
-  for (const row of measured) {
-    layout.setFont(false, 7.5, KR_V42_COLORS.muted);
-    layout.doc.text(t(row.line), layout.left + pad, y, { width: innerW, lineGap: 1 });
-    y += row.height + 2;
+  if (!rows.length && !technical?.contentHash) return;
+  layout.ensure(54);
+  layout.sectionTitle('Traçabilité');
+  const line = rows.map(([label, value]) => `${label} : ${value}`).join('   ·   ');
+  layout.setFont(false, 7.5, KR_V42_COLORS.muted);
+  layout.doc.text(t(line), layout.left, layout.y, { width: layout.width, lineGap: 2 });
+  layout.y = layout.doc.y + 4;
+  if (technical?.contentHash) {
+    layout.setFont(false, 6.5, KR_V42_COLORS.muted);
+    layout.doc.text(t(`Empreinte : ${technical.contentHash}`), layout.left, layout.y, {
+      width: layout.width,
+    });
   }
-  layout.y = start + blockH + 6;
 }
 
 export async function renderCoachReportPdfV42Kr({ display, generatedAt = new Date() } = {}) {
@@ -510,21 +617,32 @@ export async function renderCoachReportPdfV42Kr({ display, generatedAt = new Dat
     clientName: vm.clientName,
     generatedAt,
   });
-  layout.y = 36;
-  drawHero(layout, vm, logoPath);
-  drawQuickRead(layout, vm.quickRead);
-  drawSummary(layout, vm.summary);
-  drawPriorities(layout, vm.coachPriorities);
-  if (vm.vigilance?.length || vm.interviewQuestions?.length || vm.dimensions?.length) {
+  const voice = vm.verbatims || [];
+  const nutrition = splitNutritionBlocks(vm.nutrition);
+  const hasPortrait = Boolean(vm.dimensions?.length);
+  const hasInterview = Boolean(
+    vm.coachPriorities?.length || vm.vigilance?.length || vm.interviewQuestions?.length || voice.length,
+  );
+  const hasNutrition = Boolean(nutrition);
+  const hasPlan = Boolean(vm.fourWeekPlan?.length || vm.technical || vm.provenance);
+
+  drawPage1(layout, vm, logoPath);
+  if (hasPortrait) {
     layout.addPage();
+    drawPortrait(layout, vm.dimensions);
   }
-  drawVigilance(layout, vm.vigilance);
-  drawInterview(layout, vm.interviewQuestions);
-  drawDimensions(layout, vm.dimensions);
-  drawNutrition(layout, vm.nutrition);
-  drawWeeks(layout, vm.fourWeekPlan);
-  drawVerbatims(layout, vm.verbatims);
-  drawTechnical(layout, vm.technical || vm.provenance);
+  if (hasInterview) {
+    layout.addPage();
+    drawInterviewPrep(layout, vm);
+  }
+  if (hasNutrition) {
+    layout.addPage();
+    drawNutritionStrategy(layout, vm.nutrition);
+  }
+  if (hasPlan) {
+    layout.addPage();
+    drawActionPlan(layout, vm.fourWeekPlan, [], vm.technical || vm.provenance);
+  }
 
   const pageCount = doc.bufferedPageRange().count;
   layout.drawFooters(pageCount);

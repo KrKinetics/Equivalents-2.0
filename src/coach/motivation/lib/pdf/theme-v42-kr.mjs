@@ -21,14 +21,16 @@ export const KR_V42_PAGE = {
   width: 612,
   height: 792,
   marginX: 44,
-  headerHeight: 36,
+  headerHeight: 42,
   footerHeight: 30,
 };
 
 export const KR_V42_TYPE = {
   kicker: 8,
-  title: 18,
-  section: 11,
+  title: 20,
+  subtitle: 11,
+  section: 12,
+  subsection: 9,
   body: 9.5,
   small: 8,
   meta: 8,

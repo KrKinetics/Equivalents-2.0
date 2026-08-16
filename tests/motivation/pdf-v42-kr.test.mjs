@@ -76,10 +76,11 @@ test('renderMotivationPdf uses the current KR v4.2 renderer, not v31', async () 
   assert.match(text, /Client test KR/);
   assert.match(text, /Lecture rapide/i);
   assert.match(text, /Priorités Coach|Priorites Coach/i);
-  assert.match(text, /DIMENSIONS|Dimensions/i);
+  assert.match(text, /Motivation et adhésion/i);
+  assert.match(text, /Voix du client/i);
   assert.match(text, /Plan 4 semaines|Semaine 1/i);
   assert.match(text, /entrevue/i);
-  assert.match(text, /Informations techniques/i);
+  assert.match(text, /Traçabilité|Tracabilite/i);
   assert.match(text, /Confidentiel/);
   assert.match(text, /1 \/ /);
   for (const page of pages) {
@@ -187,9 +188,43 @@ test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () =>
     assert.equal(onlyAnalyse, false, `orphan Analyse page ${page.pageNumber}`);
   }
   const last = pages[pages.length - 1].text;
-  assert.match(last, /Informations techniques/i);
+  assert.match(last, /Traçabilité|Tracabilite|Plan 4 semaines/i);
   assert.match(last, /Questionnaire|Ruleset|Empreinte|Soumission/i);
   assert.ok(last.length > 120);
+  assert.match(pages[0].text, /Lecture rapide/i);
+  assert.match(pages[1].text, /Motivation et adhésion/i);
+  assert.match(pages[2].text, /Voix du client/i);
+});
+
+test('v4.2 PDF is a 5-page coach brief with grouped dimensions and client voice', async () => {
+  const { result } = analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
+    assessmentId: 'asm_pdf_brief',
+    clientName: 'Client test KR',
+    completedAt: new Date('2026-08-16T19:55:00.000Z'),
+  });
+  const rendered = await renderMotivationPdf(result.report, {
+    clientName: 'Client test KR',
+    analysisVersion: 1,
+    submittedAt: '2026-08-16T19:55:00.000Z',
+    analyzedAt: '2026-08-16T20:38:00.000Z',
+  });
+  const pages = await extractPdfPagesText(rendered.buffer);
+  assert.equal(rendered.pageCount, 5);
+  assert.match(pages[0].text, /Lecture rapide/i);
+  assert.match(pages[0].text, /Synthèse|Synthese/i);
+  assert.match(pages[0].text, /Priorités Coach|Priorites Coach/i);
+  assert.match(pages[0].text, /appuis/i);
+  assert.match(pages[1].text, /Motivation et adhésion/i);
+  assert.match(pages[1].text, /Encadrement et prise de décision/i);
+  assert.match(pages[1].text, /Nutrition et comportements alimentaires/i);
+  assert.match(pages[1].text, /Donnée unique|Mixte|Cohérente/i);
+  assert.match(pages[2].text, /Voix du client/i);
+  assert.match(pages[2].text, /VERBATIM CLIENT/);
+  assert.match(pages[3].text, /Lecture nutrition|Signaux importants|Obstacles/i);
+  assert.match(pages[4].text, /SEMAINE 1|Semaine 1/i);
+  assert.match(pages[4].text, /Traçabilité|Tracabilite/i);
+  const renderer = fs.readFileSync(path.join(root, 'src/coach/motivation/lib/pdf/render-v42-kr.mjs'), 'utf8');
+  assert.doesNotMatch(renderer, /analyzeMotivationAssessment|calculateDimensionScores|evaluateRuleset/);
 });
 
 test('KR v4.2 PDF preserves French unicode without rewriting verbatim', async () => {

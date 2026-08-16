@@ -269,8 +269,12 @@ test('PDF pages render for visual inspection', async (t) => {
     }
     return out;
   });
-  const dimPage = pagesText.findIndex((text) => /DIMENSIONS/i.test(text)) + 1 || Math.min(2, first.pages);
-  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|Semaine 1/i.test(text)) + 1 || Math.min(4, first.pages);
+  for (let n = 1; n <= Math.min(5, first.pages); n += 1) {
+    await page.evaluate(async (pageNumber) => window.renderPdfPage(pageNumber), n);
+    await page.screenshot({ path: path.join(outDir, `pdf-page-${n}.png`) });
+  }
+  const dimPage = pagesText.findIndex((text) => /Motivation et adhésion|DIMENSIONS/i.test(text)) + 1 || Math.min(2, first.pages);
+  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|Semaine 1/i.test(text)) + 1 || Math.min(5, first.pages);
   await page.evaluate(async (n) => window.renderPdfPage(n), dimPage);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-dimensions.png') });
   await page.evaluate(async (n) => window.renderPdfPage(n), planPage);

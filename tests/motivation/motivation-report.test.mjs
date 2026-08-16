@@ -299,14 +299,14 @@ test('vigilance keeps findings only and never injects validationQuestion', () =>
   assert.equal(vm.vigilance.some((item) => item === validation), false);
   assert.deepEqual(vm.interviewQuestions, [interview]);
   assert.equal(vm.interviewQuestions.includes(validation), false);
-  assert.ok(vm.nutrition.lecture.includes('Approche flexible déjà décrite.'));
-  assert.equal(vm.nutrition.structure, '');
+  assert.equal(vm.nutrition.lecture.includes('Approche flexible déjà décrite.'), false);
+  assert.equal(vm.nutrition.structure, 'Approche flexible déjà décrite.');
   const html = buildMotivationReportMarkup(vm);
   const vigStart = html.indexOf('data-section="vigilance"');
   const vigNext = html.indexOf('data-section="', vigStart + 20);
   const vigHtml = html.slice(vigStart, vigNext === -1 ? undefined : vigNext);
   assert.doesNotMatch(vigHtml, /manque de planification/);
-  assert.doesNotMatch(html, /Structure suggérée/);
+  assert.equal((html.match(/Approche flexible déjà décrite\./g) || []).length, 1);
 });
 
 test('nutrition subsection keeps only NUT_OBS_* obstacles and never generic OBS_*', () => {

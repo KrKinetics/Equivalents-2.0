@@ -223,16 +223,12 @@ function statementFromSnapshotItem(item) {
   return text(item.title || item.label || item.text || item.message || item.value);
 }
 
-function structureAlreadyInLecture(structure, lecture) {
-  const needle = normalizeDisplayKey(structure);
-  if (!needle) return false;
-  return lecture.some((line) => normalizeDisplayKey(line).includes(needle));
-}
-
 function nutritionBlock(report, plan) {
-  const lecture = paragraphs(report.nutrition?.narrativeSections);
-  const structureRaw = text(plan.nutritionApproach);
-  const structure = structureAlreadyInLecture(structureRaw, lecture) ? '' : structureRaw;
+  const lectureRaw = paragraphs(report.nutrition?.narrativeSections);
+  const structure = text(plan.nutritionApproach);
+  const lecture = structure
+    ? lectureRaw.filter((line) => !normalizeDisplayKey(line).includes(normalizeDisplayKey(structure)))
+    : lectureRaw;
   const obstacles = nutritionObstacleItems(report);
   const actions = list(report.nutrition?.priorityActions || plan.nutritionActions);
   if (!lecture.length && !structure && !obstacles.length && !actions.length) return null;
