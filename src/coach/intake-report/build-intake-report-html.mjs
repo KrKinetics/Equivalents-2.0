@@ -32,7 +32,8 @@ export function getIntakeReportCss(mode = 'screen') {
   const theme = INTAKE_REPORT_THEME;
   const isPdf = mode === 'pdf';
   const pageRules = isPdf
-    ? `@page{size:A4;margin:0 0 12mm}
+    ? `@page{size:A4;margin:16mm 0 12mm}
+@page:first{margin-top:0}
 html,body{margin:0;padding:0;background:#fff;height:auto;overflow:visible}
 .intake-report{max-width:none;margin:0;box-shadow:none;border:0}
 .intake-report-section{break-inside:auto;page-break-inside:auto}
@@ -48,7 +49,7 @@ ${pageRules}
 .intake-report{background:#fff;color:${KR_TEXT};font-family:Arial,Helvetica,"Segoe UI",sans-serif;font-size:14px;line-height:1.45;overflow:visible;height:auto}
 .intake-report-header{background:${theme.bannerGradient || KR_NAVY};color:#fff;padding:22px 28px 18px;display:flex;flex-direction:column;gap:14px}
 .intake-report-logo-wrap{display:flex;align-items:center;min-height:48px}
-.intake-report-logo-wrap img{width:auto;max-width:210px;height:auto;max-height:52px;object-fit:contain;display:block;filter:none}
+.intake-report-logo-wrap img{width:auto;max-width:210px;height:auto;max-height:52px;object-fit:contain;display:block;filter:none;mix-blend-mode:screen}
 .intake-report-kicker{margin:0;font-size:13px;letter-spacing:.14em;font-weight:700;text-transform:uppercase}
 .intake-report-client{margin:4px 0 0;font-size:22px;font-weight:700;line-height:1.25;color:#fff}
 .intake-report-submitted{margin:6px 0 0;font-size:13px;color:${theme.subtitleTone || '#cbd8eb'}}
@@ -128,19 +129,31 @@ export function buildIntakeReportDocumentHtml({
 
 /**
  * Chromium page.pdf options for the intake report (not the nutrition plan).
- * The branded hero belongs to the report body itself. Header/footer templates
- * must never overlap it. A compact confidential footer is repeated per page.
- * @param {{ footerText?: string }} [opts]
+ * Continuation chrome lives in the header margin; page 1 hero covers it via
+ * a negative header offset so the approved first page is unchanged.
+ * @param {{ footerText?: string, logoSrc?: string }} [opts]
  */
-export function getIntakeReportPdfOptions({ footerText } = {}) {
+export function getIntakeReportPdfOptions({ footerText, logoSrc } = {}) {
   const footer = esc(footerText || 'KR KINETICS — Pré-entrevue confidentielle');
+  const logo = logoSrc
+    ? `<img src="${esc(logoSrc)}" alt="" style="height:16px;width:auto;max-width:96px;object-fit:contain;display:block;">`
+    : '';
   return {
     format: 'A4',
     printBackground: true,
     preferCSSPageSize: true,
     displayHeaderFooter: true,
-    headerTemplate: '<div></div>',
-    footerTemplate: `<div style="width:100%;text-align:center;font-size:8px;color:#5b6b80;font-family:Arial,Helvetica,sans-serif;padding:0 16mm;">${footer} · Page <span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
+    headerTemplate: `<div style="width:100%;box-sizing:border-box;padding:3mm 28px 0;font-family:Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+          ${logo}
+          <span style="font-size:8px;letter-spacing:.11em;font-weight:700;color:#071B41;text-transform:uppercase;white-space:nowrap;">RAPPORT DE PRÉ-ENTREVUE — SUITE</span>
+        </div>
+        <span style="font-size:8px;color:#071B41;white-space:nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
+      </div>
+      <div style="height:2px;background:#ED1136;margin-top:3px;"></div>
+    </div>`,
+    footerTemplate: `<div style="width:100%;text-align:center;font-size:8px;color:#5b6b80;font-family:Arial,Helvetica,sans-serif;padding:0 16mm;">${footer}</div>`,
     margin: { top: '0mm', right: '0mm', bottom: '12mm', left: '0mm' },
     timeout: 30_000,
   };
