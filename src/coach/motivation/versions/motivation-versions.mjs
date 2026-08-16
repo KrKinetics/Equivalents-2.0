@@ -5,9 +5,25 @@
  */
 
 import { createHash } from 'node:crypto';
-import { RULES_V41, CONTRADICTIONS_V41, RULESET_V41_VERSION } from '../rules/ruleset-v4.1.mjs';
-import { QUESTIONNAIRE_V41_ADAPTIVE_MAX, V41_ADAPTIVE_CANDIDATES } from '../questionnaire/adaptive-bank-v41.mjs';
-import { V41_BASE_CODES, V41_ADAPTIVE_BANK_CODES, SEED_QUESTIONS_V41 } from '../questionnaire/seed-questions-v41.mjs';
+import {
+  RULES_V41,
+  CONTRADICTIONS_V41,
+  RULESET_V41_VERSION,
+  RULESET_V41_THRESHOLDS,
+} from '../rules/ruleset-v4.1.mjs';
+import {
+  MAX_ADAPTIVE_PER_DOMAIN,
+  QUESTIONNAIRE_V41_ADAPTIVE_MAX,
+  V41_ADAPTIVE_CANDIDATES,
+  V41_ADAPTIVE_BANK_CODES as ADAPTIVE_BANK_CODES,
+} from '../questionnaire/adaptive-bank-v41.mjs';
+import {
+  V41_BASE_CODES,
+  V41_ADAPTIVE_BANK_CODES,
+  SEED_QUESTIONS_V41,
+} from '../questionnaire/seed-questions-v41.mjs';
+import { V41_DOMAIN_DEFINITIONS } from '../scoring/domain-interpretation-v41.mjs';
+import { toEngineQuestionInput } from '../engine/to-question-input.mjs';
 
 export const QUESTIONNAIRE_V41 = 'questionnaire-v4.1';
 export const RULESET_V41 = RULESET_V41_VERSION;
@@ -40,6 +56,26 @@ function versionsKey(input) {
 
 const SUPPORTED_KEYS = new Set(SUPPORTED_MOTIVATION_ENGINES.map(versionsKey));
 
+function snapshotQuestion(question) {
+  return {
+    code: question.code,
+    text: question.text,
+    description: question.description ?? null,
+    section: question.section,
+    type: question.type ?? 'likert',
+    primaryDimension: question.primaryDimension ?? null,
+    secondaryDimensions: [...(question.secondaryDimensions ?? [])],
+    scoringDirection: question.scoringDirection ?? 'positive',
+    weight: question.weight ?? 1,
+    tags: [...(question.tags ?? [])],
+    required: question.required ?? true,
+    maxSelections: question.maxSelections ?? null,
+    options: question.options ? [...question.options] : null,
+    likertMin: question.likertMin ?? 1,
+    likertMax: question.likertMax ?? 5,
+  };
+}
+
 /**
  * Resolve an explicit engine triple. Never substitutes a newer version.
  * @param {{ questionnaireVersion: string, rulesetVersion: string, reportModelVersion: string }} input
@@ -65,13 +101,14 @@ export function resolveMotivationEngine(input) {
     baseQuestionCodes: V41_BASE_CODES,
     adaptiveQuestionCodes: V41_ADAPTIVE_BANK_CODES,
     questions: SEED_QUESTIONS_V41,
+    questionInputs: SEED_QUESTIONS_V41.map((seed, index) => toEngineQuestionInput(seed, index)),
     definitionSnapshot,
     contentHash: hashMotivationDefinitions(definitionSnapshot),
   };
 }
 
 /**
- * Serializable snapshot of the immutable definitions used for an analysis.
+ * Canonical snapshot of every immutable definition that can change analysis.
  * Persistence may store this later; this module never writes to a database.
  */
 export function buildMotivationDefinitionSnapshot(versions) {
@@ -82,18 +119,27 @@ export function buildMotivationDefinitionSnapshot(versions) {
     reportModelVersion: versions.reportModelVersion,
     baseQuestionCodes: [...V41_BASE_CODES],
     adaptiveQuestionCodes: [...V41_ADAPTIVE_BANK_CODES],
-    questions: SEED_QUESTIONS_V41.map((q) => ({
-      code: q.code,
-      text: q.text,
-      section: q.section,
-      type: q.type ?? 'likert',
-      primaryDimension: q.primaryDimension ?? null,
-      scoringDirection: q.scoringDirection ?? 'positive',
-      tags: q.tags ?? [],
+    adaptiveBankCodes: [...ADAPTIVE_BANK_CODES],
+    adaptiveMax: QUESTIONNAIRE_V41_ADAPTIVE_MAX,
+    adaptivePerDomainMax: MAX_ADAPTIVE_PER_DOMAIN,
+    adaptiveCandidates: V41_ADAPTIVE_CANDIDATES.map((candidate) => ({
+      code: candidate.code,
+      domainId: candidate.domainId,
+      priority: candidate.priority,
+      affectedDecisionIds: [...(candidate.affectedDecisionIds ?? [])],
     })),
+    questions: SEED_QUESTIONS_V41.map(snapshotQuestion),
+    domainDefinitions: V41_DOMAIN_DEFINITIONS.map((definition) => ({
+      domainId: definition.domainId,
+      label: definition.label,
+      coreCodes: [...definition.coreCodes],
+      adaptiveCodes: [...definition.adaptiveCodes],
+      affectedDecisionIds: [...(definition.affectedDecisionIds ?? [])],
+      useRawLikert: Boolean(definition.useRawLikert),
+    })),
+    rulesetThresholds: { ...RULESET_V41_THRESHOLDS },
     rules: RULES_V41,
     contradictions: CONTRADICTIONS_V41,
-    adaptiveCandidates: V41_ADAPTIVE_CANDIDATES,
   };
 }
 

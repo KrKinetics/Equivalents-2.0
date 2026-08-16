@@ -8,7 +8,16 @@ export {
   hashMotivationDefinitions,
   UnknownMotivationEngineError,
 } from './versions/motivation-versions.mjs';
-export { analyzeMotivationAssessment } from './engine/analyze-motivation.mjs';
+export {
+  analyzeMotivationAssessment,
+  expectedAdaptiveQuestionCodes,
+  ExternalQuestionDefinitionsError,
+} from './engine/analyze-motivation.mjs';
+export {
+  resolvePresentedMotivationQuestions,
+  PresentedQuestionCodesError,
+  AdaptiveSelectionMismatchError,
+} from './engine/presented-questions.mjs';
 export { calculateDimensionScores, getScoreMap } from './scoring/engine.mjs';
 export { calculateNutritionScores, hasNutritionData } from './scoring/nutrition.mjs';
 export { evaluateRuleset, evaluateCondition } from './rules/engine.mjs';

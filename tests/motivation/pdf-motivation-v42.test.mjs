@@ -6,67 +6,20 @@ import { assertValidUnicode } from '../../src/coach/motivation/lib/pdf/unicode-g
 import { extractPdfPagesText } from '../../src/coach/motivation/lib/pdf/pdf-text.mjs';
 import { isValidPdfBuffer } from '../../src/coach/motivation/lib/pdf/render-v31.mjs';
 import {
-  QUESTIONNAIRE_V41,
-  RULESET_V41,
-  REPORT_MODEL_V42,
-} from '../../src/coach/motivation/versions/motivation-versions.mjs';
-import { analyzeMotivationAssessment } from '../../src/coach/motivation/engine/analyze-motivation.mjs';
+  PROFILE_A_STABLE,
+  analyzeCompleteMotivationProfile,
+} from '../../src/coach/motivation/fixtures/complete-profiles.mjs';
 import {
   renderMotivationPdf,
   motivationPdfFilename,
 } from '../../src/coach/motivation/pdf/render-motivation-pdf.mjs';
 
 function sampleInput() {
-  const codes = ['COACH_01', 'GOAL_01', 'NUT_GOAL_01', 'MOT_RES_01', 'CHOICE_01', 'CHOICE_03'];
-  const questions = codes.map((code, i) => {
-    if (code.startsWith('GOAL') || code.startsWith('NUT_GO')) {
-      return {
-        id: `q${i}`,
-        code,
-        text: code,
-        type: 'short_text',
-        required: true,
-        active: true,
-        order: i + 1,
-        section: 't',
-        interpretationTags: code.includes('NUT') ? ['nutrition_goal'] : ['goal'],
-      };
-    }
-    return {
-      id: `q${i}`,
-      code,
-      text: code,
-      type: 'likert',
-      required: true,
-      active: true,
-      order: i + 1,
-      section: 't',
-      likertMin: 1,
-      likertMax: 5,
-      scoringDirection: 'positive',
-      interpretationTags: [],
-      primaryDimension: code.startsWith('CHOICE') ? 'choice_need' : 'self_efficacy',
-    };
-  });
-  const answers = questions.map((q) => {
-    if (q.type === 'short_text') {
-      return {
-        questionId: q.id,
-        textValue: q.code === 'GOAL_01' ? 'être en forme déjà' : 'qualité',
-      };
-    }
-    return { questionId: q.id, numericValue: q.code === 'COACH_01' ? 5 : 3 };
-  });
-  return analyzeMotivationAssessment({
-    questionnaireVersion: QUESTIONNAIRE_V41,
-    rulesetVersion: RULESET_V41,
-    reportModelVersion: REPORT_MODEL_V42,
-    questions,
-    answers,
+  return analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
     assessmentId: 'asm_pdf',
     clientName: 'Client été',
     completedAt: new Date('2026-08-16T12:00:00.000Z'),
-  });
+  }).result;
 }
 
 describe('motivation PDF v4.2', () => {

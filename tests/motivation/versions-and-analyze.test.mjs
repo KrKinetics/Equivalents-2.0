@@ -9,6 +9,10 @@ import {
   UnknownMotivationEngineError,
 } from '../../src/coach/motivation/versions/motivation-versions.mjs';
 import { analyzeMotivationAssessment } from '../../src/coach/motivation/engine/analyze-motivation.mjs';
+import {
+  PROFILE_A_STABLE,
+  buildCompleteMotivationSubmission,
+} from '../../src/coach/motivation/fixtures/complete-profiles.mjs';
 
 describe('motivation versions', () => {
   it('resolves the locked v4.1 / v4.2 triple and hashes definitions', () => {
@@ -22,6 +26,8 @@ describe('motivation versions', () => {
     expect(engine.reportModelVersion).toBe('report-model-v4.2');
     expect(engine.contentHash).toHaveLength(64);
     expect(engine.rules.length).toBeGreaterThan(0);
+    expect(engine.questionInputs.length).toBe(engine.questions.length);
+    expect(engine.questionInputs.every((question) => question.id === question.code)).toBe(true);
   });
 
   it('refuses a silent latest or unknown historical triple', () => {
@@ -50,62 +56,24 @@ describe('motivation versions', () => {
     });
     expect(provenance.contentHash).toHaveLength(64);
     expect(provenance.definitionSnapshot.questionnaireVersion).toBe(QUESTIONNAIRE_V41);
+    expect(provenance.definitionSnapshot.questions.length).toBeGreaterThan(34);
   });
 });
 
 describe('analyzeMotivationAssessment', () => {
-  it('returns scoring, rules, report-model-v4.2 and provenance', () => {
-    const codes = ['COACH_01', 'GOAL_01', 'NUT_GOAL_01', 'MOT_RES_01', 'CHOICE_01', 'CHOICE_03'];
-    const questions = codes.map((code, i) => {
-      if (code.startsWith('GOAL') || code.startsWith('NUT_GO')) {
-        return {
-          id: `q${i}`,
-          code,
-          text: code,
-          type: 'short_text',
-          required: true,
-          active: true,
-          order: i + 1,
-          section: 't',
-          interpretationTags: code.includes('NUT') ? ['nutrition_goal'] : ['goal'],
-        };
-      }
-      return {
-        id: `q${i}`,
-        code,
-        text: code,
-        type: 'likert',
-        required: true,
-        active: true,
-        order: i + 1,
-        section: 't',
-        likertMin: 1,
-        likertMax: 5,
-        scoringDirection: 'positive',
-        interpretationTags: [],
-        primaryDimension: code.startsWith('CHOICE') ? 'choice_need' : 'self_efficacy',
-      };
-    });
-    const answers = questions.map((q) => {
-      if (q.type === 'short_text') {
-        return { questionId: q.id, textValue: q.code === 'GOAL_01' ? 'être en forme' : 'qualité' };
-      }
-      return { questionId: q.id, numericValue: q.code === 'COACH_01' ? 5 : 3 };
-    });
-    const result = analyzeMotivationAssessment({
-      questionnaireVersion: QUESTIONNAIRE_V41,
-      rulesetVersion: RULESET_V41,
-      reportModelVersion: REPORT_MODEL_V42,
-      questions,
-      answers,
+  it('returns scoring, rules, report-model-v4.2 and provenance from engine definitions', () => {
+    const submission = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
       assessmentId: 'asm_test',
       clientName: 'Client test',
     });
+    const result = analyzeMotivationAssessment(submission);
     expect(result.report.schemaVersion).toBe('report-model-v4.2');
     expect(result.provenance.questionnaireVersion).toBe(QUESTIONNAIRE_V41);
     expect(result.provenance.rulesetVersion).toBe(RULESET_V41);
     expect(result.provenance.reportModelVersion).toBe(REPORT_MODEL_V42);
     expect(result.provenance.contentHash).toHaveLength(64);
+    expect(result.provenance.definitionSnapshot).toBeDefined();
     expect(result.scoring.dimensions.length).toBeGreaterThan(0);
+    expect(result.presentedQuestionCodes).toEqual(submission.presentedQuestionCodes);
   });
 });
