@@ -1,6 +1,7 @@
 /**
  * Coach-authenticated official analysis of a submitted motivation assessment.
- * Uses the caller's JWT only. Never accepts browser-computed analysis.
+ * Reads with the Coach JWT. Writes only through persist-trusted-analysis
+ * (service role after authorization). Never accepts browser-computed analysis.
  * Fail closed on unknown engine versions or content-hash mismatch.
  * Never rewrites a previous analysis_version.
  */
@@ -14,6 +15,21 @@ import {
   loadMotivationAnalysisVersions,
   loadSubmittedMotivationAssessment,
 } from './load-submitted-motivation.mjs';
+import {
+  persistTrustedMotivationAnalysis,
+  readMotivationServiceRoleKey,
+} from './persist-trusted-analysis.mjs';
+
+function userIdFromAccessToken(accessToken) {
+  try {
+    const payload = String(accessToken || '').split('.')[1];
+    if (!payload) return null;
+    const json = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+    return typeof json.sub === 'string' && json.sub ? json.sub : null;
+  } catch {
+    return null;
+  }
+}
 
 export class MotivationContentHashMismatchError extends Error {
   constructor() {
@@ -47,56 +63,6 @@ function toResult(row, extras = {}) {
   };
 }
 
-async function persistMotivationAnalysis({
-  accessToken,
-  supabaseUrl,
-  publishableKey,
-  fetchImpl,
-  responseId,
-  clientId,
-  engine,
-  presentedQuestionCodes,
-  answers,
-  analysisSnapshot,
-}) {
-  const base = String(supabaseUrl).replace(/\/$/, '');
-  const response = await fetchImpl(`${base}/rest/v1/rpc/persist_client_motivation_analysis`, {
-    method: 'POST',
-    headers: {
-      apikey: publishableKey,
-      Authorization: `Bearer ${accessToken}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      p_response_id: responseId,
-      p_client_id: clientId,
-      p_questionnaire_version: engine.questionnaireVersion,
-      p_ruleset_version: engine.rulesetVersion,
-      p_report_model_version: engine.reportModelVersion,
-      p_content_hash: engine.contentHash,
-      p_definition_snapshot: engine.definitionSnapshot,
-      p_presented_question_codes: presentedQuestionCodes,
-      p_answers_snapshot: answers,
-      p_analysis_snapshot: analysisSnapshot,
-    }),
-  });
-  if (response.status === 401 || response.status === 403) {
-    return { ok: false, error: 'forbidden' };
-  }
-  if (!response.ok) return { ok: false, error: 'unavailable' };
-  const payload = await response.json();
-  const row = Array.isArray(payload) ? payload[0] : payload;
-  if (!row?.id || !row.analysis_version) return { ok: false, error: 'unavailable' };
-  return {
-    ok: true,
-    id: row.id,
-    analysis_version: row.analysis_version,
-    idempotent: row.idempotent === true,
-    created_at: row.created_at || null,
-  };
-}
-
 /**
  * @returns {Promise<
  *   | { ok: true, analysisId: string, analysisVersion: number, idempotent: boolean, analysisSnapshot: object, provenance: object }
@@ -107,10 +73,13 @@ export async function processSubmittedMotivationAssessment({
   accessToken,
   organizationId,
   clientId,
+  createdByUserId = null,
   responseId = null,
   supabaseUrl,
   publishableKey,
+  serviceRoleKey = null,
   fetchImpl = globalThis.fetch,
+  env = process.env,
 } = {}) {
   const loaded = await loadSubmittedMotivationAssessment({
     accessToken,
@@ -187,10 +156,17 @@ export async function processSubmittedMotivationAssessment({
     },
   };
 
-  const persisted = await persistMotivationAnalysis({
-    accessToken,
+  const coachUserId = createdByUserId || userIdFromAccessToken(accessToken);
+  const role = serviceRoleKey || readMotivationServiceRoleKey(env).serviceRoleKey;
+  if (!coachUserId || !role) {
+    return { ok: false, error: 'unavailable' };
+  }
+
+  const persisted = await persistTrustedMotivationAnalysis({
     supabaseUrl,
     publishableKey,
+    serviceRoleKey: role,
+    createdByUserId: coachUserId,
     fetchImpl,
     responseId: response.id,
     clientId: client.id,

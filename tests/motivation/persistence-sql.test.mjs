@@ -84,7 +84,7 @@ test('public token RPCs are narrow and persist never accepts analysis from the b
   assert.match(submitOnly, /p_consent_given is not true/i);
 });
 
-test('persist analysis is coach-only, insert-only, and idempotent on same definitions', () => {
+test('historical persist grant to authenticated is superseded by a later migration', () => {
   assert.match(sql, /create or replace function public\.persist_client_motivation_analysis/i);
   assert.match(sql, /grant execute on function public\.persist_client_motivation_analysis\([^)]+\) to authenticated/i);
   assert.doesNotMatch(

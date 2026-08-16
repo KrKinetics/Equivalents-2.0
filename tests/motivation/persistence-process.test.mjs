@@ -28,7 +28,9 @@ const CLIENT_ID = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const INVITE_ID = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 const RESPONSE_ID = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
 const ANALYSIS_ID = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
+const USER_ID = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee';
 const OPAQUE_TOKEN = 'opaque_motivation_token_value_24ch';
+const SERVICE_ROLE = 'service_role_test_key_not_real';
 const EXPIRES_AT = '2026-08-30T12:00:00.000Z';
 
 const ENGINE = resolveMotivationEngine({
@@ -138,6 +140,8 @@ const BASE = {
   accessToken: 'tok',
   organizationId: ORG,
   clientId: CLIENT_ID,
+  createdByUserId: USER_ID,
+  serviceRoleKey: SERVICE_ROLE,
   supabaseUrl: 'https://example.supabase.co',
   publishableKey: 'sb_publishable_test_key',
 };
@@ -218,7 +222,23 @@ test('process analysis creates version 1 for a submitted fictional client', asyn
   const body = JSON.parse(persist.init.body);
   assert.equal(body.p_content_hash, ENGINE.contentHash);
   assert.equal(body.p_client_id, CLIENT_ID);
+  assert.equal(body.p_created_by, USER_ID);
+  assert.equal(persist.init.headers.Authorization, `Bearer ${SERVICE_ROLE}`);
+  assert.notEqual(persist.init.headers.Authorization, 'Bearer tok');
   assert.ok(!Object.prototype.hasOwnProperty.call(body, 'p_token'));
+});
+
+test('process analysis refuses to persist without a server role key', async () => {
+  const { fetchImpl, calls } = createFetchMock();
+  const result = await processSubmittedMotivationAssessment({
+    ...BASE,
+    serviceRoleKey: '',
+    env: {},
+    fetchImpl,
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'unavailable');
+  assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
 });
 
 test('process analysis is idempotent for the same response and definitions', async () => {
@@ -268,11 +288,17 @@ test('process analysis denies a client from another organization', async () => {
   assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
 });
 
-test('server motivation modules never mention service_role', () => {
+test('only persist-trusted-analysis may read the server role key', () => {
   const dir = path.join(root, 'src/coach/server/motivation');
+  const allowed = new Set(['persist-trusted-analysis.mjs']);
   for (const name of fs.readdirSync(dir)) {
     if (!name.endsWith('.mjs')) continue;
     const src = fs.readFileSync(path.join(dir, name), 'utf8');
+    if (allowed.has(name)) {
+      assert.match(src, /SUPABASE_SERVICE_ROLE_KEY/);
+      assert.match(src, /Never imported by browser code/);
+      continue;
+    }
     assert.doesNotMatch(src, /SERVICE_ROLE|service_role_key|SUPABASE_SERVICE_ROLE/);
   }
 });

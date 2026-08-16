@@ -12,6 +12,7 @@ import {
   coachPasswordsLocalPath,
   loadCoachPasswordsLocal,
   requireSupabasePublicEnv,
+  requireSupabaseServiceRoleEnv,
   skipWithoutLiveSupabase,
 } from '../../scripts/load-env-local.mjs';
 import {
@@ -222,12 +223,46 @@ test('live: fictional client can create, autosave, resume, submit, and analyze v
     .eq('client_id', client.id);
   assert.equal((asElevate.data || []).length, 0);
 
+  const { data: submittedRows } = await kr.supabase
+    .from('client_motivation_responses')
+    .select('id, answers, presented_question_codes')
+    .eq('client_id', client.id)
+    .eq('status', 'submitted')
+    .limit(1);
+  const submittedRow = submittedRows?.[0];
+  assert.ok(submittedRow?.id);
+
+  const browserWrite = await kr.supabase.rpc('persist_client_motivation_analysis', {
+    p_response_id: submittedRow.id,
+    p_client_id: client.id,
+    p_questionnaire_version: engine.questionnaireVersion,
+    p_ruleset_version: engine.rulesetVersion,
+    p_report_model_version: engine.reportModelVersion,
+    p_content_hash: engine.contentHash,
+    p_definition_snapshot: { forged: true },
+    p_presented_question_codes: submittedRow.presented_question_codes,
+    p_answers_snapshot: submittedRow.answers,
+    p_analysis_snapshot: { forged: true, schemaVersion: REPORT_MODEL_V42 },
+    p_created_by: kr.session.user.id,
+  });
+  assert.ok(browserWrite.error, 'authenticated browser must not persist official analysis');
+
+  let serviceRole;
+  try {
+    serviceRole = requireSupabaseServiceRoleEnv(root);
+  } catch {
+    t.skip('SUPABASE_SERVICE_ROLE_KEY missing — browser write already refused');
+    return;
+  }
+
   const processed = await processSubmittedMotivationAssessment({
     accessToken: kr.session.access_token,
     organizationId: krMem.organizationId,
     clientId: client.id,
+    createdByUserId: kr.session.user.id,
     supabaseUrl: env.url,
     publishableKey: env.publishableKey,
+    serviceRoleKey: serviceRole.serviceRoleKey,
   });
   assert.equal(processed.ok, true);
   assert.equal(processed.analysisVersion, 1);
@@ -237,8 +272,10 @@ test('live: fictional client can create, autosave, resume, submit, and analyze v
     accessToken: kr.session.access_token,
     organizationId: krMem.organizationId,
     clientId: client.id,
+    createdByUserId: kr.session.user.id,
     supabaseUrl: env.url,
     publishableKey: env.publishableKey,
+    serviceRoleKey: serviceRole.serviceRoleKey,
   });
   assert.equal(again.ok, true);
   assert.equal(again.idempotent, true);
