@@ -111,9 +111,24 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(targetDir, 'src', 'coach', 'intake-report'),
   );
   copyTree(
-    path.join(root, 'src', 'coach', 'motivation'),
-    path.join(targetDir, 'src', 'coach', 'motivation'),
+    path.join(root, 'src', 'coach', 'motivation', 'client'),
+    path.join(targetDir, 'src', 'coach', 'motivation', 'client'),
   );
+  copyTree(
+    path.join(root, 'src', 'coach', 'motivation', 'questionnaire'),
+    path.join(targetDir, 'src', 'coach', 'motivation', 'questionnaire'),
+  );
+  for (const rel of [
+    'src/coach/motivation/engine/to-question-input.mjs',
+    'src/coach/motivation/lib/adaptive-questions-v41.mjs',
+    'src/coach/motivation/scoring/domain-interpretation-v41.mjs',
+    'src/coach/motivation/scoring/normalize.mjs',
+  ]) {
+    const from = path.join(root, ...rel.split('/'));
+    const to = path.join(targetDir, ...rel.split('/'));
+    fs.mkdirSync(path.dirname(to), { recursive: true });
+    fs.copyFileSync(from, to);
+  }
 
   const previewTools = String(process.env.VERCEL_ENV || '').toLowerCase() !== 'production';
   const configJs = buildConfigJsSource({
