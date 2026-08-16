@@ -17,9 +17,11 @@ import { buildIntakeReportPdfFilename } from '../src/coach/intake-report/filenam
 import {
   INTAKE_REPORT_FOOTER,
   INTAKE_REPORT_SECTIONS,
+  INTAKE_REPORT_TIMEZONE,
   INTAKE_REPORT_TITLE,
   buildIntakeReportViewModel,
   formatIntakeReportPhone,
+  formatIntakeReportSubmittedAt,
 } from '../src/coach/intake-report/intake-report-view-model.mjs';
 import {
   buildIntakeReportDocumentHtml,
@@ -199,8 +201,10 @@ test('ViewModel keeps canonical order, French labels, aliases, and skips empties
   assert.equal(vm.title, INTAKE_REPORT_TITLE);
   assert.equal(vm.footer, INTAKE_REPORT_FOOTER);
   assert.equal(vm.clientName, 'Alex Test');
-  assert.ok(vm.submittedAtDisplay);
+  assert.equal(vm.submittedAtDisplay, formatIntakeReportSubmittedAt(SUBMITTED_AT));
+  assert.equal(vm.submittedAtDisplay, '15 août 2026, 12 h 05');
   assert.equal(vm.submittedDateIso, '2026-08-15');
+  assert.equal(INTAKE_REPORT_TIMEZONE, 'America/Toronto');
   assert.deepEqual(vm.sections.map((section) => section.id), INTAKE_REPORT_SECTIONS.map((section) => section.id));
   assert.equal(vm.sections[0].title, 'PROFIL DU CLIENT');
   assert.equal(vm.sections[0].rows[0].label, 'Courriel');
@@ -265,7 +269,11 @@ test('screen and PDF HTML share IA and omit the action bar', () => {
     assert.doesNotMatch(html, /build-pdf-html|pdf-a4-page/);
   }
   assert.match(getIntakeReportCss('pdf'), /size:A4/);
+  assert.match(getIntakeReportCss('pdf'), /@page:first\{margin-top:0\}/);
   assert.match(getIntakeReportCss('screen'), /max-width:820px/);
+  assert.doesNotMatch(getIntakeReportCss('screen'), /@page:first/);
+  assert.doesNotMatch(screen, /RAPPORT DE PRÉ-ENTREVUE — SUITE/);
+  assert.doesNotMatch(pdf, /RAPPORT DE PRÉ-ENTREVUE — SUITE/);
   const shipped = fs.readFileSync(path.join(root, 'coach-portal/assets/intake-report-document.css'), 'utf8').replace(/\r\n/g, '\n').trim();
   assert.equal(shipped, getIntakeReportCss('screen').trim());
 });
@@ -453,7 +461,10 @@ test('intake report Chromium PDF render smoke', { skip: process.env.SKIP_PDF_REN
       logoSrc: logo.dataUri,
     });
     const pdf = await renderHtmlToPdfBuffer(html, {
-      pdfOptions: getIntakeReportPdfOptions(vm.footer),
+      pdfOptions: getIntakeReportPdfOptions({
+        footerText: vm.footer,
+        logoSrc: logo.dataUri,
+      }),
     });
     assert.ok(Buffer.isBuffer(pdf));
     assert.equal(pdf.subarray(0, 4).toString(), '%PDF');
@@ -501,6 +512,54 @@ test('PDF endpoint loads server answers for programming clients and can render',
   const pdf = Buffer.isBuffer(value.body) ? value.body : Buffer.from(value.body);
   assert.equal(pdf.subarray(0, 4).toString(), '%PDF');
   assert.doesNotMatch(pdf.toString('latin1'), /opaque_invite_token_value_24ch/);
+});
+
+test('Web and PDF share the same Eastern French submitted timestamp', () => {
+  const previousTz = process.env.TZ;
+  process.env.TZ = 'UTC';
+  try {
+    const iso = '2026-08-16T01:24:00.000Z';
+    const display = formatIntakeReportSubmittedAt(iso);
+    assert.equal(display, '15 août 2026, 21 h 24');
+    const vm = buildIntakeReportViewModel({
+      clientName: 'Client test KR',
+      submittedAt: iso,
+      answers: { email: 'preview.client@example.com' },
+    });
+    assert.equal(vm.submittedAtDisplay, display);
+    assert.equal(vm.submittedDateIso, '2026-08-15');
+    const screen = buildIntakeReportDocumentHtml({ viewModel: vm, mode: 'screen' });
+    const pdf = buildIntakeReportDocumentHtml({ viewModel: vm, mode: 'pdf' });
+    assert.match(screen, /Soumis le 15 août 2026, 21 h 24/);
+    assert.match(pdf, /Soumis le 15 août 2026, 21 h 24/);
+    assert.equal(
+      screen.match(/Soumis le [^<]+/)[0],
+      pdf.match(/Soumis le [^<]+/)[0],
+    );
+  } finally {
+    if (previousTz == null) delete process.env.TZ;
+    else process.env.TZ = previousTz;
+  }
+});
+
+test('PDF chrome adds a continuation header without changing page-1 markup', () => {
+  const options = getIntakeReportPdfOptions({
+    footerText: INTAKE_REPORT_FOOTER,
+    logoSrc: 'data:image/png;base64,aaa',
+  });
+  assert.match(options.headerTemplate, /RAPPORT DE PRÉ-ENTREVUE — SUITE/);
+  assert.match(options.headerTemplate, /pageNumber/);
+  assert.match(options.headerTemplate, /totalPages/);
+  assert.match(options.headerTemplate, /#ED1136/);
+  assert.match(options.headerTemplate, /#071B41/);
+  assert.match(options.footerTemplate, /Pré-entrevue confidentielle/);
+  assert.equal(options.margin.top, '0mm');
+  assert.match(getIntakeReportCss('pdf'), /margin:16mm 0 12mm/);
+  assert.doesNotMatch(buildIntakeReportMarkup({
+    title: INTAKE_REPORT_TITLE,
+    clientName: 'Alex',
+    sections: [],
+  }), /SUITE/);
 });
 
 test('report HTML builder stays browser-safe and does not import server PDF themes', () => {

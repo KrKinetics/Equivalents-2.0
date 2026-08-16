@@ -105,6 +105,25 @@ test('intake actions remain available for every service group', () => {
   assert.match(dashboardJs, /Ouvrir le rapport/);
   assert.doesNotMatch(dashboardJs, /Voir réponses/);
   assert.doesNotMatch(dashboardJs, /btn-intake-view/);
+  assert.match(dashboardJs, /client-action-groups/);
+  assert.match(dashboardJs, /data-group="intake"/);
+  assert.match(dashboardJs, /Questionnaire d’entrevue/);
+  assert.match(dashboardJs, /data-group="nutrition"/);
+  assert.match(dashboardJs, /Structure alimentaire/);
+  assert.match(dashboardJs, /data-group="habits"/);
+  assert.match(dashboardJs, /Questionnaire d’habitudes/);
+  assert.match(dashboardJs, /À venir/);
+  assert.match(dashboardJs, /client-management-actions/);
+  assert.doesNotMatch(dashboardJs, /btn-habits|questionnaire-habitudes\.html|\/habits/);
+  const intakeIdx = dashboardJs.indexOf('data-group="intake"');
+  const nutritionIdx = dashboardJs.indexOf('data-group="nutrition"');
+  const habitsIdx = dashboardJs.indexOf('data-group="habits"');
+  const manageIdx = dashboardJs.indexOf('client-management-actions');
+  assert.ok(intakeIdx > 0 && intakeIdx < nutritionIdx && nutritionIdx < habitsIdx && habitsIdx < manageIdx);
+  assert.match(css, /\.client-action-groups/);
+  assert.match(css, /\.client-action-group-title/);
+  assert.match(css, /\.client-management-actions/);
+  assert.match(css, /\.client-actions-cell/);
 });
 
 test('edit client uses an accessible dialog and confirms service changes', () => {

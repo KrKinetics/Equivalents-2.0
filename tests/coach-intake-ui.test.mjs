@@ -72,7 +72,9 @@ test('coach dashboard creates links, displays status, and opens the submitted re
   assert.doesNotMatch(dashboardJs, /btn-intake-view/);
   assert.match(dashboardJs, /target="_blank"/);
   assert.match(dashboardJs, /intakeReportOpenPath/);
-  assert.match(css, /\.client-actions/);
+  assert.match(css, /\.client-action-groups/);
+  assert.match(css, /\.client-action-group-title/);
+  assert.match(css, /\.client-management-actions/);
   assert.match(css, /\.btn-danger-ghost/);
 });
 

@@ -196,13 +196,28 @@ function clientRowMarkup(row, invite) {
       </td>
       <td class="client-notes-cell">${escapeHtml(row.notes || '—')}</td>
       <td>${intakeStatusMarkup(invite)}</td>
-      <td>
-        <div class="client-actions">
-          <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
-          ${submitted ? `<a class="btn-compact btn-secondary btn-intake-report" href="${escapeHtml(intakeReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
-          ${nutritionCta}
-          <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
-          <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+      <td class="client-actions-cell">
+        <div class="client-action-groups">
+          <section class="client-action-group" data-group="intake">
+            <h4 class="client-action-group-title">Questionnaire d’entrevue</h4>
+            <div class="client-action-group-controls">
+              <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
+              ${submitted ? `<a class="btn-compact btn-secondary btn-intake-report" href="${escapeHtml(intakeReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
+            </div>
+          </section>
+          ${nutritionCta ? `
+          <section class="client-action-group" data-group="nutrition">
+            <h4 class="client-action-group-title">Structure alimentaire</h4>
+            <div class="client-action-group-controls">${nutritionCta}</div>
+          </section>` : ''}
+          <section class="client-action-group" data-group="habits">
+            <h4 class="client-action-group-title">Questionnaire d’habitudes</h4>
+            <p class="client-action-group-pending">À venir</p>
+          </section>
+          <div class="client-management-actions">
+            <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
+            <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+          </div>
         </div>
       </td>
     </tr>

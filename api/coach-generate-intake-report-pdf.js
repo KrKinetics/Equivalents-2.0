@@ -190,7 +190,10 @@ module.exports = async function handler(req, res) {
     const pdf = await renderHtmlToPdfBuffer(html, {
       requestId,
       log,
-      pdfOptions: getIntakeReportPdfOptions(viewModel.footer),
+      pdfOptions: getIntakeReportPdfOptions({
+        footerText: viewModel.footer,
+        logoSrc: logo.dataUri,
+      }),
     });
 
     stage = 'response';

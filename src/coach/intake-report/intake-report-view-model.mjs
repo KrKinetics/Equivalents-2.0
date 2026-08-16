@@ -8,6 +8,9 @@
 export const INTAKE_REPORT_TITLE = 'RAPPORT DE PRÉ-ENTREVUE';
 export const INTAKE_REPORT_FOOTER = 'KR KINETICS — Pré-entrevue confidentielle';
 
+/** Canonical KR Kinetics business timezone (Quebec / Eastern). Never host/browser TZ. */
+export const INTAKE_REPORT_TIMEZONE = 'America/Toronto';
+
 /** Stored keys that must never appear on the coach-facing report. */
 export const INTAKE_REPORT_OMITTED_KEYS = Object.freeze(['consent', 'completed_step']);
 
@@ -143,6 +146,7 @@ export function formatIntakeReportSubmittedAt(iso) {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
   return new Intl.DateTimeFormat('fr-CA', {
+    timeZone: INTAKE_REPORT_TIMEZONE,
     dateStyle: 'medium',
     timeStyle: 'short',
   }).format(date);
@@ -156,7 +160,12 @@ export function intakeReportSubmittedDateIso(iso) {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
-  return date.toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: INTAKE_REPORT_TIMEZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date);
 }
 
 /**

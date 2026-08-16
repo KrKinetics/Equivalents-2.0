@@ -104,11 +104,22 @@ function dashboardHtml() {
   <tr data-id="${CLIENT_ID}" data-service="programming">
     <td><strong>Client test KR</strong></td>
     <td>
-      <div class="client-actions">
-        <button type="button" class="btn-compact btn-primary btn-intake">Renvoyer un nouveau lien</button>
-        <a class="btn-compact btn-secondary btn-intake-report" href="${REPORT_HREF}" target="_blank" rel="noopener">Ouvrir le rapport</a>
-        <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
-        <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+      <div class="client-action-groups">
+        <section class="client-action-group" data-group="intake">
+          <h4 class="client-action-group-title">Questionnaire d’entrevue</h4>
+          <div class="client-action-group-controls">
+            <button type="button" class="btn-compact btn-primary btn-intake">Renvoyer un nouveau lien</button>
+            <a class="btn-compact btn-secondary btn-intake-report" href="${REPORT_HREF}" target="_blank" rel="noopener">Ouvrir le rapport</a>
+          </div>
+        </section>
+        <section class="client-action-group" data-group="habits">
+          <h4 class="client-action-group-title">Questionnaire d’habitudes</h4>
+          <p class="client-action-group-pending">À venir</p>
+        </section>
+        <div class="client-management-actions">
+          <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
+          <button type="button" class="btn-compact btn-danger-ghost btn-delete">Supprimer</button>
+        </div>
       </div>
     </td>
   </tr>
@@ -257,8 +268,11 @@ after(async () => {
 test('submitted row opens the report and does not show Voir réponses', async () => {
   const page = await browser.newPage();
   await page.goto(`${origin}/dashboard.html`, { waitUntil: 'domcontentloaded' });
-  const row = await page.$eval('.client-actions', (el) => el.textContent.replace(/\s+/g, ' ').trim());
+  const row = await page.$eval('.client-action-groups', (el) => el.textContent.replace(/\s+/g, ' ').trim());
+  assert.match(row, /Questionnaire d’entrevue/);
   assert.match(row, /Ouvrir le rapport/);
+  assert.match(row, /Questionnaire d’habitudes/);
+  assert.match(row, /À venir/);
   assert.doesNotMatch(row, /Voir réponses/);
   assert.equal(await page.$('.btn-intake-view'), null);
 

@@ -32,7 +32,8 @@ export function getIntakeReportCss(mode = 'screen') {
   const theme = INTAKE_REPORT_THEME;
   const isPdf = mode === 'pdf';
   const pageRules = isPdf
-    ? `@page{size:A4;margin:12mm 12mm 16mm}
+    ? `@page{size:A4;margin:16mm 0 12mm}
+@page:first{margin-top:0}
 html,body{margin:0;padding:0;background:#fff;height:auto;overflow:visible}
 .intake-report{max-width:none;margin:0;box-shadow:none;border:0}
 .intake-report-section{break-inside:auto;page-break-inside:auto}
@@ -128,16 +129,30 @@ export function buildIntakeReportDocumentHtml({
 
 /**
  * Chromium page.pdf options for the intake report (not the nutrition plan).
- * @param {string} footerText
+ * Continuation chrome lives in the header margin; page 1 hero covers it via
+ * a negative header offset so the approved first page is unchanged.
+ * @param {{ footerText?: string, logoSrc?: string }} [opts]
  */
-export function getIntakeReportPdfOptions(footerText) {
+export function getIntakeReportPdfOptions({ footerText, logoSrc } = {}) {
   const footer = esc(footerText || 'KR KINETICS — Pré-entrevue confidentielle');
+  const logo = logoSrc
+    ? `<img src="${esc(logoSrc)}" alt="" style="height:16px;width:auto;max-width:96px;object-fit:contain;display:block;">`
+    : '';
   return {
     format: 'A4',
     printBackground: true,
     preferCSSPageSize: true,
     displayHeaderFooter: true,
-    headerTemplate: '<span></span>',
+    headerTemplate: `<div style="width:100%;box-sizing:border-box;padding:3mm 28px 0;font-family:Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+          ${logo}
+          <span style="font-size:8px;letter-spacing:.11em;font-weight:700;color:#071B41;text-transform:uppercase;white-space:nowrap;">RAPPORT DE PRÉ-ENTREVUE — SUITE</span>
+        </div>
+        <span style="font-size:8px;color:#071B41;white-space:nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
+      </div>
+      <div style="height:2px;background:#ED1136;margin-top:3px;"></div>
+    </div>`,
     footerTemplate: `<div style="width:100%;text-align:center;font-size:8px;color:#5b6b80;font-family:Arial,Helvetica,sans-serif;padding:0 16mm;">${footer}</div>`,
     margin: { top: '0mm', right: '0mm', bottom: '12mm', left: '0mm' },
     timeout: 30_000,
