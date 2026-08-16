@@ -69,6 +69,9 @@ test('coach dashboard creates links, displays status, and reads submitted answer
   assert.match(dashboardJs, /\$\{digits\.slice\(0, 3\)\} \$\{digits\.slice\(3, 6\)\}-\$\{digits\.slice\(6\)\}/);
   assert.match(dashboardJs, /formatPhoneDisplay\(row\.phone\)/);
   assert.match(dashboardJs, /formatAnswer\(data\.answers\[key\], key\)/);
+  assert.match(dashboardJs, /btn-intake-report/);
+  assert.match(dashboardJs, /target="_blank"/);
+  assert.match(dashboardJs, /intakeReportOpenPath/);
   assert.match(css, /\.client-actions/);
   assert.match(css, /\.btn-danger-ghost/);
 });

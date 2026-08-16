@@ -7,6 +7,7 @@ import {
 } from './auth-session.js';
 import { clearLoginAutoRedirectGuard } from './login-redirect.mjs';
 import { workspaceOpenPath } from '/src/coach/workspace/workspace-access.mjs';
+import { intakeReportOpenPath } from '/src/coach/intake-report/intake-report-path.mjs';
 import {
   NUTRITION_WORKSPACE_CTA_LABEL,
   SERVICE_CHANGE_CONFIRMATION,
@@ -229,6 +230,7 @@ function clientRowMarkup(row, invite) {
       <td>
         <div class="client-actions">
           <button type="button" class="btn-compact btn-primary btn-intake">${primaryLabel}</button>
+          ${submitted ? `<a class="btn-compact btn-secondary btn-intake-report" href="${escapeHtml(intakeReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
           ${submitted ? '<button type="button" class="btn-compact btn-secondary btn-intake-view">Voir réponses</button>' : ''}
           ${nutritionCta}
           <button type="button" class="btn-compact btn-ghost btn-edit">Modifier</button>
@@ -523,6 +525,10 @@ async function boot() {
       } catch (err) {
         setStatus(`Lecture impossible : ${err.message || err}`, 'error');
       }
+      return;
+    }
+
+    if (event.target.closest('.btn-intake-report')) {
       return;
     }
 

@@ -33,6 +33,8 @@ export function resolveSafeNextPath(search = '', { defaultPath = DEFAULT_NEXT } 
     next.startsWith('/workspace/')
     || next === '/dashboard.html'
     || next.startsWith('/dashboard.html?')
+    || next === '/pre-interview-report.html'
+    || next.startsWith('/pre-interview-report.html?')
   ) {
     return next;
   }

@@ -84,6 +84,11 @@ test('vercel.json PDF function keeps logos, duration, and memory without bundlin
   assert.match(String(pdf.includeFiles), /logo-/);
   assert.ok(Number(pdf.maxDuration) >= 60);
   assert.ok(Number(pdf.memory) >= 1536);
+  const intakePdf = cfg.functions['api/coach-generate-intake-report-pdf.js'];
+  assert.ok(intakePdf);
+  assert.match(String(intakePdf.includeFiles), /logo-/);
+  assert.ok(Number(intakePdf.maxDuration) >= 60);
+  assert.ok(Number(intakePdf.memory) >= 1536);
 });
 
 test('PDF API error body includes requestId and stage; no AWS_LAMBDA hard dependency in handler', () => {

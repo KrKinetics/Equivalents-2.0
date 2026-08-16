@@ -48,6 +48,7 @@ const COACH_API_HANDLERS = Object.freeze([
   'coach-calc-portions',
   'coach-calc-equivalences',
   'coach-generate-pdf',
+  'coach-generate-intake-report-pdf',
   'coach-send-intake-invite',
 ]);
 
@@ -181,7 +182,8 @@ function deny(res, req, urlPath, status = 401) {
   const isDocument = urlPath.endsWith('.html')
     || urlPath === '/workspace'
     || urlPath === '/workspace/'
-    || urlPath === '/dashboard.html';
+    || urlPath === '/dashboard.html'
+    || urlPath === '/pre-interview-report.html';
   if (acceptsHtml && isDocument) {
     const next = encodeURIComponent(`${urlPath}`);
     res.writeHead(302, {
@@ -290,6 +292,7 @@ const server = http.createServer(async (req, res) => {
       || urlPath.startsWith('/src/coach/domain/')
       || urlPath.startsWith('/src/coach/services/')
       || urlPath.startsWith('/src/coach/client/')
+      || urlPath.startsWith('/src/coach/intake-report/')
     ) {
       const abs = resolveUnder(path.join(root, 'src', 'coach'), urlPath.slice('/src/coach'.length));
       if (!abs || !abs.endsWith('.mjs')) {

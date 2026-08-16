@@ -25,12 +25,16 @@ function memoryStorage(seed = {}) {
   };
 }
 
-test('resolveSafeNextPath allows workspace and dashboard only', () => {
+test('resolveSafeNextPath allows workspace, dashboard, and the intake report', () => {
   assert.equal(resolveSafeNextPath(''), './dashboard.html');
   assert.equal(resolveSafeNextPath('?next=/dashboard.html'), '/dashboard.html');
   assert.equal(
     resolveSafeNextPath('?next=/workspace/?client_id=abc'),
     '/workspace/?client_id=abc',
+  );
+  assert.equal(
+    resolveSafeNextPath('?next=/pre-interview-report.html?client_id=aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+    '/pre-interview-report.html?client_id=aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
   );
 });
 

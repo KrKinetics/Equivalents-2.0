@@ -106,6 +106,10 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'client'),
     path.join(targetDir, 'src', 'coach', 'client'),
   );
+  copyTree(
+    path.join(root, 'src', 'coach', 'intake-report'),
+    path.join(targetDir, 'src', 'coach', 'intake-report'),
+  );
 
   const configJs = buildConfigJsSource({ url, publishableKey, serverNutritionEngine });
   writeFile(path.join(targetDir, 'config.js'), configJs);
@@ -115,14 +119,17 @@ export function buildCoachVercelBundle(options = {}) {
     'index.html',
     'login.html',
     'dashboard.html',
+    'pre-interview-report.html',
     'intake.html',
     'workspace/index.html',
     'config.js',
     'assets/workspace-bootstrap.mjs',
     'assets/login.js',
     'assets/dashboard.js',
+    'assets/pre-interview-report.js',
     'assets/intake.js',
     'src/coach/workspace/workspace-access.mjs',
+    'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/domain/client-service-entitlements.mjs',
     'src/coach/services/storage/dossier-schema.mjs',
   ]) {

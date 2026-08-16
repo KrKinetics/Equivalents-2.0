@@ -94,6 +94,7 @@ test('vercel.json keeps required routes without catch-all HTML rewrite or legacy
     false,
   );
   assert.ok(cfg.functions?.['api/coach-generate-pdf.js']);
+  assert.ok(cfg.functions?.['api/coach-generate-intake-report-pdf.js']);
   // No SPA fallback that would turn missing assets into 200 HTML.
   assert.equal(
     cfg.rewrites.some((r) => r.source === '/(.*)' || r.source === '/:path*' || r.destination === '/index.html'),
@@ -114,12 +115,14 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'index.html',
     'login.html',
     'dashboard.html',
+    'pre-interview-report.html',
     'workspace/index.html',
     'config.js',
     'assets/workspace-bootstrap.mjs',
     'assets/portal.css',
     'workspace/assets/logo-kr-kinetics-horizontal.png',
     'src/coach/workspace/workspace-access.mjs',
+    'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/domain/client-service-entitlements.mjs',
     'src/coach/services/storage/supabase-client-dossier-store.mjs',
     'src/coach/client/server-nutrition-bridge.mjs',

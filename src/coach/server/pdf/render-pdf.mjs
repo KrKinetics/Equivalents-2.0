@@ -120,6 +120,7 @@ export async function renderHtmlToPdfBuffer(html, opts = {}) {
       printBackground: true,
       margin: { top: 0, right: 0, bottom: 0, left: 0 },
       timeout: 30_000,
+      ...(opts.pdfOptions && typeof opts.pdfOptions === 'object' ? opts.pdfOptions : {}),
     });
     const buffer = Buffer.from(pdf);
     if (!buffer.length || buffer.subarray(0, 4).toString() !== '%PDF') {
