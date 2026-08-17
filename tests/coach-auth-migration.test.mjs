@@ -1,5 +1,5 @@
 /**
- * Static checks for Coach Auth + Organizations SQL migration.
+ * Static checks for Coach Auth + Organizations SQL migrations.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,6 +14,13 @@ const migrationPath = path.join(
 );
 
 const sql = fs.readFileSync(migrationPath, 'utf8');
+const realClientSql = [
+  '20260817181203_allow_real_clients_and_default_real.sql',
+  '20260817181258_enforce_real_clients.sql',
+  '20260817182101_lock_force_real_client_flag_trigger_function.sql',
+  '20260817182440_make_real_client_trigger_invoker.sql',
+  '20260817182557_real_clients_rls_policies.sql',
+].map((name) => fs.readFileSync(path.join(root, 'supabase/migrations', name), 'utf8')).join('\n');
 
 test('migration defines required tables and roles', () => {
   for (const table of ['organizations', 'profiles', 'memberships', 'clients']) {
@@ -38,13 +45,17 @@ test('migration enables forced RLS on all tenant tables', () => {
   }
 });
 
-test('migration isolates clients by organization membership', () => {
-  assert.match(sql, /clients_select_org/);
-  assert.match(sql, /clients_insert_org/);
-  assert.match(sql, /clients_update_org/);
-  assert.match(sql, /clients_delete_org/);
-  assert.match(sql, /is_member_of\(organization_id\)/);
-  assert.match(sql, /is_fictional = true/);
+test('final client migrations enforce real-client rows with organization isolation', () => {
+  assert.match(realClientSql, /alter column is_fictional set default false/i);
+  assert.match(realClientSql, /clients_real_only check \(is_fictional = false\)/i);
+  assert.match(realClientSql, /trg_force_real_client_flag/i);
+  assert.match(realClientSql, /new\.is_fictional := false/i);
+  assert.match(realClientSql, /clients_select_org/);
+  assert.match(realClientSql, /clients_insert_org/);
+  assert.match(realClientSql, /clients_update_org/);
+  assert.match(realClientSql, /clients_delete_org/);
+  assert.match(realClientSql, /is_member_of\(organization_id\)/);
+  assert.match(realClientSql, /created_by = auth\.uid\(\) and is_fictional = false/i);
 });
 
 test('migration grants no table privileges to anon', () => {
