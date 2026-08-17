@@ -9,6 +9,7 @@ import {
 import { expectedAdaptiveQuestionCodes, expectedNarrativeQuestionCodes } from '../../src/coach/motivation/engine/analyze-motivation.mjs';
 import {
   V42_AESTHETIC,
+  V42_AUTONOMOUS,
   V42_FRAGILE,
   V42_RICH_NARRATIVE,
   buildCompleteMotivationSubmissionV42,
@@ -37,4 +38,13 @@ test('rich narrative answers can skip goal clarifications that vague answers tri
   const rich = buildCompleteMotivationSubmissionV42(V42_RICH_NARRATIVE);
   assert.ok(vague.expectedNarrativeQuestionCodes.length >= 1);
   assert.notDeepEqual(vague.expectedNarrativeQuestionCodes, rich.expectedNarrativeQuestionCodes);
+});
+
+test('answered nutrition-success clarification remains part of the deterministic submitted path', () => {
+  const submission = buildCompleteMotivationSubmissionV42(V42_AUTONOMOUS);
+  assert.ok(submission.expectedNarrativeQuestionCodes.includes('NUT_SUCCESS_01'));
+  assert.deepEqual(
+    expectedNarrativeQuestionCodes(ENGINE, submission.answers),
+    submission.expectedNarrativeQuestionCodes,
+  );
 });
