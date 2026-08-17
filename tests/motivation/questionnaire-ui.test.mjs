@@ -51,10 +51,16 @@ test('back and next buttons have explicit visible labels and styles', () => {
 });
 
 test('progress never shows a moving question total', () => {
+  const progress = fs.readFileSync(path.join(root, 'coach-portal/assets/motivation-progress.mjs'), 'utf8');
   assert.match(js, /Question \$\{position\}/);
   assert.doesNotMatch(js, /Question \$\{position\} \/ /);
   assert.doesNotMatch(js, /34 -> 38|38 -> 39/);
   assert.match(js, /baseCount \|\| 34/);
+  assert.match(html, /motivation-progress\.mjs/);
+  assert.match(progress, /OFFICIAL_BASE_COUNT/);
+  assert.match(progress, /Question principale/);
+  assert.match(progress, /Question de précision/);
+  assert.doesNotMatch(progress, /presentedCodes\.length/);
 });
 
 test('motivation form uses a questionnaire-specific max width', () => {
