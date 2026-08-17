@@ -62,6 +62,9 @@ jobs:
       - name: Motivation critical tests
         run: npm run test:motivation-critical
 
+      - name: Production persistence fallback
+        run: node --test tests/motivation/production-persistence-fallback.test.mjs
+
       - name: Semantic presentation regression
         run: node --test tests/motivation/semantic-presentation-polish.test.mjs
 
