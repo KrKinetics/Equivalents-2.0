@@ -1,4 +1,5 @@
 import { buildInterviewQuestionsV42 } from '../v42/plan.mjs';
+import { specificInterviewWhy } from '../interview-justifications.mjs';
 
 const ANSWERED_BY_CLARIFICATION = {
   CLARIFY_GOAL_MEANING_01: ['wellbeing_goal', 'general_health', 'general_fitness', 'experience_goal', 'body_composition'],
@@ -22,16 +23,10 @@ function answeredKeys(openAnswers, directAnswers) {
 }
 
 function whyItMatters(question, conflicts) {
-  if (question.category === 'objective') {
-    return 'Précise ce que l\'athlète cherche réellement et comment juger le progrès.';
-  }
-  if (question.category === 'obstacle') {
-    return 'Identifie le moment et le contexte où l\'adhésion casse.';
-  }
   if ((conflicts || []).some((item) => item.validationQuestion === question.text)) {
     return 'Résout une contradiction qui changerait le plan.';
   }
-  return 'Peut modifier une décision de coaching des 4 premières semaines.';
+  return specificInterviewWhy(question);
 }
 
 function affectedDecision(question) {

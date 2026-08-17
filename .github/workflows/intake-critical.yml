@@ -1,0 +1,61 @@
+name: Intake critical
+
+on:
+  push:
+    branches:
+      - integration/profil-motivationnel
+    paths:
+      - 'coach-portal/intake.html'
+      - 'coach-portal/assets/intake.js'
+      - 'coach-portal/pre-interview-report.html'
+      - 'coach-portal/assets/pre-interview-report.js'
+      - 'src/coach/intake/**'
+      - 'src/coach/intake-report/**'
+      - 'api/coach-generate-intake-report-pdf.js'
+      - 'tests/**/*intake*'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/intake-critical.yml'
+  pull_request:
+    paths:
+      - 'coach-portal/intake.html'
+      - 'coach-portal/assets/intake.js'
+      - 'coach-portal/pre-interview-report.html'
+      - 'coach-portal/assets/pre-interview-report.js'
+      - 'src/coach/intake/**'
+      - 'src/coach/intake-report/**'
+      - 'api/coach-generate-intake-report-pdf.js'
+      - 'tests/**/*intake*'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/intake-critical.yml'
+
+jobs:
+  intake-critical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      COACH_IGNORE_ENV_LOCAL: '1'
+      SUPABASE_URL: https://example.supabase.co
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder_key
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chrome for intake report
+        run: npx puppeteer browsers install chrome
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Intake critical tests
+        run: npm run test:intake-critical

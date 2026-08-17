@@ -26,6 +26,10 @@ import {
 import { nutritionEligibleClients } from '/src/coach/domain/client-service-entitlements.mjs';
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
+import {
+  buildWorkspaceIntakeLandmarksHtml,
+  describeWorkspaceIntakeLandmarks,
+} from '/src/coach/workspace/workspace-intake-landmarks.mjs';
 
 function clientIdFromLocation() {
   const params = new URLSearchParams(window.location.search);
@@ -95,6 +99,57 @@ function renderBanner(ctx, message, kind = 'ok') {
   `;
   ensureStatusSlot(el);
   if (message) setPersistStatus(message, kind === 'error' ? 'error' : kind === 'busy' ? 'busy' : 'ok');
+}
+
+function renderIntakeLandmarks(landmarks) {
+  document.getElementById('intake-client-landmarks')?.remove();
+  const html = buildWorkspaceIntakeLandmarksHtml(landmarks, escapeHtml);
+  if (!html) return;
+  const host = document.querySelector('.profile-bar') || document.querySelector('main') || document.body;
+  const wrap = document.createElement('div');
+  wrap.innerHTML = html.trim();
+  const card = wrap.firstElementChild;
+  if (!card) return;
+  card.style.cssText = [
+    'margin:12px 16px 0',
+    'padding:14px 16px',
+    'border:1px solid #d7e0ec',
+    'background:#f8fafc',
+    'border-radius:10px',
+    'font:500 14px/1.45 system-ui,sans-serif',
+    'color:#0f172a',
+  ].join(';');
+  const title = card.querySelector('h2');
+  if (title) {
+    title.style.cssText = 'margin:0 0 8px;font:800 12px/1.2 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#071B41';
+  }
+  const list = card.querySelector('ul');
+  if (list) {
+    list.style.cssText = 'margin:0;padding:0;list-style:none;display:grid;gap:4px';
+  }
+  if (host.parentNode) host.parentNode.insertBefore(card, host);
+  else document.body.prepend(card);
+}
+
+async function loadSubmittedIntakeLandmarks(supabase, clientId) {
+  if (!supabase || !clientId) return null;
+  try {
+    const { data, error } = await supabase
+      .from('client_intake_responses')
+      .select('answers,submitted_at,status')
+      .eq('client_id', clientId)
+      .eq('status', 'submitted')
+      .order('submitted_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (error || !data || data.status !== 'submitted') return null;
+    const answers = data.answers && typeof data.answers === 'object' && !Array.isArray(data.answers)
+      ? data.answers
+      : {};
+    return describeWorkspaceIntakeLandmarks(answers, data.submitted_at);
+  } catch {
+    return null;
+  }
 }
 
 function escapeHtml(value) {
@@ -421,12 +476,14 @@ async function bootWorkspace() {
     workspace.refreshClientMenu();
     workspace.markCleanFromCurrent();
     setPersistStatus(resolved.status, resolved.statusKind);
+    renderIntakeLandmarks(await loadSubmittedIntakeLandmarks(supabase, ctx.clientId));
   } catch (err) {
     applyWorkspacePayload(ctx.stub, ctx);
     await settleServerNutritionAfterApply();
     workspace.refreshClientMenu();
     workspace.markCleanFromCurrent();
     setPersistStatus(`Erreur de chargement : ${err.message || err}`, 'error');
+    renderIntakeLandmarks(await loadSubmittedIntakeLandmarks(supabase, ctx.clientId));
   }
 }
 

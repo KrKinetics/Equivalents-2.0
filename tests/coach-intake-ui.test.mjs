@@ -25,6 +25,9 @@ test('client intake is a four-step, short, branded experience', () => {
   assert.match(intakeHtml, /PRÉPARONS NOTRE RENCONTRE/);
   assert.match(intakeHtml, /logo-kr-kinetics-horizontal\.png/);
   assert.match(intakeHtml, /Perte de masse adipeuse/);
+  assert.match(intakeHtml, /name="age_years"/);
+  assert.match(intakeHtml, /name="weight_lb"/);
+  assert.match(intakeHtml, /Repères physiques/);
   assert.doesNotMatch(intakeHtml, /Perdre du poids/);
   assert.match(intakeJs, /organization_slug/);
   assert.match(intakeJs, /logo-elevate-fitness\.jpg/);

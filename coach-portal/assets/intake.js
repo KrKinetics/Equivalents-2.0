@@ -1,4 +1,9 @@
 import { getPortalSupabase } from './auth-session.js';
+import {
+  convertHeightUnit,
+  sanitizeIntakeAnthropometrics,
+  validateIntakeAnthropometrics,
+} from '/src/coach/intake/intake-anthropometrics.mjs';
 
 const token = new URLSearchParams(window.location.search).get('token') || '';
 const loadingCard = document.getElementById('loading-card');
@@ -61,6 +66,49 @@ function setSaveStatus(message, state = '') {
   saveStatus.dataset.state = state;
 }
 
+function currentHeightUnit() {
+  return form.querySelector('[name="height_unit"]:checked')?.value || 'imperial';
+}
+
+function readHeightValues() {
+  return {
+    height_feet: document.getElementById('height_feet')?.value || '',
+    height_inches: document.getElementById('height_inches')?.value || '',
+    height_cm: document.getElementById('height_cm')?.value || '',
+  };
+}
+
+function updateHeightFields({ convertFrom } = {}) {
+  const unit = currentHeightUnit();
+  const imperial = document.getElementById('height-imperial');
+  const metric = document.getElementById('height-metric');
+  const feet = document.getElementById('height_feet');
+  const inches = document.getElementById('height_inches');
+  const cm = document.getElementById('height_cm');
+  if (!imperial || !metric || !feet || !inches || !cm) return;
+
+  if (convertFrom && convertFrom !== unit) {
+    const converted = convertHeightUnit(convertFrom, readHeightValues());
+    if (unit === 'metric' && converted.height_cm) cm.value = converted.height_cm;
+    if (unit === 'imperial') {
+      if (converted.height_feet) feet.value = converted.height_feet;
+      if (converted.height_inches !== undefined && converted.height_inches !== '') {
+        inches.value = converted.height_inches;
+      }
+    }
+  }
+
+  const imperialOn = unit === 'imperial';
+  imperial.classList.toggle('hidden', !imperialOn);
+  metric.classList.toggle('hidden', imperialOn);
+  feet.disabled = !imperialOn;
+  inches.disabled = !imperialOn;
+  cm.disabled = imperialOn;
+  feet.required = imperialOn;
+  inches.required = imperialOn;
+  cm.required = !imperialOn;
+}
+
 function updateConditionalFields() {
   document.querySelectorAll('[data-condition-name]').forEach((container) => {
     const name = container.dataset.conditionName;
@@ -74,6 +122,7 @@ function updateConditionalFields() {
       if (!visible) field.value = '';
     });
   });
+  updateHeightFields();
 }
 
 function readAnswers() {
@@ -86,7 +135,7 @@ function readAnswers() {
   answers.challenges = data.getAll('challenges').map((value) => String(value));
   answers.consent = document.getElementById('consent').checked;
   answers.completed_step = currentStep;
-  return answers;
+  return sanitizeIntakeAnthropometrics(answers);
 }
 
 function normalizeAnswerValue(value) {
@@ -153,6 +202,15 @@ function validateCurrentStep() {
     if (!group.querySelector(`[name="${CSS.escape(name)}"]:checked`)) {
       setFormError('Veuillez répondre à toutes les questions obligatoires avant de continuer.');
       group.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+  }
+
+  if (currentStep === 1) {
+    const anthro = validateIntakeAnthropometrics(readAnswers());
+    if (!anthro.ok) {
+      setFormError('Veuillez indiquer un âge, une grandeur et un poids valides.');
+      document.getElementById('age_years')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return false;
     }
   }
@@ -238,6 +296,13 @@ async function boot() {
 }
 
 form.addEventListener('change', (event) => {
+  if (event.target.matches('[name="height_unit"]')) {
+    const next = event.target.value;
+    const previous = next === 'metric' ? 'imperial' : 'metric';
+    updateHeightFields({ convertFrom: previous });
+    setFormError('');
+    return;
+  }
   if (event.target.matches('[name="challenges"]')) {
     const selected = form.querySelectorAll('[name="challenges"]:checked');
     if (selected.length > 3) {

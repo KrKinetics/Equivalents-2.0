@@ -48,6 +48,8 @@ test('protected path matrix covers dashboard, workspace, coach modules', () => {
   assert.equal(isProtectedPath('/motivation.html'), false);
   assert.equal(isProtectedPath('/assets/motivation.js'), false);
   assert.equal(isProtectedPath('/src/coach/motivation/client/official-bundle.mjs'), false);
+  assert.equal(isProtectedPath('/src/coach/intake/intake-anthropometrics.mjs'), false);
+  assert.equal(isProtectedPath('/src/coach/intake-report/intake-report-view-model.mjs'), true);
   assert.equal(isProtectedPath('/login.html'), false);
   assert.equal(isProtectedPath('/config.js'), false);
   assert.equal(isPublicPath('/login.html'), true);

@@ -46,23 +46,27 @@ export function inferClaimStrength(row = {}) {
 
 export function findingPrimaryLabel(row = {}) {
   const existing = String(row.displayLabel || '').trim();
+  if (/^Tendance à confirmer$/i.test(existing)) return 'Tendance non établie';
+  if (/^Réponses contradictoires$/i.test(existing)) return 'Réponses divergentes';
   const tendencyMatch = existing.match(/^Tendance\s+(.+)$/i);
   if (tendencyMatch && !/\b(high|moderate|low)\b/i.test(existing)) {
-    return `Tendance ${localizeTendency(tendencyMatch[1])}`;
+    const localized = localizeTendency(tendencyMatch[1]);
+    if (/^à confirmer$/i.test(localized)) return 'Tendance non établie';
+    return `Tendance ${localized}`;
   }
-  if (/^(Signal mixte|Réponses contradictoires)/i.test(existing)
+  if (/^(Signal mixte|Réponses divergentes|Réponses contradictoires)/i.test(existing)
     && !/\b(high|moderate|low)\b/i.test(existing)) {
-    return existing;
+    return existing.replace(/^Réponses contradictoires/i, 'Réponses divergentes');
   }
   const strength = inferClaimStrength(row);
   if (strength === 'mixed') return 'Signal mixte';
-  if (strength === 'divergent') return 'Réponses contradictoires';
+  if (strength === 'divergent') return 'Réponses divergentes';
   const rawTendency = row.tendency && !/^(high|moderate|low|mixed|Tendance )/i.test(String(row.tendency).trim())
     ? row.tendency
     : (/\b(high|moderate|low)\b/i.test(String(row.level || '')) ? row.level : row.tendency || '');
   const tendency = localizeTendency(rawTendency);
-  if (strength === 'single') return tendency ? `Tendance ${tendency}` : 'Tendance à confirmer';
-  if (tendency && !/^(mixte|contradictoire)$/i.test(tendency)) return `Tendance ${tendency}`;
+  if (strength === 'single') return tendency ? `Tendance ${tendency}` : 'Tendance non établie';
+  if (tendency && !/^(mixte|contradictoire|divergentes?)$/i.test(tendency)) return `Tendance ${tendency}`;
   return localizeTendency(row.displayLabel) || '—';
 }
 
@@ -83,6 +87,8 @@ export function findingTechnicalDirection(row = {}) {
   return `Direction technique : ${direction}`;
 }
 
+const ACTION_START = /^(Planifier|Ancrer|Observer|Tester|Clarifier|Définir|Valider|Identifier|Choisir|Confirmer|Construire|Préciser|Repérer|Vérifier|Comparer|Ajuster|Déterminer|Créer|Réserver|Noter|Évaluer|Mesurer|Donner|Présenter|Utiliser|Privilégier|Éviter|Commencer|Transformer|Voir|Garder|Relier|Calibrer|Revoir|Aider|Distinguer)\b/i;
+
 export function asPresentedCoachAction(text) {
   const value = String(text || '').trim();
   if (!value) return '';
@@ -101,7 +107,15 @@ export function asPresentedCoachAction(text) {
   if (EVIDENCE_LINE.test(value)) {
     return 'Tester cette hypothèse sur une semaine réelle avant d\'en faire une priorité d\'action.';
   }
-  return value;
+  if (/^un contact hebdomadaire/i.test(value)) {
+    return 'Planifier un contact hebdomadaire pour vérifier l\'exécution et ajuster sans surcharger le suivi.';
+  }
+  if (ACTION_START.test(value)) return value;
+  const decap = value.charAt(0).toLowerCase() + value.slice(1);
+  if (/^un contact\b/i.test(value)) {
+    return `Planifier ${decap}`;
+  }
+  return `Planifier : ${value}`;
 }
 
 export function hasNutritionContent(nutrition, action = null) {

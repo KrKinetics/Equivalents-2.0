@@ -22,10 +22,13 @@ test('mixed and divergent findings use Coach-facing primary labels', () => {
   assert.equal(findingPrimaryLabel({ claimStrength: 'mixed', level: 'high' }), 'Signal mixte');
   assert.equal(findingStatusLabel({ claimStrength: 'mixed' }), 'À TESTER');
   assert.equal(findingTechnicalDirection({ claimStrength: 'mixed', level: 'high' }), 'Direction technique : élevée');
-  assert.equal(findingPrimaryLabel({ claimStrength: 'divergent', level: 'high' }), 'Réponses contradictoires');
+  assert.equal(findingPrimaryLabel({ claimStrength: 'divergent', level: 'high' }), 'Réponses divergentes');
   assert.equal(findingStatusLabel({ claimStrength: 'divergent' }), 'NE PAS CONCLURE');
   assert.equal(findingPrimaryLabel({ claimStrength: 'single', level: 'high' }), 'Tendance élevée');
   assert.equal(findingStatusLabel({ claimStrength: 'single' }), 'À CONFIRMER');
+  assert.equal(findingPrimaryLabel({ claimStrength: 'single' }), 'Tendance non établie');
+  assert.equal(findingPrimaryLabel({ displayLabel: 'Tendance à confirmer', claimStrength: 'single' }), 'Tendance non établie');
+  assert.equal(findingPrimaryLabel({ displayLabel: 'Réponses contradictoires', claimStrength: 'divergent' }), 'Réponses divergentes');
   assert.equal(
     findingPrimaryLabel({ displayLabel: 'Tendance élevée', claimStrength: 'supported', level: 'high' }),
     'Tendance élevée',
@@ -38,6 +41,10 @@ test('explanatory coach priorities become actions', () => {
     'Ancrer les premières interventions nutritionnelles sur les bénéfices concrets en séance et en récupération.',
   );
   assert.equal(asPresentedCoachAction('Comment préférez-vous être encadré?'), '');
+  assert.equal(
+    asPresentedCoachAction('Un contact hebdomadaire pour vérifier l\'exécution.'),
+    'Planifier un contact hebdomadaire pour vérifier l\'exécution et ajuster sans surcharger le suivi.',
+  );
 });
 
 test('legacy nutrition is organized without inventing content', () => {

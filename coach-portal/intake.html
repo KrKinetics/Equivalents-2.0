@@ -73,6 +73,7 @@
           <div><h2>Votre objectif</h2><p>Commençons par ce qui vous amène ici.</p></div>
         </div>
 
+        <p class="intake-subhead">Coordonnées</p>
         <div class="intake-grid intake-grid-2">
           <div class="field-group">
             <label for="email">Courriel <span aria-hidden="true">*</span></label>
@@ -81,6 +82,48 @@
           <div class="field-group">
             <label for="phone">Téléphone <span class="optional">Facultatif</span></label>
             <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="514 555-0000">
+          </div>
+        </div>
+
+        <p class="intake-subhead">Repères physiques</p>
+        <div class="intake-grid intake-grid-3">
+          <div class="field-group">
+            <label for="age_years">Âge <span aria-hidden="true">*</span></label>
+            <div class="intake-inline-unit">
+              <input id="age_years" name="age_years" type="number" inputmode="numeric" step="1" min="1" max="120" required placeholder="34">
+              <span>ans</span>
+            </div>
+          </div>
+
+          <fieldset class="field-group height-field" data-required="height_unit">
+            <legend>Grandeur <span aria-hidden="true">*</span></legend>
+            <div class="height-unit-toggle" role="radiogroup" aria-label="Format de grandeur">
+              <label class="choice-card choice-card-inline"><input type="radio" name="height_unit" value="imperial" checked><span>Pieds / pouces</span></label>
+              <label class="choice-card choice-card-inline"><input type="radio" name="height_unit" value="metric"><span>Centimètres</span></label>
+            </div>
+            <div id="height-imperial" class="height-panel" data-height-unit="imperial">
+              <div class="intake-inline-pair">
+                <label for="height_feet">Pieds</label>
+                <input id="height_feet" name="height_feet" type="number" inputmode="numeric" step="1" min="1" max="8" required placeholder="5">
+                <label for="height_inches">Pouces</label>
+                <input id="height_inches" name="height_inches" type="number" inputmode="numeric" step="1" min="0" max="11" required placeholder="10">
+              </div>
+            </div>
+            <div id="height-metric" class="height-panel hidden" data-height-unit="metric">
+              <label for="height_cm" class="sr-only">Centimètres</label>
+              <div class="intake-inline-unit">
+                <input id="height_cm" name="height_cm" type="number" inputmode="numeric" step="1" min="50" max="272" placeholder="178" disabled>
+                <span>cm</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field-group">
+            <label for="weight_lb">Poids actuel <span aria-hidden="true">*</span></label>
+            <div class="intake-inline-unit">
+              <input id="weight_lb" name="weight_lb" type="number" inputmode="decimal" step="0.1" min="20" max="800" required placeholder="185">
+              <span>lb</span>
+            </div>
           </div>
         </div>
 

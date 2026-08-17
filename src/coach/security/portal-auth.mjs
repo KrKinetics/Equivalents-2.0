@@ -22,6 +22,7 @@ export const PUBLIC_PATH_PREFIXES = [
   '/motivation.html',
   '/assets/motivation.js',
   '/src/coach/motivation/',
+  '/src/coach/intake/',
 ];
 
 /** Paths that must never be served without a valid Coach session. */
@@ -34,6 +35,7 @@ export function isProtectedPath(urlPath) {
   if (p === '/motivation-qa.html') return true;
   if (p === '/workspace' || p.startsWith('/workspace/')) return true;
   if (p.startsWith('/src/coach/motivation/')) return false;
+  if (p.startsWith('/src/coach/intake/')) return false;
   if (p.startsWith('/src/coach/')) return true;
   if (p.startsWith('/assets/motivation-qa')) return true;
   if (p.startsWith('/assets/dashboard')) return true;

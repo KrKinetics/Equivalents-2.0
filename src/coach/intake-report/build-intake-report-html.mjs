@@ -14,6 +14,29 @@ const KR_SEPARATOR = INTAKE_REPORT_THEME.separator;
 const KR_MUTED = INTAKE_REPORT_THEME.muted;
 const KR_TEXT = INTAKE_REPORT_THEME.text;
 
+function buildLandmarksMarkup(anthropometrics) {
+  if (!anthropometrics?.collected) return '';
+  const cards = [
+    { label: 'Âge', primary: anthropometrics.age },
+    { label: 'Grandeur', primary: anthropometrics.heightPrimary, secondary: anthropometrics.heightSecondary },
+    { label: 'Poids déclaré au questionnaire', primary: anthropometrics.weightPrimary, secondary: anthropometrics.weightSecondary },
+  ].filter((card) => card.primary);
+  if (!cards.length) return '';
+  const items = cards.map((card) => `
+    <div class="intake-report-landmark">
+      <p class="intake-report-landmark-label">${esc(card.label)}</p>
+      <p class="intake-report-landmark-primary">${esc(card.primary)}</p>
+      ${card.secondary ? `<p class="intake-report-landmark-secondary">${esc(card.secondary)}</p>` : ''}
+    </div>
+  `).join('');
+  return `
+    <section class="intake-report-landmarks" data-section="planning-landmarks">
+      <h2 class="intake-report-landmarks-title">REPÈRES DE PLANIFICATION</h2>
+      <div class="intake-report-landmarks-grid">${items}</div>
+    </section>
+  `;
+}
+
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
     '&': '&amp;',
@@ -62,8 +85,16 @@ ${pageRules}
 .intake-report-label{margin:0;color:${KR_NAVY_SECONDARY};font-size:12px;font-weight:700;line-height:1.4}
 .intake-report-answer{margin:0;color:${KR_TEXT};white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;overflow:visible;max-height:none}
 .intake-report-footer{margin:8px 28px 0;padding:14px 0 18px;border-top:1px solid ${KR_SEPARATOR};text-align:center;color:${KR_MUTED};font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.intake-report-landmarks{margin:0 0 22px;padding:14px 16px;border:1px solid ${KR_SEPARATOR};background:#f6f8fc;overflow:visible;break-inside:avoid;page-break-inside:avoid}
+.intake-report-landmarks-title{margin:0 0 12px;color:${KR_NAVY};font-size:12px;letter-spacing:.12em;font-weight:700}
+.intake-report-landmarks-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px}
+.intake-report-landmark{margin:0}
+.intake-report-landmark-label{margin:0 0 4px;color:${KR_NAVY_SECONDARY};font-size:11px;letter-spacing:.08em;font-weight:700}
+.intake-report-landmark-primary{margin:0;color:${KR_TEXT};font-size:18px;font-weight:700;line-height:1.25}
+.intake-report-landmark-secondary{margin:3px 0 0;color:${KR_MUTED};font-size:13px}
 @media (max-width:720px){
   .intake-report-row{grid-template-columns:1fr}
+  .intake-report-landmarks-grid{grid-template-columns:1fr}
   .intake-report-header,.intake-report-body{padding-left:18px;padding-right:18px}
 }`;
 }
@@ -107,7 +138,7 @@ export function buildIntakeReportMarkup(viewModel, { logoSrc = '' } = {}) {
     </div>
   </header>
   <div class="intake-report-rule" aria-hidden="true"></div>
-  <div class="intake-report-body">${sections}</div>
+  <div class="intake-report-body">${buildLandmarksMarkup(vm.anthropometrics)}${sections}</div>
   <footer class="intake-report-footer">${esc(vm.footer || '')}</footer>
 </article>`;
 }

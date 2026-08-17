@@ -394,6 +394,8 @@ test('protected report paths, login next, rate profile, and redaction', () => {
   });
   assert.equal(redacted.answers, '[redacted]');
   assert.equal(redacted.token, '[redacted]');
+  assert.equal(redactForLog({ age_years: 34, weight_lb: 185 }).age_years, '[redacted]');
+  assert.equal(redactForLog({ age_years: 34, weight_lb: 185 }).weight_lb, '[redacted]');
   assert.equal(String(redacted.other_info).includes(PHI_ANSWER), true);
 });
 

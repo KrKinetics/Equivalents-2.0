@@ -18,6 +18,7 @@ import {
   isTestableFourWeekPlan,
   organizeLegacyNutrition,
 } from './presentation-labels.mjs';
+import { presentInterviewWhy } from './interview-justifications.mjs';
 import {
   presentNutritionAction,
   qualifyCoachMeaning,
@@ -178,14 +179,26 @@ function interviewObjects(report) {
     : [];
   return rows.slice(0, 5).map((item, index) => {
     if (typeof item === 'string') {
-      return { text: item, whyItMatters: '', affectedDecision: '', priority: index + 1 };
+      return {
+        text: item,
+        whyItMatters: presentInterviewWhy({ text: item }),
+        affectedDecision: '',
+        priority: index + 1,
+      };
     }
-    return {
+    const presented = {
       text: text(item.text || item.label),
       whyItMatters: text(item.whyItMatters),
       affectedDecision: text(item.affectedDecision),
       sourceEvidence: item.sourceEvidence || [],
       priority: item.priority || index + 1,
+      canonicalKey: item.canonicalKey,
+      sourceQuestionCode: item.sourceQuestionCode,
+      category: item.category,
+    };
+    return {
+      ...presented,
+      whyItMatters: presentInterviewWhy(presented),
     };
   }).filter((item) => item.text);
 }
@@ -388,7 +401,8 @@ export function buildMotivationReportViewModel(input = {}) {
       text(plan.preparationLabel || readiness.overallLabel || readiness.preparationLabeled?.value),
       text(readiness.explanation),
       text(plan.followUpLabel || readiness.followUpLabel),
-      text(plan.followUpRationale || readiness.followUpRationale),
+      asPresentedCoachAction(plan.followUpRationale || readiness.followUpRationale)
+        || text(plan.followUpRationale || readiness.followUpRationale),
     ].filter(Boolean),
   });
 
@@ -626,7 +640,7 @@ export function buildMotivationReportViewModel(input = {}) {
       : item.id === 'structure'
         ? text(plan.structureLabel)
         : item.id === 'follow-up'
-          ? text(plan.followUpRationale)
+          ? (asPresentedCoachAction(plan.followUpRationale) || text(plan.followUpRationale))
           : text(plan.communicationApproach?.guidance || plan.choiceApproach?.summary);
     return {
       ...item,

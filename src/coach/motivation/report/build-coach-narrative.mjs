@@ -85,6 +85,37 @@ function meaningClause(row) {
     .replace(/,?\s*à confirmer en entrevue\.?$/i, ''));
 }
 
+function dropoutPrioritySentence(pattern) {
+  const raw = text(pattern);
+  if (!raw) return '';
+  if (/adh[eé]sion|reprise/i.test(raw) && /mixte|[aà] tester|[aà] confirmer/i.test(raw)) {
+    return 'Les réponses sur l\'adhésion et la reprise sont mixtes : identifier le moment réel de décrochage en entrevue, puis tester une reprise minimale';
+  }
+  if (/^les réponses\b|^le profil\b|^un premier signal\b/i.test(raw)) {
+    return raw.replace(/[.]+$/, '');
+  }
+  return `Le contexte de décrochage à vérifier en priorité est ${decapitalize(raw)}`;
+}
+
+function rigidityFirstSignal(clause) {
+  const raw = text(clause);
+  if (!raw || /rigidit/i.test(raw)) {
+    return 'Un premier signal laisse penser qu\'une certaine rigidité pourrait apparaître après un écart; à confirmer';
+  }
+  if (/^(une? |la |le |les |des |qu['’]|que )/i.test(raw)) {
+    return `Un premier signal laisse penser que ${raw}; à confirmer en entrevue`;
+  }
+  return `Un premier signal laisse penser qu'${raw}; à confirmer en entrevue`;
+}
+
+function nutritionDeclaredFocusSentence(focus) {
+  const raw = text(focus);
+  if (!raw) {
+    return 'Les objectifs alimentaires déclarés constituent une bonne porte d\'entrée, mais leur priorité exacte reste à confirmer';
+  }
+  return `Les objectifs alimentaires déclarés — ${decapitalize(raw)} — constituent une bonne porte d'entrée, mais leur priorité exacte reste à confirmer`;
+}
+
 function structurePhrase(value) {
   const raw = text(value);
   if (!raw) return '';
@@ -314,11 +345,18 @@ function howAthleteWorks(vm, findings, reserved, used) {
   const solid = findings.filter((row) => strengthOf(row) === 'supported').slice(0, 3);
   const weak = findings.filter((row) => ['mixed', 'divergent', 'single'].includes(strengthOf(row))).slice(0, 3);
   if (solid.length || weak.length) {
+    const solidLabels = solid.map((row) => decapitalize(row.label)).filter(Boolean);
+    const weakLabels = weak.map((row) => decapitalize(row.label)).filter(Boolean);
+    const solidLead = solidLabels.length === 1
+      ? `${solidLabels[0].charAt(0).toUpperCase()}${solidLabels[0].slice(1)} constitue actuellement le signal le mieux appuyé`
+      : solidLabels.length
+        ? `Les signaux les mieux appuyés concernent actuellement ${solidLabels.join(', ')}`
+        : '';
+    const weakTail = weakLabels.length
+      ? `Plusieurs autres dimensions demeurent toutefois à confirmer, notamment ${weakLabels.join(', ')}`
+      : '';
     pushUnique(out, reserved, used, sentence(
-      [
-        solid.length ? `Les éléments les plus solides concernent ${solid.map((row) => decapitalize(row.label)).join(', ')}` : '',
-        weak.length ? `restent hypothétiques ${weak.map((row) => decapitalize(row.label)).join(', ')}` : '',
-      ].filter(Boolean).join(' ; '),
+      [solidLead, weakTail].filter(Boolean).join('. '),
     ));
   }
   return out;
@@ -381,9 +419,7 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
     ));
   }
   if (brief.likelyDropoffPattern) {
-    pushUnique(out, reserved, used, sentence(
-      `Le contexte de décrochage à vérifier en priorité : ${decapitalize(brief.likelyDropoffPattern)}`,
-    ));
+    pushUnique(out, reserved, used, sentence(dropoutPrioritySentence(brief.likelyDropoffPattern)));
   }
   const recovery = text(brief.recoveryStrategy);
   if (recovery && !/^(non répondu|non repondu)$/i.test(recovery)) {
@@ -396,7 +432,7 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
       strengthOf(rigidity),
       `Les réponses convergent vers un fonctionnement tout-ou-rien : ${meaningClause(rigidity) || 'prévoir une reprise minimale plutôt qu\'un redémarrage parfait'}`,
       `Le profil suggère une rigidité possible, mais les réponses sont mixtes; ${meaningClause(rigidity) || 'observer le premier écart avant de conclure'}`,
-      `Un premier signal laisse penser que ${meaningClause(rigidity) || 'un écart pourrait tout arrêter'}; à confirmer en entrevue`,
+      rigidityFirstSignal(meaningClause(rigidity)),
       'Les réponses se contredisent sur la rigidité. Ne pas conclure avant d\'avoir vu un écart réel',
     )));
   }
@@ -441,9 +477,9 @@ function nutritionInContext(vm, findings, reserved, used) {
       strengthOf(nutrition),
       `Les réponses convergent vers un niveau de structure alimentaire ${meaningClause(nutrition) || decapitalize(brief.nutritionFocus) || 'à tenir simple au départ'}`,
       `Le profil suggère une structure alimentaire utile, mais les réponses sont mixtes; ${meaningClause(nutrition) || 'tester une seule habitude avant d\'intensifier'}`,
-      `Un premier signal laisse penser que ${meaningClause(nutrition) || decapitalize(brief.nutritionFocus) || 'une structure légère'} convient; à confirmer en entrevue`,
+      nutritionDeclaredFocusSentence(brief.nutritionFocus || meaningClause(nutrition)),
       'Les réponses se contredisent sur la nutrition. Ne pas intensifier les recommandations avant l\'entrevue',
-      brief.nutritionFocus ? `Focus alimentaire déclaré : ${decapitalize(brief.nutritionFocus)}` : '',
+      brief.nutritionFocus ? nutritionDeclaredFocusSentence(brief.nutritionFocus) : '',
     )));
   }
   const caution = [

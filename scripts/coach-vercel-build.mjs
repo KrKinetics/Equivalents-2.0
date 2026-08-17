@@ -107,6 +107,10 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(targetDir, 'src', 'coach', 'client'),
   );
   copyTree(
+    path.join(root, 'src', 'coach', 'intake'),
+    path.join(targetDir, 'src', 'coach', 'intake'),
+  );
+  copyTree(
     path.join(root, 'src', 'coach', 'intake-report'),
     path.join(targetDir, 'src', 'coach', 'intake-report'),
   );
@@ -145,6 +149,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/report/motivation-report-view-model.mjs',
     'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/presentation-labels.mjs',
+    'src/coach/motivation/report/interview-justifications.mjs',
     'src/coach/motivation/report/presentation-claim-consistency.mjs',
     'src/coach/motivation/report/build-motivation-report-html.mjs',
     'src/coach/motivation/report/build-motivation-report-presentation.mjs',
@@ -192,6 +197,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/report/motivation-report-view-model.mjs',
     'src/coach/motivation/report/dedupe-display-items.mjs',
     'src/coach/motivation/report/presentation-labels.mjs',
+    'src/coach/motivation/report/interview-justifications.mjs',
     'src/coach/motivation/report/presentation-claim-consistency.mjs',
     'src/coach/motivation/report/build-motivation-report-html.mjs',
     'src/coach/motivation/report/build-motivation-report-presentation.mjs',
@@ -203,6 +209,8 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/client/motivation-invite-token.mjs',
     'src/coach/motivation/engine/narrative-selection.mjs',
     'src/coach/workspace/workspace-access.mjs',
+    'src/coach/intake/intake-anthropometrics.mjs',
+    'src/coach/workspace/workspace-intake-landmarks.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',
     'src/coach/intake-report/build-intake-report-html.mjs',

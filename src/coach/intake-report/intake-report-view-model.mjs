@@ -5,6 +5,8 @@
  * and safe formatted answer values. Web and PDF must consume this only.
  */
 
+import { buildIntakeAnthropometricsView } from '../intake/intake-anthropometrics.mjs';
+
 export const INTAKE_REPORT_TITLE = 'RAPPORT DE PRÉ-ENTREVUE';
 export const INTAKE_REPORT_FOOTER = 'KR KINETICS — Pré-entrevue confidentielle';
 
@@ -213,6 +215,7 @@ export function buildIntakeReportViewModel(input = {}) {
     submittedAtDisplay: formatIntakeReportSubmittedAt(submittedAtIso),
     submittedDateIso: intakeReportSubmittedDateIso(submittedAtIso),
     footer: INTAKE_REPORT_FOOTER,
+    anthropometrics: buildIntakeAnthropometricsView(answers),
     sections,
   };
 }

@@ -103,6 +103,7 @@ export default async function middleware(request) {
     || pathname === '/index.html'
     || pathname === '/intake.html'
     || pathname === '/assets/intake.js'
+    || pathname.startsWith('/src/coach/intake/')
     || pathname === '/motivation.html'
     || pathname === '/assets/motivation.js'
     || pathname === '/'

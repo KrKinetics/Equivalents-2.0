@@ -220,7 +220,8 @@ function isPublicIntakePath(urlPath) {
     || urlPath === '/assets/intake.js'
     || urlPath === '/motivation.html'
     || urlPath === '/assets/motivation.js'
-    || urlPath.startsWith('/src/coach/motivation/');
+    || urlPath.startsWith('/src/coach/motivation/')
+    || urlPath.startsWith('/src/coach/intake/');
 }
 
 ensureCalculatorBuilt();
