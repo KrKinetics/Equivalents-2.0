@@ -13,7 +13,7 @@ function clientFetch(row) {
   });
 }
 
-function realClient(overrides = {}) {
+function client(overrides = {}) {
   return {
     id: CLIENT,
     organization_id: ORG,
@@ -21,7 +21,6 @@ function realClient(overrides = {}) {
     email: 'client@example.com',
     phone: '',
     service_type: 'complete',
-    is_fictional: false,
     ...overrides,
   };
 }
@@ -34,36 +33,36 @@ const common = {
   publishableKey: 'sb_publishable_test',
 };
 
-test('motivation report authorizes a real client in the Coach organization', async () => {
-  const result = await authorizeMotivationAccess({ ...common, fetchImpl: clientFetch(realClient()) });
+test('motivation report authorizes a client in the Coach organization', async () => {
+  const result = await authorizeMotivationAccess({ ...common, fetchImpl: clientFetch(client()) });
   assert.equal(result.ok, true);
   assert.equal(result.client.id, CLIENT);
 });
 
-test('motivation report refuses a fictional or cross-org dossier', async () => {
-  const fictional = await authorizeMotivationAccess({
+test('motivation runtime authorization is tenant-based and ignores a stale legacy fictional marker', async () => {
+  const legacyRow = await authorizeMotivationAccess({
     ...common,
-    fetchImpl: clientFetch(realClient({ is_fictional: true })),
+    fetchImpl: clientFetch(client({ is_fictional: true })),
   });
-  assert.deepEqual(fictional, { ok: false, error: 'forbidden' });
+  assert.equal(legacyRow.ok, true);
 
   const crossOrg = await authorizeMotivationAccess({
     ...common,
-    fetchImpl: clientFetch(realClient({ organization_id: '22222222-2222-4222-8222-222222222222' })),
+    fetchImpl: clientFetch(client({ organization_id: '22222222-2222-4222-8222-222222222222' })),
   });
   assert.deepEqual(crossOrg, { ok: false, error: 'forbidden' });
 });
 
-test('pre-interview report authorizes a real client in the Coach organization', async () => {
-  const result = await authorizeIntakeReportAccess({ ...common, fetchImpl: clientFetch(realClient()) });
+test('pre-interview report authorizes a client in the Coach organization', async () => {
+  const result = await authorizeIntakeReportAccess({ ...common, fetchImpl: clientFetch(client()) });
   assert.equal(result.ok, true);
   assert.equal(result.client.id, CLIENT);
 });
 
-test('pre-interview report refuses a fictional dossier', async () => {
+test('pre-interview runtime authorization is tenant-based and ignores a stale legacy fictional marker', async () => {
   const result = await authorizeIntakeReportAccess({
     ...common,
-    fetchImpl: clientFetch(realClient({ is_fictional: true })),
+    fetchImpl: clientFetch(client({ is_fictional: true })),
   });
-  assert.deepEqual(result, { ok: false, error: 'forbidden' });
+  assert.equal(result.ok, true);
 });
