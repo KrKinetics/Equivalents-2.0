@@ -103,6 +103,21 @@ function polishDimensionMeaning(row = {}) {
     const cleanDirection = direction || text(coherent[1]);
     return `Les réponses convergent vers une tendance ${cleanDirection}.`;
   }
+  const singleSignalCopy = [
+    [/^Un premier signal suggère\s+signal de risque limité;?\s*à confirmer en entrevue\.?$/i,
+      'Un premier signal suggère que le risque semble limité; à confirmer en entrevue.'],
+    [/^Un premier signal suggère\s+structure probablement utile;?\s*à confirmer en entrevue\.?$/i,
+      'Un premier signal suggère que la structure pourrait être utile; à confirmer en entrevue.'],
+    [/^Un premier signal suggère\s+surcharge de choix à surveiller;?\s*à confirmer en entrevue\.?$/i,
+      'Un premier signal suggère que la surcharge de choix mérite d’être surveillée; à confirmer en entrevue.'],
+    [/^Un premier signal suggère\s+feedback direct probablement bien reçu;?\s*à confirmer en entrevue\.?$/i,
+      'Un premier signal suggère que le feedback direct pourrait être bien reçu; à confirmer en entrevue.'],
+    [/^Un premier signal suggère\s+influence du stress à surveiller;?\s*à confirmer en entrevue\.?$/i,
+      'Un premier signal suggère que l’influence du stress mérite d’être surveillée; à confirmer en entrevue.'],
+  ];
+  for (const [pattern, replacement] of singleSignalCopy) {
+    if (pattern.test(raw)) return replacement;
+  }
   return raw;
 }
 
@@ -111,6 +126,55 @@ function polishDimensionRow(row = {}) {
   return coachMeaning && coachMeaning !== row.coachMeaning
     ? { ...row, coachMeaning }
     : row;
+}
+
+function polishGeneratedSentence(value) {
+  const raw = text(value);
+  if (!raw) return raw;
+  const coherent = raw.match(/^Les réponses indiquent\s+cohérent(?:e|es|s)?\s*[—-]\s*tendance\s+([^.]+)\.?$/i);
+  if (coherent) {
+    return `Les réponses sont cohérentes et indiquent une tendance ${text(coherent[1])}.`;
+  }
+  return raw;
+}
+
+function polishNutritionAction(action) {
+  if (!action) return null;
+  return {
+    ...action,
+    cards: Array.isArray(action.cards)
+      ? action.cards.map((card) => ({
+        ...card,
+        suggested: polishGeneratedSentence(card?.suggested),
+        toTest: polishGeneratedSentence(card?.toTest),
+      }))
+      : action.cards,
+  };
+}
+
+function polishPlanLine(value, conflictImplication = '') {
+  let out = text(value);
+  if (!out) return out;
+  out = out.replace(/\breprise minimale à tester\b/gi, 'reprise minimale');
+  if (/CONTRADICTION À CLARIFIER/i.test(out)) {
+    out = conflictImplication
+      ? `Comparer la contradiction « ${conflictImplication} » aux comportements observés.`
+      : 'Comparer la contradiction identifiée aux comportements observés.';
+  }
+  return out;
+}
+
+function polishFourWeekPlan(weeks = [], conflicts = []) {
+  const conflictImplication = text(
+    (conflicts || []).find((conflict) => text(conflict?.coachImplication))?.coachImplication,
+  );
+  return (weeks || []).map((week) => ({
+    ...week,
+    coachAction: polishPlanLine(week?.coachAction, conflictImplication),
+    actions: Array.isArray(week?.actions)
+      ? week.actions.map((line) => polishPlanLine(line, conflictImplication))
+      : week?.actions,
+  }));
 }
 
 function verbatimSources(vm = {}) {
@@ -217,14 +281,14 @@ export function buildMotivationReportPresentation(viewModel = {}) {
     ...group,
     items: (group.items || []).map(polishDimensionRow),
   }));
-  const weeks = vm.fourWeekPlan || [];
+  const conflicts = vm.conflicts || [];
+  const weeks = polishFourWeekPlan(vm.fourWeekPlan || [], conflicts);
   const testable = vm.fourWeekPlanTestable ?? isTestableFourWeekPlan(weeks);
-  const nutritionAction = vm.nutritionAction || null;
+  const nutritionAction = polishNutritionAction(vm.nutritionAction || null);
   const nutritionOrganized = vm.nutritionOrganized || null;
   const nutrition = vm.nutrition || null;
   const hasNutrition = hasNutritionContent(nutritionOrganized || nutrition, nutritionAction);
   const riskBuckets = vm.riskBuckets || {};
-  const conflicts = vm.conflicts || [];
 
   const sections = [
     vm.quickRead?.length ? {
