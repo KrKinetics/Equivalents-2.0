@@ -72,13 +72,14 @@ function hedge(strength, supported, mixed, single, conflict, unknown = '') {
 function meaningClause(row) {
   const meaning = text(row?.coachMeaning || row?.interpretation);
   if (!meaning) return '';
-  if (/donnée unique|appui limité|^signal mixte\b|^tendance (élevée|modérée|faible)\b/i.test(meaning) && meaning.length < 90) {
-    return '';
-  }
+  const strength = strengthOf(row);
+  if (/donnée unique|appui limité/i.test(meaning)) return '';
+  if (strength === 'mixed' && /signal (?:reste )?mixte|hypothèse à tester/i.test(meaning)) return '';
+  if (/^signal mixte\b|^tendance (élevée|modérée|faible)\b/i.test(meaning) && meaning.length < 90) return '';
   return decapitalize(meaning
     .replace(/^Hypothèse à tester\s*:\s*/i, '')
     .replace(/^Première indication à confirmer\s*:\s*/i, '')
-    .replace(/^Un premier signal (laisse penser|suggère) que\s*/i, '')
+    .replace(/^Un premier signal (?:laisse penser|suggère)(?: que)?\s*/i, '')
     .replace(/^Les réponses indiquent\s+/i, '')
     .replace(/^Le profil suggère\s+/i, '')
     .replace(/,?\s*à confirmer en entrevue\.?$/i, ''));
@@ -258,8 +259,8 @@ function howAthleteWorks(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(motivation),
       `Les réponses convergent vers une motivation plutôt interne : ${meaningClause(motivation) || 'l\'athlète avance davantage par sens et maîtrise que par pression externe'}`,
-      `Le profil suggère une motivation interne possible, mais les réponses sont mixtes. ${meaningClause(motivation) || 'Observer ce qui tient vraiment l\'engagement avant de conclure'}`,
-      `Un premier signal laisse penser que ${meaningClause(motivation) || 'la motivation interne joue un rôle'}, à confirmer en entrevue`,
+      `Le profil suggère une motivation interne possible, mais les réponses sont mixtes; ${meaningClause(motivation) || 'observer ce qui tient réellement l\'engagement avant de conclure'}`,
+      `Un premier signal laisse penser que ${meaningClause(motivation) || 'la motivation interne joue un rôle'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur ce qui motive réellement. Ne pas conclure avant l\'entrevue',
     )));
   }
@@ -267,8 +268,8 @@ function howAthleteWorks(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(results),
       `Les réponses convergent vers une sensibilité aux résultats visibles : ${meaningClause(results) || 'le rythme de progrès pourrait influencer l\'engagement'}`,
-      `Le profil suggère une sensibilité aux résultats, mais les réponses sont mixtes. ${meaningClause(results) || 'Tester comment l\'athlète réagit si le progrès est lent'}`,
-      `Un premier signal laisse penser que ${meaningClause(results) || 'les résultats visibles comptent'}, à confirmer en entrevue`,
+      `Le profil suggère une sensibilité aux résultats, mais les réponses sont mixtes; ${meaningClause(results) || 'tester comment l\'athlète réagit si le progrès est lent'}`,
+      `Un premier signal laisse penser que ${meaningClause(results) || 'les résultats visibles comptent'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur l\'importance des résultats visibles. Ne pas conclure avant d\'avoir vu la réaction aux deux premières semaines',
     )));
   }
@@ -296,16 +297,16 @@ function howAthleteWorks(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(adherence),
       `Les réponses convergent sur la capacité de reprise : ${meaningClause(adherence) || 'prévoir un protocole simple et vérifier qu\'il est réellement utilisé après un écart'}`,
-      `La capacité de reprise reste à tester : les réponses sont mixtes. ${meaningClause(adherence) || 'Observer le premier écart avant de conclure'}`,
-      `Un premier signal sur la reprise suggère : ${meaningClause(adherence) || 'la façon de revenir après un écart reste à clarifier'}; à confirmer en entrevue`,
+      `La capacité de reprise reste à tester : les réponses sont mixtes; ${meaningClause(adherence) || 'observer le premier écart avant de conclure'}`,
+      `Un premier signal sur la reprise suggère ${meaningClause(adherence) || 'que la façon de revenir après un écart reste à clarifier'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur la reprise. Ne pas conclure avant d\'avoir vu un écart réel',
     )));
   } else if (delay) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(delay),
       `Le rapport au délai semble assez établi : ${meaningClause(delay) || 'l\'athlète peut tolérer un progrès qui demande du temps'}`,
-      `Le rapport au délai reste variable. ${meaningClause(delay) || 'Observer la réaction si les résultats tardent'}`,
-      `Un premier signal indique que le délai de résultat pourrait compter; à confirmer en entrevue`,
+      `Le rapport au délai reste variable; ${meaningClause(delay) || 'observer la réaction si les résultats tardent'}`,
+      'Un premier signal indique que le délai de résultat pourrait compter; à confirmer en entrevue',
       'Les réponses se contredisent sur le rapport au délai. Ne pas conclure avant l\'entrevue',
     )));
   }
@@ -339,14 +340,17 @@ function coachingConsequences(vm, findings, reserved, used) {
     ));
   }
   if (brief.communicationPreference || communication) {
+    const communicationStyle = decapitalize(
+      brief.communicationPreference || meaningClause(communication) || 'un feedback direct et bref',
+    );
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(communication),
-      `Les réponses convergent vers une communication ${decapitalize(brief.communicationPreference || meaningClause(communication) || 'directe et explicable')}. Donner le pourquoi avant le quoi`,
-      `Le profil suggère un style de communication, mais les réponses sont mixtes. Tester ${decapitalize(brief.communicationPreference || 'un feedback clair et bref')} plutôt que de figer un style`,
-      `Un premier signal laisse penser que ${decapitalize(brief.communicationPreference || meaningClause(communication) || 'le feedback direct')} convient, à confirmer en entrevue`,
+      `Les réponses convergent vers ${communicationStyle}. Donner le pourquoi avant le quoi`,
+      `Le style de communication reste à calibrer; tester ${communicationStyle} et vérifier ce qui aide réellement l'athlète`,
+      `Le style de communication à tester est ${communicationStyle}; à confirmer en entrevue`,
       'Les réponses se contredisent sur le feedback. Ne pas conclure : tester une consigne courte, puis demander ce qui a aidé',
       brief.communicationPreference
-        ? `Privilégier ${decapitalize(brief.communicationPreference)} tant que l'entrevue n'a pas infirmé cette lecture`
+        ? `Privilégier ${communicationStyle} tant que l'entrevue n'a pas infirmé cette lecture`
         : '',
     )));
   }
@@ -381,17 +385,18 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
       `Le contexte de décrochage à vérifier en priorité : ${decapitalize(brief.likelyDropoffPattern)}`,
     ));
   }
-  if (brief.recoveryStrategy) {
+  const recovery = text(brief.recoveryStrategy);
+  if (recovery && !/^(non répondu|non repondu)$/i.test(recovery)) {
     pushUnique(out, reserved, used, sentence(
-      `La reprise déclarée : ${decapitalize(brief.recoveryStrategy)}. En faire un protocole écrit dès la première semaine, puis vérifier s'il est réellement utilisé`,
+      `La reprise déclarée : ${decapitalize(recovery)}. En faire un protocole écrit dès la première semaine, puis vérifier s'il est réellement utilisé`,
     ));
   }
   if (rigidity) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(rigidity),
       `Les réponses convergent vers un fonctionnement tout-ou-rien : ${meaningClause(rigidity) || 'prévoir une reprise minimale plutôt qu\'un redémarrage parfait'}`,
-      `Le profil suggère une rigidité possible, mais les réponses sont mixtes. ${meaningClause(rigidity) || 'Observer le premier écart avant de conclure'}`,
-      `Un premier signal laisse penser que ${meaningClause(rigidity) || 'un écart pourrait tout arrêter'}, à confirmer en entrevue`,
+      `Le profil suggère une rigidité possible, mais les réponses sont mixtes; ${meaningClause(rigidity) || 'observer le premier écart avant de conclure'}`,
+      `Un premier signal laisse penser que ${meaningClause(rigidity) || 'un écart pourrait tout arrêter'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur la rigidité. Ne pas conclure avant d\'avoir vu un écart réel',
     )));
   }
@@ -399,8 +404,8 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(compensatory),
       `Les réponses convergent sur la réaction compensatoire : ${meaningClause(compensatory) || 'peu de compensation est signalée, à surveiller sans surinterpréter'}`,
-      `Le profil suggère une compensation possible, mais les réponses sont mixtes. ${meaningClause(compensatory) || 'À tester, pas à affirmer'}`,
-      `Un premier signal laisse penser que ${meaningClause(compensatory) || 'une compensation alimentaire est possible'}, à confirmer en entrevue`,
+      `Le profil suggère une compensation possible, mais les réponses sont mixtes; ${meaningClause(compensatory) || 'à tester, pas à affirmer'}`,
+      `Un premier signal laisse penser que ${meaningClause(compensatory) || 'une compensation alimentaire est possible'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur les réactions compensatoires. Ne pas conclure',
     )));
   }
@@ -408,8 +413,8 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(delay),
       `Les réponses convergent vers une tolérance au délai ${meaningClause(delay) || 'à prendre en compte dans le rythme des objectifs'}`,
-      `Le profil suggère une sensibilité au délai, mais les réponses sont mixtes. ${meaningClause(delay) || 'Tester un objectif de processus avant un objectif de résultat'}`,
-      `Un premier signal laisse penser que ${meaningClause(delay) || 'le délai de résultat compte'}, à confirmer en entrevue`,
+      `Le profil suggère une sensibilité au délai, mais les réponses sont mixtes; ${meaningClause(delay) || 'tester un objectif de processus avant un objectif de résultat'}`,
+      `Un premier signal laisse penser que ${meaningClause(delay) || 'le délai de résultat compte'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur la tolérance au délai. Ne pas conclure',
     )));
   }
@@ -435,8 +440,8 @@ function nutritionInContext(vm, findings, reserved, used) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(nutrition),
       `Les réponses convergent vers un niveau de structure alimentaire ${meaningClause(nutrition) || decapitalize(brief.nutritionFocus) || 'à tenir simple au départ'}`,
-      `Le profil suggère une structure alimentaire utile, mais les réponses sont mixtes. ${meaningClause(nutrition) || 'Tester une seule habitude avant d\'intensifier'}`,
-      `Un premier signal laisse penser que ${meaningClause(nutrition) || decapitalize(brief.nutritionFocus) || 'une structure légère'} convient, à confirmer en entrevue`,
+      `Le profil suggère une structure alimentaire utile, mais les réponses sont mixtes; ${meaningClause(nutrition) || 'tester une seule habitude avant d\'intensifier'}`,
+      `Un premier signal laisse penser que ${meaningClause(nutrition) || decapitalize(brief.nutritionFocus) || 'une structure légère'} convient; à confirmer en entrevue`,
       'Les réponses se contredisent sur la nutrition. Ne pas intensifier les recommandations avant l\'entrevue',
       brief.nutritionFocus ? `Focus alimentaire déclaré : ${decapitalize(brief.nutritionFocus)}` : '',
     )));
@@ -451,11 +456,11 @@ function nutritionInContext(vm, findings, reserved, used) {
       `Prudence Coach : ${caution.join(' ; ')}. Ces contextes sont susceptibles de faire basculer l'adhésion`,
     ));
   }
-  const first = [
-    ...(action.facilitate || []),
+  const first = [...new Set([
+    ...(action.verify || []),
     ...(organized.test || []),
     action.testThisWeek,
-  ].map(text).filter(Boolean).slice(0, 2);
+  ].map(text).filter(Boolean))].slice(0, 2);
   if (first.length) {
     pushUnique(out, reserved, used, sentence(
       `Premières stratégies raisonnables : ${first.join(' ; ')}. Valider la faisabilité avant d'intensifier`,
@@ -481,10 +486,11 @@ function toValidateInPerson(vm, reserved, used) {
   const unique = [];
   const seen = new Set();
   for (const item of confirm) {
-    const key = fingerprint(item);
+    const clean = text(item).replace(/[.]+$/, '');
+    const key = fingerprint(clean);
     if (seen.has(key) || reserved.has(key)) continue;
     seen.add(key);
-    unique.push(text(item));
+    unique.push(clean);
     if (unique.length >= 5) break;
   }
   if (unique.length) {

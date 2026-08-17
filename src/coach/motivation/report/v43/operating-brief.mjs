@@ -7,6 +7,11 @@ function text(value) {
   return String(value ?? '').trim();
 }
 
+function usableText(value) {
+  const raw = text(value);
+  return /^(non répondu|non repondu)$/i.test(raw) ? '' : raw;
+}
+
 function openText(openAnswers, code) {
   const row = (openAnswers || []).find((item) => item.questionCode === code);
   return text(row?.originalAnswer);
@@ -55,13 +60,13 @@ export function buildAthleteOperatingBrief({
   const whyClarify = openText(openAnswers, 'CLARIFY_GOAL_MEANING_01');
   const success = openText(openAnswers, 'GOAL_02');
   const successClarify = openText(openAnswers, 'CLARIFY_SUCCESS_01');
-  const recovery = optionOrText(directAnswers, 'CLARIFY_RECOVERY_01')
-    || openText(openAnswers, 'CLARIFY_RECOVERY_01');
-  const barrierMoment = optionOrText(directAnswers, 'CLARIFY_BARRIER_01')
-    || openText(openAnswers, 'CLARIFY_BARRIER_01');
+  const recovery = usableText(optionOrText(directAnswers, 'CLARIFY_RECOVERY_01'))
+    || usableText(openText(openAnswers, 'CLARIFY_RECOVERY_01'));
+  const barrierMoment = usableText(optionOrText(directAnswers, 'CLARIFY_BARRIER_01'))
+    || usableText(openText(openAnswers, 'CLARIFY_BARRIER_01'));
   const nutGoal = openText(openAnswers, 'NUT_GOAL_01');
-  const nutQuality = optionOrText(directAnswers, 'CLARIFY_NUT_QUALITY_01')
-    || openText(openAnswers, 'CLARIFY_NUT_QUALITY_01');
+  const nutQuality = usableText(optionOrText(directAnswers, 'CLARIFY_NUT_QUALITY_01'))
+    || usableText(openText(openAnswers, 'CLARIFY_NUT_QUALITY_01'));
   const nutSuccess = openText(openAnswers, 'NUT_SUCCESS_01');
   const barriers = [
     openText(openAnswers, 'OBS_01'),
