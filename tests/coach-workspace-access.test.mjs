@@ -45,7 +45,6 @@ test('KR membership cannot open Elevate client (access guard)', () => {
     full_name: 'Client Elevate',
     notes: 'demo',
     organization_id: ELEVATE_MEM.organizationId,
-    is_fictional: false,
     service_type: 'nutrition',
   };
   assert.throws(
@@ -60,7 +59,6 @@ test('Elevate membership cannot open KR client (access guard)', () => {
     full_name: 'Client KR',
     notes: 'demo',
     organization_id: KR_MEM.organizationId,
-    is_fictional: false,
     service_type: 'nutrition',
   };
   assert.throws(
@@ -69,13 +67,12 @@ test('Elevate membership cannot open KR client (access guard)', () => {
   );
 });
 
-test('same-org real client opens with matching brand workspace profile', () => {
+test('same-org client opens with matching brand workspace profile', () => {
   const client = {
     id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
     full_name: 'Client KR',
     notes: 'dossier',
     organization_id: KR_MEM.organizationId,
-    is_fictional: false,
     service_type: 'nutrition',
   };
   const ctx = assertWorkspaceClientAccess({ client, membership: KR_MEM });
@@ -84,20 +81,19 @@ test('same-org real client opens with matching brand workspace profile', () => {
   assert.equal(ctx.fullName, 'Client KR');
   assert.equal(ctx.stub.nom, 'Client KR');
   assert.equal(ctx.stub.workspaceMeta.organizationSlug, 'kr-kinetics');
+  assert.equal(ctx.stub.workspaceMeta.fictional, false);
 });
 
-test('fictional clients are refused', () => {
+test('legacy fictional marker does not drive authorization; tenant and entitlement do', () => {
   const client = {
     id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
-    full_name: 'Ancien dossier fictif',
+    full_name: 'Legacy marker',
     organization_id: KR_MEM.organizationId,
     is_fictional: true,
     service_type: 'nutrition',
   };
-  assert.throws(
-    () => assertWorkspaceClientAccess({ client, membership: KR_MEM }),
-    /clients réels/i,
-  );
+  const ctx = assertWorkspaceClientAccess({ client, membership: KR_MEM });
+  assert.equal(ctx.clientId, client.id);
 });
 
 test('programming-only clients are denied nutrition workspace with a specific message', () => {
@@ -105,7 +101,6 @@ test('programming-only clients are denied nutrition workspace with a specific me
     id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
     full_name: 'Client Programmation',
     organization_id: KR_MEM.organizationId,
-    is_fictional: false,
     service_type: 'programming',
   };
   try {
@@ -123,7 +118,6 @@ test('complete clients may open the nutrition workspace', () => {
     full_name: 'Client Complet',
     notes: 'dossier',
     organization_id: KR_MEM.organizationId,
-    is_fictional: false,
     service_type: 'complete',
   };
   const ctx = assertWorkspaceClientAccess({ client, membership: KR_MEM });
@@ -136,7 +130,6 @@ test('missing service_type fails closed for nutrition workspace', () => {
     id: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
     full_name: 'Sans service',
     organization_id: KR_MEM.organizationId,
-    is_fictional: false,
   };
   assert.throws(
     () => assertWorkspaceClientAccess({ client, membership: KR_MEM }),
@@ -148,4 +141,6 @@ test('workspace profile stays a blank dossier (no invented meal plan)', () => {
   const stub = buildWorkspaceStubProfile({ fullName: 'X', clientId: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee' });
   assert.equal(stub.jours.entrainement.banque.pro, '0');
   assert.equal(stub.jours.entrainement.repartition, undefined);
+  assert.equal(stub.workspaceMeta.fictional, false);
+  assert.equal(stub.workspaceMeta.template, true);
 });
