@@ -1,6 +1,7 @@
 /**
- * Minimal fictional-client stub for opening the Coach workspace.
- * Does not migrate real athletes or alter nutrition formulas.
+ * Minimal real-client workspace profile template.
+ * It opens an authorized dossier without changing nutrition formulas.
+ * Intake landmarks and Coach edits remain the source for client-specific data.
  */
 
 const EMPTY_BANQUE = Object.freeze({
@@ -40,7 +41,8 @@ export function buildWorkspaceStubProfile(input) {
     workspaceMeta: {
       clientId: input.clientId || null,
       organizationSlug: input.organizationSlug || null,
-      fictional: true,
+      fictional: false,
+      template: true,
     },
     // Only banque placeholders — repartition filled by migrateProfilData/createEmptyJourData.
     jours: {
