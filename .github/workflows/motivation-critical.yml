@@ -62,5 +62,8 @@ jobs:
       - name: Motivation critical tests
         run: npm run test:motivation-critical
 
+      - name: Semantic presentation regression
+        run: node --test tests/motivation/semantic-presentation-polish.test.mjs
+
       - name: Coach Vercel build
         run: npm run coach:vercel:build
