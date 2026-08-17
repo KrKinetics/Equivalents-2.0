@@ -1,6 +1,7 @@
 /**
  * Pure workspace access helpers (RLS expectations + validation).
  * No secrets; browser/Node callers supply an already-authenticated Supabase client.
+ * Client reality is enforced as a database invariant; access is tenant + entitlement based.
  */
 
 import { clientHasNutritionAccess } from '../domain/client-service-entitlements.mjs';
@@ -26,7 +27,7 @@ export function parseClientIdParam(value) {
 
 /**
  * @param {{
- *   client: { id: string, full_name: string, notes?: string|null, organization_id: string, is_fictional?: boolean, service_type?: unknown } | null,
+ *   client: { id: string, full_name: string, notes?: string|null, organization_id: string, service_type?: unknown } | null,
  *   membership: { organizationId: string, organization: { slug: string, name: string }, role: string },
  * }} args
  */
@@ -43,9 +44,6 @@ export function assertWorkspaceClientAccess({ client, membership }) {
   }
   if (client.organization_id !== membership.organizationId) {
     throw new Error('Accès refusé : ce client appartient à une autre organisation.');
-  }
-  if (client.is_fictional !== true) {
-    throw new Error('Seuls les clients fictifs peuvent être ouverts dans ce jalon.');
   }
   if (!clientHasNutritionAccess(client.service_type)) {
     const err = new Error(NUTRITION_ENTITLEMENT_DENIED_MESSAGE);

@@ -1,8 +1,9 @@
 /**
  * Verify the authenticated coach may open a pre-interview report for a
- * fictional client in the selected organization.
+ * client in the selected organization.
  *
  * All service types are allowed (programming, nutrition, complete).
+ * Client reality is enforced as a database invariant; authorization is tenant-based.
  * Do not reuse the nutrition-plan authorizeClientAccess gate.
  * Uses the caller's JWT; no service role.
  */
@@ -39,7 +40,7 @@ export async function authorizeIntakeReportAccess({
       return { ok: false, error: 'forbidden' };
     }
     const base = String(supabaseUrl).replace(/\/$/, '');
-    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,is_fictional,service_type&limit=1`;
+    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,service_type&limit=1`;
     const response = await fetchImpl(url, {
       headers: {
         apikey: publishableKey,
@@ -50,7 +51,7 @@ export async function authorizeIntakeReportAccess({
     if (!response.ok) return { ok: false, error: 'forbidden' };
     const rows = await response.json();
     const client = Array.isArray(rows) ? rows[0] : null;
-    if (!client || client.organization_id !== organizationId || client.is_fictional !== true) {
+    if (!client || client.organization_id !== organizationId) {
       return { ok: false, error: 'forbidden' };
     }
     return {

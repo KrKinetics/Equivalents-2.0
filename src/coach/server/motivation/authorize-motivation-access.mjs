@@ -1,6 +1,7 @@
 /**
  * Verify the authenticated coach may process a motivation assessment
- * for a fictional client in the selected organization.
+ * for a client in the selected organization.
+ * Client reality is a database invariant; authorization is tenant-based.
  * Uses the caller's JWT; no service role.
  */
 
@@ -35,7 +36,7 @@ export async function authorizeMotivationAccess({
       return { ok: false, error: 'forbidden' };
     }
     const base = String(supabaseUrl).replace(/\/$/, '');
-    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,email,phone,service_type,is_fictional&limit=1`;
+    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,email,phone,service_type&limit=1`;
     const response = await fetchImpl(url, {
       headers: {
         apikey: publishableKey,
@@ -46,7 +47,7 @@ export async function authorizeMotivationAccess({
     if (!response.ok) return { ok: false, error: 'forbidden' };
     const rows = await response.json();
     const client = Array.isArray(rows) ? rows[0] : null;
-    if (!client || client.organization_id !== organizationId || client.is_fictional !== true) {
+    if (!client || client.organization_id !== organizationId) {
       return { ok: false, error: 'forbidden' };
     }
     return {

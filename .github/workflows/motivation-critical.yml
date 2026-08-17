@@ -62,6 +62,9 @@ jobs:
       - name: Motivation critical tests
         run: npm run test:motivation-critical
 
+      - name: Real-client authorization regression
+        run: node --test tests/motivation/real-client-authorization.test.mjs tests/coach-workspace-access.test.mjs
+
       - name: Production persistence fallback
         run: node --test tests/motivation/production-persistence-fallback.test.mjs
 
