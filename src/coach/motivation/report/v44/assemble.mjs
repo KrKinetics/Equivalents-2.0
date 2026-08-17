@@ -7,16 +7,19 @@ import { buildNutritionActionCards } from './nutrition.mjs';
 
 function overlayBrief(brief, findings) {
   const adherence = findingByKey(findings, 'adherence_recovery');
-  const structureFood = findingByKey(findings, 'nutrition_structure');
+  const coachingStructure = findingByKey(findings, 'structure_need');
   const next = { ...brief };
   if (adherence && adherence.claimStrength !== 'supported') {
-    next.likelyDropoffPattern = adherence.interpretation;
     if (next.recoveryStrategy && /reprise\s*:\s*(élevée|haute|forte)/i.test(next.recoveryStrategy)) {
       next.recoveryStrategy = adherence.interpretation;
     }
   }
-  if (structureFood && structureFood.claimStrength !== 'supported') {
-    next.structurePreference = structureFood.interpretation;
+  if (coachingStructure && coachingStructure.claimStrength !== 'supported') {
+    const impact = coachingStructure.coachImpact || coachingStructure.interpretation;
+    const status = String(coachingStructure.confidenceStatus || '').toLowerCase();
+    next.structurePreference = impact
+      ? `${impact}${status ? ` — ${status}` : ''}`
+      : next.structurePreference;
   }
   return next;
 }

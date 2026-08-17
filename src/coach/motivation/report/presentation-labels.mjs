@@ -6,9 +6,14 @@
 const TENDENCY_FR = {
   low: 'faible',
   moderate: 'modérée',
+  modéré: 'modérée',
+  moderee: 'modérée',
+  modérée: 'modérée',
   high: 'élevée',
   élevé: 'élevée',
   eleve: 'élevée',
+  élevée: 'élevée',
+  faible: 'faible',
   mixte: 'mixte',
   contradictoire: 'contradictoire',
   'non établi': 'non établi',
@@ -24,7 +29,9 @@ export function localizeTendency(value) {
   return raw
     .replace(/\bhigh\b/gi, 'élevée')
     .replace(/\bmoderate\b/gi, 'modérée')
-    .replace(/\blow\b/gi, 'faible');
+    .replace(/\bmodéré\b/gi, 'modérée')
+    .replace(/\blow\b/gi, 'faible')
+    .replace(/\bélevé\b/gi, 'élevée');
 }
 
 export function inferClaimStrength(row = {}) {
@@ -39,7 +46,11 @@ export function inferClaimStrength(row = {}) {
 
 export function findingPrimaryLabel(row = {}) {
   const existing = String(row.displayLabel || '').trim();
-  if (/^(Signal mixte|Réponses contradictoires|Tendance )/i.test(existing)
+  const tendencyMatch = existing.match(/^Tendance\s+(.+)$/i);
+  if (tendencyMatch && !/\b(high|moderate|low)\b/i.test(existing)) {
+    return `Tendance ${localizeTendency(tendencyMatch[1])}`;
+  }
+  if (/^(Signal mixte|Réponses contradictoires)/i.test(existing)
     && !/\b(high|moderate|low)\b/i.test(existing)) {
     return existing;
   }

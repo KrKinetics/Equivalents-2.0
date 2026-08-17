@@ -175,8 +175,9 @@ class KrLayout {
     }
   }
 
-  sectionTitle(title, role) {
-    this.ensure(72);
+  sectionTitle(title, role, minAfter = 0) {
+    const keepWithNext = Math.max(0, Number(minAfter) || 0);
+    this.ensure(72 + keepWithNext);
     this.setFont(true, KR_V42_TYPE.section, KR_V42_COLORS.primary);
     this.doc.text(t(title), this.left, this.y, { width: this.width });
     const ruleY = this.doc.y + 3;
@@ -460,8 +461,15 @@ function drawNutrition(layout, section) {
   }
 }
 
+function weekCardTitle(week) {
+  const number = t(week?.week).trim();
+  const raw = t(week?.title).trim();
+  const clean = raw.replace(/^Semaine\s+\d+\s*(?:[—–-]\s*)?/i, '').trim();
+  return clean ? `Semaine ${number} — ${clean}` : `Semaine ${number}`;
+}
+
 function drawPlan(layout, section) {
-  layout.sectionTitle(section.title, 'plan');
+  layout.sectionTitle(section.title, 'plan', 130);
   if (!section.testable) {
     layout.flowText('Plan issu de l\'analyse historique', { size: 8, color: KR_V42_COLORS.muted, gap: 6, role: 'plan' });
   }
@@ -479,7 +487,7 @@ function drawPlan(layout, section) {
         week.observe ? `Observer : ${week.observe}` : '',
         week.validationCriterion ? `Validation : ${week.validationCriterion}` : '',
       ];
-    drawFlowingCard(layout, `Semaine ${week.week} — ${week.title || ''}`, lines.filter(Boolean), 'plan');
+    drawFlowingCard(layout, weekCardTitle(week), lines.filter(Boolean), 'plan');
   }
 }
 

@@ -84,8 +84,7 @@ export function buildAthleteOperatingBrief({
       driverFrom(results),
       driverFrom(auto),
     ].filter(Boolean),
-    likelyDropoffPattern: barrierMoment
-      || (readiness.recoveryCapacity ? `Reprise : ${readiness.recoveryCapacity}` : null),
+    likelyDropoffPattern: barrierMoment || null,
     recoveryStrategy: recovery || readiness.missedSessionProtocol || null,
     structurePreference: readiness.structureLabel || structure?.classificationLabel || null,
     choicePreference: choiceApproach.label || readiness.choiceApproachLabel || null,

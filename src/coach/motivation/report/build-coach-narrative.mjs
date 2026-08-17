@@ -9,13 +9,13 @@ import { qualifyNarrativeClaim } from './presentation-claim-consistency.mjs';
 const FINDING_ALIASES = {
   motivation: ['autonomous_motivation', 'autonomous_value_without_results'],
   results: ['results_orientation', 'results_delay_sensitivity'],
-  structure: ['structure_need', 'nutrition_structure'],
+  structure: ['structure_need'],
   choice: ['choice_interest', 'choice_need', 'option_overload'],
   communication: ['coach_receptivity', 'explanation_need'],
   adherence: ['adherence_recovery', 'adherence_maintenance', 'adherence_recovery_signal', 'adherence_history'],
   delay: ['delay_tolerance', 'long_term_projection'],
   rigidity: ['all_or_nothing'],
-  nutrition: ['nutrition_planning', 'nutrition_value', 'food_flexibility', 'performance_fueling'],
+  nutrition: ['nutrition_structure', 'nutrition_planning', 'nutrition_value', 'food_flexibility', 'performance_fueling'],
   compensatory: ['compensatory_food', 'emotional_stress_food', 'emotional_reward_food'],
 };
 
@@ -79,7 +79,18 @@ function meaningClause(row) {
     .replace(/^Hypothèse à tester\s*:\s*/i, '')
     .replace(/^Première indication à confirmer\s*:\s*/i, '')
     .replace(/^Un premier signal (laisse penser|suggère) que\s*/i, '')
+    .replace(/^Les réponses indiquent\s+/i, '')
+    .replace(/^Le profil suggère\s+/i, '')
     .replace(/,?\s*à confirmer en entrevue\.?$/i, ''));
+}
+
+function structurePhrase(value) {
+  const raw = text(value);
+  if (!raw) return '';
+  const recommended = raw.match(/^Structure recommandée\s*:\s*(.+)$/i);
+  if (recommended) return `une structure ${decapitalize(recommended[1])}`;
+  if (/^Structure\b/i.test(raw)) return `une ${decapitalize(raw)}`;
+  return decapitalize(raw);
 }
 
 function normalizeKey(value) {
@@ -262,12 +273,12 @@ function howAthleteWorks(vm, findings, reserved, used) {
     )));
   }
 
-  const structureText = text(brief.structurePreference);
+  const structureText = structurePhrase(brief.structurePreference);
   const choiceText = text(brief.choicePreference);
   if (structureText || choiceText || structure || choice) {
     pushUnique(out, reserved, used, sentence(
       [
-        structureText ? `Côté structure, le profil indique ${decapitalize(structureText)}` : '',
+        structureText ? `Côté structure, le point de départ est ${structureText}` : '',
         choiceText ? `côté choix, ${decapitalize(choiceText)}` : '',
         hedge(
           strengthOf(structure) || strengthOf(choice),
@@ -281,13 +292,21 @@ function howAthleteWorks(vm, findings, reserved, used) {
     ));
   }
 
-  if (delay || adherence) {
+  if (adherence) {
     pushUnique(out, reserved, used, sentence(hedge(
-      strengthOf(delay) || strengthOf(adherence),
-      `Les réponses convergent vers une reprise plutôt accessible après un écart : ${meaningClause(adherence || delay) || 'prévoir tout de même un protocole simple de retour'}`,
-      `Le profil suggère une reprise possible, mais les réponses sont mixtes. ${meaningClause(adherence || delay) || 'Observer le premier écart avant de conclure'}`,
-      `Un premier signal laisse penser que ${meaningClause(adherence || delay) || 'la reprise après un écart reste à clarifier'}, à confirmer en entrevue`,
+      strengthOf(adherence),
+      `Les réponses convergent sur la capacité de reprise : ${meaningClause(adherence) || 'prévoir un protocole simple et vérifier qu\'il est réellement utilisé après un écart'}`,
+      `La capacité de reprise reste à tester : les réponses sont mixtes. ${meaningClause(adherence) || 'Observer le premier écart avant de conclure'}`,
+      `Un premier signal sur la reprise suggère : ${meaningClause(adherence) || 'la façon de revenir après un écart reste à clarifier'}; à confirmer en entrevue`,
       'Les réponses se contredisent sur la reprise. Ne pas conclure avant d\'avoir vu un écart réel',
+    )));
+  } else if (delay) {
+    pushUnique(out, reserved, used, sentence(hedge(
+      strengthOf(delay),
+      `Le rapport au délai semble assez établi : ${meaningClause(delay) || 'l\'athlète peut tolérer un progrès qui demande du temps'}`,
+      `Le rapport au délai reste variable. ${meaningClause(delay) || 'Observer la réaction si les résultats tardent'}`,
+      `Un premier signal indique que le délai de résultat pourrait compter; à confirmer en entrevue`,
+      'Les réponses se contredisent sur le rapport au délai. Ne pas conclure avant l\'entrevue',
     )));
   }
 
@@ -312,8 +331,11 @@ function coachingConsequences(vm, findings, reserved, used) {
   const out = [];
 
   if (brief.structurePreference || structure) {
+    const startingStructure = structurePhrase(brief.structurePreference)
+      || structurePhrase(meaningClause(structure))
+      || 'une structure simple et prévisible';
     pushUnique(out, reserved, used, sentence(
-      `Pour le coaching, commencer par tester ${decapitalize(brief.structurePreference || meaningClause(structure) || 'une structure simple et prévisible')}, puis ajuster selon la réaction des 7 à 14 premiers jours`,
+      `Pour le coaching, utiliser comme point de départ ${startingStructure}, puis ajuster selon la réaction des 7 à 14 premiers jours`,
     ));
   }
   if (brief.communicationPreference || communication) {
@@ -356,7 +378,7 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
   }
   if (brief.likelyDropoffPattern) {
     pushUnique(out, reserved, used, sentence(
-      `Le motif de décrochage le plus utile à tester est ${decapitalize(brief.likelyDropoffPattern)}`,
+      `Le contexte de décrochage à vérifier en priorité : ${decapitalize(brief.likelyDropoffPattern)}`,
     ));
   }
   if (brief.recoveryStrategy) {
@@ -376,7 +398,7 @@ function dropoutAndRecovery(vm, findings, reserved, used) {
   if (compensatory) {
     pushUnique(out, reserved, used, sentence(hedge(
       strengthOf(compensatory),
-      `Les réponses convergent vers une réaction compensatoire possible : ${meaningClause(compensatory)}`,
+      `Les réponses convergent sur la réaction compensatoire : ${meaningClause(compensatory) || 'peu de compensation est signalée, à surveiller sans surinterpréter'}`,
       `Le profil suggère une compensation possible, mais les réponses sont mixtes. ${meaningClause(compensatory) || 'À tester, pas à affirmer'}`,
       `Un premier signal laisse penser que ${meaningClause(compensatory) || 'une compensation alimentaire est possible'}, à confirmer en entrevue`,
       'Les réponses se contredisent sur les réactions compensatoires. Ne pas conclure',

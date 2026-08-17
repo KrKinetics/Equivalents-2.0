@@ -21,6 +21,13 @@ test('coach narrative is gated by claim strength and never invents certainty', a
   }
   assert.doesNotMatch(text, /l'athlète est définitivement|preuve certaine|nous savons que/i);
   assert.doesNotMatch(text, /\[object Object\]/);
+  assert.doesNotMatch(text, /motif de décrochage[^.]*reprise\s*:/i);
+  assert.doesNotMatch(text, /Côté structure[^.]*structure alimentaire/i);
+  assert.doesNotMatch(
+    String(bundle.vm.athleteOperatingBrief?.structurePreference || ''),
+    /structure alimentaire/i,
+    'general coaching structure must never be overwritten by the nutrition-structure dimension',
+  );
   const { html, pdfText } = await renderParityBundle(bundle);
   assert.match(html, /Analyse narrative du coach/);
   assert.match(pdfText, /Analyse narrative du coach/);
