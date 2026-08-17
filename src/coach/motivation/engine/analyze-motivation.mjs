@@ -81,9 +81,20 @@ export function expectedNarrativeQuestionCodes(engine, answers) {
     }).narrative.map((question) => question.code);
   }
   if (engine.questionnaireVersion !== QUESTIONNAIRE_V42) return [];
+
+  // Narrative clarifications are selected before the client answers them.
+  // Re-validating a submitted questionnaire with those answers included can
+  // erase the very trigger that caused a clarification to be presented (for
+  // example NUT_SUCCESS_01 is asked when nutrition success is missing). Strip
+  // narrative answers before replaying the deterministic selection so the
+  // server validates the same decision point the browser used.
+  const narrativeCodes = new Set(engine.narrativeQuestionCodes ?? []);
+  const selectionAnswers = normalizeEngineAnswers(answers)
+    .filter((answer) => !narrativeCodes.has(answer.questionCode));
+
   return selectAdaptiveQuestionsV42({
     questions: engine.questionInputs,
-    answers: normalizeEngineAnswers(answers),
+    answers: selectionAnswers,
   }).narrative.map((question) => question.code);
 }
 
