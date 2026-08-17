@@ -69,7 +69,7 @@ function skipWithoutPasswords(t) {
   return false;
 }
 
-test('live: fictional client can create, autosave, resume, submit, and analyze v4.2', async (t) => {
+test('live: real client can create, autosave, resume, submit, and analyze v4.2', async (t) => {
   if (skipWithoutLiveSupabase(t, root)) return;
   if (skipWithoutPasswords(t)) return;
 
@@ -96,7 +96,7 @@ test('live: fictional client can create, autosave, resume, submit, and analyze v
     created_by: kr.session.user.id,
     full_name: `MOT DEV ${stamp}`,
     notes: 'motivation-persistence-e2e',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'nutrition',
   }).select('id, organization_id, is_fictional').single();
   assert.ifError(insertError);

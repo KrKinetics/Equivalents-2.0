@@ -77,7 +77,7 @@ async function loadSubmittedReport(id) {
   ]);
   if (clientError) throw clientError;
   if (responseError) throw responseError;
-  if (!client || client.is_fictional !== true) {
+  if (!client || client.is_fictional !== false) {
     throw new Error('Client introuvable ou hors de votre organisation.');
   }
   if (!response) {

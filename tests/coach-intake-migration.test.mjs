@@ -1,5 +1,5 @@
 /**
- * Static security and schema checks for the pre-interview intake migration.
+ * Static security and schema checks for the pre-interview intake migrations.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -10,6 +10,14 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sql = fs.readFileSync(
   path.join(root, 'supabase/migrations/20260806111500_client_pre_interview_intake.sql'),
+  'utf8',
+);
+const realInviteSql = fs.readFileSync(
+  path.join(root, 'supabase/migrations/20260817182714_real_clients_invite_functions.sql'),
+  'utf8',
+);
+const realDossierRlsSql = fs.readFileSync(
+  path.join(root, 'supabase/migrations/20260817182557_real_clients_rls_policies.sql'),
   'utf8',
 );
 
@@ -32,10 +40,11 @@ test('intake raw tables use RLS and are never granted to anon', () => {
   assert.doesNotMatch(sql, /grant\s+(select|insert|update|delete).*client_intake_(invites|responses).*to anon/i);
 });
 
-test('public RPC access is narrow, token-gated, and coach invite creation requires membership', () => {
-  assert.match(sql, /create or replace function public\.create_client_intake_invite/i);
-  assert.match(sql, /where m\.user_id = auth\.uid\(\)/i);
-  assert.match(sql, /and c\.is_fictional = true/i);
+test('final intake invite creation supports real clients and still requires membership', () => {
+  assert.match(realInviteSql, /create or replace function public\.create_client_intake_invite/i);
+  assert.match(realInviteSql, /where m\.user_id = auth\.uid\(\)/i);
+  assert.match(realInviteSql, /m\.organization_id = c\.organization_id/i);
+  assert.doesNotMatch(realInviteSql, /c\.is_fictional\s*=\s*true/i);
   assert.match(sql, /grant execute on function public\.create_client_intake_invite\(uuid, integer\) to authenticated/i);
   for (const fn of ['get_client_intake', 'save_client_intake', 'submit_client_intake']) {
     assert.match(sql, new RegExp(`grant execute on function public\\.${fn}[^;]+to anon, authenticated`, 'i'));
@@ -43,9 +52,10 @@ test('public RPC access is narrow, token-gated, and coach invite creation requir
   }
 });
 
-test('historical dossier policies qualify tenant columns correctly', () => {
-  assert.match(sql, /c\.organization_id = client_dossiers\.organization_id/i);
-  assert.doesNotMatch(sql, /c\.organization_id = c\.organization_id/i);
+test('final dossier policies qualify tenant columns and do not require fictional clients', () => {
+  assert.match(realDossierRlsSql, /c\.organization_id = client_dossiers\.organization_id/i);
+  assert.doesNotMatch(realDossierRlsSql, /c\.organization_id = c\.organization_id/i);
+  assert.doesNotMatch(realDossierRlsSql, /c\.is_fictional\s*=\s*true/i);
 });
 
 test('submission validates required health details, challenge count, consent, and email', () => {

@@ -45,7 +45,7 @@ test('dashboard HTML uses production client copy', () => {
   assert.doesNotMatch(html, /fictif|fictive|Client démo|Données de test uniquement|isolés par RLS/i);
 });
 
-test('dashboard JS status and confirm copy is production-facing', () => {
+test('dashboard JS status and confirm copy is production-facing and creates real clients', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/dashboard.js'), 'utf8');
   assert.match(src, /Session active — accès sécurisé à votre organisation\./);
   assert.match(src, /Aucun client/);
@@ -55,22 +55,25 @@ test('dashboard JS status and confirm copy is production-facing', () => {
   assert.match(src, /editDialog\.showModal\(\)/);
   assert.match(src, /Client mis à jour\./);
   assert.doesNotMatch(src, /fictif|fictive|isolation RLS|Client démo|Données de test/i);
-  // Technical column remains for Supabase insert; must not appear in UI string literals above.
-  assert.match(src, /is_fictional:\s*true/);
+  assert.match(src, /is_fictional:\s*false/);
+  assert.doesNotMatch(src, /is_fictional:\s*true/);
 });
 
 test('workspace bootstrap missing-client banner omits fictif wording', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/workspace-bootstrap.mjs'), 'utf8');
   assert.match(src, /Ouvrez un client depuis le portail/);
   assert.doesNotMatch(src, /client fictif/i);
+  assert.match(src, /\.eq\('is_fictional', false\)/);
 });
 
-test('workspace stub defaults omit fictif wording from visible fields', () => {
+test('workspace stub defaults omit fictif wording from visible fields and identify a real dossier', () => {
   const stub = buildWorkspaceStubProfile({ fullName: '', notes: '' });
   assert.equal(stub.nom, 'Client');
   assert.equal(stub.coachNotes, 'Dossier client — à compléter avec le coach.');
+  assert.equal(stub.workspaceMeta.fictional, false);
   assert.doesNotMatch(stub.nom, /fictif/i);
   assert.doesNotMatch(stub.coachNotes, /fictif/i);
   const withNotes = buildWorkspaceStubProfile({ fullName: 'Alex', notes: 'Hydratation' });
   assert.equal(withNotes.coachNotes, 'Dossier client — Hydratation');
+  assert.equal(withNotes.workspaceMeta.fictional, false);
 });

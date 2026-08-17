@@ -72,7 +72,7 @@ function createFetchMock({
     id: CLIENT_ID,
     organization_id: ORG,
     full_name: 'Client fiction',
-    is_fictional: true,
+    is_fictional: false,
   },
   inviteOverrides = {},
 } = {}) {
@@ -187,7 +187,7 @@ test('cross-org is refused before any persist', async () => {
       id: CLIENT_ID,
       organization_id: OTHER_ORG,
       full_name: 'Other',
-      is_fictional: true,
+      is_fictional: false,
     },
   });
   const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });

@@ -52,7 +52,7 @@ export function attachWorkspaceMeta(payload, meta) {
     ...(typeof next.workspaceMeta === 'object' && next.workspaceMeta ? next.workspaceMeta : {}),
     clientId: meta.clientId,
     organizationSlug: meta.organizationSlug,
-    fictional: true,
+    fictional: false,
   };
   if (next.version == null) next.version = 3;
   return next;

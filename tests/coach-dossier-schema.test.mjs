@@ -34,7 +34,7 @@ test('validateDossierPayload refuses invalid payloads', () => {
   assert.match(validateDossierPayload([]).reason, /objet/i);
 });
 
-test('attachWorkspaceMeta preserves nutrition fields and marks fictional', () => {
+test('attachWorkspaceMeta preserves nutrition fields and marks a real client', () => {
   const out = attachWorkspaceMeta(
     { sexe: 'H', jours: { entrainement: {} }, age: '40', banque: undefined },
     { clientId: '11111111-1111-4111-8111-111111111111', organizationSlug: 'kr-kinetics', fullName: 'Ada' },
@@ -43,6 +43,6 @@ test('attachWorkspaceMeta preserves nutrition fields and marks fictional', () =>
   assert.equal(out.nom, 'Ada');
   assert.equal(out.workspaceMeta.clientId, '11111111-1111-4111-8111-111111111111');
   assert.equal(out.workspaceMeta.organizationSlug, 'kr-kinetics');
-  assert.equal(out.workspaceMeta.fictional, true);
+  assert.equal(out.workspaceMeta.fictional, false);
   assert.equal(out.version, 3);
 });

@@ -89,7 +89,7 @@ async function loadAuthorizedClient(id) {
     .eq('organization_id', membership.organizationId)
     .maybeSingle();
   if (error) throw new Error(publicMotivationReportMessage('unavailable'));
-  if (!row || row.organization_id !== membership.organizationId) {
+  if (!row || row.organization_id !== membership.organizationId || row.is_fictional !== false) {
     throw new Error(publicMotivationReportMessage('not_found'));
   }
   return row;

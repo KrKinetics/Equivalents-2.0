@@ -1,5 +1,5 @@
 /**
- * Coach-facing static checks for the motivation persistence migration.
+ * Coach-facing static checks for the motivation persistence migrations.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -12,10 +12,15 @@ const sql = fs.readFileSync(
   path.join(root, 'supabase/migrations/20260816140000_client_motivation_assessment.sql'),
   'utf8',
 );
+const realInviteSql = fs.readFileSync(
+  path.join(root, 'supabase/migrations/20260817182714_real_clients_invite_functions.sql'),
+  'utf8',
+);
 
-test('motivation invite creation is contained to fictional clients in the coach org', () => {
-  assert.match(sql, /and c\.is_fictional = true/i);
-  assert.match(sql, /m\.organization_id = c\.organization_id/i);
+test('final motivation invite creation is contained to real clients in the coach org', () => {
+  assert.match(realInviteSql, /create or replace function public\.create_client_motivation_invite/i);
+  assert.doesNotMatch(realInviteSql, /c\.is_fictional\s*=\s*true/i);
+  assert.match(realInviteSql, /m\.organization_id = c\.organization_id/i);
   assert.match(sql, /client_motivation_invites_one_active_per_client_idx/i);
 });
 

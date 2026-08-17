@@ -96,7 +96,7 @@ async function insertClient(supabase, { organizationId, userId, fullName, servic
     created_by: userId,
     full_name: fullName,
     notes: 'service-entitlement-probe',
-    is_fictional: true,
+    is_fictional: false,
     service_type: serviceType,
   }).select('id, full_name, notes, organization_id, is_fictional, service_type').single();
   return { data, error };
@@ -136,7 +136,7 @@ test('live: service_type is required and CHECK-constrained', async (t) => {
     created_by: kr.session.user.id,
     full_name: `No service ${stamp}`,
     notes: 'should-fail',
-    is_fictional: true,
+    is_fictional: false,
   });
   assert.ok(missing.error, 'insert without service_type must fail (no database default)');
 
