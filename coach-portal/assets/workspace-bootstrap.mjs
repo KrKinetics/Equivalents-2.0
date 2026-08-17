@@ -1,6 +1,6 @@
 /**
  * Authenticated Coach workspace bootstrap (same-origin with portal).
- * Supabase client_dossiers is the SoT for the selected fictional client.
+ * Supabase client_dossiers is the SoT for the selected real client.
  * Offline calculator localStorage remains unchanged outside this bootstrap.
  * Publishable Supabase key only — never service_role.
  */
@@ -192,7 +192,7 @@ async function fetchOrganizationClients(supabase, organizationId) {
     .from('clients')
     .select('id, full_name, organization_id, is_fictional, service_type')
     .eq('organization_id', organizationId)
-    .eq('is_fictional', true)
+    .eq('is_fictional', false)
     .order('full_name', { ascending: true });
   if (error) throw error;
   return nutritionEligibleClients(data || []);
@@ -202,7 +202,7 @@ function ensureCurrentClientListed(clients, ctx) {
   if (clients.some((row) => row.id === ctx.clientId)) return clients;
   return [
     ...clients,
-    { id: ctx.clientId, full_name: ctx.fullName, organization_id: ctx.organizationId, is_fictional: true },
+    { id: ctx.clientId, full_name: ctx.fullName, organization_id: ctx.organizationId, is_fictional: false },
   ];
 }
 
