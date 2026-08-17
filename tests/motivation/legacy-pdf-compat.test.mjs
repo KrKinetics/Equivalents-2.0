@@ -16,6 +16,7 @@ import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motiv
 import { extractPdfPagesText, isEffectivelyBlankPage } from '../../src/coach/motivation/lib/pdf/pdf-text.mjs';
 import { KR_V42_PAGE } from '../../src/coach/motivation/lib/pdf/theme-v42-kr.mjs';
 import { hasNutritionContent } from '../../src/coach/motivation/report/presentation-labels.mjs';
+import { assertCrossSectionClaimConsistency } from '../../src/coach/motivation/report/presentation-claim-consistency.mjs';
 
 const DANNY = {
   id: '5a94561a-1111-4111-8111-aaaaaaaaaaaa',
@@ -161,6 +162,15 @@ test('historical report-model-v4.2 PDF keeps nutrition and does not rewrite the 
   assert.match(text, /renderCoachReportPdfV44Kr/);
   assert.match(text, /report-model-v4\.2/);
   pages.forEach((page) => assert.equal(isEffectivelyBlankPage(page.text), false, `blank ${page.pageNumber}`));
+  assert.deepEqual(assertCrossSectionClaimConsistency({
+    findings: bundle.vm.dimensions,
+    portrait: bundle.vm.portraitCoach,
+    plan: bundle.vm.fourWeekPlan,
+    priorities: bundle.vm.coachPriorities,
+    nutrition: { ...bundle.vm.nutrition, ...bundle.vm.nutritionOrganized },
+    pdfText: text,
+    html,
+  }), []);
   assertPageFill(rendered);
 });
 
@@ -194,6 +204,24 @@ test('historical report-model-v4.3 Danny-like PDF keeps nutrition and provenance
     assert.match(text, /Signal mixte/);
     assert.doesNotMatch(text, /high\s*[·.]\s*Mixte/i);
   }
+  assert.match(html, /Signal mixte/);
+  assert.match(text, /Signal mixte/);
+  assert.doesNotMatch(html, /Reprise\s*:\s*élevée/i);
+  assert.doesNotMatch(text, /Reprise\s*:\s*élevée/i);
+  assert.doesNotMatch(html, /Reprise\s*:\s*faible/i);
+  assert.doesNotMatch(text, /Reprise\s*:\s*faible/i);
+  assert.match(html, /hypothèse à tester|à tester|observer/i);
+  assert.match(text, /hypothèse à tester|à tester|observer/i);
+  const consistency = assertCrossSectionClaimConsistency({
+    findings: bundle.vm.dimensions,
+    portrait: bundle.vm.portraitCoach,
+    plan: bundle.vm.fourWeekPlan,
+    priorities: bundle.vm.coachPriorities,
+    nutrition: { ...bundle.vm.nutrition, ...bundle.vm.nutritionOrganized, cards: bundle.vm.nutritionAction?.cards },
+    pdfText: text,
+    html,
+  });
+  assert.deepEqual(consistency, [], consistency.join('\n'));
   assert.equal(
     bundle.vm.coachPriorities.some((item) => /lien alimentation-performance paraît/i.test(item)),
     false,
@@ -222,6 +250,20 @@ test('new report-model-v4.4 PDF keeps testable plan contract and nutrition cards
   assert.doesNotMatch(text, /Plan issu de l'analyse historique/);
   assert.match(text, /report-model-v4\.4/);
   assertNoRawEnglishTendencies(text);
+  const consistency = assertCrossSectionClaimConsistency({
+    findings: bundle.vm.dimensions,
+    portrait: bundle.vm.portraitCoach,
+    plan: bundle.vm.fourWeekPlan,
+    priorities: bundle.vm.coachPriorities,
+    nutrition: { ...bundle.vm.nutrition, ...bundle.vm.nutritionOrganized, cards: bundle.vm.nutritionAction?.cards },
+    pdfText: text,
+    html,
+  });
+  assert.deepEqual(consistency, [], consistency.join('\n'));
+  const supported = bundle.vm.dimensions.find((row) => row.claimStrength === 'supported' && /élevée|accessible/i.test(row.coachMeaning || ''));
+  if (supported) {
+    assert.match(`${supported.displayLabel} ${supported.coachMeaning}`, /Tendance élevée|accessible|élevée/i);
+  }
   assertPageFill(rendered);
 });
 

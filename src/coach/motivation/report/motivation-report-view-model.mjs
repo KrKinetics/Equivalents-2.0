@@ -18,6 +18,12 @@ import {
   isTestableFourWeekPlan,
   organizeLegacyNutrition,
 } from './presentation-labels.mjs';
+import {
+  presentNutritionAction,
+  qualifyCoachMeaning,
+  qualifyLegacyPlanLine,
+  qualifyNarrativeClaim,
+} from './presentation-claim-consistency.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -134,9 +140,15 @@ function dimensionItems(report) {
       confidenceStatus: findingStatusLabel({ ...presented, claimStrength }),
       claimStrength,
       technicalDirection: findingTechnicalDirection({ ...presented, claimStrength, level: presented.level || domain.level }),
-      interpretation: presented.interpretation || presented.coachMeaning,
+      interpretation: qualifyCoachMeaning(
+        { ...presented, claimStrength },
+        presented.interpretation || presented.coachMeaning,
+      ),
       signalDirection: presented.signalDirection || presented.direction,
-      coachMeaning: presented.coachMeaning || presented.interpretation,
+      coachMeaning: qualifyCoachMeaning(
+        { ...presented, claimStrength },
+        presented.coachMeaning || presented.interpretation,
+      ),
       itemCount: presented.itemCount ?? presented.evidenceCount,
       changesCoaching: presented.changesCoaching,
     };
@@ -558,7 +570,6 @@ export function buildMotivationReportViewModel(input = {}) {
     usability,
   });
 
-  const portrait = portraitSections(report);
   const conflicts = conflictCards(report);
   const buckets = report.riskBuckets || {
     risksToPrevent: vigilanceItems.filter((item) => /risque|vigilance|tout-ou-rien|reprise/i.test(item)).slice(0, 4),
@@ -566,6 +577,42 @@ export function buildMotivationReportViewModel(input = {}) {
     contradictionsToResolve: conflicts.map((item) => item.title || item.coachImplication),
   };
   const allDimensions = dimensionItems(report);
+  const portrait = portraitSections(report).map((section) => ({
+    ...section,
+    paragraphs: section.paragraphs.map((line) => qualifyNarrativeClaim(allDimensions, line)),
+  }));
+  const presentedWeeks = weekCards.map((week) => ({
+    ...week,
+    objective: qualifyLegacyPlanLine(allDimensions, week.objective),
+    focus: qualifyLegacyPlanLine(allDimensions, week.focus),
+    coachAction: qualifyLegacyPlanLine(allDimensions, week.coachAction),
+    observe: qualifyLegacyPlanLine(allDimensions, week.observe),
+    validationCriterion: qualifyLegacyPlanLine(allDimensions, week.validationCriterion),
+    actions: (week.actions || []).map((line) => qualifyLegacyPlanLine(allDimensions, line)),
+  }));
+  const presentedBrief = {
+    ...athleteOperatingBrief,
+    likelyDropoffPattern: qualifyLegacyPlanLine(allDimensions, athleteOperatingBrief.likelyDropoffPattern),
+    recoveryStrategy: qualifyLegacyPlanLine(allDimensions, athleteOperatingBrief.recoveryStrategy),
+  };
+  const organized = organizeLegacyNutrition(nutrition || {}, athleteOperatingBrief);
+  const presentedOrganized = {
+    ...organized,
+    suggested: (organized.suggested || []).map((line) => qualifyNarrativeClaim(allDimensions, line)),
+    confirm: (organized.confirm || []).map((line) => qualifyNarrativeClaim(allDimensions, line)),
+    test: (organized.test || []).map((line) => qualifyLegacyPlanLine(allDimensions, line)),
+  };
+  const presentedDecisionBrief = report.coachDecisionBrief
+    ? {
+      ...report.coachDecisionBrief,
+      startActions: (report.coachDecisionBrief.startActions || []).map((line) => (
+        qualifyLegacyPlanLine(allDimensions, line)
+      )),
+      avoidAtStart: (report.coachDecisionBrief.avoidAtStart || []).map((line) => (
+        qualifyNarrativeClaim(allDimensions, line)
+      )),
+    }
+    : null;
   const decisionFactors = allDimensions.filter((row) => row.changesCoaching).slice(0, 8);
   const dimensionGroups = DIMENSION_GROUP_DEFS.map((def) => ({
     id: def.id,
@@ -573,16 +620,21 @@ export function buildMotivationReportViewModel(input = {}) {
     items: allDimensions.filter((row) => def.ids.includes(row.id)),
   })).filter((group) => group.items.length);
 
-  const justifiedQuickRead = quickRead.map((item) => ({
-    ...item,
-    justification: item.id === 'preparation'
+  const justifiedQuickRead = quickRead.map((item) => {
+    const justification = item.id === 'preparation'
       ? text(readiness.explanation || plan.followUpRationale)
       : item.id === 'structure'
         ? text(plan.structureLabel)
         : item.id === 'follow-up'
           ? text(plan.followUpRationale)
-          : text(plan.communicationApproach?.guidance || plan.choiceApproach?.summary),
-  }));
+          : text(plan.communicationApproach?.guidance || plan.choiceApproach?.summary);
+    return {
+      ...item,
+      justification: justification && normalizeDisplayKey(justification) !== normalizeDisplayKey(item.value)
+        ? justification
+        : '',
+    };
+  });
 
   return {
     title: 'Profil motivationnel',
@@ -602,22 +654,22 @@ export function buildMotivationReportViewModel(input = {}) {
       analysisVersion: input.analysisVersion ?? null,
       reportConfidence,
     },
-    coachDecisionBrief: report.coachDecisionBrief || null,
+    coachDecisionBrief: presentedDecisionBrief,
     coachPriorities: ((report.coachPriorities || []).length
       ? report.coachPriorities
       : decisionItems
-    ).map(asPresentedCoachAction).filter(Boolean).slice(0, 5),
-    nutritionAction: report.nutritionAction || null,
-    nutritionOrganized: organizeLegacyNutrition(nutrition || {}, athleteOperatingBrief),
+    ).map(asPresentedCoachAction).map((line) => qualifyNarrativeClaim(allDimensions, line)).filter(Boolean).slice(0, 5),
+    nutritionAction: presentNutritionAction(report.nutritionAction, allDimensions),
+    nutritionOrganized: presentedOrganized,
     canonicalFindings: report.canonicalFindings || allDimensions,
     reportConfidence,
     quickRead: justifiedQuickRead,
     summary: summaryLines.slice(0, 4),
     supports: strengthItems,
     supportBlock,
-    athleteOperatingBrief,
+    athleteOperatingBrief: presentedBrief,
     portraitCoach: portrait,
-    vigilance: vigilanceItems,
+    vigilance: vigilanceItems.map((line) => qualifyNarrativeClaim(allDimensions, line)),
     riskBuckets: buckets,
     conflicts,
     interviewQuestions: interviewItems,
@@ -625,8 +677,13 @@ export function buildMotivationReportViewModel(input = {}) {
     dimensions: allDimensions,
     decisionFactors,
     dimensionGroups,
-    nutrition,
-    fourWeekPlan: weekCards,
+    nutrition: nutrition
+      ? {
+        ...nutrition,
+        lecture: (nutrition.lecture || []).map((line) => qualifyNarrativeClaim(allDimensions, line)),
+      }
+      : nutrition,
+    fourWeekPlan: presentedWeeks,
     fourWeekPlanTestable: isTestableFourWeekPlan(weekCards),
     reportModelVersion: text(
       provenance.reportModelVersion || report.schemaVersion || report.metadata?.reportModelVersion,
