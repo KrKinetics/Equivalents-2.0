@@ -129,7 +129,13 @@ inviteButton.addEventListener('click', async () => {
       organization_slug: membership.organization.slug,
     });
     lastInviteUrl = result.invite_url || '';
-    inviteUrlEl.textContent = lastInviteUrl || 'Invitation créée. Le courriel a peut-être été envoyé.';
+    const diag = [
+      result.invite_url_path,
+      result.invite_url_has_token === true ? 'jeton présent' : '',
+      result.invite_token_fingerprint ? `empreinte ${result.invite_token_fingerprint}` : '',
+    ].filter(Boolean).join(' · ');
+    inviteUrlEl.textContent = lastInviteUrl
+      || (diag ? `Invitation créée. ${diag}` : 'Invitation créée. Le courriel a peut-être été envoyé.');
     openFormButton.disabled = !lastInviteUrl;
     setBanner(result.email_sent ? 'Invitation créée et courriel envoyé.' : 'Invitation créée. Courriel non envoyé (fail-closed).', 'ok');
     await loadStatus();

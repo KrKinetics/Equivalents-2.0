@@ -8,7 +8,13 @@ import { PUBLIC_ERROR } from '../http/errors.mjs';
 import { logCoachEvent } from '../http/redact.mjs';
 import { classifyClientEmail } from '../intake/client-email.mjs';
 import { loadAuthorizedClientForInvite } from '../intake/load-authorized-client.mjs';
-import { resolveIntakeOrigin, buildMotivationInviteUrl } from './build-motivation-origin.mjs';
+import { resolveIntakeOrigin } from './build-motivation-origin.mjs';
+import {
+  assertMotivationInviteUrl,
+  buildMotivationInviteUrl,
+  motivationInviteDiagnostics,
+  resolvePreviewProtectionBypass,
+} from './motivation-invite-link.mjs';
 import { createClientMotivationInvite } from './create-motivation-invite.mjs';
 import { resolveCoachMailMode, parseTestRecipients, maySendToRecipient } from '../mail/mail-mode.mjs';
 import { sendResendEmail } from '../mail/resend-client.mjs';
@@ -19,17 +25,44 @@ function httpError(code) {
   return { __httpError: true, status: err.status, error: err.error };
 }
 
-function createdPayload({ expiresAt, emailSent, delivery, recipientEmail = null, inviteUrl = null }) {
+function createdPayload({
+  expiresAt,
+  emailSent,
+  delivery,
+  recipientEmail = null,
+  inviteUrl = null,
+  diagnostics = null,
+}) {
   /** @type {Record<string, unknown>} */
   const body = {
     invite_created: true,
     email_sent: emailSent,
     email_delivery: delivery,
+    delivery,
     expires_at: expiresAt,
   };
   if (recipientEmail) body.recipient_email = recipientEmail;
   if (inviteUrl) body.invite_url = inviteUrl;
+  if (diagnostics) {
+    body.invite_url_has_token = diagnostics.invite_url_has_token;
+    body.invite_url_path = diagnostics.invite_url_path;
+    body.invite_token_fingerprint = diagnostics.invite_token_fingerprint;
+  }
   return body;
+}
+
+function logInviteUrlRejected({ requestId, inviteId, origin, checked }) {
+  logCoachEvent({
+    event: 'motivation_invite_url_rejected',
+    requestId,
+    invite_id: inviteId || '',
+    origin: origin || '',
+    pathname: checked.pathname || '',
+    has_token: checked.has_token === true,
+    invite_token_length: checked.token_length || 0,
+    invite_token_fingerprint: checked.fingerprint || '',
+    reason: checked.reason || 'invalid_url',
+  });
 }
 
 /**
@@ -81,9 +114,27 @@ export async function sendMotivationInvite({
   });
   if (!invite.ok) return httpError(invite.error === 'forbidden' ? 'forbidden' : 'unavailable');
 
-  const inviteUrl = buildMotivationInviteUrl(origin.origin, invite.token);
-  const emailCheck = classifyClientEmail(authorized.client.email);
+  const inviteUrl = buildMotivationInviteUrl(origin.origin, invite.token, {
+    protectionBypass: resolvePreviewProtectionBypass(env, origin.origin),
+  });
+  const checked = assertMotivationInviteUrl(inviteUrl, invite.token);
+  const diagnostics = motivationInviteDiagnostics(checked);
+  if (!checked.ok) {
+    logInviteUrlRejected({
+      requestId,
+      inviteId: invite.inviteId,
+      origin: origin.origin,
+      checked,
+    });
+    return createdPayload({
+      expiresAt: invite.expiresAt,
+      emailSent: false,
+      delivery: 'failed',
+      diagnostics,
+    });
+  }
 
+  const emailCheck = classifyClientEmail(authorized.client.email);
   if (!emailCheck.ok) {
     logCoachEvent({
       event: 'motivation_invite_mail_skipped',
@@ -95,6 +146,7 @@ export async function sendMotivationInvite({
       emailSent: false,
       delivery: emailCheck.reason === 'missing' ? 'skipped_missing_email' : 'skipped_invalid_email',
       inviteUrl,
+      diagnostics,
     });
   }
 
@@ -116,6 +168,7 @@ export async function sendMotivationInvite({
       delivery: 'failed',
       recipientEmail: emailCheck.email,
       inviteUrl,
+      diagnostics,
     });
   }
 
@@ -145,6 +198,7 @@ export async function sendMotivationInvite({
       delivery: 'failed',
       recipientEmail: emailCheck.email,
       inviteUrl,
+      diagnostics,
     });
   }
 
@@ -152,11 +206,18 @@ export async function sendMotivationInvite({
     event: 'motivation_invite_mail_sent',
     requestId,
     email_delivery: 'sent',
+    origin: origin.origin,
+    pathname: checked.pathname,
+    has_token: true,
+    invite_token_length: checked.token_length,
+    invite_token_fingerprint: checked.fingerprint,
   });
   return createdPayload({
     expiresAt: invite.expiresAt,
     emailSent: true,
     delivery: 'sent',
     recipientEmail: emailCheck.email,
+    inviteUrl,
+    diagnostics,
   });
 }

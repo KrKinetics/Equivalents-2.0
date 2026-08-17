@@ -16,6 +16,7 @@ test('public motivation page is KR Kinetics branded and token-gated', () => {
   assert.match(html, /logo-kr-kinetics-horizontal/);
   assert.match(html, /id="consent"/);
   assert.match(html, /pas un diagnostic médical/);
+  assert.match(js, /readMotivationInviteToken/);
   assert.match(js, /get_client_motivation/);
   assert.match(js, /save_client_motivation/);
   assert.match(js, /submit_client_motivation/);

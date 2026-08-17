@@ -1,4 +1,5 @@
 import { getPortalSupabase } from './auth-session.js';
+import { readMotivationInviteToken } from '/src/coach/motivation/client/motivation-invite-token.mjs';
 import {
   LIKERT_LABELS,
 } from '/src/coach/motivation/client/official-bundle.mjs';
@@ -13,7 +14,7 @@ import {
   V41_BASE_CODES,
 } from '/src/coach/motivation/client/public-questionnaire.mjs';
 
-const token = new URLSearchParams(window.location.search).get('token') || '';
+const token = readMotivationInviteToken(window.location);
 const loadingCard = document.getElementById('loading-card');
 const errorCard = document.getElementById('error-card');
 const errorMessage = document.getElementById('error-message');

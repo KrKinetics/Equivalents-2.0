@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { sendMotivationInvite } from '../../src/coach/server/motivation/send-motivation-invite.mjs';
 import { buildMotivationInviteUrl, PRODUCTION_INTAKE_ORIGIN } from '../../src/coach/server/motivation/build-motivation-origin.mjs';
+import { assertMotivationInviteUrl } from '../../src/coach/server/motivation/motivation-invite-link.mjs';
 import { buildMotivationInviteEmail, MOTIVATION_INVITE_SUBJECT } from '../../src/coach/server/mail/motivation-invite-email.mjs';
 import { getRateLimitProfile } from '../../src/coach/server/http/rate-limit-profiles.mjs';
 import { redactForLog } from '../../src/coach/server/http/redact.mjs';
@@ -154,8 +155,15 @@ test('motivation email is French, branded, and contains no scores', () => {
   assert.match(message.html, /Profil motivationnel/);
   assert.match(message.text, /14 jours/);
   assert.doesNotMatch(message.html, /score|analysis_snapshot|rapport officiel/i);
-  assert.match(message.html, /motivation\.html\?token=/);
-  assert.match(url, /motivation\.html\?token=/);
+  const href = message.html.match(/<a href="([^"]+)"/)[1]
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"');
+  const parsed = new URL(href);
+  assert.equal(parsed.pathname, '/motivation.html');
+  assert.equal(parsed.searchParams.get('token'), OPAQUE_TOKEN);
+  assert.equal(assertMotivationInviteUrl(url, OPAQUE_TOKEN).ok, true);
+  assert.match(message.html, /Si le bouton ne fonctionne pas, copiez ce lien complet/);
+  assert.equal(message.text.includes(url), true);
 });
 
 test('motivation invite logs never include the raw token', () => {

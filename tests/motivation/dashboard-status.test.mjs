@@ -109,6 +109,8 @@ test('dashboard wires motivation independently of intake and nutrition', () => {
   assert.match(dashboardJs, /client_motivation_invites/);
   assert.match(dashboardJs, /latestMotivationInviteByClient/);
   assert.match(dashboardJs, /\/api\/coach-send-motivation-invite/);
+  assert.match(dashboardJs, /invite_token_fingerprint/);
+  assert.match(dashboardJs, /jeton présent/);
   assert.match(dashboardJs, /data-group="motivation"/);
   assert.match(dashboardJs, /Profil motivationnel/);
   assert.match(dashboardJs, /btn-motivation-report/);

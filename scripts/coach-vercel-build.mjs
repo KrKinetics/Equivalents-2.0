@@ -195,6 +195,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/client/motivation-dashboard.mjs',
     'src/coach/motivation/client/official-bundle.mjs',
     'src/coach/motivation/client/public-questionnaire.mjs',
+    'src/coach/motivation/client/motivation-invite-token.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',

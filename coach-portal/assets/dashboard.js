@@ -436,10 +436,25 @@ async function sendIntakeInvite(clientId) {
   return data;
 }
 
+function motivationInviteDeliveryHint(result) {
+  const bits = [];
+  if (result?.invite_url_path) bits.push(result.invite_url_path);
+  if (result?.invite_url_has_token === true) bits.push('jeton présent');
+  if (typeof result?.invite_token_fingerprint === 'string' && result.invite_token_fingerprint) {
+    bits.push(`empreinte ${result.invite_token_fingerprint}`);
+  }
+  return bits.join(' · ');
+}
+
 async function applyInviteResult(result) {
   if (result?.email_sent === true) {
     const to = typeof result.recipient_email === 'string' ? result.recipient_email : '';
-    setStatus(to ? `Invitation envoyée à ${to}.` : 'Invitation envoyée.', 'ok');
+    const hint = motivationInviteDeliveryHint(result);
+    setStatus(
+      [to ? `Invitation envoyée à ${to}.` : 'Invitation envoyée.', hint].filter(Boolean).join(' '),
+      'ok',
+    );
+    if (result.invite_url) await copyText(result.invite_url);
     return;
   }
   if (result?.invite_url) {

@@ -40,6 +40,9 @@ export function buildMotivationInviteEmail({ fullName = '', inviteUrl } = {}) {
     '',
     `Compléter mon Profil motivationnel : ${url}`,
     '',
+    'Si le bouton ne fonctionne pas, copiez ce lien complet dans votre navigateur :',
+    url,
+    '',
     'Ce lien est personnel et confidentiel. Il expirera dans 14 jours. Ne le transférez pas.',
     '',
     'KR Kinetics',
@@ -61,8 +64,12 @@ export function buildMotivationInviteEmail({ fullName = '', inviteUrl } = {}) {
             <td style="padding:28px;font-size:16px;line-height:1.55;">
               <p style="margin:0 0 16px;">${safeGreeting}</p>
               <p style="margin:0 0 16px;">Votre coach KR Kinetics vous invite à compléter votre Profil motivationnel. Ces réponses l’aideront à personnaliser votre accompagnement. Ce n’est pas un diagnostic médical ou psychologique.</p>
-              <p style="margin:28px 0;text-align:center;">
+              <p style="margin:28px 0 12px;text-align:center;">
                 <a href="${escapeHtml(url)}" style="background:#ed1136;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:4px;display:inline-block;font-weight:bold;">Compléter mon Profil motivationnel</a>
+              </p>
+              <p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#334155;">Si le bouton ne fonctionne pas, copiez ce lien complet dans votre navigateur :</p>
+              <p style="margin:0 0 16px;font-size:13px;line-height:1.5;word-break:break-all;">
+                <a href="${escapeHtml(url)}" style="color:#071b41;word-break:break-all;">${escapeHtml(url)}</a>
               </p>
               <p style="margin:0 0 16px;">Ce lien est personnel et confidentiel. Il expirera dans 14 jours. Ne le transférez pas.</p>
               <p style="margin:0;">KR Kinetics</p>

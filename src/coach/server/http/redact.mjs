@@ -10,6 +10,7 @@ const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
 const UUID_RE = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi;
 const INTAKE_URL_RE = /intake\.html\?token=[^\s"'<>]+/gi;
 const MOTIVATION_URL_RE = /motivation\.html\?token=[^\s"'<>]+/gi;
+const VERCEL_BYPASS_RE = /x-vercel-protection-bypass=[^&\s"'<>]+/gi;
 
 /**
  * @param {unknown} value
@@ -25,6 +26,7 @@ export function redactForLog(value, depth = 0) {
       .replace(BEARER_RE, 'Bearer [redacted]')
       .replace(INTAKE_URL_RE, 'intake.html?token=[redacted]')
       .replace(MOTIVATION_URL_RE, 'motivation.html?token=[redacted]')
+      .replace(VERCEL_BYPASS_RE, 'x-vercel-protection-bypass=[redacted]')
       .replace(EMAIL_RE, '[redacted-email]')
       .replace(UUID_RE, '[redacted-id]')
       .slice(0, 500);
