@@ -9,9 +9,11 @@ import {
   PRODUCTION_INTAKE_ORIGIN,
   LOCAL_INTAKE_ORIGIN,
 } from '../intake/build-intake-origin.mjs';
+import { resolveClientFacingOrigin } from '../http/client-facing-origin.mjs';
 import { buildMotivationInviteUrl } from './motivation-invite-link.mjs';
 
 export {
+  resolveClientFacingOrigin,
   resolveIntakeOrigin,
   PRODUCTION_INTAKE_ORIGIN,
   LOCAL_INTAKE_ORIGIN,

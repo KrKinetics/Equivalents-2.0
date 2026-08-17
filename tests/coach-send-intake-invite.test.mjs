@@ -15,6 +15,7 @@ import { redactForLog } from '../src/coach/server/http/redact.mjs';
 import { validateIntakeInviteBody } from '../src/coach/server/intake/validate-intake-invite-request.mjs';
 import { classifyClientEmail } from '../src/coach/server/intake/client-email.mjs';
 import { resolveIntakeOrigin, buildIntakeInviteUrl, PRODUCTION_INTAKE_ORIGIN } from '../src/coach/server/intake/build-intake-origin.mjs';
+import { INTEGRATION_PROFIL_MOTIVATIONNEL_ORIGIN } from '../src/coach/server/http/client-facing-origin.mjs';
 import { sendIntakeInvite } from '../src/coach/server/intake/send-intake-invite.mjs';
 import { parseMailFrom, sendResendEmail, RESEND_ENDPOINT } from '../src/coach/server/mail/resend-client.mjs';
 import { resolveCoachMailMode, maySendToRecipient, parseTestRecipients } from '../src/coach/server/mail/mail-mode.mjs';
@@ -142,7 +143,7 @@ async function withHandlerEnv(fetchImpl, fn, extraEnv = {}) {
   const keys = [
     'SUPABASE_URL', 'SUPABASE_PUBLISHABLE_KEY', 'RESEND_API_KEY', 'COACH_MAIL_FROM',
     'COACH_MAIL_MODE', 'COACH_MAIL_TEST_RECIPIENTS', 'VERCEL_ENV', 'VERCEL_URL',
-    'COACH_PUBLIC_ORIGIN', 'COACH_RATE_LIMIT_BACKEND',
+    'VERCEL_GIT_COMMIT_REF', 'COACH_PUBLIC_ORIGIN', 'COACH_RATE_LIMIT_BACKEND',
   ];
   const prev = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
   const originalFetch = globalThis.fetch;
@@ -218,7 +219,7 @@ test('canonical email classification', () => {
   assert.equal(classifyClientEmail('a@b').reason, 'invalid');
 });
 
-test('production origin is app.krkinetics.com; preview uses allowlisted preview origin', () => {
+test('production origin is app.krkinetics.com; preview uses the stable branch alias', () => {
   assert.deepEqual(
     resolveIntakeOrigin({ vercelEnv: 'production', publicOrigin: 'https://evil.example' }),
     { ok: true, origin: PRODUCTION_INTAKE_ORIGIN },
@@ -227,30 +228,42 @@ test('production origin is app.krkinetics.com; preview uses allowlisted preview 
     resolveIntakeOrigin({
       vercelEnv: 'production',
       publicOrigin: 'https://equivalents-2-0-git-x-krkinetics.vercel.app',
+      originHeader: 'https://equivalents-2-0-lytnvua6o-krkinetics-projects.vercel.app',
     }),
     { ok: true, origin: PRODUCTION_INTAKE_ORIGIN },
   );
   assert.deepEqual(
     resolveIntakeOrigin({
       vercelEnv: 'preview',
-      originHeader: 'https://equivalents-2-0-git-x-krkinetics.vercel.app',
-      vercelUrl: 'equivalents-2-0-git-x-krkinetics.vercel.app',
+      vercelGitCommitRef: 'integration/profil-motivationnel',
+      originHeader: 'https://equivalents-2-0-lytnvua6o-krkinetics-projects.vercel.app',
+      vercelUrl: 'equivalents-2-0-lytnvua6o-krkinetics-projects.vercel.app',
     }),
-    { ok: true, origin: 'https://equivalents-2-0-git-x-krkinetics.vercel.app' },
+    { ok: true, origin: INTEGRATION_PROFIL_MOTIVATIONNEL_ORIGIN },
   );
   assert.deepEqual(
     resolveIntakeOrigin({
       vercelEnv: 'preview',
-      originHeader: PRODUCTION_INTAKE_ORIGIN,
+      vercelGitCommitRef: 'other-preview-branch',
+      originHeader: 'https://equivalents-2-0-git-x-krkinetics.vercel.app',
       vercelUrl: 'equivalents-2-0-git-x-krkinetics.vercel.app',
+    }),
+    { ok: false, reason: 'preview_origin_unresolved' },
+  );
+  assert.deepEqual(
+    resolveIntakeOrigin({
+      vercelEnv: 'preview',
+      vercelGitCommitRef: 'other-preview-branch',
+      publicOrigin: 'https://equivalents-2-0-git-x-krkinetics.vercel.app',
+      originHeader: 'https://equivalents-2-0-abc123xyz-krkinetics-projects.vercel.app',
     }),
     { ok: true, origin: 'https://equivalents-2-0-git-x-krkinetics.vercel.app' },
   );
   assert.equal(
     resolveIntakeOrigin({
       vercelEnv: 'preview',
-      originHeader: 'https://evil.example',
-      vercelUrl: 'evil.example',
+      vercelGitCommitRef: 'other-preview-branch',
+      publicOrigin: 'https://equivalents-2-0-lytnvua6o-krkinetics-projects.vercel.app',
     }).ok,
     false,
   );
@@ -582,6 +595,7 @@ test('production mail mode on Preview never calls Resend', async () => {
       VERCEL_ENV: 'preview',
       COACH_MAIL_MODE: 'production',
       VERCEL_URL: 'equivalents-2-0-git-x-krkinetics.vercel.app',
+      VERCEL_GIT_COMMIT_REF: 'integration/profil-motivationnel',
     },
   });
   assert.equal(result.email_sent, false);
@@ -604,6 +618,7 @@ test('test mode blocks non-allowlisted recipients and allows listed ones', async
       COACH_MAIL_MODE: 'test',
       COACH_MAIL_TEST_RECIPIENTS: 'only@test.example',
       VERCEL_URL: 'equivalents-2-0-git-x-krkinetics.vercel.app',
+      VERCEL_GIT_COMMIT_REF: 'integration/profil-motivationnel',
     },
   });
   assert.equal(blockedResult.email_sent, false);
@@ -623,6 +638,7 @@ test('test mode blocks non-allowlisted recipients and allows listed ones', async
       COACH_MAIL_MODE: 'test',
       COACH_MAIL_TEST_RECIPIENTS: CLIENT_EMAIL,
       VERCEL_URL: 'equivalents-2-0-git-x-krkinetics.vercel.app',
+      VERCEL_GIT_COMMIT_REF: 'integration/profil-motivationnel',
     },
   });
   assert.equal(allowedResult.email_sent, true);
@@ -788,6 +804,10 @@ test('static: dashboard uses the API, pending UI, and never browser RPC', () => 
   assert.doesNotMatch(example, /^RESEND_API_KEY=\S+/m);
   assert.match(intakeJs, /rpc\('get_client_intake'/);
   assert.match(fs.readFileSync(path.join(root, 'src/coach/server/intake/build-intake-origin.mjs'), 'utf8'), /intake\.html\?token=/);
+  assert.match(
+    fs.readFileSync(path.join(root, 'src/coach/server/intake/build-intake-origin.mjs'), 'utf8'),
+    /resolveClientFacingOrigin/,
+  );
 });
 
 test('static: PR #36 nutrition CTA gating is unchanged in dashboard', () => {

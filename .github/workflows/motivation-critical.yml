@@ -7,6 +7,8 @@ on:
     paths:
       - 'src/coach/motivation/**'
       - 'src/coach/server/motivation/**'
+      - 'src/coach/server/http/client-facing-origin.mjs'
+      - 'tests/intake/client-facing-origin.test.mjs'
       - 'coach-portal/**'
       - 'api/coach-motivation.js'
       - 'tests/motivation/**'
@@ -19,6 +21,8 @@ on:
     paths:
       - 'src/coach/motivation/**'
       - 'src/coach/server/motivation/**'
+      - 'src/coach/server/http/client-facing-origin.mjs'
+      - 'tests/intake/client-facing-origin.test.mjs'
       - 'coach-portal/**'
       - 'api/coach-motivation.js'
       - 'tests/motivation/**'

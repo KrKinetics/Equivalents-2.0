@@ -1,32 +1,19 @@
 /**
  * Allowlisted origin for /intake.html?token=… links.
- * Never trusts body.origin, Host, or X-Forwarded-Host.
+ * Delegates to the shared client-facing origin resolver.
+ * Never trusts body.origin, Host, X-Forwarded-Host, or an immutable Vercel deploy.
  */
 
-import { allowedCorsOrigin } from '../../security/portal-auth.mjs';
+import {
+  LOCAL_CLIENT_ORIGIN,
+  PRODUCTION_CLIENT_ORIGIN,
+  allowlistedOrigin,
+  resolveClientFacingOrigin,
+} from '../http/client-facing-origin.mjs';
 
-export const PRODUCTION_INTAKE_ORIGIN = 'https://app.krkinetics.com';
-export const LOCAL_INTAKE_ORIGIN = 'http://127.0.0.1:4190';
-
-/**
- * @param {unknown} raw
- * @returns {string|null}
- */
-export function allowlistedOrigin(raw) {
-  if (raw == null || raw === '') return null;
-  try {
-    const value = String(raw).trim();
-    const candidate = value.includes('://') ? value : `https://${value.replace(/^\/+/, '')}`;
-    const parsed = new URL(candidate);
-    if (parsed.protocol !== 'https:' && parsed.hostname !== '127.0.0.1' && parsed.hostname !== 'localhost') {
-      return null;
-    }
-    const allowed = allowedCorsOrigin(parsed.origin);
-    return allowed ? allowed.replace(/\/$/, '') : null;
-  } catch {
-    return null;
-  }
-}
+export const PRODUCTION_INTAKE_ORIGIN = PRODUCTION_CLIENT_ORIGIN;
+export const LOCAL_INTAKE_ORIGIN = LOCAL_CLIENT_ORIGIN;
+export { allowlistedOrigin };
 
 /**
  * @param {object} [opts]
@@ -34,6 +21,7 @@ export function allowlistedOrigin(raw) {
  * @param {string} [opts.vercelEnv]
  * @param {string} [opts.vercelUrl]
  * @param {string} [opts.publicOrigin]
+ * @param {string} [opts.vercelGitCommitRef]
  * @returns {{ ok: true, origin: string } | { ok: false, reason: string }}
  */
 export function resolveIntakeOrigin({
@@ -41,26 +29,15 @@ export function resolveIntakeOrigin({
   vercelEnv = process.env.VERCEL_ENV,
   vercelUrl = process.env.VERCEL_URL,
   publicOrigin = process.env.COACH_PUBLIC_ORIGIN,
+  vercelGitCommitRef = process.env.VERCEL_GIT_COMMIT_REF,
 } = {}) {
-  const env = String(vercelEnv || '').toLowerCase();
-
-  if (env === 'production') {
-    return { ok: true, origin: PRODUCTION_INTAKE_ORIGIN };
-  }
-
-  if (env === 'preview') {
-    const fromVercel = allowlistedOrigin(vercelUrl);
-    if (fromVercel) return { ok: true, origin: fromVercel };
-    const fromRequest = allowlistedOrigin(originHeader);
-    if (fromRequest && fromRequest !== PRODUCTION_INTAKE_ORIGIN) {
-      return { ok: true, origin: fromRequest };
-    }
-    return { ok: false, reason: 'preview_origin_unresolved' };
-  }
-
-  const fromRequest = allowlistedOrigin(originHeader);
-  if (fromRequest) return { ok: true, origin: fromRequest };
-  return { ok: true, origin: LOCAL_INTAKE_ORIGIN };
+  void vercelUrl;
+  return resolveClientFacingOrigin({
+    environment: vercelEnv,
+    requestOrigin: originHeader,
+    vercelGitCommitRef,
+    publicOrigin,
+  });
 }
 
 /**

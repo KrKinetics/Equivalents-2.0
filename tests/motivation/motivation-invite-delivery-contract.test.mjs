@@ -29,6 +29,7 @@ const RAW_TOKEN_B = 'raw_invite_token_resend_B_24chxx';
 const ENCODED_TOKEN = 'Tok+en/with=equals&ampersand?x';
 const PREVIEW_HOST = 'equivalents-2-0-git-integration-prof-57a4cb-krkinetics-projects.vercel.app';
 const PREVIEW_ORIGIN = `https://${PREVIEW_HOST}`;
+const PREVIEW_GIT_REF = 'integration/profil-motivationnel';
 const PREVIEW_LIVE = `${PREVIEW_ORIGIN}/motivation.html?token=${encodeURIComponent('TEST_TOKEN_ROUNDTRIP_24CH')}`;
 
 const BASE_ENV = {
@@ -38,6 +39,7 @@ const BASE_ENV = {
   COACH_MAIL_FROM: 'KR Kinetics <invitations@example.com>',
   COACH_MAIL_MODE: 'test',
   COACH_MAIL_TEST_RECIPIENTS: CLIENT_EMAIL,
+  VERCEL_GIT_COMMIT_REF: PREVIEW_GIT_REF,
 };
 
 function jsonResponse(status, payload) {
@@ -156,6 +158,7 @@ test('preview origin: raw token survives URL, HTML, text and Resend JSON', async
     env: {
       VERCEL_ENV: 'preview',
       VERCEL_URL: PREVIEW_HOST,
+      VERCEL_GIT_COMMIT_REF: PREVIEW_GIT_REF,
     },
   });
   assert.equal(result.invite_created, true);

@@ -116,6 +116,7 @@ test('preview mail is fail-closed for non-allowlisted recipients', async () => {
       COACH_MAIL_TEST_RECIPIENTS: 'other@example.com',
       VERCEL_ENV: 'preview',
       VERCEL_URL: 'integration-profil-motivationnel-krkinetics.vercel.app',
+      VERCEL_GIT_COMMIT_REF: 'integration/profil-motivationnel',
     },
   });
   assert.equal(result.invite_created, true);
@@ -139,6 +140,7 @@ test('production mail mode is fail-closed outside VERCEL_ENV=production', async 
       COACH_MAIL_MODE: 'production',
       VERCEL_ENV: 'preview',
       VERCEL_URL: 'integration-profil-motivationnel-krkinetics.vercel.app',
+      VERCEL_GIT_COMMIT_REF: 'integration/profil-motivationnel',
     },
   });
   assert.equal(result.invite_created, true);

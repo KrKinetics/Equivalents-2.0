@@ -95,6 +95,7 @@ export async function sendMotivationInvite({
     vercelEnv: env.VERCEL_ENV,
     vercelUrl: env.VERCEL_URL,
     publicOrigin: env.COACH_PUBLIC_ORIGIN,
+    vercelGitCommitRef: env.VERCEL_GIT_COMMIT_REF,
   });
   if (!origin.ok) {
     logCoachEvent({
