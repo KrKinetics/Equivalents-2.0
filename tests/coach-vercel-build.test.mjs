@@ -123,6 +123,7 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'workspace/assets/logo-kr-kinetics-horizontal.png',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake/intake-anthropometrics.mjs',
+    'src/coach/intake/planning-landmarks-view.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',
     'src/coach/intake-report/build-intake-report-html.mjs',

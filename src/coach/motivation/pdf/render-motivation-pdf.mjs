@@ -71,6 +71,8 @@ export async function renderMotivationPdf(reportSnapshot, options = {}) {
     submittedAt: options.submittedAt ?? snapshot.metadata?.completedAt ?? null,
     analyzedAt: options.analyzedAt ?? snapshot.metadata?.analyzedAt ?? null,
     analysisVersion: options.analysisVersion ?? snapshot.metadata?.analysisVersion ?? null,
+    planningLandmarks: options.planningLandmarks || null,
+    context: options.context || null,
     provenance: {
       questionnaireVersion: snapshot.metadata?.questionnaireVersion,
       rulesetVersion: snapshot.metadata?.rulesetVersion,

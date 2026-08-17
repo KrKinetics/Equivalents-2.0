@@ -70,6 +70,8 @@ export async function generateOfficialMotivationPdf({
       analyzedAt: processed.createdAt || processed.provenance?.analyzedAt || null,
       submittedAt: processed.submittedAt || null,
       contentHash: processed.provenance?.contentHash || '',
+      planningLandmarks: processed.planningLandmarks || null,
+      context: processed.analysisSnapshot?.context || null,
     });
     const pdf = Buffer.isBuffer(rendered) ? rendered : rendered?.buffer;
     if (!Buffer.isBuffer(pdf)) return { ok: false, error: 'unavailable' };

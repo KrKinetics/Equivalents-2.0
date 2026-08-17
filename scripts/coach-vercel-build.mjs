@@ -210,6 +210,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/engine/narrative-selection.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake/intake-anthropometrics.mjs',
+    'src/coach/intake/planning-landmarks-view.mjs',
     'src/coach/workspace/workspace-intake-landmarks.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',

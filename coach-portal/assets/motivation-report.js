@@ -141,6 +141,7 @@ function renderOfficialReport(currentClient, processed) {
     analyzedAt: processed.analyzed_at || processed.provenance?.analyzedAt || null,
     analysisVersion: processed.analysis_version,
     provenance: processed.provenance,
+    planningLandmarks: processed.planning_landmarks || null,
   });
   reportRoot.innerHTML = buildMotivationReportMarkup(viewModel, { logoSrc: KR_LOGO_SRC });
   document.title = `${viewModel.title} — ${viewModel.clientName}`;

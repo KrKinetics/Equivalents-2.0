@@ -123,6 +123,17 @@
   font-weight: 650;
 }
 
+.motivation-hero .intake-report-landmarks,
+.motivation-hero-landmarks {
+  margin: 16px 0 0;
+}
+
+.motivation-landmarks-caption {
+  margin: 10px 0 0;
+  color: var(--muted, #64748b);
+  font-size: 0.78rem;
+}
+
 .motivation-badge {
   display: inline-flex;
   align-items: center;

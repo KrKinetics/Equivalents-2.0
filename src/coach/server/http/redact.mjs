@@ -3,7 +3,7 @@
  * Never log tokens, cookies, passwords, magic links, PII, bank dumps, or PDF HTML.
  */
 
-const SENSITIVE_KEY = /^(authorization|cookie|password|access_token|refresh_token|token|apikey|api_key|service_role|coach_notes|notes|email|html|body|raw|invite_url|from|recipient_email|mail_from|text|answers|questionnaire|phone|full_name|payload|age_years|ageYears|height_unit|height_feet|height_inches|height_cm|heightCm|heightFeet|heightInches|heightDisplay|weight_lb|weight_kg|weightLb|weightKg|weightDisplay|anthropometrics)$/i;
+const SENSITIVE_KEY = /^(authorization|cookie|password|access_token|refresh_token|token|apikey|api_key|service_role|coach_notes|notes|email|html|body|raw|invite_url|from|recipient_email|mail_from|text|answers|questionnaire|phone|full_name|payload|age_years|ageYears|age|height_unit|height_feet|height_inches|height_cm|heightCm|heightFeet|heightInches|heightDisplay|heightPrimary|heightSecondary|weight_lb|weight_kg|weightLb|weightKg|weightDisplay|weightPrimary|weightSecondary|anthropometrics|planningLandmarks|planning_landmarks|intakePlanning|sourceIntakeResponseId)$/i;
 const JWT_RE = /eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9._-]+/g;
 const BEARER_RE = /Bearer\s+[A-Za-z0-9._~+/=-]+/gi;
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;

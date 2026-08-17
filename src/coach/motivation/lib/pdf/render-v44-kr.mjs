@@ -263,6 +263,50 @@ function drawIdentityHero(layout, hero, logoPath) {
   layout.record('hero');
 }
 
+function hasPlanningLandmarks(landmarks) {
+  return Boolean(landmarks && (landmarks.age || landmarks.heightPrimary || landmarks.weightPrimary));
+}
+
+function drawPlanningLandmarks(layout, landmarks) {
+  if (!hasPlanningLandmarks(landmarks)) return;
+  const cards = [
+    { label: 'Âge', primary: landmarks.age },
+    { label: 'Grandeur', primary: landmarks.heightPrimary, secondary: landmarks.heightSecondary },
+    { label: 'Poids déclaré', primary: landmarks.weightPrimary, secondary: landmarks.weightSecondary },
+  ].filter((card) => card.primary);
+  if (!cards.length) return;
+
+  const caption = t(landmarks.sourceCaption || '');
+  const colW = (layout.width - 20) / cards.length;
+  const boxH = 18 + 12 + 36 + (caption ? 14 : 0) + 10;
+  layout.ensure(boxH + 8);
+  const x = layout.left;
+  const y = layout.y;
+  layout.doc.save();
+  layout.doc.roundedRect(x, y, layout.width, boxH, 6).fill('#f6f8fc');
+  layout.doc.roundedRect(x, y, layout.width, boxH, 6).lineWidth(0.8).strokeColor(KR_V42_COLORS.border).stroke();
+  layout.doc.restore();
+  layout.setFont(true, 8, KR_V42_COLORS.primary);
+  layout.doc.text('REPÈRES DE PLANIFICATION', x + 10, y + 8, { width: layout.width - 20 });
+  cards.forEach((card, index) => {
+    const cx = x + 10 + index * colW;
+    layout.setFont(true, 7, KR_V42_COLORS.muted);
+    layout.doc.text(card.label.toUpperCase(), cx, y + 24, { width: colW - 8 });
+    layout.setFont(true, 11, KR_V42_COLORS.text);
+    layout.doc.text(t(card.primary), cx, y + 34, { width: colW - 8 });
+    if (card.secondary) {
+      layout.setFont(false, 8, KR_V42_COLORS.muted);
+      layout.doc.text(t(card.secondary), cx, y + 48, { width: colW - 8 });
+    }
+  });
+  if (caption) {
+    layout.setFont(false, 7.5, KR_V42_COLORS.muted);
+    layout.doc.text(caption, x + 10, y + boxH - 16, { width: layout.width - 20 });
+  }
+  layout.y = y + boxH + 10;
+  layout.record('planning-landmarks');
+}
+
 function drawFindingRow(layout, row) {
   const label = t(row.label);
   const primary = row.displayLabel || findingPrimaryLabel(row);
@@ -562,6 +606,7 @@ export async function renderCoachReportPdfV44Kr({ display, presentation = null, 
   });
 
   drawIdentityHero(layout, model.hero, logoPath);
+  drawPlanningLandmarks(layout, model.hero?.planningLandmarks || vm.planningLandmarks);
   for (const section of model.sections) {
     drawSection(layout, section);
   }

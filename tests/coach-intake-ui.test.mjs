@@ -37,6 +37,9 @@ test('client intake is a four-step, short, branded experience', () => {
   assert.match(css, /--brand-accent: #ed1136/);
   assert.match(css, /\.intake-page\[data-brand="elevate"\]/);
   assert.match(css, /\.intake-brand-logo/);
+  assert.match(css, /\.intake-actions button\.secondary \{/);
+  assert.match(css, /\.intake-actions button\.secondary:hover/);
+  assert.match(intakeHtml, /aria-label="Retour à l’étape précédente"/);
   assert.ok(fs.existsSync(path.join(root, 'coach-portal/assets/logo-kr-kinetics-horizontal.png')));
   assert.ok(fs.existsSync(path.join(root, 'coach-portal/assets/logo-elevate-fitness.jpg')));
 });

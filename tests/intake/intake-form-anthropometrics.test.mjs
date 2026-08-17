@@ -52,6 +52,7 @@ test('anthropometrics stay off the global dashboard and out of URLs', () => {
 test('public intake can load the conversion helper; intake-report stays protected', () => {
   assert.equal(isProtectedPath('/src/coach/intake/intake-anthropometrics.mjs'), false);
   assert.equal(isPublicPath('/src/coach/intake/intake-anthropometrics.mjs'), true);
+  assert.equal(isPublicPath('/src/coach/intake/planning-landmarks-view.mjs'), true);
   assert.equal(isProtectedPath('/src/coach/intake-report/intake-report-view-model.mjs'), true);
   assert.match(middleware, /pathname\.startsWith\('\/src\/coach\/intake\/'\)/);
 });

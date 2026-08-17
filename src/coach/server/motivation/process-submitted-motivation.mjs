@@ -20,6 +20,11 @@ import {
   readMotivationServiceRoleKey,
 } from './persist-trusted-analysis.mjs';
 import { logCoachEvent } from '../http/redact.mjs';
+import {
+  loadClientPlanningLandmarks,
+  planningLandmarksFromAnalysisSnapshot,
+  toIntakePlanningContext,
+} from '../intake/load-client-planning-landmarks.mjs';
 
 function logUnavailable(stage, error = null, extra = {}) {
   const details = error?.details && typeof error.details === 'object' ? error.details : {};
@@ -78,6 +83,9 @@ function toResult(row, extras = {}) {
     submittedAt: extras.submittedAt || null,
     analysisSnapshot: extras.analysisSnapshot || row.analysis_snapshot || null,
     client: extras.client || null,
+    planningLandmarks: planningLandmarksFromAnalysisSnapshot(
+      extras.analysisSnapshot || row.analysis_snapshot || null,
+    ),
     provenance: {
       ...provenance,
       analyzedAt: createdAt,
@@ -178,6 +186,22 @@ export async function processSubmittedMotivationAssessment({
       contentHash: analyzed.provenance.contentHash,
     },
   };
+
+  const planning = await loadClientPlanningLandmarks({
+    accessToken,
+    organizationId,
+    clientId: client.id,
+    submittedBeforeOrAt: response.submitted_at || null,
+    supabaseUrl,
+    publishableKey,
+    fetchImpl,
+  });
+  const intakePlanning = planning && planning.clientId === client.id
+    ? toIntakePlanningContext(planning)
+    : null;
+  if (intakePlanning) {
+    analysisSnapshot.context = { intakePlanning };
+  }
 
   const coachUserId = createdByUserId || userIdFromAccessToken(accessToken);
   const role = serviceRoleKey || readMotivationServiceRoleKey(env).serviceRoleKey;

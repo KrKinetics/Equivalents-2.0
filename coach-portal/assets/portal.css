@@ -586,6 +586,18 @@ dialog::backdrop { background: rgba(7, 27, 65, 0.68); }
   background: var(--brand-primary);
   font-size: 0.9rem;
 }
+.intake-actions button.secondary {
+  background: #fff;
+  color: var(--brand-primary);
+  border: 1px solid var(--border);
+}
+.intake-actions button.secondary:hover,
+.intake-actions button.secondary:focus-visible {
+  background: #f4f7fb;
+  color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  filter: none;
+}
 .intake-actions .secondary { margin-right: auto; }
 .intake-actions .intake-submit { background: var(--brand-accent); }
 .intake-privacy { margin: 14px 0 0; color: rgba(255, 255, 255, 0.66); text-align: center; font-size: 0.72rem; letter-spacing: 0.03em; }

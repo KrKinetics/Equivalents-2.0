@@ -54,7 +54,32 @@ function heroMarkup(vm, logoSrc) {
           ? `<span class="motivation-badge motivation-badge-confidence">${esc(vm.reportConfidence?.coachLabel || vm.hero.reportConfidence.coachLabel)}</span>`
           : ''}
       </div>
+      ${planningLandmarksMarkup(vm.planningLandmarks || vm.hero?.planningLandmarks)}
     </header>
+  `;
+}
+
+function planningLandmarksMarkup(landmarks) {
+  if (!landmarks?.age && !landmarks?.heightPrimary && !landmarks?.weightPrimary) return '';
+  const cards = [
+    { label: 'Âge', primary: landmarks.age },
+    { label: 'Grandeur', primary: landmarks.heightPrimary, secondary: landmarks.heightSecondary },
+    { label: 'Poids déclaré', primary: landmarks.weightPrimary, secondary: landmarks.weightSecondary },
+  ].filter((card) => card.primary);
+  if (!cards.length) return '';
+  const items = cards.map((card) => `
+    <div class="intake-report-landmark">
+      <p class="intake-report-landmark-label">${esc(card.label)}</p>
+      <p class="intake-report-landmark-primary">${esc(card.primary)}</p>
+      ${card.secondary ? `<p class="intake-report-landmark-secondary">${esc(card.secondary)}</p>` : ''}
+    </div>
+  `).join('');
+  return `
+    <section class="intake-report-landmarks motivation-hero-landmarks" data-section="planning-landmarks">
+      <h2 class="intake-report-landmarks-title">REPÈRES DE PLANIFICATION</h2>
+      <div class="intake-report-landmarks-grid">${items}</div>
+      ${landmarks.sourceCaption ? `<p class="motivation-landmarks-caption">${esc(landmarks.sourceCaption)}</p>` : ''}
+    </section>
   `;
 }
 
@@ -488,6 +513,7 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '', presentat
         analyzedAt: model.hero.analyzedAt,
         analysisVersion: model.hero.analysisVersion,
         reportConfidence: model.hero.reportConfidence,
+        planningLandmarks: model.hero.planningLandmarks || vm.planningLandmarks,
         hero: model.hero,
       }, logoSrc)}
       <div class="motivation-report-body">

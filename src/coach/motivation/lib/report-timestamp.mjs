@@ -20,6 +20,21 @@ export function formatCoachDateTime(value, timezone = COACH_REPORT_TIMEZONE) {
     }).format(date);
 }
 
+/**
+ * Visible Coach date only. Example: "17 août 2026"
+ */
+export function formatCoachDate(value, timezone = COACH_REPORT_TIMEZONE) {
+    if (value == null || value === '') return '';
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return new Intl.DateTimeFormat('fr-CA', {
+        timeZone: timezone,
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    }).format(date);
+}
+
 export function getReportTimestamp(params) {
     const timezone = params.timezone ?? COACH_REPORT_TIMEZONE;
     const date = params.date;

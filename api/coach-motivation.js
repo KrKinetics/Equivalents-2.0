@@ -110,6 +110,7 @@ async function handleProcessAssessment(req, res) {
         analyzed_at: result.createdAt || null,
         submitted_at: result.submittedAt || null,
         provenance: result.provenance,
+        planning_landmarks: result.planningLandmarks || null,
       };
     },
   });

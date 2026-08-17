@@ -186,6 +186,7 @@ export function buildMotivationReportPresentation(viewModel = {}) {
     analyzedAt: vm.analyzedAt || vm.hero?.analyzedAt || null,
     analysisVersion: vm.analysisVersion ?? vm.hero?.analysisVersion ?? null,
     reportConfidence: vm.reportConfidence || vm.hero?.reportConfidence || null,
+    planningLandmarks: vm.planningLandmarks || vm.hero?.planningLandmarks || null,
   };
 
   const nutritionCardCount = nutritionAction?.cards?.length

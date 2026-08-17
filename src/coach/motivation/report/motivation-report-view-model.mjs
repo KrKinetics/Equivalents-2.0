@@ -25,6 +25,7 @@ import {
   qualifyLegacyPlanLine,
   qualifyNarrativeClaim,
 } from './presentation-claim-consistency.mjs';
+import { presentPlanningLandmarks } from '../../intake/planning-landmarks-view.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -383,6 +384,24 @@ function nutritionBlock(report, plan) {
  *   provenance?: object|null,
  * }} input
  */
+function resolvePlanningLandmarks(input = {}) {
+  const reportClientId = text(input.identity?.clientId || input.clientId || input.report?.metadata?.clientId);
+  const candidates = [
+    input.planningLandmarks,
+    input.context?.intakePlanning,
+    input.report?.context?.intakePlanning,
+    input.analysisSnapshot?.context?.intakePlanning,
+  ];
+  for (const raw of candidates) {
+    const presented = presentPlanningLandmarks(raw);
+    if (!presented) continue;
+    const landmarkClient = text(raw?.clientId);
+    if (landmarkClient && reportClientId && landmarkClient !== reportClientId) continue;
+    return presented;
+  }
+  return null;
+}
+
 export function buildMotivationReportViewModel(input = {}) {
   const report = input.report && typeof input.report === 'object' ? input.report : {};
   const plan = report.initialPlan && typeof report.initialPlan === 'object' ? report.initialPlan : {};
@@ -634,6 +653,8 @@ export function buildMotivationReportViewModel(input = {}) {
     items: allDimensions.filter((row) => def.ids.includes(row.id)),
   })).filter((group) => group.items.length);
 
+  const planningLandmarks = resolvePlanningLandmarks(input);
+
   const justifiedQuickRead = quickRead.map((item) => {
     const justification = item.id === 'preparation'
       ? text(readiness.explanation || plan.followUpRationale)
@@ -659,6 +680,7 @@ export function buildMotivationReportViewModel(input = {}) {
     analyzedAt: input.analyzedAt || null,
     analysisVersion: input.analysisVersion ?? null,
     sections,
+    planningLandmarks,
     hero: {
       title: 'Profil motivationnel',
       clientName: text(input.identity?.fullName || input.clientName || report.metadata?.clientName),
@@ -667,6 +689,7 @@ export function buildMotivationReportViewModel(input = {}) {
       analyzedAt: input.analyzedAt || null,
       analysisVersion: input.analysisVersion ?? null,
       reportConfidence,
+      planningLandmarks,
     },
     coachDecisionBrief: presentedDecisionBrief,
     coachPriorities: ((report.coachPriorities || []).length
