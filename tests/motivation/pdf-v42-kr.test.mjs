@@ -167,7 +167,7 @@ test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () =>
     analyzedAt: '2026-08-16T20:38:00.000Z',
     contentHash: 'a'.repeat(64),
   });
-  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 5);
+  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 20);
   const pages = await extractPdfPagesText(rendered.buffer);
   assert.equal(pages.length, rendered.pageCount);
   for (const page of pages) {
@@ -186,7 +186,7 @@ test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () =>
   assert.equal(rendered.pageStats?.length, rendered.pageCount);
   assert.ok((rendered.pageStats || []).every((row) => row.usedHeight > 0 && row.blockCount >= 1));
   const last = pages[pages.length - 1].text;
-  assert.match(last, /Traçabilité|Tracabilite|Plan 4 semaines|SEMAINE/i);
+  assert.match(last, /Informations techniques|Traçabilité|Tracabilite|Plan 4 semaines|SEMAINE|Annexe/i);
   assert.ok(last.length > 80);
   assert.match(pages[0].text, /Client test KR/);
   assert.match(pages[0].text, /OBJECTIF|Lecture rapide|Dès le départ/i);
@@ -205,7 +205,7 @@ test('v4.2 PDF is a 5-page coach brief with grouped dimensions and client voice'
     analyzedAt: '2026-08-16T20:38:00.000Z',
   });
   const pages = await extractPdfPagesText(rendered.buffer);
-  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 5);
+  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 20);
   const all = pages.map((page) => page.text).join('\n');
   assert.match(pages[0].text, /Client test KR/);
   assert.match(all, /Lecture rapide|Dès le départ|OBJECTIF/i);

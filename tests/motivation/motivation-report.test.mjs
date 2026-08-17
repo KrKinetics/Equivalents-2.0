@@ -223,6 +223,7 @@ test('coach report hierarchy uses existing snapshot values only', () => {
     'quick-read',
     'portrait-coach',
     'operating-brief',
+    'coach-narrative',
     'priorities',
     'risk-buckets',
     'interview',

@@ -535,3 +535,14 @@
   background: #e8eef8;
   color: var(--primary, #071b41);
 }
+
+.motivation-narrative-part {
+  margin: 0 0 16px;
+  padding: 0 0 4px;
+}
+
+.motivation-narrative-part h3 {
+  margin: 0 0 8px;
+  color: var(--primary, #071b41);
+  font-size: 0.95rem;
+}

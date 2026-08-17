@@ -4,6 +4,7 @@
  */
 
 import { formatCoachDateTime } from '../lib/report-timestamp.mjs';
+import { buildMotivationReportPresentation } from './build-motivation-report-presentation.mjs';
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
@@ -386,33 +387,111 @@ function interviewDetailedMarkup(items) {
   `;
 }
 
-export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
+function decisionBriefMarkup(section) {
+  if (!section) return '';
+  return `
+    <section class="motivation-card" data-section="decision-brief">
+      <h2 class="motivation-section-title">${esc(section.title)}</h2>
+      ${section.athleteGoal ? `<p class="motivation-prose"><strong>Objectif de l'athlète.</strong> « ${esc(section.athleteGoal)} »</p>` : ''}
+      ${section.successDescribed ? `<p class="motivation-prose"><strong>Réussite décrite.</strong> « ${esc(section.successDescribed)} »</p>` : ''}
+      <p class="motivation-prose"><strong>Pourquoi maintenant.</strong> ${esc(section.whyNow)}</p>
+      ${section.startActions?.length ? `<h3>Dès le départ</h3><ol class="motivation-priority-list">${section.startActions.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>` : ''}
+      ${section.avoidAtStart?.length ? `<h3>À éviter au départ</h3><ul class="motivation-report-list">${section.avoidAtStart.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+      ${section.confirmNow?.length ? `<h3>À confirmer</h3><ul class="motivation-report-list">${section.confirmNow.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+    </section>
+  `;
+}
+
+function narrativeMarkup(section) {
+  if (!section?.parts?.length) return '';
+  return `
+    <section class="motivation-card motivation-narrative" data-section="coach-narrative">
+      <h2 class="motivation-section-title">${esc(section.title)}</h2>
+      ${section.parts.map((part) => `
+        <article class="motivation-narrative-part" data-narrative="${esc(part.id)}">
+          <h3>${esc(part.title)}</h3>
+          ${(part.paragraphs || []).map((line) => `<p class="motivation-prose">${esc(line)}</p>`).join('')}
+        </article>
+      `).join('')}
+    </section>
+  `;
+}
+
+function renderPresentationSection(section, presentation) {
+  if (!section) return '';
+  if (section.kind === 'quick-read') return quickReadMarkup(section.items);
+  if (section.kind === 'decision-brief') return decisionBriefMarkup(section);
+  if (section.kind === 'portrait') return portraitMarkup(section.items);
+  if (section.kind === 'operating-brief') {
+    return briefMarkup({
+      primaryGoal: section.rows.find((row) => row[0] === 'Objectif prioritaire')?.[1],
+      whyNow: section.rows.find((row) => row[0] === 'Pourquoi maintenant')?.[1],
+      successDefinition: section.rows.find((row) => row[0] === 'Définition de réussite')?.[1],
+      recoveryStrategy: section.rows.find((row) => row[0] === 'Reprise')?.[1],
+      structurePreference: section.rows.find((row) => row[0] === 'Structure')?.[1],
+      choicePreference: section.rows.find((row) => row[0] === 'Choix')?.[1],
+      communicationPreference: section.rows.find((row) => row[0] === 'Communication')?.[1],
+      nutritionFocus: section.rows.find((row) => row[0] === 'Focus alimentaire')?.[1],
+    });
+  }
+  if (section.kind === 'narrative') return narrativeMarkup(section);
+  if (section.kind === 'numbered-list') return numberedMarkup(section.id, section.title, section.items, 'motivation-priorities');
+  if (section.kind === 'risk-buckets') {
+    return riskBucketsMarkup({
+      risksToPrevent: section.buckets.find((row) => row[2] === 'risks')?.[1],
+      hypothesesToTest: section.buckets.find((row) => row[2] === 'hypotheses')?.[1],
+      contradictionsToResolve: section.buckets.find((row) => row[2] === 'contradictions')?.[1],
+    }, section.conflicts);
+  }
+  if (section.kind === 'interview') return interviewDetailedMarkup(section.items);
+  if (section.kind === 'verbatims') return verbatimMarkup(section.items);
+  if (section.kind === 'dimensions') {
+    return dimensionsMarkup({
+      decisionFactors: section.factors,
+      dimensionGroups: section.groups,
+    });
+  }
+  if (section.kind === 'nutrition') {
+    return nutritionMarkup(section.nutrition, section.action, section.organized);
+  }
+  if (section.kind === 'plan') return weekPlanMarkup(section.weeks, section.testable);
+  if (section.kind === 'dimension-appendix' && section.webAsDetails) return '';
+  if (section.kind === 'technical') {
+    return technicalMarkup(Object.fromEntries(section.rows.map(([label, value]) => {
+      const map = {
+        Questionnaire: 'questionnaireVersion',
+        Ruleset: 'rulesetVersion',
+        'Modèle de rapport': 'reportModelVersion',
+        'Version d’analyse': 'analysisVersion',
+        Empreinte: 'contentHash',
+        'Renderer PDF': 'pdfRenderer',
+        Soumission: 'submittedAt',
+        Analyse: 'analyzedAt',
+      };
+      return [map[label] || label, value];
+    })));
+  }
+  return '';
+}
+
+export function buildMotivationReportMarkup(viewModel, { logoSrc = '', presentation = null } = {}) {
   const vm = viewModel || {};
+  const model = presentation || buildMotivationReportPresentation(vm);
   return `
     <article class="intake-report motivation-report">
-      ${heroMarkup(vm, logoSrc)}
+      ${heroMarkup({
+        ...vm,
+        title: model.hero.title,
+        identity: model.hero.identity,
+        clientName: model.hero.clientName,
+        submittedAt: model.hero.submittedAt,
+        analyzedAt: model.hero.analyzedAt,
+        analysisVersion: model.hero.analysisVersion,
+        reportConfidence: model.hero.reportConfidence,
+        hero: model.hero,
+      }, logoSrc)}
       <div class="motivation-report-body">
-        ${quickReadMarkup(vm.quickRead)}
-        ${vm.coachDecisionBrief ? `
-        <section class="motivation-card" data-section="decision-brief">
-          <h2 class="motivation-section-title">Brief de coaching</h2>
-          ${vm.coachDecisionBrief.athleteGoal ? `<p class="motivation-prose"><strong>Objectif de l'athlète.</strong> « ${esc(vm.coachDecisionBrief.athleteGoal)} »</p>` : ''}
-          ${vm.coachDecisionBrief.successDescribed ? `<p class="motivation-prose"><strong>Réussite décrite.</strong> « ${esc(vm.coachDecisionBrief.successDescribed)} »</p>` : ''}
-          <p class="motivation-prose"><strong>Pourquoi maintenant.</strong> ${esc(vm.coachDecisionBrief.whyNowCaptured ? vm.coachDecisionBrief.whyNow : 'À clarifier en entrevue')}</p>
-          ${vm.coachDecisionBrief.startActions?.length ? `<h3>Dès le départ</h3><ol class="motivation-priority-list">${vm.coachDecisionBrief.startActions.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>` : ''}
-          ${vm.coachDecisionBrief.avoidAtStart?.length ? `<h3>À éviter au départ</h3><ul class="motivation-report-list">${vm.coachDecisionBrief.avoidAtStart.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
-          ${vm.coachDecisionBrief.confirmNow?.length ? `<h3>À confirmer</h3><ul class="motivation-report-list">${vm.coachDecisionBrief.confirmNow.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
-        </section>` : ''}
-        ${portraitMarkup(vm.portraitCoach)}
-        ${briefMarkup(vm.athleteOperatingBrief)}
-        ${numberedMarkup('priorities', 'Priorités Coach', vm.coachPriorities, 'motivation-priorities')}
-        ${riskBucketsMarkup(vm.riskBuckets, vm.conflicts)}
-        ${interviewDetailedMarkup(vm.interviewDetailed?.length ? vm.interviewDetailed : vm.interviewQuestions)}
-        ${verbatimMarkup(vm.verbatims)}
-        ${dimensionsMarkup(vm)}
-        ${nutritionMarkup(vm.nutrition, vm.nutritionAction, vm.nutritionOrganized)}
-        ${weekPlanMarkup(vm.fourWeekPlan, vm.fourWeekPlanTestable)}
-        ${technicalMarkup(vm.provenance || vm.technical || {})}
+        ${model.sections.map((section) => renderPresentationSection(section, model)).join('')}
       </div>
       <footer class="motivation-report-footer">Confidentiel — usage Coach KR Kinetics. Outil de coaching, non médical, non diagnostique.</footer>
     </article>

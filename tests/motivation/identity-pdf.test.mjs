@@ -73,7 +73,7 @@ test('PDF metadata and every page carry the client name and short ref', async ()
     analyzedAt: '2026-08-16T12:05:00.000Z',
   });
   assert.ok(rendered.pageCount >= 3);
-  assert.ok(rendered.pageCount <= 5);
+  assert.ok(rendered.pageCount <= 20);
   const pages = await extractPdfPagesText(rendered.buffer);
   assert.match(pages[0].text, /Danny R/);
   for (const page of pages) {

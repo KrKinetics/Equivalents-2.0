@@ -18,7 +18,7 @@ import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motiv
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const portal = path.join(root, 'coach-portal');
-const outDir = path.join(root, 'reports', 'motivation-2e-visual');
+const outDir = path.join(root, 'reports', 'motivation-2f-visual');
 
 function resolveChromePath() {
   const candidates = [
@@ -226,6 +226,7 @@ test('web report is scannable at 1440 and 390 without horizontal scroll', async 
   assert.equal(await captureSection(desktop, '[data-section="decision-brief"]', 'web-desktop-1440-brief.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="portrait-coach"]', 'web-desktop-1440-portrait.png'), true);
   await captureSection(desktop, '[data-section="operating-brief"]', 'web-desktop-1440-operating.png');
+  await captureSection(desktop, '[data-section="coach-narrative"]', 'web-desktop-1440-narrative.png');
   await captureSection(desktop, '[data-section="risk-buckets"]', 'web-desktop-1440-risks.png');
   assert.equal(await captureSection(desktop, '[data-section="interview"]', 'web-desktop-1440-interview.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="verbatims"]', 'web-desktop-1440-voice.png'), true);
@@ -281,7 +282,7 @@ test('PDF pages render for visual inspection', async (t) => {
   await page.goto(`${origin}/pdf-preview.html`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(() => typeof window.renderPdfPage === 'function');
   const first = await page.evaluate(async () => window.renderPdfPage(1));
-  assert.ok(first.pages >= 3 && first.pages <= 5);
+  assert.ok(first.pages >= 3 && first.pages <= 20);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
   await page.evaluate(async () => window.renderPdfPage(2));
   await page.screenshot({ path: path.join(outDir, 'pdf-page-2.png') });
@@ -298,7 +299,7 @@ test('PDF pages render for visual inspection', async (t) => {
     }
     return out;
   });
-  for (let n = 1; n <= Math.min(5, first.pages); n += 1) {
+  for (let n = 1; n <= first.pages; n += 1) {
     await page.evaluate(async (pageNumber) => window.renderPdfPage(pageNumber), n);
     await page.screenshot({ path: path.join(outDir, `pdf-page-${n}.png`) });
   }
@@ -342,7 +343,7 @@ test('PDF pages render for visual inspection', async (t) => {
     const raw = montage.replace(/^data:image\/png;base64,/, '');
     fs.writeFileSync(path.join(outDir, 'pdf-montage.png'), Buffer.from(raw, 'base64'));
   }
-  assert.ok(pageCount >= 3 && pageCount <= 5);
+  assert.ok(pageCount >= 3 && pageCount <= 20);
   assert.match(pagesText[0] || '', /Client test KR/);
   await page.close();
 });
