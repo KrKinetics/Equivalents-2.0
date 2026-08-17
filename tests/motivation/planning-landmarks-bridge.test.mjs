@@ -72,7 +72,7 @@ function createFetchMock({ intakeRows = [], analyses = [] } = {}) {
         email: 'client.test@example.com',
         phone: '5145550100',
         service_type: 'complete',
-        is_fictional: true,
+        is_fictional: false,
       }]);
     }
     if (u.includes('/rest/v1/client_motivation_invites')) {
