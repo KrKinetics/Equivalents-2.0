@@ -93,7 +93,7 @@ test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () =
     assert.match(html, new RegExp(c.brandText));
     assert.match(html, /José-François Éléphant|José-François/);
     assert.match(html, new RegExp(c.recon));
-    assert.match(html, /&lt;b&gt;Safe text&lt;\/b&gt;/);
+    assert.match(html, /&lt;b&gt;Safe text&lt;\/b>/);
     assert.doesNotMatch(html, /<b>Safe text<\/b>/);
     assert.doesNotMatch(html, /service_role|SUPABASE_SERVICE|eyJ[A-Za-z0-9_-]{20,}\./i);
     assert.doesNotMatch(html, /coach_access_token|Bearer /i);
@@ -139,43 +139,43 @@ test('PDF filename follows brand and locale conventions', () => {
   assert.equal(brandIdFromOrganizationSlug('other'), null);
 });
 
-test('client access is organization-scoped and fictional-only', async () => {
+test('client access is organization-scoped and real-client-only', async () => {
   const good = await authorizeClientAccess({
     accessToken: 'jwt', organizationId: 'org', clientId: 'client', supabaseUrl: 'https://example.test',
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Demo', is_fictional: true, service_type: 'nutrition' }],
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Client', is_fictional: false, service_type: 'nutrition' }],
     }),
   });
-  assert.deepEqual(good, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Demo' } });
+  assert.deepEqual(good, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Client' } });
 
   const wrongOrg = await authorizeClientAccess({
     accessToken: 'jwt', organizationId: 'other', clientId: 'client', supabaseUrl: 'https://example.test',
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: true, service_type: 'nutrition' }],
+      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: false, service_type: 'nutrition' }],
     }),
   });
   assert.deepEqual(wrongOrg, { ok: false, error: 'forbidden' });
 
-  const nonFictional = await authorizeClientAccess({
+  const fictional = await authorizeClientAccess({
     accessToken: 'jwt', organizationId: 'org', clientId: 'client', supabaseUrl: 'https://example.test',
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: false, service_type: 'nutrition' }],
+      json: async () => [{ id: 'client', organization_id: 'org', is_fictional: true, service_type: 'nutrition' }],
     }),
   });
-  assert.deepEqual(nonFictional, { ok: false, error: 'forbidden' });
+  assert.deepEqual(fictional, { ok: false, error: 'forbidden' });
 
   const programming = await authorizeClientAccess({
     accessToken: 'jwt', organizationId: 'org', clientId: 'client', supabaseUrl: 'https://example.test',
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Prog', is_fictional: true, service_type: 'programming' }],
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Prog', is_fictional: false, service_type: 'programming' }],
     }),
   });
   assert.deepEqual(programming, { ok: false, error: 'forbidden' });
@@ -185,7 +185,7 @@ test('client access is organization-scoped and fictional-only', async () => {
     publishableKey: 'key',
     fetchImpl: async () => ({
       ok: true,
-      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Complet', is_fictional: true, service_type: 'complete' }],
+      json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Complet', is_fictional: false, service_type: 'complete' }],
     }),
   });
   assert.deepEqual(complete, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Complet' } });
