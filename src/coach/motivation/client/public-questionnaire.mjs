@@ -34,6 +34,10 @@ import { toEngineQuestionInput } from '../engine/to-question-input.mjs';
 import { selectAdaptiveQuestionsV41 } from '../lib/adaptive-questions-v41.mjs';
 import { selectAdaptiveQuestionsV42 } from '../lib/adaptive-questions-v42.mjs';
 import { selectAdaptiveQuestionsV43 } from '../lib/adaptive-questions-v43.mjs';
+import {
+  frozenNarrativePresentedCodes,
+  selectionAnswersForNarrative,
+} from '../engine/narrative-selection.mjs';
 
 const V41_INPUTS = SEED_QUESTIONS_V41.map((seed, index) => toEngineQuestionInput(seed, index));
 const V41_BY_CODE = new Map(SEED_QUESTIONS_V41.map((question) => [question.code, question]));
@@ -121,16 +125,17 @@ export function selectClientAdaptiveQuestions(answers, runtime = runtimeFor('que
 }
 
 export function selectClientNarrativeQuestions(answers, runtime = runtimeFor('questionnaire-v4.1')) {
+  const selectionAnswers = selectionAnswersForNarrative(runtime.narrativeCodes, answers);
   if (runtime.version === 'questionnaire-v4.3') {
     return selectAdaptiveQuestionsV43({
       questions: runtime.questionInputs,
-      answers,
+      answers: selectionAnswers,
     }).narrative.map((question) => question.code);
   }
   if (runtime.version !== 'questionnaire-v4.2') return [];
   return selectAdaptiveQuestionsV42({
     questions: runtime.questionInputs,
-    answers,
+    answers: selectionAnswers,
   }).narrative.map((question) => question.code);
 }
 
@@ -140,12 +145,17 @@ export function presentedCodesFromAnswers(answers, existingCodes = [], runtime =
   const adaptive = baseAnswers.length >= runtime.baseCodes.length
     ? selectClientAdaptiveQuestions(baseAnswers, runtime)
     : [];
+  const allBaseAnswered = baseAnswers.length >= runtime.baseCodes.length;
   const scoringAnswered = adaptive.every((code) => answers.some((answer) => answer.questionCode === code));
-  const narrative = (runtime.version === 'questionnaire-v4.2' || runtime.version === 'questionnaire-v4.3') && adaptive.length >= 0 && (
-    adaptive.length === 0 || scoringAnswered
-  )
-    ? selectClientNarrativeQuestions(answers, runtime)
-    : [];
+  const readyForNarrative = allBaseAnswered
+    && (runtime.version === 'questionnaire-v4.2' || runtime.version === 'questionnaire-v4.3')
+    && (adaptive.length === 0 || scoringAnswered);
+  const frozenNarrative = frozenNarrativePresentedCodes(existingCodes, runtime.narrativeCodes);
+  const narrative = frozenNarrative.length > 0
+    ? frozenNarrative
+    : readyForNarrative
+      ? selectClientNarrativeQuestions(answers, runtime)
+      : [];
   const merged = [...base];
   for (const code of existingCodes) {
     if (!merged.includes(code) && runtime.questionsByCode.has(code)) merged.push(code);
@@ -198,6 +208,7 @@ export function isQuestionAnswered(question, answer) {
 
 export {
   assertOfficialMotivationBundle,
+  frozenNarrativePresentedCodes,
   V41_BASE_CODES,
   V42_BASE_CODES,
   OFFICIAL_BASE_COUNT,

@@ -23,8 +23,10 @@ import {
   PROFILE_A_STABLE,
   buildCompleteMotivationSubmission,
 } from '../../src/coach/motivation/fixtures/complete-profiles.mjs';
+import { V43_LIVE_WHY_NOW_REPLAY } from '../../src/coach/motivation/fixtures/complete-profiles-v43.mjs';
 import { createClientMotivationInvite } from '../../src/coach/server/motivation/create-motivation-invite.mjs';
 import { processSubmittedMotivationAssessment } from '../../src/coach/server/motivation/process-submitted-motivation.mjs';
+import { walkOfficialClientQuestionnaire } from './walk-client-questionnaire.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const ORG = '11111111-1111-1111-1111-111111111111';
@@ -278,10 +280,32 @@ test('process analysis logs analyze stage when the engine throws', async () => {
     assert.equal(result.error, 'unavailable');
     assert.ok(logs.some((line) => line.includes('motivation_analysis_unavailable') && line.includes('"stage":"analyze"')));
     assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
-    assert.equal(logs.some((line) => /numericValue|selectedOptions|"answers"/.test(line)), false);
+    assert.equal(logs.some((line) => /numericValue|selectedOptions|"answers"|parce que/.test(line)), false);
   } finally {
     console.log = originalLog;
   }
+});
+
+test('process reuses a submitted v4.3 live path without a new questionnaire', async () => {
+  const walked = walkOfficialClientQuestionnaire(V43_LIVE_WHY_NOW_REPLAY, 'questionnaire-v4.3');
+  const { fetchImpl, calls } = createFetchMock({
+    inviteRow: submittedInvite({
+      questionnaire_version: CURRENT_ENGINE.questionnaireVersion,
+      ruleset_version: CURRENT_ENGINE.rulesetVersion,
+      report_model_version: CURRENT_ENGINE.reportModelVersion,
+      content_hash: CURRENT_ENGINE.contentHash,
+    }),
+    responseRow: submittedResponse({
+      answers: walked.answers,
+      presented_question_codes: walked.presentedQuestionCodes,
+    }),
+  });
+  const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
+  assert.equal(result.ok, true);
+  assert.equal(result.idempotent, false);
+  assert.equal(result.analysisSnapshot.report.schemaVersion, REPORT_MODEL_V44);
+  assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), true);
+  assert.equal(calls.some((call) => call.url.includes('create_client_motivation_invite')), false);
 });
 
 test('process analysis is idempotent for the same response and definitions', async () => {

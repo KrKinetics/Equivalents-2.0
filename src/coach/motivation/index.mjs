@@ -18,6 +18,10 @@ export {
   ExternalQuestionDefinitionsError,
 } from './engine/analyze-motivation.mjs';
 export {
+  selectionAnswersForNarrative,
+  frozenNarrativePresentedCodes,
+} from './engine/narrative-selection.mjs';
+export {
   resolvePresentedMotivationQuestions,
   PresentedQuestionCodesError,
   AdaptiveSelectionMismatchError,

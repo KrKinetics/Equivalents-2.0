@@ -128,6 +128,7 @@ export function buildCoachVercelBundle(options = {}) {
   );
   for (const rel of [
     'src/coach/motivation/engine/to-question-input.mjs',
+    'src/coach/motivation/engine/narrative-selection.mjs',
     'src/coach/motivation/lib/adaptive-questions-v41.mjs',
     'src/coach/motivation/lib/adaptive-questions-v42.mjs',
     'src/coach/motivation/lib/adaptive-questions-v43.mjs',
@@ -196,6 +197,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/motivation/client/official-bundle.mjs',
     'src/coach/motivation/client/public-questionnaire.mjs',
     'src/coach/motivation/client/motivation-invite-token.mjs',
+    'src/coach/motivation/engine/narrative-selection.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake-report/intake-report-view-model.mjs',
     'src/coach/intake-report/intake-report-theme.mjs',

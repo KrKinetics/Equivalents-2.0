@@ -127,3 +127,28 @@ export const V43_WEAK = {
 
 export const V43_AESTHETIC = V42_AESTHETIC;
 export const V43_AUTONOMOUS = V42_AUTONOMOUS;
+
+/** Live 17 Aug 2026: WHY_NOW answer used to mutate the narrative set on v4.3 replay. */
+export const V43_LIVE_WHY_NOW_REPLAY = {
+  id: 'live_why_now_replay',
+  likert: {
+    ...PROFILE_C_ADAPTIVE_NUTRITION.likert,
+    EFF_01: 1,
+    EFF_02: 1,
+    RIG_01: 5,
+    RIG_03: 5,
+  },
+  text: {
+    GOAL_01: 'reprendre une routine d entrainement',
+    GOAL_02: 'tenir 3 seances par semaine sans abandonner',
+    OBS_01: 'difficulte a reprendre apres un ecart de plusieurs jours',
+    NUT_GOAL_01: 'budget et planification',
+    NUT_CONTEXT_01: '',
+    CLARIFY_WHY_NOW_01: 'parce que je veux reprendre maintenant pour ma sante',
+    NUT_SUCCESS_01: 'des repas plus reguliers et moins de decrochages en semaine',
+  },
+  choice: {
+    CLARIFY_RECOVERY_01: 'faire une version plus courte de la séance',
+  },
+  multi: { NUT_OBS_01: ['Budget', 'Manque de planification'] },
+};

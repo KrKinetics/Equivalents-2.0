@@ -1,0 +1,62 @@
+name: Motivation critical
+
+on:
+  push:
+    branches:
+      - integration/profil-motivationnel
+    paths:
+      - 'src/coach/motivation/**'
+      - 'src/coach/server/motivation/**'
+      - 'coach-portal/**'
+      - 'api/coach-motivation.js'
+      - 'tests/motivation/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/coach-vercel-build.mjs'
+      - 'vercel.json'
+      - '.github/workflows/motivation-critical.yml'
+  pull_request:
+    paths:
+      - 'src/coach/motivation/**'
+      - 'src/coach/server/motivation/**'
+      - 'coach-portal/**'
+      - 'api/coach-motivation.js'
+      - 'tests/motivation/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/coach-vercel-build.mjs'
+      - 'vercel.json'
+      - '.github/workflows/motivation-critical.yml'
+
+jobs:
+  motivation-critical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      COACH_IGNORE_ENV_LOCAL: '1'
+      SUPABASE_URL: https://example.supabase.co
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder_key
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chrome for landing contract
+        run: npx puppeteer browsers install chrome
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Motivation critical tests
+        run: npm run test:motivation-critical
+
+      - name: Coach Vercel build
+        run: npm run coach:vercel:build

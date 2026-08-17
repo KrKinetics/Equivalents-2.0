@@ -25,6 +25,10 @@ import {
   resolvePresentedMotivationQuestions,
 } from './presented-questions.mjs';
 import { normalizeMotivationAnswers } from './normalize-answers.mjs';
+import {
+  normalizeSelectionAnswers,
+  selectionAnswersForNarrative,
+} from './narrative-selection.mjs';
 
 export class ExternalQuestionDefinitionsError extends Error {
   constructor() {
@@ -43,14 +47,7 @@ export class ExternalQuestionDefinitionsError extends Error {
  * against the final base answers, not the live path they clicked through.
  */
 function normalizeEngineAnswers(baseAnswers) {
-  return baseAnswers.map((answer) => {
-    const code = String(answer.questionCode ?? answer.questionId ?? '').trim();
-    return {
-      ...answer,
-      questionCode: code,
-      questionId: answer.questionId ?? code,
-    };
-  });
+  return normalizeSelectionAnswers(baseAnswers);
 }
 
 export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
@@ -74,28 +71,20 @@ export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
 }
 
 export function expectedNarrativeQuestionCodes(engine, answers) {
+  const selectionAnswers = selectionAnswersForNarrative(engine.narrativeQuestionCodes, answers);
   if (engine.questionnaireVersion === QUESTIONNAIRE_V43) {
     return selectAdaptiveQuestionsV43({
       questions: engine.questionInputs,
-      answers: normalizeEngineAnswers(answers),
+      answers: selectionAnswers,
     }).narrative.map((question) => question.code);
   }
-  if (engine.questionnaireVersion !== QUESTIONNAIRE_V42) return [];
-
-  // Narrative clarifications are selected before the client answers them.
-  // Re-validating a submitted questionnaire with those answers included can
-  // erase the very trigger that caused a clarification to be presented (for
-  // example NUT_SUCCESS_01 is asked when nutrition success is missing). Strip
-  // narrative answers before replaying the deterministic selection so the
-  // server validates the same decision point the browser used.
-  const narrativeCodes = new Set(engine.narrativeQuestionCodes ?? []);
-  const selectionAnswers = normalizeEngineAnswers(answers)
-    .filter((answer) => !narrativeCodes.has(answer.questionCode));
-
-  return selectAdaptiveQuestionsV42({
-    questions: engine.questionInputs,
-    answers: selectionAnswers,
-  }).narrative.map((question) => question.code);
+  if (engine.questionnaireVersion === QUESTIONNAIRE_V42) {
+    return selectAdaptiveQuestionsV42({
+      questions: engine.questionInputs,
+      answers: selectionAnswers,
+    }).narrative.map((question) => question.code);
+  }
+  return [];
 }
 
 export function assertAdaptiveSelectionMatches(engine, presented, answers) {

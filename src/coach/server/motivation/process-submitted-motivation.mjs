@@ -22,11 +22,14 @@ import {
 import { logCoachEvent } from '../http/redact.mjs';
 
 function logUnavailable(stage, error = null, extra = {}) {
+  const details = error?.details && typeof error.details === 'object' ? error.details : {};
   logCoachEvent({
     event: 'motivation_analysis_unavailable',
     stage,
     errorName: error?.name || extra.errorName || undefined,
     errorMessage: error?.message ? String(error.message).slice(0, 180) : extra.errorMessage,
+    expected: Array.isArray(details.expected) ? details.expected : undefined,
+    presented: Array.isArray(details.presented) ? details.presented : undefined,
     persistStatus: extra.persistStatus,
   });
   return { ok: false, error: 'unavailable' };
