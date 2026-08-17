@@ -1,7 +1,7 @@
 import { clientHasNutritionAccess } from '../../domain/client-service-entitlements.mjs';
 
 /**
- * Verify that the authenticated coach may generate a PDF only for a fictional
+ * Verify that the authenticated coach may generate a PDF only for a real
  * client in the selected organization with nutrition entitlement.
  * Uses the caller's JWT; no service role.
  */
@@ -27,7 +27,7 @@ export async function authorizeClientAccess({
     if (
       !client
       || client.organization_id !== organizationId
-      || client.is_fictional !== true
+      || client.is_fictional !== false
       || !clientHasNutritionAccess(client.service_type)
     ) {
       return { ok: false, error: 'forbidden' };
