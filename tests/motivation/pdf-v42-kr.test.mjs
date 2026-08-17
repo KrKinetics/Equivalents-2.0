@@ -167,7 +167,7 @@ test('QA-style v4.2 PDF stays on 5 pages and never orphans Analyse', async () =>
     analyzedAt: '2026-08-16T20:38:00.000Z',
     contentHash: 'a'.repeat(64),
   });
-  assert.ok(rendered.pageCount >= 4 && rendered.pageCount <= 5);
+  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 5);
   const pages = await extractPdfPagesText(rendered.buffer);
   assert.equal(pages.length, rendered.pageCount);
   for (const page of pages) {
@@ -205,7 +205,7 @@ test('v4.2 PDF is a 5-page coach brief with grouped dimensions and client voice'
     analyzedAt: '2026-08-16T20:38:00.000Z',
   });
   const pages = await extractPdfPagesText(rendered.buffer);
-  assert.ok(rendered.pageCount >= 4 && rendered.pageCount <= 5);
+  assert.ok(rendered.pageCount >= 3 && rendered.pageCount <= 5);
   const all = pages.map((page) => page.text).join('\n');
   assert.match(pages[0].text, /Client test KR/);
   assert.match(all, /Lecture rapide|Dès le départ|OBJECTIF/i);

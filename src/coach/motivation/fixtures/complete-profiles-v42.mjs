@@ -144,6 +144,27 @@ export const V42_VAGUE = {
   multi: { NUT_OBS_01: ['Manque de planification'] },
 };
 
+/** Representative of Danny's historical v4.2 answers. Presentation only — not a stored analysis. */
+export const V42_DANNY_LIKE = {
+  id: 'danny_like',
+  likert: {
+    ...PROFILE_A_STABLE.likert,
+    EFF_01: 4,
+    EFF_02: 2,
+    NUT_PLAN_02: 3,
+    NUT_PLAN_03: 4,
+    STRUCT_03: 3,
+  },
+  text: {
+    GOAL_01: 'j\'aimerais me sentir mieux dans mon corps',
+    GOAL_02: 'me sentir fort',
+    OBS_01: 'budget et horaire variable',
+    NUT_GOAL_01: 'mieux planifier sans dépasser mon budget',
+    NUT_CONTEXT_01: 'repas familiaux et soirs chargés',
+  },
+  multi: { NUT_OBS_01: ['Budget', 'Manque de planification', 'Stress ou émotions'] },
+};
+
 export const V42_PLANNING_CONFLICT = {
   id: 'planning_conflict',
   likert: {

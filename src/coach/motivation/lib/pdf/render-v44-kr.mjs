@@ -12,6 +12,13 @@ import {
   ClientIdentityError,
   pdfDocumentInfo,
 } from '../../identity/canonical-client-identity.mjs';
+import {
+  findingPrimaryLabel,
+  findingStatusLabel,
+  findingTechnicalDirection,
+  hasNutritionContent,
+  isTestableFourWeekPlan,
+} from '../../report/presentation-labels.mjs';
 
 export const MOTIVATION_PDF_RENDERER_V44_ID = 'renderCoachReportPdfV44Kr';
 
@@ -40,6 +47,7 @@ class KrLayout {
     this.y = 36;
     this.logoPlacements = [];
     this.locked = false;
+    this.heroBandHeight = 0;
     this.pageStats = [{ page: 1, usedHeight: 0, blockCount: 0, roles: ['brief'] }];
   }
 
@@ -87,6 +95,12 @@ class KrLayout {
     current.blockCount += 1;
     if (role && !current.roles.includes(role)) current.roles.push(role);
     current.usedHeight = Math.max(current.usedHeight, this.y);
+  }
+
+  continueIfRoom(minNeeded = 120) {
+    const usable = this.bottom - (this.page === 1 ? 12 : KR_V42_PAGE.headerHeight + 12);
+    if (this.remaining() >= minNeeded && this.remaining() / usable > 0.22) return true;
+    return this.addPage();
   }
 
   addPage(role = 'content') {
@@ -161,7 +175,7 @@ class KrLayout {
   }
 
   sectionTitle(title) {
-    if (!this.ensure(36)) return;
+    if (!this.ensure(56)) return;
     this.setFont(true, KR_V42_TYPE.section, KR_V42_COLORS.primary);
     this.doc.text(t(title), this.left, this.y, { width: this.width, height: 18 });
     const ruleY = this.doc.y + 3;
@@ -182,42 +196,58 @@ class KrLayout {
 
 function drawIdentityHero(layout, vm, logoPath) {
   const identity = vm.identity;
-  const bandH = 168;
+  const line1 = [
+    identity.email ? `Courriel : ${identity.email}` : '',
+    identity.phone ? `Téléphone : ${identity.phone}` : '',
+    identity.serviceType ? `Service : ${identity.serviceType}` : '',
+    identity.shortId ? `Référence : ${identity.shortId}` : '',
+  ].filter(Boolean).join('   ·   ');
+  const line2 = [
+    vm.submittedAt ? `Soumis le : ${formatPdfDate(vm.submittedAt)}` : '',
+    vm.analyzedAt ? `Analysé le : ${formatPdfDate(vm.analyzedAt)}` : '',
+    vm.analysisVersion != null ? `Analyse : v${vm.analysisVersion}` : '',
+  ].filter(Boolean).join('   ·   ');
+  layout.setFont(true, 22, KR_V42_COLORS.white);
+  const nameH = layout.doc.heightOfString(t(identity.fullName), { width: layout.width, lineGap: 1 });
+  layout.setFont(false, 7.5, '#d7e0ec');
+  const meta1H = line1 ? layout.doc.heightOfString(t(line1), { width: layout.width, lineGap: 2 }) : 0;
+  const meta2H = line2 ? layout.doc.heightOfString(t(line2), { width: layout.width, lineGap: 2 }) : 0;
+  const logoH = logoPath ? 150 * (302 / 993) : 0;
+  const bandH = 14 + logoH + 8 + 12 + 16 + 12 + nameH + 10 + meta1H + (meta2H ? meta2H + 3 : 0) + 14;
+  layout.heroBandHeight = bandH;
   layout.doc.rect(0, 0, KR_V42_PAGE.width, bandH).fill(KR_V42_COLORS.primary);
   let y = 14;
   if (logoPath) {
     try {
       layout.doc.image(logoPath, layout.left, y, { width: 150 });
       layout.logoPlacements.push({ page: 1, role: 'hero' });
-      y += 150 * (302 / 993) + 8;
+      y += logoH + 8;
     } catch {
       y += 8;
     }
   }
   layout.setFont(true, 8, '#d7e0ec');
-  layout.doc.text('RAPPORT COACH', layout.left, y, { width: layout.width });
+  layout.doc.text('RAPPORT COACH', layout.left, y, { width: layout.width, height: 12 });
   y = layout.doc.y + 1;
   layout.setFont(true, 11, KR_V42_COLORS.white);
-  layout.doc.text('PROFIL MOTIVATIONNEL', layout.left, y, { width: layout.width });
+  layout.doc.text('PROFIL MOTIVATIONNEL', layout.left, y, { width: layout.width, height: 16 });
   y = layout.doc.y + 8;
   layout.setFont(true, 7, '#d7e0ec');
-  layout.doc.text('ATHLÈTE', layout.left, y, { width: layout.width });
+  layout.doc.text('ATHLÈTE', layout.left, y, { width: layout.width, height: 10 });
   y = layout.doc.y + 2;
   layout.setFont(true, 22, KR_V42_COLORS.white);
-  layout.doc.text(t(identity.fullName), layout.left, y, { width: layout.width });
+  layout.doc.text(t(identity.fullName), layout.left, y, { width: layout.width, lineGap: 1, height: nameH + 2 });
   y = layout.doc.y + 8;
-  const meta = [
-    identity.email ? `Courriel : ${identity.email}` : '',
-    identity.phone ? `Téléphone : ${identity.phone}` : '',
-    identity.serviceType ? `Service / prise en charge : ${identity.serviceType}` : '',
-    identity.shortId ? `Référence client : ${identity.shortId}` : '',
-    vm.submittedAt ? `Soumis le : ${formatPdfDate(vm.submittedAt)}` : '',
-    vm.analyzedAt ? `Analysé le : ${formatPdfDate(vm.analyzedAt)}` : '',
-    vm.analysisVersion != null ? `Analyse : v${vm.analysisVersion}` : '',
-  ].filter(Boolean).join('   ·   ');
   layout.setFont(false, 7.5, '#d7e0ec');
-  layout.doc.text(t(meta), layout.left, y, { width: layout.width, lineGap: 2 });
-  layout.y = Math.max(bandH + 12, layout.doc.y + 12);
+  if (line1) {
+    layout.doc.text(t(line1), layout.left, y, { width: layout.width, lineGap: 2, height: meta1H + 2 });
+    y = layout.doc.y + 3;
+  }
+  if (line2) {
+    layout.doc.text(t(line2), layout.left, y, { width: layout.width, lineGap: 2, height: meta2H + 2 });
+    y = layout.doc.y + 4;
+  }
+  layout.y = Math.max(bandH + 10, y + 10);
 }
 
 function labeledBlock(layout, label, value, fallback = 'À clarifier en entrevue') {
@@ -236,7 +266,6 @@ function labeledBlock(layout, label, value, fallback = 'À clarifier en entrevue
 
 function drawPage1(layout, vm, logoPath) {
   drawIdentityHero(layout, vm, logoPath);
-  layout.lockPage();
   const brief = vm.coachDecisionBrief || {};
   labeledBlock(layout, 'OBJECTIF DE L\'ATHLÈTE', brief.athleteGoal || vm.athleteOperatingBrief?.primaryGoal);
   labeledBlock(layout, 'RÉUSSITE DÉCRITE', brief.successDescribed || vm.athleteOperatingBrief?.successDefinition);
@@ -267,7 +296,6 @@ function drawPage1(layout, vm, logoPath) {
     layout.bullets(brief.confirmNow, 3);
     layout.record('confirm');
   }
-  layout.unlockPage();
 }
 
 function drawManual(layout, vm) {
@@ -304,25 +332,28 @@ function drawManual(layout, vm) {
 
 function drawFindingRow(layout, row) {
   const label = t(row.label);
-  const tendency = row.claimStrength === 'mixed'
-    ? 'mixte'
-    : row.claimStrength === 'divergent'
-      ? 'contradictoire'
-      : t(row.tendency || row.displayLabel || '—');
+  const primary = row.displayLabel || findingPrimaryLabel(row);
+  const status = row.confidenceStatus || row.evidenceBadge || findingStatusLabel(row);
+  const technical = row.technicalDirection || findingTechnicalDirection(row);
   const meaning = t(row.coachMeaning || row.interpretation || '');
-  const badge = t(row.evidenceBadge || row.confidenceStatus || '');
-  const labelH = layout.heightOf(label, layout.width - 150, { bold: true, size: 8.5 });
-  const meta = [tendency, badge].filter(Boolean).join('  ·  ');
-  const metaH = layout.heightOf(meta, 140, { size: 8, bold: true });
+  const labelH = layout.heightOf(label, layout.width - 160, { bold: true, size: 8.5 });
+  const meta = [primary, status].filter(Boolean).join('  ·  ');
+  const metaH = layout.heightOf(meta, 155, { size: 8, bold: true });
+  const techH = technical ? layout.heightOf(technical, layout.width, { size: 7 }) : 0;
   const meaningH = meaning ? layout.heightOf(meaning, layout.width, { size: 7.5 }) : 0;
-  const h = Math.max(labelH, metaH) + meaningH + 12;
+  const h = Math.max(labelH, metaH) + techH + meaningH + 12;
   if (!layout.ensure(h)) return;
   const start = layout.y;
   layout.setFont(true, 8.5, KR_V42_COLORS.text);
-  layout.doc.text(label, layout.left, start, { width: layout.width - 150, height: labelH + 2 });
+  layout.doc.text(label, layout.left, start, { width: layout.width - 160, height: labelH + 2 });
   layout.setFont(true, 8, KR_V42_COLORS.primary);
-  layout.doc.text(meta, layout.left + layout.width - 145, start, { width: 145, align: 'right', height: metaH + 2 });
+  layout.doc.text(meta, layout.left + layout.width - 155, start, { width: 155, align: 'right', height: metaH + 2 });
   let cursor = start + Math.max(labelH, metaH) + 2;
+  if (technical) {
+    layout.setFont(false, 7, KR_V42_COLORS.muted);
+    layout.doc.text(technical, layout.left, cursor, { width: layout.width, height: techH + 2 });
+    cursor = layout.doc.y + 2;
+  }
   if (meaning) {
     layout.setFont(false, 7.5, KR_V42_COLORS.muted);
     layout.doc.text(meaning, layout.left, cursor, { width: layout.width, height: meaningH + 2 });
@@ -336,19 +367,54 @@ function drawFindingRow(layout, row) {
   layout.y = cursor + 10;
 }
 
+function drawLegacyNutrition(layout, vm) {
+  const organized = vm.nutritionOrganized || {};
+  const nutrition = vm.nutrition || {};
+  const blocks = [
+    ['Lecture nutrition', organized.suggested?.length ? organized.suggested : nutrition.lecture],
+    ['Structure suggérée', nutrition.structure ? [nutrition.structure] : organized.confirm],
+    ['Obstacles', organized.obstacles?.length ? organized.obstacles : nutrition.obstacles],
+    ['Actions', organized.test?.length ? organized.test : nutrition.actions],
+  ].filter(([, items]) => items?.length);
+  if (!blocks.length && !organized.said?.length) return false;
+  layout.sectionTitle('Nutrition');
+  layout.record('nutrition');
+  if (organized.evidenceNote) {
+    layout.y = layout.safeText(organized.evidenceNote, layout.left, layout.y, {
+      size: 8, color: KR_V42_COLORS.muted, lineGap: 2,
+    }) + 6;
+  }
+  if (organized.said?.length) {
+    layout.setFont(true, 8, KR_V42_COLORS.primary);
+    layout.y = layout.safeText('Ce que l\'athlète a dit', layout.left, layout.y, {
+      bold: true, size: 8, color: KR_V42_COLORS.primary,
+    }) + 2;
+    layout.bullets(organized.said, 4);
+  }
+  for (const [title, items] of blocks) {
+    if (!layout.ensure(28)) break;
+    layout.setFont(true, 8, KR_V42_COLORS.primary);
+    layout.y = layout.safeText(title, layout.left, layout.y, {
+      bold: true, size: 8, color: KR_V42_COLORS.primary,
+    }) + 2;
+    layout.bullets(items, 4);
+  }
+  return true;
+}
+
 function drawFactorsAndNutrition(layout, vm) {
-  layout.pageKicker('Facteurs de décision + nutrition');
+  const hasNutrition = hasNutritionContent(vm.nutritionOrganized || vm.nutrition, vm.nutritionAction);
+  layout.pageKicker(hasNutrition ? 'Facteurs de décision + nutrition' : 'Facteurs de décision');
   const factors = vm.decisionFactors?.length ? vm.decisionFactors : (vm.dimensions || []).slice(0, 8);
   if (factors.length) {
     layout.sectionTitle('Facteurs de décision');
     layout.record('factors');
-    for (const row of factors.slice(0, 5)) drawFindingRow(layout, row);
+    for (const row of factors.slice(0, 6)) drawFindingRow(layout, row);
   }
-  const nutrition = vm.nutritionAction;
-  if (nutrition?.cards?.length) {
+  if (vm.nutritionAction?.cards?.length) {
     layout.sectionTitle('Nutrition — actionnable');
     layout.record('nutrition');
-    for (const card of nutrition.cards.slice(0, 3)) {
+    for (const card of vm.nutritionAction.cards.slice(0, 3)) {
       const lines = [
         card.athleteSaid ? `Athlète : ${card.athleteSaid}` : '',
         card.suggested ? `Lecture : ${card.suggested}` : '',
@@ -369,7 +435,9 @@ function drawFactorsAndNutrition(layout, vm) {
       });
       layout.y += h + 6;
     }
+    return;
   }
+  if (hasNutrition) drawLegacyNutrition(layout, vm);
 }
 
 function drawPlanAndVoice(layout, vm) {
@@ -377,19 +445,33 @@ function drawPlanAndVoice(layout, vm) {
   const weeks = vm.fourWeekPlan || [];
   if (weeks.length) {
     layout.sectionTitle('Plan 4 semaines');
+    if (!isTestableFourWeekPlan(weeks) && !vm.fourWeekPlanTestable) {
+      layout.y = layout.safeText('Plan issu de l\'analyse historique', layout.left, layout.y, {
+        size: 8, color: KR_V42_COLORS.muted,
+      }) + 6;
+    }
     layout.record('plan');
+    const testable = isTestableFourWeekPlan(weeks) || vm.fourWeekPlanTestable;
+    const weekBody = (week) => (testable
+      ? [
+        week.objective ? `Objectif : ${week.objective}` : '',
+        week.coachAction ? `Action Coach : ${week.coachAction}` : '',
+        week.observe ? `Ce qu'on observe : ${week.observe}` : '',
+        week.validationCriterion ? `Critère de validation : ${week.validationCriterion}` : '',
+      ]
+      : [
+        week.objective || week.focus,
+        ...(week.actions || []).slice(0, 3),
+        week.observe ? `Observer : ${week.observe}` : '',
+        week.validationCriterion ? `Validation : ${week.validationCriterion}` : '',
+      ]
+    ).filter(Boolean).join('\n');
     const colW = (layout.width - 10) / 2;
     for (let i = 0; i < Math.min(4, weeks.length); i += 2) {
       const pair = [weeks[i], weeks[i + 1]].filter(Boolean);
-      const heights = pair.map((week) => {
-        const body = [
-          week.objective || week.focus,
-          week.coachAction ? `Action : ${week.coachAction}` : (week.actions || []).join('\n'),
-          week.observe ? `Observer : ${week.observe}` : '',
-          week.validationCriterion ? `Validation : ${week.validationCriterion}` : '',
-        ].filter(Boolean).join('\n');
-        return 40 + layout.heightOf(body, colW - 16, { size: 8, lineGap: 2 });
-      });
+      const heights = pair.map((week) => (
+        40 + layout.heightOf(weekBody(week), colW - 16, { size: 8, lineGap: 2 })
+      ));
       const rowH = Math.max(...heights);
       if (!layout.ensure(rowH + 8)) break;
       pair.forEach((week, col) => {
@@ -399,12 +481,7 @@ function drawPlanAndVoice(layout, vm) {
         layout.doc.text(`SEMAINE ${week.week}`, x + 8, layout.y + 7, { width: colW - 16 });
         layout.setFont(true, 9, KR_V42_COLORS.primary);
         layout.doc.text(t(week.title), x + 8, layout.y + 18, { width: colW - 16 });
-        const body = [
-          week.objective || week.focus,
-          week.coachAction ? `Action : ${week.coachAction}` : '',
-          week.observe ? `Observer : ${week.observe}` : '',
-          week.validationCriterion ? `Validation : ${week.validationCriterion}` : '',
-        ].filter(Boolean).join('\n');
+        const body = weekBody(week);
         layout.setFont(false, 8, KR_V42_COLORS.text);
         layout.doc.text(t(body), x + 8, layout.y + 34, {
           width: colW - 16,
@@ -461,9 +538,10 @@ function drawTrace(layout, vm) {
     ['Version d\'analyse', tech.analysisVersion != null ? String(tech.analysisVersion) : ''],
     ['Référence client', vm.identity?.shortId],
     ['Empreinte', tech.contentHash],
+    ['Renderer PDF', tech.pdfRenderer || MOTIVATION_PDF_RENDERER_V44_ID],
   ].filter(([, value]) => value);
-  if (!rows.length || !layout.ensure(40)) return;
-  layout.sectionTitle('Traçabilité');
+  if (!rows.length || layout.remaining() < 16) return;
+  if (layout.remaining() >= 40) layout.sectionTitle('Traçabilité');
   layout.record('trace');
   layout.y = layout.safeText(
     rows.map(([k, v]) => `${k} : ${v}`).join('   ·   '),
@@ -510,11 +588,11 @@ export async function renderCoachReportPdfV44Kr({ display, generatedAt = new Dat
   });
 
   drawPage1(layout, vm, logoPath);
-  layout.addPage('manual');
+  layout.continueIfRoom(110);
   drawManual(layout, vm);
-  layout.addPage('factors');
+  layout.continueIfRoom(130);
   drawFactorsAndNutrition(layout, vm);
-  layout.addPage('plan');
+  layout.continueIfRoom(150);
   drawPlanAndVoice(layout, vm);
   drawTrace(layout, vm);
   const last = layout.pageStats[layout.pageStats.length - 1];
@@ -530,6 +608,7 @@ export async function renderCoachReportPdfV44Kr({ display, generatedAt = new Dat
     renderer: MOTIVATION_PDF_RENDERER_V44_ID,
     logoPath,
     logoPlacements: layout.logoPlacements,
+    heroBandHeight: layout.heroBandHeight,
     pageStats: layout.pageStats,
   };
 }

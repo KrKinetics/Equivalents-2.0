@@ -138,9 +138,10 @@ function dimensionRowMarkup(row) {
     <div class="motivation-dimension" data-dimension="${esc(row.id || row.label)}" data-direction="${esc(direction)}" data-claim="${esc(row.claimStrength || '')}">
       <div class="motivation-dimension-head">
         <p class="motivation-dimension-name">${esc(row.label)}</p>
-        <p class="motivation-dimension-score">Tendance : ${esc(tendency)}</p>
+        <p class="motivation-dimension-score">${esc(tendency)}</p>
       </div>
-      ${confidence ? `<p class="motivation-dimension-confidence">Confiance : ${esc(confidence)}</p>` : ''}
+      ${confidence ? `<p class="motivation-dimension-confidence">Statut : ${esc(confidence)}</p>` : ''}
+      ${row.technicalDirection ? `<p class="motivation-dimension-confidence">${esc(row.technicalDirection)}</p>` : ''}
       <div
         class="motivation-dimension-track"
         role="progressbar"
@@ -181,7 +182,12 @@ function dimensionsMarkup(vm) {
   `;
 }
 
-function nutritionMarkup(nutrition, action = null) {
+function nutritionList(title, items) {
+  if (!items?.length) return '';
+  return `<h3>${esc(title)}</h3><ul class="motivation-report-list">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+}
+
+function nutritionMarkup(nutrition, action = null, organized = null) {
   if (action?.cards?.length) {
     return `
       <section class="motivation-card" data-section="nutrition">
@@ -189,52 +195,57 @@ function nutritionMarkup(nutrition, action = null) {
         ${action.cards.map((card) => `
           <article class="motivation-nutrition-card" data-stance="${esc(card.stance || '')}">
             <h3>${esc(card.title)} <span class="motivation-evidence">${esc(card.stance || '')}</span></h3>
-            ${card.athleteSaid ? `<p class="motivation-prose"><strong>Athlète.</strong> ${esc(card.athleteSaid)}</p>` : ''}
-            ${card.suggested ? `<p class="motivation-prose"><strong>Lecture.</strong> ${esc(card.suggested)}</p>` : ''}
-            ${card.toTest ? `<p class="motivation-prose"><strong>Tester cette semaine.</strong> ${esc(card.toTest)}</p>` : ''}
+            ${card.athleteSaid ? `<p class="motivation-prose"><strong>Ce que l'athlète a dit.</strong> ${esc(card.athleteSaid)}</p>` : ''}
+            ${card.suggested ? `<p class="motivation-prose"><strong>Ce que ça suggère.</strong> ${esc(card.suggested)}</p>` : ''}
+            ${card.toTest ? `<p class="motivation-prose"><strong>À tester.</strong> ${esc(card.toTest)}</p>` : ''}
           </article>
         `).join('')}
       </section>
     `;
   }
-  if (!nutrition) return '';
-  const blocks = [];
-  if (nutrition.lecture?.length) {
-    blocks.push(`<h3>Lecture nutrition</h3>${nutrition.lecture.map((line) => `<p class="motivation-prose">${esc(line)}</p>`).join('')}`);
+  const blocks = organized || nutrition;
+  if (!blocks) return '';
+  const parts = [
+    nutritionList('Ce que l\'athlète a dit', blocks.said),
+    nutritionList('Ce que ça suggère', blocks.suggested || blocks.lecture),
+    nutritionList('À confirmer', blocks.confirm),
+    nutritionList('À tester', blocks.test || blocks.actions),
+    nutritionList('Obstacles', blocks.obstacles),
+  ].filter(Boolean);
+  if (blocks.structure && !blocks.confirm?.length) {
+    parts.splice(2, 0, `<h3>Structure suggérée</h3><p class="motivation-prose">${esc(blocks.structure)}</p>`);
   }
-  if (nutrition.structure) {
-    blocks.push(`<h3>Structure suggérée</h3><p class="motivation-prose">${esc(nutrition.structure)}</p>`);
-  }
-  if (nutrition.obstacles?.length) {
-    blocks.push(`<h3>Obstacles</h3><ul class="motivation-report-list">${nutrition.obstacles.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`);
-  }
-  if (nutrition.actions?.length) {
-    blocks.push(`<h3>Actions prioritaires</h3><ul class="motivation-report-list">${nutrition.actions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`);
-  }
-  if (!blocks.length) return '';
+  if (!parts.length) return '';
   return `
     <section class="motivation-card" data-section="nutrition">
       <h2 class="motivation-section-title">Nutrition</h2>
-      ${blocks.join('')}
+      ${blocks.evidenceNote ? `<p class="motivation-evidence">${esc(blocks.evidenceNote)}</p>` : ''}
+      ${parts.join('')}
     </section>
   `;
 }
 
-function weekPlanMarkup(weeks) {
+function weekPlanMarkup(weeks, testable = null) {
   if (!weeks?.length) return '';
+  const historical = testable === false
+    || (testable == null && !weeks.every((week) => week.observe && week.validationCriterion));
   return `
     <section class="motivation-card" data-section="four-week-plan">
       <h2 class="motivation-section-title">Plan 4 semaines</h2>
+      ${historical ? '<p class="motivation-plan-legacy">Plan issu de l\'analyse historique</p>' : ''}
       <div class="motivation-week-grid">
         ${weeks.map((week) => `
           <article class="motivation-week-card" data-week="${esc(week.week)}">
             <p class="motivation-week-kicker">Semaine ${esc(week.week)}</p>
             <h3>${esc(week.title || `Semaine ${week.week}`)}</h3>
-            ${week.objective || week.focus ? `<p class="motivation-prose">${esc(week.objective || week.focus)}</p>` : ''}
-            ${week.coachAction ? `<p class="motivation-prose"><strong>Action.</strong> ${esc(week.coachAction)}</p>` : ''}
-            ${week.observe ? `<p class="motivation-prose"><strong>Observer.</strong> ${esc(week.observe)}</p>` : ''}
-            ${week.validationCriterion ? `<p class="motivation-prose"><strong>Validation.</strong> ${esc(week.validationCriterion)}</p>` : ''}
-            ${!week.coachAction && week.actions?.length ? `<ul class="motivation-report-list">${week.actions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+            ${!historical && week.objective ? `<p class="motivation-prose"><strong>Objectif.</strong> ${esc(week.objective)}</p>` : ''}
+            ${!historical && week.coachAction ? `<p class="motivation-prose"><strong>Action Coach.</strong> ${esc(week.coachAction)}</p>` : ''}
+            ${!historical && week.observe ? `<p class="motivation-prose"><strong>Ce qu'on observe.</strong> ${esc(week.observe)}</p>` : ''}
+            ${!historical && week.validationCriterion ? `<p class="motivation-prose"><strong>Critère de validation.</strong> ${esc(week.validationCriterion)}</p>` : ''}
+            ${historical && (week.objective || week.focus) ? `<p class="motivation-prose">${esc(week.objective || week.focus)}</p>` : ''}
+            ${historical && week.actions?.length ? `<ul class="motivation-report-list">${week.actions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+            ${historical && week.observe ? `<p class="motivation-prose"><strong>Observer.</strong> ${esc(week.observe)}</p>` : ''}
+            ${historical && week.validationCriterion ? `<p class="motivation-prose"><strong>Validation.</strong> ${esc(week.validationCriterion)}</p>` : ''}
           </article>
         `).join('')}
       </div>
@@ -265,6 +276,7 @@ function technicalMarkup(provenance) {
     ['Modèle de rapport', provenance.reportModelVersion],
     ['Version d’analyse', provenance.analysisVersion != null ? String(provenance.analysisVersion) : ''],
     ['Empreinte', provenance.contentHash],
+    ['Renderer PDF', provenance.pdfRenderer],
     ['Soumission', formatDate(provenance.submittedAt)],
     ['Analyse', formatDate(provenance.analyzedAt)],
   ].filter(([, value]) => value);
@@ -398,8 +410,8 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
         ${interviewDetailedMarkup(vm.interviewDetailed?.length ? vm.interviewDetailed : vm.interviewQuestions)}
         ${verbatimMarkup(vm.verbatims)}
         ${dimensionsMarkup(vm)}
-        ${nutritionMarkup(vm.nutrition, vm.nutritionAction)}
-        ${weekPlanMarkup(vm.fourWeekPlan)}
+        ${nutritionMarkup(vm.nutrition, vm.nutritionAction, vm.nutritionOrganized)}
+        ${weekPlanMarkup(vm.fourWeekPlan, vm.fourWeekPlanTestable)}
         ${technicalMarkup(vm.provenance || vm.technical || {})}
       </div>
       <footer class="motivation-report-footer">Confidentiel — usage Coach KR Kinetics. Outil de coaching, non médical, non diagnostique.</footer>

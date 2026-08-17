@@ -9,6 +9,15 @@ import { buildAthleteOperatingBrief } from './v43/operating-brief.mjs';
 import { buildFirstClassConflictsV43 } from './v43/conflicts.mjs';
 import { buildSupportBlock } from './v43/strengths.mjs';
 import { DIMENSION_GROUP_DEFS } from '../lib/pdf/pdf-v42-display.mjs';
+import {
+  asPresentedCoachAction,
+  findingPrimaryLabel,
+  findingStatusLabel,
+  findingTechnicalDirection,
+  inferClaimStrength,
+  isTestableFourWeekPlan,
+  organizeLegacyNutrition,
+} from './presentation-labels.mjs';
 
 function text(value) {
   if (value == null) return '';
@@ -108,17 +117,23 @@ function dimensionItems(report) {
         classificationLabel: domain.classificationLabel || row.agreementLabel,
         affectedDecisionIds: domain.affectedDecisionIds || ['coaching'],
       });
+    const claimStrength = presented.claimStrength || inferClaimStrength({
+      ...presented,
+      itemCount: presented.itemCount ?? presented.evidenceCount ?? row.itemCount,
+    });
     return {
       id,
       label,
       score: presented.displayScore,
       technicalScore: presented.technicalScore ?? presented.rawScore,
-      evidenceBadge: presented.evidenceBadge || presented.confidenceStatus,
-      displayLabel: presented.displayLabel,
-      tendency: presented.tendency || presented.level,
+      evidenceBadge: findingStatusLabel({ ...presented, claimStrength }),
+      displayLabel: findingPrimaryLabel({ ...presented, claimStrength, level: presented.level || domain.level }),
+      tendency: findingPrimaryLabel({ ...presented, claimStrength, level: presented.level || domain.level }),
+      level: presented.level || domain.level,
       confidence: presented.confidence,
-      confidenceStatus: presented.confidenceStatus || presented.evidenceBadge,
-      claimStrength: presented.claimStrength,
+      confidenceStatus: findingStatusLabel({ ...presented, claimStrength }),
+      claimStrength,
+      technicalDirection: findingTechnicalDirection({ ...presented, claimStrength, level: presented.level || domain.level }),
       interpretation: presented.interpretation || presented.coachMeaning,
       signalDirection: presented.signalDirection || presented.direction,
       coachMeaning: presented.coachMeaning || presented.interpretation,
@@ -512,6 +527,7 @@ export function buildMotivationReportViewModel(input = {}) {
     contentHash: text(provenance.contentHash),
     submittedAt: input.submittedAt || null,
     analyzedAt: input.analyzedAt || null,
+    pdfRenderer: 'renderCoachReportPdfV44Kr',
   };
 
   const usability = report.usability || report.reportUsability || {};
@@ -587,10 +603,12 @@ export function buildMotivationReportViewModel(input = {}) {
       reportConfidence,
     },
     coachDecisionBrief: report.coachDecisionBrief || null,
-    coachPriorities: (report.coachPriorities || []).length
+    coachPriorities: ((report.coachPriorities || []).length
       ? report.coachPriorities
-      : decisionItems.filter((item) => !/[?？]$/.test(item)).slice(0, 5),
+      : decisionItems
+    ).map(asPresentedCoachAction).filter(Boolean).slice(0, 5),
     nutritionAction: report.nutritionAction || null,
+    nutritionOrganized: organizeLegacyNutrition(nutrition || {}, athleteOperatingBrief),
     canonicalFindings: report.canonicalFindings || allDimensions,
     reportConfidence,
     quickRead: justifiedQuickRead,
@@ -609,6 +627,10 @@ export function buildMotivationReportViewModel(input = {}) {
     dimensionGroups,
     nutrition,
     fourWeekPlan: weekCards,
+    fourWeekPlanTestable: isTestableFourWeekPlan(weekCards),
+    reportModelVersion: text(
+      provenance.reportModelVersion || report.schemaVersion || report.metadata?.reportModelVersion,
+    ),
     verbatims: verbatimItems(report),
     technical,
     provenance: technical,

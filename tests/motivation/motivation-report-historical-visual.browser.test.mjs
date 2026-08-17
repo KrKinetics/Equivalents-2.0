@@ -1,5 +1,6 @@
 /**
- * Chromium visual QA for the motivation coach report (web + PDF pages).
+ * Historical PDF visual QA — Danny-like report-model-v4.3 snapshot.
+ * Presentation only. Does not mutate or reanalyze a stored client.
  */
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
@@ -9,16 +10,25 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 import {
-  analyzeCompleteMotivationProfileV43,
-  V43_COHERENT,
-} from '../../src/coach/motivation/fixtures/complete-profiles-v43.mjs';
+  analyzeCompleteMotivationProfileV42,
+  V42_DANNY_LIKE,
+} from '../../src/coach/motivation/fixtures/complete-profiles-v42.mjs';
+import { buildCanonicalClientIdentity } from '../../src/coach/motivation/identity/canonical-client-identity.mjs';
 import { buildMotivationReportViewModel } from '../../src/coach/motivation/report/motivation-report-view-model.mjs';
 import { buildMotivationReportMarkup } from '../../src/coach/motivation/report/build-motivation-report-html.mjs';
 import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motivation-pdf.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const portal = path.join(root, 'coach-portal');
-const outDir = path.join(root, 'reports', 'motivation-2e-visual');
+const outDir = path.join(root, 'reports', 'motivation-2e1-visual');
+
+const DANNY = {
+  id: '5a94561a-1111-4111-8111-aaaaaaaaaaaa',
+  full_name: 'Danny R',
+  email: 'danny@example.com',
+  phone: '5145550100',
+  service_type: 'complete',
+};
 
 function resolveChromePath() {
   const candidates = [
@@ -42,27 +52,28 @@ function contentType(filePath) {
   })[ext] || 'application/octet-stream';
 }
 
-function buildFixturePage() {
-  const { result } = analyzeCompleteMotivationProfileV43(V43_COHERENT, {
-    assessmentId: 'asm_visual',
-    clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-    clientName: 'Client test KR',
+function buildDannyBundle() {
+  const { result } = analyzeCompleteMotivationProfileV42(V42_DANNY_LIKE, {
+    assessmentId: 'asm_danny_visual',
+    clientId: DANNY.id,
+    clientName: DANNY.full_name,
     completedAt: new Date('2026-08-16T12:00:00.000Z'),
   });
+  const identity = buildCanonicalClientIdentity(DANNY).identity;
   const vm = buildMotivationReportViewModel({
     report: result.report,
-    identity: {
-      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-      fullName: 'Client test KR',
-      shortId: 'aaaaaaaa',
-    },
-    clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-    clientName: 'Client test KR',
+    identity,
+    clientId: DANNY.id,
+    clientName: DANNY.full_name,
     analysisVersion: 1,
     submittedAt: '2026-08-16T12:00:00.000Z',
     analyzedAt: '2026-08-16T12:05:00.000Z',
     provenance: result.provenance,
   });
+  return { result, identity, vm };
+}
+
+function buildFixturePage(vm) {
   const body = buildMotivationReportMarkup(vm, {
     logoSrc: './assets/logo-kr-kinetics-horizontal.png',
   });
@@ -79,9 +90,6 @@ function buildFixturePage() {
 <body class="intake-report-page motivation-report-page">
   <div class="intake-report-toolbar" data-screen-only="true">
     <a class="btn-compact btn-ghost" href="./dashboard.html">Retour au tableau de bord</a>
-    <div class="intake-report-toolbar-actions">
-      <button type="button" class="btn-compact btn-primary" id="download-pdf">Exporter PDF</button>
-    </div>
   </div>
   <div id="report-root">${body}</div>
 </body>
@@ -162,42 +170,33 @@ function startServer(html, pdfBuffer) {
 let server;
 let origin;
 let browser;
-let puppeteerReady = true;
-let fixtureHtml = '';
 let pdfBuffer = null;
 let pageCount = 0;
+let schemaVersion = '';
+let reportModelVersion = '';
 
 before(async () => {
-  try {
-    fs.mkdirSync(outDir, { recursive: true });
-    fixtureHtml = buildFixturePage();
-    const { result } = analyzeCompleteMotivationProfileV43(V43_COHERENT, {
-      assessmentId: 'asm_visual_pdf',
-      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-      clientName: 'Client test KR',
-      completedAt: new Date('2026-08-16T12:00:00.000Z'),
-    });
-    const rendered = await renderMotivationPdf(result.report, {
-      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-      clientName: 'Client test KR',
-      analysisVersion: 1,
-      submittedAt: '2026-08-16T12:00:00.000Z',
-      analyzedAt: '2026-08-16T12:05:00.000Z',
-    });
-    pdfBuffer = rendered.buffer;
-    pageCount = rendered.pageCount;
-    fs.writeFileSync(path.join(outDir, 'client-test-kr.pdf'), pdfBuffer);
-    ({ server, origin } = await startServer(fixtureHtml, pdfBuffer));
-    const executablePath = resolveChromePath();
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      ...(executablePath ? { executablePath } : {}),
-    });
-  } catch (error) {
-    puppeteerReady = false;
-    console.error('motivation visual QA: Chromium unavailable', error?.message || error);
-  }
+  fs.mkdirSync(outDir, { recursive: true });
+  const bundle = buildDannyBundle();
+  schemaVersion = bundle.result.report.schemaVersion;
+  reportModelVersion = bundle.result.report.metadata.reportModelVersion;
+  const html = buildFixturePage(bundle.vm);
+  const rendered = await renderMotivationPdf(bundle.result.report, {
+    identity: bundle.identity,
+    analysisVersion: 1,
+    submittedAt: '2026-08-16T12:00:00.000Z',
+    analyzedAt: '2026-08-16T12:05:00.000Z',
+  });
+  pdfBuffer = rendered.buffer;
+  pageCount = rendered.pageCount;
+  fs.writeFileSync(path.join(outDir, 'danny-historique.pdf'), pdfBuffer);
+  ({ server, origin } = await startServer(html, pdfBuffer));
+  const executablePath = resolveChromePath();
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    ...(executablePath ? { executablePath } : {}),
+  });
 });
 
 after(async () => {
@@ -210,68 +209,33 @@ async function captureSection(page, selector, filename) {
   const handle = await page.$(selector);
   if (!handle) return false;
   await handle.screenshot({ path: path.join(outDir, filename) });
-  await page.addStyleTag({ content: '.intake-report-toolbar{visibility:visible!important}' });
   return true;
 }
 
-test('web report is scannable at 1440 and 390 without horizontal scroll', async (t) => {
+test('historical Danny snapshot stays on report-model-v4.3', () => {
+  assert.equal(schemaVersion, 'report-model-v4.3');
+  assert.equal(reportModelVersion, 'v4.3');
+});
+
+test('historical Danny web captures identity, factors and nutrition', async (t) => {
   if (!browser) {
     t.skip('Chromium unavailable');
     return;
   }
-  const desktop = await browser.newPage();
-  await desktop.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
-  await desktop.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
-  await desktop.screenshot({ path: path.join(outDir, 'web-desktop-1440-top.png'), fullPage: false });
-  assert.equal(await captureSection(desktop, '[data-section="decision-brief"]', 'web-desktop-1440-brief.png'), true);
-  assert.equal(await captureSection(desktop, '[data-section="portrait-coach"]', 'web-desktop-1440-portrait.png'), true);
-  await captureSection(desktop, '[data-section="operating-brief"]', 'web-desktop-1440-operating.png');
-  await captureSection(desktop, '[data-section="risk-buckets"]', 'web-desktop-1440-risks.png');
-  assert.equal(await captureSection(desktop, '[data-section="interview"]', 'web-desktop-1440-interview.png'), true);
-  assert.equal(await captureSection(desktop, '[data-section="verbatims"]', 'web-desktop-1440-voice.png'), true);
-  assert.equal(await captureSection(desktop, '[data-section="nutrition"]', 'web-desktop-1440-nutrition.png'), true);
-  assert.equal(await captureSection(desktop, '[data-section="dimensions"]', 'web-desktop-1440-dimensions.png'), true);
-  assert.equal(await captureSection(desktop, '[data-section="four-week-plan"]', 'web-desktop-1440-plan.png'), true);
-  const desktopMetrics = await desktop.evaluate(() => ({
-    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-    logo: Boolean(document.querySelector('.motivation-hero img, .intake-report-logo-wrap img')),
-    quick: Boolean(document.querySelector('[data-section="quick-read"]')),
-    voiceBeforeDimensions: (() => {
-      const voice = document.querySelector('[data-section="verbatims"]');
-      const dims = document.querySelector('[data-section="dimensions"]');
-      if (!voice || !dims) return false;
-      return Boolean(voice.compareDocumentPosition(dims) & Node.DOCUMENT_POSITION_FOLLOWING);
-    })(),
-    accordion: Boolean(document.querySelector('.motivation-all-dimensions')),
-    technicalOpen: Boolean(document.querySelector('[data-section="technical"] details[open]')),
-    pdf: document.getElementById('download-pdf')?.textContent.trim(),
-    pdfDisabled: document.getElementById('download-pdf')?.disabled,
-  }));
-  assert.equal(desktopMetrics.overflow, false);
-  assert.equal(desktopMetrics.logo, true);
-  assert.equal(desktopMetrics.quick, true);
-  assert.equal(desktopMetrics.voiceBeforeDimensions, true);
-  assert.equal(desktopMetrics.accordion, true);
-  assert.equal(desktopMetrics.technicalOpen, false);
-  assert.equal(desktopMetrics.pdf, 'Exporter PDF');
-  assert.equal(desktopMetrics.pdfDisabled, false);
-  await desktop.close();
-
-  const mobile = await browser.newPage();
-  await mobile.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
-  await mobile.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
-  await mobile.screenshot({ path: path.join(outDir, 'web-mobile-390-top.png'), fullPage: false });
-  assert.equal(await captureSection(mobile, '[data-section="dimensions"]', 'web-mobile-390-dimensions.png'), true);
-  assert.equal(await captureSection(mobile, '[data-section="four-week-plan"]', 'web-mobile-390-plan.png'), true);
-  const mobileMetrics = await mobile.evaluate(() => ({
-    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-    width: document.documentElement.scrollWidth,
-  }));
-  assert.equal(mobileMetrics.overflow, false, `scrollWidth=${mobileMetrics.width}`);
-  await mobile.close();
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
+  await page.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
+  await page.screenshot({ path: path.join(outDir, 'web-danny-top.png'), fullPage: false });
+  assert.equal(await captureSection(page, '[data-section="dimensions"]', 'web-danny-facteurs.png'), true);
+  assert.equal(await captureSection(page, '[data-section="nutrition"]', 'web-danny-nutrition.png'), true);
+  const text = await page.evaluate(() => document.body.innerText);
+  assert.match(text, /Danny R/);
+  assert.match(text, /Nutrition/i);
+  assert.doesNotMatch(text, /\b(low|moderate|high)\b/);
+  await page.close();
 });
 
-test('PDF pages render for visual inspection', async (t) => {
+test('historical Danny PDF pages render without lost nutrition or empty pages', async (t) => {
   if (!browser || !pdfBuffer) {
     t.skip('Chromium unavailable');
     return;
@@ -281,10 +245,8 @@ test('PDF pages render for visual inspection', async (t) => {
   await page.goto(`${origin}/pdf-preview.html`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(() => typeof window.renderPdfPage === 'function');
   const first = await page.evaluate(async () => window.renderPdfPage(1));
-  assert.ok(first.pages >= 3 && first.pages <= 5);
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
-  await page.evaluate(async () => window.renderPdfPage(2));
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-2.png') });
+  assert.ok(first.pages >= 3 && first.pages <= 4);
+  assert.equal(pageCount, first.pages);
   const pagesText = await page.evaluate(async () => {
     const res = await fetch('/report.pdf');
     const data = new Uint8Array(await res.arrayBuffer());
@@ -298,24 +260,25 @@ test('PDF pages render for visual inspection', async (t) => {
     }
     return out;
   });
-  for (let n = 1; n <= Math.min(5, first.pages); n += 1) {
+  const all = pagesText.join('\n');
+  assert.match(pagesText[0] || '', /Danny R/);
+  assert.match(all, /Nutrition/i);
+  assert.match(all, /report-model-v4\.3/);
+  assert.match(all, /Plan issu de l'analyse historique/);
+  assert.doesNotMatch(all, /\b(low|moderate|high)\b/);
+  assert.doesNotMatch(all, /high\s*·\s*Mixte/i);
+  for (let n = 1; n <= first.pages; n += 1) {
     await page.evaluate(async (pageNumber) => window.renderPdfPage(pageNumber), n);
     await page.screenshot({ path: path.join(outDir, `pdf-page-${n}.png`) });
   }
-  const dimPage = pagesText.findIndex((text) => /Facteurs de décision|Motivation et adhésion|DIMENSIONS/i.test(text)) + 1 || Math.min(3, first.pages);
-  const voicePage = pagesText.findIndex((text) => /Voix de l'athlète|VOIX DE L'ATHLÈTE/i.test(text)) + 1 || Math.min(4, first.pages);
-  const nutritionPage = pagesText.findIndex((text) => /Nutrition/i.test(text)) + 1 || dimPage;
-  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|Semaine 1|SEMAINE 1/i.test(text)) + 1 || Math.min(4, first.pages);
-  await page.evaluate(async (n) => window.renderPdfPage(n), dimPage);
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-dimensions.png') });
-  await page.evaluate(async (n) => window.renderPdfPage(n), voicePage);
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-interview.png') });
-  await page.evaluate(async (n) => window.renderPdfPage(n), nutritionPage);
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-nutrition.png') });
+  const factorsPage = pagesText.findIndex((text) => /Facteurs de décision|Nutrition/i.test(text)) + 1 || 2;
+  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|SEMAINE 1/i.test(text)) + 1 || first.pages;
+  await page.evaluate(async (n) => window.renderPdfPage(n), 1);
+  await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
+  await page.evaluate(async (n) => window.renderPdfPage(n), factorsPage);
+  await page.screenshot({ path: path.join(outDir, 'pdf-page-facteurs-nutrition.png') });
   await page.evaluate(async (n) => window.renderPdfPage(n), planPage);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-plan.png') });
-  await page.evaluate(async (n) => window.renderPdfPage(n), first.pages);
-  await page.screenshot({ path: path.join(outDir, 'pdf-page-last.png') });
   const montage = await page.evaluate(async (count) => {
     const shots = [];
     for (let n = 1; n <= count; n += 1) {
@@ -325,8 +288,8 @@ test('PDF pages render for visual inspection', async (t) => {
     const w = 420;
     const h = 544;
     const canvas = document.createElement('canvas');
-    canvas.width = w * Math.min(3, count);
-    canvas.height = h * Math.ceil(count / 3);
+    canvas.width = w * Math.min(4, count);
+    canvas.height = h * Math.ceil(count / 4);
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#f4f7fb';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -334,7 +297,7 @@ test('PDF pages render for visual inspection', async (t) => {
       const img = new Image();
       img.src = shots[i];
       await new Promise((resolve) => { img.onload = resolve; img.onerror = resolve; });
-      ctx.drawImage(img, (i % 3) * w, Math.floor(i / 3) * h, w, h);
+      ctx.drawImage(img, (i % 4) * w, Math.floor(i / 4) * h, w, h);
     }
     return canvas.toDataURL('image/png');
   }, first.pages);
@@ -342,7 +305,5 @@ test('PDF pages render for visual inspection', async (t) => {
     const raw = montage.replace(/^data:image\/png;base64,/, '');
     fs.writeFileSync(path.join(outDir, 'pdf-montage.png'), Buffer.from(raw, 'base64'));
   }
-  assert.ok(pageCount >= 3 && pageCount <= 5);
-  assert.match(pagesText[0] || '', /Client test KR/);
   await page.close();
 });

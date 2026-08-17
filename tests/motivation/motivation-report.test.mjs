@@ -201,7 +201,7 @@ test('coach report hierarchy uses existing snapshot values only', () => {
     if (itemCount === 1) {
       assert.equal(row.score, null);
       assert.equal(row.technicalScore, expected);
-      assert.match(String(row.evidenceBadge), /Donnée unique|unique/i);
+      assert.match(String(row.evidenceBadge), /À CONFIRMER|Donnée unique|unique/i);
     } else {
       assert.equal(row.score ?? row.technicalScore, expected);
     }
