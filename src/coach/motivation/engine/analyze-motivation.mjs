@@ -8,11 +8,15 @@ import { calculateNutritionScores } from '../scoring/nutrition.mjs';
 import { evaluateRuleset } from '../rules/engine.mjs';
 import { assembleCoachReportSnapshotV42 } from '../report/v42/assemble.mjs';
 import { assembleCoachReportSnapshotV43 } from '../report/v43/assemble.mjs';
+import { assembleCoachReportSnapshotV44 } from '../report/v44/assemble.mjs';
 import { selectAdaptiveQuestionsV41 } from '../lib/adaptive-questions-v41.mjs';
 import { selectAdaptiveQuestionsV42 } from '../lib/adaptive-questions-v42.mjs';
+import { selectAdaptiveQuestionsV43 } from '../lib/adaptive-questions-v43.mjs';
 import {
   QUESTIONNAIRE_V42,
+  QUESTIONNAIRE_V43,
   REPORT_MODEL_V43,
+  REPORT_MODEL_V44,
   resolveMotivationEngine,
 } from '../versions/motivation-versions.mjs';
 import { buildEngineOptionLabels } from './to-question-input.mjs';
@@ -51,6 +55,12 @@ function normalizeEngineAnswers(baseAnswers) {
 
 export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
   const answers = normalizeEngineAnswers(baseAnswers);
+  if (engine.questionnaireVersion === QUESTIONNAIRE_V43) {
+    return selectAdaptiveQuestionsV43({
+      questions: engine.questionInputs,
+      answers,
+    }).scoring.map((question) => question.code);
+  }
   if (engine.questionnaireVersion === QUESTIONNAIRE_V42) {
     return selectAdaptiveQuestionsV42({
       questions: engine.questionInputs,
@@ -64,6 +74,12 @@ export function expectedAdaptiveQuestionCodes(engine, baseAnswers) {
 }
 
 export function expectedNarrativeQuestionCodes(engine, answers) {
+  if (engine.questionnaireVersion === QUESTIONNAIRE_V43) {
+    return selectAdaptiveQuestionsV43({
+      questions: engine.questionInputs,
+      answers: normalizeEngineAnswers(answers),
+    }).narrative.map((question) => question.code);
+  }
   if (engine.questionnaireVersion !== QUESTIONNAIRE_V42) return [];
   return selectAdaptiveQuestionsV42({
     questions: engine.questionInputs,
@@ -142,9 +158,11 @@ export function analyzeMotivationAssessment(input) {
   });
   const optionLabels = buildEngineOptionLabels(presented.questions);
 
-  const assemble = engine.reportModelVersion === REPORT_MODEL_V43
-    ? assembleCoachReportSnapshotV43
-    : assembleCoachReportSnapshotV42;
+  const assemble = engine.reportModelVersion === REPORT_MODEL_V44
+    ? assembleCoachReportSnapshotV44
+    : engine.reportModelVersion === REPORT_MODEL_V43
+      ? assembleCoachReportSnapshotV43
+      : assembleCoachReportSnapshotV42;
   const report = assemble({
     assessmentId: input.assessmentId ?? 'assessment',
     clientId: input.clientId ?? 'client',

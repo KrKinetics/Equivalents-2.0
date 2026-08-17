@@ -80,10 +80,11 @@ function existingScore(row) {
 
 function domainLookup(report) {
   const rows = [
-    ...(Array.isArray(report?.presentedDomains) ? report.presentedDomains : []),
     ...(Array.isArray(report?.domainInterpretations) ? report.domainInterpretations : []),
+    ...(Array.isArray(report?.presentedDomains) ? report.presentedDomains : []),
+    ...(Array.isArray(report?.canonicalFindings) ? report.canonicalFindings : []),
   ];
-  return new Map(rows.map((row) => [text(row.domainId || row.dimension), row]));
+  return new Map(rows.map((row) => [text(row.domainId || row.dimension || row.key || row.domain), row]));
 }
 
 function dimensionItems(report) {
@@ -111,12 +112,17 @@ function dimensionItems(report) {
       id,
       label,
       score: presented.displayScore,
-      technicalScore: presented.technicalScore,
-      evidenceBadge: presented.evidenceBadge,
+      technicalScore: presented.technicalScore ?? presented.rawScore,
+      evidenceBadge: presented.evidenceBadge || presented.confidenceStatus,
       displayLabel: presented.displayLabel,
-      signalDirection: presented.signalDirection,
-      coachMeaning: presented.coachMeaning,
-      itemCount: presented.itemCount,
+      tendency: presented.tendency || presented.level,
+      confidence: presented.confidence,
+      confidenceStatus: presented.confidenceStatus || presented.evidenceBadge,
+      claimStrength: presented.claimStrength,
+      interpretation: presented.interpretation || presented.coachMeaning,
+      signalDirection: presented.signalDirection || presented.direction,
+      coachMeaning: presented.coachMeaning || presented.interpretation,
+      itemCount: presented.itemCount ?? presented.evidenceCount,
       changesCoaching: presented.changesCoaching,
     };
   }).filter(Boolean);
@@ -231,7 +237,16 @@ function fourWeekCards(report) {
     const focus = text(week.focus || week.objective);
     const actions = weekActions(week);
     if (!title && !focus && !actions.length) return null;
-    return { week: number, title, focus, actions };
+    return {
+      week: number,
+      title,
+      focus,
+      objective: text(week.objective || focus),
+      coachAction: text(week.coachAction) || actions[0] || '',
+      observe: text(week.observe),
+      validationCriterion: text(week.validationCriterion),
+      actions,
+    };
   }).filter(Boolean);
 }
 
@@ -555,19 +570,28 @@ export function buildMotivationReportViewModel(input = {}) {
 
   return {
     title: 'Profil motivationnel',
-    clientName: text(input.clientName || report.metadata?.clientName) || 'Client',
+    identity: input.identity || null,
+    clientName: text(input.identity?.fullName || input.clientName || report.metadata?.clientName),
+    clientId: text(input.identity?.clientId || input.clientId || report.metadata?.clientId),
     submittedAt: input.submittedAt || report.metadata?.completedAt || null,
     analyzedAt: input.analyzedAt || null,
     analysisVersion: input.analysisVersion ?? null,
     sections,
     hero: {
       title: 'Profil motivationnel',
-      clientName: text(input.clientName || report.metadata?.clientName) || 'Client',
+      clientName: text(input.identity?.fullName || input.clientName || report.metadata?.clientName),
+      identity: input.identity || null,
       submittedAt: input.submittedAt || report.metadata?.completedAt || null,
       analyzedAt: input.analyzedAt || null,
       analysisVersion: input.analysisVersion ?? null,
       reportConfidence,
     },
+    coachDecisionBrief: report.coachDecisionBrief || null,
+    coachPriorities: (report.coachPriorities || []).length
+      ? report.coachPriorities
+      : decisionItems.filter((item) => !/[?？]$/.test(item)).slice(0, 5),
+    nutritionAction: report.nutritionAction || null,
+    canonicalFindings: report.canonicalFindings || allDimensions,
     reportConfidence,
     quickRead: justifiedQuickRead,
     summary: summaryLines.slice(0, 4),
@@ -575,7 +599,6 @@ export function buildMotivationReportViewModel(input = {}) {
     supportBlock,
     athleteOperatingBrief,
     portraitCoach: portrait,
-    coachPriorities: decisionItems.slice(0, 5),
     vigilance: vigilanceItems,
     riskBuckets: buckets,
     conflicts,
@@ -606,6 +629,10 @@ export function publicMotivationReportMessage(error) {
       return 'Version incompatible';
     case 'invalid_client':
       return 'Identifiant client manquant ou invalide.';
+    case 'client_identity_missing':
+      return 'Identité client manquante';
+    case 'client_identity_mismatch':
+      return 'Identité client incohérente';
     default:
       return 'Analyse temporairement indisponible';
   }

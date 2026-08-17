@@ -43,6 +43,20 @@ import {
   V42_NARRATIVE_BANK_CODES,
   V42_SCORING_ADAPTIVE_CODES,
 } from '../questionnaire/seed-questions-v42.mjs';
+import {
+  QUESTIONNAIRE_V43_HARD_MAX,
+  QUESTIONNAIRE_V43_NARRATIVE_MAX,
+  QUESTIONNAIRE_V43_SCORING_ADAPTIVE_MAX,
+  V43_NARRATIVE_CANDIDATES,
+  V43_SCORING_CANDIDATES,
+} from '../questionnaire/adaptive-bank-v43.mjs';
+import {
+  SEED_QUESTIONS_V43,
+  V43_ADAPTIVE_BANK_CODES,
+  V43_BASE_CODES,
+  V43_NARRATIVE_BANK_CODES,
+  V43_SCORING_ADAPTIVE_CODES,
+} from '../questionnaire/seed-questions-v43.mjs';
 import { V41_DOMAIN_DEFINITIONS } from '../scoring/domain-interpretation-v41.mjs';
 import { V42_DOMAIN_DEFINITIONS } from '../scoring/domain-interpretation-v42.mjs';
 import { toEngineQuestionInput } from '../engine/to-question-input.mjs';
@@ -54,6 +68,9 @@ export const REPORT_MODEL_V42 = 'report-model-v4.2';
 export const QUESTIONNAIRE_V42 = 'questionnaire-v4.2';
 export const RULESET_V42 = RULESET_V42_VERSION;
 export const REPORT_MODEL_V43 = 'report-model-v4.3';
+
+export const QUESTIONNAIRE_V43 = 'questionnaire-v4.3';
+export const REPORT_MODEL_V44 = 'report-model-v4.4';
 
 export const MOTIVATION_ENGINE_ID = 'kr-motivation-engine';
 
@@ -68,6 +85,11 @@ export const SUPPORTED_MOTIVATION_ENGINES = Object.freeze([
     questionnaireVersion: QUESTIONNAIRE_V42,
     rulesetVersion: RULESET_V42,
     reportModelVersion: REPORT_MODEL_V43,
+  }),
+  Object.freeze({
+    questionnaireVersion: QUESTIONNAIRE_V43,
+    rulesetVersion: RULESET_V42,
+    reportModelVersion: REPORT_MODEL_V44,
   }),
 ]);
 
@@ -129,11 +151,93 @@ function isV42Triple(versions) {
     && versions.reportModelVersion === REPORT_MODEL_V43;
 }
 
+function isV43Triple(versions) {
+  return versions.questionnaireVersion === QUESTIONNAIRE_V43
+    && versions.rulesetVersion === RULESET_V42
+    && versions.reportModelVersion === REPORT_MODEL_V44;
+}
+
+/**
+ * Canonical snapshot of every immutable definition that can change analysis.
+ * v4.1 snapshot shape is frozen so historical hashes stay bit-for-bit.
+ */
+function snapshotV42Shape(versions, {
+  baseCodes,
+  scoringCodes,
+  narrativeCodes,
+  adaptiveBankCodes,
+  adaptiveMax,
+  narrativeMax,
+  hardMax,
+  scoringCandidates,
+  narrativeCandidates,
+  questions,
+}) {
+  return {
+    engineId: MOTIVATION_ENGINE_ID,
+    questionnaireVersion: versions.questionnaireVersion,
+    rulesetVersion: versions.rulesetVersion,
+    reportModelVersion: versions.reportModelVersion,
+    baseQuestionCodes: [...baseCodes],
+    adaptiveQuestionCodes: [...scoringCodes],
+    narrativeQuestionCodes: [...narrativeCodes],
+    adaptiveBankCodes: [...adaptiveBankCodes],
+    adaptiveMax,
+    narrativeMax,
+    hardQuestionMax: hardMax,
+    adaptivePerDomainMax: V42_MAX_ADAPTIVE_PER_DOMAIN,
+    adaptiveCandidates: scoringCandidates.map((candidate) => ({
+      code: candidate.code,
+      domainId: candidate.domainId,
+      priority: candidate.priority,
+      affectedDecisionIds: [...(candidate.affectedDecisionIds ?? [])],
+      decisionImpact: candidate.decisionImpact,
+      narrativeImpact: candidate.narrativeImpact,
+      frontPageImpact: candidate.frontPageImpact,
+      uncertaintyReduction: candidate.uncertaintyReduction,
+    })),
+    narrativeCandidates: narrativeCandidates.map((candidate) => ({
+      code: candidate.code,
+      trigger: candidate.trigger,
+      narrativeImpact: candidate.narrativeImpact,
+      frontPageImpact: candidate.frontPageImpact,
+      uncertaintyReduction: candidate.uncertaintyReduction,
+      priority: candidate.priority,
+    })),
+    questions: questions.map(snapshotQuestionV42),
+    domainDefinitions: V42_DOMAIN_DEFINITIONS.map((definition) => ({
+      domainId: definition.domainId,
+      label: definition.label,
+      coreCodes: [...definition.coreCodes],
+      adaptiveCodes: [...definition.adaptiveCodes],
+      affectedDecisionIds: [...(definition.affectedDecisionIds ?? [])],
+      useRawLikert: Boolean(definition.useRawLikert),
+    })),
+    rulesetThresholds: { ...RULESET_V42_THRESHOLDS },
+    rules: RULES_V42,
+    contradictions: CONTRADICTIONS_V42,
+  };
+}
+
 /**
  * Canonical snapshot of every immutable definition that can change analysis.
  * v4.1 snapshot shape is frozen so historical hashes stay bit-for-bit.
  */
 export function buildMotivationDefinitionSnapshot(versions) {
+  if (isV43Triple(versions)) {
+    return snapshotV42Shape(versions, {
+      baseCodes: V43_BASE_CODES,
+      scoringCodes: V43_SCORING_ADAPTIVE_CODES,
+      narrativeCodes: V43_NARRATIVE_BANK_CODES,
+      adaptiveBankCodes: V43_ADAPTIVE_BANK_CODES,
+      adaptiveMax: QUESTIONNAIRE_V43_SCORING_ADAPTIVE_MAX,
+      narrativeMax: QUESTIONNAIRE_V43_NARRATIVE_MAX,
+      hardMax: QUESTIONNAIRE_V43_HARD_MAX,
+      scoringCandidates: V43_SCORING_CANDIDATES,
+      narrativeCandidates: V43_NARRATIVE_CANDIDATES,
+      questions: SEED_QUESTIONS_V43,
+    });
+  }
   if (isV42Triple(versions)) {
     return {
       engineId: MOTIVATION_ENGINE_ID,
@@ -227,6 +331,26 @@ export function resolveMotivationEngine(input) {
   }
 
   const definitionSnapshot = buildMotivationDefinitionSnapshot(requested);
+  if (isV43Triple(requested)) {
+    return {
+      ...requested,
+      engineId: MOTIVATION_ENGINE_ID,
+      rules: RULES_V42,
+      contradictions: CONTRADICTIONS_V42,
+      adaptiveMax: QUESTIONNAIRE_V43_SCORING_ADAPTIVE_MAX,
+      narrativeMax: QUESTIONNAIRE_V43_NARRATIVE_MAX,
+      hardQuestionMax: QUESTIONNAIRE_V43_HARD_MAX,
+      adaptiveCandidates: V43_SCORING_CANDIDATES,
+      narrativeCandidates: V43_NARRATIVE_CANDIDATES,
+      baseQuestionCodes: V43_BASE_CODES,
+      adaptiveQuestionCodes: V43_SCORING_ADAPTIVE_CODES,
+      narrativeQuestionCodes: V43_NARRATIVE_BANK_CODES,
+      questions: SEED_QUESTIONS_V43,
+      questionInputs: SEED_QUESTIONS_V43.map((seed, index) => toEngineQuestionInput(seed, index)),
+      definitionSnapshot,
+      contentHash: hashMotivationDefinitions(definitionSnapshot),
+    };
+  }
   if (isV42Triple(requested)) {
     return {
       ...requested,
@@ -295,4 +419,4 @@ export function buildMotivationProvenance(input) {
   };
 }
 
-export { isV41Triple, isV42Triple };
+export { isV41Triple, isV42Triple, isV43Triple };

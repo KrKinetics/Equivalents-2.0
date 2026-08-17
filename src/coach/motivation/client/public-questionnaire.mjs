@@ -9,6 +9,9 @@ import {
   OFFICIAL_V42_HARD_MAX,
   OFFICIAL_V42_NARRATIVE_MAX,
   OFFICIAL_V42_SCORING_ADAPTIVE_MAX,
+  OFFICIAL_V43_HARD_MAX,
+  OFFICIAL_V43_NARRATIVE_MAX,
+  OFFICIAL_V43_SCORING_ADAPTIVE_MAX,
   assertOfficialMotivationBundle,
 } from './official-bundle.mjs';
 import {
@@ -21,16 +24,39 @@ import {
   V42_NARRATIVE_BANK_CODES,
   V42_SCORING_ADAPTIVE_CODES,
 } from '../questionnaire/seed-questions-v42.mjs';
+import {
+  SEED_QUESTIONS_V43,
+  V43_BASE_CODES,
+  V43_NARRATIVE_BANK_CODES,
+  V43_SCORING_ADAPTIVE_CODES,
+} from '../questionnaire/seed-questions-v43.mjs';
 import { toEngineQuestionInput } from '../engine/to-question-input.mjs';
 import { selectAdaptiveQuestionsV41 } from '../lib/adaptive-questions-v41.mjs';
 import { selectAdaptiveQuestionsV42 } from '../lib/adaptive-questions-v42.mjs';
+import { selectAdaptiveQuestionsV43 } from '../lib/adaptive-questions-v43.mjs';
 
 const V41_INPUTS = SEED_QUESTIONS_V41.map((seed, index) => toEngineQuestionInput(seed, index));
 const V41_BY_CODE = new Map(SEED_QUESTIONS_V41.map((question) => [question.code, question]));
 const V42_INPUTS = SEED_QUESTIONS_V42.map((seed, index) => toEngineQuestionInput(seed, index));
 const V42_BY_CODE = new Map(SEED_QUESTIONS_V42.map((question) => [question.code, toEngineQuestionInput(question, 0)]));
+const V43_INPUTS = SEED_QUESTIONS_V43.map((seed, index) => toEngineQuestionInput(seed, index));
+const V43_BY_CODE = new Map(SEED_QUESTIONS_V43.map((question) => [question.code, toEngineQuestionInput(question, 0)]));
 
 function runtimeFor(version) {
+  if (version === 'questionnaire-v4.3') {
+    return {
+      version: 'questionnaire-v4.3',
+      baseCodes: V43_BASE_CODES,
+      scoringCodes: V43_SCORING_ADAPTIVE_CODES,
+      narrativeCodes: V43_NARRATIVE_BANK_CODES,
+      questionsByCode: V43_BY_CODE,
+      questionInputs: V43_INPUTS,
+      baseCount: OFFICIAL_BASE_COUNT,
+      adaptiveMax: OFFICIAL_V43_SCORING_ADAPTIVE_MAX,
+      narrativeMax: OFFICIAL_V43_NARRATIVE_MAX,
+      hardMax: OFFICIAL_V43_HARD_MAX,
+    };
+  }
   if (version === 'questionnaire-v4.2') {
     return {
       version: 'questionnaire-v4.2',
@@ -67,7 +93,7 @@ export function createQuestionnaireRuntime(inviteOrVersion) {
 }
 
 export function getMotivationQuestion(code, runtime = runtimeFor('questionnaire-v4.1')) {
-  return runtime.questionsByCode.get(code) || V41_BY_CODE.get(code) || V42_BY_CODE.get(code) || null;
+  return runtime.questionsByCode.get(code) || V41_BY_CODE.get(code) || V42_BY_CODE.get(code) || V43_BY_CODE.get(code) || null;
 }
 
 export function getBaseMotivationQuestions(runtime = runtimeFor('questionnaire-v4.1')) {
@@ -75,6 +101,12 @@ export function getBaseMotivationQuestions(runtime = runtimeFor('questionnaire-v
 }
 
 export function selectClientAdaptiveQuestions(answers, runtime = runtimeFor('questionnaire-v4.1')) {
+  if (runtime.version === 'questionnaire-v4.3') {
+    return selectAdaptiveQuestionsV43({
+      questions: runtime.questionInputs,
+      answers,
+    }).scoring.map((question) => question.code);
+  }
   if (runtime.version === 'questionnaire-v4.2') {
     return selectAdaptiveQuestionsV42({
       questions: runtime.questionInputs,
@@ -89,6 +121,12 @@ export function selectClientAdaptiveQuestions(answers, runtime = runtimeFor('que
 }
 
 export function selectClientNarrativeQuestions(answers, runtime = runtimeFor('questionnaire-v4.1')) {
+  if (runtime.version === 'questionnaire-v4.3') {
+    return selectAdaptiveQuestionsV43({
+      questions: runtime.questionInputs,
+      answers,
+    }).narrative.map((question) => question.code);
+  }
   if (runtime.version !== 'questionnaire-v4.2') return [];
   return selectAdaptiveQuestionsV42({
     questions: runtime.questionInputs,
@@ -103,7 +141,7 @@ export function presentedCodesFromAnswers(answers, existingCodes = [], runtime =
     ? selectClientAdaptiveQuestions(baseAnswers, runtime)
     : [];
   const scoringAnswered = adaptive.every((code) => answers.some((answer) => answer.questionCode === code));
-  const narrative = runtime.version === 'questionnaire-v4.2' && adaptive.length >= 0 && (
+  const narrative = (runtime.version === 'questionnaire-v4.2' || runtime.version === 'questionnaire-v4.3') && adaptive.length >= 0 && (
     adaptive.length === 0 || scoringAnswered
   )
     ? selectClientNarrativeQuestions(answers, runtime)

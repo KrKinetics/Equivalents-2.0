@@ -5,9 +5,11 @@
 
 import { processSubmittedMotivationAssessment } from './process-submitted-motivation.mjs';
 import {
-  motivationPdfFilename,
-  renderMotivationPdf,
-} from '../../motivation/pdf/render-motivation-pdf.mjs';
+  assertPdfClientIdentity,
+  buildCanonicalClientIdentity,
+  buildMotivationPdfFilename,
+} from '../../motivation/identity/canonical-client-identity.mjs';
+import { renderMotivationPdf } from '../../motivation/pdf/render-motivation-pdf.mjs';
 
 /**
  * @returns {Promise<
@@ -42,9 +44,25 @@ export async function generateOfficialMotivationPdf({
   const report = processed.analysisSnapshot?.report;
   if (!report) return { ok: false, error: 'unavailable' };
 
+  const identityResult = buildCanonicalClientIdentity(processed.client);
+  if (!identityResult.ok) return { ok: false, error: identityResult.error };
+
+  const identityCheck = assertPdfClientIdentity({
+    requestedClientId: clientId,
+    analysisClientId:
+      processed.analysisSnapshot?.client_id
+      || processed.analysisSnapshot?.clientId
+      || report.metadata?.clientId,
+    reportClientId: report.metadata?.clientId || processed.client?.id,
+    identity: identityResult.identity,
+  });
+  if (!identityCheck.ok) return { ok: false, error: identityCheck.error };
+
   try {
     const rendered = await renderMotivationPdf(report, {
-      clientName: processed.analysisSnapshot?.report?.metadata?.clientName,
+      identity: identityResult.identity,
+      clientId: identityResult.identity.clientId,
+      clientName: identityResult.identity.fullName,
       completedAt: processed.analysisSnapshot?.report?.metadata?.completedAt,
       questionnaireVersion: processed.provenance?.questionnaireVersion,
       rulesetVersion: processed.provenance?.rulesetVersion,
@@ -58,14 +76,18 @@ export async function generateOfficialMotivationPdf({
     return {
       ok: true,
       pdf,
-      filename: motivationPdfFilename({
-        clientName: processed.analysisSnapshot?.report?.metadata?.clientName || 'client',
-        date: new Date(),
+      filename: buildMotivationPdfFilename({
+        identity: identityResult.identity,
+        submittedAt: processed.submittedAt,
+        analysisVersion: processed.analysisVersion,
       }),
       analysisVersion: processed.analysisVersion,
       idempotent: processed.idempotent,
     };
-  } catch {
+  } catch (error) {
+    if (error?.code === 'client_identity_missing' || error?.code === 'client_identity_mismatch') {
+      return { ok: false, error: error.code };
+    }
     return { ok: false, error: 'unavailable' };
   }
 }

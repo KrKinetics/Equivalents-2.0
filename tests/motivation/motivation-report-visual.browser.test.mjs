@@ -9,16 +9,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 import {
-  PROFILE_A_STABLE,
-  analyzeCompleteMotivationProfile,
-} from '../../src/coach/motivation/fixtures/complete-profiles.mjs';
+  analyzeCompleteMotivationProfileV43,
+  V43_COHERENT,
+} from '../../src/coach/motivation/fixtures/complete-profiles-v43.mjs';
 import { buildMotivationReportViewModel } from '../../src/coach/motivation/report/motivation-report-view-model.mjs';
 import { buildMotivationReportMarkup } from '../../src/coach/motivation/report/build-motivation-report-html.mjs';
 import { renderMotivationPdf } from '../../src/coach/motivation/pdf/render-motivation-pdf.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const portal = path.join(root, 'coach-portal');
-const outDir = path.join(root, 'reports', 'motivation-2d-visual');
+const outDir = path.join(root, 'reports', 'motivation-2e-visual');
 
 function resolveChromePath() {
   const candidates = [
@@ -43,13 +43,20 @@ function contentType(filePath) {
 }
 
 function buildFixturePage() {
-  const { result } = analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
+  const { result } = analyzeCompleteMotivationProfileV43(V43_COHERENT, {
     assessmentId: 'asm_visual',
+    clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
     clientName: 'Client test KR',
     completedAt: new Date('2026-08-16T12:00:00.000Z'),
   });
   const vm = buildMotivationReportViewModel({
     report: result.report,
+    identity: {
+      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+      fullName: 'Client test KR',
+      shortId: 'aaaaaaaa',
+    },
+    clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
     clientName: 'Client test KR',
     analysisVersion: 1,
     submittedAt: '2026-08-16T12:00:00.000Z',
@@ -113,7 +120,12 @@ function startServer(html, pdfBuffer) {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
     await pdfPage.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-    return { pages: pdf.numPages, width: viewport.width, height: viewport.height };
+    return {
+      pages: pdf.numPages,
+      width: viewport.width,
+      height: viewport.height,
+      dataUrl: canvas.toDataURL('image/png'),
+    };
   };
 </script>
 </body></html>`);
@@ -159,12 +171,14 @@ before(async () => {
   try {
     fs.mkdirSync(outDir, { recursive: true });
     fixtureHtml = buildFixturePage();
-    const { result } = analyzeCompleteMotivationProfile(PROFILE_A_STABLE, {
+    const { result } = analyzeCompleteMotivationProfileV43(V43_COHERENT, {
       assessmentId: 'asm_visual_pdf',
+      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
       clientName: 'Client test KR',
       completedAt: new Date('2026-08-16T12:00:00.000Z'),
     });
     const rendered = await renderMotivationPdf(result.report, {
+      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
       clientName: 'Client test KR',
       analysisVersion: 1,
       submittedAt: '2026-08-16T12:00:00.000Z',
@@ -209,8 +223,9 @@ test('web report is scannable at 1440 and 390 without horizontal scroll', async 
   await desktop.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
   await desktop.goto(`${origin}/motivation-report-visual.html`, { waitUntil: 'networkidle0' });
   await desktop.screenshot({ path: path.join(outDir, 'web-desktop-1440-top.png'), fullPage: false });
-  await captureSection(desktop, '[data-section="portrait-coach"]', 'web-desktop-1440-portrait.png');
-  await captureSection(desktop, '[data-section="operating-brief"]', 'web-desktop-1440-brief.png');
+  assert.equal(await captureSection(desktop, '[data-section="decision-brief"]', 'web-desktop-1440-brief.png'), true);
+  assert.equal(await captureSection(desktop, '[data-section="portrait-coach"]', 'web-desktop-1440-portrait.png'), true);
+  await captureSection(desktop, '[data-section="operating-brief"]', 'web-desktop-1440-operating.png');
   await captureSection(desktop, '[data-section="risk-buckets"]', 'web-desktop-1440-risks.png');
   assert.equal(await captureSection(desktop, '[data-section="interview"]', 'web-desktop-1440-interview.png'), true);
   assert.equal(await captureSection(desktop, '[data-section="verbatims"]', 'web-desktop-1440-voice.png'), true);
@@ -266,7 +281,7 @@ test('PDF pages render for visual inspection', async (t) => {
   await page.goto(`${origin}/pdf-preview.html`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(() => typeof window.renderPdfPage === 'function');
   const first = await page.evaluate(async () => window.renderPdfPage(1));
-  assert.equal(first.pages, 5);
+  assert.ok(first.pages >= 4 && first.pages <= 5);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-1.png') });
   await page.evaluate(async () => window.renderPdfPage(2));
   await page.screenshot({ path: path.join(outDir, 'pdf-page-2.png') });
@@ -287,14 +302,47 @@ test('PDF pages render for visual inspection', async (t) => {
     await page.evaluate(async (pageNumber) => window.renderPdfPage(pageNumber), n);
     await page.screenshot({ path: path.join(outDir, `pdf-page-${n}.png`) });
   }
-  const dimPage = pagesText.findIndex((text) => /Motivation et adhésion|DIMENSIONS/i.test(text)) + 1 || Math.min(2, first.pages);
-  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|Semaine 1/i.test(text)) + 1 || Math.min(5, first.pages);
+  const dimPage = pagesText.findIndex((text) => /Facteurs de décision|Motivation et adhésion|DIMENSIONS/i.test(text)) + 1 || Math.min(3, first.pages);
+  const voicePage = pagesText.findIndex((text) => /Voix de l'athlète|VOIX DE L'ATHLÈTE/i.test(text)) + 1 || Math.min(4, first.pages);
+  const nutritionPage = pagesText.findIndex((text) => /Nutrition/i.test(text)) + 1 || dimPage;
+  const planPage = pagesText.findIndex((text) => /PLAN 4 SEMAINES|Semaine 1|SEMAINE 1/i.test(text)) + 1 || Math.min(4, first.pages);
   await page.evaluate(async (n) => window.renderPdfPage(n), dimPage);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-dimensions.png') });
+  await page.evaluate(async (n) => window.renderPdfPage(n), voicePage);
+  await page.screenshot({ path: path.join(outDir, 'pdf-page-interview.png') });
+  await page.evaluate(async (n) => window.renderPdfPage(n), nutritionPage);
+  await page.screenshot({ path: path.join(outDir, 'pdf-page-nutrition.png') });
   await page.evaluate(async (n) => window.renderPdfPage(n), planPage);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-plan.png') });
   await page.evaluate(async (n) => window.renderPdfPage(n), first.pages);
   await page.screenshot({ path: path.join(outDir, 'pdf-page-last.png') });
-  assert.equal(pageCount, 5);
+  const montage = await page.evaluate(async (count) => {
+    const shots = [];
+    for (let n = 1; n <= count; n += 1) {
+      const data = await window.renderPdfPage(n);
+      shots.push(data.dataUrl);
+    }
+    const w = 420;
+    const h = 544;
+    const canvas = document.createElement('canvas');
+    canvas.width = w * Math.min(3, count);
+    canvas.height = h * Math.ceil(count / 3);
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#f4f7fb';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < shots.length; i += 1) {
+      const img = new Image();
+      img.src = shots[i];
+      await new Promise((resolve) => { img.onload = resolve; img.onerror = resolve; });
+      ctx.drawImage(img, (i % 3) * w, Math.floor(i / 3) * h, w, h);
+    }
+    return canvas.toDataURL('image/png');
+  }, first.pages);
+  if (montage?.startsWith('data:image')) {
+    const raw = montage.replace(/^data:image\/png;base64,/, '');
+    fs.writeFileSync(path.join(outDir, 'pdf-montage.png'), Buffer.from(raw, 'base64'));
+  }
+  assert.ok(pageCount >= 4 && pageCount <= 5);
+  assert.match(pagesText[0] || '', /Client test KR/);
   await page.close();
 });

@@ -50,6 +50,13 @@ test('back and next buttons have explicit visible labels and styles', () => {
   assert.match(css, /button\.motivation-btn-next[\s\S]*color:\s*#fff/);
 });
 
+test('progress never shows a moving question total', () => {
+  assert.match(js, /Question \$\{position\}/);
+  assert.doesNotMatch(js, /Question \$\{position\} \/ /);
+  assert.doesNotMatch(js, /34 -> 38|38 -> 39/);
+  assert.match(js, /baseCount \|\| 34/);
+});
+
 test('motivation form uses a questionnaire-specific max width', () => {
   assert.match(css, /\.motivation-page \.intake-shell[\s\S]{0,80}840px/);
   assert.doesNotMatch(css, /\.dashboard[\s\S]{0,40}840px/);

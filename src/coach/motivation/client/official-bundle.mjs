@@ -20,6 +20,15 @@ export const OFFICIAL_V42_SCORING_ADAPTIVE_MAX = 4;
 export const OFFICIAL_V42_NARRATIVE_MAX = 2;
 export const OFFICIAL_V42_HARD_MAX = 40;
 
+export const OFFICIAL_V43_QUESTIONNAIRE_VERSION = 'questionnaire-v4.3';
+export const OFFICIAL_V43_RULESET_VERSION = 'ruleset-v4.2';
+export const OFFICIAL_V43_REPORT_MODEL_VERSION = 'report-model-v4.4';
+export const OFFICIAL_V43_CONTENT_HASH = '1ffb4de32106dd4c32fb325ad5652f3b68ad399382f98f5836a4cae4ff1893fa';
+export const OFFICIAL_V43_BASE_COUNT = 34;
+export const OFFICIAL_V43_SCORING_ADAPTIVE_MAX = 4;
+export const OFFICIAL_V43_NARRATIVE_MAX = 2;
+export const OFFICIAL_V43_HARD_MAX = 40;
+
 export const OFFICIAL_BUNDLES = Object.freeze([
   Object.freeze({
     questionnaireVersion: OFFICIAL_QUESTIONNAIRE_VERSION,
@@ -38,6 +47,15 @@ export const OFFICIAL_BUNDLES = Object.freeze([
     baseCount: OFFICIAL_V42_BASE_COUNT,
     adaptiveMax: OFFICIAL_V42_SCORING_ADAPTIVE_MAX,
     narrativeMax: OFFICIAL_V42_NARRATIVE_MAX,
+  }),
+  Object.freeze({
+    questionnaireVersion: OFFICIAL_V43_QUESTIONNAIRE_VERSION,
+    rulesetVersion: OFFICIAL_V43_RULESET_VERSION,
+    reportModelVersion: OFFICIAL_V43_REPORT_MODEL_VERSION,
+    contentHash: OFFICIAL_V43_CONTENT_HASH,
+    baseCount: OFFICIAL_V43_BASE_COUNT,
+    adaptiveMax: OFFICIAL_V43_SCORING_ADAPTIVE_MAX,
+    narrativeMax: OFFICIAL_V43_NARRATIVE_MAX,
   }),
 ]);
 

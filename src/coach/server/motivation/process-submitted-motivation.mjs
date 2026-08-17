@@ -74,6 +74,7 @@ function toResult(row, extras = {}) {
     createdAt,
     submittedAt: extras.submittedAt || null,
     analysisSnapshot: extras.analysisSnapshot || row.analysis_snapshot || null,
+    client: extras.client || null,
     provenance: {
       ...provenance,
       analyzedAt: createdAt,
@@ -138,7 +139,7 @@ export async function processSubmittedMotivationAssessment({
   });
   const matching = existing.find((row) => sameDefinitions(row, engine));
   if (matching) {
-    return toResult(matching, { idempotent: true, submittedAt: response.submitted_at });
+    return toResult(matching, { idempotent: true, submittedAt: response.submitted_at, client });
   }
 
   let analyzed;
@@ -162,6 +163,7 @@ export async function processSubmittedMotivationAssessment({
 
   const analysisSnapshot = {
     schemaVersion: analyzed.report?.schemaVersion || engine.reportModelVersion,
+    client_id: client.id,
     scoring: analyzed.scoring,
     nutrition: analyzed.nutrition,
     evaluation: analyzed.evaluation,
@@ -218,6 +220,7 @@ export async function processSubmittedMotivationAssessment({
     analysisSnapshot,
     provenance: analysisSnapshot.provenance,
     submittedAt: response.submitted_at,
+    client,
   });
 }
 

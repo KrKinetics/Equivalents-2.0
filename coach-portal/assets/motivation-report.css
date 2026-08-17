@@ -86,11 +86,21 @@
   color: var(--primary, #071b41);
 }
 
+.motivation-identity-kicker {
+  margin: 14px 0 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted, #64748b);
+}
+
 .motivation-client,
 .motivation-report .intake-report-client {
-  margin: 6px 0 0;
-  font-size: 1.15rem;
-  font-weight: 650;
+  margin: 2px 0 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text, #111b33);
 }
 
@@ -291,6 +301,14 @@
   margin: 0;
   font-weight: 800;
   color: var(--primary, #071b41);
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+.motivation-dimension-confidence {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted, #64748b);
 }
 
 .motivation-dimension-track {

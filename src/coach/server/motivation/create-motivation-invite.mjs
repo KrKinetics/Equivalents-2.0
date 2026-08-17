@@ -5,8 +5,8 @@
  */
 
 import {
-  QUESTIONNAIRE_V42,
-  REPORT_MODEL_V43,
+  QUESTIONNAIRE_V43,
+  REPORT_MODEL_V44,
   RULESET_V42,
   resolveMotivationEngine,
 } from '../../motivation/versions/motivation-versions.mjs';
@@ -14,9 +14,9 @@ import {
 const EXPIRES_IN_DAYS = 14;
 
 const CURRENT_MOTIVATION_VERSIONS = Object.freeze({
-  questionnaireVersion: QUESTIONNAIRE_V42,
+  questionnaireVersion: QUESTIONNAIRE_V43,
   rulesetVersion: RULESET_V42,
-  reportModelVersion: REPORT_MODEL_V43,
+  reportModelVersion: REPORT_MODEL_V44,
 });
 
 /**

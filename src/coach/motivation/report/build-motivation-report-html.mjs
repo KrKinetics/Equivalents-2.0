@@ -39,8 +39,13 @@ function heroMarkup(vm, logoSrc) {
       ${logo}
       <p class="motivation-kicker">KR Kinetics</p>
       <h1 class="motivation-title">${esc(vm.title || 'Profil motivationnel')}</h1>
-      <p class="motivation-client">${esc(vm.clientName || 'Client')}</p>
+      <p class="motivation-identity-kicker">Athlète</p>
+      <p class="motivation-client">${esc(vm.identity?.fullName || vm.clientName || '')}</p>
       <div class="motivation-hero-meta">
+        ${vm.identity?.email ? `<p>Courriel : <strong>${esc(vm.identity.email)}</strong></p>` : ''}
+        ${vm.identity?.phone ? `<p>Téléphone : <strong>${esc(vm.identity.phone)}</strong></p>` : ''}
+        ${vm.identity?.serviceType ? `<p>Service : <strong>${esc(vm.identity.serviceType)}</strong></p>` : ''}
+        ${vm.identity?.shortId ? `<p>Réf. : <strong>${esc(vm.identity.shortId)}</strong></p>` : ''}
         ${submitted ? `<p>Soumis le : <strong>${esc(submitted)}</strong></p>` : ''}
         ${analyzed ? `<p>Analysé le : <strong>${esc(analyzed)}</strong></p>` : ''}
         ${version != null ? `<span class="motivation-badge">Analyse v${esc(version)}</span>` : ''}
@@ -125,15 +130,17 @@ function interviewMarkup(items) {
 function dimensionRowMarkup(row) {
   const score = row.score;
   const now = score == null || score === '' ? '' : String(score);
-  const shown = now || row.displayLabel || '—';
+  const tendency = row.tendency || row.displayLabel || '—';
+  const confidence = row.confidenceStatus || row.evidenceBadge || row.confidence || '';
   const pct = barPercent(row.technicalScore ?? score);
   const direction = row.signalDirection || 'neutral';
   return `
-    <div class="motivation-dimension" data-dimension="${esc(row.id || row.label)}" data-direction="${esc(direction)}">
+    <div class="motivation-dimension" data-dimension="${esc(row.id || row.label)}" data-direction="${esc(direction)}" data-claim="${esc(row.claimStrength || '')}">
       <div class="motivation-dimension-head">
         <p class="motivation-dimension-name">${esc(row.label)}</p>
-        <p class="motivation-dimension-score">${esc(shown)}</p>
+        <p class="motivation-dimension-score">Tendance : ${esc(tendency)}</p>
       </div>
+      ${confidence ? `<p class="motivation-dimension-confidence">Confiance : ${esc(confidence)}</p>` : ''}
       <div
         class="motivation-dimension-track"
         role="progressbar"
@@ -144,8 +151,7 @@ function dimensionRowMarkup(row) {
       >
         <span class="motivation-dimension-bar motivation-dimension-bar-${esc(direction)}" style="width:${pct}%"></span>
       </div>
-      ${row.coachMeaning ? `<p class="motivation-dimension-meaning">${esc(row.coachMeaning)}</p>` : ''}
-      ${row.evidenceBadge ? `<span class="motivation-evidence">${esc(row.evidenceBadge)}</span>` : ''}
+      ${row.coachMeaning || row.interpretation ? `<p class="motivation-dimension-meaning">${esc(row.coachMeaning || row.interpretation)}</p>` : ''}
     </div>
   `;
 }
@@ -175,7 +181,22 @@ function dimensionsMarkup(vm) {
   `;
 }
 
-function nutritionMarkup(nutrition) {
+function nutritionMarkup(nutrition, action = null) {
+  if (action?.cards?.length) {
+    return `
+      <section class="motivation-card" data-section="nutrition">
+        <h2 class="motivation-section-title">Nutrition</h2>
+        ${action.cards.map((card) => `
+          <article class="motivation-nutrition-card" data-stance="${esc(card.stance || '')}">
+            <h3>${esc(card.title)} <span class="motivation-evidence">${esc(card.stance || '')}</span></h3>
+            ${card.athleteSaid ? `<p class="motivation-prose"><strong>Athlète.</strong> ${esc(card.athleteSaid)}</p>` : ''}
+            ${card.suggested ? `<p class="motivation-prose"><strong>Lecture.</strong> ${esc(card.suggested)}</p>` : ''}
+            ${card.toTest ? `<p class="motivation-prose"><strong>Tester cette semaine.</strong> ${esc(card.toTest)}</p>` : ''}
+          </article>
+        `).join('')}
+      </section>
+    `;
+  }
   if (!nutrition) return '';
   const blocks = [];
   if (nutrition.lecture?.length) {
@@ -209,8 +230,11 @@ function weekPlanMarkup(weeks) {
           <article class="motivation-week-card" data-week="${esc(week.week)}">
             <p class="motivation-week-kicker">Semaine ${esc(week.week)}</p>
             <h3>${esc(week.title || `Semaine ${week.week}`)}</h3>
-            ${week.focus ? `<p class="motivation-prose">${esc(week.focus)}</p>` : ''}
-            ${week.actions?.length ? `<ul class="motivation-report-list">${week.actions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+            ${week.objective || week.focus ? `<p class="motivation-prose">${esc(week.objective || week.focus)}</p>` : ''}
+            ${week.coachAction ? `<p class="motivation-prose"><strong>Action.</strong> ${esc(week.coachAction)}</p>` : ''}
+            ${week.observe ? `<p class="motivation-prose"><strong>Observer.</strong> ${esc(week.observe)}</p>` : ''}
+            ${week.validationCriterion ? `<p class="motivation-prose"><strong>Validation.</strong> ${esc(week.validationCriterion)}</p>` : ''}
+            ${!week.coachAction && week.actions?.length ? `<ul class="motivation-report-list">${week.actions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
           </article>
         `).join('')}
       </div>
@@ -357,6 +381,16 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
       ${heroMarkup(vm, logoSrc)}
       <div class="motivation-report-body">
         ${quickReadMarkup(vm.quickRead)}
+        ${vm.coachDecisionBrief ? `
+        <section class="motivation-card" data-section="decision-brief">
+          <h2 class="motivation-section-title">Brief de coaching</h2>
+          ${vm.coachDecisionBrief.athleteGoal ? `<p class="motivation-prose"><strong>Objectif de l'athlète.</strong> « ${esc(vm.coachDecisionBrief.athleteGoal)} »</p>` : ''}
+          ${vm.coachDecisionBrief.successDescribed ? `<p class="motivation-prose"><strong>Réussite décrite.</strong> « ${esc(vm.coachDecisionBrief.successDescribed)} »</p>` : ''}
+          <p class="motivation-prose"><strong>Pourquoi maintenant.</strong> ${esc(vm.coachDecisionBrief.whyNowCaptured ? vm.coachDecisionBrief.whyNow : 'À clarifier en entrevue')}</p>
+          ${vm.coachDecisionBrief.startActions?.length ? `<h3>Dès le départ</h3><ol class="motivation-priority-list">${vm.coachDecisionBrief.startActions.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>` : ''}
+          ${vm.coachDecisionBrief.avoidAtStart?.length ? `<h3>À éviter au départ</h3><ul class="motivation-report-list">${vm.coachDecisionBrief.avoidAtStart.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+          ${vm.coachDecisionBrief.confirmNow?.length ? `<h3>À confirmer</h3><ul class="motivation-report-list">${vm.coachDecisionBrief.confirmNow.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : ''}
+        </section>` : ''}
         ${portraitMarkup(vm.portraitCoach)}
         ${briefMarkup(vm.athleteOperatingBrief)}
         ${numberedMarkup('priorities', 'Priorités Coach', vm.coachPriorities, 'motivation-priorities')}
@@ -364,7 +398,7 @@ export function buildMotivationReportMarkup(viewModel, { logoSrc = '' } = {}) {
         ${interviewDetailedMarkup(vm.interviewDetailed?.length ? vm.interviewDetailed : vm.interviewQuestions)}
         ${verbatimMarkup(vm.verbatims)}
         ${dimensionsMarkup(vm)}
-        ${nutritionMarkup(vm.nutrition)}
+        ${nutritionMarkup(vm.nutrition, vm.nutritionAction)}
         ${weekPlanMarkup(vm.fourWeekPlan)}
         ${technicalMarkup(vm.provenance || vm.technical || {})}
       </div>

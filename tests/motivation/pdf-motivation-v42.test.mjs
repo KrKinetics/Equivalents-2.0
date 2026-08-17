@@ -32,15 +32,19 @@ describe('motivation PDF v4.2', () => {
   it('builds a confidential filename from the shared helper', () => {
     const name = motivationPdfFilename({
       clientName: 'Éric Test',
+      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
       date: new Date('2026-08-16T12:00:00.000Z'),
+      analysisVersion: 1,
     });
-    expect(name).toMatch(/^rapport-coach-motivation-eric-test-2026-08-16\.pdf$/);
+    expect(name).toMatch(/^profil-motivationnel_eric-test_aaaaaaaa_2026-08-16_v1\.pdf$/);
   });
 
   it('renders a report-model-v4.2 snapshot to a valid PDF', async () => {
     const { report } = sampleInput();
     const { buffer, pageCount } = await renderMotivationPdf(report, {
       generatedAt: new Date('2026-08-16T12:00:00.000Z'),
+      clientName: report.metadata?.clientName || 'Client été',
+      clientId: report.metadata?.clientId || 'client_complete',
     });
     expect(isValidPdfBuffer(buffer)).toBe(true);
     expect(pageCount).toBeGreaterThan(0);

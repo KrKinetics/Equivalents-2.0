@@ -53,17 +53,23 @@ test('official PDF uses the trusted process path and never a request report', as
     answers: submission.answers,
     presentedQuestionCodes: submission.presentedQuestionCodes,
     clientName: 'Alex Test',
+    clientId: CLIENT_ID,
   });
-  const rendered = await renderMotivationPdf(analyzed.report, { clientName: 'Alex Test' });
+  const rendered = await renderMotivationPdf(analyzed.report, {
+    clientName: 'Alex Test',
+    clientId: CLIENT_ID,
+  });
   const pdf = Buffer.isBuffer(rendered) ? rendered : rendered.buffer;
   assert.ok(Buffer.isBuffer(pdf));
   assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
   assert.match(
     (await import('../../src/coach/motivation/pdf/render-motivation-pdf.mjs')).motivationPdfFilename({
       clientName: 'Alex Test',
+      clientId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
       date: new Date('2026-08-16T12:00:00.000Z'),
+      analysisVersion: 1,
     }),
-    /rapport-coach-motivation-alex-test-/,
+    /profil-motivationnel_alex-test_aaaaaaaa_2026-08-16_v1\.pdf/,
   );
 });
 

@@ -35,7 +35,7 @@ export async function authorizeMotivationAccess({
       return { ok: false, error: 'forbidden' };
     }
     const base = String(supabaseUrl).replace(/\/$/, '');
-    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,is_fictional&limit=1`;
+    const url = `${base}/rest/v1/clients?id=eq.${encodeURIComponent(clientId)}&select=id,organization_id,full_name,email,phone,service_type,is_fictional&limit=1`;
     const response = await fetchImpl(url, {
       headers: {
         apikey: publishableKey,
@@ -55,6 +55,9 @@ export async function authorizeMotivationAccess({
         id: client.id,
         organization_id: client.organization_id,
         full_name: typeof client.full_name === 'string' ? client.full_name : '',
+        email: typeof client.email === 'string' ? client.email : '',
+        phone: typeof client.phone === 'string' ? client.phone : '',
+        service_type: client.service_type == null ? null : String(client.service_type),
       },
     };
   } catch {

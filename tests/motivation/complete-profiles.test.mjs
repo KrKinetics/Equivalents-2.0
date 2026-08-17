@@ -90,6 +90,8 @@ describe('complete motivation fixtures', () => {
     });
     const { buffer, pageCount } = await renderMotivationPdf(result.report, {
       generatedAt: new Date('2026-08-16T16:00:00.000Z'),
+      clientName: 'Profil A',
+      clientId: result.report?.metadata?.clientId || 'client_complete',
     });
     expect(isValidPdfBuffer(buffer)).toBe(true);
     expect(pageCount).toBeGreaterThan(0);

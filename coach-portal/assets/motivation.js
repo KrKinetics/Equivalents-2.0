@@ -225,12 +225,12 @@ function updateUi() {
     sectionLabel.textContent = 'Consentement';
     questionHost.innerHTML = '';
   }
-  const total = presentedCodes.length + 1;
-  const position = Math.min(currentIndex + 1, total);
+  const announced = questionnaireRuntime.baseCount || 34;
+  const position = Math.min(currentIndex + 1, presentedCodes.length + 1);
   stepLabel.textContent = onConsent
     ? 'Consentement'
-    : `Question ${position} sur ${presentedCodes.length}`;
-  progressBar.style.width = `${(position / total) * 100}%`;
+    : `Question ${position}`;
+  progressBar.style.width = `${(position / (announced + 1)) * 100}%`;
   backButton.classList.toggle('hidden', currentIndex === 0);
   nextButton.classList.toggle('hidden', onConsent);
   submitButton.classList.toggle('hidden', !onConsent);

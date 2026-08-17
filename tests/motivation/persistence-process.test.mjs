@@ -11,8 +11,10 @@ import { fileURLToPath } from 'node:url';
 import {
   QUESTIONNAIRE_V41,
   QUESTIONNAIRE_V42,
+  QUESTIONNAIRE_V43,
   REPORT_MODEL_V42,
   REPORT_MODEL_V43,
+  REPORT_MODEL_V44,
   RULESET_V41,
   RULESET_V42,
   resolveMotivationEngine,
@@ -42,9 +44,9 @@ const ENGINE = resolveMotivationEngine({
   reportModelVersion: REPORT_MODEL_V42,
 });
 const CURRENT_ENGINE = resolveMotivationEngine({
-  questionnaireVersion: QUESTIONNAIRE_V42,
+  questionnaireVersion: QUESTIONNAIRE_V43,
   rulesetVersion: RULESET_V42,
-  reportModelVersion: REPORT_MODEL_V43,
+  reportModelVersion: REPORT_MODEL_V44,
 });
 const SUBMISSION = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
   assessmentId: RESPONSE_ID,
@@ -162,9 +164,9 @@ test('create invite pins current engine versions and hash for a member', async (
   assert.equal(result.contentHash, CURRENT_ENGINE.contentHash);
   const rpc = calls.find((call) => call.url.includes('create_client_motivation_invite'));
   const body = JSON.parse(rpc.init.body);
-  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V42);
+  assert.equal(body.p_questionnaire_version, QUESTIONNAIRE_V43);
   assert.equal(body.p_ruleset_version, RULESET_V42);
-  assert.equal(body.p_report_model_version, REPORT_MODEL_V43);
+  assert.equal(body.p_report_model_version, REPORT_MODEL_V44);
   assert.equal(body.p_content_hash, CURRENT_ENGINE.contentHash);
   assert.equal(body.p_content_hash.length, 64);
 });

@@ -84,7 +84,7 @@ async function loadMembership(userId) {
 async function loadAuthorizedClient(id) {
   const { data: row, error } = await supabase
     .from('clients')
-    .select('id, full_name, organization_id, is_fictional')
+    .select('id, full_name, email, phone, service_type, organization_id, is_fictional')
     .eq('id', id)
     .eq('organization_id', membership.organizationId)
     .maybeSingle();
@@ -127,7 +127,16 @@ async function processOfficialReport() {
 function renderOfficialReport(currentClient, processed) {
   const viewModel = buildMotivationReportViewModel({
     report: processed.report,
+    identity: {
+      clientId: currentClient.id,
+      fullName: currentClient.full_name,
+      email: currentClient.email || null,
+      phone: currentClient.phone || null,
+      serviceType: currentClient.service_type || null,
+      shortId: String(currentClient.id || '').replace(/-/g, '').slice(0, 8),
+    },
     clientName: currentClient.full_name,
+    clientId: currentClient.id,
     submittedAt: processed.submitted_at || processed.report?.metadata?.completedAt || null,
     analyzedAt: processed.analyzed_at || processed.provenance?.analyzedAt || null,
     analysisVersion: processed.analysis_version,

@@ -48,3 +48,14 @@ test('official browser bundle also accepts the explicit v4.2 triple', async () =
   });
   assert.equal(OFFICIAL_V42_CONTENT_HASH, engine.contentHash);
 });
+
+test('official browser bundle also accepts the explicit v4.3 triple', async () => {
+  const { OFFICIAL_V43_CONTENT_HASH } = await import('../../src/coach/motivation/client/official-bundle.mjs');
+  const { QUESTIONNAIRE_V43, REPORT_MODEL_V44, RULESET_V42, resolveMotivationEngine } = await import('../../src/coach/motivation/versions/motivation-versions.mjs');
+  const engine = resolveMotivationEngine({
+    questionnaireVersion: QUESTIONNAIRE_V43,
+    rulesetVersion: RULESET_V42,
+    reportModelVersion: REPORT_MODEL_V44,
+  });
+  assert.equal(OFFICIAL_V43_CONTENT_HASH, engine.contentHash);
+});
