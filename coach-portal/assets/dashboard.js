@@ -257,7 +257,6 @@ function clientRowMarkup(row, invite, motivationInvite) {
     </tr>
   `;
 }
-
 function renderClientGroup(serviceType, clients, latestInviteByClient, latestMotivationByClient) {
   const rows = clients.length
     ? clients.map((row) => clientRowMarkup(
@@ -299,7 +298,8 @@ async function loadClients() {
     supabase
       .from('clients')
       .select('id, full_name, email, phone, notes, organization_id, is_fictional, service_type, created_at')
-      .eq('organization_id', membership.organizationId),
+      .eq('organization_id', membership.organizationId)
+      .eq('is_fictional', false),
     supabase
       .from('client_intake_invites')
       .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at')
@@ -345,7 +345,7 @@ async function createClient(fullName, email, notes, serviceType) {
     email: email || null,
     notes: notes || '',
     service_type: code,
-    is_fictional: true,
+    is_fictional: false,
   });
   if (error) throw error;
 }
