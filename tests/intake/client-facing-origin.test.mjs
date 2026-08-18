@@ -49,7 +49,7 @@ function createInviteFetch({ rpcPath }) {
         organization_id: ORG,
         full_name: 'Alex Test',
         email: CLIENT_EMAIL,
-        is_fictional: true,
+        is_fictional: false,
       }]);
     }
     if (u.includes(rpcPath)) {

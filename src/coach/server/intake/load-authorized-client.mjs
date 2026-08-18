@@ -1,7 +1,7 @@
 /**
  * Load a client the authenticated coach may invite.
  * Uses the caller's JWT + RLS. Never service_role.
- * Preserves current fictional-client eligibility (does not reinterpret it).
+ * Real-client eligibility only: same organization, authenticated coach JWT.
  */
 
 /**
@@ -42,7 +42,7 @@ export async function loadAuthorizedClientForInvite({
     if (!response.ok) return { ok: false, error: 'forbidden' };
     const rows = await response.json();
     const client = Array.isArray(rows) ? rows[0] : null;
-    if (!client || client.organization_id !== organizationId || client.is_fictional !== true) {
+    if (!client || client.organization_id !== organizationId || client.is_fictional !== false) {
       return { ok: false, error: 'forbidden' };
     }
     return {

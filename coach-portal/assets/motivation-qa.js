@@ -53,13 +53,13 @@ async function loadClients() {
     .from('clients')
     .select('id, full_name, email, is_fictional')
     .eq('organization_id', membership.organizationId)
-    .eq('is_fictional', true)
+    .eq('is_fictional', false)
     .order('full_name', { ascending: true });
   if (error) throw error;
   clientSelect.innerHTML = (data || []).map((client) => (
     `<option value="${client.id}">${client.full_name || client.id}</option>`
   )).join('');
-  if (!data?.length) setBanner('Aucun client fictif dans cette organisation.', 'error');
+  if (!data?.length) setBanner('Aucun client réel dans cette organisation.', 'error');
 }
 
 async function loadStatus() {

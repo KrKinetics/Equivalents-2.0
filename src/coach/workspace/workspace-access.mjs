@@ -44,8 +44,8 @@ export function assertWorkspaceClientAccess({ client, membership }) {
   if (client.organization_id !== membership.organizationId) {
     throw new Error('Accès refusé : ce client appartient à une autre organisation.');
   }
-  if (client.is_fictional !== true) {
-    throw new Error('Seuls les clients fictifs peuvent être ouverts dans ce jalon.');
+  if (client.is_fictional !== false) {
+    throw new Error('Accès refusé : ce dossier doit correspondre à un client réel.');
   }
   if (!clientHasNutritionAccess(client.service_type)) {
     const err = new Error(NUTRITION_ENTITLEMENT_DENIED_MESSAGE);

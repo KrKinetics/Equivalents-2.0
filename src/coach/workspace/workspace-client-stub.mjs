@@ -1,6 +1,6 @@
 /**
- * Minimal fictional-client stub for opening the Coach workspace.
- * Does not migrate real athletes or alter nutrition formulas.
+ * Minimal real-client stub for opening the Coach workspace.
+ * Starts from neutral placeholders and does not alter nutrition formulas.
  */
 
 const EMPTY_BANQUE = Object.freeze({
@@ -40,7 +40,7 @@ export function buildWorkspaceStubProfile(input) {
     workspaceMeta: {
       clientId: input.clientId || null,
       organizationSlug: input.organizationSlug || null,
-      fictional: true,
+      fictional: false,
     },
     // Only banque placeholders — repartition filled by migrateProfilData/createEmptyJourData.
     jours: {

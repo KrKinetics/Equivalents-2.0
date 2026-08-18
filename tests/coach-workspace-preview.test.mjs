@@ -71,7 +71,7 @@ async function signInOrg(org) {
     .from('clients')
     .select('id, full_name')
     .eq('organization_id', mem.organization_id)
-    .eq('is_fictional', true)
+    .eq('is_fictional', false)
     .order('full_name', { ascending: true });
   assert.ifError(cErr);
   return {
@@ -93,7 +93,7 @@ async function ensureNamedClients(session, names) {
       created_by: session.userId,
       full_name: fullName,
       notes: 'workspace-preview-fixture',
-      is_fictional: true,
+      is_fictional: false,
       service_type: 'nutrition',
     }).select('id, full_name').single();
     assert.ifError(error);

@@ -1,6 +1,6 @@
 /**
  * Verify the authenticated coach may process a motivation assessment
- * for a fictional client in the selected organization.
+ * for a real client in the selected organization.
  * Uses the caller's JWT; no service role.
  */
 
@@ -46,7 +46,7 @@ export async function authorizeMotivationAccess({
     if (!response.ok) return { ok: false, error: 'forbidden' };
     const rows = await response.json();
     const client = Array.isArray(rows) ? rows[0] : null;
-    if (!client || client.organization_id !== organizationId || client.is_fictional !== true) {
+    if (!client || client.organization_id !== organizationId || client.is_fictional !== false) {
       return { ok: false, error: 'forbidden' };
     }
     return {

@@ -53,7 +53,7 @@ const CURRENT_ENGINE = resolveMotivationEngine({
 const SUBMISSION = buildCompleteMotivationSubmission(PROFILE_A_STABLE, {
   assessmentId: RESPONSE_ID,
   clientId: CLIENT_ID,
-  clientName: 'Client fiction',
+  clientName: 'Client réel',
 });
 
 function jsonResponse(status, payload) {
@@ -99,8 +99,8 @@ function createFetchMock({
   clientRow = {
     id: CLIENT_ID,
     organization_id: ORG,
-    full_name: 'Client fiction',
-    is_fictional: true,
+    full_name: 'Client réel',
+    is_fictional: false,
   },
   clientStatus = 200,
   inviteRow = submittedInvite(),
@@ -189,7 +189,7 @@ test('create invite denies unknown engine versions before any RPC', async () => 
   assert.equal(calls.length, 0);
 });
 
-test('create invite maps other-org / missing / non-fictional RPC denial to forbidden', async () => {
+test('create invite maps unavailable-client RPC denial to forbidden', async () => {
   for (const status of [401, 403]) {
     const { fetchImpl } = createFetchMock({ createStatus: status, createPayload: { message: 'Client unavailable' } });
     const result = await createClientMotivationInvite({ ...BASE, fetchImpl });
@@ -221,7 +221,7 @@ test('process analysis fail-closed on unknown stored versions', async () => {
   assert.equal(calls.some((call) => call.url.includes('persist_client_motivation_analysis')), false);
 });
 
-test('process analysis creates version 1 for a submitted fictional client', async () => {
+test('process analysis creates version 1 for a submitted real client', async () => {
   const { fetchImpl, calls } = createFetchMock();
   const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });
   assert.equal(result.ok, true);
@@ -385,7 +385,7 @@ test('process analysis denies a client from another organization', async () => {
       id: CLIENT_ID,
       organization_id: OTHER_ORG,
       full_name: 'Other',
-      is_fictional: true,
+      is_fictional: false,
     },
   });
   const result = await processSubmittedMotivationAssessment({ ...BASE, fetchImpl });

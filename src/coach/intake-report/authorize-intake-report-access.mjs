@@ -1,6 +1,6 @@
 /**
  * Verify the authenticated coach may open a pre-interview report for a
- * fictional client in the selected organization.
+ * real client in the selected organization.
  *
  * All service types are allowed (programming, nutrition, complete).
  * Do not reuse the nutrition-plan authorizeClientAccess gate.
@@ -50,7 +50,7 @@ export async function authorizeIntakeReportAccess({
     if (!response.ok) return { ok: false, error: 'forbidden' };
     const rows = await response.json();
     const client = Array.isArray(rows) ? rows[0] : null;
-    if (!client || client.organization_id !== organizationId || client.is_fictional !== true) {
+    if (!client || client.organization_id !== organizationId || client.is_fictional !== false) {
       return { ok: false, error: 'forbidden' };
     }
     return {

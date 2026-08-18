@@ -53,7 +53,7 @@ export function createSupabaseClientDossierStore(supabase) {
     },
 
     /**
-     * Upsert dossier for a fictional client in the caller's organization.
+     * Upsert dossier for a real client in the caller's organization.
      * @param {string} clientId
      * @param {object} payload
      * @param {{ organizationId: string, userId?: string|null }} ctx

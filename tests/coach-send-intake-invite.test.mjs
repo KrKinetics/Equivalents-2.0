@@ -90,7 +90,7 @@ function createFetchMock({
     organization_id: ORG_KR,
     full_name: 'Alex Test',
     email: CLIENT_EMAIL,
-    is_fictional: true,
+    is_fictional: false,
   },
   clientStatus = 200,
   rpcStatus = 200,
@@ -452,7 +452,7 @@ test('body-supplied email never reaches Resend; canonical row email is used', as
       organization_id: ORG_KR,
       full_name: 'Alex Test',
       email: CLIENT_EMAIL,
-      is_fictional: true,
+      is_fictional: false,
     },
   });
   await sendIntakeInvite({
@@ -476,7 +476,7 @@ test('missing and invalid canonical email skip Resend and return invite_url', as
         organization_id: ORG_KR,
         full_name: 'Alex Test',
         email,
-        is_fictional: true,
+        is_fictional: false,
       },
     });
     const result = await sendIntakeInvite({
@@ -503,7 +503,7 @@ test('cross-org client is forbidden and does not create an invite', async () => 
       organization_id: ORG_ELEVATE,
       full_name: 'Other Org',
       email: CLIENT_EMAIL,
-      is_fictional: true,
+      is_fictional: false,
     },
   });
   const result = await sendIntakeInvite({
@@ -512,6 +512,31 @@ test('cross-org client is forbidden and does not create an invite', async () => 
     clientId: CLIENT_ID,
     req: mockReq(),
     requestId: 'req-xorg',
+    fetchImpl,
+    env: MAIL_ENV,
+  });
+  assert.equal(result.__httpError, true);
+  assert.equal(result.error, 'forbidden');
+  assert.equal(calls.some((c) => c.url.includes('create_client_intake_invite')), false);
+  assert.equal(calls.some((c) => c.url === RESEND_ENDPOINT), false);
+});
+
+test('fictional client is forbidden and does not create an invite', async () => {
+  const { fetchImpl, calls } = createFetchMock({
+    clientRow: {
+      id: CLIENT_ID,
+      organization_id: ORG_KR,
+      full_name: 'Alex Test',
+      email: CLIENT_EMAIL,
+      is_fictional: true,
+    },
+  });
+  const result = await sendIntakeInvite({
+    accessToken: 'tok',
+    organizationId: ORG_KR,
+    clientId: CLIENT_ID,
+    req: mockReq(),
+    requestId: 'req-fictional',
     fetchImpl,
     env: MAIL_ENV,
   });

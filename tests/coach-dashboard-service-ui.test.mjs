@@ -33,7 +33,7 @@ test('create form requires an explicit service with empty placeholder', () => {
   assert.match(dashboardJs, /if \(!code\) throw new Error\('Le service du client est requis\.'\)/);
   assert.match(
     dashboardJs,
-    /async function createClient\([\s\S]*?from\('clients'\)\.insert\(\{[\s\S]*?service_type: code,[\s\S]*?is_fictional: true,/,
+    /async function createClient\([\s\S]*?from\('clients'\)\.insert\(\{[\s\S]*?service_type: code,[\s\S]*?is_fictional: false,/,
   );
   assert.match(dashboardJs, /Choisissez le service du client/);
 });

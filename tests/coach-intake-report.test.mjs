@@ -85,7 +85,7 @@ function createFetchMock({
     id: CLIENT_ID,
     organization_id: ORG_KR,
     full_name: 'Alex Test',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'programming',
   },
   clientStatus = 200,
@@ -318,7 +318,7 @@ test('intake report authorization allows programming, nutrition, and complete; r
         id: CLIENT_ID,
         organization_id: ORG_KR,
         full_name: 'Alex',
-        is_fictional: true,
+        is_fictional: false,
         service_type: serviceType,
       }]),
     });
@@ -332,7 +332,7 @@ test('intake report authorization allows programming, nutrition, and complete; r
       id: CLIENT_ID,
       organization_id: ORG_KR,
       full_name: 'Alex',
-      is_fictional: true,
+      is_fictional: false,
       service_type: 'programming',
     }]),
   });
@@ -344,11 +344,23 @@ test('intake report authorization allows programming, nutrition, and complete; r
       id: CLIENT_ID,
       organization_id: ORG_OTHER,
       full_name: 'Alex',
-      is_fictional: true,
+      is_fictional: false,
       service_type: 'complete',
     }]),
   });
   assert.deepEqual(crossOrg, { ok: false, error: 'forbidden' });
+
+  const fictional = await authorizeIntakeReportAccess({
+    ...base,
+    fetchImpl: async () => jsonResponse(200, [{
+      id: CLIENT_ID,
+      organization_id: ORG_KR,
+      full_name: 'Alex',
+      is_fictional: true,
+      service_type: 'complete',
+    }]),
+  });
+  assert.deepEqual(fictional, { ok: false, error: 'forbidden' });
 });
 
 test('server loads submitted answers and never reads a browser answers field', async () => {
@@ -430,7 +442,7 @@ test('PDF endpoint rejects cross-organization clients and does not leak tokens o
       id: CLIENT_ID,
       organization_id: ORG_OTHER,
       full_name: 'Alex Test',
-      is_fictional: true,
+      is_fictional: false,
       service_type: 'nutrition',
     },
   });
@@ -487,7 +499,7 @@ test('PDF endpoint loads server answers for programming clients and can render',
       id: CLIENT_ID,
       organization_id: ORG_KR,
       full_name: 'Alex Test',
-      is_fictional: true,
+      is_fictional: false,
       service_type: 'programming',
     },
   });

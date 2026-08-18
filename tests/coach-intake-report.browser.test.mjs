@@ -50,7 +50,7 @@ function authSessionStub() {
           id: '${CLIENT_ID}',
           full_name: 'Client test KR',
           organization_id: '${ORG_ID}',
-          is_fictional: true,
+          is_fictional: false,
           service_type: 'programming',
         },
         error: null,
@@ -131,6 +131,8 @@ function dashboardHtml() {
 function isAllowedBrowserModule(urlPath) {
   if (urlPath.startsWith('/src/coach/server/')) return false;
   return urlPath.startsWith('/src/coach/intake-report/')
+    || urlPath.startsWith('/src/coach/intake/')
+    || urlPath.startsWith('/src/coach/motivation/lib/')
     || urlPath.startsWith('/src/coach/workspace/')
     || urlPath.startsWith('/src/coach/domain/')
     || urlPath.startsWith('/src/coach/services/')

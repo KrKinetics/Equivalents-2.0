@@ -52,7 +52,7 @@ function createFetchMock({
         organization_id: ORG,
         full_name: 'Alex Test',
         email: CLIENT_EMAIL,
-        is_fictional: true,
+        is_fictional: false,
       }]);
     }
     if (u.includes('/rest/v1/rpc/create_client_motivation_invite')) {
