@@ -78,7 +78,7 @@ test('canonical dirty detection ignores savedAt/activeJour and client-selector c
     savedAt: '2026-01-01T00:00:00.000Z',
     activeJour: 'entrainement',
     jours: { entrainement: { banque: { pro: '1' } }, repos: { banque: { pro: '0' } } },
-    workspaceMeta: { clientId: CLIENT_A, organizationSlug: 'kr-kinetics', fictional: true },
+    workspaceMeta: { clientId: CLIENT_A, organizationSlug: 'kr-kinetics', fictional: false },
   };
   const afterSaveTick = {
     ...baseline,

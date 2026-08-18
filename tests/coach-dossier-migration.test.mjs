@@ -1,5 +1,5 @@
 /**
- * Static checks for Coach client_dossiers SQL migration.
+ * Static checks for Coach client_dossiers SQL migrations.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,6 +14,10 @@ const migrationPath = path.join(
 );
 
 const sql = fs.readFileSync(migrationPath, 'utf8');
+const realClientRlsSql = fs.readFileSync(
+  path.join(root, 'supabase/migrations/20260817182557_real_clients_rls_policies.sql'),
+  'utf8',
+);
 
 test('dossiers migration defines required columns and unique client_id', () => {
   assert.match(sql, /create table if not exists public\.client_dossiers/i);
@@ -33,15 +37,16 @@ test('dossiers migration defines required columns and unique client_id', () => {
   assert.match(sql, /payload jsonb not null/i);
 });
 
-test('dossiers migration forces RLS and org membership policies', () => {
+test('final dossier RLS keeps org isolation and real-client service eligibility', () => {
   assert.match(sql, /alter table public\.client_dossiers enable row level security/i);
   assert.match(sql, /alter table public\.client_dossiers force row level security/i);
-  assert.match(sql, /client_dossiers_select_org/);
-  assert.match(sql, /client_dossiers_insert_org/);
-  assert.match(sql, /client_dossiers_update_org/);
+  assert.match(realClientRlsSql, /client_dossiers_select_org/);
+  assert.match(realClientRlsSql, /client_dossiers_insert_org/);
+  assert.match(realClientRlsSql, /client_dossiers_update_org/);
   assert.match(sql, /client_dossiers_delete_org/);
-  assert.match(sql, /is_member_of\(organization_id\)/);
-  assert.match(sql, /c\.is_fictional = true/);
+  assert.match(realClientRlsSql, /is_member_of\(client_dossiers\.organization_id\)/i);
+  assert.match(realClientRlsSql, /c\.service_type = any \(array\['nutrition'::text, 'complete'::text\]\)/i);
+  assert.doesNotMatch(realClientRlsSql, /c\.is_fictional\s*=\s*true/i);
 });
 
 test('dossiers migration blocks tenant moves and anon access', () => {

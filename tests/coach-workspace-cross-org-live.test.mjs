@@ -1,5 +1,5 @@
 /**
- * Live RLS: KR cannot read Elevate fictional clients and vice versa.
+ * Live RLS: KR cannot read Elevate real clients and vice versa.
  * Uses publishable key + gitignored passwords only.
  */
 import test from 'node:test';
@@ -52,7 +52,7 @@ async function membershipFor(supabase, userId) {
   };
 }
 
-test('live: KR cannot open Elevate client; Elevate cannot open KR client', async (t) => {
+test('live: KR cannot open Elevate real client; Elevate cannot open KR real client', async (t) => {
   if (skipWithoutLiveSupabase(t, root)) return;
   if (!fs.existsSync(coachPasswordsLocalPath(root))) {
     t.skip('.coach-passwords.local missing');
@@ -77,7 +77,7 @@ test('live: KR cannot open Elevate client; Elevate cannot open KR client', async
     created_by: kr.session.user.id,
     full_name: `WS KR ${stamp}`,
     notes: 'workspace-cross-org',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'nutrition',
   }).select('id, full_name, notes, organization_id, is_fictional, service_type').single();
   assert.ifError(krInsErr);
@@ -87,7 +87,7 @@ test('live: KR cannot open Elevate client; Elevate cannot open KR client', async
     created_by: elevate.session.user.id,
     full_name: `WS Elevate ${stamp}`,
     notes: 'workspace-cross-org',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'nutrition',
   }).select('id, full_name, notes, organization_id, is_fictional, service_type').single();
   assert.ifError(elevInsErr);

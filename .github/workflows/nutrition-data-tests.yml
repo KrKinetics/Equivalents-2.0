@@ -18,6 +18,7 @@ on:
       - analysis/exchange-profiles-and-guide-preview
       - main
       - master
+      - integration/profil-motivationnel
   pull_request:
 
 jobs:

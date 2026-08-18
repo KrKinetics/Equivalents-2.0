@@ -1,5 +1,5 @@
 /**
- * Live persistence for fictional Coach dossiers (publishable key + passwords).
+ * Live persistence for real Coach dossiers (publishable key + passwords).
  * Never prints secrets, tokens, or service_role.
  */
 import test from 'node:test';
@@ -122,7 +122,7 @@ test('live: anon cannot read or write client_dossiers', async (t) => {
   );
 });
 
-test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t) => {
+test('live: KR and Elevate real dossier save/reload + cross-org isolation', async (t) => {
   if (skipWithoutLiveSupabase(t, root)) return;
   if (!fs.existsSync(coachPasswordsLocalPath(root))) {
     t.skip('.coach-passwords.local missing');
@@ -142,7 +142,7 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     created_by: kr.session.user.id,
     full_name: `Dossier KR ${stamp}`,
     notes: 'persist-live',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'nutrition',
   }).select('id').single();
   assert.ifError(krInsErr);
@@ -152,7 +152,7 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     created_by: elevate.session.user.id,
     full_name: `Dossier Elevate ${stamp}`,
     notes: 'persist-live',
-    is_fictional: true,
+    is_fictional: false,
     service_type: 'nutrition',
   }).select('id').single();
   assert.ifError(elevInsErr);
@@ -177,7 +177,6 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
   const krReloaded = await krStore.loadClientDossier(krClient.id);
   assert.equal(krReloaded.payload.jours.entrainement.banque.pro, '7');
   assert.equal(krReloaded.payload.coachNotes, `note-KR-${stamp}`);
-  // Direct open by client_id must resolve to existing payload (no manual menu step).
   const openExisting = resolveWorkspaceOpenState(krReloaded, samplePayload('stub'));
   assert.equal(openExisting.mode, 'existing');
   assert.equal(openExisting.payload.jours.entrainement.banque.pro, '7');
@@ -195,11 +194,9 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
   const elevReloaded = await elevStore.loadClientDossier(elevClient.id);
   assert.equal(elevReloaded.payload.jours.entrainement.banque.fec, '9');
 
-  // Cross-org read blocked by RLS
   assert.equal(await krStore.loadClientDossier(elevClient.id), null);
   assert.equal(await elevStore.loadClientDossier(krClient.id), null);
 
-  // Cross-org write refused
   await assert.rejects(
     () => krStore.saveClientDossier(elevClient.id, samplePayload('hack'), {
       organizationId: elevMem.organizationId,
@@ -215,13 +212,11 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     /./,
   );
 
-  // Missing client
   assert.equal(
     await krStore.loadClientDossier('00000000-0000-4000-8000-000000000099'),
     null,
   );
 
-  // Invalid payload refused client-side
   await assert.rejects(
     () => krStore.saveClientDossier(krClient.id, { sexe: 'H' }, {
       organizationId: krMem.organizationId,
@@ -230,7 +225,6 @@ test('live: KR and Elevate dossier save/reload + cross-org isolation', async (t)
     /Payload invalide/i,
   );
 
-  // organization_id move blocked (immutable trigger / RLS)
   const { error: moveErr } = await kr.supabase
     .from('client_dossiers')
     .update({ organization_id: elevMem.organizationId })

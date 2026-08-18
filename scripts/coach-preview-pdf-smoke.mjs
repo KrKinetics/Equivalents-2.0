@@ -70,10 +70,10 @@ async function main() {
     .from('clients')
     .select('id, full_name')
     .eq('organization_id', org.id)
-    .eq('is_fictional', true)
+    .eq('is_fictional', false)
     .limit(1);
   const client = clients.data?.[0];
-  if (!client?.id) throw new Error('no fictional client for smoke');
+  if (!client?.id) throw new Error('no real client for smoke');
 
   fs.mkdirSync(outDir, { recursive: true });
 
