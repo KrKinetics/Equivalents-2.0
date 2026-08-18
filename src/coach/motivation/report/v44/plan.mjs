@@ -31,7 +31,7 @@ export function buildFourWeekPlanV44({ brief = {}, findings = [], conflicts = []
   const recovery = usableText(brief.recoveryStrategy);
   const recoveryNote = adherence?.claimStrength === 'supported'
     ? recovery || 'la reprise déjà plus appuyée'
-    : recovery || 'une reprise minimale à tester — le signal d\'adhésion n\'est pas encore conclu';
+    : recovery || 'une reprise minimale — le signal d\'adhésion n\'est pas encore conclu';
 
   return [
     week(

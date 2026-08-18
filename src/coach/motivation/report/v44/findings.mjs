@@ -51,10 +51,16 @@ function interpretationFor(domain, presented, strength) {
     return `Signal mixte pour ${domain.label} — hypothèse à tester, pas une conclusion.`;
   }
   if (strength === 'single') {
+    if (/^signal de risque limité$/i.test(String(meaning).trim())) {
+      return 'Un premier signal suggère un risque limité; à confirmer en entrevue.';
+    }
     return `Un premier signal suggère ${meaning.toLowerCase()}; à confirmer en entrevue.`;
   }
   if (strength === 'missing') {
     return `${domain.label} n'est pas encore documenté.`;
+  }
+  if (/^cohérente\s*[—–-]\s*tendance élevée$/i.test(String(meaning).trim())) {
+    return 'Les réponses indiquent une tendance élevée et cohérente.';
   }
   return `Les réponses indiquent ${meaning.toLowerCase()}.`;
 }
