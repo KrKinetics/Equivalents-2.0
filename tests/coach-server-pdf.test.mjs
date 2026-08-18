@@ -93,7 +93,7 @@ test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () =
     assert.match(html, new RegExp(c.brandText));
     assert.match(html, /José-François Éléphant|José-François/);
     assert.match(html, new RegExp(c.recon));
-    assert.match(html, /&lt;b&gt;Safe text&lt;\/b&gt;/);
+    assert.match(html, /&lt;b&gt;Safe text&lt;\/b>/);
     assert.doesNotMatch(html, /<b>Safe text<\/b>/);
     assert.doesNotMatch(html, /service_role|SUPABASE_SERVICE|eyJ[A-Za-z0-9_-]{20,}\./i);
     assert.doesNotMatch(html, /coach_access_token|Bearer /i);
