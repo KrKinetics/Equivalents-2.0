@@ -1,0 +1,13 @@
+{
+  "name": "Equivalents-2.0",
+  "install": "npm ci",
+  "start": "npm run coach:portal",
+  "terminals": [
+    {
+      "name": "coach-portal",
+      "command": "npm run coach:portal",
+      "description": "Coach workspace / portal preview"
+    }
+  ],
+  "ports": [{ "name": "web", "port": 3000 }]
+}
