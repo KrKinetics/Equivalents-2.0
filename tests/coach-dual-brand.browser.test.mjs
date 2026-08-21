@@ -22,7 +22,7 @@ const NOTE_EN = 'Prioritize hydration. Emphasize lean proteins and starches arou
 const NOTE_REST_FR = 'Prioriser l’hydratation, la récupération et une répartition régulière des protéines au cours de la journée.';
 const NOTE_REST_EN = 'Prioritize hydration, recovery, and an even distribution of protein throughout the day.';
 const FORBIDDEN_FR_IN_EN = 'Hydratation prioritaire. Prioriser protéines maigres et féculents autour de l’entraînement.';
-const REST_PRO_SHARES = [2, 1, 2.5, 1, 3, 1.5];
+const REST_PRO_SHARES = [2, 1, 2.5, 1, 2.5, 1, 1];
 
 function contentType(filePath) {
   const ext = path.extname(filePath).toLowerCase();

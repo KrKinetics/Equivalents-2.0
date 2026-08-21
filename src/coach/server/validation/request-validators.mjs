@@ -234,11 +234,11 @@ function normalizeBanqueMap(banque) {
 }
 
 /**
- * Normalize 42-cell meal repartition (legacy dossiers may send strings).
+ * Normalize a 49-cell meal repartition (legacy six-meal dossiers may send 42 strings).
  */
 function normalizeRepartition(repartition) {
   if (repartition == null) return { ok: true, value: undefined };
-  if (!Array.isArray(repartition) || repartition.length > 42) return fail('invalid_repartition');
+  if (!Array.isArray(repartition) || repartition.length > 49) return fail('invalid_repartition');
   const out = [];
   for (const cell of repartition) {
     const n = typeof cell === 'string'

@@ -71,6 +71,16 @@ test('PDF snapshot matches calculator engine totals', () => {
   assert.equal(snapshot.jourLabel.includes('Entraînement') || snapshot.jourLabel.includes('Training'), true);
 });
 
+test('server PDF includes the seventh meal in French and English', () => {
+  const repartition = [...validDay.repartition, 2, 1, 0, 0, 0, 0, 0];
+  const day = { ...validDay, repartition };
+  const fr = buildPlanSnapshot({ day, targets: validDay.targets, locale: 'fr' });
+  const en = buildPlanSnapshot({ day, targets: validDay.targets, locale: 'en' });
+  assert.equal(fr.meals.at(-1).mealIndex, 6);
+  assert.equal(fr.meals.at(-1).label, 'Repas de soirée');
+  assert.equal(en.meals.at(-1).label, 'Evening Meal');
+});
+
 test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () => {
   const cases = [
     { locale: 'fr', brandId: 'kr', brandText: 'KR Kinetics', recon: 'Réconciliation' },

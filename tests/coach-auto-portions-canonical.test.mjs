@@ -52,7 +52,14 @@ test('server calculatePortions(auto_repartition) matches golden suggest→distri
     banque: suggested,
     mode: 'classique',
   });
-  assert.deepEqual(api.repartition, autoCase.expected.repartition);
+  assert.deepEqual(
+    api.repartition.slice(0, autoCase.expected.repartition.length),
+    autoCase.expected.repartition,
+  );
+  assert.ok(
+    api.repartition.slice(autoCase.expected.repartition.length).every((value) => value === 0),
+    'new evening-meal cells start at zero',
+  );
   assert.deepEqual(api.plannedTotals, autoCase.expected.plannedTotals);
   assert.deepEqual(categorySums(api.repartition), autoCase.expected.categorySums);
   assert.ok(api.plannedTotals.kcal > 0);

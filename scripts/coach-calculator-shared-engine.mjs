@@ -122,6 +122,12 @@ export function applySharedEnginePatches(html) {
   );
 
   // getJourSnapshot planned totals — only if still using local aggregation
+  // Normalize the seven-meal column split so the legacy aggregation matcher
+  // below can still replace the whole block with the shared engine version.
+  html = html.replace(
+    'if (i < Math.ceil(MEAL_COUNT / 2)) portionsLeft += mealHTML; else portionsRight += mealHTML;',
+    'if (i < 3) portionsLeft += mealHTML; else portionsRight += mealHTML;',
+  );
   html = replaceIfLegacy(
     html,
     rx(`let portionsLeft = '', portionsRight = '', recapRowsHTML = '';\n    let totalPro = 0, totalGlu = 0, totalLip = 0;\n\n    for \\(let i = 0; i < MEAL_COUNT; i\\+\\+\\) \\{\n        let rPro = 0, rGlu = 0, rLip = 0, portionsLigne = '';\n        CATS\\.forEach\\(cat => \\{\n            const val = getRepValueFromData\\(jourData\\.repartition, i, cat\\);\n            rPro \\+= val \\* MOYENNES\\[cat\\]\\.p;\n            rGlu \\+= val \\* MOYENNES\\[cat\\]\\.g;\n            rLip \\+= val \\* MOYENNES\\[cat\\]\\.l;\n            if \\(val > 0\\) portionsLigne \\+= '<li>' \\+ val \\+ ' portion\\(s\\) — ' \\+ NOMS_CATEGORIES\\[cat\\] \\+ '</li>';\n        \\}\\);\n        const rKcal = kcalFromMacros\\(rPro, rGlu, rLip\\);\n        rPro = Math\\.round\\(rPro\\); rGlu = Math\\.round\\(rGlu\\); rLip = Math\\.round\\(rLip\\);\n        if \\(portionsLigne\\) \\{\n            let mealHTML = '<div class="meal-box">';\n            mealHTML \\+= '<div class="meal-title">' \\+ REPAS_EMOJI\\[i\\] \\+ ' ' \\+ REPAS_LABELS\\[i\\] \\+ getMealTimingLabelForSnapshot\\(timing, i\\) \\+ '</div>';\n            mealHTML \\+= '<ul class="meal-list">' \\+ portionsLigne \\+ '</ul></div>';\n            if \\(i < 3\\) portionsLeft \\+= mealHTML; else portionsRight \\+= mealHTML;\n        \\}\n        if \\(rKcal > 0\\) \\{\n            recapRowsHTML \\+= '<tr class="' \\+ \\(i % 2 === 0 \\? 'recap-row-even' : 'recap-row-odd'\\) \\+ '">';\n            recapRowsHTML \\+= '<td class="left">' \\+ REPAS_EMOJI\\[i\\] \\+ ' ' \\+ REPAS_LABELS\\[i\\] \\+ '</td>';\n            recapRowsHTML \\+= '<td>' \\+ rPro \\+ ' g</td><td>' \\+ rGlu \\+ ' g</td><td>' \\+ rLip \\+ ' g</td>';\n            recapRowsHTML \\+= '<td class="kcal">' \\+ rKcal \\+ ' kcal</td></tr>';\n            totalPro \\+= rPro; totalGlu \\+= rGlu; totalLip \\+= rLip;\n        \\}\n    \\}\n    const totalKcal = kcalFromMacros\\(totalPro, totalGlu, totalLip\\);`),
@@ -142,7 +148,7 @@ export function applySharedEnginePatches(html) {
             let mealHTML = '<div class="meal-box">';
             mealHTML += '<div class="meal-title">' + REPAS_EMOJI[i] + ' ' + REPAS_LABELS[i] + getMealTimingLabelForSnapshot(timing, i) + '</div>';
             mealHTML += '<ul class="meal-list">' + portionsLigne + '</ul></div>';
-            if (i < 3) portionsLeft += mealHTML; else portionsRight += mealHTML;
+            if (i < Math.ceil(MEAL_COUNT / 2)) portionsLeft += mealHTML; else portionsRight += mealHTML;
         }
         if (rKcal > 0) {
             recapRowsHTML += '<tr class="' + (i % 2 === 0 ? 'recap-row-even' : 'recap-row-odd') + '">';

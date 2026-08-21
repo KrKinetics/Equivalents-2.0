@@ -23,7 +23,7 @@ function noUnknown(value, allowed) {
 }
 function validateDay(day) {
   if (!object(day) || !noUnknown(day, DAY_KEYS) || !object(day.banque) || !noUnknown(day.banque, new Set(CATS))) return false;
-  if (!Array.isArray(day.repartition) || day.repartition.length > 42 || !day.repartition.every((n) => finite(n, 0, 500))) return false;
+  if (!Array.isArray(day.repartition) || day.repartition.length > 49 || !day.repartition.every((n) => finite(n, 0, 500))) return false;
   if (!object(day.targets) || !noUnknown(day.targets, new Set(['kcal', 'pro', 'glu', 'lip']))) return false;
   if (!['kcal', 'pro', 'glu', 'lip'].every((key) => finite(day.targets[key], 0, key === 'kcal' ? 20_000 : 5_000))) return false;
   if (!CATS.every((cat) => Object.hasOwn(day.banque, cat) && finite(day.banque[cat], 0, 500))) return false;
