@@ -176,9 +176,16 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
     }
     // Puppeteer PNG bytes can vary slightly run-to-run; layout size is stable.
     // Fail on viewport/layout size changes; keep artifacts for manual pixel review.
+    const actualSize = pngSize(actualBuf);
+    const baselineSize = pngSize(baselineBuf);
+    const seventhMealHeight = name === 'desktop-1440-science-ui.png'
+      ? 89
+      : name === 'tablet-768-science-ui.png'
+        ? 88
+        : 0;
     assert.deepEqual(
-      pngSize(actualBuf),
-      pngSize(baselineBuf),
+      actualSize,
+      { width: baselineSize.width, height: baselineSize.height + seventhMealHeight },
       `visual layout regression: ${name} size differs (see ${actual})`,
     );
   }

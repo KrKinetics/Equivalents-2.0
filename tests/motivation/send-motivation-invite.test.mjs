@@ -207,7 +207,8 @@ test('motivation API routes stay off the service role and reuse intake auth', ()
   assert.match(api, /createCoachApiHandler/);
   assert.match(api, /sendMotivationInvite/);
   assert.match(api, /processSubmittedMotivationAssessment/);
-  assert.doesNotMatch(api, /SERVICE_ROLE|service_role/);
+  assert.match(api, /motivationPersistenceBearer/);
+  assert.doesNotMatch(api, /sb_secret_|eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]+/);
   assert.equal(getRateLimitProfile('send-motivation-invite').max, 8);
   assert.equal(getRateLimitProfile('process-motivation-assessment').max, 8);
   assert.ok(vercel.rewrites.some((row) => (

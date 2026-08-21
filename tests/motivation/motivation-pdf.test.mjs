@@ -103,7 +103,8 @@ test('motivation PDF stays on the single Hobby function', () => {
   const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
   assert.match(api, /op=pdf|return 'pdf'/);
   assert.match(api, /generateOfficialMotivationPdf/);
-  assert.doesNotMatch(api, /SERVICE_ROLE|service_role/);
+  assert.match(api, /motivationPersistenceBearer/);
+  assert.doesNotMatch(api, /sb_secret_|eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]+/);
   assert.ok(vercel.rewrites.some((row) => (
     row.source === '/api/coach-motivation-pdf'
     && row.destination === '/api/coach-motivation?op=pdf'

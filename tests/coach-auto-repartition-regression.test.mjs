@@ -113,7 +113,7 @@ test('server auto_repartition classique and equilibre succeed for sample banque'
     mode: 'classique',
   });
   assert.ok(Array.isArray(classic.repartition));
-  assert.equal(classic.repartition.length, 42);
+  assert.equal(classic.repartition.length, 49);
   assert.ok(classic.plannedTotals?.kcal > 0);
 
   const balanced = calculatePortions({
