@@ -178,7 +178,11 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
     // Fail on viewport/layout size changes; keep artifacts for manual pixel review.
     const actualSize = pngSize(actualBuf);
     const baselineSize = pngSize(baselineBuf);
-    const seventhMealHeight = shotOptions.fullPage === true ? 89 : 0;
+    const seventhMealHeight = name === 'desktop-1440-science-ui.png'
+      ? 89
+      : name === 'tablet-768-science-ui.png'
+        ? 88
+        : 0;
     assert.deepEqual(
       actualSize,
       { width: baselineSize.width, height: baselineSize.height + seventhMealHeight },

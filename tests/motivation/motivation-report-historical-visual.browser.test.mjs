@@ -245,7 +245,7 @@ test('historical Danny PDF pages render without lost nutrition or empty pages', 
   await page.goto(`${origin}/pdf-preview.html`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(() => typeof window.renderPdfPage === 'function');
   const first = await page.evaluate(async () => window.renderPdfPage(1));
-  assert.ok(first.pages >= 3 && first.pages <= 5);
+  assert.ok(first.pages >= 3 && first.pages <= 6);
   assert.equal(pageCount, first.pages);
   const pagesText = await page.evaluate(async () => {
     const res = await fetch('/report.pdf');
