@@ -293,7 +293,7 @@ buildPdfHeaderLogoHtml = function (creator) {
 
 function cleanProfessionalPdfText(value) {
     return String(value == null ? '' : value)
-        .replace(/[\\u{1F4AA}\\u{1F6CC}\\u{1F305}\\u{2615}\\u{1F37D}\\u{1F34E}\\u{1F969}\\u{1F319}\\u{FE0F}]/gu, '')
+        .replace(/[\\u{1F4AA}\\u{1F6CC}\\u{1F305}\\u{2615}\\u{1F37D}\\u{1F34E}\\u{1F969}\\u{1F319}\\u{1F31C}\\u{FE0F}]/gu, '')
         .replace(/\\s{2,}/g, ' ')
         .replace(/>\\s+</g, '><')
         .trim();
