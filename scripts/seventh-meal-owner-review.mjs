@@ -14,11 +14,13 @@ import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
+import { scenarioNoteForLang } from './seventh-meal-scenario-notes.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const COACH_DIR = path.join(ROOT, 'coach-calculator');
 const OUT = path.join(ROOT, 'verify-seventh-meal');
 const PDF_DIR = path.join(OUT, 'control-pdfs');
+const PREVIEW_DIR = path.join(OUT, 'pdf-previews');
 const SHOT_DIR = path.join(OUT, 'screenshots');
 const CATS = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
 const ORDER_FR = ['Déjeuner', 'Collation AM', 'Dîner', 'Collation PM', 'Souper', 'Collation', 'Repas de soirée'];
@@ -82,9 +84,8 @@ async function seedSevenMeals(page, jour) {
       inp.value = String((parseFloat(inp.value) || 0) + 0.5);
       remaining = Math.round((remaining - 0.5) * 10) / 10; i += 1;
     }
-    set('coach-notes', jourKey === 'repos'
-      ? 'Jour repos — hydratation, récupération et protéines réparties sur les sept repas.'
-      : 'Jour entraînement — glucides/whey autour de la séance, protéines réparties sur les sept repas incluant le repas de soirée.');
+    // Neutral placeholder; the real per-language scenario note is set per PDF below.
+    set('coach-notes', '');
     calculerBanque(); calculerRepartition(); updateEau(); captureJourActif();
   }, { jourKey: jour });
 }
@@ -100,8 +101,27 @@ async function renderPdf(browser, html, outPath) {
   await p.close();
 }
 
+async function renderPreview(browser, html, basePath) {
+  const p = await browser.newPage();
+  await p.setViewport({ width: 840, height: 1200, deviceScaleFactor: 1 });
+  await p.setContent(html, { waitUntil: 'networkidle0' });
+  await p.waitForFunction(() => {
+    const imgs = Array.from(document.images);
+    return imgs.length === 0 || imgs.every((im) => im.complete && im.naturalWidth > 0);
+  }, { timeout: 20000 });
+  const handles = await p.$$('.pdf-a4-page');
+  const files = [];
+  for (let i = 0; i < handles.length; i += 1) {
+    const f = `${basePath}-p${i + 1}.png`;
+    await handles[i].screenshot({ path: f });
+    files.push(f);
+  }
+  await p.close();
+  return files;
+}
+
 async function main() {
-  ensureDir(PDF_DIR); ensureDir(SHOT_DIR);
+  ensureDir(PDF_DIR); ensureDir(PREVIEW_DIR); ensureDir(SHOT_DIR);
   const { server, origin } = await startServer(COACH_DIR);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const manifest = [];
@@ -130,25 +150,29 @@ async function main() {
     }
     await page.setViewport({ width: 1440, height: 900 });
 
-    // 8 control PDFs.
+    // 8 control PDFs + their PNG previews.
     for (const creator of ['kr', 'elevate']) {
       for (const lang of ['fr', 'en']) {
         for (const rest of [false, true]) {
-          const html = await page.evaluate(({ brand, language, withRest }) => {
+          const html = await page.evaluate(({ brand, language, withRest, note }) => {
             setJourReposActif(withRest);
             changerJour('entrainement');
             captureJourActif();
             choisirPdfCreator(brand);
             choisirPdfLang(language);
+            // Scenario demo note: neutral, language-matched, no day-type claim.
+            document.getElementById('coach-notes').value = note;
             const snapEnt = getJourSnapshot('entrainement');
             const snapRep = getClientPdfRestSnapshot();
             return buildFullPDFHTML(snapEnt, snapRep, 'Xavier Tremblay', '2026-08-01', getMacroRatioLabel(), getActiveGoalLabel());
-          }, { brand: creator, language: lang, withRest: rest });
+          }, { brand: creator, language: lang, withRest: rest, note: scenarioNoteForLang(lang) });
           const label = `${creator}-${lang}-${rest ? 'avec-repos' : 'sans-repos'}`;
           const file = path.join(PDF_DIR, `xavier-plan-${label}.pdf`);
           await renderPdf(browser, html, file);
+          const previews = await renderPreview(browser, html, path.join(PREVIEW_DIR, `xavier-plan-${label}`));
           const pages = (html.match(/<div class="pdf-a4-page\b/g) || []).length;
-          manifest.push({ type: 'pdf', creator, lang, rest, pages, file: path.relative(OUT, file) });
+          manifest.push({ type: 'pdf', creator, lang, rest, pages, note: scenarioNoteForLang(lang), file: path.relative(OUT, file) });
+          previews.forEach((f) => manifest.push({ type: 'preview', creator, lang, rest, file: path.relative(OUT, f) }));
         }
       }
     }

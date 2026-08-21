@@ -24,6 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import puppeteer from 'puppeteer';
+import { SCENARIO_NOTE_FR, SCENARIO_NOTE_EN, scenarioNoteForLang } from '../scripts/seventh-meal-scenario-notes.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const COACH_DIR = path.join(ROOT, 'coach-calculator');
@@ -319,6 +320,60 @@ test('L/M/N/O — KR & Elevate PDFs, FR + EN, rest day, seven meals, no brand mi
       }
       if (lang === 'en') {
         assert.equal(info.text.includes('Repas de soirée'), false, 'EN PDF must not leak the French label');
+      }
+    }
+  }
+  await page.close();
+});
+
+test('OWNER REVIEW demo notes are neutral, language-matched, and never claim a rest day', async () => {
+  const page = await freshPage();
+  await seedSevenMealPlan(page, 'Xavier Notes', 'entrainement');
+  await seedSevenMealPlan(page, 'Xavier Notes', 'repos');
+  await page.evaluate(() => { changerJour('entrainement'); captureJourActif(); });
+
+  // French terms that must never appear in an English demo PDF.
+  const FR_FORBIDDEN_IN_EN = ['jour repos', 'hydratation', 'récupération', 'protéines réparties'];
+
+  for (const creator of ['kr', 'elevate']) {
+    for (const lang of ['fr', 'en']) {
+      for (const rest of [false, true]) {
+        const note = scenarioNoteForLang(lang);
+        const info = await page.evaluate(async ({ brand, language, withRest, noteText }) => {
+          setJourReposActif(withRest);
+          changerJour('entrainement');
+          captureJourActif();
+          choisirPdfCreator(brand);
+          choisirPdfLang(language);
+          document.getElementById('coach-notes').value = noteText;
+          const snapEnt = getJourSnapshot('entrainement');
+          const snapRep = getClientPdfRestSnapshot();
+          const html = buildFullPDFHTML(snapEnt, snapRep, 'Xavier Notes', '2026-08-01', getMacroRatioLabel(), getActiveGoalLabel());
+          const iframe = creerIframePDF(html);
+          await attendreRenduPDF(iframe);
+          const doc = iframe.contentWindow.document;
+          const text = doc.body.innerText;
+          const pages = doc.querySelectorAll('.pdf-a4-page').length;
+          nettoyerIframePDF();
+          return { text, pages };
+        }, { brand: creator, language: lang, withRest: rest, noteText: note });
+
+        const sc = `${creator}/${lang}/${rest ? 'rest' : 'norest'}`;
+        assert.equal(info.pages, rest ? 2 : 1, `${sc}: page count`);
+        assert.ok(info.text.includes(note), `${sc}: neutral scenario note must be present`);
+        const lower = info.text.toLowerCase();
+        if (lang === 'en') {
+          for (const w of FR_FORBIDDEN_IN_EN) {
+            assert.equal(lower.includes(w), false, `${sc}: EN PDF must not contain French "${w}"`);
+          }
+          assert.equal(info.text.includes(SCENARIO_NOTE_FR), false, `${sc}: EN PDF must not contain the French note`);
+        } else {
+          assert.equal(info.text.includes(SCENARIO_NOTE_EN), false, `${sc}: FR PDF must not contain the English note`);
+        }
+        if (!rest) {
+          assert.equal(/jour repos/i.test(info.text), false, `${sc}: no-rest PDF must not mention Jour Repos`);
+          assert.equal(/rest day/i.test(info.text), false, `${sc}: no-rest PDF must not claim a Rest Day`);
+        }
       }
     }
   }
