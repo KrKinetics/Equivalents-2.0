@@ -3882,6 +3882,17 @@ reconcilePlanTotalsFromSnapshot = function (snapshot) {
 const professionalPdfStylesBase = getPDFStylesCSS;
 getPDFStylesCSS = function () {
     return professionalPdfStylesBase()
+        // Seven-meal compaction: recover vertical space so all seven meals plus
+        // the reconciliation table, macro chart and coach notes fit on one A4
+        // page without shrinking the base font or forcing a page break.
+        + '.pdf-page-body{padding-bottom:52px;}'
+        + '.pdf-section{margin:0 0 5px;}'
+        + '.info-grid{margin-bottom:7px;}'
+        + '.info-table td,.pdf-recon td{padding:3px 8px;}'
+        + '.meal-box{margin-bottom:4px;padding:4px 8px;}'
+        + '.meal-list li{margin:0 0;}'
+        + '.pdf-macro-chart{margin:5px 0 6px;padding:7px 10px;}'
+        + '.pdf-coach-notes{margin:6px 0 6px;padding:7px 10px;}'
         + '.pdf-totals{bottom:54px;}'
         + '.pdf-scope-note{position:absolute;left:28px;right:28px;bottom:29px;font-size:7.5px;line-height:1.25;color:#64748b;text-align:center;padding:0 18px;overflow-wrap:anywhere;}'
         + '.pdf-footer{bottom:10px;padding-top:4px;}'
