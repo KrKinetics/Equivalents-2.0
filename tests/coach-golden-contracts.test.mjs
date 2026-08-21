@@ -191,7 +191,17 @@ test('strict parity: moyennes, portions, banque, suggestBanque, reconcile', () =
       }
       assert.deepEqual(sums, c.expected.categorySums, c.id);
       if (c.expected.repartition) {
-        assert.deepEqual(built.repartition, c.expected.repartition, c.id);
+        // Golden v1 stores the historical six-meal (42-cell) output. The
+        // seventh meal is appended without changing those cells or totals.
+        assert.deepEqual(
+          built.repartition.slice(0, c.expected.repartition.length),
+          c.expected.repartition,
+          c.id,
+        );
+        assert.ok(
+          built.repartition.slice(c.expected.repartition.length).every((value) => value === 0),
+          `${c.id}: appended evening meal starts at zero`,
+        );
       }
       if (c.expected.plannedTotals) {
         assert.deepEqual(

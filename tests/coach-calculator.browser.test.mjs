@@ -143,7 +143,7 @@ test('coach UI loads logos, 287 foods, DA disabled', async () => {
     hasGuideSection: !!document.getElementById('section-guide-equivalents'),
     hasProfil: !!document.getElementById('nom_athlete'),
     hasBanque: document.querySelectorAll('.target-input').length === 7,
-    hasRepas: document.querySelectorAll('.rep-input').length === 42,
+    hasRepas: document.querySelectorAll('.rep-input').length === 49,
   }));
   assert.equal(state.foods, 287);
   assert.equal(state.verified, 287);

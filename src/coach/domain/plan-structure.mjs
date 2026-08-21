@@ -5,4 +5,4 @@
 
 export const CATS = ['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey'];
 
-export const MEAL_COUNT = 6;
+export const MEAL_COUNT = 7;

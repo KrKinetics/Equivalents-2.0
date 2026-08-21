@@ -14,31 +14,31 @@ export const PRO_AUTO_EXCLUDED = Object.freeze([0, 1, 3]);
 
 export const REPART_PRESETS = Object.freeze({
   classique: Object.freeze({
-    pro: Object.freeze([0.30, 0.05, 0.25, 0.10, 0.25, 0.05]),
-    fec: Object.freeze([0.25, 0.10, 0.25, 0.15, 0.20, 0.05]),
-    leg: Object.freeze([0.25, 0.10, 0.25, 0.10, 0.25, 0.05]),
-    fru: Object.freeze([0.15, 0.25, 0.10, 0.25, 0.10, 0.15]),
-    lai: Object.freeze([0.25, 0.15, 0.20, 0.15, 0.20, 0.05]),
-    lip: Object.freeze([0.30, 0.05, 0.25, 0.10, 0.25, 0.05]),
-    whey: Object.freeze([0.10, 0.20, 0.10, 0.25, 0.10, 0.25]),
+    pro: Object.freeze([0.30, 0.05, 0.25, 0.10, 0.25, 0.05, 0.00]),
+    fec: Object.freeze([0.25, 0.10, 0.25, 0.15, 0.20, 0.05, 0.00]),
+    leg: Object.freeze([0.25, 0.10, 0.25, 0.10, 0.25, 0.05, 0.00]),
+    fru: Object.freeze([0.15, 0.25, 0.10, 0.25, 0.10, 0.15, 0.00]),
+    lai: Object.freeze([0.25, 0.15, 0.20, 0.15, 0.20, 0.05, 0.00]),
+    lip: Object.freeze([0.30, 0.05, 0.25, 0.10, 0.25, 0.05, 0.00]),
+    whey: Object.freeze([0.10, 0.20, 0.10, 0.25, 0.10, 0.25, 0.00]),
   }),
   performance: Object.freeze({
-    pro: Object.freeze([0.20, 0.10, 0.25, 0.15, 0.25, 0.05]),
-    fec: Object.freeze([0.15, 0.10, 0.30, 0.25, 0.15, 0.05]),
-    leg: Object.freeze([0.20, 0.10, 0.25, 0.15, 0.25, 0.05]),
-    fru: Object.freeze([0.10, 0.20, 0.15, 0.30, 0.10, 0.15]),
-    lai: Object.freeze([0.20, 0.15, 0.20, 0.15, 0.20, 0.10]),
-    lip: Object.freeze([0.25, 0.05, 0.25, 0.10, 0.30, 0.05]),
-    whey: Object.freeze([0.05, 0.15, 0.15, 0.35, 0.10, 0.20]),
+    pro: Object.freeze([0.20, 0.10, 0.25, 0.15, 0.25, 0.05, 0.00]),
+    fec: Object.freeze([0.15, 0.10, 0.30, 0.25, 0.15, 0.05, 0.00]),
+    leg: Object.freeze([0.20, 0.10, 0.25, 0.15, 0.25, 0.05, 0.00]),
+    fru: Object.freeze([0.10, 0.20, 0.15, 0.30, 0.10, 0.15, 0.00]),
+    lai: Object.freeze([0.20, 0.15, 0.20, 0.15, 0.20, 0.10, 0.00]),
+    lip: Object.freeze([0.25, 0.05, 0.25, 0.10, 0.30, 0.05, 0.00]),
+    whey: Object.freeze([0.05, 0.15, 0.15, 0.35, 0.10, 0.20, 0.00]),
   }),
   equilibre: Object.freeze({
-    pro: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    fec: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    leg: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    fru: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    lai: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    lip: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
-    whey: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    pro: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    fec: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    leg: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    fru: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    lai: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    lip: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
+    whey: Object.freeze([EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL, EQUAL_MEAL]),
   }),
 });
 
@@ -56,7 +56,7 @@ function parseHeureToMinutes(heure) {
 }
 
 /** Midpoints match dual-brand calculator MEAL_MIDPOINTS (minutes from midnight). */
-const MEAL_MIDPOINTS = Object.freeze([450, 600, 750, 930, 1110, 1260]);
+const MEAL_MIDPOINTS = Object.freeze([450, 600, 750, 930, 1110, 1260, 1350]);
 
 function getIndicesEntrainement(trainMin) {
   if (trainMin < MEAL_MIDPOINTS[0]) {
@@ -125,7 +125,7 @@ export function resolveRepartPreset(mode, opts = {}) {
 }
 
 /**
- * Build a flat 42-length meal×category repartition from banque totals.
+ * Build a flat 49-length meal×category repartition from banque totals.
  * Protein (pro) is distributed only to non-excluded meals (lunch/dinner/evening).
  *
  * @param {{

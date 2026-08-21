@@ -7,10 +7,8 @@
  * Vercel rewrites these onto this file so the project stays at 12 API function
  * files. Vercel Preview reports nodejs:13 because Edge middleware is a separate
  * runtime — same count as 2B (45220ae). Do not add another api/*.js file.
- * Persistence prefers SUPABASE_SERVICE_ROLE_KEY when configured. If that secret
- * is unavailable, the server falls back to the authenticated Coach JWT; the
- * database RPC independently verifies auth.uid(), membership, client, submitted
- * response snapshots, engine versions/hash, and analysis provenance.
+ * Persistence is delegated to the trusted motivation service after the Coach
+ * request has been authenticated. No privileged credential is resolved here.
  */
 
 function resolveMotivationApiOp(req) {
@@ -32,11 +30,6 @@ function motivationProcessHttpStatus(error) {
   if (error === 'not_found') return 404;
   if (error === 'not_submitted' || error === 'hash_mismatch' || error === 'unknown_engine') return 409;
   return 503;
-}
-
-function motivationPersistenceBearer(accessToken, env = process.env) {
-  const serviceRoleKey = String(env?.SUPABASE_SERVICE_ROLE_KEY || '').trim();
-  return serviceRoleKey || String(accessToken || '').trim();
 }
 
 async function handleSendInvite(req, res) {
@@ -103,7 +96,6 @@ async function handleProcessAssessment(req, res) {
         createdByUserId: auth.userId,
         supabaseUrl: process.env.SUPABASE_URL || '',
         publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
-        serviceRoleKey: motivationPersistenceBearer(accessToken),
       });
       if (!result.ok) {
         return {
@@ -156,7 +148,6 @@ async function handleMotivationPdf(req, res) {
         createdByUserId: auth.userId,
         supabaseUrl: process.env.SUPABASE_URL || '',
         publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || '',
-        serviceRoleKey: motivationPersistenceBearer(accessToken),
       });
       if (!result.ok) {
         return {
@@ -189,4 +180,3 @@ module.exports = async function handler(req, res) {
 
 module.exports.resolveMotivationApiOp = resolveMotivationApiOp;
 module.exports.motivationProcessHttpStatus = motivationProcessHttpStatus;
-module.exports.motivationPersistenceBearer = motivationPersistenceBearer;
