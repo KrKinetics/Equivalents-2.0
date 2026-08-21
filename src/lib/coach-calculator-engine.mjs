@@ -42,7 +42,7 @@ export const MACRO_PRESETS = [
   { id: 8, name: 'Lipides réduits', ratio: '45,35,20', proteinPct: 45, carbPct: 35, fatPct: 20 },
 ];
 
-export const MEAL_COUNT = 6;
+export const MEAL_COUNT = 7;
 
 const PA_MALE = { sedentaire: 1.0, leger: 1.11, modere: 1.25, actif: 1.48 };
 const PA_FEMALE = { sedentaire: 1.0, leger: 1.12, modere: 1.27, actif: 1.45 };

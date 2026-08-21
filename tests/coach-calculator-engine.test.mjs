@@ -294,7 +294,7 @@ test('profile storage key uses athlete_ prefix', () => {
 });
 
 test('distribuerPortions uses half-portion remainder algorithm', () => {
-  const weights = [0.3, 0.05, 0.25, 0.1, 0.25, 0.05];
+  const weights = [0.3, 0.05, 0.2, 0.1, 0.2, 0.05, 0.1];
   const portions = distribuerPortions(5, weights);
   assert.equal(portions.length, MEAL_COUNT);
   assert.equal(portions.reduce((a, b) => a + b, 0), 5);
