@@ -110,7 +110,14 @@ test('brand matrix HTML: correct logo brand, filename, no cross-contamination', 
     locale: 'fr',
     jourKey: 'entrainement',
   });
-  assert.deepEqual(day.repartition, day.expectedRepartition);
+  assert.deepEqual(
+    day.repartition.slice(0, day.expectedRepartition.length),
+    day.expectedRepartition,
+  );
+  assert.deepEqual(
+    day.repartition.slice(day.expectedRepartition.length),
+    Array(7).fill(0),
+  );
 
   const matrix = [
     { org: 'kr-kinetics', pdf: 'kr', other: 'Elevate Fitness', file: 'KR_Kinetics' },
