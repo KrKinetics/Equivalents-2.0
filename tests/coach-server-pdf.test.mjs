@@ -78,7 +78,9 @@ test('server PDF includes the seventh meal in French and English', () => {
   const en = buildPlanSnapshot({ day, targets: validDay.targets, locale: 'en' });
   assert.equal(fr.meals.at(-1).mealIndex, 6);
   assert.equal(fr.meals.at(-1).label, 'Repas de soirée');
+  assert.equal(fr.meals.at(-1).icon, '🌜');
   assert.equal(en.meals.at(-1).label, 'Evening Meal');
+  assert.equal(en.meals.at(-1).icon, '🌜');
 });
 
 test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () => {
@@ -117,8 +119,11 @@ test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () =
     }
     if (c.brandId === 'kr') {
       assert.doesNotMatch(html, /Elevate Fitness/);
-      assert.match(html, /#ED1136|#071B41/);
+      assert.match(html, /#3B82F6|#071B41/);
+      assert.doesNotMatch(html, /border-left:[^;}]*#ED1136/i);
     }
+    assert.match(html, /class="meal-icon"/);
+    assert.match(html, /🌅/);
     assert.doesNotMatch(html, /filter:brightness\(0\)\s*invert\(1\)/);
     const pageCount = (html.match(/<section class="pdf-a4-page/g) || []).length;
     assert.equal(pageCount, 1);

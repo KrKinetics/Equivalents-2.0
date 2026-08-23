@@ -14,7 +14,7 @@ function macros(t, labels) {
 }
 function signed(value, suffix = '') { return `${n(value) > 0 ? '+' : ''}${n(value)}${suffix}`; }
 function mealList(meals) {
-  return meals.map((meal) => `<div class="meal-box"><div class="meal-title">${esc(meal.label)}</div><ul class="meal-list">${
+  return meals.map((meal) => `<div class="meal-box"><div class="meal-title"><span class="meal-icon" aria-hidden="true">${esc(meal.icon)}</span>${esc(meal.label)}</div><ul class="meal-list">${
     meal.items.map((item) => `<li>${esc(item.portions)} portion(s) — ${esc(item.label)}</li>`).join('')
   }</ul></div>`).join('');
 }

@@ -18,6 +18,7 @@ export const MEAL_LABELS = Object.freeze({
   fr: Object.freeze(['Déjeuner', 'Collation AM', 'Dîner', 'Collation PM', 'Souper', 'Collation', 'Repas de soirée']),
   en: Object.freeze(['Breakfast', 'AM Snack', 'Lunch', 'PM Snack', 'Dinner', 'Snack', 'Evening Meal']),
 });
+export const MEAL_ICONS = Object.freeze(['🌅', '☕', '🍽️', '🍎', '🥩', '🌙', '🌜']);
 export const JOUR_LABELS_PDF = Object.freeze({
   fr: Object.freeze({ entrainement: 'Jour Entraînement', repos: 'Jour Repos (cyclage des glucides)' }),
   en: Object.freeze({ entrainement: 'Training Day', repos: 'Rest Day (Carb Cycling)' }),
