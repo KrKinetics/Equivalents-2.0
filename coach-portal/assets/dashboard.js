@@ -11,8 +11,10 @@ import { intakeReportOpenPath } from '/src/coach/intake-report/intake-report-pat
 import { motivationReportOpenPath } from '/src/coach/motivation/report/motivation-report-path.mjs';
 import {
   MOTIVATION_RESEND_OPENED_CONFIRMATION,
+  MOTIVATION_RESEND_SUBMITTED_CONFIRMATION,
   latestMotivationInviteByClient,
   motivationActionLabel,
+  motivationClientsWithSubmittedHistory,
   resolveMotivationInviteStatus,
 } from '/src/coach/client/motivation-dashboard.mjs';
 import {
@@ -206,11 +208,14 @@ function motivationStatusMarkup(invite) {
   `;
 }
 
-function clientRowMarkup(row, invite, motivationInvite) {
+function clientRowMarkup(row, invite, motivationInvite, hasMotivationReportHistory = false) {
   const submitted = invite?.status === 'submitted';
   const primaryLabel = intakeActionLabel(row, invite);
   const motivationStatus = resolveMotivationInviteStatus(motivationInvite);
   const motivationLabel = motivationActionLabel(row, motivationStatus);
+  // Keep the report reachable when the latest invite is no longer submitted
+  // (e.g. a new link was resent) but a submitted assessment still exists.
+  const showMotivationReport = motivationStatus.showReport || Boolean(hasMotivationReportHistory);
   const nutritionCta = clientHasNutritionAccess(row.service_type)
     ? `<a class="btn-compact btn-secondary btn-open" href="${escapeHtml(workspaceOpenPath(row.id))}">${escapeHtml(NUTRITION_WORKSPACE_CTA_LABEL)}</a>`
     : '';
@@ -245,7 +250,7 @@ function clientRowMarkup(row, invite, motivationInvite) {
             ${motivationStatusMarkup(motivationInvite)}
             <div class="client-action-group-controls">
               ${motivationLabel ? `<button type="button" class="btn-compact btn-primary btn-motivation">${escapeHtml(motivationLabel)}</button>` : ''}
-              ${motivationStatus.showReport ? `<a class="btn-compact btn-secondary btn-motivation-report" href="${escapeHtml(motivationReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
+              ${showMotivationReport ? `<a class="btn-compact btn-secondary btn-motivation-report" href="${escapeHtml(motivationReportOpenPath(row.id))}" target="_blank" rel="noopener">Ouvrir le rapport</a>` : ''}
             </div>
           </section>
           <div class="client-management-actions">
@@ -257,12 +262,13 @@ function clientRowMarkup(row, invite, motivationInvite) {
     </tr>
   `;
 }
-function renderClientGroup(serviceType, clients, latestInviteByClient, latestMotivationByClient) {
+function renderClientGroup(serviceType, clients, latestInviteByClient, latestMotivationByClient, submittedMotivationHistory) {
   const rows = clients.length
     ? clients.map((row) => clientRowMarkup(
       row,
       latestInviteByClient.get(row.id),
       latestMotivationByClient.get(row.id),
+      submittedMotivationHistory?.has(row.id) || false,
     )).join('')
     : '<tr><td colspan="5" class="empty">Aucun client</td></tr>';
   return `
@@ -320,6 +326,8 @@ async function loadClients() {
     if (!latestInviteByClient.has(invite.client_id)) latestInviteByClient.set(invite.client_id, invite);
   }
   const latestMotivationByClient = latestMotivationInviteByClient(motivationInvites || []);
+  // Derived from the invites already loaded above — no extra DB query.
+  const submittedMotivationHistory = motivationClientsWithSubmittedHistory(motivationInvites || []);
 
   clientRows = new Map((clients || []).map((client) => [client.id, client]));
   motivationInviteRows = latestMotivationByClient;
@@ -330,6 +338,7 @@ async function loadClients() {
       grouped[serviceType],
       latestInviteByClient,
       latestMotivationByClient,
+      submittedMotivationHistory,
     ))
     .join('');
 }
@@ -571,7 +580,10 @@ async function boot() {
     if (event.target.classList.contains('btn-motivation')) {
       if (motivationInFlight.has(id)) return;
       const current = resolveMotivationInviteStatus(motivationInviteRows.get(id));
-      if (current.confirmReplace && !window.confirm(MOTIVATION_RESEND_OPENED_CONFIRMATION)) {
+      let motivationConfirm = '';
+      if (current.confirmKind === 'newEvaluation') motivationConfirm = MOTIVATION_RESEND_SUBMITTED_CONFIRMATION;
+      else if (current.confirmKind === 'replace') motivationConfirm = MOTIVATION_RESEND_OPENED_CONFIRMATION;
+      if (motivationConfirm && !window.confirm(motivationConfirm)) {
         return;
       }
       const button = event.target;

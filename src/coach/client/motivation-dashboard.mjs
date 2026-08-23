@@ -9,6 +9,15 @@ export const MOTIVATION_RESEND_OPENED_CONFIRMATION = [
   'Continuer ?',
 ].join('\n');
 
+// Shown when the client already has a submitted assessment: the existing report
+// is kept, and the next submission simply becomes the most recent evaluation.
+export const MOTIVATION_RESEND_SUBMITTED_CONFIRMATION = [
+  'Créer une nouvelle évaluation ?',
+  'Un nouveau lien sera envoyé au client pour refaire son profil motivationnel.',
+  'Le rapport actuel sera conservé. La prochaine soumission deviendra l’évaluation la plus récente.',
+  'Continuer ?',
+].join('\n');
+
 /**
  * Latest invite per client — same rule as intake latestInviteByClient.
  * Callers must pass rows already ordered created_at DESC.
@@ -43,6 +52,7 @@ function isExpired(invite, now) {
  *   metaDate: string|null,
  *   action: 'send'|'resend'|'none',
  *   confirmReplace: boolean,
+ *   confirmKind: 'none'|'replace'|'newEvaluation',
  *   showReport: boolean,
  * }}
  */
@@ -55,6 +65,7 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
       metaDate: null,
       action: 'send',
       confirmReplace: false,
+      confirmKind: 'none',
       showReport: false,
     };
   }
@@ -66,6 +77,7 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
       metaDate: invite.expires_at,
       action: 'send',
       confirmReplace: false,
+      confirmKind: 'none',
       showReport: false,
     };
   }
@@ -75,8 +87,9 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
       label: 'Soumis',
       metaPrefix: 'Soumis',
       metaDate: invite.submitted_at || invite.updated_at || invite.created_at,
-      action: 'none',
+      action: 'resend',
       confirmReplace: false,
+      confirmKind: 'newEvaluation',
       showReport: true,
     };
   }
@@ -88,6 +101,7 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
       metaDate: invite.opened_at || invite.created_at,
       action: 'resend',
       confirmReplace: true,
+      confirmKind: 'replace',
       showReport: false,
     };
   }
@@ -99,6 +113,7 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
       metaDate: invite.updated_at || invite.created_at,
       action: 'send',
       confirmReplace: false,
+      confirmKind: 'none',
       showReport: false,
     };
   }
@@ -109,6 +124,7 @@ export function resolveMotivationInviteStatus(invite, now = new Date()) {
     metaDate: invite.created_at,
     action: 'resend',
     confirmReplace: false,
+    confirmKind: 'none',
     showReport: false,
   };
 }
@@ -124,4 +140,21 @@ export function motivationActionLabel(row, status) {
     return status?.action === 'resend' ? 'Renvoyer un nouveau lien' : 'Envoyer le lien';
   }
   return status?.action === 'resend' ? 'Nouveau lien' : 'Créer le lien';
+}
+
+/**
+ * Client ids that have at least one submitted motivation invite, derived from
+ * the invites already loaded by loadClients() (no extra DB query, no new table).
+ * Used so "Ouvrir le rapport" stays visible after a fresh link is sent to a
+ * client who already submitted a previous assessment (latest invite pending,
+ * but a submitted invite still exists in history).
+ * @param {Array<{ client_id?: string, status?: string }>} invites
+ * @returns {Set<string>}
+ */
+export function motivationClientsWithSubmittedHistory(invites) {
+  const ids = new Set();
+  for (const invite of invites || []) {
+    if (invite?.client_id && invite.status === 'submitted') ids.add(invite.client_id);
+  }
+  return ids;
 }
