@@ -13,8 +13,21 @@ function macros(t, labels) {
   return `${n(t?.pro)}g ${labels.pro} · ${n(t?.glu)}g ${labels.glu} · ${n(t?.lip)}g ${labels.lip}`;
 }
 function signed(value, suffix = '') { return `${n(value) > 0 ? '+' : ''}${n(value)}${suffix}`; }
+function mealIconSvg(mealIndex) {
+  const icons = [
+    ['breakfast', '<path d="M2 11h12" stroke="#3B82F6" stroke-width="1.5"/><path d="M5 11a3 3 0 0 1 6 0" fill="#FDBA2D"/><path d="M8 2v2M3.8 4.2l1.4 1.4M12.2 4.2l-1.4 1.4M2 8h2M12 8h2" stroke="#F59E0B" stroke-width="1.25" stroke-linecap="round"/>'],
+    ['am-snack', '<path d="M3 6h8v5.2A1.8 1.8 0 0 1 9.2 13H4.8A1.8 1.8 0 0 1 3 11.2V6Z" fill="#8B6F80"/><path d="M11 7h1a2 2 0 0 1 0 4h-1" fill="none" stroke="#8B6F80" stroke-width="1.4"/><path d="M5 4c0-1 1-1 1-2M8 4c0-1 1-1 1-2" stroke="#C4A7B5" stroke-width="1.1" stroke-linecap="round"/>'],
+    ['lunch', '<path d="M4 2v5M2.5 2v3.2A1.8 1.8 0 0 0 4 7m1.5-5v3.2A1.8 1.8 0 0 1 4 7v7" stroke="#9B8CC2" stroke-width="1.25" stroke-linecap="round"/><path d="M10 2v12M10 2c2 1 2.5 4.5 0 6" stroke="#9B8CC2" stroke-width="1.4" stroke-linecap="round"/>'],
+    ['pm-snack', '<path d="M8 5c-2.6-2-5.5.3-4.8 3.8C4 12.6 6 14 8 12.8c2 1.2 4-.2 4.8-4C13.5 5.3 10.6 3 8 5Z" fill="#EF4444"/><path d="M8 5c0-1.7.7-2.7 2.1-3.2" stroke="#6B4423" stroke-width="1.1" stroke-linecap="round"/><path d="M9.4 2.5c1.6-.7 2.8-.1 3.2 1.1-1.6.5-2.7.1-3.2-1.1Z" fill="#22A447"/>'],
+    ['dinner', '<path d="M2.5 8.4c0-3.1 3-5.5 6.7-5.1 3.2.3 4.8 2.5 4.2 5.1-.7 3-3.8 4.8-7 4.3-2.4-.4-3.9-1.9-3.9-4.3Z" fill="#E94B5F"/><path d="M5.2 8.5c0-1.4 1.3-2.5 2.9-2.4 1.4.1 2.2 1.1 1.9 2.3-.3 1.3-1.7 2.1-3.1 1.9-1-.2-1.7-.8-1.7-1.8Z" fill="#FFE7E9"/>'],
+    ['snack', '<path d="M11.8 11.4A5.8 5.8 0 0 1 5 2.4a5.9 5.9 0 1 0 6.8 9Z" fill="#F5A623"/>'],
+    ['evening', '<path d="M11.7 11.8A5.7 5.7 0 0 1 5 2.6a5.8 5.8 0 1 0 6.7 9.2Z" fill="#F4B942"/><path d="m12.2 2 .5 1.1 1.2.2-.9.8.2 1.2-1-.6-1.1.6.3-1.2-.9-.8 1.2-.2.5-1.1Z" fill="#3B82F6"/>'],
+  ];
+  const [name, shapes] = icons[mealIndex] || icons[5];
+  return `<svg class="meal-icon" data-meal-icon="${name}" viewBox="0 0 16 16" aria-hidden="true">${shapes}</svg>`;
+}
 function mealList(meals) {
-  return meals.map((meal) => `<div class="meal-box"><div class="meal-title"><span class="meal-icon" aria-hidden="true">${esc(meal.icon)}</span>${esc(meal.label)}</div><ul class="meal-list">${
+  return meals.map((meal) => `<div class="meal-box"><div class="meal-title">${mealIconSvg(meal.mealIndex)}${esc(meal.label)}</div><ul class="meal-list">${
     meal.items.map((item) => `<li>${esc(item.portions)} portion(s) — ${esc(item.label)}</li>`).join('')
   }</ul></div>`).join('');
 }

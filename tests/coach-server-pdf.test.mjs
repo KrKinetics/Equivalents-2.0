@@ -122,8 +122,8 @@ test('PDF HTML FR/EN × KR/Elevate — texts, order, escaping, no secrets', () =
       assert.match(html, /#3B82F6|#071B41/);
       assert.doesNotMatch(html, /border-left:[^;}]*#ED1136/i);
     }
-    assert.match(html, /class="meal-icon"/);
-    assert.match(html, /🌅/);
+    assert.match(html, /<svg class="meal-icon"/);
+    assert.match(html, /data-meal-icon="breakfast"/);
     assert.doesNotMatch(html, /filter:brightness\(0\)\s*invert\(1\)/);
     const pageCount = (html.match(/<section class="pdf-a4-page/g) || []).length;
     assert.equal(pageCount, 1);

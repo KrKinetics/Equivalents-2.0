@@ -56,7 +56,7 @@ body{margin:0;padding:0;background:#fff}
 .meals-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
 .meal-box{margin-bottom:7px;padding:6px 8px;background:#f8fafc;border-left:3px solid ${accent};border-radius:4px}
 .meal-title{display:flex;align-items:center;font-weight:700;font-size:10.5px;color:#1e293b;margin-bottom:2px}
-.meal-icon{display:inline-block;flex:0 0 16px;width:16px;margin-right:3px;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;font-size:10px;line-height:1}
+.meal-icon{display:block;flex:0 0 16px;width:16px;height:16px;margin-right:4px}
 .meal-list{margin:0;padding-left:14px}.meal-list li{margin:1px 0;font-size:10px;color:#475569}
 .pdf-page-body{padding-bottom:110px}
 .pdf-coach-notes{margin:10px 0 8px;padding:10px 12px;background:${notesBg};border:1px solid ${notesBorder};border-left:4px solid ${accent};border-radius:6px}
