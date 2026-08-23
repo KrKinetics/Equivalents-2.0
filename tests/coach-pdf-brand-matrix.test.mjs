@@ -94,12 +94,14 @@ test('PDF themes are visually distinct (palette + banner + accent)', () => {
   const elev = getPdfTheme('elevate');
   assert.notEqual(kr.banner, elev.banner);
   assert.notEqual(kr.accent, elev.accent);
-  assert.equal(kr.accent, '#ED1136');
+  assert.equal(kr.accent, '#3B82F6');
   assert.equal(elev.accent, '#D4A94F');
   assert.equal(kr.banner, '#071B41');
   assert.equal(elev.banner, '#050505');
   assert.equal(kr.logoFilter, 'none');
   assert.equal(elev.logoFilter, 'none');
+  assert.equal(kr.notesBorder, '#93C5FD');
+  assert.equal(kr.notesBg, '#EFF6FF');
 });
 
 test('brand matrix HTML: correct logo brand, filename, no cross-contamination', async () => {

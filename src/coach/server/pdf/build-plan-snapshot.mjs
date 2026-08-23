@@ -2,7 +2,9 @@ import {
   MOYENNES, computeBanqueTotals, computePlannedTotalsFromRepartition, reconcilePlanTotals,
   computeHydration, macroPercentagesFromGrams, kcalFromMacros,
 } from '../../../lib/coach-calculator-engine.mjs';
-import { CATS, MEAL_COUNT, CATEGORY_LABELS, MEAL_LABELS, JOUR_LABELS_PDF } from './category-labels.mjs';
+import {
+  CATS, MEAL_COUNT, CATEGORY_LABELS, MEAL_LABELS, MEAL_ICONS, JOUR_LABELS_PDF,
+} from './category-labels.mjs';
 
 function number(value) {
   return Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -51,7 +53,14 @@ export function buildPlanSnapshot({ day, targets, locale = 'fr', jourKey = 'entr
       portions: number(repartition[(mealIndex * CATS.length) + catIndex]),
       label: CATEGORY_LABELS[language][cat],
     })).filter((item) => item.portions > 0);
-    if (items.length) meals.push({ mealIndex, label: MEAL_LABELS[language][mealIndex], items });
+    if (items.length) {
+      meals.push({
+        mealIndex,
+        label: MEAL_LABELS[language][mealIndex],
+        icon: MEAL_ICONS[mealIndex],
+        items,
+      });
+    }
   }
   const totalKcal = kcalFromMacros(plannedTotals.pro, plannedTotals.glu, plannedTotals.lip);
   const macroPercentages = macroPercentagesFromGrams(plannedTotals.pro, plannedTotals.glu, plannedTotals.lip);
