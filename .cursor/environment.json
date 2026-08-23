@@ -1,0 +1,11 @@
+{
+  "name": "Maitre Coach - Equivalents 2.0",
+  "install": "npm ci && npx --yes puppeteer browsers install chrome",
+  "terminals": [
+    {
+      "name": "coach-calculator",
+      "command": "npm run coach:preview"
+    }
+  ],
+  "ports": [4188]
+}
