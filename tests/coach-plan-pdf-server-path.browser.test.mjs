@@ -121,6 +121,7 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
   }
   const page = await browser.newPage();
   const alerts = [];
+  const pdfRequests = [];
   page.on('dialog', async (dialog) => {
     alerts.push(dialog.message());
     await dialog.dismiss();
@@ -232,6 +233,7 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
       return;
     }
     if (u.includes('/api/coach-generate-pdf')) {
+      pdfRequests.push(JSON.parse(req.postData() || '{}'));
       const pdf = Buffer.from('%PDF-1.4\n%âãÏÓ\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n', 'binary');
       req.respond({
         status: 200,
@@ -254,6 +256,10 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
 
   await page.waitForFunction(() => typeof window.genererPlanTextuel === 'function', { timeout: 15_000 });
   await page.waitForFunction(() => window.CoachSharedEngine?.serverStub === true, { timeout: 10_000 });
+  await page.waitForFunction(
+    () => typeof window.__coachPrepareServerPdfDays === 'function',
+    { timeout: 10_000 },
+  );
 
   await page.evaluate(() => {
     globalThis.COACH_WORKSPACE_CONTEXT = {
@@ -375,6 +381,24 @@ test('browser: plan generation does not alert Client engine disabled', async (t)
     if (typeof window.suggererBanque === 'function') await window.suggererBanque();
   });
   await new Promise((r) => setTimeout(r, 600));
+
+  const beforeBridgeExport = pdfRequests.length;
+  await page.evaluate(async () => {
+    await window.exporterPDF();
+  });
+  await new Promise((r) => setTimeout(r, 500));
+  assert.equal(pdfRequests.length, beforeBridgeExport + 1, 'bridge export must call the PDF API');
+  const bridgePayload = pdfRequests.at(-1);
+  assert.equal(bridgePayload.training.repartition.length, 49, 'server PDF must receive all seven meals');
+  assert.ok(
+    bridgePayload.training.repartition.some((v) => Number(v) > 0),
+    'server PDF must receive the portions visible in the calculator',
+  );
+  assert.equal(
+    alerts.some((m) => /PDF state collector unavailable/i.test(m)),
+    false,
+    `collector must be installed, alerts=${alerts.join(' | ')}`,
+  );
 
   const pdfResult = await page.evaluate(async () => {
     const day = window.joursData.entrainement;
