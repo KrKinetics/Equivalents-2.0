@@ -270,6 +270,53 @@ test('I/K — evening-meal portions reduce the remaining counter exactly', async
   await page.close();
 });
 
+test('Q — an intentional partial distribution stays exportable and renders a PDF', async () => {
+  const page = await freshPage();
+  await seedSevenMealPlan(page, 'Partial Export', 'entrainement');
+
+  const result = await page.evaluate(() => {
+    changerJour('entrainement');
+    const input = Array.from(document.querySelectorAll('.rep-input[data-cat="fec"]'))
+      .find((candidate) => (parseFloat(candidate.value) || 0) >= 0.5);
+    if (!input) throw new Error('Expected at least one distributed starch portion');
+    input.value = String(Math.max(0, (parseFloat(input.value) || 0) - 0.5));
+    calculerRepartition();
+    captureJourActif();
+
+    const status = evaluerEtatPlan();
+    const snapshot = getJourSnapshot('entrainement');
+    const html = buildFullPDFHTML(
+      snapshot,
+      null,
+      'Partial Export',
+      '2026-08-23',
+      getMacroRatioLabel(),
+      getActiveGoalLabel(),
+    );
+    return {
+      canExport: status.canExport,
+      level: status.level,
+      warnings: status.warnings,
+      title: document.getElementById('plan-status-title').textContent,
+      message: document.getElementById('plan-status-msg').textContent,
+      pdfButtonDisabled: document.getElementById('btn-export-pdf').disabled,
+      plannedKcal: snapshot.totalKcal,
+      banqueKcal: snapshot.banqueTotals.kcal,
+      pdfHasMealPlan: /Portions par repas|Portions by meal/.test(html),
+    };
+  });
+
+  assert.equal(result.canExport, true);
+  assert.equal(result.level, 'warn');
+  assert.ok(result.warnings.some((w) => /Répartition partielle/i.test(w)));
+  assert.match(result.title, /Plan exportable/i);
+  assert.match(result.message, /portions réellement inscrites/i);
+  assert.equal(result.pdfButtonDisabled, false);
+  assert.notEqual(result.plannedKcal, result.banqueKcal);
+  assert.equal(result.pdfHasMealPlan, true);
+  await page.close();
+});
+
 async function buildPdfInfo(page, creator, lang) {
   return page.evaluate(async ({ brand, language }) => {
     choisirPdfCreator(brand);

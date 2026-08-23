@@ -63,7 +63,8 @@ export function assertPlanReadyForPdf(payload) {
       targets: trainingTargets,
       targetsReady: trainingTargetsOk,
     });
-    // Soft: allow export with banque/target warnings, but not empty meals.
+    // Soft: allow banque/target and intentional partial-distribution warnings,
+    // but never render a PDF when no meal contains a portion.
     if (!completeness.canExport && completeness.errors.some((e) => /Répartition|Repas/i.test(e))) {
       return { ok: false, status: 409, error: 'plan_not_ready' };
     }

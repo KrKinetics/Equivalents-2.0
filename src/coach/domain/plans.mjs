@@ -91,7 +91,14 @@ export function evaluatePlanCompleteness({ jourData, targets, targetsReady = tru
     const rest = Math.round((cible - sum) * 10) / 10;
     if (cible > 0 && rest !== 0) restants.push(cat);
   }
-  if (restants.length) errors.push(`Répartition incomplète (${restants.join(', ')}).`);
+  // A coach may intentionally keep part of the portion bank outside the meal
+  // table. Report the difference, but export the portions that are actually
+  // distributed instead of treating the plan as invalid.
+  if (restants.length) {
+    warnings.push(
+      `Répartition partielle (${restants.join(', ')}) — le PDF utilisera uniquement les portions inscrites.`,
+    );
+  }
 
   let hasMealFood = false;
   for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {

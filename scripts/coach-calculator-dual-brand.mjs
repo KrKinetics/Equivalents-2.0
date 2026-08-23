@@ -229,7 +229,9 @@ evaluerJourData = function (jourKey) {
         const restant = Math.round((cible - sum) * 10) / 10;
         if (cible > 0 && restant !== 0) restants.push(NOMS_COURTS[cat]);
     });
-    if (restants.length) errors.push('Répartition incomplète (' + restants.join(', ') + ').');
+    if (restants.length) {
+        warnings.push('Répartition partielle (' + restants.join(', ') + ') — le PDF utilisera uniquement les portions inscrites.');
+    }
     let hasMealFood = false;
     for (let i = 0; i < MEAL_COUNT * CATS.length; i++) {
         if ((parseFloat(jourData.repartition[i]) || 0) > 0) hasMealFood = true;
@@ -488,14 +490,14 @@ function applyProfessionalUiPatches(html) {
   html = mustIncludesReplace(
     html,
     "title.textContent = 'Dossier exportable avec réserves';",
-    "title.textContent = 'Plan complet — ajustements à confirmer';",
+    "title.textContent = 'Plan exportable — vérification recommandée';",
     'plan status warn title',
   );
 
   html = mustIncludesReplace(
     html,
-    "msg.textContent = 'Vérifiez :';",
-    "msg.textContent = 'Les journées sont complètes; validez simplement les écarts suivants :';",
+    "msg.textContent = 'Le plan et le PDF seront générés avec les portions réellement inscrites. Vérifiez :';",
+    "msg.textContent = 'Le PDF utilisera uniquement les portions réellement inscrites; vérifiez les éléments suivants :';",
     'plan status warn message',
   );
 

@@ -324,7 +324,6 @@ function evaluerEtatPlan() {
     captureJourActif();
     const ent = evaluerJourData('entrainement');
     const rep = evaluerJourData('repos');
-    const current = activeJour === 'entrainement' ? ent : rep;
     const errors = [];
     const warnings = [];
     const restConfigured = isJourClientPlanConfigured(joursData.repos);
@@ -339,12 +338,13 @@ function evaluerEtatPlan() {
         warnings.push(PDF_LABELS[pdfLang].restOmittedNote);
     }
 
-    if (current.warnings.length) {
-        warnings.push('Jour actif (' + JOUR_LABELS[activeJour].replace(/💪 |🛌 /g, '') + ') : écart banque/cibles à vérifier.');
-    }
-    if (ent.warnings.length && activeJour !== 'entrainement') warnings.push('Jour Entraînement : écart banque/cibles.');
-    if (jourReposActif && restConfigured && rep.warnings.length && activeJour !== 'repos') {
-        warnings.push('Jour Repos : écart banque/cibles.');
+    ent.warnings.forEach(function(warning) {
+        warnings.push('Jour Entraînement : ' + warning);
+    });
+    if (jourReposActif && restConfigured) {
+        rep.warnings.forEach(function(warning) {
+            warnings.push('Jour Repos : ' + warning);
+        });
     }
 
     const canExport = ent.canExport && (!jourReposActif || !restConfigured || rep.canExport);
@@ -353,7 +353,7 @@ function evaluerEtatPlan() {
     else if (warnings.length || ent.warnings.length || (jourReposActif && restConfigured && rep.warnings.length)) level = 'warn';
     else if (computeTargetsForJour('entrainement').kcal === 0) level = 'neutral';
 
-    return { level, errors, warnings, canExport, ent, rep, current, restConfigured };
+    return { level, errors, warnings, canExport, ent, rep, restConfigured };
 }
 
 function updateEtatPlan() {
@@ -388,14 +388,14 @@ function updateEtatPlan() {
     } else if (status.level === 'warn') {
         icon.textContent = '⚠️';
         title.textContent = 'Dossier exportable avec réserves';
-        msg.textContent = 'Vérifiez :';
+        msg.textContent = 'Le plan et le PDF seront générés avec les portions réellement inscrites. Vérifiez :';
         msg.style.display = 'block';
         list.innerHTML = status.warnings.map(function(w) { return '<li>' + w + '</li>'; }).join('');
         list.style.display = 'block';
     } else if (status.level === 'error') {
         icon.textContent = '❌';
         title.textContent = 'Dossier incomplet';
-        msg.textContent = 'Points à compléter ou ajuster — vous pouvez quand même générer le plan et le PDF :';
+        msg.textContent = 'Points requis avant la génération du plan et du PDF :';
         msg.style.display = 'block';
         list.innerHTML = status.errors.map(function(e) { return '<li>' + e + '</li>'; }).join('');
         list.style.display = 'block';

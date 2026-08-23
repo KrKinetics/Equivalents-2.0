@@ -406,6 +406,7 @@ test('evaluatePlanCompleteness mirrors evaluerJourData rules', () => {
     jourData,
     targets: computeBanqueTotals(jourData.banque),
   });
-  assert.equal(complete.canExport, false);
-  assert.ok(complete.errors.some((e) => e.startsWith('Répartition incomplète')));
+  assert.equal(complete.canExport, true);
+  assert.deepEqual(complete.errors, []);
+  assert.ok(complete.warnings.some((e) => e.startsWith('Répartition partielle')));
 });

@@ -93,7 +93,7 @@ test('canonical snapshot keeps non-zero planned macros for KR + Elevate locales'
   }
 });
 
-test('assertPlanReadyForPdf rejects empty calculated plans and accepts golden plan', () => {
+test('assertPlanReadyForPdf rejects empty plans and accepts complete or intentional partial plans', () => {
   const autoCase = golden.cases.find((c) => c.id === 'auto-repartition-classique-from-suggest-2800');
   const targets = { kcal: 2800, pro: 170, glu: 300, lip: 80 };
 
@@ -119,10 +119,10 @@ test('assertPlanReadyForPdf rejects empty calculated plans and accepts golden pl
   });
   assert.equal(ready.ok, true);
 
-  const inconsistent = assertPlanReadyForPdf({
+  const partial = assertPlanReadyForPdf({
     training: {
       banque: autoCase.input.banque,
-      // Non-zero slots that do not form a coherent meal plan vs banque (all tiny leftovers).
+      // A coach may intentionally export only the portions entered in meals.
       repartition: (() => {
         const r = new Array(42).fill(0);
         r[1] = 0.5; // one fec portion only
@@ -132,8 +132,7 @@ test('assertPlanReadyForPdf rejects empty calculated plans and accepts golden pl
     },
     include_rest: false,
   });
-  assert.equal(inconsistent.ok, false);
-  assert.ok(['plan_not_ready', 'inconsistent_plan'].includes(inconsistent.error));
+  assert.equal(partial.ok, true);
 });
 
 test('Elevate + KR logos load non-empty bytes (file or embedded)', async () => {
