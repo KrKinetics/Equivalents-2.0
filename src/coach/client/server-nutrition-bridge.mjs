@@ -123,6 +123,84 @@ function cacheMacroPercentages(totals, percentages) {
   };
 }
 
+const SERVER_PDF_CATS = Object.freeze(['pro', 'fec', 'leg', 'fru', 'lai', 'lip', 'whey']);
+const SERVER_PDF_MEAL_COUNT = 7;
+
+/**
+ * Collect one canonical calculator day for the authenticated server PDF route.
+ * This belongs in the portal bridge because the standalone calculator keeps its
+ * own local PDF renderer and the deployed bundle strips that legacy path.
+ */
+export function collectJourDayForServerPdf(jourKey) {
+  const d = globalThis.joursData?.[jourKey] || {};
+  const banque = {};
+  for (const cat of SERVER_PDF_CATS) banque[cat] = Number.parseFloat(d.banque?.[cat]) || 0;
+
+  const repartition = [];
+  for (let i = 0; i < SERVER_PDF_MEAL_COUNT * SERVER_PDF_CATS.length; i += 1) {
+    repartition.push(Number.parseFloat(d.repartition?.[i]) || 0);
+  }
+
+  const getTiming = globalThis.getTimingInfoForSnapshot;
+  const timingRaw = typeof getTiming === 'function'
+    ? (getTiming(jourKey, d) || {})
+    : (d.timing || {});
+  const timing = { active: Boolean(timingRaw.active) };
+  if (timingRaw.heure) timing.heure = timingRaw.heure;
+  if (timingRaw.heureLabel) timing.heureLabel = String(timingRaw.heureLabel).slice(0, 120);
+  if (timingRaw.summary) timing.summary = String(timingRaw.summary).slice(0, 120);
+  if (Number.isInteger(timingRaw.preIdx)) timing.preIdx = timingRaw.preIdx;
+  if (Number.isInteger(timingRaw.postIdx)) timing.postIdx = timingRaw.postIdx;
+
+  const out = {
+    banque,
+    repartition,
+    eauAjout: Math.max(0, Number.parseFloat(d.eauAjout) || 0),
+    eauManuel: Boolean(d.eauManuel),
+    repartitionSelonEntrainement: d.repartitionSelonEntrainement !== false,
+    timing,
+  };
+  if (d.eauLitres !== null && d.eauLitres !== undefined && d.eauLitres !== '') {
+    out.eauLitres = Number.parseFloat(d.eauLitres) || 0;
+  }
+  if (typeof d.heureEntrainement === 'string' && /^\d{2}:\d{2}$/.test(d.heureEntrainement)) {
+    out.heureEntrainement = d.heureEntrainement;
+  }
+  return out;
+}
+
+/** Collect the complete current workspace state consumed by generatePdfApi. */
+export function prepareServerPdfDays() {
+  if (typeof globalThis.captureJourActif === 'function') globalThis.captureJourActif();
+  const locale = globalThis.pdfLang === 'en' ? 'en' : 'fr';
+  const defaultAthlete = locale === 'en' ? 'Athlete' : 'Athlète';
+  const athleteName = document.getElementById('nom_athlete')?.value?.trim() || defaultAthlete;
+  const includeRest = Boolean(globalThis.jourReposActif);
+  return {
+    locale,
+    athlete_name: String(athleteName).slice(0, 120),
+    goal_label: String(
+      typeof globalThis.getActiveGoalLabel === 'function'
+        ? globalThis.getActiveGoalLabel()
+        : '—',
+    ).slice(0, 120),
+    macro_ratio_label: String(
+      typeof globalThis.getMacroRatioLabel === 'function'
+        ? globalThis.getMacroRatioLabel()
+        : '—',
+    ).slice(0, 120),
+    coach_notes: String(
+      typeof globalThis.getCoachNotes === 'function'
+        ? globalThis.getCoachNotes()
+        : (document.getElementById('coach-notes')?.value || ''),
+    ).slice(0, 4000),
+    include_rest: includeRest,
+    goal_multiplier: Number(globalThis.selectedGoalMultiplier) || 1,
+    training: collectJourDayForServerPdf('entrainement'),
+    rest: includeRest ? collectJourDayForServerPdf('repos') : null,
+  };
+}
+
 function fingerprintRepartition(repartition) {
   if (!Array.isArray(repartition) && typeof repartition !== 'object') return '';
   const vals = [];
@@ -844,6 +922,7 @@ export function installServerNutritionBridge() {
   globalThis.suggererBanque = () => suggererBanqueServer();
   globalThis.repartirAutomatique = (mode) => repartirAutomatiqueServer(mode);
   globalThis.telechargerGuideEquivalentsHtml = () => { void telechargerGuideEquivalentsHtmlServer(); };
+  globalThis.__coachPrepareServerPdfDays = prepareServerPdfDays;
   globalThis.exporterPDF = () => exporterPDFServer();
 
   // Preserve dual-brand / inline plan generator, then wrap so buttons never hit disabled engine.
