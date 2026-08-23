@@ -150,7 +150,7 @@ test('K — remaining counter accounts for all seven meals', () => {
     targets: computeBanqueTotals(jour.banque),
   });
   assert.ok(
-    !complete.errors.some((e) => e.startsWith('Répartition incomplète')),
+    !complete.warnings.some((e) => e.startsWith('Répartition partielle')),
     `evening-meal portions must satisfy the remaining counter: ${complete.errors.join('; ')}`,
   );
 
@@ -164,9 +164,10 @@ test('K — remaining counter accounts for all seven meals', () => {
     targets: computeBanqueTotals(jour2.banque),
   });
   assert.ok(
-    incomplete.errors.some((e) => e.startsWith('Répartition incomplète')),
+    incomplete.warnings.some((e) => e.startsWith('Répartition partielle')),
     'missing evening-meal portions must be reported as remaining',
   );
+  assert.equal(incomplete.canExport, true, 'an intentional partial distribution remains exportable');
 });
 
 test('P — macro percentages still total exactly 100% with the seventh meal', () => {

@@ -68,9 +68,37 @@ test('plan completeness: partial distribution', () => {
     jourData: partial,
     targets: computeBanqueTotals(partial.banque),
   });
-  assert.equal(result.canExport, false);
-  assert.deepEqual(result.errors, ['Répartition incomplète (pro, fec, leg, fru, lai, lip).']);
-  assert.deepEqual(result.warnings, []);
+  assert.equal(result.canExport, true);
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.warnings, [
+    'Répartition partielle (pro, fec, leg, fru, lai, lip) — le PDF utilisera uniquement les portions inscrites.',
+  ]);
+});
+
+test('plan completeness: under- and over-distributed portions are both non-blocking', () => {
+  const day = createEmptyJourData();
+  day.banque = { pro: '15.5', fec: '12.5', leg: '2', fru: '3', lai: '1', lip: '6.5', whey: '0' };
+  const meals = [
+    [0, 1, 0, 1, 2, 2, 0],
+    [0, 1, 0, 1, 0, 0, 2],
+    [7, 3, 1, 0, 0, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0],
+    [7, 3, 1, 0, 0, 1, 0],
+    [0, 2, 0, 0, 0, 1, 2],
+    [0, 0, 0, 0, 0, 0, 0],
+  ];
+  day.repartition = meals.flat().map(String);
+
+  const result = evaluatePlanCompleteness({
+    jourData: day,
+    targets: computeBanqueTotals(day.banque),
+  });
+
+  assert.equal(result.canExport, true);
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.warnings, [
+    'Répartition partielle (pro, fec, lai, lip) — le PDF utilisera uniquement les portions inscrites.',
+  ]);
 });
 
 test('plan completeness: complete plan can export', () => {
@@ -93,7 +121,9 @@ test('plan completeness: banque without meals', () => {
     targets: { kcal: 200, pro: 36, glu: 0, lip: 8 },
   });
   assert.equal(result.canExport, false);
-  assert.ok(result.errors.includes('Répartition incomplète (pro).'));
+  assert.ok(result.warnings.includes(
+    'Répartition partielle (pro) — le PDF utilisera uniquement les portions inscrites.',
+  ));
   assert.ok(result.errors.includes('Repas non distribués.'));
 });
 
