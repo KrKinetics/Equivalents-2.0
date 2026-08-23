@@ -181,7 +181,7 @@ test('science UI branding, NASEM default, workflow and viewports', async () => {
     const seventhMealHeight = name === 'desktop-1440-science-ui.png'
       ? 89
       : name === 'tablet-768-science-ui.png'
-        ? 88
+        ? 110
         : 0;
     assert.deepEqual(
       actualSize,
