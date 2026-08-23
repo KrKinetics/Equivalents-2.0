@@ -5,8 +5,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   MOTIVATION_RESEND_OPENED_CONFIRMATION,
+  MOTIVATION_RESEND_SUBMITTED_CONFIRMATION,
   latestMotivationInviteByClient,
   motivationActionLabel,
+  motivationClientsWithSubmittedHistory,
   resolveMotivationInviteStatus,
 } from '../../src/coach/client/motivation-dashboard.mjs';
 
@@ -46,7 +48,9 @@ test('opened invite shows En cours and requires replacement confirmation', () =>
   }, NOW);
   assert.equal(status.key, 'opened');
   assert.equal(status.label, 'En cours');
+  assert.equal(status.action, 'resend');
   assert.equal(status.confirmReplace, true);
+  assert.equal(status.confirmKind, 'replace');
   assert.match(MOTIVATION_RESEND_OPENED_CONFIRMATION, /remplacera le lien actuel/);
   assert.match(MOTIVATION_RESEND_OPENED_CONFIRMATION, /ne pourra plus être poursuivie/);
 });
@@ -62,7 +66,7 @@ test('expired invite shows Expiré', () => {
   assert.equal(status.action, 'send');
 });
 
-test('submitted invite shows Soumis and Ouvrir le rapport only', () => {
+test('A: submitted invite offers resend and keeps the report', () => {
   const status = resolveMotivationInviteStatus({
     status: 'submitted',
     submitted_at: '2026-08-16T17:00:00.000Z',
@@ -70,9 +74,47 @@ test('submitted invite shows Soumis and Ouvrir le rapport only', () => {
   }, NOW);
   assert.equal(status.key, 'submitted');
   assert.equal(status.label, 'Soumis');
-  assert.equal(status.action, 'none');
+  assert.equal(status.action, 'resend');
+  assert.equal(status.confirmKind, 'newEvaluation');
   assert.equal(status.showReport, true);
-  assert.equal(motivationActionLabel({ email: 'alex@example.com' }, status), '');
+  assert.equal(motivationActionLabel({ email: 'alex@example.com' }, status), 'Renvoyer un nouveau lien');
+});
+
+test('B: submitted history keeps the report visible under a newer pending invite', () => {
+  const invites = [
+    { client_id: CLIENT_A, status: 'pending', created_at: '2026-08-16T16:00:00.000Z', expires_at: '2026-08-30T12:00:00.000Z' },
+    { client_id: CLIENT_A, status: 'submitted', submitted_at: '2026-08-10T10:00:00.000Z', created_at: '2026-08-09T09:00:00.000Z' },
+  ];
+  const latest = latestMotivationInviteByClient(invites);
+  const status = resolveMotivationInviteStatus(latest.get(CLIENT_A), NOW);
+  // Visible status comes from the latest (pending) invite.
+  assert.equal(status.label, 'Lien non ouvert');
+  assert.equal(status.action, 'resend');
+  assert.equal(motivationActionLabel({ email: 'alex@example.com' }, status), 'Renvoyer un nouveau lien');
+  // "Ouvrir le rapport" stays because a submitted invite exists in history.
+  const submittedHistory = motivationClientsWithSubmittedHistory(invites);
+  assert.equal(submittedHistory.has(CLIENT_A), true);
+  assert.equal(status.showReport || submittedHistory.has(CLIENT_A), true);
+});
+
+test('B2: pending with no submitted history does not show the report', () => {
+  const invites = [
+    { client_id: CLIENT_B, status: 'pending', created_at: '2026-08-16T16:00:00.000Z', expires_at: '2026-08-30T12:00:00.000Z' },
+  ];
+  const status = resolveMotivationInviteStatus(latestMotivationInviteByClient(invites).get(CLIENT_B), NOW);
+  const submittedHistory = motivationClientsWithSubmittedHistory(invites);
+  assert.equal(submittedHistory.has(CLIENT_B), false);
+  assert.equal(status.showReport || submittedHistory.has(CLIENT_B), false);
+});
+
+test('D: submitted resend uses the new-evaluation confirmation and never claims deletion', () => {
+  assert.match(MOTIVATION_RESEND_SUBMITTED_CONFIRMATION, /nouvelle évaluation/i);
+  assert.match(MOTIVATION_RESEND_SUBMITTED_CONFIRMATION, /rapport actuel sera conservé/i);
+  assert.match(MOTIVATION_RESEND_SUBMITTED_CONFIRMATION, /plus récente/i);
+  assert.doesNotMatch(
+    MOTIVATION_RESEND_SUBMITTED_CONFIRMATION,
+    /supprim|perdu|perdue|abandonn|ne pourra plus/i,
+  );
 });
 
 test('A: newer pending is the reference over an older revoked', () => {
@@ -116,6 +158,11 @@ test('dashboard wires motivation independently of intake and nutrition', () => {
   assert.match(dashboardJs, /btn-motivation-report/);
   assert.match(dashboardJs, /Ouvrir le rapport/);
   assert.match(dashboardJs, /MOTIVATION_RESEND_OPENED_CONFIRMATION/);
+  // Resend-after-submission wiring (this feature).
+  assert.match(dashboardJs, /MOTIVATION_RESEND_SUBMITTED_CONFIRMATION/);
+  assert.match(dashboardJs, /motivationClientsWithSubmittedHistory/);
+  assert.match(dashboardJs, /confirmKind/);
+  assert.match(dashboardJs, /showMotivationReport/);
   assert.doesNotMatch(dashboardJs, /Questionnaire d’habitudes/);
   assert.doesNotMatch(dashboardJs, /À venir/);
   assert.doesNotMatch(dashboardJs, /analyzeMotivationAssessment|calculateDimensionScores/);
