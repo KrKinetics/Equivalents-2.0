@@ -119,6 +119,21 @@ test('assertPlanReadyForPdf rejects empty plans and accepts complete or intentio
   });
   assert.equal(ready.ok, true);
 
+  const emptyRest = assertPlanReadyForPdf({
+    training: {
+      banque: autoCase.input.banque,
+      repartition: autoCase.expected.repartition,
+      targets,
+    },
+    include_rest: true,
+    rest: {
+      banque: autoCase.input.banque,
+      repartition: new Array(42).fill(0),
+      targets,
+    },
+  });
+  assert.equal(emptyRest.ok, true);
+
   const partial = assertPlanReadyForPdf({
     training: {
       banque: autoCase.input.banque,
