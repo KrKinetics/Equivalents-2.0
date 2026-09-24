@@ -15,18 +15,16 @@ import {
 export function calculateEnergyNeeds(input) {
   const result = computeEerTdee(input);
   const tdee = result.tdee;
-  const age = parseFloat(input?.age) || 0;
-  const youth = age > 0 && age < 19;
   return {
     bmr: result.bmr,
     tdee: result.tdee,
     method: result.method,
     goals: {
-      perteSevere: youth ? null : tdee * 0.8,
-      perteLegere: youth ? null : tdee * 0.9,
+      perteSevere: tdee * 0.8,
+      perteLegere: tdee * 0.9,
       maintien: tdee * 1.0,
-      priseLegere: youth ? null : tdee * 1.1,
-      priseSevere: youth ? null : tdee * 1.2,
+      priseLegere: tdee * 1.1,
+      priseSevere: tdee * 1.2,
     },
   };
 }

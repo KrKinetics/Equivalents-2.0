@@ -86,23 +86,16 @@ export function buildScienceRuntime() {
         return 354 - (6.91 * age) + pa * ((9.36 * kg) + (726 * metres));
     }
 
-    function krSetYouthGoalGuard(age) {
-        const youth = age < 19;
+    function krSetYouthGoalGuard() {
+        // All coach target cards remain available for minors. NASEM stays
+        // mandatory before 19; the selected energy target is a coach decision.
         const cards = Array.from(document.querySelectorAll('.goal-card'));
         cards.forEach(function (card) {
-            const multiplier = parseFloat(card.getAttribute('data-multiplier'));
-            const locked = youth && multiplier !== 1;
-            card.classList.toggle('goal-disabled', locked);
-            card.setAttribute('aria-disabled', locked ? 'true' : 'false');
-            card.style.opacity = locked ? '0.42' : '';
-            card.style.cursor = locked ? 'not-allowed' : '';
+            card.classList.remove('goal-disabled');
+            card.setAttribute('aria-disabled', 'false');
+            card.style.opacity = '';
+            card.style.cursor = '';
         });
-        if (youth && selectedGoalMultiplier !== 1) {
-            selectedGoalMultiplier = 1;
-            cards.forEach(function (card) {
-                card.classList.toggle('active', parseFloat(card.getAttribute('data-multiplier')) === 1);
-            });
-        }
     }
 
     function krMacroAuditText() {
@@ -137,7 +130,7 @@ export function buildScienceRuntime() {
         if (method === 'iom2005') box.classList.add('scope-warn');
         if (age < 19) {
             box.classList.add('scope-warn');
-            box.innerHTML = '<span class="energy-method-badge">' + methodLabel + '</span> <strong>Mineur :</strong> l\'EER inclut le coût de croissance et le maintien est imposé. Aucun déficit ou surplus automatique. Supervision d\'un professionnel qualifié en pédiatrie recommandée.' + krMacroAuditText();
+            box.innerHTML = '<span class="energy-method-badge">' + methodLabel + '</span> <strong>Mineur :</strong> l\'EER NASEM inclut le coût de croissance. Les cibles de maintien, déficit et surplus sont disponibles au coach; elles doivent être individualisées selon le contexte sportif, la croissance, la récupération et l\'évolution réelle.' + krMacroAuditText();
             return;
         }
         const legacy = method === 'iom2005'
@@ -188,22 +181,17 @@ export function buildScienceRuntime() {
         document.getElementById('bmr-out').textContent = Math.round(inactive);
         document.getElementById('tdee-out').textContent = Math.round(tdee);
         document.getElementById('poids-kg-out').textContent = kg.toFixed(1);
-        document.getElementById('kcal-80').textContent = age < 19 ? '—' : Math.round(tdee * 0.8);
-        document.getElementById('kcal-90').textContent = age < 19 ? '—' : Math.round(tdee * 0.9);
+        document.getElementById('kcal-80').textContent = Math.round(tdee * 0.8);
+        document.getElementById('kcal-90').textContent = Math.round(tdee * 0.9);
         document.getElementById('kcal-100').textContent = Math.round(tdee);
-        document.getElementById('kcal-110').textContent = age < 19 ? '—' : Math.round(tdee * 1.1);
-        document.getElementById('kcal-120').textContent = age < 19 ? '—' : Math.round(tdee * 1.2);
+        document.getElementById('kcal-110').textContent = Math.round(tdee * 1.1);
+        document.getElementById('kcal-120').textContent = Math.round(tdee * 1.2);
         updateCibles();
         krUpdateScientificScope();
     };
 
     const krBaseChoisirObjectif = choisirObjectif;
     choisirObjectif = function (element, multiplier) {
-        const age = parseFloat(document.getElementById('age').value) || 0;
-        if (age < 19 && multiplier !== 1) {
-            alert('Pour une personne mineure, le calculateur autorise uniquement le maintien. Toute modification énergétique doit être supervisée par un professionnel qualifié en pédiatrie.');
-            return;
-        }
         krBaseChoisirObjectif(element, multiplier);
         krUpdateScientificScope();
     };

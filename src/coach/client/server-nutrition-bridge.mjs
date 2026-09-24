@@ -844,20 +844,8 @@ async function exporterPDFServer() {
         targets: restMacros?.targets || { kcal: 0, pro: 0, glu: 0, lip: 0 },
       }
       : null;
-    // Client-side coherence gate (same invariants as server assertPlanReadyForPdf).
-    const hasRep = (day) => Array.isArray(day?.repartition) && day.repartition.some((v) => Number(v) > 0);
-    const hasBanque = (day) => day?.banque && Object.values(day.banque).some((v) => Number(v) > 0);
-    const plannedKcal = Number(globalThis.joursData?.entrainement?.plannedTotals?.kcal) || 0;
-    if ((hasBanque(training) || Number(training.targets?.kcal) > 0) && !hasRep(training)) {
-      throw new Error(
-        'Le plan alimentaire n’est pas prêt. Générez ou complétez la répartition des portions avant d’exporter le PDF.',
-      );
-    }
-    if (hasRep(training) && plannedKcal === 0 && hasBanque(training)) {
-      throw new Error(
-        'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.',
-      );
-    }
+    // Intentional partial meal distributions are exportable. The server
+    // validates request shape and rejects only a fully empty training plan.
     const pdfBrand = globalThis.pdfCreator === 'elevate' ? 'elevate' : 'kr';
     const { blob, filename } = await generatePdfApi({
       organization_id: ctx.organizationId || undefined,

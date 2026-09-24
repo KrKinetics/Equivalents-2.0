@@ -196,9 +196,14 @@ try {
     'IOM 2005 historical result must remain reproducible',
   );
 
-  runScenario({ sexe: 'H', age: 17, kg: 70, cm: 175, activite: 'modere' });
-  assert.equal(document.querySelector('.goal-card.active')?.dataset.multiplier, '1.0');
+  const youthTdee = runScenario({ sexe: 'H', age: 17, kg: 70, cm: 175, activite: 'modere' });
+  const youthDeficitCard = document.querySelector('.goal-card[data-multiplier="0.9"]');
+  assert.ok(youthDeficitCard);
+  window.choisirObjectif(youthDeficitCard, 0.9);
+  assert.equal(document.querySelector('.goal-card.active')?.dataset.multiplier, '0.9');
+  assert.equal(Number(document.getElementById('kcal-90').textContent), Math.round(youthTdee * 0.9));
   assert.match(document.getElementById('scientific-scope').textContent, /Mineur/);
+  assert.match(document.getElementById('scientific-scope').textContent, /maintien, déficit et surplus/);
 
   runScenario({ sexe: 'H', age: 36, kg: 95.25, cm: 185.42, activite: 'modere' });
   const target = window.computeTargetsForJour('entrainement');

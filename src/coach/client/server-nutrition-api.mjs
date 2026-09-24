@@ -35,7 +35,7 @@ export const SERVER_PDF_GENERIC_ERROR =
   'La génération PDF est temporairement indisponible. Réessayez.';
 
 export const SERVER_PDF_PLAN_NOT_READY_ERROR =
-  'Le plan alimentaire n’est pas prêt. Générez ou complétez la répartition des portions avant d’exporter le PDF.';
+  'Ajoutez au moins une portion à un repas du jour entraînement avant d’exporter le PDF.';
 
 export const SERVER_PDF_INCONSISTENT_PLAN_ERROR =
   'Le plan alimentaire est incomplet ou incohérent. Vérifiez les portions et les totaux, puis réessayez.';
