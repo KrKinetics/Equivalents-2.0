@@ -206,13 +206,18 @@ module.exports = async function handler(req, res) {
       locale: validated.value.locale,
       jourKey: 'entrainement',
     });
-    const restSnapshot = validated.value.include_rest && validated.value.rest
+    const restSnapshotCandidate = validated.value.include_rest && validated.value.rest
       ? buildPlanSnapshot({
         day: validated.value.rest,
         targets: validated.value.rest.targets,
         locale: validated.value.locale,
         jourKey: 'repos',
       })
+      : null;
+    // An enabled but still-empty rest day is a normal in-progress coach state:
+    // export the training plan now and add the rest page once portions exist.
+    const restSnapshot = restSnapshotCandidate?.meals?.length
+      ? restSnapshotCandidate
       : null;
 
     stage = 'logo';
