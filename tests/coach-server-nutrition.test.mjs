@@ -375,6 +375,23 @@ test('parity: EER/TDEE golden via server calc', () => {
   }
 });
 
+test('energy: minors expose deficit, maintenance, and surplus coach targets', () => {
+  const result = calculateEnergyNeeds({
+    sexe: 'H',
+    age: 17,
+    poidsKg: 70,
+    hauteurM: 1.75,
+    activite: 'modere',
+    method: 'nasem2023',
+  });
+  assert.equal(result.method, 'nasem2023');
+  assert.equal(Math.round(result.goals.perteSevere), Math.round(result.tdee * 0.8));
+  assert.equal(Math.round(result.goals.perteLegere), Math.round(result.tdee * 0.9));
+  assert.equal(Math.round(result.goals.maintien), Math.round(result.tdee));
+  assert.equal(Math.round(result.goals.priseLegere), Math.round(result.tdee * 1.1));
+  assert.equal(Math.round(result.goals.priseSevere), Math.round(result.tdee * 1.2));
+});
+
 test('parity: direct NASEM/IOM helpers', () => {
   const { cases } = readGolden('nasem-direct.cases.json');
   for (const c of cases) {
