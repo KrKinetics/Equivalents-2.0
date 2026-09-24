@@ -3906,7 +3906,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function krMacroAuditText    function krMacroAuditText() {
+    function krMacroAuditText() {
         const t = computeTargetsForJour(activeJour);
         if (!t || !t.kcal) return '';
         const age = parseFloat(document.getElementById('age').value) || 0;
@@ -4004,7 +4004,7 @@ document.addEventListener('DOMContentLoaded', function() {
         krUpdateScientificScope();
     };
 
-    normalizeProteinesParKg    normalizeProteinesParKg = function (value) {
+    normalizeProteinesParKg = function (value) {
         const n = parseFloat(value);
         if (isNaN(n)) return DEFAULT_PROTEIN_G_PER_KG;
         return Math.min(3.5, Math.max(MIN_PROTEIN_G_PER_KG, Math.round(n * 10) / 10));
