@@ -29,6 +29,8 @@ import {
 } from '/src/coach/domain/client-service-entitlements.mjs';
 import { runIntakeInviteButtonAction } from '/src/coach/client/intake-invite-gesture.mjs';
 
+const MASTER_COACH_SYNC_URL = 'https://xglmqcqxksowjacjqhid.supabase.co/functions/v1/portal-client-sync';
+
 const statusEl = document.getElementById('status');
 const metaEl = document.getElementById('session-meta');
 const clientsGroups = document.getElementById('clients-groups');
@@ -295,6 +297,37 @@ function renderClientGroup(serviceType, clients, latestInviteByClient, latestMot
   `;
 }
 
+async function reconcileMasterCoachClients() {
+  if (!membership?.organization?.slug || membership.organization.slug !== 'kr-kinetics') return;
+
+  const { data: sessionData } = await supabase.auth.getSession();
+  const accessToken = sessionData?.session?.access_token;
+  if (!accessToken) throw new Error('Session invalide pour la synchronisation Master Coach.');
+
+  const clients = Array.from(clientRows.values()).map((client) => ({
+    id: client.id,
+    full_name: client.full_name,
+    email: client.email || null,
+    notes: client.notes || '',
+    service_type: client.service_type,
+  }));
+
+  const response = await fetch(MASTER_COACH_SYNC_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ action: 'reconcile', clients }),
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok || payload?.ok !== true) {
+    throw new Error(payload?.error || 'Synchronisation Master Coach refusée.');
+  }
+  return payload;
+}
+
 async function loadClients() {
   const [
     { data: clients, error: clientsError },
@@ -513,7 +546,12 @@ async function boot() {
   membership = await loadMembership(session.user.id);
   renderMeta(session, membership);
   await loadClients();
-  setStatus('Session active — accès sécurisé à votre organisation.', 'ok');
+  try {
+    await reconcileMasterCoachClients();
+    setStatus('Session active — clients KR KINETICS synchronisés avec Master Coach.', 'ok');
+  } catch (err) {
+    setStatus(`Session active — synchronisation Master Coach à vérifier : ${err.message || err}`, 'error');
+  }
 
   createForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -533,7 +571,8 @@ async function boot() {
       await createClient(fullName, email, notes, serviceType);
       createForm.reset();
       await loadClients();
-      setStatus('Client créé dans votre organisation seulement.', 'ok');
+      await reconcileMasterCoachClients();
+      setStatus('Client créé dans KR KINETICS et synchronisé avec Master Coach.', 'ok');
     } catch (err) {
       setStatus(`Création refusée : ${err.message || err}`, 'error');
     }
@@ -616,7 +655,8 @@ async function boot() {
       try {
         await deleteClient(id);
         await loadClients();
-        setStatus('Client supprimé.', 'ok');
+        await reconcileMasterCoachClients();
+        setStatus('Client supprimé du Tableau de bord et retiré de Master Coach.', 'ok');
       } catch (err) {
         setStatus(`Suppression refusée : ${err.message || err}`, 'error');
       }
@@ -663,7 +703,8 @@ async function boot() {
       await updateClient(id, fullName, email, notes, nextService);
       closeEditDialog();
       await loadClients();
-      setStatus('Client mis à jour.', 'ok');
+      await reconcileMasterCoachClients();
+      setStatus('Client mis à jour et synchronisé avec Master Coach.', 'ok');
     } catch (err) {
       setStatus(`Modification refusée : ${err.message || err}`, 'error');
     }
