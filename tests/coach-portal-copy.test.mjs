@@ -47,13 +47,13 @@ test('dashboard HTML uses production client copy', () => {
 
 test('dashboard JS status and confirm copy is production-facing and creates real clients', () => {
   const src = fs.readFileSync(path.join(root, 'coach-portal/assets/dashboard.js'), 'utf8');
-  assert.match(src, /Session active — accès sécurisé à votre organisation\./);
+  assert.match(src, /Session active — clients KR KINETICS synchronisés avec Master Coach\./);
   assert.match(src, /Aucun client/);
-  assert.match(src, /Client créé dans votre organisation seulement\./);
+  assert.match(src, /Client créé dans KR KINETICS et synchronisé avec Master Coach\./);
   assert.match(src, /Supprimer ce client \?/);
-  assert.match(src, /Client supprimé\./);
+  assert.match(src, /Client supprimé du Tableau de bord et retiré de Master Coach\./);
   assert.match(src, /editDialog\.showModal\(\)/);
-  assert.match(src, /Client mis à jour\./);
+  assert.match(src, /Client mis à jour et synchronisé avec Master Coach\./);
   assert.doesNotMatch(src, /fictif|fictive|isolation RLS|Client démo|Données de test/i);
   assert.match(src, /is_fictional:\s*false/);
   assert.doesNotMatch(src, /is_fictional:\s*true/);
