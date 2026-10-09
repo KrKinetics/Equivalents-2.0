@@ -31,6 +31,7 @@ import {
   krPublicationPreview,
   krPublicationStatus,
 } from '/src/coach/publication/kr-publication-action.mjs';
+import { notifySavedNutritionDossier } from '/src/coach/portal/notify-dossier-mirror.mjs';
 import {
   buildWorkspaceIntakeLandmarksHtml,
   describeWorkspaceIntakeLandmarks,
@@ -306,6 +307,19 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
       // Only after Supabase success: rebuild menu, then freeze canonical clean snapshot.
       refreshClientMenu();
       markCleanFromCurrent();
+      if (ctx.brandId === 'kr') {
+        try {
+          const { data: sessionData } = await supabase.auth.getSession();
+          await notifySavedNutritionDossier({
+            accessToken: sessionData?.session?.access_token,
+            clientId: ctx.clientId,
+            updatedAt: new Date().toISOString(),
+          });
+        } catch {
+          setPersistStatus('Dossier sauvegardé. L’indicateur Master Coach n’a pas été mis à jour.', 'ok');
+          return;
+        }
+      }
       setPersistStatus('Dossier sauvegardé', 'ok');
     } catch (err) {
       // Keep previous cleanPayload — failed save must remain dirty if form differs.

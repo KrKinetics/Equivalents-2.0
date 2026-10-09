@@ -28,6 +28,7 @@ import {
   serviceLabelFr,
 } from '/src/coach/domain/client-service-entitlements.mjs';
 import { runIntakeInviteButtonAction } from '/src/coach/client/intake-invite-gesture.mjs';
+import { dossierPresenceByClient, portalSyncClients } from '/src/coach/portal/dossier-presence.mjs';
 
 const MASTER_COACH_SYNC_URL = 'https://xglmqcqxksowjacjqhid.supabase.co/functions/v1/portal-client-sync';
 
@@ -48,6 +49,7 @@ let supabase;
 let membership = null;
 let clientRows = new Map();
 let motivationInviteRows = new Map();
+let dossierPresence = new Map();
 
 function setStatus(message, kind = '') {
   statusEl.textContent = message;
@@ -304,13 +306,7 @@ async function reconcileMasterCoachClients() {
   const accessToken = sessionData?.session?.access_token;
   if (!accessToken) throw new Error('Session invalide pour la synchronisation Master Coach.');
 
-  const clients = Array.from(clientRows.values()).map((client) => ({
-    id: client.id,
-    full_name: client.full_name,
-    email: client.email || null,
-    notes: client.notes || '',
-    service_type: client.service_type,
-  }));
+  const clients = portalSyncClients(Array.from(clientRows.values()), dossierPresence);
 
   const response = await fetch(MASTER_COACH_SYNC_URL, {
     method: 'POST',
@@ -333,6 +329,7 @@ async function loadClients() {
     { data: clients, error: clientsError },
     { data: invites, error: invitesError },
     { data: motivationInvites, error: motivationError },
+    { data: dossiers, error: dossiersError },
   ] = await Promise.all([
     supabase
       .from('clients')
@@ -349,10 +346,16 @@ async function loadClients() {
       .select('id, client_id, status, expires_at, opened_at, submitted_at, created_at, updated_at')
       .eq('organization_id', membership.organizationId)
       .order('created_at', { ascending: false }),
+    supabase
+      .from('client_dossiers')
+      .select('client_id, updated_at')
+      .eq('organization_id', membership.organizationId),
   ]);
   if (clientsError) throw clientsError;
   if (invitesError) throw invitesError;
   if (motivationError) throw motivationError;
+  if (dossiersError) throw dossiersError;
+  dossierPresence = dossierPresenceByClient(dossiers);
 
   const latestInviteByClient = new Map();
   for (const invite of invites || []) {
