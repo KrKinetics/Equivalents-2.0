@@ -58,7 +58,7 @@ function parseHeureToMinutes(heure) {
 /** Midpoints match dual-brand calculator MEAL_MIDPOINTS (minutes from midnight). */
 const MEAL_MIDPOINTS = Object.freeze([450, 600, 750, 930, 1110, 1260, 1350]);
 
-function getIndicesEntrainement(trainMin) {
+export function getIndicesEntrainement(trainMin) {
   if (trainMin < MEAL_MIDPOINTS[0]) {
     return { preIdx: 0, postIdx: 1 };
   }

@@ -27,6 +27,11 @@ import { nutritionEligibleClients } from '/src/coach/domain/client-service-entit
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
 import {
+  KR_PUBLISH_BUTTON_LABEL,
+  krPublicationPreview,
+  krPublicationStatus,
+} from '/src/coach/publication/kr-publication-action.mjs';
+import {
   buildWorkspaceIntakeLandmarksHtml,
   describeWorkspaceIntakeLandmarks,
 } from '/src/coach/workspace/workspace-intake-landmarks.mjs';
@@ -313,6 +318,32 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
   const saveBtn = document.querySelector('button[onclick*="sauvegarderProfil"]');
   if (saveBtn) {
     saveBtn.setAttribute('onclick', 'sauvegarderProfil()');
+  }
+
+  function onPublishKrKinetics() {
+    const result = krPublicationPreview({
+      brandId: ctx.brandId,
+      organizationSlug: ctx.organizationSlug,
+      payload: getPersistedDossierPayload(),
+    });
+    if (!result.ok) {
+      setPersistStatus(krPublicationStatus(result.code), 'error');
+      return;
+    }
+    setPersistStatus(
+      'Révision KR KINETICS préparée. Le dossier n’a pas été modifié et aucune révision athlète n’a été publiée.',
+      'ok',
+    );
+  }
+
+  if (ctx.brandId === 'kr' && saveBtn && !document.getElementById('kr-publish-nutrition')) {
+    const publishBtn = document.createElement('button');
+    publishBtn.type = 'button';
+    publishBtn.id = 'kr-publish-nutrition';
+    publishBtn.textContent = KR_PUBLISH_BUTTON_LABEL;
+    publishBtn.className = saveBtn.className;
+    publishBtn.addEventListener('click', onPublishKrKinetics);
+    saveBtn.insertAdjacentElement('afterend', publishBtn);
   }
 
   // Select change = switch active client (full navigation loads the other dossier).
