@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const [
-      { executeMasterCoachGateway },
+      { executeMasterCoachGateway, verifyGatewaySignature },
       { createMasterCoachGatewayStore, mintKrCoachAccessToken },
       { handleCoachPublishNutritionRequest },
       { renderValidatedNutritionPdf },
@@ -44,12 +44,24 @@ module.exports = async function handler(req, res) {
     ]);
 
     const secret = process.env.MASTER_COACH_GATEWAY_SECRET || '';
-    const store = createMasterCoachGatewayStore();
+    const timestamp = req.headers['x-mc-timestamp'] || '';
+    const signature = req.headers['x-mc-signature'] || '';
+    if (!verifyGatewaySignature({ secret, timestamp, signature, payload: rawBody })) {
+      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401 });
+      return respond(401, { ok: false, code: 'LEGACY_GATEWAY_AUTH_FAILED' });
+    }
+    const accessToken = await mintKrCoachAccessToken();
+    if (!accessToken) {
+      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 503 });
+      return respond(503, { ok: false, code: 'LEGACY_GATEWAY_FAILED' });
+    }
+    const store = createMasterCoachGatewayStore({ accessToken });
     const result = await executeMasterCoachGateway({
       rawBody,
-      timestamp: req.headers['x-mc-timestamp'] || '',
-      signature: req.headers['x-mc-signature'] || '',
+      timestamp,
+      signature,
       secret,
+      skipSignature: true,
       store,
       publishCanonical: (ctx) => publishThroughExistingCore(ctx, {
         mintKrCoachAccessToken,

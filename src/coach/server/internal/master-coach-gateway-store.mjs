@@ -1,5 +1,5 @@
 /**
- * Service-role store for the internal gateway.
+ * Coach-session store for the internal gateway.
  * The caller has already verified the Master Coach signature.
  * This module never accepts SQL text.
  */
@@ -7,19 +7,19 @@ import { DOSSIER_SCHEMA_VERSION } from '../../services/storage/dossier-schema.mj
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-function headers(serviceKey) {
+function headers(accessToken, publishableKey) {
   return {
-    apikey: serviceKey,
-    Authorization: `Bearer ${serviceKey}`,
+    apikey: publishableKey,
+    Authorization: `Bearer ${accessToken}`,
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
 }
 
-async function rest(fetchImpl, url, serviceKey, pathAndQuery, init = {}) {
+async function rest(fetchImpl, url, accessToken, publishableKey, pathAndQuery, init = {}) {
   const response = await fetchImpl(`${url}${pathAndQuery}`, {
     ...init,
-    headers: { ...headers(serviceKey), ...(init.headers || {}) },
+    headers: { ...headers(accessToken, publishableKey), ...(init.headers || {}) },
   });
   if (!response.ok) throw new Error('rest_failed');
   if (response.status === 204) return null;
@@ -40,20 +40,28 @@ function mapClient(row) {
   };
 }
 
-export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, env = process.env } = {}) {
+export function createMasterCoachGatewayStore({
+  fetchImpl = globalThis.fetch,
+  env = process.env,
+  accessToken = '',
+} = {}) {
   const url = String(env.SUPABASE_URL || '').replace(/\/$/, '');
-  const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
+  const serviceKey = env.SUPABASE_PUBLISHABLE_KEY || '';
+  const token = accessToken;
   let organizationId = null;
 
   async function organization() {
+    if (!token) throw new Error('session_missing');
     if (organizationId) return organizationId;
     const rows = await rest(
       fetchImpl,
       url,
+      token,
       serviceKey,
-      '/rest/v1/organizations?slug=eq.kr-kinetics&select=id&limit=1',
+      '/rest/v1/memberships?select=organization_id,organizations(slug)&limit=10',
     );
-    const id = Array.isArray(rows) ? rows[0]?.id : null;
+    const match = (Array.isArray(rows) ? rows : []).find((row) => row.organizations?.slug === 'kr-kinetics');
+    const id = match?.organization_id || null;
     if (!UUID_RE.test(id || '')) throw new Error('org_missing');
     organizationId = id;
     return organizationId;
@@ -65,6 +73,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const rows = await rest(
         fetchImpl,
         url,
+        token,
         serviceKey,
         `/rest/v1/clients?id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&select=id,organization_id,full_name,email,phone,notes,service_type,is_fictional&limit=1`,
       );
@@ -76,6 +85,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const rows = await rest(
         fetchImpl,
         url,
+        token,
         serviceKey,
         `/rest/v1/client_dossiers?client_id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&select=payload,updated_at&limit=1`,
       );
@@ -86,7 +96,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
 
     async saveDossier(portalClientId, payload) {
       const orgId = await organization();
-      const rows = await rest(fetchImpl, url, serviceKey, '/rest/v1/client_dossiers?on_conflict=client_id', {
+      const rows = await rest(fetchImpl, url, token, serviceKey, '/rest/v1/client_dossiers?on_conflict=client_id', {
         method: 'POST',
         headers: { Prefer: 'resolution=merge-duplicates,return=representation' },
         body: JSON.stringify({
@@ -104,7 +114,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
     async createClient(fields) {
       const orgId = await organization();
       const createdBy = UUID_RE.test(env.KR_COACH_USER_ID || '') ? env.KR_COACH_USER_ID : null;
-      const rows = await rest(fetchImpl, url, serviceKey, '/rest/v1/clients', {
+      const rows = await rest(fetchImpl, url, token, serviceKey, '/rest/v1/clients', {
         method: 'POST',
         headers: { Prefer: 'return=representation' },
         body: JSON.stringify({
@@ -134,6 +144,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const rows = await rest(
         fetchImpl,
         url,
+        token,
         serviceKey,
         `/rest/v1/clients?id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}`,
         {
@@ -150,6 +161,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const rows = await rest(
         fetchImpl,
         url,
+        token,
         serviceKey,
         `/rest/v1/client_intake_invites?client_id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&select=id,status,expires_at,opened_at,submitted_at,created_at&order=created_at.desc&limit=20`,
       );
@@ -161,6 +173,7 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const rows = await rest(
         fetchImpl,
         url,
+        token,
         serviceKey,
         `/rest/v1/client_motivation_invites?client_id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&select=id,status,expires_at,opened_at,submitted_at,created_at&order=created_at.desc&limit=20`,
       );
@@ -171,10 +184,10 @@ export function createMasterCoachGatewayStore({ fetchImpl = globalThis.fetch, en
       const orgId = await organization();
       const filter = portalClientIds.join(',');
       const [clients, dossiers, intake, motivation] = await Promise.all([
-        rest(fetchImpl, url, serviceKey, `/rest/v1/clients?organization_id=eq.${encodeURIComponent(orgId)}&id=in.(${filter})&select=id,service_type,is_fictional`),
-        rest(fetchImpl, url, serviceKey, `/rest/v1/client_dossiers?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,updated_at`),
-        rest(fetchImpl, url, serviceKey, `/rest/v1/client_intake_invites?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,status,created_at&order=created_at.desc`),
-        rest(fetchImpl, url, serviceKey, `/rest/v1/client_motivation_invites?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,status,created_at&order=created_at.desc`),
+        rest(fetchImpl, url, token, serviceKey, `/rest/v1/clients?organization_id=eq.${encodeURIComponent(orgId)}&id=in.(${filter})&select=id,service_type,is_fictional`),
+        rest(fetchImpl, url, token, serviceKey, `/rest/v1/client_dossiers?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,updated_at`),
+        rest(fetchImpl, url, token, serviceKey, `/rest/v1/client_intake_invites?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,status,created_at&order=created_at.desc`),
+        rest(fetchImpl, url, token, serviceKey, `/rest/v1/client_motivation_invites?organization_id=eq.${encodeURIComponent(orgId)}&client_id=in.(${filter})&select=client_id,status,created_at&order=created_at.desc`),
       ]);
       const dossierByClient = new Map((dossiers || []).map((row) => [row.client_id, row.updated_at || null]));
       const latest = (rows) => {
