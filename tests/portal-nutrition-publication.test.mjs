@@ -9,6 +9,7 @@ import {
 } from '../src/coach/publication/publication-attempt.mjs';
 import { buildSavedDossierPublication } from '../src/coach/publication/saved-dossier-publication.mjs';
 import { publishSavedNutritionDossier } from '../src/coach/publication/publish-saved-dossier.mjs';
+import { prepareCanonicalPublication } from '../src/coach/publication/dossier-to-nutrition-plan.mjs';
 import { handleCoachPublishNutritionRequest } from '../src/coach/publication/coach-publish-nutrition-handler.mjs';
 
 const CLIENT_ID = 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
@@ -92,23 +93,35 @@ test('one saved dossier creates the plan and the PDF request', () => {
   assert.deepEqual(prepared.plan, vector.plan);
 });
 
-test('a seventh meal and a programming-only client are refused before PDF render', async () => {
+test('a seventh meal is published and a programming-only client is refused before PDF render', async () => {
   const seventh = savedDossier();
   seventh.jours.entrainement.repartition[42] = 1;
   let rendered = 0;
-  const refused = await publishSavedNutritionDossier({
+  let postedPlan = null;
+  const expectedKcal = prepareCanonicalPublication(seventh, { brand: 'kr' }).plan.days[0].targets.calories;
+  const released = await publishSavedNutritionDossier({
     accessToken: 'token',
     coach: coach(),
     client: client('nutrition'),
     savedDossier: { payload: seventh },
     publicationAttemptId: ATTEMPT_A,
     effectiveDate: '2026-10-09',
-    renderPdf: async () => { rendered += 1; return { bytes: Buffer.from('%PDF') }; },
-    postPackage: async () => { throw new Error('must not post'); },
+    renderPdf: async (request) => {
+      rendered += 1;
+      assert.equal(request.training.repartition[42], 1);
+      assert.equal(request.training.targets.kcal, expectedKcal);
+      return { bytes: Buffer.from('%PDF') };
+    },
+    postPackage: async (pkg) => {
+      postedPlan = pkg.plan;
+      return { ok: true, status: 200, revisionNumber: 1, idempotent: false };
+    },
   });
-  assert.equal(refused.ok, false);
-  assert.equal(refused.error, 'SEVENTH_MEAL_NOT_IN_RELEASE_CONTRACT');
-  assert.equal(rendered, 0);
+  assert.equal(released.ok, true);
+  assert.equal(released.revisionNumber, 1);
+  assert.equal(rendered, 1);
+  assert.equal(postedPlan.days[0].meals[6].mealIndex, 6);
+  assert.equal(postedPlan.days[0].meals[6].portions[0].quantity, 1);
 
   const programming = await publishSavedNutritionDossier({
     accessToken: 'token',
@@ -122,7 +135,7 @@ test('a seventh meal and a programming-only client are refused before PDF render
   });
   assert.equal(programming.status, 403);
   assert.equal(programming.error, 'not_entitled');
-  assert.equal(rendered, 0);
+  assert.equal(rendered, 1);
 });
 
 test('Elevate organization is rejected before the dossier is projected', async () => {

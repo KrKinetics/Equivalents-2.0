@@ -9,10 +9,17 @@
   <script src="/config.js"></script>
 </head>
 <body>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('legacy') === '1') return;
+      window.location.replace('https://maitre-coach.vercel.app/clients');
+    })();
+  </script>
   <main class="wrap dash-wrap">
     <p class="brand">Espace privé — invitation seulement</p>
     <aside id="legacy-coach-banner" class="card">
-      <p><strong>LEGACY / FALLBACK.</strong> Master Coach est maintenant l’espace de travail du coach. <a href="https://maitre-coach.vercel.app/clients">Ouvrir Suivi clients</a></p>
+      <p><strong>LEGACY / FALLBACK.</strong> Cette page n’est ouverte qu’avec <code>?legacy=1</code> pendant la fenêtre de stabilisation. Master Coach est l’espace de travail du coach. <a href="https://maitre-coach.vercel.app/clients">Ouvrir Suivi clients</a></p>
     </aside>
     <div class="row dash-header">
       <div>

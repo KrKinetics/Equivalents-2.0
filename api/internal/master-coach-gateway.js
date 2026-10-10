@@ -34,6 +34,7 @@ module.exports = async function handler(req, res) {
       { renderValidatedNutritionPdf },
       { requireRequestAuth },
       { authorizeClientAccess },
+      { renderMasterCoachReport },
     ] = await Promise.all([
       import('../../src/coach/server/internal/master-coach-gateway.mjs'),
       import('../../src/coach/server/internal/master-coach-gateway-store.mjs'),
@@ -41,6 +42,7 @@ module.exports = async function handler(req, res) {
       import('../../src/coach/server/pdf/render-validated-request.mjs'),
       import('../../src/coach/server/require-request-auth.mjs'),
       import('../../src/coach/server/pdf/authorize-client-access.mjs'),
+      import('../../src/coach/server/internal/master-coach-reports.mjs'),
     ]);
 
     const secret = process.env.MASTER_COACH_GATEWAY_SECRET || '';
@@ -73,6 +75,7 @@ module.exports = async function handler(req, res) {
       }),
       sendIntake: (ctx) => sendExistingInvite(ctx, 'intake'),
       sendMotivation: (ctx) => sendExistingInvite(ctx, 'motivation'),
+      renderReport: (ctx) => renderMasterCoachReport({ ...ctx, accessToken }),
     });
     if (!result.body?.ok) {
       log(result.body?.code || 'LEGACY_GATEWAY_FAILED', { requestId, status: result.status });

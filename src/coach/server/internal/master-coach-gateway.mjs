@@ -21,6 +21,10 @@ const OPS = new Set([
   'intake.create',
   'motivation.list',
   'motivation.create',
+  'intake.report',
+  'intake.reportPdf',
+  'motivation.report',
+  'motivation.reportPdf',
   'coach.snapshot',
   'nutrition.publish',
 ]);
@@ -143,8 +147,12 @@ export async function executeMasterCoachGateway(input) {
 function operationFailureCode(op) {
   if (op === 'dossier.get') return 'DOSSIER_LOAD_FAILED';
   if (op === 'dossier.put') return 'DOSSIER_SAVE_FAILED';
-  if (op === 'intake.list' || op === 'intake.create') return 'QUESTIONNAIRE_GATEWAY_FAILED';
-  if (op === 'motivation.list' || op === 'motivation.create') return 'MOTIVATION_GATEWAY_FAILED';
+  if (op === 'intake.list' || op === 'intake.create' || op === 'intake.report' || op === 'intake.reportPdf') {
+    return 'QUESTIONNAIRE_GATEWAY_FAILED';
+  }
+  if (op === 'motivation.list' || op === 'motivation.create' || op === 'motivation.report' || op === 'motivation.reportPdf') {
+    return 'MOTIVATION_GATEWAY_FAILED';
+  }
   if (op === 'nutrition.publish') return 'NUTRITION_PUBLICATION_FAILED';
   return 'LEGACY_GATEWAY_FAILED';
 }
@@ -178,6 +186,9 @@ async function runOperation(body, input) {
   if (body.op === 'motivation.list') return { status: 200, body: { ok: true, invites: await store.listMotivation(client.id) } };
   if (body.op === 'intake.create') return sendInvite(input.sendIntake, client);
   if (body.op === 'motivation.create') return sendInvite(input.sendMotivation, client);
+  if (body.op === 'intake.report' || body.op === 'intake.reportPdf' || body.op === 'motivation.report' || body.op === 'motivation.reportPdf') {
+    return renderStoredReport(body, client, input);
+  }
   return fail(400, 'UNKNOWN_OPERATION');
 }
 
@@ -271,6 +282,37 @@ async function publishDossier(body, client, input) {
       revisionNumber: result.revisionNumber,
       idempotent: result.idempotent === true,
       writesDossier: false,
+    },
+  };
+}
+
+const SAFE_FILENAME = /^[\p{L}\p{N}_. -]{1,160}\.pdf$/u;
+
+async function renderStoredReport(body, client, input) {
+  const failure = operationFailureCode(body.op);
+  if (typeof input.renderReport !== 'function') return fail(503, failure);
+  const result = await input.renderReport({ op: body.op, client });
+  if (!result?.ok) {
+    return fail(result?.status === 404 ? 404 : 502, result?.status === 404 ? 'REPORT_NOT_FOUND' : failure);
+  }
+  if (typeof result.pdfBase64 === 'string') {
+    if (!SAFE_FILENAME.test(result.filename || '') || result.pdfBase64.length > 4_000_000) {
+      return fail(502, failure);
+    }
+    return { status: 200, body: { ok: true, filename: result.filename, pdfBase64: result.pdfBase64 } };
+  }
+  const markup = typeof result.markup === 'string' ? result.markup : '';
+  const css = typeof result.css === 'string' ? result.css : '';
+  if (!markup || markup.length > 1_500_000 || css.length > 200_000) return fail(502, failure);
+  const lowered = `${markup}${css}`.toLowerCase();
+  if (lowered.includes('<script') || lowered.includes('</style')) return fail(502, failure);
+  return {
+    status: 200,
+    body: {
+      ok: true,
+      submittedAt: typeof result.submittedAt === 'string' ? result.submittedAt : null,
+      markup,
+      css,
     },
   };
 }

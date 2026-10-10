@@ -162,10 +162,42 @@ test('dashboard is marked legacy and client forms are not redirected', () => {
   const dashboard = fs.readFileSync(new URL('../coach-portal/dashboard.html', import.meta.url), 'utf8');
   const intake = fs.readFileSync(new URL('../coach-portal/intake.html', import.meta.url), 'utf8');
   const host = fs.readFileSync(new URL('../coach-calculator/master-coach-host.js', import.meta.url), 'utf8');
+  const motivation = fs.readFileSync(new URL('../coach-portal/motivation.html', import.meta.url), 'utf8');
   assert.match(dashboard, /LEGACY \/ FALLBACK/);
-  assert.match(dashboard, /maitre-coach\.vercel\.app\/clients/);
+  assert.match(dashboard, /params.get\('legacy'\)/);
+  assert.match(dashboard, /location.replace\('https:\/\/maitre-coach.vercel.app\/clients'\)/);
+  assert.doesNotMatch(intake, /location.replace/);
+  assert.doesNotMatch(motivation, /location.replace/);
   assert.doesNotMatch(intake, /maitre-coach\.vercel\.app/);
   assert.match(host, /Des modifications ne sont pas sauvegardées/);
   assert.doesNotMatch(host, /iframe/i);
   assert.doesNotMatch(host, /service_role/);
+});
+
+test('renders a stored report without accepting answers or sql', async () => {
+  const result = await executeMasterCoachGateway({
+    ...signed({ op: 'intake.report', portalClientId: PORTAL }),
+    store: store(),
+    renderReport: async ({ op, client }) => {
+      assert.equal(op, 'intake.report');
+      assert.equal(client.id, PORTAL);
+      return { ok: true, submittedAt: '2026-10-01T00:00:00.000Z', markup: '<article>Rapport</article>', css: '.intake-report{color:#071B41}' };
+    },
+  });
+  assert.equal(result.status, 200);
+  assert.equal(result.body.markup, '<article>Rapport</article>');
+  assert.equal(result.body.answers, undefined);
+  const injected = await executeMasterCoachGateway({
+    ...signed({ op: 'motivation.report', portalClientId: PORTAL, sql: 'select 1' }),
+    store: store(),
+    renderReport: async () => ({ ok: true, markup: '<article></article>', css: '' }),
+  });
+  assert.equal(injected.status, 400);
+  assert.equal(injected.body.code, 'FORBIDDEN_FIELD');
+  const missing = await executeMasterCoachGateway({
+    ...signed({ op: 'intake.reportPdf', portalClientId: PORTAL }),
+    store: store(),
+  });
+  assert.equal(missing.status, 503);
+  assert.equal(missing.body.code, 'QUESTIONNAIRE_GATEWAY_FAILED');
 });

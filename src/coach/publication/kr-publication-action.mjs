@@ -12,7 +12,6 @@ export const KR_PUBLISH_BUTTON_LABEL = 'Publier dans KR KINETICS';
 const STATUS = Object.freeze({
   ELEVATE_NOT_PUBLISHABLE: 'La publication KR KINETICS est réservée aux clients KR.',
   KR_CLIENTS_ONLY: 'La publication KR KINETICS est réservée aux clients KR.',
-  SEVENTH_MEAL_NOT_IN_RELEASE_CONTRACT: 'Ce dossier utilise le 7e repas. La publication athlète est refusée.',
   INCOMPLETE_DOSSIER: 'Le dossier est incomplet. Aucune publication n’a été créée.',
   UNSUPPORTED_GOAL: 'L’objectif de ce dossier n’est pas publiable.',
   UNSUPPORTED_MACRO: 'La répartition des macros n’est pas publiable.',

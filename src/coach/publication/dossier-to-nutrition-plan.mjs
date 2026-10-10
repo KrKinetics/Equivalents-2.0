@@ -9,9 +9,9 @@ import { normalizeLegacyRepartition } from '../domain/clients.mjs';
 import { computeBanqueTotals } from '../domain/plans.mjs';
 import { getIndicesEntrainement } from '../calculations/repartition-presets.mjs';
 
-const RELEASE_MEAL_COUNT = 6;
-const CELL_COUNT = CATS.length * 7;
-const RELEASE_CELL_COUNT = CATS.length * RELEASE_MEAL_COUNT;
+const RELEASE_MEAL_MAX = 7;
+const HISTORICAL_MEAL_COUNT = 6;
+const CELL_COUNT = CATS.length * RELEASE_MEAL_MAX;
 const GOAL_MULTIPLIERS = Object.freeze([0.8, 0.9, 1, 1.1, 1.2]);
 const PRESET_RATIOS = new Set([
   '30,40,30',
@@ -123,8 +123,8 @@ function workoutTiming(day) {
   }
   const [hours, minutes] = day.heureEntrainement.split(':').map(Number);
   const indexes = getIndicesEntrainement(hours * 60 + minutes);
-  if (indexes.preIdx > 5 || indexes.postIdx > 5 || indexes.preIdx < 0 || indexes.postIdx < 0) {
-    return { ok: false, code: 'SEVENTH_MEAL_NOT_IN_RELEASE_CONTRACT' };
+  if (indexes.preIdx > RELEASE_MEAL_MAX - 1 || indexes.postIdx > RELEASE_MEAL_MAX - 1 || indexes.preIdx < 0 || indexes.postIdx < 0) {
+    return { ok: false, code: 'INCOMPLETE_DOSSIER' };
   }
   if (indexes.preIdx === indexes.postIdx) return { ok: false, code: 'INCOMPLETE_DOSSIER' };
   return {
@@ -141,16 +141,22 @@ function projectDay(day, dayKind) {
   if (!day || typeof day !== 'object') return fail('INCOMPLETE_DOSSIER');
   const cells = cellsFromRepartition(day.repartition ?? []);
   if (!cells) return fail('INCOMPLETE_DOSSIER');
-  if (cells.slice(RELEASE_CELL_COUNT).some((value) => value > 0)) {
-    return fail('SEVENTH_MEAL_NOT_IN_RELEASE_CONTRACT');
+  const timing = dayKind === 'REST' ? { ok: true, value: null } : workoutTiming(day);
+  if (!timing.ok) return fail(timing.code);
+  let mealCount = HISTORICAL_MEAL_COUNT;
+  for (let mealIndex = HISTORICAL_MEAL_COUNT; mealIndex < RELEASE_MEAL_MAX; mealIndex += 1) {
+    const start = mealIndex * CATS.length;
+    if (cells.slice(start, start + CATS.length).some((value) => value > 0)) mealCount = mealIndex + 1;
   }
+  if (timing.value) mealCount = Math.max(mealCount, timing.value.preMealIndex + 1, timing.value.postMealIndex + 1);
+  if (mealCount > RELEASE_MEAL_MAX) return fail('INCOMPLETE_DOSSIER');
   const portionBank = CATS.map((category) => {
     const quantity = portion(day.banque?.[category] ?? 0);
     return quantity === null ? null : { category, quantity };
   });
   if (portionBank.some((item) => item === null)) return fail('INCOMPLETE_DOSSIER');
   const meals = [];
-  for (let mealIndex = 0; mealIndex < RELEASE_MEAL_COUNT; mealIndex += 1) {
+  for (let mealIndex = 0; mealIndex < mealCount; mealIndex += 1) {
     meals.push({
       mealIndex,
       portions: CATS.map((category, catIndex) => ({
@@ -166,8 +172,6 @@ function projectDay(day, dayKind) {
   if (targets.calories === 0 && bankTotals.calories === 0) return fail('INCOMPLETE_DOSSIER');
   const hydration = hydrationFor(day, bankTotals.calories);
   if (!hydration) return fail('INCOMPLETE_DOSSIER');
-  const timing = dayKind === 'REST' ? { ok: true, value: null } : workoutTiming(day);
-  if (!timing.ok) return fail(timing.code);
   return {
     ok: true,
     planDay: {

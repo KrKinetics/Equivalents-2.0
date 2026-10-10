@@ -89,13 +89,16 @@ test('one saved dossier projects the release plan and the PDF day', () => {
   assert.equal(pdf.ok, true);
 });
 
-test('a used seventh meal and an Elevate dossier are refused', () => {
+test('a used seventh meal stays in the release and the PDF request', () => {
   const seventh = savedDossier();
   seventh.jours.entrainement.repartition[42] = 1;
-  assert.equal(
-    prepareCanonicalPublication(seventh, { brand: 'kr' }).code,
-    'SEVENTH_MEAL_NOT_IN_RELEASE_CONTRACT',
-  );
+  const result = prepareCanonicalPublication(seventh, { brand: 'kr' });
+  assert.equal(result.ok, true);
+  assert.equal(result.plan.days[0].meals.length, 7);
+  assert.equal(result.plan.days[0].meals[6].mealIndex, 6);
+  assert.equal(result.plan.days[0].meals[6].portions[0].quantity, 1);
+  assert.equal(result.pdfRequestDays.training.repartition[42], 1);
+  assert.equal(result.pdfRequestDays.training.targets.kcal, result.plan.days[0].targets.calories);
   const elevate = krPublicationPreview({
     brandId: 'elevate',
     organizationSlug: 'elevate-fitness',
