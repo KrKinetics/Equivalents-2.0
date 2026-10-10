@@ -102,15 +102,10 @@ export function buildCoachVercelBundle(options = {}) {
     path.join(root, 'src', 'coach', 'publication'),
     path.join(targetDir, 'src', 'coach', 'publication'),
   );
-  for (const rel of [
-    'src/coach/calculations/repartition-presets.mjs',
-    'src/coach/calculations/portions.mjs',
-  ]) {
-    const from = path.join(root, ...rel.split('/'));
-    const to = path.join(targetDir, ...rel.split('/'));
-    fs.mkdirSync(path.dirname(to), { recursive: true });
-    fs.copyFileSync(from, to);
-  }
+  copyTree(
+    path.join(root, 'src', 'coach', 'calculations'),
+    path.join(targetDir, 'src', 'coach', 'calculations'),
+  );
   copyTree(
     path.join(root, 'src', 'coach', 'domain'),
     path.join(targetDir, 'src', 'coach', 'domain'),
@@ -231,6 +226,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/publication/dossier-to-nutrition-plan.mjs',
     'src/coach/calculations/repartition-presets.mjs',
     'src/coach/calculations/portions.mjs',
+    'src/coach/calculations/macros.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake/intake-anthropometrics.mjs',
     'src/coach/intake/planning-landmarks-view.mjs',

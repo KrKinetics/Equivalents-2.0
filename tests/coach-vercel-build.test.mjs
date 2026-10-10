@@ -126,6 +126,7 @@ test('buildCoachVercelBundle assembles routes, keeps client_id path, excludes se
     'src/coach/publication/kr-publication-action.mjs',
     'src/coach/calculations/repartition-presets.mjs',
     'src/coach/calculations/portions.mjs',
+    'src/coach/calculations/macros.mjs',
     'src/coach/workspace/workspace-access.mjs',
     'src/coach/intake/intake-anthropometrics.mjs',
     'src/coach/intake/planning-landmarks-view.mjs',
