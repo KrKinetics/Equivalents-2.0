@@ -85,7 +85,8 @@ module.exports = async function handler(req, res) {
 };
 
 async function publishThroughExistingCore(ctx, deps) {
-  const accessToken = await deps.mintKrCoachAccessToken();
+  const minted = await deps.mintKrCoachAccessToken();
+  const accessToken = minted?.token;
   if (!accessToken) return { ok: false, status: 503 };
   const supabaseUrl = process.env.SUPABASE_URL || '';
   const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY || '';
