@@ -256,7 +256,12 @@ async function publishDossier(body, client, input) {
   if (!result?.ok) {
     return {
       status: result?.status || 500,
-      body: { ok: false, code: 'NUTRITION_PUBLICATION_FAILED', writesDossier: false },
+      body: {
+        ok: false,
+        code: 'NUTRITION_PUBLICATION_FAILED',
+        reason: typeof result?.reason === 'string' ? result.reason : null,
+        writesDossier: false,
+      },
     };
   }
   return {

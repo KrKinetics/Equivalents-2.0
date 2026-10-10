@@ -159,11 +159,15 @@ async function publishThroughExistingCore(ctx, deps) {
       };
     },
   });
+  const reason = typeof published.body?.error === 'string' && /^[A-Za-z0-9_]{1,64}$/.test(published.body.error)
+    ? published.body.error
+    : null;
   return {
     ok: published.body?.ok === true,
     status: published.status,
     revisionNumber: published.body?.revisionNumber ?? null,
     idempotent: published.body?.idempotent === true,
+    reason,
   };
 }
 
