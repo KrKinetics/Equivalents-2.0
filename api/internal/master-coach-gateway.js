@@ -50,11 +50,12 @@ module.exports = async function handler(req, res) {
       log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401 });
       return respond(401, { ok: false, code: 'LEGACY_GATEWAY_AUTH_FAILED' });
     }
-    const accessToken = await mintKrCoachAccessToken();
-    if (!accessToken) {
-      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 503 });
-      return respond(503, { ok: false, code: 'LEGACY_GATEWAY_FAILED' });
+    const minted = await mintKrCoachAccessToken();
+    if (!minted?.token) {
+      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 503, stage: minted?.stage || 'config' });
+      return respond(503, { ok: false, code: 'LEGACY_GATEWAY_FAILED', stage: minted?.stage || 'config' });
     }
+    const accessToken = minted.token;
     const store = createMasterCoachGatewayStore({ accessToken });
     const result = await executeMasterCoachGateway({
       rawBody,
@@ -168,8 +169,9 @@ async function publishThroughExistingCore(ctx, deps) {
 async function sendExistingInvite(ctx, kind) {
   try {
     const { mintKrCoachAccessToken } = await import('../../src/coach/server/internal/master-coach-gateway-store.mjs');
-    const accessToken = await mintKrCoachAccessToken();
-    if (!accessToken) return { ok: false, status: 503 };
+const minted = await mintKrCoachAccessToken();
+  const accessToken = minted?.token;
+  if (!accessToken) return { ok: false, status: 503 };
     const requestId = randomUUID();
     const args = {
       accessToken,

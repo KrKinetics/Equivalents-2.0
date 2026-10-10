@@ -233,13 +233,13 @@ export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env
   const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
   const publishableKey = env.SUPABASE_PUBLISHABLE_KEY || '';
   const userId = env.KR_COACH_USER_ID || '';
-  if (!url || !serviceKey || !publishableKey || !UUID_RE.test(userId)) return null;
+  if (!url || !serviceKey || !publishableKey || !UUID_RE.test(userId)) return { token: null, stage: 'config' };
   const userResponse = await fetchImpl(`${url}/auth/v1/admin/users/${userId}`, {
     headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
   });
-  if (!userResponse.ok) return null;
+  if (!userResponse.ok) return { token: null, stage: 'user' };
   const user = await userResponse.json();
-  if (typeof user?.email !== 'string' || !user.email) return null;
+  if (typeof user?.email !== 'string' || !user.email) return { token: null, stage: 'user' };
   const linkResponse = await fetchImpl(`${url}/auth/v1/admin/generate_link`, {
     method: 'POST',
     headers: {
@@ -249,10 +249,10 @@ export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env
     },
     body: JSON.stringify({ type: 'magiclink', email: user.email }),
   });
-  if (!linkResponse.ok) return null;
+  if (!linkResponse.ok) return { token: null, stage: 'link' };
   const link = await linkResponse.json();
   const tokenHash = link?.hashed_token || link?.properties?.hashed_token;
-  if (!tokenHash) return null;
+  if (!tokenHash) return { token: null, stage: 'link' };
   const verifyResponse = await fetchImpl(`${url}/auth/v1/verify`, {
     method: 'POST',
     headers: {
@@ -262,7 +262,10 @@ export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env
     },
     body: JSON.stringify({ type: 'magiclink', token_hash: tokenHash }),
   });
-  if (!verifyResponse.ok) return null;
+  if (!verifyResponse.ok) return { token: null, stage: 'verify' };
   const session = await verifyResponse.json();
-  return typeof session?.access_token === 'string' ? session.access_token : null;
+  return {
+    token: typeof session?.access_token === 'string' ? session.access_token : null,
+    stage: typeof session?.access_token === 'string' ? 'ok' : 'session',
+  };
 }
