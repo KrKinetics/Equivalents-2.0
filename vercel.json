@@ -41,6 +41,15 @@
     "api/coach-motivation.js": {
       "includeFiles": "src/coach/motivation/lib/pdf/**",
       "maxDuration": 60
+    },
+    "api/internal/master-coach-gateway.js": {
+      "includeFiles": "{coach-calculator/assets/logo-*,src/coach/server/pdf/embedded-logos.mjs}",
+      "maxDuration": 60,
+      "memory": 1536
+    },
+    "api/internal/master-coach-asset.js": {
+      "includeFiles": "coach-calculator/**",
+      "maxDuration": 30
     }
   },
   "rewrites": [

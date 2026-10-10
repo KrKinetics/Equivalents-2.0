@@ -68,3 +68,5 @@ src/sources/cnf-2026/*.zip
 src/sources/cnf-2026/raw/
 src/sources/snapshots/*.html
 
+.vercel
+.env*
