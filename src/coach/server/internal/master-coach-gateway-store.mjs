@@ -4,6 +4,7 @@
  * This module never accepts SQL text.
  */
 import { DOSSIER_SCHEMA_VERSION } from '../../services/storage/dossier-schema.mjs';
+import { loadClientPlanningLandmarks } from '../intake/load-client-planning-landmarks.mjs';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -178,6 +179,18 @@ export function createMasterCoachGatewayStore({
         `/rest/v1/client_motivation_invites?client_id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&select=id,status,expires_at,opened_at,submitted_at,created_at&order=created_at.desc&limit=20`,
       );
       return (Array.isArray(rows) ? rows : []).map(mapInvite);
+    },
+
+    async loadLandmarks(portalClientId) {
+      const orgId = await organization();
+      return loadClientPlanningLandmarks({
+        accessToken: token,
+        organizationId: orgId,
+        clientId: portalClientId,
+        supabaseUrl: url,
+        publishableKey: serviceKey,
+        fetchImpl,
+      });
     },
 
     async snapshot(portalClientIds) {

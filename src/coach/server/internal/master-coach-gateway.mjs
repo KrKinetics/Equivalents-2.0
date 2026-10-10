@@ -5,6 +5,7 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import path from 'node:path';
 import { clientHasNutritionAccess, parseServiceType } from '../../domain/client-service-entitlements.mjs';
+import { formatStoredHeightCm, formatStoredWeightKg } from '../../intake/intake-anthropometrics.mjs';
 import { validateDossierPayload } from '../../services/storage/dossier-schema.mjs';
 
 export const GATEWAY_SKEW_MS = 60_000;
@@ -27,6 +28,7 @@ const OPS = new Set([
   'motivation.reportPdf',
   'coach.snapshot',
   'nutrition.publish',
+  'landmarks.get',
 ]);
 const FORBIDDEN = new Set([
   'owner_user_id',
@@ -154,6 +156,7 @@ function operationFailureCode(op) {
     return 'MOTIVATION_GATEWAY_FAILED';
   }
   if (op === 'nutrition.publish') return 'NUTRITION_PUBLICATION_FAILED';
+  if (op === 'landmarks.get') return 'LANDMARKS_UNAVAILABLE';
   return 'LEGACY_GATEWAY_FAILED';
 }
 
@@ -182,6 +185,7 @@ async function runOperation(body, input) {
   if (body.op === 'dossier.get') return readDossier(client, store);
   if (body.op === 'dossier.put') return writeDossier(body, client, store);
   if (body.op === 'nutrition.publish') return publishDossier(body, client, input);
+  if (body.op === 'landmarks.get') return readLandmarks(body, client, store);
   if (body.op === 'intake.list') return { status: 200, body: { ok: true, invites: await store.listIntake(client.id) } };
   if (body.op === 'motivation.list') return { status: 200, body: { ok: true, invites: await store.listMotivation(client.id) } };
   if (body.op === 'intake.create') return sendInvite(input.sendIntake, client);
@@ -190,6 +194,39 @@ async function runOperation(body, input) {
     return renderStoredReport(body, client, input);
   }
   return fail(400, 'UNKNOWN_OPERATION');
+}
+
+function publicLandmarkIntake(planning) {
+  if (!planning?.sourceIntakeResponseId || !planning.sourceSubmittedAt || !planning.anthropometrics) return null;
+  const view = planning.anthropometrics;
+  const canonical = planning.canonical || {};
+  return {
+    sourceIntakeResponseId: String(planning.sourceIntakeResponseId),
+    sourceSubmittedAt: String(planning.sourceSubmittedAt),
+    ageYears: canonical.ageYears ?? null,
+    heightCm: canonical.heightCm ?? null,
+    weightKg: canonical.weightKg ?? null,
+    age: view.age || '',
+    heightPrimary: view.heightPrimary || '',
+    heightSecondary: view.heightSecondary || '',
+    weightPrimary: view.weightPrimary || '',
+    weightSecondary: view.weightSecondary || '',
+  };
+}
+
+async function readLandmarks(body, client, store) {
+  if (typeof store.loadLandmarks !== 'function') return fail(503, 'LANDMARKS_UNAVAILABLE');
+  const planning = await store.loadLandmarks(client.id);
+  return {
+    status: 200,
+    body: {
+      ok: true,
+      intake: publicLandmarkIntake(planning),
+      formattedHeight: formatStoredHeightCm(body.displayHeightCm),
+      formattedWeight: formatStoredWeightKg(body.displayWeightKg),
+      formattedPreviousWeight: formatStoredWeightKg(body.displayPreviousWeightKg),
+    },
+  };
 }
 
 async function createClient(body, store) {

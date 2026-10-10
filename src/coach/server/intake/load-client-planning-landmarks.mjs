@@ -3,8 +3,40 @@
  * Join only by authorized client_id. Never invent zeros. Never log values.
  */
 
-import { buildIntakeAnthropometricsView } from '../../intake/intake-anthropometrics.mjs';
+import {
+  AGE_MAX,
+  AGE_MIN,
+  CM_MAX,
+  CM_MIN,
+  buildIntakeAnthropometricsView,
+  normalizeIntakeAnthropometrics,
+} from '../../intake/intake-anthropometrics.mjs';
 import { presentPlanningLandmarks } from '../../intake/planning-landmarks-view.mjs';
+
+const WEIGHT_KG_MIN = 20;
+const WEIGHT_KG_MAX = 400;
+
+function numberIn(value, min, max) {
+  const n = Number(value);
+  if (!Number.isFinite(n) || n < min || n > max) return null;
+  return n;
+}
+
+/**
+ * Numeric seed values from an already-normalized intake.
+ * Out-of-range and missing values stay null. Never returns raw answers.
+ */
+export function canonicalIntakeLandmarkNumbers(normalized) {
+  if (!normalized || typeof normalized !== 'object') {
+    return { ageYears: null, heightCm: null, weightKg: null };
+  }
+  const ageYears = numberIn(normalized.ageYears, AGE_MIN, AGE_MAX);
+  return {
+    ageYears: ageYears != null && Number.isInteger(ageYears) ? ageYears : null,
+    heightCm: numberIn(normalized.heightCm, CM_MIN, CM_MAX),
+    weightKg: numberIn(normalized.weightKg, WEIGHT_KG_MIN, WEIGHT_KG_MAX),
+  };
+}
 
 function isoOrNull(value) {
   return typeof value === 'string' && value.trim() ? value : null;
@@ -103,11 +135,13 @@ export async function loadClientPlanningLandmarks({
       const answers = asObject(row.answers) || {};
       const anthropometrics = buildIntakeAnthropometricsView(answers);
       if (!anthropometrics?.collected) continue;
+      const canonical = canonicalIntakeLandmarkNumbers(normalizeIntakeAnthropometrics(answers));
 
       return {
         clientId: String(row.client_id),
         sourceIntakeResponseId: String(row.id || ''),
         sourceSubmittedAt: submittedAt,
+        canonical,
         anthropometrics: {
           age: anthropometrics.age,
           heightPrimary: anthropometrics.heightPrimary,

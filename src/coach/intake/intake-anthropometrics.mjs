@@ -160,6 +160,33 @@ function formatLb(lb) {
 }
 
 /**
+ * Display a stored centimetre value with the same words as intake.
+ * Missing or non-positive values stay empty. Never invents zero.
+ */
+export function formatStoredHeightCm(cm) {
+  const value = Number(cm);
+  if (!Number.isFinite(value) || value <= 0) return null;
+  const imperial = cmToImperial(value);
+  const primary = formatImperial(imperial.feet, imperial.inches);
+  const secondary = formatCm(value);
+  if (!primary && !secondary) return null;
+  return { primary, secondary };
+}
+
+/**
+ * Display a stored kilogram value with the same words as intake.
+ * Missing or non-positive values stay empty. Never invents zero.
+ */
+export function formatStoredWeightKg(kg) {
+  const value = Number(kg);
+  if (!Number.isFinite(value) || value <= 0) return null;
+  const primary = formatLb(value / LB_TO_KG);
+  const secondary = formatKg(value);
+  if (!primary && !secondary) return null;
+  return { primary, secondary };
+}
+
+/**
  * Read-time normalization. Returns null when no usable anthropometrics exist.
  * Never invents zeros for missing legacy submissions.
  * @param {Record<string, unknown>} answers

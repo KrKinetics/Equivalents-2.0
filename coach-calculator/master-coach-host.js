@@ -8,7 +8,7 @@
   if (!host || !/^[0-9a-f-]{36}$/i.test(host.masterClientId || '')) return;
 
   const style = document.createElement('style');
-  style.textContent = 'form[action="/dashboard.html"] { display: none !important; } #mc-nutrition-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; } #mc-nutrition-bar a { color: #071B41; font-weight: 700; }';
+  style.textContent = 'form[action="/dashboard.html"] { display: none !important; } #mc-nutrition-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; } #mc-nutrition-bar a { color: #071B41; font-weight: 700; } #intake-client-landmarks { margin: 0 0 16px; padding: 12px 14px; border: 1px solid #d7deea; border-radius: 12px; } #intake-client-landmarks h3 { margin: 0 0 8px; font: 700 12px/1.3 Inter,system-ui,sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #5c6b82; } #intake-client-landmarks li { font: 600 14px/1.5 Inter,system-ui,sans-serif; color: #071B41; }';
   document.head.appendChild(style);
 
   const masterClientId = host.masterClientId;
@@ -77,6 +77,7 @@
     }
     cleanSnapshot = JSON.stringify(currentPayload());
     status(body.exists ? 'Dossier chargé' : 'Aucun dossier enregistré', 'ok');
+    await loadLandmarks();
   }
 
   window.sauvegarderProfil = async function masterCoachSave() {
@@ -137,6 +138,57 @@
     } finally {
       pending = false;
     }
+  }
+
+  function landmarkRows(card) {
+    if (!card || typeof card !== 'object') return [];
+    const rows = [];
+    if (card.ageLabel) rows.push(`Âge : ${card.ageLabel}`);
+    if (card.heightPrimary) {
+      rows.push(`Grandeur : ${card.heightPrimary}${card.heightSecondary ? ` / ${card.heightSecondary}` : ''}`);
+    }
+    if (card.weightPrimary) {
+      rows.push(`Poids actuel/déclaré : ${card.weightPrimary}${card.weightSecondary ? ` / ${card.weightSecondary}` : ''}`);
+    }
+    const source = [card.weightSource || card.heightSource || card.ageSource, card.sourceSubmittedAtLabel].filter(Boolean).join(' · ');
+    if (source) rows.push(`Source/date : ${source}`);
+    if (card.previousWeightPrimary) rows.push(`Mesure précédente : ${card.previousWeightPrimary}`);
+    return rows;
+  }
+
+  function mountLandmarks(card) {
+    const rows = landmarkRows(card);
+    if (!rows.length || document.getElementById('intake-client-landmarks')) return;
+    const section = document.createElement('section');
+    section.id = 'intake-client-landmarks';
+    section.setAttribute('aria-label', 'Repères client');
+    const title = document.createElement('h3');
+    title.textContent = 'Repères client';
+    const list = document.createElement('ul');
+    rows.forEach((row) => {
+      const item = document.createElement('li');
+      item.textContent = row;
+      list.appendChild(item);
+    });
+    section.append(title, list);
+    const profile = Array.from(document.querySelectorAll('h2')).find((node) => /Profil de l.athlète/i.test(node.textContent || ''));
+    if (profile) profile.insertAdjacentElement('afterend', section);
+    else {
+      const statusEl = document.getElementById('mc-nutrition-status') || document.getElementById('workspace-persist-status');
+      if (statusEl) statusEl.insertAdjacentElement('afterend', section);
+      else document.body.prepend(section);
+    }
+  }
+
+  async function loadLandmarks() {
+    const token = bearer();
+    if (!token) return;
+    const response = await fetch(`/api/coach/clients/${masterClientId}/landmarks`, {
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+    });
+    const body = await response.json().catch(() => null);
+    if (!response.ok || !body?.ok || !body.card) return;
+    mountLandmarks(body.card);
   }
 
   function installButtons() {

@@ -4,12 +4,15 @@ import {
   buildIntakeAnthropometricsView,
   cmToImperial,
   convertHeightUnit,
+  formatStoredHeightCm,
+  formatStoredWeightKg,
   imperialToCm,
   lbToKg,
   normalizeIntakeAnthropometrics,
   sanitizeIntakeAnthropometrics,
   validateIntakeAnthropometrics,
 } from '../../src/coach/intake/intake-anthropometrics.mjs';
+import { canonicalIntakeLandmarkNumbers } from '../../src/coach/server/intake/load-client-planning-landmarks.mjs';
 
 const IMPERIAL_SAMPLE = Object.freeze({
   age_years: '34',
@@ -115,4 +118,45 @@ test('legacy answers without anthropometrics stay empty — no fake zeros', () =
     weight_lb: '0',
     height_cm: '0',
   }), null);
+  assert.equal(formatStoredHeightCm(0), null);
+  assert.equal(formatStoredHeightCm(null), null);
+  assert.equal(formatStoredWeightKg(0), null);
+  assert.equal(canonicalIntakeLandmarkNumbers(null).heightCm, null);
+  assert.equal(canonicalIntakeLandmarkNumbers({ ageYears: 0, heightCm: 0, weightKg: 0 }).ageYears, null);
+});
+
+test('imperial 5 ft 9 in and 183 lb use the canonical display', () => {
+  const answers = {
+    age_years: '36',
+    height_unit: 'imperial',
+    height_feet: '5',
+    height_inches: '9',
+    weight_lb: '183',
+  };
+  const normalized = normalizeIntakeAnthropometrics(answers);
+  const view = buildIntakeAnthropometricsView(answers);
+  assert.equal(Math.round(normalized.heightCm), 175);
+  assert.equal(view.heightPrimary, '5 pi 9 po');
+  assert.equal(view.heightSecondary, '175 cm');
+  assert.equal(view.weightPrimary, '183 lb');
+  assert.equal(view.weightSecondary, '83,0 kg');
+  assert.equal(normalized.ageYears, 36);
+  assert.equal(Object.hasOwn(normalized, 'dateOfBirth'), false);
+});
+
+test('metric 175 cm displays centimetres and the imperial equivalent', () => {
+  const answers = {
+    age_years: '36',
+    height_unit: 'metric',
+    height_cm: '175',
+    weight_lb: '183',
+  };
+  const view = buildIntakeAnthropometricsView(answers);
+  assert.equal(view.heightPrimary, '175 cm');
+  assert.equal(view.heightSecondary, '5 pi 9 po');
+  const stored = formatStoredHeightCm(175);
+  assert.equal(stored.primary, '5 pi 9 po');
+  assert.equal(stored.secondary, '175 cm');
+  const weight = formatStoredWeightKg(lbToKg(183));
+  assert.equal(weight.secondary, '83,0 kg');
 });

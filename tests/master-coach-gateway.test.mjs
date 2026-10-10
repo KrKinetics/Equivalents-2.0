@@ -34,6 +34,7 @@ function store(overrides = {}) {
     createClient: async () => ({ id: PORTAL }),
     patchClient: async (_id, patch) => ({ ...client(), ...patch, fullName: patch.fullName || 'Athlete' }),
     listIntake: async () => [{ id: ATTEMPT, status: 'submitted', createdAt: '2026-10-01T00:00:00.000Z' }],
+    loadLandmarks: async () => null,
     listMotivation: async () => [],
     snapshot: async () => [{ portalClientId: PORTAL, hasDossier: true, intakeStatus: 'submitted', motivationStatus: null }],
     ...overrides,
@@ -173,7 +174,10 @@ test('dashboard is marked legacy and client forms are not redirected', () => {
   assert.match(host, /Des modifications ne sont pas sauvegardées/);
   assert.match(host, /kr-publish-nutrition/);
   assert.match(host, /form\[action="\/dashboard.html"\]/);
+  assert.match(host, /intake-client-landmarks/);
+  assert.match(host, /\/landmarks/);
   assert.doesNotMatch(host, /\.app-header/);
+  assert.doesNotMatch(host, /age_years|height_feet|weight_lb|appliquerProfilData\(body\.card/);
   assert.match(calculator, /class="app-header"/);
   assert.match(calculator, /logo-kr-kinetics-horizontal\.png/);
   assert.match(calculator, /logo-elevate-fitness\.jpg/);
@@ -182,6 +186,73 @@ test('dashboard is marked legacy and client forms are not redirected', () => {
   assert.equal(resolveCoachCalculatorAsset(process.cwd(), 'coach-calculator/assets/logo-elevate-fitness.jpg')?.endsWith('logo-elevate-fitness.jpg'), true);
   assert.doesNotMatch(host, /iframe/i);
   assert.doesNotMatch(host, /service_role/);
+});
+
+test('landmarks.get returns display strings and never intake answers', async () => {
+  const secretAnswer = 'secret-intake-answer';
+  let requested = null;
+  const result = await executeMasterCoachGateway({
+    ...signed({
+      op: 'landmarks.get',
+      portalClientId: PORTAL,
+      displayHeightCm: 175,
+      displayWeightKg: 83,
+      displayPreviousWeightKg: 0,
+    }),
+    store: store({
+      loadLandmarks: async (id) => {
+        requested = id;
+        return {
+          clientId: id,
+          sourceIntakeResponseId: ATTEMPT,
+          sourceSubmittedAt: '2026-09-20T16:00:00.000Z',
+          canonical: { ageYears: 36, heightCm: 175.26, weightKg: 83.007 },
+          anthropometrics: {
+            age: '36 ans',
+            heightPrimary: '5 pi 9 po',
+            heightSecondary: '175 cm',
+            weightPrimary: '183 lb',
+            weightSecondary: '83,0 kg',
+          },
+          answers: { note: secretAnswer },
+        };
+      },
+    }),
+  });
+  assert.equal(result.status, 200);
+  assert.equal(requested, PORTAL);
+  assert.equal(result.body.intake.age, '36 ans');
+  assert.equal(result.body.intake.heightPrimary, '5 pi 9 po');
+  assert.equal(result.body.intake.weightSecondary, '83,0 kg');
+  assert.equal(result.body.formattedHeight.secondary, '175 cm');
+  assert.equal(result.body.formattedPreviousWeight, null);
+  assert.equal(result.body.answers, undefined);
+  assert.equal(result.body.intake.answers, undefined);
+  assert.equal(JSON.stringify(result.body).includes(secretAnswer), false);
+});
+
+test('a programming client can read landmarks and an unknown portal is not loaded', async () => {
+  const other = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc';
+  let loads = 0;
+  const programming = await executeMasterCoachGateway({
+    ...signed({ op: 'landmarks.get', portalClientId: PORTAL }),
+    store: store({
+      getClient: async () => client('programming'),
+      loadLandmarks: async () => { loads += 1; return null; },
+    }),
+  });
+  assert.equal(programming.status, 200);
+  assert.equal(programming.body.intake, null);
+  assert.equal(loads, 1);
+  const missing = await executeMasterCoachGateway({
+    ...signed({ op: 'landmarks.get', portalClientId: other }),
+    store: store({
+      getClient: async (id) => (id === PORTAL ? client() : null),
+      loadLandmarks: async () => { loads += 1; return null; },
+    }),
+  });
+  assert.equal(missing.status, 404);
+  assert.equal(loads, 1);
 });
 
 test('renders a stored report without accepting answers or sql', async () => {
