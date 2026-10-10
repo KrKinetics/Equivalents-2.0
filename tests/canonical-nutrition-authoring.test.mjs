@@ -118,5 +118,9 @@ test('publish control does not save the dossier', () => {
   const body = source.slice(start, end);
   assert.equal(body.includes('saveClientDossier'), false);
   assert.equal(body.includes('sauvegarderProfil'), false);
-  assert.equal(body.includes('krPublicationPreview'), true);
+  assert.equal(body.includes('getPersistedDossierPayload'), false);
+  assert.equal(body.includes('krPublicationPreview'), false);
+  assert.equal(body.includes('publicationClickDecision'), true);
+  assert.equal(body.includes('publication_attempt_id'), true);
+  assert.equal(body.includes('/api/coach-publish-nutrition'), true);
 });

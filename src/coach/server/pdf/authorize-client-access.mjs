@@ -34,7 +34,12 @@ export async function authorizeClientAccess({
     }
     return {
       ok: true,
-      client: { id: client.id, organization_id: client.organization_id, full_name: client.full_name },
+      client: {
+        id: client.id,
+        organization_id: client.organization_id,
+        full_name: client.full_name,
+        service_type: client.service_type,
+      },
     };
   } catch {
     return { ok: false, error: 'forbidden' };

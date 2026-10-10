@@ -1,0 +1,274 @@
+{
+  "plan": {
+    "schemaVersion": 1,
+    "language": "fr",
+    "brand": "kr",
+    "goalMultiplier": 1,
+    "macroDistribution": {
+      "mode": "PRESET",
+      "ratio": "25,45,30"
+    },
+    "coachNotes": "note de séance",
+    "days": [
+      {
+        "dayKind": "TRAINING",
+        "targets": {
+          "calories": 54,
+          "proteinG": 9,
+          "carbsG": 0,
+          "fatG": 2
+        },
+        "bankTotals": {
+          "calories": 54,
+          "proteinG": 9,
+          "carbsG": 0,
+          "fatG": 2
+        },
+        "hydration": {
+          "totalL": 3,
+          "autoL": 3,
+          "addedL": 0,
+          "manual": true
+        },
+        "workoutTiming": {
+          "trainingTime": "17:30",
+          "preMealIndex": 3,
+          "postMealIndex": 4
+        },
+        "portionBank": [
+          {
+            "category": "pro",
+            "quantity": 1
+          },
+          {
+            "category": "fec",
+            "quantity": 0
+          },
+          {
+            "category": "leg",
+            "quantity": 0
+          },
+          {
+            "category": "fru",
+            "quantity": 0
+          },
+          {
+            "category": "lai",
+            "quantity": 0
+          },
+          {
+            "category": "lip",
+            "quantity": 0
+          },
+          {
+            "category": "whey",
+            "quantity": 0
+          }
+        ],
+        "meals": [
+          {
+            "mealIndex": 0,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 1
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          },
+          {
+            "mealIndex": 1,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 0
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          },
+          {
+            "mealIndex": 2,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 0
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          },
+          {
+            "mealIndex": 3,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 0
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          },
+          {
+            "mealIndex": 4,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 0
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          },
+          {
+            "mealIndex": 5,
+            "portions": [
+              {
+                "category": "pro",
+                "quantity": 0
+              },
+              {
+                "category": "fec",
+                "quantity": 0
+              },
+              {
+                "category": "leg",
+                "quantity": 0
+              },
+              {
+                "category": "fru",
+                "quantity": 0
+              },
+              {
+                "category": "lai",
+                "quantity": 0
+              },
+              {
+                "category": "lip",
+                "quantity": 0
+              },
+              {
+                "category": "whey",
+                "quantity": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "planFingerprint": "30a8e1a76df09d1c85d5c4a0b375c14c612b86ccbdbbe6a7077c5b3633ebbbe2",
+  "pdfKcal": 54,
+  "pdfBrand": "kr"
+}

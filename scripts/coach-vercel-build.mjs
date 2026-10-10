@@ -224,6 +224,7 @@ export function buildCoachVercelBundle(options = {}) {
     'src/coach/portal/notify-dossier-mirror.mjs',
     'src/coach/publication/kr-publication-action.mjs',
     'src/coach/publication/dossier-to-nutrition-plan.mjs',
+    'src/coach/publication/publication-attempt.mjs',
     'src/coach/calculations/repartition-presets.mjs',
     'src/coach/calculations/portions.mjs',
     'src/coach/calculations/macros.mjs',

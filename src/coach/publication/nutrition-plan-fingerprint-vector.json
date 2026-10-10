@@ -1,0 +1,12 @@
+{
+  "plan": {
+    "schemaVersion": 1,
+    "language": "fr",
+    "brand": "kr",
+    "goalMultiplier": 1,
+    "macroDistribution": { "mode": "PRESET", "ratio": "30,40,30" },
+    "coachNotes": null,
+    "days": []
+  },
+  "fingerprint": "d6e0c775b4c8f91e1ee0e21f8514efc3213667dde063d435e0a70ba027293f77"
+}

@@ -26,11 +26,11 @@ import {
 import { nutritionEligibleClients } from '/src/coach/domain/client-service-entitlements.mjs';
 import { attachWorkspaceMeta } from '/src/coach/services/storage/dossier-schema.mjs';
 import { createSupabaseClientDossierStore } from '/src/coach/services/storage/supabase-client-dossier-store.mjs';
+import { KR_PUBLISH_BUTTON_LABEL, krPublicationStatus } from '/src/coach/publication/kr-publication-action.mjs';
 import {
-  KR_PUBLISH_BUTTON_LABEL,
-  krPublicationPreview,
-  krPublicationStatus,
-} from '/src/coach/publication/kr-publication-action.mjs';
+  nextPublicationAttempt,
+  publicationClickDecision,
+} from '/src/coach/publication/publication-attempt.mjs';
 import { notifySavedNutritionDossier } from '/src/coach/portal/notify-dossier-mirror.mjs';
 import {
   buildWorkspaceIntakeLandmarksHtml,
@@ -334,29 +334,64 @@ function installWorkspacePersistence(supabase, ctx, userId, orgClients) {
     saveBtn.setAttribute('onclick', 'sauvegarderProfil()');
   }
 
-  function onPublishKrKinetics() {
-    const result = krPublicationPreview({
-      brandId: ctx.brandId,
-      organizationSlug: ctx.organizationSlug,
-      payload: getPersistedDossierPayload(),
-    });
-    if (!result.ok) {
-      setPersistStatus(krPublicationStatus(result.code), 'error');
+  let publishBtn = null;
+  let publicationAttemptId = null;
+  let publicationPending = false;
+  let publicationSucceeded = false;
+
+  async function onPublishKrKinetics() {
+    const decision = publicationClickDecision({ isDirty: isDirty(), pending: publicationPending });
+    if (!decision.ok) {
+      if (decision.message) setPersistStatus(decision.message, 'error');
       return;
     }
-    setPersistStatus(
-      'Révision KR KINETICS préparée. Le dossier n’a pas été modifié et aucune révision athlète n’a été publiée.',
-      'ok',
-    );
+    const attempt = nextPublicationAttempt({
+      currentAttemptId: publicationAttemptId,
+      pending: false,
+      lastSucceeded: publicationSucceeded,
+    });
+    if (attempt.generate) publicationAttemptId = crypto.randomUUID();
+    publicationPending = true;
+    if (publishBtn) publishBtn.disabled = true;
+    try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const response = await fetch('/api/coach-publish-nutrition', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionData?.session?.access_token || ''}`,
+        },
+        body: JSON.stringify({
+          client_id: ctx.clientId,
+          organization_id: ctx.organizationId,
+          publication_attempt_id: publicationAttemptId,
+        }),
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || payload?.ok !== true || typeof payload.revisionNumber !== 'number') {
+        publicationSucceeded = false;
+        setPersistStatus(payload?.message || krPublicationStatus(payload?.error), 'error');
+        return;
+      }
+      publicationSucceeded = true;
+      publicationAttemptId = null;
+      setPersistStatus(`Publié dans KR KINETICS · révision ${payload.revisionNumber}`, 'ok');
+    } catch {
+      publicationSucceeded = false;
+      setPersistStatus('Publication refusée. Le dossier n’a pas été modifié.', 'error');
+    } finally {
+      publicationPending = false;
+      if (publishBtn) publishBtn.disabled = false;
+    }
   }
 
   if (ctx.brandId === 'kr' && saveBtn && !document.getElementById('kr-publish-nutrition')) {
-    const publishBtn = document.createElement('button');
+    publishBtn = document.createElement('button');
     publishBtn.type = 'button';
     publishBtn.id = 'kr-publish-nutrition';
     publishBtn.textContent = KR_PUBLISH_BUTTON_LABEL;
     publishBtn.className = saveBtn.className;
-    publishBtn.addEventListener('click', onPublishKrKinetics);
+    publishBtn.addEventListener('click', () => { void onPublishKrKinetics(); });
     saveBtn.insertAdjacentElement('afterend', publishBtn);
   }
 
