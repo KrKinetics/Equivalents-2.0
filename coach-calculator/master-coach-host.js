@@ -17,11 +17,17 @@
   let attemptId = null;
 
   function status(message, kind) {
-    const el = document.getElementById('workspace-persist-status') || document.getElementById('mc-nutrition-status');
-    if (el) {
-      el.textContent = message;
-      el.dataset.kind = kind || 'ok';
+    let el = document.getElementById('workspace-persist-status') || document.getElementById('mc-nutrition-status');
+    if (!el) {
+      el = document.createElement('p');
+      el.id = 'mc-nutrition-status';
+      el.style.cssText = 'margin:0 0 12px;font:600 14px/1.4 Inter,system-ui,sans-serif;color:#071B41;';
+      const bar = document.getElementById('mc-nutrition-bar');
+      if (bar) bar.insertAdjacentElement('afterend', el);
+      else document.body.prepend(el);
     }
+    el.textContent = message;
+    el.dataset.kind = kind || 'ok';
   }
 
   function bearer() {
