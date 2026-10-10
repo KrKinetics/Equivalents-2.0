@@ -231,8 +231,9 @@ function safeStatus(value) {
 export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env = process.env } = {}) {
   const url = String(env.SUPABASE_URL || '').replace(/\/$/, '');
   const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
+  const publishableKey = env.SUPABASE_PUBLISHABLE_KEY || '';
   const userId = env.KR_COACH_USER_ID || '';
-  if (!url || !serviceKey || !UUID_RE.test(userId)) return null;
+  if (!url || !serviceKey || !publishableKey || !UUID_RE.test(userId)) return null;
   const userResponse = await fetchImpl(`${url}/auth/v1/admin/users/${userId}`, {
     headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
   });
@@ -255,8 +256,8 @@ export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env
   const verifyResponse = await fetchImpl(`${url}/auth/v1/verify`, {
     method: 'POST',
     headers: {
-      apikey: serviceKey,
-      Authorization: `Bearer ${serviceKey}`,
+      apikey: publishableKey,
+      Authorization: `Bearer ${publishableKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ type: 'magiclink', token_hash: tokenHash }),
