@@ -169,7 +169,17 @@ test('dashboard is marked legacy and client forms are not redirected', () => {
   assert.doesNotMatch(intake, /location.replace/);
   assert.doesNotMatch(motivation, /location.replace/);
   assert.doesNotMatch(intake, /maitre-coach\.vercel\.app/);
+  const calculator = fs.readFileSync(new URL('../coach-calculator/index.html', import.meta.url), 'utf8');
   assert.match(host, /Des modifications ne sont pas sauvegardées/);
+  assert.match(host, /kr-publish-nutrition/);
+  assert.match(host, /form\[action="\/dashboard.html"\]/);
+  assert.doesNotMatch(host, /\.app-header/);
+  assert.match(calculator, /class="app-header"/);
+  assert.match(calculator, /logo-kr-kinetics-horizontal\.png/);
+  assert.match(calculator, /logo-elevate-fitness\.jpg/);
+  assert.match(calculator, /ÉVALUATION DES HABITUDES & PLANIFICATION ALIMENTAIRE/);
+  assert.equal(resolveCoachCalculatorAsset(process.cwd(), 'coach-calculator/assets/logo-kr-kinetics-horizontal.png')?.endsWith('logo-kr-kinetics-horizontal.png'), true);
+  assert.equal(resolveCoachCalculatorAsset(process.cwd(), 'coach-calculator/assets/logo-elevate-fitness.jpg')?.endsWith('logo-elevate-fitness.jpg'), true);
   assert.doesNotMatch(host, /iframe/i);
   assert.doesNotMatch(host, /service_role/);
 });

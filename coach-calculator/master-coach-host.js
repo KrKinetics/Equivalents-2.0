@@ -8,7 +8,7 @@
   if (!host || !/^[0-9a-f-]{36}$/i.test(host.masterClientId || '')) return;
 
   const style = document.createElement('style');
-  style.textContent = '.app-header, form[action="/dashboard.html"] { display: none !important; } #mc-nutrition-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; } #mc-nutrition-bar a { color: #071B41; font-weight: 700; }';
+  style.textContent = 'form[action="/dashboard.html"] { display: none !important; } #mc-nutrition-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; } #mc-nutrition-bar a { color: #071B41; font-weight: 700; }';
   document.head.appendChild(style);
 
   const masterClientId = host.masterClientId;
