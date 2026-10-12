@@ -70,8 +70,8 @@ export function claimGatewaySignature(signature, now = Date.now()) {
 
 /**
  * The Map above is one server process. It is not a distributed replay guard.
- * A shared lease is used only when MASTER_COACH_GATEWAY_LEASE=supabase and the
- * lease function exists. Until then the scope stays "instance".
+ * MASTER_COACH_GATEWAY_LEASE=supabase requires the shared lease. If that lease
+ * cannot be reached, the request fails. It does not consume a local nonce.
  */
 export async function claimGatewayReplay(signature, {
   now = Date.now(),
@@ -79,14 +79,33 @@ export async function claimGatewayReplay(signature, {
   env = process.env,
   fetchImpl = globalThis.fetch,
 } = {}) {
-  const active = lease ?? (env.MASTER_COACH_GATEWAY_LEASE === 'supabase'
-    ? createSupabaseGatewayLease({ fetchImpl, env })
-    : null);
-  if (active) {
-    const accepted = await active.claimReplay(signature, now);
-    if (accepted === true || accepted === false) return { accepted, scope: 'shared' };
-  }
+  const required = lease != null || env.MASTER_COACH_GATEWAY_LEASE === 'supabase';
+  const active = lease ?? (required ? createSupabaseGatewayLease({ fetchImpl, env }) : null);
+  if (!active) return { accepted: claimGatewaySignature(signature, now), scope: 'instance' };
+  const accepted = await active.claimReplay(signature, now);
+  if (accepted === true || accepted === false) return { accepted, scope: 'shared' };
+  if (required) return { accepted: false, scope: 'unavailable' };
   return { accepted: claimGatewaySignature(signature, now), scope: 'instance' };
+}
+
+/** Verify the HMAC before any replay nonce is consumed. */
+export async function acceptGatewayRequest({
+  secret,
+  timestamp,
+  signature,
+  payload,
+  now = Date.now(),
+  lease = null,
+  env = process.env,
+  fetchImpl = globalThis.fetch,
+}) {
+  if (!verifyGatewaySignature({ secret, timestamp, signature, payload, now })) {
+    return { ok: false, status: 401, replay: null };
+  }
+  const replay = await claimGatewayReplay(signature, { now, lease, env, fetchImpl });
+  if (replay.scope === 'unavailable') return { ok: false, status: 503, stage: 'lease', replay };
+  if (!replay.accepted) return { ok: false, status: 401, replay };
+  return { ok: true, status: 200, replay };
 }
 
 export function verifyGatewaySignature({ secret, timestamp, signature, payload, now = Date.now() }) {

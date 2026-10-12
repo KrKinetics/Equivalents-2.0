@@ -328,6 +328,61 @@ function remember(cache, token, clock) {
   return cache.expiresAt;
 }
 
+function sharedSession(token) {
+  return { token, stage: 'ok', sessionScope: 'shared' };
+}
+
+function leaseUnavailable() {
+  return { token: null, stage: 'lease', sessionScope: 'unavailable' };
+}
+
+async function waitForSharedToken(lease) {
+  for (let attempt = 0; attempt < 15; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 80));
+    const again = await lease.read(Date.now());
+    if (typeof again === 'string' && again) return again;
+    if (again === undefined) return undefined;
+  }
+  return null;
+}
+
+async function mintWithLease({ activeLease, cache, clock, fetchImpl, env }) {
+  const shared = await activeLease.read(clock);
+  if (shared === undefined) return leaseUnavailable();
+  if (typeof shared === 'string' && shared) {
+    remember(cache, shared, clock);
+    return sharedSession(shared);
+  }
+  const claim = await activeLease.claim(clock);
+  if (!claim || claim.state === 'unavailable') return leaseUnavailable();
+  if (claim.state === 'ready' || claim.state === 'busy') {
+    const again = await waitForSharedToken(activeLease);
+    if (again === undefined) return leaseUnavailable();
+    if (again) {
+      remember(cache, again, clock);
+      return sharedSession(again);
+    }
+    return leaseUnavailable();
+  }
+  if (claim.state !== 'claimed' || !Number.isInteger(claim.fence)) return leaseUnavailable();
+  const result = await requestCoachSession({ fetchImpl, env });
+  if (!result.token) return { ...result, sessionScope: 'shared' };
+  const expiresAt = sessionExpiry(result.token, clock);
+  const stored = await activeLease.store(result.token, expiresAt, claim.fence, clock);
+  if (!stored) {
+    const current = await activeLease.read(Date.now());
+    if (typeof current === 'string' && current) {
+      remember(cache, current, Date.now());
+      return sharedSession(current);
+    }
+    cache.token = null;
+    cache.expiresAt = 0;
+    return leaseUnavailable();
+  }
+  remember(cache, result.token, clock);
+  return sharedSession(result.token);
+}
+
 export async function mintKrCoachAccessToken({
   fetchImpl = globalThis.fetch,
   env = process.env,
@@ -336,63 +391,17 @@ export async function mintKrCoachAccessToken({
   lease = null,
 } = {}) {
   const clock = typeof now === 'function' ? now() : now;
-  const activeLease = lease ?? (env.MASTER_COACH_GATEWAY_LEASE === 'supabase'
-    ? createSupabaseGatewayLease({ fetchImpl, env })
-    : null);
-  if (cache.token && cache.expiresAt > clock + 30_000 && !activeLease) {
+  const required = lease != null || env.MASTER_COACH_GATEWAY_LEASE === 'supabase';
+  const activeLease = lease ?? (required ? createSupabaseGatewayLease({ fetchImpl, env }) : null);
+  if (activeLease) return mintWithLease({ activeLease, cache, clock, fetchImpl, env });
+  if (cache.token && cache.expiresAt > clock + 30_000) {
     return { token: cache.token, stage: 'ok', sessionScope: 'instance' };
   }
-  if (activeLease && cache.token && cache.expiresAt > clock + 30_000) {
-    const shared = await activeLease.read(clock);
-    if (shared === undefined) return { token: cache.token, stage: 'ok', sessionScope: 'instance' };
-    if (shared === cache.token) return { token: cache.token, stage: 'ok', sessionScope: 'shared' };
-    if (typeof shared === 'string' && shared) {
-      remember(cache, shared, clock);
-      return { token: shared, stage: 'ok', sessionScope: 'shared' };
-    }
-    await activeLease.store(cache.token, cache.expiresAt);
-    return { token: cache.token, stage: 'ok', sessionScope: 'shared' };
-  }
-  let sharedStore = false;
-  if (activeLease) {
-    const shared = await activeLease.read(clock);
-    if (typeof shared === 'string' && shared) {
-      remember(cache, shared, clock);
-      return { token: shared, stage: 'ok', sessionScope: 'shared' };
-    }
-    if (shared === null) {
-      const claim = await activeLease.claim(clock);
-      if (claim === 'ready') {
-        const again = await activeLease.read(clock);
-        if (typeof again === 'string' && again) {
-          remember(cache, again, clock);
-          return { token: again, stage: 'ok', sessionScope: 'shared' };
-        }
-      } else if (claim === 'busy') {
-        for (let attempt = 0; attempt < 15; attempt += 1) {
-          await new Promise((resolve) => setTimeout(resolve, 80));
-          const again = await activeLease.read(Date.now());
-          if (typeof again === 'string' && again) {
-            remember(cache, again, clock);
-            return { token: again, stage: 'ok', sessionScope: 'shared' };
-          }
-        }
-        return { token: null, stage: 'lease', sessionScope: 'shared' };
-      } else if (claim === 'claimed') {
-        sharedStore = true;
-      }
-    }
-  }
   if (!cache.inflight) {
-    cache.inflight = requestCoachSession({ fetchImpl, env }).then(async (result) => {
+    cache.inflight = requestCoachSession({ fetchImpl, env }).then((result) => {
       if (result.token) {
-        const expiresAt = remember(cache, result.token, clock);
-        if (sharedStore) {
-          const stored = await activeLease.store(result.token, expiresAt);
-          result.sessionScope = stored ? 'shared' : 'instance';
-        } else {
-          result.sessionScope = 'instance';
-        }
+        remember(cache, result.token, clock);
+        result.sessionScope = 'instance';
       }
       return result;
     }).finally(() => {

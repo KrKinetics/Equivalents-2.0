@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mintKrCoachAccessToken } from "../src/coach/server/internal/master-coach-gateway-store.mjs";
-import { claimGatewayReplay } from "../src/coach/server/internal/master-coach-gateway.mjs";
+import { acceptGatewayRequest, claimGatewayReplay, claimGatewaySignature, gatewaySignature } from "../src/coach/server/internal/master-coach-gateway.mjs";
 import { createMemoryGatewayLease } from "../src/coach/server/internal/gateway-session-lease.mjs";
 
 const ENV = {
@@ -64,7 +64,7 @@ test("separate instance caches do not share a magic link", async () => {
   assert.equal(links, 2);
 });
 
-test("a missing lease function keeps the instance cache", async () => {
+test("an unreachable shared lease fails closed and does not mint", async () => {
   let links = 0;
   const fetchImpl = async (url) => {
     if (String(url).includes("sync_master_coach_gateway_lease")) return json({}, 404);
@@ -80,9 +80,99 @@ test("a missing lease function keeps the instance cache", async () => {
     env: { ...ENV, MASTER_COACH_GATEWAY_LEASE: "supabase" },
     cache: cache(),
   });
-  assert.equal(minted.stage, "ok");
-  assert.equal(minted.sessionScope, "instance");
+  assert.equal(minted.stage, "lease");
+  assert.equal(minted.token, null);
+  assert.equal(minted.sessionScope, "unavailable");
+  assert.equal(links, 0);
+});
+
+test("a stale fence cannot replace the published session", async () => {
+  const now = 1_700_000_000_000;
+  const lease = createMemoryGatewayLease();
+  const first = await lease.claim(now);
+  const second = await lease.claim(now + 21_000);
+  assert.equal(first.state, "claimed");
+  assert.equal(second.state, "claimed");
+  assert.notEqual(first.fence, second.fence);
+  const stale = await lease.store("local-token", now + 3_600_000, first.fence, now + 21_000);
+  const current = await lease.store("shared-token", now + 3_600_000, second.fence, now + 21_000);
+  assert.equal(stale, false);
+  assert.equal(current, true);
+  assert.equal(await lease.read(now + 21_000), "shared-token");
+});
+
+test("a lost fence returns the shared token instead of the local one", async () => {
+  let links = 0;
+  let reads = 0;
+  const fetchImpl = async (url) => {
+    if (String(url).includes("/admin/users/")) return json({ email: "coach@example.com" });
+    if (String(url).includes("/generate_link")) {
+      links += 1;
+      return json({ hashed_token: "hash-local" });
+    }
+    return json({ access_token: jwt(Math.floor(Date.now() / 1000) + 3600) });
+  };
+  const lease = {
+    async read() {
+      reads += 1;
+      return reads === 1 ? null : "winner-token";
+    },
+    async claim() {
+      return { state: "claimed", fence: 4 };
+    },
+    async store(_token, _expiresAt, fence) {
+      assert.equal(fence, 4);
+      return false;
+    },
+  };
+  const minted = await mintKrCoachAccessToken({ fetchImpl, env: ENV, cache: cache(), lease });
   assert.equal(links, 1);
+  assert.equal(minted.token, "winner-token");
+  assert.equal(minted.sessionScope, "shared");
+});
+
+test("a bad signature does not consume the replay nonce", async () => {
+  const secret = "gateway-secret";
+  const timestamp = String(Date.now());
+  const payload = "{\"op\":\"client.get\"}";
+  const signature = gatewaySignature(secret, timestamp, payload);
+  const lease = createMemoryGatewayLease();
+  let consumed = 0;
+  const counting = {
+    async read(now) { return lease.read(now); },
+    async claim(now) { return lease.claim(now); },
+    async store(token, expiresAt, fence, now) { return lease.store(token, expiresAt, fence, now); },
+    async claimReplay(value) {
+      consumed += 1;
+      return lease.claimReplay(value);
+    },
+  };
+  const rejected = await acceptGatewayRequest({
+    secret,
+    timestamp,
+    signature: "ab".repeat(32),
+    payload,
+    lease: counting,
+  });
+  assert.equal(rejected.ok, false);
+  assert.equal(rejected.status, 401);
+  assert.equal(consumed, 0);
+  const accepted = await acceptGatewayRequest({ secret, timestamp, signature, payload, lease: counting });
+  assert.equal(accepted.ok, true);
+  assert.equal(consumed, 1);
+  const replayed = await acceptGatewayRequest({ secret, timestamp, signature, payload, lease: counting });
+  assert.equal(replayed.ok, false);
+  assert.equal(replayed.status, 401);
+});
+
+test("an unreachable replay lease does not fall back to the local map", async () => {
+  const signature = "c".repeat(64);
+  const blocked = await claimGatewayReplay(signature, {
+    env: { ...ENV, MASTER_COACH_GATEWAY_LEASE: "supabase" },
+    fetchImpl: async () => json({}, 503),
+  });
+  assert.deepEqual(blocked, { accepted: false, scope: "unavailable" });
+  assert.equal(claimGatewaySignature(signature), true);
 });
 
 test("a shared replay lease rejects the same signature on another instance", async () => {

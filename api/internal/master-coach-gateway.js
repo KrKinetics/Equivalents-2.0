@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const [
-      { executeMasterCoachGateway, verifyGatewaySignature, claimGatewayReplay },
+      { executeMasterCoachGateway, acceptGatewayRequest },
       { createMasterCoachGatewayStore, mintKrCoachAccessToken },
       { handleCoachPublishNutritionRequest },
       { renderValidatedNutritionPdf },
@@ -48,9 +48,13 @@ module.exports = async function handler(req, res) {
     const secret = process.env.MASTER_COACH_GATEWAY_SECRET || '';
     const timestamp = req.headers['x-mc-timestamp'] || '';
     const signature = req.headers['x-mc-signature'] || '';
-    const replay = await claimGatewayReplay(signature);
-    if (!verifyGatewaySignature({ secret, timestamp, signature, payload: rawBody }) || !replay.accepted) {
-      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401, replayScope: replay.scope });
+    const gate = await acceptGatewayRequest({ secret, timestamp, signature, payload: rawBody });
+    if (!gate.ok) {
+      if (gate.status === 503) {
+        log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 503, stage: 'lease', sessionScope: 'unavailable' });
+        return respond(503, { ok: false, code: 'LEGACY_GATEWAY_FAILED', stage: 'lease' });
+      }
+      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401, replayScope: gate.replay?.scope || null });
       return respond(401, { ok: false, code: 'LEGACY_GATEWAY_AUTH_FAILED' });
     }
     const minted = await mintKrCoachAccessToken();
