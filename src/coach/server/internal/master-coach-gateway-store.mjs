@@ -6,6 +6,7 @@
 import { DOSSIER_SCHEMA_VERSION } from '../../services/storage/dossier-schema.mjs';
 import { loadClientPlanningLandmarks } from '../intake/load-client-planning-landmarks.mjs';
 import { projectStructuredIntake } from '../../intake/structured-intake.mjs';
+import { createSupabaseGatewayLease } from './gateway-session-lease.mjs';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -321,19 +322,77 @@ async function requestCoachSession({ fetchImpl, env }) {
   return { token: null, stage: 'verify', upstreamStatus };
 }
 
+function remember(cache, token, clock) {
+  cache.token = token;
+  cache.expiresAt = sessionExpiry(token, clock);
+  return cache.expiresAt;
+}
+
 export async function mintKrCoachAccessToken({
   fetchImpl = globalThis.fetch,
   env = process.env,
   cache = coachSession,
   now = Date.now,
+  lease = null,
 } = {}) {
   const clock = typeof now === 'function' ? now() : now;
-  if (cache.token && cache.expiresAt > clock + 30_000) return { token: cache.token, stage: 'ok' };
+  const activeLease = lease ?? (env.MASTER_COACH_GATEWAY_LEASE === 'supabase'
+    ? createSupabaseGatewayLease({ fetchImpl, env })
+    : null);
+  if (cache.token && cache.expiresAt > clock + 30_000 && !activeLease) {
+    return { token: cache.token, stage: 'ok', sessionScope: 'instance' };
+  }
+  if (activeLease && cache.token && cache.expiresAt > clock + 30_000) {
+    const shared = await activeLease.read(clock);
+    if (shared === undefined) return { token: cache.token, stage: 'ok', sessionScope: 'instance' };
+    if (shared === cache.token) return { token: cache.token, stage: 'ok', sessionScope: 'shared' };
+    if (typeof shared === 'string' && shared) {
+      remember(cache, shared, clock);
+      return { token: shared, stage: 'ok', sessionScope: 'shared' };
+    }
+    await activeLease.store(cache.token, cache.expiresAt);
+    return { token: cache.token, stage: 'ok', sessionScope: 'shared' };
+  }
+  let sharedStore = false;
+  if (activeLease) {
+    const shared = await activeLease.read(clock);
+    if (typeof shared === 'string' && shared) {
+      remember(cache, shared, clock);
+      return { token: shared, stage: 'ok', sessionScope: 'shared' };
+    }
+    if (shared === null) {
+      const claim = await activeLease.claim(clock);
+      if (claim === 'ready') {
+        const again = await activeLease.read(clock);
+        if (typeof again === 'string' && again) {
+          remember(cache, again, clock);
+          return { token: again, stage: 'ok', sessionScope: 'shared' };
+        }
+      } else if (claim === 'busy') {
+        for (let attempt = 0; attempt < 15; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 80));
+          const again = await activeLease.read(Date.now());
+          if (typeof again === 'string' && again) {
+            remember(cache, again, clock);
+            return { token: again, stage: 'ok', sessionScope: 'shared' };
+          }
+        }
+        return { token: null, stage: 'lease', sessionScope: 'shared' };
+      } else if (claim === 'claimed') {
+        sharedStore = true;
+      }
+    }
+  }
   if (!cache.inflight) {
-    cache.inflight = requestCoachSession({ fetchImpl, env }).then((result) => {
+    cache.inflight = requestCoachSession({ fetchImpl, env }).then(async (result) => {
       if (result.token) {
-        cache.token = result.token;
-        cache.expiresAt = sessionExpiry(result.token, clock);
+        const expiresAt = remember(cache, result.token, clock);
+        if (sharedStore) {
+          const stored = await activeLease.store(result.token, expiresAt);
+          result.sessionScope = stored ? 'shared' : 'instance';
+        } else {
+          result.sessionScope = 'instance';
+        }
       }
       return result;
     }).finally(() => {

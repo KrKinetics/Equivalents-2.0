@@ -59,6 +59,12 @@ const COACH_API_HANDLER_FILES = Object.freeze({
   'coach-send-motivation-invite': 'coach-motivation',
   'coach-process-motivation-assessment': 'coach-motivation',
   'coach-motivation-pdf': 'coach-motivation',
+  'coach-food-search': 'coach-food',
+  'coach-food-detail': 'coach-food',
+  'coach-calc-energy': 'coach-food',
+  'coach-calc-macros': 'coach-food',
+  'coach-calc-portions': 'coach-food',
+  'coach-calc-equivalences': 'coach-food',
 });
 
 const { url, publishableKey } = requireSupabasePublicEnv(root);

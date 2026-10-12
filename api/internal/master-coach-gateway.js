@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const [
-      { executeMasterCoachGateway, verifyGatewaySignature, claimGatewaySignature },
+      { executeMasterCoachGateway, verifyGatewaySignature, claimGatewayReplay },
       { createMasterCoachGatewayStore, mintKrCoachAccessToken },
       { handleCoachPublishNutritionRequest },
       { renderValidatedNutritionPdf },
@@ -48,8 +48,9 @@ module.exports = async function handler(req, res) {
     const secret = process.env.MASTER_COACH_GATEWAY_SECRET || '';
     const timestamp = req.headers['x-mc-timestamp'] || '';
     const signature = req.headers['x-mc-signature'] || '';
-    if (!verifyGatewaySignature({ secret, timestamp, signature, payload: rawBody }) || !claimGatewaySignature(signature)) {
-      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401 });
+    const replay = await claimGatewayReplay(signature);
+    if (!verifyGatewaySignature({ secret, timestamp, signature, payload: rawBody }) || !replay.accepted) {
+      log('LEGACY_GATEWAY_AUTH_FAILED', { requestId, status: 401, replayScope: replay.scope });
       return respond(401, { ok: false, code: 'LEGACY_GATEWAY_AUTH_FAILED' });
     }
     const minted = await mintKrCoachAccessToken();
@@ -59,6 +60,7 @@ module.exports = async function handler(req, res) {
         status: 503,
         stage: minted?.stage || 'config',
         upstreamStatus: Number.isInteger(minted?.upstreamStatus) ? minted.upstreamStatus : null,
+        sessionScope: minted?.sessionScope || 'instance',
       });
       return respond(503, { ok: false, code: 'LEGACY_GATEWAY_FAILED', stage: minted?.stage || 'config' });
     }

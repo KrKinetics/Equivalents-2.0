@@ -3,6 +3,7 @@
  * No SQL text is accepted. Organization and entitlement are decided here.
  */
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createSupabaseGatewayLease } from './gateway-session-lease.mjs';
 import path from 'node:path';
 import { clientHasNutritionAccess, parseServiceType } from '../../domain/client-service-entitlements.mjs';
 import { formatStoredHeightCm, formatStoredWeightKg } from '../../intake/intake-anthropometrics.mjs';
@@ -65,6 +66,27 @@ export function claimGatewaySignature(signature, now = Date.now()) {
   if (seenGatewaySignatures.has(signature)) return false;
   seenGatewaySignatures.set(signature, now);
   return true;
+}
+
+/**
+ * The Map above is one server process. It is not a distributed replay guard.
+ * A shared lease is used only when MASTER_COACH_GATEWAY_LEASE=supabase and the
+ * lease function exists. Until then the scope stays "instance".
+ */
+export async function claimGatewayReplay(signature, {
+  now = Date.now(),
+  lease = null,
+  env = process.env,
+  fetchImpl = globalThis.fetch,
+} = {}) {
+  const active = lease ?? (env.MASTER_COACH_GATEWAY_LEASE === 'supabase'
+    ? createSupabaseGatewayLease({ fetchImpl, env })
+    : null);
+  if (active) {
+    const accepted = await active.claimReplay(signature, now);
+    if (accepted === true || accepted === false) return { accepted, scope: 'shared' };
+  }
+  return { accepted: claimGatewaySignature(signature, now), scope: 'instance' };
 }
 
 export function verifyGatewaySignature({ secret, timestamp, signature, payload, now = Date.now() }) {

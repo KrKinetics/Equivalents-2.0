@@ -5,23 +5,8 @@
   "buildCommand": "npm run coach:vercel:build",
   "outputDirectory": "dist/coach-vercel",
   "functions": {
-    "api/coach-food-search.js": {
-      "includeFiles": "coach-calculator/coach-data.json"
-    },
-    "api/coach-food-detail.js": {
-      "includeFiles": "coach-calculator/coach-data.json"
-    },
-    "api/coach-calc-equivalences.js": {
-      "includeFiles": "coach-calculator/coach-data.json"
-    },
-    "api/coach-calc-energy.js": {
-      "includeFiles": "src/lib/**"
-    },
-    "api/coach-calc-macros.js": {
-      "includeFiles": "src/lib/**"
-    },
-    "api/coach-calc-portions.js": {
-      "includeFiles": "{src/lib/**,src/coach/**}"
+    "api/coach-food.js": {
+      "includeFiles": "{coach-calculator/coach-data.json,src/lib/**,src/coach/**}"
     },
     "api/coach-generate-pdf.js": {
       "includeFiles": "{coach-calculator/assets/logo-*,src/coach/server/pdf/embedded-logos.mjs}",
@@ -68,6 +53,30 @@
     {
       "source": "/api/coach-motivation-pdf",
       "destination": "/api/coach-motivation?op=pdf"
+    },
+    {
+      "source": "/api/coach-food-search",
+      "destination": "/api/coach-food?op=search"
+    },
+    {
+      "source": "/api/coach-food-detail",
+      "destination": "/api/coach-food?op=detail"
+    },
+    {
+      "source": "/api/coach-calc-energy",
+      "destination": "/api/coach-food?op=energy"
+    },
+    {
+      "source": "/api/coach-calc-macros",
+      "destination": "/api/coach-food?op=macros"
+    },
+    {
+      "source": "/api/coach-calc-portions",
+      "destination": "/api/coach-food?op=portions"
+    },
+    {
+      "source": "/api/coach-calc-equivalences",
+      "destination": "/api/coach-food?op=equivalences"
     }
   ],
   "headers": [

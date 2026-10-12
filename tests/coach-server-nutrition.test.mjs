@@ -574,18 +574,12 @@ test('httpError helper', () => {
 // ─── Security / deliverable proofs ──────────────────────────────────────────
 
 test('security: API route sources call requireRequestAuth path and avoid service_role', () => {
-  for (const file of [
-    'api/coach-food-search.js',
-    'api/coach-food-detail.js',
-    'api/coach-calc-energy.js',
-    'api/coach-calc-macros.js',
-    'api/coach-calc-portions.js',
-    'api/coach-calc-equivalences.js',
-  ]) {
-    const src = fs.readFileSync(path.join(root, file), 'utf8');
-    assert.match(src, /createCoachApiHandler/);
-    assert.equal(/service_role|SERVICE_ROLE/.test(src), false, file);
+  const src = fs.readFileSync(path.join(root, 'api/coach-food.js'), 'utf8');
+  for (const name of ['food-search', 'food-detail', 'calc-energy', 'calc-macros', 'calc-portions', 'calc-equivalences']) {
+    assert.match(src, new RegExp(`routeName: "${name}"`));
   }
+  assert.match(src, /createCoachApiHandler/);
+  assert.equal(/service_role|SERVICE_ROLE/.test(src), false);
   const handlerSrc = fs.readFileSync(
     path.join(root, 'src/coach/server/http/create-api-handler.mjs'),
     'utf8',
