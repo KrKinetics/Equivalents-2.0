@@ -143,6 +143,42 @@ test('publish delegates once to the existing publisher', async () => {
   assert.equal(published, 1);
 });
 
+test('latest structured intake returns the projection and does not write a profile', async () => {
+  let requested = null;
+  const result = await executeMasterCoachGateway({
+    ...signed({ op: 'intake.latestStructured', portalClientId: PORTAL }),
+    store: store({
+      latestStructuredIntake: async (id) => {
+        requested = id;
+        return {
+          version: 1,
+          responseId: ATTEMPT,
+          submittedAt: '2026-10-11T12:00:00.000Z',
+          answers: { schedule: 'Variable', foodsAvoid: null },
+        };
+      },
+    }),
+  });
+  assert.equal(result.status, 200);
+  assert.equal(requested, PORTAL);
+  assert.equal(result.body.writesProfile, false);
+  assert.equal(result.body.intake.answers.schedule, 'Variable');
+  const absent = await executeMasterCoachGateway({
+    ...signed({ op: 'intake.latestStructured', portalClientId: PORTAL }),
+    store: store({ latestStructuredIntake: async () => null }),
+  });
+  assert.equal(absent.body.intake, null);
+  const other = await executeMasterCoachGateway({
+    ...signed({ op: 'intake.latestStructured', portalClientId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc' }),
+    store: store({
+      getClient: async () => null,
+      latestStructuredIntake: async () => { throw new Error('should not read'); },
+    }),
+  });
+  assert.equal(other.status, 404);
+  assert.equal(JSON.stringify(result.body).includes('email'), false);
+});
+
 test('a missing portal client is not treated as another organization', async () => {
   const result = await executeMasterCoachGateway({
     ...signed({ op: 'intake.list', portalClientId: PORTAL }),

@@ -19,6 +19,7 @@ const OPS = new Set([
   'client.patch',
   'client.create',
   'intake.list',
+  'intake.latestStructured',
   'intake.create',
   'motivation.list',
   'motivation.create',
@@ -52,6 +53,18 @@ const FORBIDDEN = new Set([
 
 export function gatewaySignature(secret, timestamp, payload) {
   return createHmac('sha256', secret).update(`${timestamp}.${payload}`).digest('hex');
+}
+
+const seenGatewaySignatures = new Map();
+
+export function claimGatewaySignature(signature, now = Date.now()) {
+  if (typeof signature !== 'string' || signature.length < 32) return false;
+  for (const [key, at] of seenGatewaySignatures) {
+    if (now - at > GATEWAY_SKEW_MS) seenGatewaySignatures.delete(key);
+  }
+  if (seenGatewaySignatures.has(signature)) return false;
+  seenGatewaySignatures.set(signature, now);
+  return true;
 }
 
 export function verifyGatewaySignature({ secret, timestamp, signature, payload, now = Date.now() }) {
@@ -149,7 +162,7 @@ export async function executeMasterCoachGateway(input) {
 function operationFailureCode(op) {
   if (op === 'dossier.get') return 'DOSSIER_LOAD_FAILED';
   if (op === 'dossier.put') return 'DOSSIER_SAVE_FAILED';
-  if (op === 'intake.list' || op === 'intake.create' || op === 'intake.report' || op === 'intake.reportPdf') {
+  if (op === 'intake.list' || op === 'intake.latestStructured' || op === 'intake.create' || op === 'intake.report' || op === 'intake.reportPdf') {
     return 'QUESTIONNAIRE_GATEWAY_FAILED';
   }
   if (op === 'motivation.list' || op === 'motivation.create' || op === 'motivation.report' || op === 'motivation.reportPdf') {
@@ -187,6 +200,7 @@ async function runOperation(body, input) {
   if (body.op === 'nutrition.publish') return publishDossier(body, client, input);
   if (body.op === 'landmarks.get') return readLandmarks(body, client, store);
   if (body.op === 'intake.list') return { status: 200, body: { ok: true, invites: await store.listIntake(client.id) } };
+  if (body.op === 'intake.latestStructured') return readStructuredIntake(client, store);
   if (body.op === 'motivation.list') return { status: 200, body: { ok: true, invites: await store.listMotivation(client.id) } };
   if (body.op === 'intake.create') return sendInvite(input.sendIntake, client);
   if (body.op === 'motivation.create') return sendInvite(input.sendMotivation, client);
@@ -194,6 +208,12 @@ async function runOperation(body, input) {
     return renderStoredReport(body, client, input);
   }
   return fail(400, 'UNKNOWN_OPERATION');
+}
+
+async function readStructuredIntake(client, store) {
+  if (typeof store.latestStructuredIntake !== 'function') return fail(503, 'QUESTIONNAIRE_GATEWAY_FAILED');
+  const intake = await store.latestStructuredIntake(client.id);
+  return { status: 200, body: { ok: true, intake: intake || null, writesProfile: false } };
 }
 
 function publicLandmarkIntake(planning) {

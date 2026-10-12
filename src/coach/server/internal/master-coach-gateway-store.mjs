@@ -5,6 +5,7 @@
  */
 import { DOSSIER_SCHEMA_VERSION } from '../../services/storage/dossier-schema.mjs';
 import { loadClientPlanningLandmarks } from '../intake/load-client-planning-landmarks.mjs';
+import { projectStructuredIntake } from '../../intake/structured-intake.mjs';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -169,6 +170,22 @@ export function createMasterCoachGatewayStore({
       return (Array.isArray(rows) ? rows : []).map(mapInvite);
     },
 
+    async latestStructuredIntake(portalClientId) {
+      const orgId = await organization();
+      const rows = await rest(
+        fetchImpl,
+        url,
+        token,
+        serviceKey,
+        `/rest/v1/client_intake_responses?client_id=eq.${encodeURIComponent(portalClientId)}&organization_id=eq.${encodeURIComponent(orgId)}&status=eq.submitted&select=id,client_id,organization_id,status,submitted_at,answers&order=submitted_at.desc&limit=5`,
+      );
+      for (const row of Array.isArray(rows) ? rows : []) {
+        const projected = projectStructuredIntake(row, { clientId: portalClientId, organizationId: orgId });
+        if (projected) return projected;
+      }
+      return null;
+    },
+
     async listMotivation(portalClientId) {
       const orgId = await organization();
       const rows = await rest(
@@ -241,7 +258,25 @@ function safeStatus(value) {
   return typeof value === 'string' && /^[a-z_]{1,32}$/.test(value) ? value : null;
 }
 
-export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env = process.env } = {}) {
+const coachSession = { token: null, expiresAt: 0, inflight: null };
+
+export function resetKrCoachSessionCache(cache = coachSession) {
+  cache.token = null;
+  cache.expiresAt = 0;
+  cache.inflight = null;
+}
+
+function sessionExpiry(token, now) {
+  try {
+    const payload = JSON.parse(Buffer.from(String(token).split('.')[1], 'base64url').toString('utf8'));
+    if (typeof payload.exp === 'number') return payload.exp * 1000;
+  } catch {
+    return now + 50 * 60 * 1000;
+  }
+  return now + 50 * 60 * 1000;
+}
+
+async function requestCoachSession({ fetchImpl, env }) {
   const url = String(env.SUPABASE_URL || '').replace(/\/$/, '');
   const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY || '';
   const publishableKey = env.SUPABASE_PUBLISHABLE_KEY || '';
@@ -250,35 +285,60 @@ export async function mintKrCoachAccessToken({ fetchImpl = globalThis.fetch, env
   const userResponse = await fetchImpl(`${url}/auth/v1/admin/users/${userId}`, {
     headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
   });
-  if (!userResponse.ok) return { token: null, stage: 'user' };
+  if (!userResponse.ok) return { token: null, stage: 'user', upstreamStatus: userResponse.status };
   const user = await userResponse.json();
   if (typeof user?.email !== 'string' || !user.email) return { token: null, stage: 'user' };
-  const linkResponse = await fetchImpl(`${url}/auth/v1/admin/generate_link`, {
-    method: 'POST',
-    headers: {
-      apikey: serviceKey,
-      Authorization: `Bearer ${serviceKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ type: 'magiclink', email: user.email }),
-  });
-  if (!linkResponse.ok) return { token: null, stage: 'link' };
-  const link = await linkResponse.json();
-  const tokenHash = link?.hashed_token || link?.properties?.hashed_token;
-  if (!tokenHash) return { token: null, stage: 'link' };
-  const verifyResponse = await fetchImpl(`${url}/auth/v1/verify`, {
-    method: 'POST',
-    headers: {
-      apikey: publishableKey,
-      Authorization: `Bearer ${publishableKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ type: 'magiclink', token_hash: tokenHash }),
-  });
-  if (!verifyResponse.ok) return { token: null, stage: 'verify' };
-  const session = await verifyResponse.json();
-  return {
-    token: typeof session?.access_token === 'string' ? session.access_token : null,
-    stage: typeof session?.access_token === 'string' ? 'ok' : 'session',
-  };
+  let upstreamStatus = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const linkResponse = await fetchImpl(`${url}/auth/v1/admin/generate_link`, {
+      method: 'POST',
+      headers: {
+        apikey: serviceKey,
+        Authorization: `Bearer ${serviceKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ type: 'magiclink', email: user.email }),
+    });
+    if (!linkResponse.ok) return { token: null, stage: 'link', upstreamStatus: linkResponse.status };
+    const link = await linkResponse.json();
+    const tokenHash = link?.hashed_token || link?.properties?.hashed_token;
+    if (!tokenHash) return { token: null, stage: 'link' };
+    const verifyResponse = await fetchImpl(`${url}/auth/v1/verify`, {
+      method: 'POST',
+      headers: {
+        apikey: publishableKey,
+        Authorization: `Bearer ${publishableKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ type: 'magiclink', token_hash: tokenHash }),
+    });
+    upstreamStatus = verifyResponse.status;
+    if (!verifyResponse.ok) continue;
+    const session = await verifyResponse.json();
+    if (typeof session?.access_token !== 'string') return { token: null, stage: 'session' };
+    return { token: session.access_token, stage: 'ok' };
+  }
+  return { token: null, stage: 'verify', upstreamStatus };
+}
+
+export async function mintKrCoachAccessToken({
+  fetchImpl = globalThis.fetch,
+  env = process.env,
+  cache = coachSession,
+  now = Date.now,
+} = {}) {
+  const clock = typeof now === 'function' ? now() : now;
+  if (cache.token && cache.expiresAt > clock + 30_000) return { token: cache.token, stage: 'ok' };
+  if (!cache.inflight) {
+    cache.inflight = requestCoachSession({ fetchImpl, env }).then((result) => {
+      if (result.token) {
+        cache.token = result.token;
+        cache.expiresAt = sessionExpiry(result.token, clock);
+      }
+      return result;
+    }).finally(() => {
+      cache.inflight = null;
+    });
+  }
+  return cache.inflight;
 }
