@@ -179,19 +179,31 @@ test('motivation invite logs never include the raw token', () => {
   assert.equal(redacted.includes('MOT_AUTO_01'), false);
 });
 
+function nodeFunctionFiles(dir, prefix = 'api') {
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const relative = `${prefix}/${entry.name}`;
+    if (entry.isDirectory()) files.push(...nodeFunctionFiles(path.join(dir, entry.name), relative));
+    else if (entry.name.endsWith('.js')) files.push(relative);
+  }
+  return files;
+}
+
 test('single motivation function stays within the Vercel Hobby limit', () => {
-  const files = fs.readdirSync(path.join(root, 'api')).filter((name) => name.endsWith('.js'));
+  const files = nodeFunctionFiles(path.join(root, 'api'));
   const API_FUNCTION_FILES = files.length;
-  const VERCEL_NODE_RUNTIME_COUNT = 13;
+  const HOBBY_NODE_FUNCTION_LIMIT = 12;
+  const VERCEL_NODE_RUNTIME_COUNT = 11;
   const FUNCTION_COUNT_REGRESSION_FROM_2B = false;
-  assert.equal(API_FUNCTION_FILES, 12, files.join(','));
+  assert.equal(API_FUNCTION_FILES, 10, files.join(','));
+  assert.ok(API_FUNCTION_FILES <= HOBBY_NODE_FUNCTION_LIMIT);
   assert.equal(fs.existsSync(path.join(root, 'middleware.js')), true);
   const middleware = fs.readFileSync(path.join(root, 'middleware.js'), 'utf8');
   assert.match(middleware, /@vercel\/edge/);
   assert.match(middleware, /export const config/);
   assert.equal(VERCEL_NODE_RUNTIME_COUNT, API_FUNCTION_FILES + 1);
   assert.equal(FUNCTION_COUNT_REGRESSION_FROM_2B, false);
-  assert.ok(files.includes('coach-motivation.js'));
+  assert.ok(files.includes('api/coach-motivation.js'));
   const { resolveMotivationApiOp } = require(path.join(root, 'api/coach-motivation.js'));
   assert.equal(resolveMotivationApiOp({ url: '/api/coach-send-motivation-invite' }), 'send-invite');
   assert.equal(resolveMotivationApiOp({ url: '/api/coach-motivation?op=send-invite' }), 'send-invite');
