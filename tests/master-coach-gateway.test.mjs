@@ -7,6 +7,7 @@ import {
   resolveCoachCalculatorAsset,
   UNSAVED_DOSSIER_MESSAGE,
 } from '../src/coach/server/internal/master-coach-gateway.mjs';
+import { createMasterCoachGatewayStore } from '../src/coach/server/internal/master-coach-gateway-store.mjs';
 
 const SECRET = 'test-gateway-secret';
 const NOW = 1_700_000_000_000;
@@ -76,6 +77,128 @@ test('rejects an expired signature and a forbidden owner field', async () => {
   });
   assert.equal(forbidden.status, 400);
   assert.equal(forbidden.body.code, 'FORBIDDEN_FIELD');
+});
+
+test('returns the verified coach organization and ignores a supplied organization id', async () => {
+  const ORG = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  let reads = 0;
+  const accepted = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization' }),
+    store: store({
+      organizationContext: async () => {
+        reads += 1;
+        return { organizationId: ORG, role: 'coach', slug: 'kr-kinetics' };
+      },
+    }),
+  });
+  assert.equal(accepted.status, 200);
+  assert.deepEqual(accepted.body, { ok: true, organizationId: ORG });
+  assert.equal(reads, 1);
+
+  const unsigned = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization' }),
+    signature: '0'.repeat(64),
+    store: store({ organizationContext: async () => { reads += 1; return null; } }),
+  });
+  assert.equal(unsigned.status, 401);
+  assert.equal(reads, 1);
+
+  const supplied = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization', organizationId: ORG, ownerUserId: ORG }),
+    store: store({ organizationContext: async () => { reads += 1; return null; } }),
+  });
+  assert.equal(supplied.status, 400);
+  assert.equal(supplied.body.code, 'FORBIDDEN_FIELD');
+  assert.equal(reads, 1);
+
+  const athlete = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization' }),
+    store: store({
+      organizationContext: async () => ({
+        organizationId: ORG,
+        role: 'athlete',
+        slug: 'kr-kinetics',
+      }),
+    }),
+  });
+  assert.equal(athlete.status, 403);
+  assert.equal(athlete.body.organizationId, undefined);
+});
+
+test('organization id is the kr-kinetics membership and never the coach user id', async () => {
+  const ORG = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  const COACH = 'dddddddd-dddd-4ddd-8ddd-dddddddddddd';
+  const env = {
+    SUPABASE_URL: 'https://example.test',
+    SUPABASE_PUBLISHABLE_KEY: 'publishable-key',
+    KR_COACH_USER_ID: COACH,
+  };
+  const urls = [];
+  const membershipStore = createMasterCoachGatewayStore({
+    accessToken: 'coach-jwt',
+    env,
+    fetchImpl: async (url) => {
+      urls.push(String(url));
+      if (String(url).includes('/memberships')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => [{
+            organization_id: ORG,
+            user_id: COACH,
+            role: 'platform_owner',
+            organizations: [{ slug: 'kr-kinetics' }],
+          }],
+        };
+      }
+      return { ok: true, status: 200, json: async () => [] };
+    },
+  });
+  const context = await membershipStore.organizationContext();
+  assert.deepEqual(context, { organizationId: ORG, role: 'platform_owner', slug: 'kr-kinetics' });
+  await membershipStore.getClient(PORTAL);
+  assert.match(urls[0], /memberships\?select=organization_id,user_id,role,organizations\(slug\)/);
+  assert.match(urls[1], new RegExp(`organization_id=eq\\.${ORG}`));
+  assert.equal(urls.some((url) => url.includes(COACH)), false);
+
+  const collided = createMasterCoachGatewayStore({
+    accessToken: 'coach-jwt',
+    env: { ...env, KR_COACH_USER_ID: ORG },
+    fetchImpl: async () => ({
+      ok: true,
+      status: 200,
+      json: async () => [{
+        organization_id: ORG,
+        user_id: COACH,
+        role: 'coach',
+        organizations: { slug: 'kr-kinetics' },
+      }],
+    }),
+  });
+  await assert.rejects(() => collided.organizationContext(), /org_missing/);
+
+  const sameAsMember = createMasterCoachGatewayStore({
+    accessToken: 'coach-jwt',
+    env,
+    fetchImpl: async () => ({
+      ok: true,
+      status: 200,
+      json: async () => [{
+        organization_id: COACH,
+        user_id: COACH,
+        role: 'coach',
+        organizations: { slug: 'kr-kinetics' },
+      }],
+    }),
+  });
+  await assert.rejects(() => sameAsMember.organizationContext(), /org_missing/);
+
+  const empty = createMasterCoachGatewayStore({
+    accessToken: 'coach-jwt',
+    env,
+    fetchImpl: async () => ({ ok: true, status: 200, json: async () => [] }),
+  });
+  await assert.rejects(() => empty.organizationContext(), /org_missing/);
 });
 
 test('rejects an unknown operation instead of running a query', async () => {

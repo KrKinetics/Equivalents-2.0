@@ -4,9 +4,10 @@
  *   POST /api/coach-send-motivation-invite
  *   POST /api/coach-process-motivation-assessment
  *   POST /api/coach-motivation-pdf
- * Vercel rewrites these onto this file so the project stays at 12 API function
- * files. Vercel Preview reports nodejs:13 because Edge middleware is a separate
- * runtime — same count as 2B (45220ae). Do not add another api/*.js file.
+ * Vercel rewrites these onto this file. Food and calculator routes share
+ * api/coach-food.js. The Node function count is every JavaScript file under api: 10,
+ * under the Hobby limit of 12. Edge middleware is a separate runtime.
+ * Do not add another api/*.js file.
  * Persistence prefers SUPABASE_SERVICE_ROLE_KEY when configured. If that secret
  * is unavailable, the server falls back to the authenticated Coach JWT; the
  * database RPC independently verifies auth.uid(), membership, client, submitted

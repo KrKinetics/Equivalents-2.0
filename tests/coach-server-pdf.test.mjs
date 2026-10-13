@@ -163,7 +163,7 @@ test('client access is organization-scoped and real-client-only', async () => {
       json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Client', is_fictional: false, service_type: 'nutrition' }],
     }),
   });
-  assert.deepEqual(good, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Client' } });
+  assert.deepEqual(good, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Client', service_type: 'nutrition' } });
 
   const wrongOrg = await authorizeClientAccess({
     accessToken: 'jwt', organizationId: 'other', clientId: 'client', supabaseUrl: 'https://example.test',
@@ -203,7 +203,7 @@ test('client access is organization-scoped and real-client-only', async () => {
       json: async () => [{ id: 'client', organization_id: 'org', full_name: 'Complet', is_fictional: false, service_type: 'complete' }],
     }),
   });
-  assert.deepEqual(complete, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Complet' } });
+  assert.deepEqual(complete, { ok: true, client: { id: 'client', organization_id: 'org', full_name: 'Complet', service_type: 'complete' } });
 });
 
 test('PDF endpoint rejects unauthenticated and invalid payloads before PDF stream', async () => {

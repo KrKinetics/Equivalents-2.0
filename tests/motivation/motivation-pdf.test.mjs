@@ -110,7 +110,17 @@ test('motivation PDF stays on the single Hobby function', () => {
     && row.destination === '/api/coach-motivation?op=pdf'
   )));
   assert.equal(fs.existsSync(path.join(root, 'api/coach-motivation-pdf.js')), false);
-  const files = fs.readdirSync(path.join(root, 'api')).filter((name) => name.endsWith('.js'));
-  assert.equal(files.length, 12, files.join(','));
+  const files = [];
+  const walk = (dir, prefix = 'api') => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const relative = `${prefix}/${entry.name}`;
+      if (entry.isDirectory()) walk(path.join(dir, entry.name), relative);
+      else if (entry.name.endsWith('.js')) files.push(relative);
+    }
+  };
+  walk(path.join(root, 'api'));
+  assert.equal(files.length, 10, files.join(','));
+  assert.ok(files.length <= 12);
+  assert.equal(files.includes('api/coach-motivation.js'), true);
   assert.equal(fs.existsSync(path.join(root, 'middleware.js')), true);
 });

@@ -51,26 +51,34 @@ export function createMasterCoachGatewayStore({
   const url = String(env.SUPABASE_URL || '').replace(/\/$/, '');
   const serviceKey = env.SUPABASE_PUBLISHABLE_KEY || '';
   const token = accessToken;
-  let organizationId = null;
+  let cachedContext = null;
 
-  async function organization() {
+  async function loadOrganizationContext() {
     if (!token) throw new Error('session_missing');
-    if (organizationId) return organizationId;
+    if (cachedContext) return cachedContext;
     const rows = await rest(
       fetchImpl,
       url,
       token,
       serviceKey,
-      '/rest/v1/memberships?select=organization_id,organizations(slug)&limit=10',
+      '/rest/v1/memberships?select=organization_id,user_id,role,organizations(slug)&limit=10',
     );
-    const match = (Array.isArray(rows) ? rows : []).find((row) => row.organizations?.slug === 'kr-kinetics');
-    const id = match?.organization_id || null;
-    if (!UUID_RE.test(id || '')) throw new Error('org_missing');
-    organizationId = id;
-    return organizationId;
+    const ownerUserId = UUID_RE.test(env.KR_COACH_USER_ID || '') ? env.KR_COACH_USER_ID : '';
+    const match = (Array.isArray(rows) ? rows : [])
+      .map((row) => membershipContext(row, ownerUserId))
+      .find(Boolean);
+    if (!match) throw new Error('org_missing');
+    cachedContext = match;
+    return cachedContext;
+  }
+
+  async function organization() {
+    return (await loadOrganizationContext()).organizationId;
   }
 
   return {
+    organizationContext: loadOrganizationContext,
+
     async getClient(portalClientId) {
       const orgId = await organization();
       const rows = await rest(
@@ -242,6 +250,19 @@ export function createMasterCoachGatewayStore({
         }));
     },
   };
+}
+
+function membershipContext(row, ownerUserId) {
+  if (!row || typeof row !== 'object') return null;
+  const embedded = row.organizations;
+  const slug = Array.isArray(embedded) ? embedded[0]?.slug : embedded?.slug;
+  if (slug !== 'kr-kinetics') return null;
+  if (row.role !== 'coach' && row.role !== 'platform_owner') return null;
+  const organizationId = typeof row.organization_id === 'string' ? row.organization_id : '';
+  if (!UUID_RE.test(organizationId)) return null;
+  if (typeof row.user_id === 'string' && organizationId === row.user_id) return null;
+  if (ownerUserId && organizationId === ownerUserId) return null;
+  return { organizationId, role: row.role, slug: 'kr-kinetics' };
 }
 
 function mapInvite(row) {
