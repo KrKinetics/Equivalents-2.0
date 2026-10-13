@@ -223,23 +223,31 @@ async function loadClient(store, portalClientId) {
   return { client };
 }
 
-async function readOrganization(store) {
-  if (typeof store.organizationContext !== 'function') return fail(503, 'LEGACY_GATEWAY_FAILED');
+function refuseOrganization(status, code) {
+  return { status, body: { ok: false, code, organizationId: null } };
+}
+
+async function readOrganization(body, store) {
+  const subject = typeof body.coachSubject === 'string' ? body.coachSubject.trim() : '';
+  if (!uuid(subject)) return refuseOrganization(400, 'BAD_REQUEST');
+  if (typeof store.organizationForSubject !== 'function') return refuseOrganization(503, 'LEGACY_GATEWAY_FAILED');
   let context;
   try {
-    context = await store.organizationContext();
+    context = await store.organizationForSubject(subject);
   } catch {
-    return fail(503, 'LEGACY_GATEWAY_FAILED');
+    return refuseOrganization(503, 'LEGACY_GATEWAY_FAILED');
   }
-  if (!context || context.slug !== 'kr-kinetics') return fail(403, 'LEGACY_GATEWAY_FAILED');
-  if (context.role !== 'coach' && context.role !== 'platform_owner') return fail(403, 'LEGACY_GATEWAY_FAILED');
-  if (!uuid(context.organizationId)) return fail(503, 'LEGACY_GATEWAY_FAILED');
+  if (!context || context.slug !== 'kr-kinetics') return refuseOrganization(403, 'LEGACY_GATEWAY_FAILED');
+  if (context.role !== 'coach' && context.role !== 'platform_owner') return refuseOrganization(403, 'LEGACY_GATEWAY_FAILED');
+  if (!uuid(context.organizationId) || context.organizationId === subject) {
+    return refuseOrganization(403, 'LEGACY_GATEWAY_FAILED');
+  }
   return { status: 200, body: { ok: true, organizationId: context.organizationId } };
 }
 
 async function runOperation(body, input) {
   const { store } = input;
-  if (body.op === 'coach.organization') return readOrganization(store);
+  if (body.op === 'coach.organization') return readOrganization(body, store);
   if (body.op === 'client.create') return createClient(body, store);
   if (body.op === 'coach.snapshot') return snapshot(body, store);
 
