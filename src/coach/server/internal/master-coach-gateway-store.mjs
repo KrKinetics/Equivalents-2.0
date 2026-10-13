@@ -79,6 +79,31 @@ export function createMasterCoachGatewayStore({
   return {
     organizationContext: loadOrganizationContext,
 
+    async organizationForSubject(coachSubject) {
+      const subject = typeof coachSubject === 'string' ? coachSubject.trim() : '';
+      if (!UUID_RE.test(subject)) return null;
+      const serviceRole = env.SUPABASE_SERVICE_ROLE_KEY || '';
+      if (!url || !serviceRole) throw new Error('mapping_unavailable');
+      const rows = await rest(
+        fetchImpl,
+        url,
+        serviceRole,
+        serviceRole,
+        `/rest/v1/master_coach_subject_links?master_coach_user_id=eq.${encodeURIComponent(subject)}&select=master_coach_user_id,organization_id,portal_user_id,role,organizations(slug)&limit=1`,
+      );
+      const row = Array.isArray(rows) ? rows[0] : null;
+      if (!row || row.master_coach_user_id !== subject) return null;
+      const ownerUserId = UUID_RE.test(env.KR_COACH_USER_ID || '') ? env.KR_COACH_USER_ID : '';
+      const context = membershipContext({
+        organization_id: row.organization_id,
+        user_id: row.portal_user_id,
+        role: row.role,
+        organizations: row.organizations,
+      }, ownerUserId);
+      if (!context || context.organizationId === subject) return null;
+      return context;
+    },
+
     async getClient(portalClientId) {
       const orgId = await organization();
       const rows = await rest(
