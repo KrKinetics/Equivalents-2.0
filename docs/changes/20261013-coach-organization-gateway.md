@@ -34,9 +34,18 @@ Le contrat `authorizeClientAccess` inclut `service_type`. Le compte des fonction
 
 ## Tests
 
-- Organisation, HMAC, concurrence, anti-rejeu, questionnaire structuré : passés.
+- Organisation, HMAC, concurrence, anti-rejeu, questionnaire structuré : passés localement.
 - Migration de bail sur Postgres embarqué isolé : passée. Aucune base distante.
 - Les trois anciens échecs de `coach-auth-tests` sont couverts : deux comptes de fonctions, et `service_type`.
+- CI de la PR : `coach-auth-tests`, `nutrition-tests`, `intake-critical` et `motivation-critical` passent. Run `38463591828`.
+
+## Preview
+
+Déploiement Vercel Preview terminé : https://vercel.com/krkinetics-projects/equivalents-2-0/8pXtef3SoLejCXueBeXqGtCXV2V6
+
+URL : https://equivalents-2-0-dyklmj3s9-krkinetics-projects.vercel.app
+
+Environnement `Preview`, pas Production. Un POST non signé vers `/api/internal/master-coach-gateway` reçoit 401 de la protection Vercel avant la fonction. Le corps du gateway n’a donc pas été observé en direct. La réussite du déploiement certifie le plafond Hobby, qui faisait échouer la PR #55.
 
 ## Hors périmètre
 
