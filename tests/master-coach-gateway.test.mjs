@@ -78,6 +78,47 @@ test('rejects an expired signature and a forbidden owner field', async () => {
   assert.equal(forbidden.body.code, 'FORBIDDEN_FIELD');
 });
 
+test('returns the verified coach organization and ignores a supplied organization id', async () => {
+  let reads = 0;
+  const accepted = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization' }),
+    store: store({
+      organizationContext: async () => {
+        reads += 1;
+        return {
+          organizationId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+          role: 'coach',
+          slug: 'kr-kinetics',
+        };
+      },
+    }),
+  });
+  assert.equal(accepted.status, 200);
+  assert.equal(accepted.body.organizationId, 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
+  assert.equal(accepted.body.role, undefined);
+  assert.equal(reads, 1);
+
+  const supplied = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization', organizationId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa' }),
+    store: store({ organizationContext: async () => { reads += 1; return null; } }),
+  });
+  assert.equal(supplied.status, 400);
+  assert.equal(supplied.body.code, 'FORBIDDEN_FIELD');
+
+  const athlete = await executeMasterCoachGateway({
+    ...signed({ op: 'coach.organization' }),
+    store: store({
+      organizationContext: async () => ({
+        organizationId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        role: 'athlete',
+        slug: 'kr-kinetics',
+      }),
+    }),
+  });
+  assert.equal(athlete.status, 403);
+  assert.equal(athlete.body.organizationId, undefined);
+});
+
 test('rejects an unknown operation instead of running a query', async () => {
   const result = await executeMasterCoachGateway({
     ...signed({ op: 'sql', statement: 'select 1' }),
