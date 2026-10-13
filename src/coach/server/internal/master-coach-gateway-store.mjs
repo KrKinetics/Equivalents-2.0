@@ -69,6 +69,25 @@ export function createMasterCoachGatewayStore({
   }
 
   return {
+    async organizationContext() {
+      if (!token) throw new Error('session_missing');
+      const rows = await rest(
+        fetchImpl,
+        url,
+        token,
+        serviceKey,
+        '/rest/v1/memberships?select=organization_id,role,organizations(slug)&limit=10',
+      );
+      const match = (Array.isArray(rows) ? rows : []).find((row) => {
+        const org = row.organizations;
+        const slug = Array.isArray(org) ? org[0]?.slug : org?.slug;
+        return slug === 'kr-kinetics' && (row.role === 'coach' || row.role === 'platform_owner');
+      });
+      const id = match?.organization_id || '';
+      if (!UUID_RE.test(id)) throw new Error('org_missing');
+      return { organizationId: id, role: match.role, slug: 'kr-kinetics' };
+    },
+
     async getClient(portalClientId) {
       const orgId = await organization();
       const rows = await rest(

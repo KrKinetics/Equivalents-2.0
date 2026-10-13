@@ -27,6 +27,7 @@ const OPS = new Set([
   'motivation.report',
   'motivation.reportPdf',
   'coach.snapshot',
+  'coach.organization',
   'nutrition.publish',
   'landmarks.get',
 ]);
@@ -168,8 +169,18 @@ async function loadClient(store, portalClientId) {
   return { client };
 }
 
+async function readOrganization(store) {
+  if (typeof store.organizationContext !== 'function') return fail(503, 'LEGACY_GATEWAY_FAILED');
+  const context = await store.organizationContext();
+  if (!context || context.slug !== 'kr-kinetics') return fail(403, 'LEGACY_GATEWAY_FAILED');
+  if (context.role !== 'coach' && context.role !== 'platform_owner') return fail(403, 'LEGACY_GATEWAY_FAILED');
+  if (!uuid(context.organizationId)) return fail(503, 'LEGACY_GATEWAY_FAILED');
+  return { status: 200, body: { ok: true, organizationId: context.organizationId } };
+}
+
 async function runOperation(body, input) {
   const { store } = input;
+  if (body.op === 'coach.organization') return readOrganization(store);
   if (body.op === 'client.create') return createClient(body, store);
   if (body.op === 'coach.snapshot') return snapshot(body, store);
 
