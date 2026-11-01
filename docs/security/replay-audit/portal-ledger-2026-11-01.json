@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-01",
+  "purpose": "read-only migration replay preflight; no SQL statements, keys, tokens or customer data",
+  "repository": "KrKinetics/Equivalents-2.0",
+  "source_branch": "main",
+  "source_commit": "6575e4ab2e46ebbf1be63a207cc0fb602e34a8ae",
+  "scope": "KR KINETICS Portal Supabase development migration ledger",
+  "recorded": [
+    {
+      "version": "20260803120000",
+      "name": "coach_auth_organizations",
+      "statement_count": 52,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260803200000",
+      "name": "coach_client_dossiers",
+      "statement_count": 18,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260804180000",
+      "name": "clients_organization_immutable",
+      "statement_count": 3,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260805140000",
+      "name": "coach_rate_limit_buckets",
+      "statement_count": 12,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806111500",
+      "name": "client_pre_interview_intake",
+      "statement_count": 49,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806113000",
+      "name": "fix_client_intake_touch_trigger",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806173059",
+      "name": "client_review_moderation",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806174427",
+      "name": "fix_review_master_identity",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806175515",
+      "name": "grant_client_review_service_permissions",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260806180021",
+      "name": "normalize_legacy_review_paragraphs",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260816140000",
+      "name": "client_motivation_assessment",
+      "statement_count": 0,
+      "state": "missing_sql"
+    },
+    {
+      "version": "20260816154500",
+      "name": "harden_motivation_analysis_write",
+      "statement_count": 0,
+      "state": "missing_sql"
+    },
+    {
+      "version": "20260816194729",
+      "name": "fix_motivation_trigger_rowtypes",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817181203",
+      "name": "allow_real_clients_and_default_real",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817181258",
+      "name": "enforce_real_clients",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817181406",
+      "name": "allow_authenticated_server_motivation_persistence_fallback",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817182101",
+      "name": "lock_force_real_client_flag_trigger_function",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817182440",
+      "name": "make_real_client_trigger_invoker",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817182557",
+      "name": "real_clients_rls_policies",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817182714",
+      "name": "real_clients_invite_functions",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260817183256",
+      "name": "temporary_pg_net_for_motivation_backfill",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    },
+    {
+      "version": "20260927122838",
+      "name": "backup_clients_before_master_coach_fusion_20260927",
+      "statement_count": 1,
+      "state": "recorded_sql"
+    }
+  ],
+  "source_files": [
+    {
+      "version": "20260803120000",
+      "name": "20260803120000_coach_auth_organizations.sql",
+      "blob_sha": "43939ce7de66b4fc1d9c67157e58fb176b65563d"
+    },
+    {
+      "version": "20260803200000",
+      "name": "20260803200000_coach_client_dossiers.sql",
+      "blob_sha": "c2246f97cc774a022f47d4bc4f0cb71dcca8beef"
+    },
+    {
+      "version": "20260804180000",
+      "name": "20260804180000_clients_organization_immutable.sql",
+      "blob_sha": "be6dc5e3435c8fcd7c226b794ceefb107b092692"
+    },
+    {
+      "version": "20260805140000",
+      "name": "20260805140000_coach_rate_limit_buckets.sql",
+      "blob_sha": "1b25d744b1717424cff522915f5411fb796eeef5"
+    },
+    {
+      "version": "20260806111500",
+      "name": "20260806111500_client_pre_interview_intake.sql",
+      "blob_sha": "804dfa7aad57b826f606f28ab696d18647d649f8"
+    },
+    {
+      "version": "20260806113000",
+      "name": "20260806113000_fix_client_intake_touch_trigger.sql",
+      "blob_sha": "15667889641457f355393924890ee96fc5143c56"
+    },
+    {
+      "version": "20260814190000",
+      "name": "20260814190000_client_service_type.sql",
+      "blob_sha": "e93ec30e5debd9c07f525b3ae674fb8218176e2a"
+    },
+    {
+      "version": "20260816140000",
+      "name": "20260816140000_client_motivation_assessment.sql",
+      "blob_sha": "9081ecf3251aa666325aabcba9a57766f7ba66c5"
+    },
+    {
+      "version": "20260816154500",
+      "name": "20260816154500_harden_motivation_analysis_write.sql",
+      "blob_sha": "b5bb2b17e766d4d135a7ca863f69cd2ebbb88e0a"
+    },
+    {
+      "version": "20260816154600",
+      "name": "20260816154600_fix_motivation_trigger_rowtypes.sql",
+      "blob_sha": "f1ba00f4f98cff3a1b150676c3df62783289c303"
+    }
+  ]
+}
